@@ -19,9 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     pricetotalm2: DataTypes.DOUBLE,
     pricetotalm2: DataTypes.DOUBLE,
     pricetotal: DataTypes.DOUBLE,
-    status: DataTypes.STRING,
-    iddevelipment: DataTypes.INTEGER,
-    idcontract: DataTypes.INTEGER
+    status: DataTypes.STRING
   }, {});
   units.associate = function(models) {
     // associations can be defined here

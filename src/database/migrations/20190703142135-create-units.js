@@ -62,12 +62,6 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
-      iddevelopment: {
-        type: Sequelize.INTEGER
-      },
-      idcontract: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
