@@ -39,8 +39,6 @@ module.exports = {
         pricetotalm2: data[15],
         pricetotal: data[16],
         status: data[17],
-        iddevelopment:data[18],
-        idcontract:data[19],
         createdAt: new Date(),
         updatedAt: new Date()
       });
