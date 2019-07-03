@@ -1,10 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const units = sequelize.define('units', {
-    id: DataTypes.STRING,
-    unit: DataTypes.STRING,
+    unitNumber: DataTypes.STRING,
     phase: DataTypes.INTEGER,
-    buildingid: DataTypes.STRING,
     level: DataTypes.INTEGER,
     bedrooms: DataTypes.INTEGER,
     nkeys: DataTypes.INTEGER,
