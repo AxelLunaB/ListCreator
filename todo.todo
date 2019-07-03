@@ -1,0 +1,132 @@
+UI Refactor bugs:
+  ✔ navbar emmit @done (2018-7-19 10:47:22)
+  ✔ api has same names @done (2018-7-12 11:20:09)
+  ✔ server throws 404 when refreshing @done (2018-7-12 11:20:09)
+  ✔ 404 when changing pages @done (2018-7-9 13:25:39) (Caused when an image was not found.)
+  ☐ When nodemon restarts, socket disconect, add a reconect method (for dev proposes only)
+
+✔ Add cluster & status objects to create response. @done (9/6/2018, 10:25:10 AM)
+
+General todos:
+  ✔ abstract socketio events, maybe to the store module. @done (2018-7-10 17:57:48)
+  ☐ Refacor house module
+    ☐ display current page and total pages. @low
+    ✔ Add new @done (2018-7-12 13:01:01)
+    ✔ clone @done (2018-7-12 13:01:05)
+    ✔ eddit @done (2018-7-11 10:21:22)
+    ✔ Listen to rt events @done (2018-7-12 13:01:09)
+      ✔ update events should be in place AKA update the current state. @done (2018-7-12 11:19:43)
+      ✔ create events should retrieve objects again instead. @done (2018-7-12 13:01:00)
+  ☐ Refactor lots module
+    ☐ display current page an total pages @low
+    ✔ add new @done (2018-7-18 11:18:12)
+    ✔ clone @done (2018-7-18 11:18:39)
+    ✔ eddit @done (2018-7-18 11:19:08)
+    ✔ Listen to rt events @done (2018-7-18 11:52:17)
+      ✔ Update events should be in place @done (2018-7-18 11:19:28)
+      ✔ Create event trigger retrieve objects again @done (2018-7-18 11:18:47)
+
+  ☐ Refactor users module
+    ☐ display current page an total pages @low
+    ✔ add new @done (2018-7-18 17:46:52)
+    ✔ eddit @done (2018-7-19 09:27:17)
+    ✔ delete @done (2018-7-19 09:27:26)
+    ✔ Listen to rt events @done (2018-7-19 10:05:40)
+      ✔ Update events should be in place @done (2018-7-19 10:05:38)
+      ✔ Create event trigger retrieve objects again @done (2018-7-19 10:05:39)
+    ☐ re-enable pagination in user module.
+
+  ☐ Implement Sweet alerts( https://sweetalert.js.org/ ) @high
+    ✔ Houses @done (2018-7-13 08:55:06)
+    ☐ Dashboard
+    ☐ Historics
+    ✔ Login @done (2018-7-19 10:45:15)
+    ✔ Lots @done (2018-7-18 12:33:31)
+    ✔ users @done (2018-7-19 09:28:16)
+    ✔ and choose one from (https://notifyjs.jpillora.com/) && (https://www.npmjs.com/package/jquery.growl) @done (2018-7-13 08:54:03) ( Choosen notify )
+
+
+  ✔ Think in a solution for the authentication socket problem @done (2018-7-12 11:20:30)
+    ✔ create some kind of event system to ensure all socket events are created when the socket is authenticated. @done (2018-7-12 16:38:05)
+  ✔ Remove EventBuss (wip) @done (8/20/2018, 3:26:16 PM)
+  ✔ Re-Enable searchbar. @done (8/20/2018, 3:34:33 PM)
+  ☐ Add escape key support for dismissing popups. (<div @keydown.esc="something_in_your_methods"></div>) @low
+  ✔ Add static size for status tags (they blink when changed from BLOQUEADO to VENDIDO @low @done (2018-7-19 10:24:32)
+  ✔ Add table for: @done (2018-7-19 13:47:47)
+    ✔ Status @critical - [id,name, hex-color] @done (2018-7-19 13:27:43)
+
+    ✔ Division @critical - [id, name,code] @done (2018-7-19 13:27:45)
+
+
+  user Permisions:
+    ✔ Delete admin @done (2018-5-10 10:12:04)
+    ✔ Read users @done (2018-5-10 10:18:25)
+  CRUD:
+    Usuarios:
+      ✔ CREATE @done (2018-4-18 09:58:57)
+        ☐ Send email verification
+        ☐ Create verification link
+      ✔ READ @done (2018-4-18 09:58:57)
+      ✔ UPDATE @done (2018-4-18 09:58:58)
+      ✔ DELETE @done (2018-4-18 09:58:58)
+    Lotes:
+      ✔ CREATE @done (2018-5-8 13:40:42)
+      ✔ READ @done (2018-5-8 13:40:42)
+      ✔ UPDATE @done (2018-5-8 13:40:42)
+      ✔ DELETE @done (2018-5-8 13:40:43)
+    Casas:
+      ✔ CREATE @done (2018-5-8 13:40:45)
+      ✔ READ @done (2018-5-8 13:40:46)
+      ✔ UPDATE @done (2018-5-8 13:40:46)
+      ✔ DELETE @done (2018-5-8 13:40:46)
+    HISTORICS:
+      ✔ CREATE @done (2018-5-11 13:42:09)
+      ✔ READ @done (2018-5-11 13:42:10)
+      ✘ UPDATE @cancelled (2018-5-11 13:42:13) (No need to update a historic register.)
+      ✘ DELETE @cancelled (2018-5-11 13:42:32) (No need to delete a historic register.)
+      ✔ View all records for specific lot. @low @done (2018-5-21 10:55:08)
+  Permisions:
+    ✔ isAdmin @done (2018-4-18 09:59:16)
+    ✔ Prevent change/delete for the main admin user. @done (2018-5-7 12:03:52)
+  MASIVE UPDATE:
+    ☐ Design masive update module @high
+      ☐ Use vuex store to save the items that are going to be updated.
+  UI:
+    ✔ email verification UI @high @done (2018-5-18 10:57:54)
+    ✔ form validation for users.vue @high @done (2018-6-20 15:25:29)
+    ✔ navigation bar for mobile @done (2018-5-10 13:22:19)
+    ✔ Pass user info to the navbar (name, email,type) and maybe use vuex for persistent state. @done (2018-5-10 13:22:17)
+    ✔ Update users.vue @low @done (2018-5-15 09:58:59)
+    ✔ Detail view @done (2018-5-9 17:44:12)
+    ✔ Make nav.pug a Vue module. @done (2018-5-10 13:22:06)
+    ✔ User messages (alerts) @low @done (2018-5-17 12:16:15)
+      ✔ Login @done (2018-5-15 17:37:24)
+      ✔ houses / lots @done (2018-5-16 17:19:33)
+    ✔ UI for cleanning state before logging out. (clean it when loggin view is rendered) @low @done (2018-5-17 11:32:22)
+    ✔ Historics item (add general info to the item for better understanding. ) @critical @done (2018-5-15 09:57:20)
+    ✘ Remove hover on mobile. @cancelled (2018-5-15 09:35:01)
+    ✔ Fix mobile modal @done (2018-5-16 17:17:09)
+    ✔ Clear form when new lot is created. @done (2018-6-20 15:23:52)
+  OTHERS:
+    Search bar for:
+      ✔ users @done (2018-5-17 10:52:00)
+      ✔ houses @done (2018-5-16 17:17:15)
+      ✔ lots @done (2018-5-16 17:17:16)
+    ✔ Check seeder (status field) it is kind of broken. LOTS @done (2018-5-9 16:54:02)
+    ✔ Enhance search architecture @low but necessary . @done (2018-7-9 13:33:01)
+
+Lotes BDD:
+  ✔ Agregar numero oficial a bdd. @done (2018-5-9 16:22:51)
+  ✔ quitar precio contado de @done (2018-5-9 16:22:54)
+
+
+  Ideas:
+    ✔ Create new lot/house based on other one (copy & eddit values) @low @done (2018-5-23 10:22:52)
+
+
+
+    En breve: Se conecta a /api/houses que es el servicio de casas que ves en la carpeta de servicios dentro de src/services y
+    le manda un parámetro especial para que no pagine los datos, porque feathers por defecto te pagina los resultados de 12 en 12
+     (así lo tengo configurado creo) y para que no pagine, checa los hooks (https://docs.feathersjs.com/api/hooks.html) que actuan
+      sobre ese servicio, así te das una idea de como replicarlo, en si la funcionalidad ya está solo es que implementes el hook
+      y le pases el parámetro que está en el url de Unity

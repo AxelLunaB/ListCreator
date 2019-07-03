@@ -1,0 +1,159 @@
+<template>
+  <div class="card-body col-md-3 col-sm-12" :class="{ animate: isActive }">
+    <router-link to="/detail" class="router">
+      <h5 class="m-b-30 m-t-0 text-center">Nombre del desarrollo</h5>
+      <div class="card-upper">
+        <div class="image-card">
+        </div>
+        <div class="info-card">
+                <div>
+                    <div class="col-12">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <td>Units</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
+                                <td>Keys</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>1BR</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>2BR</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>3BR</td>
+                                <td>30</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+      </div>
+      <div class="card-down">
+        <hr>
+        <p> % vendido </p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+              <span class="sr-only">60% Complete</span>
+          </div>
+        </div>
+        <table class="table table-hover" style="width:100%;">
+            <tbody>
+            <tr>
+                <td>AVAILABLE</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>RESERVED</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>TEMP</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>BLOCK</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>SOLD</td>
+                <td>30</td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
+    </router-link>
+  </div>
+</template>
+
+<script>
+
+export default {
+  props:["development"],
+  data(){
+    return {
+      isActive: true
+    }
+  },
+  methods: {
+
+  }
+}
+</script>
+
+<style lang="scss">
+
+  .card-body {
+    background: rgb(106, 142, 103);
+    margin:10px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .table {
+    background: none;
+    color: white;
+
+  }
+
+  .table td {
+    padding: 0;
+  }
+
+  .info-card {
+    width:100%;
+  }
+
+  .table-hover tbody tr:hover {
+    color: #ddffe4;
+    background-color: rgba(0,0,0,.075);
+}
+
+.image-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-upper {
+  display: flex;
+}
+
+.animate {
+  animation: fadeInAnimation 1s forwards;
+}
+
+.router {
+  color:white;
+}
+
+.router:hover {
+  text-decoration: none;
+  color:white;
+}
+
+@keyframes fadeInAnimation {
+  0%   {
+    opacity: 0;
+    transform: translateY(-5px);
+     }
+
+  40%   {
+    opacity: 0;
+    transform: translateY(-5px);
+     }
+
+  100% {
+    opacity: 1;
+    transform: translateY(5px);
+    }
+}
+</style>

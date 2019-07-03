@@ -1,0 +1,226 @@
+@import './custom.scss';
+@import '../../node_modules/bulma/sass/base/_all.sass';
+@import '../../node_modules/bulma/sass/components/_all.sass';
+@import '../../node_modules/bulma/sass/elements/_all.sass';
+@import '../../node_modules/bulma/sass/grid/_all.sass';
+@import '../../node_modules/bulma/sass/layout/_all.sass';
+@import './tables.scss';
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-select{
+  width:11em;
+}
+
+html {
+    background-color: $altozano-color;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-height{
+  height: $navbar-height;
+}
+
+/* use with bulma's container class */
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: $navbar-height + 1em;
+}
+
+#app-login {
+    height: 100%;
+}
+
+.login-panel {
+    z-index: 10;
+    height: 100%;
+    width: 40%;
+    background-color: rgba(132, 155, 173,1);
+    //background-color: #111;
+
+    max-width: 400px;
+    position: absolute;
+    padding: 15px;
+}
+
+.image-panel {
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-image: url('../assets/fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.panel-background {
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.is-static {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.parent {
+    position: relative;
+    widows: 100%;
+    height: 100%;
+}
+
+.login-logo {
+    background-image: url('../assets/altozano_generico.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 150px;
+    width: auto;
+}
+
+// .card {
+//   // transition: all .2s ease-in-out;
+// }
+.card-hover {
+    transition: all .2s ease-in-out;
+}
+
+.is-custom-card {
+    color: black;
+    transition: .2s; //animación
+}
+
+.is-custom-card:hover {
+    box-shadow: $card-shadow-hover;
+    transform: scale(1.05);
+    transition: .2s; //animación
+}
+
+.is-custom-card .title .subtitle {
+    color: black;
+}
+
+.dashboard-card-footer {
+    height: 50px;
+    width: 100%;
+    padding: 10px
+}
+
+.background-color-custom {
+    background-color: rgba(0, 130, 138, 0.514);
+}
+
+.max-width {
+    width: 100%;
+}
+
+.max-height {
+    height: 100%;
+}
+
+.remove-overflow {
+    overflow: hidden;
+}
+
+.padding-15 {
+    padding: 15px;
+}
+
+.padding-12 {
+    padding: 12px;
+}
+
+.padding-30 {
+    padding: 30px;
+}
+
+.padding-correction {
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.button-width {
+    width: 68px;
+}
+
+.has-text-overflow {
+    text-overflow: clip;
+    display: block;
+}
+
+.parent-overflow {
+    word-wrap: break-word;
+}
+
+.bring-to-front {
+    z-index: 50px;
+}
+
+.has-pointer-cursor {
+    cursor: pointer;
+}
+
+.tag-fixed-size {
+    width: 100px;
+}
+
+.navbar-item {
+cursor: pointer;
+}
+
+// full-hd
+@media screen and (min-width: $fullhd) {}
+
+// widescreen
+@media screen and (max-width: $fullhd - 1px) {}
+
+// desktop
+@media screen and (max-width: $widescreen - 1px) {}
+
+// tablet
+@media screen and (max-width: $desktop - 1px) {
+    .login-logo {
+        height: 100px;
+        background-size: auto 100px;
+    }
+}
+
+// mobile
+@media screen and (max-width: $tablet - 1px) {
+    .login-logo {
+        height: 90px;
+        background-size: auto 90px;
+    }
+    .login-panel {
+        // background-color: red;
+        width: 90%;
+        max-width: 500px;
+        height: 70%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}

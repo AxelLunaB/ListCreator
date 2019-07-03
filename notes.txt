@@ -1,0 +1,3 @@
+User service:
+- 403 Forbiden: used when user has no permissions to access certain acctions. AKA not Admin
+

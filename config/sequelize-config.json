@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Ar3d2018",
+    "database": "giada_tulum",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": true
+  },
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "giada_tulum",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

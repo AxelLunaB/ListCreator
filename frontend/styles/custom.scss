@@ -1,0 +1,35 @@
+@import '../../node_modules/bulma/sass/utilities/_all.sass';
+@import '../../node_modules/bulma/sass/utilities/initial-variables';
+@import '../../node_modules/bulma/sass/utilities/functions';
+
+$altozano-color: #00828a;
+
+$card-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$card-shadow-hover: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+$card-background-color: #fff;
+
+$subtitle-color: black;
+$pagination-color: white;
+$success:#4CAF50;
+$pagination-border-color: #002f37;
+$pagination-focus-color: white;
+$pagination-active-color: white;
+
+$pagination-current-color: white;
+$pagination-current-border-color: #b1dbd9;
+$pagination-current-background-color:	#b1dbd9;
+
+$pagination-disabled-background-color: #004450;
+
+$navbar-height: 4em;
+
+.pagination-link {
+  background-color: $pagination-disabled-background-color;
+}
+.pagination-previous {
+  background-color: $pagination-disabled-background-color;
+}
+.pagination-next {
+  background-color: $pagination-disabled-background-color;
+}
