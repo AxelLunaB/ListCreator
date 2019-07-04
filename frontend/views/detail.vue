@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <detail-table v-for="e in detailTable" :key="e" :detailTable="e"></detail-table>
+              <detail-table v-for="e in departments" :key="e.index" :detailTable="e"></detail-table>
               </div>
           </div>
         </div>
@@ -40,115 +40,160 @@
 </template>
 
 <script>
+  import { mapActions } from "vuex";
+  import { mapGetters } from "vuex";
+  import detailTable from "./components/detail-table.vue";
+  import returnPage from "./components/returnPage.vue";
 
-import detailTable from "./components/detail-table.vue";
-import returnPage from "./components/returnPage.vue";
-
-export default {
-  components: {
-    detailTable,
-    returnPage
-  },
-  data(){
-    return {
-      detailTable: 3,
-      isAnimated: true
+  export default {
+    components: {
+      detailTable,
+      returnPage
+    },
+    mounted: function() {
+      // events...
+    //  this.$eventHub.$on("add-button-clicked", this.addDepartment);
+    //  this.$eventHub.$on("clone-department", this.cloneDepartment);
+      this.$eventHub.$on("go-search", params => {
+        var query = {};
+        params.forEach(v => {
+          if (v[1] != "") {
+            query[v[0]] = v[1];
+          }
+        });
+        this.$store.dispatch("departments/goSearch", query);
+      });
+      // logic
+      var isAuthenticated = this.$store.state.others.isAuthenticated;
+      if (isAuthenticated) {
+        // Dispatch actions &&  subscribe to rt events.
+        console.log("auth");
+        this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("others/setPlusButton", true);
+        this.$store.dispatch("departments/listenEvents");
+        // listen to authenticated event
+      } else {
+        console.log("no auth");
+        let _ = this;
+        this.$eventHub.$on("authenticated", function() {
+          _.$store.dispatch("departments/getDepartments");
+          _.$store.dispatch("others/setPlusButton", true);
+          _.$store.dispatch("departments/listenEvents");
+        });
+      }
+    },
+    data(){
+      return {
+        detailTable: 3,
+        isAnimated: true
+      }
+    },
+    methods: {
+      ...mapActions("departments", ["nextPage", "prevPage"])
+    },
+    computed: {
+      ...mapGetters({
+        departments: "departments/departments",
+        searchQuery: "departments/query",
+        clusters: "others/clusters",
+        filteredValue: "departments/filterValue",
+        specialSort: "departments/specialSort"
+      })
     }
   }
-}
 </script>
 
 <style  lang="scss">
 
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+  @import 'node_modules/bootstrap/scss/bootstrap';
+  @import 'node_modules/bootstrap-vue/src/index.scss';
 
-.main-tables-container {
-  width:100vw;
-  height:100vh;
-  background: rgb(81, 111, 77);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card {
-  background: none;
-}
-
-.table thead td, .table thead th {
-    border-width: 0px;
-    color: white;
-}
-
-h2 {
-  color:  white;
-}
-
-.test {
-  background: red;;
-}
-
-  .card-body {
-    background: rgb(106, 142, 103);
-    margin:10px;
-    border-radius: 3px;
-    color: white;
-    cursor: pointer;
-  }
-
-  .table {
-    background: none;
-    color: white;
-
-  }
-
-  .table td {
-    padding: 0;
-  }
-
-  .info-card {
-    width:100%;
-  }
-
-  .table-hover tbody tr:hover {
-    color: #ddffe4;
-    background-color: rgba(0,0,0,.075);
-}
-
-.image-card {
+  .main-tables-container {
+    width:100vw;
+    height:100vh;
+    background: rgb(81, 111, 77);
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-.title-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.buttons-header {
-  display: flex;
-   justify-content: flex-start;
-   align-items:center;
-}
-
-.navbar-brand {
-   display: flex;
-   justify-content: flex-start;
-}
-
-#return {
-  color: white;
-  position: fixed;
-  left: 40px;
-  top:80px;
-  z-index: 30;
-}
-
-@media screen and (max-width: 867px) {
-  .navbar-brand {
     justify-content: center;
   }
-}
+
+  .card {
+    background: none;
+  }
+
+  .table thead td, .table thead th {
+      border-width: 0px;
+      color: white;
+  }
+
+  h2 {
+    color:  white;
+  }
+
+  .test {
+    background: red;;
+  }
+
+    .card-body {
+      background: rgb(106, 142, 103);
+      margin:10px;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .table {
+      background: none;
+      color: white;
+
+    }
+
+    .table td {
+      padding: 0;
+    }
+
+    .info-card {
+      width:100%;
+    }
+
+    .table-hover tbody tr:hover {
+      color: #ddffe4;
+      background-color: rgba(0,0,0,.075);
+  }
+
+  .image-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .title-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .buttons-header {
+    display: flex;
+     justify-content: flex-start;
+     align-items:center;
+  }
+
+  .navbar-brand {
+     display: flex;
+     justify-content: flex-start;
+  }
+
+  #return {
+    color: white;
+    position: fixed;
+    left: 40px;
+    top:80px;
+    z-index: 30;
+  }
+
+  @media screen and (max-width: 867px) {
+    .navbar-brand {
+      justify-content: center;
+    }
+  }
 </style>
