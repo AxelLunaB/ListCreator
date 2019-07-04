@@ -1,6 +1,10 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const units = sequelize.define('units', {
+const Sequelize = require('sequelize');
+const DataTypes = Sequelize.DataTypes;
+
+module.exports = (app) => {
+  const sequelizeClient = app.get('sequelizeClient');
+  const units = sequelizeClient.define('units', {
     unitNumber: DataTypes.STRING,
     phase: DataTypes.INTEGER,
     level: DataTypes.INTEGER,

@@ -1,6 +1,10 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const units = sequelize.define('users', {
+const Sequelize = require('sequelize');
+const DataTypes = Sequelize.DataTypes;
+
+module.exports = (app) => {
+  const sequelizeClient = app.get('sequelizeClient');
+  const users = sequelizeClient.define('users', {
     name: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
     contactNumber : { type: DataTypes.INTEGER, allowNull: false},
@@ -13,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     userType: { type: DataTypes.STRING, allowNull: false },
 
   }, {});
-  units.associate = function(models) {
+  users.associate = function(models) {
     // associations can be defined here
   };
   return users;

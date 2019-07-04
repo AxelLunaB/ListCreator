@@ -11,10 +11,10 @@ const credix = require('./credix/credix.service.js');
 module.exports = function (app) {
   app.configure(users);
   app.configure(departments);
-  app.configure(departmentsHistorics);
+  //app.configure(departmentsHistorics);
   app.configure(mailer);
   app.configure(authmanagement);
-  app.configure(status);
+  //app.configure(status);
   app.configure(clusters);
   app.configure(countByCluster);
   app.configure(credix);

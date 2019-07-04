@@ -1,6 +1,6 @@
 // Initializes the `houses` service on path `/houses`
 const createService = require('feathers-sequelize');
-const createModel = require('../../database/models/units.model');
+const createModel = require('../../models/units.model');
 const hooks = require('./departments.hooks');
 
 module.exports = function (app) {

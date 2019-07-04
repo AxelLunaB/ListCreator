@@ -1,6 +1,6 @@
 // Initializes the `clusters` service on path `/api/clusters`
 const createService = require('feathers-sequelize');
-const createModel = require('../../database/models/clusters.model');
+const createModel = require('../../models/clusters.model');
 const hooks = require('./clusters.hooks');
 
 module.exports = function (app) {
