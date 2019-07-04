@@ -24,9 +24,8 @@ module.exports = {
           totalM2Double: data[12],
           priceInteriorM2: data[13],
           priceTotalM2: data[14],
-          priceTotalM2: data[15],
-          priceTotal: data[16],
-          status: data[17],
+          priceTotal: data[15],
+          status: data[16],
           createdAt: new Date(),
           updatedAt: new Date()
         })
@@ -35,10 +34,9 @@ module.exports = {
         resolve(seed);
       })
     }).then(seed => {
-      return queryInterface.bulkInsert('executives', seed, {});
+      return queryInterface.bulkInsert('units', seed, {});
     });
     return x;
-  },
   },
 
   down: (queryInterface, Sequelize) => {

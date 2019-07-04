@@ -3,9 +3,12 @@
 const fs = require('fs');
 const csv = require('fast-csv');
 const csvFilePath = __dirname + '/../csv/executives.csv'
-const bcrypt = require('bcryptjs');
+
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    const bcrypt = require('bcryptjs');
+    var salt = bcrypt.genSaltSync(10);
     var x = new Promise(async (resolve, reject) => {
       var seed = [];
       fs.createReadStream(csvFilePath).pipe(csv()).on('data', function (data) {
@@ -15,7 +18,9 @@ module.exports = {
           contactNumber: data[3],
           email: data[4],
           password: bcrypt.hashSync(data[5], salt),
-          userType: data[6]
+          userType: data[6],
+          createdAt: new Date(),
+          updatedAt: new Date()
         })
       }).on('end', function (data) {
 
@@ -26,7 +31,7 @@ module.exports = {
     });
     return x;
   },
-  },
+
 
   down: (queryInterface, Sequelize) => {
 

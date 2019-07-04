@@ -7,6 +7,8 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    const bcrypt = require('bcryptjs');
+    var salt = bcrypt.genSaltSync(10);
     var x = new Promise(async (resolve, reject) => {
       var seed = [];
       fs.createReadStream(csvFilePath).pipe(csv()).on('data', function (data) {
@@ -19,8 +21,10 @@ module.exports = {
           state: data[6],
           city: data[7],
           address: data[8],
-          password: bcrypt.hashSync(data[9], salt),
-          userType: data[10]
+          password: bcrypt.hashSync('giada2019', salt),
+          userType: data[9],
+          createdAt: new Date(),
+          updatedAt: new Date()
         })
       }).on('end', function (data) {
 
@@ -31,7 +35,7 @@ module.exports = {
     });
     return x;
   },
-  },
+
 
   down: (queryInterface, Sequelize) => {
 
