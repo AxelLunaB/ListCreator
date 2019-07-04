@@ -3,15 +3,15 @@
         <table class="table table-hover">
             <tbody>
             <tr>
-                <td>1</td>
-                <td>Sold</td>
-                <td>1BDR</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
+                <td>{{detailTable.unitNumber}}</td>
+                <td>{{detailTable.level}} level</td>
+                <td>{{detailTable.bathrooms}} bathrooms</td>
+                <td>{{detailTable.bedrooms}} bedrooms</td>
+                <td>{{detailTable.nkeys}} keys</td>
+                <td>{{detailTable.interiorM2}} interiorM2</td>
+                <td>{{detailTable.exteriorM2}} exteriorM2</td>
+                <td>$ {{toPrice(detailTable.priceTotal)}}</td>
+                <td>{{detailTable.status}}</td>
             </tr>
             </tbody>
         </table>
@@ -21,11 +21,16 @@
 <script>
 
 export default {
-  components: {
-  },
+  props: ["detailTable"],
   data(){
     return {
 
+    }
+  },
+  methods: {
+    toPrice(x) {
+      var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      return r;
     }
   }
 }
