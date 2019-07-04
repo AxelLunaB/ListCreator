@@ -25,6 +25,7 @@ module.exports = {
           userType: data[9],
           createdAt: new Date(),
           updatedAt: new Date()
+
         })
       }).on('end', function (data) {
 
