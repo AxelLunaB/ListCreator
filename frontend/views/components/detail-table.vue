@@ -1,17 +1,17 @@
 <template>
-    <router-link to="/towerdetail" class="row col-12 router">
-        <table class="table table-hover">
+    <router-link to="/towerdetail" class="row col-12 router table-detail">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%; margin-bottom:0px">
             <tbody>
             <tr>
-                <td>{{detailTable.unitNumber}}</td>
-                <td>{{detailTable.level}} level</td>
-                <td>{{detailTable.bathrooms}} bathrooms</td>
-                <td>{{detailTable.bedrooms}} bedrooms</td>
-                <td>{{detailTable.nkeys}} keys</td>
-                <td>{{detailTable.interiorM2}} interiorM2</td>
-                <td>{{detailTable.exteriorM2}} exteriorM2</td>
-                <td>$ {{toPrice(detailTable.priceTotal)}}</td>
-                <td>{{detailTable.status}}</td>
+                <td><b>{{detailTable.unitNumber}}</b></td>
+                <td class="xs-mobile">{{detailTable.level}} level</td>
+                <td class="tablet">{{detailTable.bathrooms}} bathrooms</td>
+                <td class="tablet">{{detailTable.bedrooms}} bedrooms</td>
+                <td class="tablet">{{detailTable.nkeys}} keys</td>
+                <td class="mobile">{{detailTable.interiorM2}} M2</td>
+                <td class="mobile">{{detailTable.exteriorM2}} M2</td>
+                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
+                <td><b>{{detailTable.status}}</b></td>
             </tr>
             </tbody>
         </table>
@@ -52,11 +52,38 @@ export default {
   text-decoration: none!important;
 }
 
+.table-detail {
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tr td {
+  text-align: center;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 867px) {
   .title-header {
     flex-direction: column;
     justify-content: center;
     align-items:center;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tablet {
+    display:none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .xs-mobile {
+    display:none;
   }
 }
 </style>

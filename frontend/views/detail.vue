@@ -3,7 +3,7 @@
       <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link>
-    <div class="col-11"  :class="{ fadeInAnimate: isAnimated }">
+    <div class="col-11"  :class="{ fadeInAnimate: isAnimated }" style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;background:white;"></div>
         <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
@@ -110,7 +110,6 @@
 
   .main-tables-container {
     width:100vw;
-    height:100vh;
     background: rgb(81, 111, 77);
     display: flex;
     align-items: center;
@@ -186,9 +185,13 @@
   #return {
     color: white;
     position: fixed;
-    left: 40px;
+    left: 20px;
     top:80px;
     z-index: 30;
+  }
+
+  td {
+    color: white;
   }
 
   @media screen and (max-width: 867px) {

@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid">
-    <router-link to="/detail" id="returntwo">
+    <router-link to="/" id="returntwo">
       <return-page />
     </router-link>
 <div class="row" :class="{ animate: isActive }" style="padding-top:111px">
