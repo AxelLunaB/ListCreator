@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+      <towerdetail></towerdetail>
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -44,16 +45,14 @@
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
-
+  import towerdetail from "./components/towerdetail.vue";
   export default {
     components: {
       detailTable,
-      returnPage
+      returnPage,
+      towerdetail
     },
     mounted: function() {
-      // events...
-    //  this.$eventHub.$on("add-button-clicked", this.addDepartment);
-    //  this.$eventHub.$on("clone-department", this.cloneDepartment);
       this.$eventHub.$on("go-search", params => {
         var query = {};
         params.forEach(v => {
