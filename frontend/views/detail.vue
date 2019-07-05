@@ -5,7 +5,7 @@
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;background:white;margin-left:10px;"><img src="../../public/favico.jpg"></div>
+        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
         <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
