@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  props: ["detailTable"],
+  props: ["detailTable","contracts"],
   data(){
     return {
 
@@ -33,7 +33,11 @@ export default {
     },
     departmentClicked() {
       console.log("pop");
-      this.$eventHub.$emit("show-detailTable-detail-tower-modal", this.detailTable);
+      let info = {
+        detailUnit : this.detailTable,
+        detailContract : this.contracts
+      }
+      this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
     }
   }
 }

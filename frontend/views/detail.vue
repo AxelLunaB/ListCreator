@@ -6,7 +6,7 @@
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
-        <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
+        <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
           <button type="button" class="btn btn-outline-light">Reports</button>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <detail-table v-for="e in departments" :key="e.index" :detailTable="e"></detail-table>
+              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
           </div>
         </div>
@@ -68,6 +68,7 @@
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
         this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
         // listen to authenticated event
@@ -76,6 +77,7 @@
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("departments/getDepartments");
+          _.$store.dispatch("contracts/getContracts");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
         });
@@ -93,6 +95,7 @@
     computed: {
       ...mapGetters({
         departments: "departments/departments",
+        contracts: "contracts/contracts",
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
