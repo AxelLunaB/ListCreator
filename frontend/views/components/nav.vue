@@ -190,7 +190,7 @@ a.navbar-item.is-active {
   background: none;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1023px) {
 .navbar-link::after {
     border: 3px solid #ffffff;
     border-right: 0;
@@ -198,7 +198,7 @@ a.navbar-item.is-active {
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .navbar-brand {
     display: flex!important;
     width: 100%;

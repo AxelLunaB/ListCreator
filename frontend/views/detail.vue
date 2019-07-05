@@ -1,14 +1,14 @@
 <template>
   <div class="main-tables-container">
-      <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
+      <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
-      </router-link>
-    <div class="col-11"  :class="{ fadeInAnimate: isAnimated }" style="margin-top:80px;">
+      </router-link> -->
+    <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;background:white;"></div>
+        <div style="width:100px;height:100px;background:white;margin-left:10px;"><img src="../../public/favico.jpg"></div>
         <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
         <div class="buttons-header">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
           <button type="button" class="btn btn-outline-light">Reports</button>
           <button type="button" class="btn btn-outline-light">Other</button>
           <button type="button" class="btn btn-outline-light">Other</button>
@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+      <towerdetail></towerdetail>
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -44,16 +45,14 @@
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
-
+  import towerdetail from "./components/towerdetail.vue";
   export default {
     components: {
       detailTable,
-      returnPage
+      returnPage,
+      towerdetail
     },
     mounted: function() {
-      // events...
-    //  this.$eventHub.$on("add-button-clicked", this.addDepartment);
-    //  this.$eventHub.$on("clone-department", this.cloneDepartment);
       this.$eventHub.$on("go-search", params => {
         var query = {};
         params.forEach(v => {
@@ -192,6 +191,10 @@
 
   td {
     color: white;
+  }
+
+  img {
+    border-radius: 15%;
   }
 
   @media screen and (max-width: 867px) {
