@@ -4,12 +4,12 @@
             <tbody>
             <tr>
                 <td>{{detailTable.unitNumber}}</td>
-                <td class="xs-mobile">{{detailTable.level}} level</td>
-                <td class="tablet">{{detailTable.bathrooms}} bathrooms</td>
-                <td class="tablet">{{detailTable.bedrooms}} bedrooms</td>
+                <td class="xs-mobile">{{detailTable.level}}</td>
+                <td class="tablet">{{detailTable.bathrooms}}</td>
+                <td class="tablet">{{detailTable.bedrooms}}</td>
                 <td class="tablet">{{detailTable.nkeys}} keys</td>
-                <td class="mobile">{{detailTable.interiorM2}} intM2</td>
-                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}} extM2</td>
+                <td class="mobile">{{detailTable.interiorM2}}</td>
+                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
                 <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
                 <td><b>{{detailTable.status}}</b></td>
             </tr>
@@ -69,6 +69,11 @@ export default {
 tr td {
   text-align: center;
   margin: 0 auto;
+}
+
+.row {
+  margin-left:0;
+  margin-right: 0;
 }
 
 @media screen and (max-width: 867px) {

@@ -19,6 +19,21 @@
         <div class="row">
           <div class="col-12">
             <div>
+        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+            <tbody>
+            <tr>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>#</b></td>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVELS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 int</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 ext</b></td>
+                <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
+                <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+            </tr>
+            </tbody>
+        </table>
               <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
           </div>
@@ -28,9 +43,7 @@
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light">Copy</button>
             <button type="button" class="btn btn-outline-light">CSV</button>
-            <button type="button" class="btn btn-outline-light">Excel</button>
             <button type="button" class="btn btn-outline-light">PDF</button>
             <button type="button" class="btn btn-outline-light">Print</button>
             </div>
@@ -198,6 +211,10 @@
 
   img {
     border-radius: 15%;
+  }
+
+  .header-t {
+    height: 50px;
   }
 
   @media screen and (max-width: 867px) {
