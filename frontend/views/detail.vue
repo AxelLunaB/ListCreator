@@ -16,21 +16,22 @@
         </div>
       </div>
       <div class="card-body">
+        <filter-table />
         <div class="row">
           <div class="col-12">
             <div>
-        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+              <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
             <tbody>
             <tr>
-                <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
-                <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                <td class="header-t"><b> UNIT  #</b></td>
+                <td class="header-t xs-mobile"><b>LEVEL</b></td>
+                <td class="header-t tablet"><b>BATHROOMS</b></td>
+                <td class="header-t tablet"><b>BEDROOMS</b></td>
+                <td class="header-t tablet"><b>KEYS</b></td>
+                <td class="header-t mobile"><b>M<sup>2</sup> int</b></td>
+                <td class="header-t mobile"><b>M<sup>2</sup> ext</b></td>
+                <td class="header-t xs-mobile"><b>PRICE</b></td>
+                <td class="header-t"><b>STATUS</b></td>
             </tr>
             </tbody>
         </table>
@@ -59,11 +60,13 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
+  import filterTable from "./components/filterTable.vue"
   export default {
     components: {
       detailTable,
       returnPage,
-      towerdetail
+      towerdetail,
+      filterTable
     },
     mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -215,6 +218,8 @@
 
   .header-t {
     height: 50px;
+    text-align:center!important;
+    vertical-align:middle!important;
   }
 
   @media screen and (max-width: 867px) {
