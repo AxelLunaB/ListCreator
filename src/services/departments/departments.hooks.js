@@ -10,18 +10,18 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [
       togglePagination(),
-      // addAssociations({
-      //   models: [
-      //     {
-      //       model: 'api/clusters',
-      //       as: 'cluster'
-      //     },
-      //     {
-      //       model: 'api/status',
-      //       as: 'status'
-      //     }
-      //   ]
-      // }),
+      addAssociations({
+        models: [
+          {
+            model: 'api/clusters',
+            as: 'cluster'
+          }//,
+          // {
+          //   model: 'api/status',
+          //   as: 'status'
+          // }
+        ]
+      }),
       context => {
         if (context.params.query.$sort == undefined) {
           context.params.query.$sort = {

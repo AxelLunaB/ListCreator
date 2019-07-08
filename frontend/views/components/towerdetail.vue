@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-left"><span style="font-size:2rem">{{detailTable.unitNumber}}</span> BRAVA TOWERS</h4>
+                <h4 class="m-b-30 m-t-0 text-left"><span style="font-size:2rem">{{detailTable.unitNumber}}</span> {{detailTable.cluster.name}}</h4>
                 <div class="row">
                     <div class="col-12">
                         <table class="table table-hover table-modifier">
