@@ -105,20 +105,20 @@
         isAnimated: true
       }
     },
-    // mount:function(){
-    //   var wb = xlsx.utils.table_to_book(document.getElementById('printMe'),
-    //   {sheet:"Departments"});
-    //   function s2ab(s) {
-    //     var buf = new ArrayBuffer(s.length);
-    //     var view = new Uint8Array(buf);
-    //     for (var i=0; i<s.length; i++)
-    //     view[i] = s.charCodeAt(i) & 0xFF;
-    //     return buf;
-    //     }
-    //     $("#sendtopdf").click(function(){
-    //       saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'departments.xlsx');
-    //       });
-    // },
+    mount:function(){
+      var wb = xlsx.utils.table_to_book(document.getElementById('printMe'),{sheet:"Departments"});
+
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i=0; i<s.length; i++)
+        view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+        }
+        $("#sendtopdf").click(function(){
+          saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'departments.xlsx');
+          });
+    },
     methods: {
       ...mapActions("departments", ["nextPage", "prevPage"]),
     },
