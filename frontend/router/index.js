@@ -6,7 +6,6 @@ import historics from '@/views/historics.vue';
 import houses from '@/views/houses.vue';
 import users from '@/views/users.vue';
 import departments from '@/views/departments.vue';
-import filter from '@/views/components/filter.vue'
 import history_reports from '@/views/history-reports.vue';
 import BootstrapVue from 'bootstrap-vue';
 // import dashboardView from '@/views/dashboardView.vue';

@@ -4,37 +4,37 @@
         <div class="field">
           <div class="control">
             <div class="dropdown-container">
-              <button class="btn-buy">Nivel</button>
+              <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Nivel</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(lvl,index) in level" :key="index">
-                        <p> {{ lvl.level }}</p>
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                        <p> {{ item.level }}</p>
                       </li>
                     </ul>
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy">Precio</button>
+              <button class="btn-buy" @click="setFilterAs('priceTotal')" value="precio" id="name">Precio</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(prc, index) in price" :key="index">
-                        <p> {{ prc.cost }} </p>
+                      <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                        <p> {{ item.cost }} </p>
                       </li>
                     </ul>
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy">Status</button>
+              <button class="btn-buy" @click="setFilterAs('status')" value="status" id="name">Status</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(sta, index) in status" :key="index">
-                        <p> {{ sta.stat }} </p>
+                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                        <p> {{ item.stat }} </p>
                       </li>
                     </ul>
               </span>
@@ -46,28 +46,36 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data:function(){
     return{
       level:[
-        {level: '1'},
-        {level: '2'},
-        {level: '3'},
-        {level: '4'}
+        {level: '1', value:'1', id:'level'},
+        {level: '2', value:'2', id:'level'},
+        {level: '3' ,value:'3', id:'level'},
+        {level: '4',value:'4', id:'level'}
       ],
       price:[
-        {cost: 'Menos de $200,000.00'},
-        {cost: '$200,001.00 - $250,000.00'},
-        {cost: '$251,000.00 - $300,000.00'},
-        {cost: '$300,001.00 - $350,000.00'},
-        {cost: '$351,000.00 - $400,000.00'}
+        {cost: 'Menos de $200,000.00', id:'priceTotal'},
+        {cost: '$200,001.00 - $250,000.00', id:'priceTotal'},
+        {cost: '$251,000.00 - $300,000.00', id:'priceTotal'},
+        {cost: '$300,001.00 - $350,000.00', id:'priceTotal'},
+        {cost: '$351,000.00 - $400,000.00', id:'priceTotal'}
       ],
       status:[
-        {stat: 'Available'},
-        {stat: 'Sold'},
-        {stat: 'reserved'}
+        {stat: 'Available', value:'Available', id:'status'},
+        {stat: 'Sold', value:'Sold', id:'status'},
+        {stat: 'reserved', value:'Reserved', id:'status'}
       ],
     }
+  },
+  methods: {
+    ...mapActions ({
+      setFilterAs: 'departments/setFilter',
+      setSpecialFilter: 'departments/setSpecialFilter'
+    })
   }
 }
 </script>

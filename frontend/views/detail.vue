@@ -35,7 +35,7 @@
             </tr>
             </tbody>
         </table>
-              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
           </div>
         </div>
@@ -102,7 +102,8 @@
     data(){
       return {
         detailTable: 3,
-        isAnimated: true
+        isAnimated: true,
+        sDepartments:[]
       }
     },
     methods: {
@@ -116,7 +117,65 @@
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort"
+      }),
+      sortedArray() {
+        let s =  this.filteredValue.toString()
+        function compare(a, b) {
+          if (a[s] < b[s])
+          return -1;
+          if (a[s] > b[s])
+          return 1;
+          return 0;
+      }
+
+     return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
+    },
+     filtersArray () {
+      let filters = this.specialSort
+      var deptos = []
+      this.sDepartments = []
+
+       this.departments.forEach ((dep, index) => {
+        filters.forEach (filter => {
+          if(filter.value === null)
+           return
+          if(dep[filter.id] == filter['value']) {
+            let shouldAdd = true
+            for( var i = 0; i < deptos.length; i++) {
+              if(deptos[i].id == dep.id) {
+                shouldAdd = false
+              }
+            }
+            if (shouldAdd === true) {
+            deptos.push(dep)
+          }
+        }
       })
+    })
+
+      if(deptos.length > 0) {
+       for (var i = deptos.length -1 ; i >= 0; i--) {
+        for (let a = 0; a < filters.length; a ++) {
+
+          if(filters[a].value == null) {
+          continue
+          }
+          if(deptos[i][filters[a].id] != filters[a].value) {
+            deptos.splice (i,1)
+            break
+          }
+        }
+      }
+    }
+
+      console.log(this.sDepartments);
+      console.log(deptos)
+      this.sDepartments = deptos
+      // return deptos.length > 0 ? this.sDepartments : this.sortedArray
+       return this.sortedArray
+          //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+
+    },
     }
   }
 </script>

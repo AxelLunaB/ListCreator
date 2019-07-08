@@ -36,7 +36,7 @@ const REMOVE_FILTER = (state, payload) => {
 
   state.specialFilter.forEach (filter => {
     if(filter.value != null) {
-      filter.value = null 
+      filter.value = null
     }
   })
 
