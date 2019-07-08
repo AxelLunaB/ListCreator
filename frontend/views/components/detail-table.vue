@@ -4,14 +4,14 @@
             <tbody>
             <tr>
                 <td>{{detailTable.unitNumber}}</td>
-                <td class="xs-mobile">{{detailTable.level}}</td>
-                <td class="tablet">{{detailTable.bathrooms}}</td>
-                <td class="tablet">{{detailTable.bedrooms}}</td>
-                <td class="tablet">{{detailTable.nkeys}}</td>
-                <td class="mobile">{{detailTable.interiorM2}}</td>
+                <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: "-" }}</td>
+                <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"-" }}</td>
+                <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"-" }}</td>
+                <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"-" }}</td>
+                <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"-" }}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
-                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
-                <td><b>{{detailTable.status}}</b></td>
+                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"-")}}</td>
+                <td><b>{{detailTable.status != 0 ? detailTable.status:"-"  }}</b></td>
             </tr>
             </tbody>
         </table>
