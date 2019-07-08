@@ -22,7 +22,7 @@
         <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
             <tbody>
             <tr>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
+                <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
                 <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
