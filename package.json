@@ -1,8 +1,8 @@
 {
-  "name": "altozano_merida_web",
-  "description": "Panel web de Punto Sao Paulo",
+  "name": "giada_real_state",
+  "description": "Panel web de giada",
   "version": "0.0.0",
-  "homepage": "http://puntosaopaulo.ar3data.com",
+  "homepage": "http://giada_real_state.ar3data.com",
   "main": "src",
   "keywords": [
     "feathers"

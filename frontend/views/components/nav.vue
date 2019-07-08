@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-transparent is-fixed-top navbar-height">
+  <nav class="navbar is-transparent is-fixed-top navbar-height" style="z-index:31;">
     <div class="navbar-brand">
       <router-link class="navbar-item logo" to="/">
           <img src="../../assets/logo_bco_sm.png" alt="Giada Real State" style="max-width:100%"   height="auto">
@@ -20,7 +20,7 @@
             <!-- <p class="control"> -->
               <div class="navbar-item has-dropdown is-hoverable" style="width:100%;">
                 <a class="navbar-link">{{currentUser.name}}</a>
-                <div class="navbar-dropdown is-boxed"  style="background-color: #d4ebf0">
+                <div class="navbar-dropdown is-boxed"  style="background-color: #d4ebf0; left:-27px;">
                   <hr class="navbar-divider">
                   <a href="/logout" class="navbar-item is-active" id="logout-btn" style="color:white;">Salir</a>
                 </div>
@@ -190,7 +190,7 @@ a.navbar-item.is-active {
   background: none;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1023px) {
 .navbar-link::after {
     border: 3px solid #ffffff;
     border-right: 0;
@@ -198,7 +198,7 @@ a.navbar-item.is-active {
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .navbar-brand {
     display: flex!important;
     width: 100%;

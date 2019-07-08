@@ -4,12 +4,12 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
-  const clusters = sequelizeClient.define('clusters', {
+  const units_historics = sequelizeClient.define('units_historics', {
     name: { type: DataTypes.STRING, allowNull: false },
     code: { type: DataTypes.INTEGER, allowNull: false }
   }, {});
-  clusters.associate = function(models) {
+  units_historics.associate = function(models) {
     // associations can be defined here
   };
-  return clusters;
+  return unitsHistorics;
 };

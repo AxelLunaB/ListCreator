@@ -1,31 +1,43 @@
 <template>
-    <router-link to="/towerdetail" class="row col-12 router">
-        <table class="table table-hover">
+    <div class="row col-12 router" @click="departmentClicked()">
+        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;">
             <tbody>
             <tr>
-                <td>1</td>
-                <td>Sold</td>
-                <td>1BDR</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
-                <td>252 M2</td>
+                <td>{{detailTable.unitNumber}}</td>
+                <td class="xs-mobile">{{detailTable.level}} level</td>
+                <td class="tablet">{{detailTable.bathrooms}} bathrooms</td>
+                <td class="tablet">{{detailTable.bedrooms}} bedrooms</td>
+                <td class="tablet">{{detailTable.nkeys}} keys</td>
+                <td class="mobile">{{detailTable.interiorM2}} intM2</td>
+                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}} extM2</td>
+                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
+                <td><b>{{detailTable.status}}</b></td>
             </tr>
             </tbody>
         </table>
-  </router-link>
+  </div>
 </template>
 
 <script>
-
 export default {
-  components: {
-  },
+  props: ["detailTable","contracts"],
   data(){
     return {
 
+    }
+  },
+  methods: {
+    toPrice(x) {
+      var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      return r;
+    },
+    departmentClicked() {
+      console.log("pop");
+      let info = {
+        detailUnit : this.detailTable,
+        detailContract : this.contracts
+      }
+      this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
     }
   }
 }
@@ -47,11 +59,38 @@ export default {
   text-decoration: none!important;
 }
 
+.table-detail {
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tr td {
+  text-align: center;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 867px) {
   .title-header {
     flex-direction: column;
     justify-content: center;
     align-items:center;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tablet {
+    display:none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .xs-mobile {
+    display:none;
   }
 }
 </style>

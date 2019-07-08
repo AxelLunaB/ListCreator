@@ -4,22 +4,18 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
+  const executives = sequelizeClient.define('executives', {
     name: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
-    contactNumber : { type: DataTypes.INTEGER, allowNull: false},
-    email: { type: DataTypes.STRING, allowNull: false },
-    country: { type: DataTypes.INTEGER, allowNull: false },
-    state: { type: DataTypes.STRING, allowNull: false },
-    city: { type: DataTypes.STRING, allowNull: false },
-    address: { type: DataTypes.STRING, allowNull: false },
+    contactNumber: { type: DataTypes.INTEGER, allowNull: false},
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
     userType: { type: DataTypes.STRING, allowNull: false },
     deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
 
   }, {});
-  users.associate = function(models) {
+  executives.associate = function(models) {
     // associations can be defined here
   };
-  return users;
+  return executives;
 };

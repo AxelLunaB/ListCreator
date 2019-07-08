@@ -14,7 +14,7 @@
       "local"
     ],
     "path": "/authentication",
-    "service": "users",
+    "service": "executives",
     "setCookie": true,
     "jwt": {
       "header": {
@@ -27,9 +27,9 @@
       "expiresIn": "1d"
     },
     "local": {
-      "entity": "user",
+      "entity": "executives",
       "usernameField": "email",
-    "passwordField": "password"
+      "passwordField": "password"
     },
     "cookie": {
       "enabled": true,

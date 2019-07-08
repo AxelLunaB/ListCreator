@@ -86,6 +86,18 @@ const patchDepartments = (department) => {
   });
 };
 
+/* CONTRACTS */
+
+const fetchContracts = ($skip, query) => {
+  query = query != null ? query : {};
+  query['$skip'] = $skip;
+  return new Promise((resolve) => {
+    socket.emit("api/contracts::find", query, (error, lots) => {
+      resolve(lots);
+    });
+  })
+};
+
 /* LOTS */
 const createLot = (lot) => {
   return new Promise((resolve, reject) => {
@@ -241,6 +253,8 @@ export {
   createDepartments,
   fetchDepartments,
   patchDepartments,
+  //
+  fetchContracts,
   //
   createLot,
   fetchLots,

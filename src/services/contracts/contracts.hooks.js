@@ -31,40 +31,9 @@ module.exports = {
       }
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/departments' })],
+    create: [preventDuplicate({ service: 'api/contracts' })],
     update: [canUpdate()],
-    patch: [
-      canUpdate(),
-      async context => {
-        var historic = {};
-        /* search current values */
-        await context.app.service('api/departments').get(context.id).then(department => {
-          /* add values to the object */
-          for (let k in department) {
-            historic[k] = department[k];
-          }
-          historic.departmentid = department.id;
-        });
-        /* assign new values & save it. */
-        for (let k in context.data) {
-          historic[`${k}new`] = context.data[k];
-        }
-
-        historic.userid = context.params.user.id;
-        delete historic.id;
-        if (historic.cluster != undefined) {
-          delete historic.cluster;
-        }
-        if (historic.status != undefined) {
-          delete historic.status;
-        }
-
-        await context.app.service('api/departments-historics').create(historic).then(historic => {
-          console.log(historic);
-        });
-
-      }
-    ],
+    patch: [],
     remove: [canUpdate()]
   },
 
@@ -72,20 +41,15 @@ module.exports = {
     all: [],
     find: [],
     get: [
-      setClusterObject(),
-      setStatusObject(),
     ],
     create: [
-      setClusterObject(),
-      setStatusObject(),
+
     ],
     update: [
-      setClusterObject(),
-      setStatusObject(),
+
     ],
     patch: [
-      setClusterObject(),
-      setStatusObject(),
+    
     ],
     remove: []
   },
