@@ -5,7 +5,7 @@
         <i class="fas fa-times fa-2x"></i>
       </div>
   <div class="row mobile-fix" :class="{ animate: isActive }">
-      <div class="col-12 col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-left"><span style="font-size:2rem">{{detailTable.unitNumber}}</span> BRAVA TOWERS</h4>
@@ -70,7 +70,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
@@ -127,7 +127,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
@@ -180,7 +180,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
@@ -203,7 +203,7 @@
       </div>
     </div>
     <div class="row" :class="{ animate: isActive }">
-  <div class="col-12  col-lg-3">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -263,7 +263,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
       <div class="card">
           <div class="card-body">
               <div class="row">
@@ -300,7 +300,7 @@
           </div>
       </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <div class="row">
@@ -312,7 +312,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
@@ -385,7 +385,7 @@ export default {
     background:#516f4d;
     height: 100%;
     position:fixed;
-    top:70px;
+    top:48px;
     left:0;
     z-index:1;
   }
@@ -393,6 +393,7 @@ export default {
   .card {
     background:#6a8e67!important;
     margin:10px;
+    flex:1;
   }
 
   .animate {
@@ -438,6 +439,10 @@ export default {
     cursor:pointer;
   }
 
+  .col-12 {
+    display:flex;
+  }
+
   @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
@@ -455,17 +460,38 @@ export default {
       }
   }
 
+  .col-ps {
+    width:10%;
+  }
+
   @media screen and (max-width: 1200px) {
   .container-fluid {
     overflow-x: scroll;
   }
 }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1199px) {
   .mobile-fix {
-    padding-top:2338px!important;
+    margin-top: 400px;
   }
 }
 
+  @media screen and (max-width: 769px) {
+  .mobile-fix {
+    margin-top: 2000px;
+  }
+}
+
+ /*@media screen and (max-width: 412px) {
+  .mobile-fix {
+    margin-top: 2200px;
+  }
+}
+
+  @media screen and (max-width: 360px) {
+  .mobile-fix {
+    margin-top: 2450px;
+  }
+} */
 
 </style>
