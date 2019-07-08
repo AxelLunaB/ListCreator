@@ -15,11 +15,11 @@ module.exports = {
           {
             model: 'api/clusters',
             as: 'cluster'
-          }//,
-          // {
-          //   model: 'api/status',
-          //   as: 'status'
-          // }
+          },
+          {
+             model: 'api/status',
+             as: 'status'
+          }
         ]
       }),
       context => {

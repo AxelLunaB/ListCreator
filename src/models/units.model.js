@@ -20,8 +20,7 @@ module.exports = (app) => {
     priceInteriorM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
-    priceTotal: DataTypes.DOUBLE,
-    status: DataTypes.STRING
+    priceTotal: DataTypes.DOUBLE
   }, {
     hooks: {
       beforeCount(options) {
@@ -31,6 +30,7 @@ module.exports = (app) => {
   });
   units.associate = function(models) {
     units.belongsTo(models.clusters);
+    units.belongsTo(models.status);
   };
   return units;
 };
