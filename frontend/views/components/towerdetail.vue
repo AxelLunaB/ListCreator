@@ -4,7 +4,7 @@
       <div id="returntwo" @click="closeBtn()">
         <i class="fas fa-times fa-2x"></i>
       </div>
-  <div class="row mobile-fix" :class="{ animate: isActive }">
+  <div class="row mobile-fix " :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -320,9 +320,9 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -385,7 +385,7 @@ export default {
     background:#516f4d;
     height: 100%;
     position:fixed;
-    top:48px;
+    top:47px;
     left:0;
     z-index:1;
   }
@@ -460,38 +460,37 @@ export default {
       }
   }
 
-  .col-ps {
-    width:10%;
-  }
-
   @media screen and (max-width: 1200px) {
   .container-fluid {
     overflow-x: scroll;
   }
 }
 
-  @media screen and (max-width: 1199px) {
-  .mobile-fix {
-    margin-top: 400px;
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+      .mobile-fix {
+    padding-top: 400px;
   }
 }
 
-  @media screen and (max-width: 769px) {
-  .mobile-fix {
-    margin-top: 2000px;
+@media screen and (min-width: 411px) and (max-width: 768px) {
+      .mobile-fix {
+    padding-top: 2027px;
   }
 }
 
- /*@media screen and (max-width: 412px) {
-  .mobile-fix {
-    margin-top: 2200px;
+@media screen and (min-width: 321px) and (max-width: 512px) {
+      .mobile-fix {
+    padding-top: 2300px;
   }
 }
 
-  @media screen and (max-width: 360px) {
-  .mobile-fix {
-    margin-top: 2450px;
+  @media screen and (max-width: 320px) {
+      .mobile-fix {
+    padding-top: 2600px;
   }
-} */
+}
+
+
+
 
 </style>
