@@ -9,7 +9,7 @@ import departments from '@/views/departments.vue';
 import filter from '@/views/components/filter.vue'
 import history_reports from '@/views/history-reports.vue';
 import BootstrapVue from 'bootstrap-vue';
-import dashboardView from '@/views/dashboardView.vue';
+// import dashboardView from '@/views/dashboardView.vue';
 import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -24,13 +24,14 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-    routes:  [{
-            path: '/',
-            name: 'Vista de dashboard',
-            component: dashboardView
-        },
+    routes:  [
+      //{
+            // path: '/',
+            // name: 'Vista de dashboard',
+            // component: dashboardView
+        //},
         {
-          path:'/detail',
+          path:'/',
           name:'Listado de desarrollo',
           component: detail
         },

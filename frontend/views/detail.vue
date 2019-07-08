@@ -1,14 +1,14 @@
 <template>
   <div class="main-tables-container">
-      <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
+      <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
-      </router-link>
-    <div class="col-11"  :class="{ fadeInAnimate: isAnimated }">
+      </router-link> -->
+    <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;background:white;"></div>
-        <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
+        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
+        <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
           <button type="button" class="btn btn-outline-light">Reports</button>
           <button type="button" class="btn btn-outline-light">Other</button>
           <button type="button" class="btn btn-outline-light">Other</button>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <detail-table v-for="e in departments" :key="e.index" :detailTable="e"></detail-table>
+              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
           </div>
         </div>
@@ -68,6 +68,7 @@
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
         this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
         // listen to authenticated event
@@ -76,6 +77,7 @@
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("departments/getDepartments");
+          _.$store.dispatch("contracts/getContracts");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
         });
@@ -93,6 +95,7 @@
     computed: {
       ...mapGetters({
         departments: "departments/departments",
+        contracts: "contracts/contracts",
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
@@ -109,7 +112,6 @@
 
   .main-tables-container {
     width:100vw;
-    height:100vh;
     background: rgb(81, 111, 77);
     display: flex;
     align-items: center;
@@ -185,9 +187,17 @@
   #return {
     color: white;
     position: fixed;
-    left: 40px;
+    left: 20px;
     top:80px;
     z-index: 30;
+  }
+
+  td {
+    color: white;
+  }
+
+  img {
+    border-radius: 15%;
   }
 
   @media screen and (max-width: 867px) {

@@ -2,9 +2,9 @@
 <div v-if="shouldShow === true">
   <div class="container-fluid">
       <div id="returntwo" @click="closeBtn()">
-        <return-page />
+        <i class="fas fa-times fa-2x"></i>
       </div>
-  <div class="row" :class="{ animate: isActive }" style="padding-top:111px">
+  <div class="row mobile-fix" :class="{ animate: isActive }">
       <div class="col-12 col-lg-3">
         <div class="card">
             <div class="card-body">
@@ -213,8 +213,20 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><b>Currency</b></td>
-                                <td class="text-center"><b>USD</b></td>
+                                <td><b>Sale Price</b></td>
+                                <td class="text-center"><b>{{contract.salesprice}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Currency</td>
+                                <td class="text-center"><b>{{contract.currency}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Payment Method</td>
+                                <td class="text-center"><b>{{contract.paymentMethod}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Exchange Rate</td>
+                                <td class="text-center"><b>{{contract.exchangerate}}</b></td>
                             </tr>
                             <tr>
                                 <td>Sales Channel</td>
@@ -263,27 +275,23 @@
                           <tbody>
                           <tr>
                               <td>ROI</td>
-                              <td class="text-center">Yes</td>
+                              <td class="text-center">{{contract.WROI}}</td>
                           </tr>
                           <tr>
                               <td>ROI %</td>
-                              <td class="text-center">15</td>
+                              <td class="text-center">{{contract.percent}}</td>
                           </tr>
                           <tr>
                               <td>Years</td>
-                              <td class="text-center">3</td>
+                              <td class="text-center">{{contract.years}}</td>
                           </tr>
                           <tr>
                               <td>Closing Date</td>
-                              <td class="text-center">10/185/2022</td>
-                          </tr>
-                          <tr>
-                              <td>Renewal</td>
-                              <td class="text-center"> - </td>
+                              <td class="text-center">{{contract.closingDate}}</td>
                           </tr>
                           <tr>
                               <td>Renewal years</td>
-                              <td class="text-center">- </td>
+                              <td class="text-center">{{contract.years}} </td>
                           </tr>
                           </tbody>
                       </table>
@@ -324,9 +332,11 @@ import swal from "sweetalert";
 
 export default {
   mounted: function() {
-    this.$eventHub.$on("show-detailTable-detail-tower-modal", detailTable => {
-      this.detailTable = detailTable;
+    this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
+      this.detailTable = details.detailUnit;
+      this.contract = details.detailContract;
       this.show = true;
+      console.log (details);
     });
   },
   components: {
@@ -336,7 +346,8 @@ export default {
     return {
       show: false,
       isActive: true,
-      detailTable: {}
+      detailTable: {},
+      contract: {}
     }
   },
   methods: {
@@ -373,6 +384,10 @@ export default {
     text-align:center;
     background:#516f4d;
     height: 100%;
+    position:fixed;
+    top:70px;
+    left:0;
+    z-index:1;
   }
 
   .card {
@@ -420,6 +435,7 @@ export default {
     left: 40px;
     top:80px;
     z-index: 30;
+    cursor:pointer;
   }
 
   @keyframes fadeInAnimation {
@@ -438,5 +454,18 @@ export default {
       transform: translateY(5px);
       }
   }
+
+  @media screen and (max-width: 1200px) {
+  .container-fluid {
+    overflow-x: scroll;
+  }
+}
+
+  @media screen and (max-width: 768px) {
+  .mobile-fix {
+    padding-top:2338px!important;
+  }
+}
+
 
 </style>
