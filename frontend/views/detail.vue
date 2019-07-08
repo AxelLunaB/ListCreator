@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+              <table class="table" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
             <tbody>
             <tr>
                 <td class="header-t"><b> UNIT  #</b></td>

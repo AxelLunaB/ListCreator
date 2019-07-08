@@ -1,5 +1,8 @@
 <template>
   <div class="filter-container">
+      <div v-if="show" class="close-filter" @click="removeFilter(),show = false">
+        <span><i class="far fa-window-close"></i>	&nbsp;	&nbsp;Quitar filtros</span>
+      </div>
       <div class="container-filter">
         <div class="field">
           <div class="control">
@@ -9,7 +12,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
@@ -21,7 +24,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                      <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
                         <p> {{ item.cost }} </p>
                       </li>
                     </ul>
@@ -33,7 +36,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value})">
+                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),  show = true">
                         <p> {{ item.stat }} </p>
                       </li>
                     </ul>
@@ -69,12 +72,14 @@ export default {
         {stat: 'Sold', value:'Sold', id:'status'},
         {stat: 'reserved', value:'Reserved', id:'status'}
       ],
+      show:false
     }
   },
   methods: {
     ...mapActions ({
       setFilterAs: 'departments/setFilter',
-      setSpecialFilter: 'departments/setSpecialFilter'
+      setSpecialFilter: 'departments/setSpecialFilter',
+      removeFilter: 'departments/removeSpecialFilter'
     })
   }
 }
@@ -228,4 +233,17 @@ input .dropdown {
 .fa-sort-down {
   color: white;
 }
+
+  .close-filter {
+    background:#314734;
+    color:white;
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index: 2;
+    padding:10px;
+    border-radius: 3px;
+    box-shadow:  5px 5px 5px rgba(0, 0, 0, 0.50);
+    cursor: pointer;
+  }
 </style>
