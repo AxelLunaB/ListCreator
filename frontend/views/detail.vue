@@ -6,7 +6,7 @@
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
-        <h2 style=" display: flex;align-items: center;">Viva Towers</h2>
+        <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
           <button type="button" class="btn btn-outline-light">Reports</button>
@@ -19,7 +19,22 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <detail-table v-for="e in departments" :key="e.index" :detailTable="e"></detail-table>
+        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+            <tbody>
+            <tr>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>#</b></td>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVELS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
+                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 int</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 ext</b></td>
+                <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
+                <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+            </tr>
+            </tbody>
+        </table>
+              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
           </div>
         </div>
@@ -28,7 +43,7 @@
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light">Excel</button>
+            <button type="button" class="btn btn-outline-light">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" v-print="'#printMe'" id="sendtopdf">Print PDF</button>
             </div>
           </div>
@@ -69,6 +84,7 @@
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
         this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
         // listen to authenticated event
@@ -77,6 +93,7 @@
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("departments/getDepartments");
+          _.$store.dispatch("contracts/getContracts");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
         });
@@ -108,6 +125,7 @@
     computed: {
       ...mapGetters({
         departments: "departments/departments",
+        contracts: "contracts/contracts",
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
@@ -210,6 +228,10 @@
 
   img {
     border-radius: 15%;
+  }
+
+  .header-t {
+    height: 50px;
   }
 
   @media screen and (max-width: 867px) {

@@ -1,6 +1,7 @@
 const users = require('./users/users.service.js');
 const executives = require('./executives/executives.service.js');
 const departments = require('./departments/departments.service.js');
+const contracts = require('./contracts/contracts.service.js');
 const departmentsHistorics = require('./departments-historics/departments-historics.service.js');
 const mailer = require('./mailer/mailer.service.js');
 const authmanagement = require('./authmanagement/authmanagement.service.js');
@@ -13,6 +14,7 @@ module.exports = function (app) {
   app.configure(users);
   app.configure(executives);
   app.configure(departments);
+  app.configure(contracts);
   //app.configure(departmentsHistorics);
   app.configure(mailer);
   app.configure(authmanagement);

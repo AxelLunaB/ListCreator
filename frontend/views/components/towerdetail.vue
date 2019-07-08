@@ -4,8 +4,8 @@
       <div id="returntwo" @click="closeBtn()">
         <i class="fas fa-times fa-2x"></i>
       </div>
-  <div class="row mobile-fix" :class="{ animate: isActive }">
-      <div class="col-12 col-lg-3">
+  <div class="row mobile-fix " :class="{ animate: isActive }">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-left"><span style="font-size:2rem">{{detailTable.unitNumber}}</span> BRAVA TOWERS</h4>
@@ -70,7 +70,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
@@ -127,7 +127,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
@@ -180,7 +180,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
@@ -203,7 +203,7 @@
       </div>
     </div>
     <div class="row" :class="{ animate: isActive }">
-  <div class="col-12  col-lg-3">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -213,8 +213,20 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><b>Currency</b></td>
-                                <td class="text-center"><b>USD</b></td>
+                                <td><b>Sale Price</b></td>
+                                <td class="text-center"><b>{{contract.salesprice}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Currency</td>
+                                <td class="text-center"><b>{{contract.currency}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Payment Method</td>
+                                <td class="text-center"><b>{{contract.paymentMethod}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Exchange Rate</td>
+                                <td class="text-center"><b>{{contract.exchangerate}}</b></td>
                             </tr>
                             <tr>
                                 <td>Sales Channel</td>
@@ -251,7 +263,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
       <div class="card">
           <div class="card-body">
               <div class="row">
@@ -263,27 +275,23 @@
                           <tbody>
                           <tr>
                               <td>ROI</td>
-                              <td class="text-center">Yes</td>
+                              <td class="text-center">{{contract.WROI}}</td>
                           </tr>
                           <tr>
                               <td>ROI %</td>
-                              <td class="text-center">15</td>
+                              <td class="text-center">{{contract.percent}}</td>
                           </tr>
                           <tr>
                               <td>Years</td>
-                              <td class="text-center">3</td>
+                              <td class="text-center">{{contract.years}}</td>
                           </tr>
                           <tr>
                               <td>Closing Date</td>
-                              <td class="text-center">10/185/2022</td>
-                          </tr>
-                          <tr>
-                              <td>Renewal</td>
-                              <td class="text-center"> - </td>
+                              <td class="text-center">{{contract.closingDate}}</td>
                           </tr>
                           <tr>
                               <td>Renewal years</td>
-                              <td class="text-center">- </td>
+                              <td class="text-center">{{contract.years}} </td>
                           </tr>
                           </tbody>
                       </table>
@@ -292,7 +300,7 @@
           </div>
       </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <div class="row">
@@ -304,7 +312,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12  col-lg-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
@@ -312,9 +320,9 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -324,9 +332,11 @@ import swal from "sweetalert";
 
 export default {
   mounted: function() {
-    this.$eventHub.$on("show-detailTable-detail-tower-modal", detailTable => {
-      this.detailTable = detailTable;
+    this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
+      this.detailTable = details.detailUnit;
+      this.contract = details.detailContract;
       this.show = true;
+      console.log (details);
     });
   },
   components: {
@@ -336,7 +346,8 @@ export default {
     return {
       show: false,
       isActive: true,
-      detailTable: {}
+      detailTable: {},
+      contract: {}
     }
   },
   methods: {
@@ -374,7 +385,7 @@ export default {
     background:#516f4d;
     height: 100%;
     position:fixed;
-    top:70px;
+    top:47px;
     left:0;
     z-index:1;
   }
@@ -382,6 +393,7 @@ export default {
   .card {
     background:#6a8e67!important;
     margin:10px;
+    flex:1;
   }
 
   .animate {
@@ -427,6 +439,10 @@ export default {
     cursor:pointer;
   }
 
+  .col-12 {
+    display:flex;
+  }
+
   @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
@@ -450,11 +466,31 @@ export default {
   }
 }
 
-  @media screen and (max-width: 768px) {
-  .mobile-fix {
-    padding-top:2338px!important;
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+      .mobile-fix {
+    padding-top: 400px;
   }
 }
+
+@media screen and (min-width: 411px) and (max-width: 768px) {
+      .mobile-fix {
+    padding-top: 2027px;
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width: 512px) {
+      .mobile-fix {
+    padding-top: 2300px;
+  }
+}
+
+  @media screen and (max-width: 320px) {
+      .mobile-fix {
+    padding-top: 2600px;
+  }
+}
+
+
 
 
 </style>
