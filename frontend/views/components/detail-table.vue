@@ -7,7 +7,7 @@
                 <td class="xs-mobile">{{detailTable.level}}</td>
                 <td class="tablet">{{detailTable.bathrooms}}</td>
                 <td class="tablet">{{detailTable.bedrooms}}</td>
-                <td class="tablet">{{detailTable.nkeys}} keys</td>
+                <td class="tablet">{{detailTable.nkeys}}</td>
                 <td class="mobile">{{detailTable.interiorM2}}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
                 <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
@@ -74,6 +74,8 @@ tr td {
 .row {
   margin-left:0;
   margin-right: 0;
+  padding-left:0;
+  padding-right:0;
 }
 
 @media screen and (max-width: 867px) {

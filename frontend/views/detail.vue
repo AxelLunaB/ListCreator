@@ -22,13 +22,13 @@
         <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
             <tbody>
             <tr>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>#</b></td>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
                 <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVELS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 int</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 ext</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
                 <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
                 <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
             </tr>
