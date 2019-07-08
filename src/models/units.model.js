@@ -22,9 +22,15 @@ module.exports = (app) => {
     priceTotalM2: DataTypes.DOUBLE,
     priceTotal: DataTypes.DOUBLE,
     status: DataTypes.STRING
-  }, {});
+  }, {
+    hooks: {
+      beforeCount(options) {
+        options.raw = true;
+      }
+    }
+  });
   units.associate = function(models) {
-    // associations can be defined here
+    units.belongsTo(models.clusters);
   };
   return units;
 };

@@ -10,7 +10,7 @@ module.exports = (app) => {
     WROI: DataTypes.STRING,
     percent: DataTypes.INTEGER,
     years: DataTypes.INTEGER,
-      paymentMethod: DataTypes.STRING,
+    paymentMethod: DataTypes.STRING,
     discount: DataTypes.INTEGER,
     currency: DataTypes.STRING,
     exchangerate: DataTypes.DOUBLE,
