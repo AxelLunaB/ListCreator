@@ -306,7 +306,6 @@
             <div class="row">
               <div class="col-12">
                 <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
-                <canvas id="doughnut" height="260"></canvas>
               </div>
             </div>
           </div>
@@ -316,7 +315,6 @@
         <div class="card">
           <div class="card-body">
             <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
-            <canvas id="bar" height="300"></canvas>
           </div>
         </div>
       </div>

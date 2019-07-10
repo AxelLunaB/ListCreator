@@ -8,14 +8,14 @@
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
-          <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
+          <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-light">Reports</button>
           <button type="button" class="btn btn-outline-light">Other</button>
           <button type="button" class="btn btn-outline-light">Other</button>
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="max-width:1200px; margin:0 auto">
         <div class="row">
           <div class="col-12">
             <div>
@@ -184,6 +184,8 @@
   .title-header {
     display: flex;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .buttons-header {
@@ -215,6 +217,11 @@
 
   .header-t {
     height: 50px;
+  }
+
+  .navbar-container {
+    max-width: 1200px;
+    margin:0 auto;
   }
 
   @media screen and (max-width: 867px) {
