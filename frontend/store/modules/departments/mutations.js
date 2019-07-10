@@ -45,7 +45,7 @@ const REMOVE_FILTER = (state, payload) => {
 const SPECIAL_FILTER = (state, payload) => {
   state.specialFilter.forEach (filter => {
     if (payload.id === filter.id) {
-      if (payload.value < filter.value) {
+      if (payload.value !== filter.value) {
         filter.value = payload.value
       } else {
         filter.value = null
