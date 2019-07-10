@@ -19,7 +19,7 @@
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('priceTotal')" value="precio" id="name">Precio</button>
+              <button class="btn-buy" @click="setSpecialFilter('priceTotal')" value="precio" id="name">Precio</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
@@ -61,11 +61,11 @@ export default {
         {level: '4',value:'4', id:'level'}
       ],
       price:[
-        {cost: 'Menos de $200,000.00', id:'priceTotal'},
-        {cost: '$200,001.00 - $250,000.00', id:'priceTotal'},
-        {cost: '$251,000.00 - $300,000.00', id:'priceTotal'},
-        {cost: '$300,001.00 - $350,000.00', id:'priceTotal'},
-        {cost: '$351,000.00 - $400,000.00', id:'priceTotal'}
+        {cost: 'Menos de $200,000.00', value: "200000", id:'priceTotal'},
+        {cost: '$200,001.00 - $250,000.00', value: "250000", id:'priceTotal'},
+        {cost: '$251,000.00 - $300,000.00', value: "300000", id:'priceTotal'},
+        {cost: '$300,001.00 - $350,000.00', value: "350000", id:'priceTotal'},
+        {cost: '$351,000.00 - $400,000.00', value: "400000", id:'priceTotal'}
       ],
       status:[
         {stat: 'Available', value:'Available', id:'status'},

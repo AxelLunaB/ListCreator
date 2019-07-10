@@ -106,7 +106,6 @@ const setListType = ( context, commit ) => {
 
 
 
-
 export default {
   getDepartments,
   listenEvents,

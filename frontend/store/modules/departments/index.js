@@ -23,7 +23,7 @@ const state = {
     {
       id: 'status',
       value: null
-    }
+    },
   ],
   query: null,
   isList: false,
