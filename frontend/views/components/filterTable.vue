@@ -1,13 +1,13 @@
 <template>
   <div class="filter-container">
-      <div v-if="show" v-bind:class ="{ fadeIn : show }"class="close-filter" @click="removeFilter(),show = false">
-        <span><i class="fas fa-times"></i>	&nbsp;	&nbsp;Remove filters</span>
+      <div v-if="show" class="close-filter" @click="removeFilter(),show = false">
+        <span><i class="far fa-window-close"></i>	&nbsp;	&nbsp;Quitar filtros</span>
       </div>
       <div class="container-filter">
         <div class="field">
           <div class="control">
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Level</button>
+              <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Nivel</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
@@ -19,7 +19,7 @@
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setSpecialFilter('priceTotal')" value="precio" id="name">Price</button>
+              <button class="btn-buy" @click="setSpecialFilter('priceTotal')" value="precio" id="name">Precio</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
@@ -246,20 +246,4 @@ input .dropdown {
     box-shadow:  5px 5px 5px rgba(0, 0, 0, 0.50);
     cursor: pointer;
   }
-
-.fadeIn {
-   animation: fadeIn 0.5s forwards;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-    20% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 </style>
