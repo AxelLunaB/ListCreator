@@ -1,8 +1,8 @@
 <template>
 <div v-if="shouldShow === true">
   <div class="container-fluid">
-      <div id="returntwo" @click="closeBtn()">
-        <i class="fas fa-times fa-2x"></i>
+      <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
+        <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row mobile-fix " :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
@@ -304,8 +304,15 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12" style="flex-direction:column;">
                 <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
+                  <chartjs-doughnut
+                  v-bind:labels="labels"
+                  v-bind:datasets="datasets"
+                  v-bind:option="option"
+                  :width="mywidth"
+                  :height="myheight"
+                   ></chartjs-doughnut>
               </div>
             </div>
           </div>
@@ -313,8 +320,10 @@
       </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
-          <div class="card-body">
-            <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
+          <div class="card-body" style="display:flex; flex-direction:column;">
+            <h4 class="m-t-0 m-b-30 text-left" style="flex-grow:3;">SALES</h4>
+              <chartjs-bar :beginzero="myboolean" :backgroundcolor="mybackgroundcolor" :bordercolor="mybordercolor"  :datalabel="mylabel" :labels="mylabels" :data="mydata" v-bind:option="myoption" style="flex-grow:3;">
+      </chartjs-bar>
           </div>
         </div>
       </div>
@@ -342,10 +351,72 @@ export default {
   },
   data() {
     return {
+      mywidth: 300,
+      myheight: 300,
       show: false,
       isActive: true,
       detailTable: {},
-      contract: {}
+      contract: {},
+      labels: ["Available", "Reserved", "Sold"],
+      datasets: [{
+        data:[3,15,30],
+        backgroundColor:["#A6A867", "#E3DC95", "#E3DCC2"],
+      }],
+      option: {
+        title: {
+          display:false,
+          responsive:false,
+        },
+        legend: {
+          position:'bottom',
+          labels: {
+            fontColor:'white'
+          }
+        },
+      },
+    myboolean : true,
+    mybackgroundcolor : [
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)'
+      ],
+    mybordercolor : [
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)'
+      ],
+    mylabel : 'Sales',
+    mylabels : ['January', 'February', 'March', 'June', 'July'],
+    mydata : [14, 11, 7, 7 , 9],
+        myoption: {
+          legend: {
+            display:false
+        },
+        toooltips: {
+          callbacks: {
+            label:function(tooltipItem){
+              return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          yAxes:[{
+            ticks:{
+              fontColor:'white',
+              beginAtZero:true
+            }
+          }],
+          xAxes:[{
+            ticks:{
+              fontColor:'white'
+            }
+          }]
+        }
+      }
     }
   },
   methods: {
@@ -386,12 +457,14 @@ export default {
     top:47px;
     left:0;
     z-index:1;
+    max-height: 97vh;
   }
 
   .card {
     background:#6a8e67!important;
     margin:10px;
     flex:1;
+    border:none!important;
   }
 
   .animate {
@@ -431,12 +504,24 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    left: 40px;
-    top:80px;
+    right: 60px;
+    bottom:40px;
     z-index: 30;
     cursor:pointer;
+    background: #2a4927;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
+
   }
 
+  .active {
+      animation: fadeInAnimation 1s forwards;
+  }
   .col-12 {
     display:flex;
   }
@@ -460,7 +545,8 @@ export default {
 
   @media screen and (max-width: 1200px) {
   .container-fluid {
-    overflow-x: scroll;
+    overflow-x: hidden;
+    overflow-y:scroll;
   }
 }
 
