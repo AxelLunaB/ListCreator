@@ -4,17 +4,17 @@
         <return-page />
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
-      <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
-        <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
-        <div class="buttons-header">
-          <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
-          <button type="button" class="btn btn-outline-light">Reports</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
+        <div class="title-header">
+          <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
+          <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
+          <div class="buttons-header">
+            <div class="btn-group" role="group" aria-label="Basic example" style="margin-right:10px;">
+              <button type="button" class="btn btn-outline-light">Reports</button>
+              <button type="button" class="btn btn-outline-light">Other</button>
+              <button type="button" class="btn btn-outline-light">Other</button>
+            </div>
           </div>
         </div>
-      </div>
       <div class="card-body" id="printMe">
         <div class="row">
           <div class="col-12">
@@ -36,20 +36,19 @@
         </table>
               <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
+            </div>
           </div>
         </div>
-      </div>
       <towerdetail></towerdetail>
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light">Dowload sheet</button>
+            <button type="button" class="btn btn-outline-light" @click="tableToExcel('table', 'printMe')">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" v-print="'#printMe'" id="sendtopdf">Print PDF</button>
             </div>
           </div>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -58,8 +57,6 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
-  import xlsx from 'xlsx';
-  // import filesaver from 'file-saver';
 
 
   export default {
@@ -102,25 +99,21 @@
     data(){
       return {
         detailTable: 3,
-        isAnimated: true
+        isAnimated: true,
+        uri :'data:application/vnd.ms-excel;base64,',
+        template:'<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+        base64: function(s){ return window.btoa(unescape(encodeURIComponent(s))) },
+        format: function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
       }
-    },
-    mount:function(){
-      var wb = xlsx.utils.table_to_book(document.getElementById('printMe'),{sheet:"Departments"});
-
-      function s2ab(s) {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i=0; i<s.length; i++)
-        view[i] = s.charCodeAt(i) & 0xFF;
-        return buf;
-        }
-        $("#sendtopdf").click(function(){
-          saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'departments.xlsx');
-          });
     },
     methods: {
       ...mapActions("departments", ["nextPage", "prevPage"]),
+          tableToExcel(table, name){
+
+      if (!table.nodeType) table = this.$refs.table
+      var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+      window.location.href = this.uri + this.base64(this.format(this.template, ctx))
+    }
     },
     computed: {
       ...mapGetters({
