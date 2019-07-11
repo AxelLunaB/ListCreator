@@ -26,10 +26,6 @@ Vue.use(VueTransmit);
 
 Vue.use(Router);
 
-Vue.use(Print);
-
-Vue.use(xlsx);
-
 // Vue.use(filesaver);
 
 export default new Router({
