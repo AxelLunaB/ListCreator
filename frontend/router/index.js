@@ -16,7 +16,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import towerdetail from '@/views/components/towerdetail.vue';
 import VueTransmit from "vue-transmit";
 import Print from 'vue-print-nb';
-import xlsx from 'xlsx';
 // import filesaver from 'file-saver';
 
 Vue.use(BootstrapVue)
@@ -26,8 +25,6 @@ Vue.use(VueTransmit);
 Vue.use(Router);
 
 Vue.use(Print);
-
-Vue.use(xlsx);
 
 // Vue.use(filesaver);
 
