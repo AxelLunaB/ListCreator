@@ -35,12 +35,9 @@
                 <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" type="submit"> {{ logMessage }} </button>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="margin-bottom:0;">
               <div class="col text-center">
                 <a href="pages-recoverpw.html" class="text-white"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-              </div>
-              <div class="col text-center">
-                <a href="pages-register.html" class="text-white">Create an account</a>
               </div>
             </div>
             </form>

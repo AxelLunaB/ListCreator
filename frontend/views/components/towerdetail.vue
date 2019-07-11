@@ -4,7 +4,7 @@
       <div id="returntwo" @click="closeBtn()">
         <i class="fas fa-times fa-2x"></i>
       </div>
-  <div class="row mobile-fix " :class="{ animate: isActive }">
+  <div class="row" :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -385,10 +385,6 @@ export default {
   }
 
     .container-fluid {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:space-evenly;
     text-align:center;
     background:#516f4d;
     height: 100%;
@@ -396,6 +392,7 @@ export default {
     top:47px;
     left:0;
     z-index:1;
+    padding-top: 25px;
   }
 
   .card {
@@ -473,30 +470,6 @@ export default {
   @media screen and (max-width: 1200px) {
   .container-fluid {
     overflow-x: scroll;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1200px) {
-      .mobile-fix {
-    padding-top: 400px;
-  }
-}
-
-@media screen and (min-width: 411px) and (max-width: 768px) {
-      .mobile-fix {
-    padding-top: 2027px;
-  }
-}
-
-@media screen and (min-width: 321px) and (max-width: 512px) {
-      .mobile-fix {
-    padding-top: 2300px;
-  }
-}
-
-  @media screen and (max-width: 320px) {
-      .mobile-fix {
-    padding-top: 2600px;
   }
 }
 
