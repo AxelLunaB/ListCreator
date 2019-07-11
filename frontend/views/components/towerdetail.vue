@@ -4,7 +4,7 @@
       <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
-  <div class="row mobile-fix " :class="{ animate: isActive }">
+  <div class="row" :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -187,10 +187,11 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="m-b-30">
-                  <form action="#">
-                  <div class="fallback">
-                    <input name="file" type="file" multiple="multiple" class="send">
-                  </div>
+                  <form id="dropFileForm" action="#">
+                    <input type="file" name="files[]" id="fileInput" multiple>
+                    <label for="fileInput" id="fileLabel">
+                      Drop files here to upload
+                    </label>
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
@@ -446,10 +447,6 @@ export default {
   }
 
     .container-fluid {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:space-evenly;
     text-align:center;
     background:#516f4d;
     height: 100%;
@@ -458,6 +455,7 @@ export default {
     left:0;
     z-index:1;
     max-height: 97vh;
+    padding-top: 18px;
   }
 
   .card {
@@ -516,7 +514,10 @@ export default {
     align-items: center;
     justify-content: center;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
+  }
 
+  #returntwo:hover {
+    transform: transa
   }
 
   .active {
@@ -525,6 +526,22 @@ export default {
   .col-12 {
     display:flex;
   }
+
+  #dropFileForm #fileLabel {
+    background: #516f4d;
+    height: 200px;
+    width:100%;
+    border-radius: 6px;
+    border:2px dashed rgb(246, 255, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+#dropFileForm #fileInput {
+  display: none
+}
 
   @keyframes fadeInAnimation {
     0%   {
@@ -547,30 +564,6 @@ export default {
   .container-fluid {
     overflow-x: hidden;
     overflow-y:scroll;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1200px) {
-      .mobile-fix {
-    padding-top: 400px;
-  }
-}
-
-@media screen and (min-width: 411px) and (max-width: 768px) {
-      .mobile-fix {
-    padding-top: 2027px;
-  }
-}
-
-@media screen and (min-width: 321px) and (max-width: 512px) {
-      .mobile-fix {
-    padding-top: 2300px;
-  }
-}
-
-  @media screen and (max-width: 320px) {
-      .mobile-fix {
-    padding-top: 2600px;
   }
 }
 
