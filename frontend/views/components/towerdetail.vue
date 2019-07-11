@@ -1,10 +1,10 @@
 <template>
 <div v-if="shouldShow === true">
   <div class="container-fluid">
-      <div id="returntwo" @click="closeBtn()">
-        <i class="fas fa-times fa-2x"></i>
+      <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
+        <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
-  <div class="row mobile-fix " :class="{ animate: isActive }">
+  <div class="row" :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -187,10 +187,11 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="m-b-30">
-                  <form action="#">
-                  <div class="fallback">
-                    <input name="file" type="file" multiple="multiple" class="send">
-                  </div>
+                  <form id="dropFileForm" action="#">
+                    <input type="file" name="files[]" id="fileInput" multiple>
+                    <label for="fileInput" id="fileLabel">
+                      Drop files here to upload
+                    </label>
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
@@ -304,9 +305,15 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12" style="flex-direction:column;">
                 <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
-                <canvas id="doughnut" height="260"></canvas>
+                  <chartjs-doughnut
+                  v-bind:labels="labels"
+                  v-bind:datasets="datasets"
+                  v-bind:option="option"
+                  :width="mywidth"
+                  :height="myheight"
+                   ></chartjs-doughnut>
               </div>
             </div>
           </div>
@@ -314,9 +321,10 @@
       </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
-          <div class="card-body">
-            <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
-            <canvas id="bar" height="300"></canvas>
+          <div class="card-body" style="display:flex; flex-direction:column;">
+            <h4 class="m-t-0 m-b-30 text-left" style="flex-grow:3;">SALES</h4>
+              <chartjs-bar :beginzero="myboolean" :backgroundcolor="mybackgroundcolor" :bordercolor="mybordercolor"  :datalabel="mylabel" :labels="mylabels" :data="mydata" v-bind:option="myoption" style="flex-grow:3;">
+      </chartjs-bar>
           </div>
         </div>
       </div>
@@ -344,10 +352,72 @@ export default {
   },
   data() {
     return {
+      mywidth: 300,
+      myheight: 300,
       show: false,
       isActive: true,
       detailTable: {},
-      contract: {}
+      contract: {},
+      labels: ["Available", "Reserved", "Sold"],
+      datasets: [{
+        data:[3,15,30],
+        backgroundColor:["#A6A867", "#E3DC95", "#E3DCC2"],
+      }],
+      option: {
+        title: {
+          display:false,
+          responsive:false,
+        },
+        legend: {
+          position:'bottom',
+          labels: {
+            fontColor:'white'
+          }
+        },
+      },
+    myboolean : true,
+    mybackgroundcolor : [
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)'
+      ],
+    mybordercolor : [
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)',
+      'rgba(181, 255, 225, 0.50)'
+      ],
+    mylabel : 'Sales',
+    mylabels : ['January', 'February', 'March', 'June', 'July'],
+    mydata : [14, 11, 7, 7 , 9],
+        myoption: {
+          legend: {
+            display:false
+        },
+        toooltips: {
+          callbacks: {
+            label:function(tooltipItem){
+              return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          yAxes:[{
+            ticks:{
+              fontColor:'white',
+              beginAtZero:true
+            }
+          }],
+          xAxes:[{
+            ticks:{
+              fontColor:'white'
+            }
+          }]
+        }
+      }
     }
   },
   methods: {
@@ -385,10 +455,6 @@ export default {
   }
 
     .container-fluid {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:space-evenly;
     text-align:center;
     background:#516f4d;
     height: 100%;
@@ -396,12 +462,15 @@ export default {
     top:47px;
     left:0;
     z-index:1;
+    max-height: 97vh;
+    padding-top: 18px;
   }
 
   .card {
     background:#6a8e67!important;
     margin:10px;
     flex:1;
+    border:none!important;
   }
 
   .animate {
@@ -441,17 +510,48 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    left: 40px;
-    top:80px;
+    right: 60px;
+    bottom:40px;
     z-index: 30;
     cursor:pointer;
+    background: #2a4927;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
   }
 
+  #returntwo:hover {
+    transform: transa
+  }
+
+  .active {
+      animation: fadeInAnimation 1s forwards;
+  }
   .col-12 {
     display:flex;
     padding-left: 0;
     padding-right:0;
   }
+
+  #dropFileForm #fileLabel {
+    background: #516f4d;
+    height: 200px;
+    width:100%;
+    border-radius: 6px;
+    border:2px dashed rgb(246, 255, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+#dropFileForm #fileInput {
+  display: none
+}
 
   @keyframes fadeInAnimation {
     0%   {
@@ -472,31 +572,8 @@ export default {
 
   @media screen and (max-width: 1200px) {
   .container-fluid {
-    overflow-x: scroll;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1200px) {
-      .mobile-fix {
-    padding-top: 400px;
-  }
-}
-
-@media screen and (min-width: 411px) and (max-width: 768px) {
-      .mobile-fix {
-    padding-top: 2027px;
-  }
-}
-
-@media screen and (min-width: 321px) and (max-width: 512px) {
-      .mobile-fix {
-    padding-top: 2300px;
-  }
-}
-
-  @media screen and (max-width: 320px) {
-      .mobile-fix {
-    padding-top: 2600px;
+    overflow-x: hidden;
+    overflow-y:scroll;
   }
 }
 
