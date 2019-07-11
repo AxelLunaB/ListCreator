@@ -1,17 +1,17 @@
 <template>
     <div class="row col-12 router" @click="departmentClicked()">
-        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;">
+        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;" id="toprint">
             <tbody>
             <tr>
                 <td>{{detailTable.unitNumber}}</td>
-                <td class="xs-mobile">{{detailTable.level}}</td>
-                <td class="tablet">{{detailTable.bathrooms}}</td>
-                <td class="tablet">{{detailTable.bedrooms}}</td>
-                <td class="tablet">{{detailTable.nkeys}} keys</td>
-                <td class="mobile">{{detailTable.interiorM2}}</td>
+                <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: "-" }}</td>
+                <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"-" }}</td>
+                <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"-" }}</td>
+                <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"-" }}</td>
+                <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"-" }}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
-                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal)}}</td>
-                <td><b>{{detailTable.status}}</b></td>
+                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"-")}}</td>
+                <td><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
             </tr>
             </tbody>
         </table>
@@ -39,6 +39,16 @@ export default {
       }
       this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
     }
+  },
+  computed: {
+    getColor() {
+      if (this.detailTable.status.color_hex) {
+        return this.detailTable.status.color_hex;
+      }
+      else {
+        return '#ffffff'
+      }
+    },
   }
 }
 </script>
@@ -74,6 +84,8 @@ tr td {
 .row {
   margin-left:0;
   margin-right: 0;
+  padding-left:0;
+  padding-right:0;
 }
 
 @media screen and (max-width: 867px) {

@@ -15,20 +15,20 @@
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" id="printMe">
         <div class="row">
           <div class="col-12">
             <div>
         <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
             <tbody>
             <tr>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>#</b></td>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVELS</b></td>
+                <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
+                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
                 <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 int</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M2 ext</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
+                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
                 <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
                 <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
             </tr>
@@ -43,9 +43,8 @@
       <div class="navbar-container">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light">CSV</button>
-            <button type="button" class="btn btn-outline-light">PDF</button>
-            <button type="button" class="btn btn-outline-light">Print</button>
+            <button type="button" class="btn btn-outline-light">Dowload sheet</button>
+            <button type="button" class="btn btn-outline-light" v-print="'#printMe'" id="sendtopdf">Print PDF</button>
             </div>
           </div>
         </div>
@@ -59,6 +58,10 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
+  import xlsx from 'xlsx';
+  // import filesaver from 'file-saver';
+
+
   export default {
     components: {
       detailTable,
@@ -102,8 +105,22 @@
         isAnimated: true
       }
     },
+    mount:function(){
+      var wb = xlsx.utils.table_to_book(document.getElementById('printMe'),{sheet:"Departments"});
+
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i=0; i<s.length; i++)
+        view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+        }
+        $("#sendtopdf").click(function(){
+          saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'departments.xlsx');
+          });
+    },
     methods: {
-      ...mapActions("departments", ["nextPage", "prevPage"])
+      ...mapActions("departments", ["nextPage", "prevPage"]),
     },
     computed: {
       ...mapGetters({

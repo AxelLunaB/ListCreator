@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-left"><span style="font-size:2rem">{{detailTable.unitNumber}}</span> {{detailTable.cluster.name}}</h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
                 <div class="row">
                     <div class="col-12">
                         <table class="table table-hover table-modifier">
@@ -17,51 +17,51 @@
                             <tbody>
                             <tr>
                                 <td>Level</td>
-                                <td class="text-center">{{detailTable.level}}</td>
+                                <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Bedrooms</td>
-                                <td class="text-center">{{detailTable.bedrooms}}</td>
+                                <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Lock Off (keys)</td>
-                                <td class="text-center">{{detailTable.nkeys}}</td>
+                                <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Bathrooms</td>
-                                <td class="text-center">{{detailTable.bathrooms}}</td>
+                                <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Interior m2</td>
-                                <td class="text-center">{{detailTable.interiorM2}}</td>
+                                <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Exterior m2</td>
-                                <td class="text-center">{{detailTable.exteriorM2}}</td>
+                                <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Total Interior m2</td>
-                                <td class="text-center">{{detailTable.totalInteriorM2}}</td>
+                                <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>Total m2</td>
-                                <td class="text-center">{{detailTable.totalM2Double}}</td>
+                                <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
                             </tr>
                             <tr>
                                 <td>$/m2 Interior</td>
-                                <td class="text-center">{{toPrice(detailTable.priceInteriorM2)}}</td>
+                                <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td>$/m2 Total</td>
-                                <td class="text-center">{{toPrice(detailTable.priceTotalM2)}}</td>
+                                <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td>List Price</td>
-                                <td class="text-center">${{toPrice(detailTable.priceTotal)}}</td>
+                                <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td class="text-center"><b>{{detailTable.status}}</b></td>
+                                <td class="text-center" v-bind:style="{color: getColor }"></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -214,19 +214,19 @@
                             <tbody>
                             <tr>
                                 <td><b>Sale Price</b></td>
-                                <td class="text-center"><b>{{contract.salesprice}}</b></td>
+                                <td class="text-center"><b>{{contract.salesprice != 0 ? contract.salesprice : "-"}}</b></td>
                             </tr>
                             <tr>
                                 <td>Currency</td>
-                                <td class="text-center"><b>{{contract.currency}}</b></td>
+                                <td class="text-center"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
                             </tr>
                             <tr>
                                 <td>Payment Method</td>
-                                <td class="text-center"><b>{{contract.paymentMethod}}</b></td>
+                                <td class="text-center"><b>{{contract.paymentMethod != null ? contract.paymentMethod : "N/A" }}</b></td>
                             </tr>
                             <tr>
                                 <td>Exchange Rate</td>
-                                <td class="text-center"><b>{{contract.exchangerate}}</b></td>
+                                <td class="text-center"><b>{{contract.exchangerate != 0 ? contract.exchangerate : "-"}}</b></td>
                             </tr>
                             <tr>
                                 <td>Sales Channel</td>
@@ -275,23 +275,23 @@
                           <tbody>
                           <tr>
                               <td>ROI</td>
-                              <td class="text-center">{{contract.WROI}}</td>
+                              <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
                           </tr>
                           <tr>
                               <td>ROI %</td>
-                              <td class="text-center">{{contract.percent}}</td>
+                              <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
                           </tr>
                           <tr>
                               <td>Years</td>
-                              <td class="text-center">{{contract.years}}</td>
+                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
                               <td>Closing Date</td>
-                              <td class="text-center">{{contract.closingDate}}</td>
+                              <td class="text-center">{{contract.closingDate != 0 ? contract.closingDate : "-"}}</td>
                           </tr>
                           <tr>
                               <td>Renewal years</td>
-                              <td class="text-center">{{contract.years}} </td>
+                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
                           </tr>
                           </tbody>
                       </table>
@@ -362,6 +362,14 @@ export default {
   computed: {
     shouldShow() {
       return this.show;
+    },
+    getColor() {
+      if (this.detailTable.status.color_hex) {
+        return this.detailTable.status.color_hex
+      }
+      else {
+        return  'ffffff'
+      }
     }
   }
 }
@@ -441,6 +449,8 @@ export default {
 
   .col-12 {
     display:flex;
+    padding-left: 0;
+    padding-right:0;
   }
 
   @keyframes fadeInAnimation {
