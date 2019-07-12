@@ -1,6 +1,6 @@
 <template>
-    <div class="row col-12 router" @click="departmentClicked()">
-        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;" id="toprint">
+    <div class="row col-12 router" @click="departmentClicked()" style="padding-left:0;padding-right:0;">
+        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;">
             <tbody>
             <tr>
                 <td>{{detailTable.unitNumber}}</td>
