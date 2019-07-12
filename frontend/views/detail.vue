@@ -141,7 +141,6 @@
   @import 'node_modules/bootstrap-vue/src/index.scss';
 
   .main-tables-container {
-    width:100vw;
     background: rgb(81, 111, 77);
     display: flex;
     align-items: center;

@@ -1,58 +1,38 @@
 <template>
-  <nav class="navbar is-transparent is-fixed-top navbar-height" style="z-index:31;">
-    <div class="navbar-brand">
-      <router-link class="navbar-item logo" to="/">
-          <img src="../../assets/logo_bco_sm.png" alt="Giada Real State" style="max-width:100%"   height="auto">
-      </router-link>
-      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    <div id="navbarExampleTransparentExample" class="navbar-menu" >
-      <div class="navbar-start">
-         <router-link class="navbar-item" to="/">Giada Tulum</router-link>
-      </div>
-      <div class="navbar-end">
-        <div class="navbar-item" style="padding:0;">
-          <div class="field is-grouped" style="margin:0;">
-            <!-- <p class="control"> -->
-              <div class="navbar-item has-dropdown is-hoverable" style="width:100%;">
-                <a class="navbar-link">{{currentUser.name}}</a>
-                <div class="navbar-dropdown is-boxed"  style="background-color: #d4ebf0; left:-27px;">
-                  <hr class="navbar-divider">
-                  <a href="/logout" class="navbar-item is-active" id="logout-btn" style="color:white;">Salir</a>
-                </div>
-              </div>
-            <!-- </p> -->
-          </div>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="#"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul> -->
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+      <ul class="navbar-nav ml-auto icons-bar">
+        <div class="notifications-bar">
+          <i class="far fa-bell"></i>
         </div>
-      </div>
-    </div>
-    <!-- <div :class="`modal is-active`"> -->
-    <div :class="`modal ${searchActive ? 'is-active' : ''}`">
-      <div v-on:click="hideModal()" class="modal-background"></div>
-      <div class="modal-content">
-        <!-- Any other Bulma elements you want -->
-      <div class="box">
-          <form id="nav-search-form">
-            <div class="columns">
-              <div class="column is-6">
-                <input class="input" type="text" placeholder="Nivel" name="level">
-              </div>
-              <div class="column is-6">
-                <input class="input" type="text" placeholder="# de Departamento" name="deptnumber">
-              </div>
-            </div>
-          </form>
-          <br>
-          <button class="button" v-on:click="triggerSearch()">Buscar</button>
+        <div class="fullscreen-bar" @click="goFullscreen">
+          <i class="fas fa-compress"></i>
         </div>
-      </div>
-</div>
+        <div class="image-bar">
+          <i class="fas fa-user"></i>
+        </div>
+        </ul>
+    </div>
   </nav>
-
 </template>
 <script>
 import $ from "jquery";
@@ -82,7 +62,8 @@ export default {
         ["status", "Estado"]
       ],
       selectedFields: [],
-      searchActive: false
+      searchActive: false,
+      isFullscreen: false
     };
   },
   computed: {
@@ -134,84 +115,53 @@ export default {
     },
     setViewType() {
       this.$store.commit('viewType')
+    },
+    goFullscreen: function() {
+           this.isFullscreen = !this.isFullscreen
+           if(this.isFullscreen == false) {
+              if (document.exitFullscreen) {
+                document.exitFullscreen();
+              } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+              } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+              } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+              }
+           }
+           if(this.isFullscreen == true) {
+             var elem = document.documentElement;
+              if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+              } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+              } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+              } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+              }
+           }
     }
-  },
+  }
 };
 </script>
 
 <style>
 
-@import "~bulma/css/bulma.css";
-
-.fa-list {
+.icons-bar > div {
+  width:40px;
+  height:40px;
+  border-radius: 30px;
+  border:2px solid white;
+  margin-left: 10px;
+  cursor:pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
-}
-
-.navbar {
-  background: rgb(81, 111, 77);
-}
-
-.logo {
-  display: flex;
   justify-content: center;
-  align-items:center;
 }
 
-.navbar-start a,
-.navbar-item {
+.fas, .far {
   color: white;
-  transition:0.5s;
-}
-
-.navbar-start a:hover {
-  color: rgb(230, 255, 232);
-  transition:0.5s;
-  text-decoration: none;
-}
-
-.navbar-dropdown {
-  background:  rgb(185, 195, 184)!important;
-  color:white;
-}
-
-.navbar-dropdown a:hover {
-  color:rgb(230, 255, 232)!important;
-  text-decoration: none!important;
-}
-
-a.navbar-item:hover {
-  background: none;
-}
-
-a.navbar-item.is-active {
-  background: none;
-}
-
-@media screen and (min-width: 1023px) {
-.navbar-link::after {
-    border: 3px solid #ffffff;
-    border-right: 0;
-    border-top: 0;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-  .navbar-brand {
-    display: flex!important;
-    width: 100%;
-  }
-
-  .navbar-burger span {
-    background: rgb(160, 214, 163);
-  }
-
-  .navbar-menu  {
-  width: 100%;
-  background: #728d70!important;
-}
 }
 
 </style>
