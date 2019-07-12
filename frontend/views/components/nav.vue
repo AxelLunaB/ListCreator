@@ -1,10 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 2;">
     <a class="navbar-brand" href="#"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    </button> -->
+    <div class="mobile-container-flex" style="display:flex;">
       <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -16,26 +16,35 @@
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul> -->
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
       <ul class="navbar-nav ml-auto icons-bar">
-        <div class="notifications-bar">
-          <i class="far fa-bell"></i>
-        </div>
-        <div class="fullscreen-bar" @click="goFullscreen">
-          <i class="fas fa-compress"></i>
-        </div>
-        <div class="image-bar">
+          <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
+            <i class="far fa-bell"></i>
+          </div>
+
+          <div class="fullscreen-bar hide" @click="goFullscreen">
+            <i class="fas fa-compress"></i>
+          </div>
+
+        <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
           <i class="fas fa-user"></i>
         </div>
+        <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
+          <a href="#">Notifications</a>
+          <li class="dropdown-divider"></li>
+          </span>
+        <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
+          <a href="#">Settings</a>
+          <li class="dropdown-divider"></li>
+          <a href="/logout"><b>Log out</b></a>
+          </span>
+
         </ul>
     </div>
   </nav>
 </template>
 <script>
 import $ from "jquery";
+import "../../../node_modules/bootstrap/js/dist/collapse"
 import cookie from "../../utils/cookie";
 import { mapGetters,mapActions } from "vuex";
 export default {
@@ -152,7 +161,7 @@ export default {
   width:40px;
   height:40px;
   border-radius: 30px;
-  border:2px solid white;
+  border:2px solid rgb(209, 218, 207);
   margin-left: 10px;
   cursor:pointer;
   display: flex;
@@ -162,6 +171,47 @@ export default {
 
 .fas, .far {
   color: white;
+}
+
+.navbar-custom {
+  position: fixed!important;
+  top: 0!important;
+  left: 0!important;
+  right: 0!important;
+  background:#516f4d;
+}
+
+.main-menu {
+  background: #99a597;
+  border-radius: 3px;
+  text-align: left;
+  width: 120px;
+  padding: 10px;
+}
+
+.main-menu a {
+  color: white;
+}
+
+.main-menu a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.icons-bar {
+  flex-direction: row!important;
+}
+
+@media (min-width: 992px) {
+  .mobile-container-flex {
+    width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+  .hide {
+    display:none!important;
+    }
 }
 
 </style>

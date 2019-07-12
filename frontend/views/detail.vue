@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="card-body" id="printMe" style= "max-width:1200px; margin:0 auto;">
+      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;">
         <div class="row">
           <div class="col-12">
             <div>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <towerdetail></towerdetail>
-      <div class="navbar-container" style="max-width:1200px; margin:25px auto;">
+      <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light">Dowload sheet</button>
@@ -200,7 +200,7 @@
   .title-header {
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1000px;
     margin:0 auto;
     padding-bottom:25px;
   }

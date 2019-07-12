@@ -1,8 +1,8 @@
 <template>
 <div v-if="shouldShow === true">
   <div class="container-fluid">
-      <div id="returntwo" @click="closeBtn()">
-        <i class="fas fa-times fa-2x"></i>
+      <div id="returntwo" @click="closeBtn()" :class="{ animate: isActive }">
+        <span><i class="fas fa-reply"></i>&nbsp;Return</span>
       </div>
   <div class="row" :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
@@ -389,7 +389,7 @@ export default {
     background:#516f4d;
     height: 100%;
     position:fixed;
-    top:47px;
+    top:67px;
     left:0;
     z-index:1;
     padding-top: 25px;
@@ -438,10 +438,18 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    left: 40px;
-    top:80px;
+    right: 40px;
+    bottom:40px;
     z-index: 30;
     cursor:pointer;
+    background:#384d35;
+    border-radius: 5px;
+    width:100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.60);
   }
 
   .col-12 {
