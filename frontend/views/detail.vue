@@ -3,7 +3,7 @@
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->
-    <div class="col-11"  style="margin-top:80px;">
+    <div class="col-11"  style="margin-top:80px;" ref="table"> <!--reference to what will be converted to sheet-->
         <div class="title-header">
           <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
           <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
@@ -49,6 +49,7 @@
           </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
