@@ -30,7 +30,7 @@
                 <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
                 <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
                 <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
             </tr>
             </tbody>
         </table>
@@ -141,7 +141,7 @@
   @import 'node_modules/bootstrap-vue/src/index.scss';
 
   .main-tables-container {
-    background: rgb(81, 111, 77);
+    background: #2a333c;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,7 +165,7 @@
   }
 
     .card-body {
-      background: rgb(106, 142, 103);
+      background: #3c4857;
       margin:10px;
       border-radius: 3px;
       color: white;

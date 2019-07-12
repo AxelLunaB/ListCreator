@@ -43,7 +43,7 @@
             </form>
           </div>
         </div>
-        <div class="card col-md-5 col-sm-12 right-card" style="background:rgb(89, 119, 86)"  :class="{ fadeEntry: isLoaded }">
+        <div class="card col-md-5 col-sm-12 right-card" style="background:#3f4c5c"  :class="{ fadeEntry: isLoaded }">
            <h5 class="text-center">Real-time updates</h5>
            <hr style="margin:0;">
           <div class="row h-100">
@@ -170,7 +170,7 @@ body {
 }
 
 .card {
-  background: rgb(106, 142, 103);
+  background: #3f4c5c;
   color:white!important;
   border: none;
 }
@@ -181,13 +181,13 @@ h4 {
 
 
 .btn {
-  background: rgb(36, 85, 30);
-  border:1px solid rgb(81, 111, 77);
+  background: #2a333c;
+  border:none;
 }
 
 .btn:hover {
-  background: rgb(41, 95, 33);
-  border:1px solid rgb(81, 111, 77);
+  background: #1f262c;
+  border:none;
 }
 
 .main {
@@ -230,20 +230,20 @@ h5 {
 
 .form-control:focus {
   box-shadow:none!important;
-  background: rgb(230, 252, 230);
+  background: rgb(230, 244, 252);
   border: none!important;
 }
 
 .btn-primary:active,
 .btn-primary:focus  {
     color: #fff;
-    background-color: rgb(89, 122, 86)!important;
+    background-color:#1f262c!important;
     box-shadow:none!important;
-    border:1px solid rgb(80, 109, 77)!important;
+    border:none!important;
 }
 
 .swal-button {
-  background: rgb(107,148,102);
+  background: #1f262c;
   color: white;
 }
 

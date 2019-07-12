@@ -1,328 +1,328 @@
 <template>
-<div v-if="shouldShow === true">
-  <div class="container-fluid">
+  <div v-if="shouldShow === true">
+    <div class="container-fluid">
       <div id="returntwo" @click="closeBtn()" :class="{ animate: isActive }">
-        <span><i class="fas fa-reply"></i>&nbsp;Return</span>
+      <span><i class="fas fa-reply"></i>&nbsp;Return</span>
       </div>
-  <div class="row" :class="{ animate: isActive }">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="row" :class="{ animate: isActive }">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
-            <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Level</td>
-                                <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Bedrooms</td>
-                                <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Lock Off (keys)</td>
-                                <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Bathrooms</td>
-                                <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Interior m2</td>
-                                <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Exterior m2</td>
-                                <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Total Interior m2</td>
-                                <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>Total m2</td>
-                                <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
-                            </tr>
-                            <tr>
-                                <td>$/m2 Interior</td>
-                                <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
-                            </tr>
-                            <tr>
-                                <td>$/m2 Total</td>
-                                <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
-                            </tr>
-                            <tr>
-                                <td>List Price</td>
-                                <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
-                            </tr>
-                            <tr>
-                                <td>Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body">
+        <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
+        <div class="row">
+        <div class="col-12">
+        <table class="table table-hover table-modifier">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Level</td>
+        <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Bedrooms</td>
+        <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Lock Off (keys)</td>
+        <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Bathrooms</td>
+        <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Interior m2</td>
+        <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Exterior m2</td>
+        <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Total Interior m2</td>
+        <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Total m2</td>
+        <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
+        </tr>
+        <tr>
+        <td>$/m2 Interior</td>
+        <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
+        </tr>
+        <tr>
+        <td>$/m2 Total</td>
+        <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
+        </tr>
+        <tr>
+        <td>List Price</td>
+        <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+        </tr>
+        <tr>
+        <td>Status</td>
+        <td class="text-center" v-bind:style="{color: getColor }"></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
+        </tr>
+        </tbody>
+        </table>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
-            <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
-                <div class="row overflow">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">06/15/2019</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">07/15/2019</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>03</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">08/15/2019</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>04</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">09/15/2019</span></td>
-                                <td><i class="far fa-envelope"></i></td>
-                            </tr>
-                            <tr>
-                                <td>05</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">10/15/2019</span></td>
-                                <td><i class="far fa-envelope"></i></td>
-                            </tr>
-                            <tr>
-                                <td>06</td>
-                                <td class="text-center">11/15/2019</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>07</td>
-                                <td class="text-center">11/15/2019</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>08</td>
-                                <td class="text-center">11/15/2019</td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
-            <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                <div class="row overflow">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Offer letter</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Reserve sheet</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Reserve deposit</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">First Draft Contract</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">Final Contract</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">ROI Contract</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span>Official ID</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span>Proof of Address</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><span>Payment Checkbooks</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
-          <div class="card-body">
-            <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="m-b-30">
-                  <form action="#">
-                  <div class="fallback">
-                    <input name="file" type="file" multiple="multiple" class="send">
-                  </div>
-                  </form>
-                </div>
-                <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="btn btn-outline-light">Send Files</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="card-body">
+        <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
+        <div class="row overflow">
+        <div class="col-12">
+        <table class="table table-hover table-modifier">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+        <td>01</td>
+        <td class="text-center"><span style="color:green;font-weight:bolder">06/15/2019</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td>02</td>
+        <td class="text-center"><span style="color:green;font-weight:bolder">07/15/2019</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td>03</td>
+        <td class="text-center"><span style="color:green;font-weight:bolder">08/15/2019</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td>04</td>
+        <td class="text-center"><span style="color:red;font-weight:bolder">09/15/2019</span></td>
+        <td><i class="far fa-envelope"></i></td>
+        </tr>
+        <tr>
+        <td>05</td>
+        <td class="text-center"><span style="color:red;font-weight:bolder">10/15/2019</span></td>
+        <td><i class="far fa-envelope"></i></td>
+        </tr>
+        <tr>
+        <td>06</td>
+        <td class="text-center">11/15/2019</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>07</td>
+        <td class="text-center">11/15/2019</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>08</td>
+        <td class="text-center">11/15/2019</td>
+        <td></td>
+        </tr>
+        </tbody>
+        </table>
         </div>
-      </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
+        <div class="row overflow">
+        <div class="col-12">
+        <table class="table table-hover table-modifier">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+        <td class="text-center"><span style="color:green;font-weight:bolder">Offer letter</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span style="color:green;font-weight:bolder">Reserve sheet</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span style="color:green;font-weight:bolder">Reserve deposit</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span style="color:green;font-weight:bolder">First Draft Contract</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span style="color:red;font-weight:bolder">Final Contract</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span style="color:red;font-weight:bolder">ROI Contract</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span>Official ID</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span>Proof of Address</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        <tr>
+        <td class="text-center"><span>Payment Checkbooks</span></td>
+        <td><i class="fas fa-file-alt"></i></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
+        <div class="row">
+        <div class="col-md-12">
+        <div class="m-b-30">
+        <form action="#">
+        <div class="fallback">
+        <input name="file" type="file" multiple="multiple" class="send">
+        </div>
+        </form>
+        </div>
+        <div class="text-center m-t-15" style="margin:26px 0 0 0;">
+        <button type="button" class="btn btn-outline-light">Send Files</button>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="row" :class="{ animate: isActive }">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <div class="row">
+        <div class="col-12">
+        <table class="table table-hover table-modifier">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+        <td><b>Sale Price</b></td>
+        <td class="text-center"><b>{{contract.salesprice != 0 ? contract.salesprice : "-"}}</b></td>
+        </tr>
+        <tr>
+        <td>Currency</td>
+        <td class="text-center"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
+        </tr>
+        <tr>
+        <td>Payment Method</td>
+        <td class="text-center"><b>{{contract.paymentMethod != null ? contract.paymentMethod : "N/A" }}</b></td>
+        </tr>
+        <tr>
+        <td>Exchange Rate</td>
+        <td class="text-center"><b>{{contract.exchangerate != 0 ? contract.exchangerate : "-"}}</b></td>
+        </tr>
+        <tr>
+        <td>Sales Channel</td>
+        <td class="text-center">Internal</td>
+        </tr>
+        <tr>
+        <td>Sales Executive</td>
+        <td class="text-center">Alejandra Ruiz</td>
+        </tr>
+        <tr>
+        <td>Customer</td>
+        <td class="text-center">Mayabmex</td>
+        </tr>
+        <tr>
+        <td>Man Comm</td>
+        <td class="text-center"><span style="color:red;font-weight:bolder">2%</span></td>
+        </tr>
+        <tr>
+        <td>Sales Ex Comm</td>
+        <td class="text-center"><span style="color:red;font-weight:bolder">5%</span></td>
+        </tr>
+        <tr>
+        <td>Sales Adm/Comm</td>
+        <td class="text-center"><span style="color:green;font-weight:bolder">3%</span></td>
+        </tr>
+        <tr>
+        <td>Total Comm</td>
+        <td class="text-center">$16,900</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <div class="row">
+        <div class="col-12">
+        <table class="table table-hover table-modifier">
+        <thead>
+        <h5 class="m-b-30 m-t-0 text-left">ROI</h5>
+        </thead>
+        <tbody>
+        <tr>
+        <td>ROI</td>
+        <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
+        </tr>
+        <tr>
+        <td>ROI %</td>
+        <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Years</td>
+        <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Closing Date</td>
+        <td class="text-center">{{contract.closingDate != 0 ? contract.closingDate : "-"}}</td>
+        </tr>
+        <tr>
+        <td>Renewal years</td>
+        <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <div class="row">
+        <div class="col-12">
+        <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
+        <canvas id="doughnut" height="260"></canvas>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+        <div class="card-body">
+        <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
+        <canvas id="bar" height="300"></canvas>
+        </div>
+        </div>
+        </div>
+        </div>
     </div>
-    <div class="row" :class="{ animate: isActive }">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><b>Sale Price</b></td>
-                                <td class="text-center"><b>{{contract.salesprice != 0 ? contract.salesprice : "-"}}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Currency</td>
-                                <td class="text-center"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Payment Method</td>
-                                <td class="text-center"><b>{{contract.paymentMethod != null ? contract.paymentMethod : "N/A" }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Exchange Rate</td>
-                                <td class="text-center"><b>{{contract.exchangerate != 0 ? contract.exchangerate : "-"}}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Sales Channel</td>
-                                <td class="text-center">Internal</td>
-                            </tr>
-                            <tr>
-                                <td>Sales Executive</td>
-                                <td class="text-center">Alejandra Ruiz</td>
-                            </tr>
-                            <tr>
-                                <td>Customer</td>
-                                <td class="text-center">Mayabmex</td>
-                            </tr>
-                            <tr>
-                                <td>Man Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">2%</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sales Ex Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">5%</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sales Adm/Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">3%</span></td>
-                            </tr>
-                            <tr>
-                                <td>Total Comm</td>
-                                <td class="text-center">$16,900</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-      <div class="card">
-          <div class="card-body">
-              <div class="row">
-                  <div class="col-12">
-                      <table class="table table-hover table-modifier">
-                          <thead>
-                              <h5 class="m-b-30 m-t-0 text-left">ROI</h5>
-                          </thead>
-                          <tbody>
-                          <tr>
-                              <td>ROI</td>
-                              <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
-                          </tr>
-                          <tr>
-                              <td>ROI %</td>
-                              <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
-                          </tr>
-                          <tr>
-                              <td>Years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
-                          </tr>
-                          <tr>
-                              <td>Closing Date</td>
-                              <td class="text-center">{{contract.closingDate != 0 ? contract.closingDate : "-"}}</td>
-                          </tr>
-                          <tr>
-                              <td>Renewal years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
-                          </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-12">
-                <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
-                <canvas id="doughnut" height="260"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
-            <canvas id="bar" height="300"></canvas>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -380,13 +380,13 @@ export default {
   @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
-  body {
-    background: #516f4d!important;
-  }
+  /* body {
+    background: #2a333c!important;
+  } */
 
     .container-fluid {
     text-align:center;
-    background:#516f4d;
+    background:#2a333c;
     height: 100%;
     position:fixed;
     top:67px;
@@ -396,7 +396,7 @@ export default {
   }
 
   .card {
-    background:#6a8e67!important;
+    background:#3c4857!important;
     margin:10px;
     flex:1;
   }
@@ -434,6 +434,7 @@ export default {
 
   .table th, .table td {
     padding:0!important;
+    text-align: left;
   }
   #returntwo {
     color: white;
@@ -480,8 +481,5 @@ export default {
     overflow-x: scroll;
   }
 }
-
-
-
 
 </style>

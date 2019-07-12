@@ -178,11 +178,11 @@ export default {
   top: 0!important;
   left: 0!important;
   right: 0!important;
-  background:#516f4d;
+  background:#2a333c;
 }
 
 .main-menu {
-  background: #99a597;
+  background: #a7a7a7;
   border-radius: 3px;
   text-align: left;
   width: 120px;

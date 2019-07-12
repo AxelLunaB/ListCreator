@@ -11,7 +11,7 @@
                 <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"-" }}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
                 <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"-")}}</td>
-                <td><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
+                <td style="text-align:center"><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
             </tr>
             </tbody>
         </table>
