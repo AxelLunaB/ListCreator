@@ -26,6 +26,18 @@ module.exports = {
         color_hex: '#15275c',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        name: 'NOT PAID',
+        color_hex: '#f5e02a',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'PAID',
+        color_hex: '#7ddc0f',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

@@ -82,6 +82,7 @@
         console.log("auth");
         this.$store.dispatch("departments/getDepartments");
         this.$store.dispatch("contracts/getContracts");
+        this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
         // listen to authenticated event
@@ -91,6 +92,7 @@
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("departments/getDepartments");
           _.$store.dispatch("contracts/getContracts");
+          _.$store.dispatch("commissions/getCommissions");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
         });
@@ -109,6 +111,7 @@
       ...mapGetters({
         departments: "departments/departments",
         contracts: "contracts/contracts",
+        commissions: "commissions/commissions",
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",

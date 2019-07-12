@@ -13,30 +13,39 @@ module.exports = {
       addAssociations({
         models: [
           {
-            model: 'api/commissions',
-            as: 'commission'
+            model: 'api/status',
+            as: 'status'
           }
         ]
-      }),
-      context => {
-        if (context.params.query.$sort == undefined) {
-          context.params.query.$sort = {
-            id: 1
-          }
-        }
-      }
+      })
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/contracts' })],
+    create: [preventDuplicate({ service: 'api/commissions' })],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]
   },
 
   after: {
-    all: [],
-    find: [],
-    get: [
+    all: [
+    setStatusObject()
+  ],
+    find: [addAssociations({
+      models: [
+        {
+          model: 'api/status',
+          as: 'status'
+        }
+      ]
+    })],
+    get: [addAssociations({
+      models: [
+        {
+          model: 'api/status',
+          as: 'status'
+        }
+      ]
+    })
     ],
     create: [
 
