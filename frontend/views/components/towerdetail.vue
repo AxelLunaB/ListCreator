@@ -621,11 +621,12 @@ export default {
     height: 200px;
     width:100%;
     border-radius: 6px;
-    border:2px dashed #f6fff7;
+    border:2px dashed #a8a8a8;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
+    color:#a8a8a8;
   }
 
 #dropFileForm #fileInput {
@@ -640,6 +641,10 @@ export default {
 
 .fullh {
   height:95%;
+}
+
+td {
+  border-top:1px solid #a8a8a8!important;
 }
 
 .row-one,
