@@ -56,7 +56,6 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
-  import Print from 'vue-print-nb';
 
 
   export default {
