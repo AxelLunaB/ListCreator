@@ -482,7 +482,7 @@ export default {
 
     .container-fluid {
     text-align:center;
-    background:#516f4d;
+    background:#2a333c;
     height: 100%;
     position:fixed;
     top:47px;
@@ -493,7 +493,7 @@ export default {
   }
 
   .card {
-    background:#6a8e67!important;
+    background:#3c4857!important;
     margin:10px;
     flex:1;
     border:none!important;
@@ -540,7 +540,7 @@ export default {
     bottom:40px;
     z-index: 30;
     cursor:pointer;
-    background: #2a4927;
+    background: #a7a7a7;
     width: 150px;
     height: 50px;
     border-radius: 5px;
@@ -564,11 +564,11 @@ export default {
   }
 
   #dropFileForm #fileLabel {
-    background: #516f4d;
+    background: #2a333c;
     height: 200px;
     width:100%;
     border-radius: 6px;
-    border:2px dashed rgb(246, 255, 247);
+    border:2px dashed #f6fff7;
     display: flex;
     align-items: center;
     justify-content: center;
