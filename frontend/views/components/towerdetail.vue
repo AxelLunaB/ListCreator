@@ -4,14 +4,14 @@
       <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
-  <div class="row" :class="{ animate: isActive }">
+  <div class="row row-one" :class="{ animate: isActive }">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
-                <div class="row">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
@@ -74,9 +74,9 @@
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
-                <div class="row overflow">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
@@ -131,9 +131,9 @@
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                <div class="row overflow">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
@@ -203,7 +203,7 @@
         </div>
       </div>
     </div>
-    <div class="row" :class="{ animate: isActive }">
+    <div class="row row-two" :class="{ animate: isActive }">
   <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
   <div class="card">
             <div class="card-body">
@@ -319,6 +319,7 @@
             <div class="row">
               <div class="col-12" style="flex-direction:column;">
                 <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
+                <div style="width:250px;">
                   <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="datasets"
@@ -326,6 +327,7 @@
                   :width="mywidth"
                   :height="myheight"
                    ></chartjs-doughnut>
+                </div>
               </div>
             </div>
           </div>
@@ -334,8 +336,15 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
-            <h4 class="m-t-0 m-b-30 text-left" style="flex-grow:3;">SALES</h4>
-              <chartjs-bar :beginzero="myboolean" :backgroundcolor="mybackgroundcolor" :bordercolor="mybordercolor"  :datalabel="mylabel" :labels="mylabels" :data="mydata" v-bind:option="myoption" style="flex-grow:3;">
+            <h4 class="m-t-0 m-b-30 text-left">SALES</h4>
+              <chartjs-bar
+              :beginzero="myboolean"
+              :backgroundcolor="mybackgroundcolor"
+              :bordercolor="mybordercolor"
+              :datalabel="mylabel"
+              :labels="mylabels"
+              :data="mydata"
+              v-bind:option="myoption">
       </chartjs-bar>
           </div>
         </div>
@@ -477,7 +486,7 @@ export default {
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
   body {
-    background: #516f4d!important;
+    background: #2a333c!important;
   }
 
     .container-fluid {
@@ -550,10 +559,6 @@ export default {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
   }
 
-  #returntwo:hover {
-    transform: transa
-  }
-
   .active {
       animation: fadeInAnimation 1s forwards;
   }
@@ -579,6 +584,10 @@ export default {
   display: none
 }
 
+/* .fullh {
+  height: 98%;
+} */
+
   @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
@@ -602,6 +611,16 @@ export default {
     overflow-y:scroll;
   }
 }
+
+  /* @media screen and (min-width: 1200px) {
+  .row-one {
+    height: 60%;
+  }
+
+  .row-two {
+    height: 35%;
+  }
+} */
 
 
 
