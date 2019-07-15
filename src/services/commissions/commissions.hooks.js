@@ -10,42 +10,42 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [
       togglePagination(),
-    //   addAssociations({
-    //     models: [
-    //       {
-    //         model: 'api/commissions',
-    //         as: 'commission'
-    //       }
-    //     ]
-    //   }),
-    //   context => {
-    //     if (context.params.query.$sort == undefined) {
-    //       context.params.query.$sort = {
-    //         id: 1
-    //       }
-    //     }
-    //   }
+      addAssociations({
+        models: [
+          {
+            model: 'api/status',
+            as: 'status'
+          }
+        ]
+      })
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/contracts' })],
+    create: [preventDuplicate({ service: 'api/commissions' })],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]
   },
 
   after: {
-    all: [],
-    find: [
-      async context => {
-      for (i = 0; i < context.result.data.length; i++) {
-        let contract = context.result.data[i];
-        await context.app.service('api/commissions').get(contract.id).then(result => {
-          contract.commission = result;
-        })
-      }
-    }
-    ],
-    get: [
+    all: [
+    setStatusObject()
+  ],
+    find: [addAssociations({
+      models: [
+        {
+          model: 'api/status',
+          as: 'status'
+        }
+      ]
+    })],
+    get: [addAssociations({
+      models: [
+        {
+          model: 'api/status',
+          as: 'status'
+        }
+      ]
+    })
     ],
     create: [
 

@@ -243,19 +243,31 @@
                             </tr>
                             <tr>
                                 <td>Man Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">2%</span></td>
+                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions}}%</span></td>
                             </tr>
                             <tr>
                                 <td>Sales Ex Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">5%</span></td>
+                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions}}%</span></td>
                             </tr>
                             <tr>
                                 <td>Sales Adm/Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">3%</span></td>
+                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions}}%</span></td>
+                            </tr>
+                            <tr>
+                                <td>3rd Party Comm</td>
+                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.thirdPartyCommissions}}%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Broker Comm</td>
+                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.brokerCommissions}}%</span></td>
                             </tr>
                             <tr>
                                 <td>Total Comm</td>
-                                <td class="text-center">$16,900</td>
+                                <td class="text-center">$ {{contract.commission.totalCommissions != 0 ? contract.commission.totalCommissions : getTotalCommission}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td class="text-center" v-bind:style="{color: getColor }">{{contract.commission.status.name}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -436,10 +448,24 @@ export default {
     getColor() {
       if (this.detailTable.status.color_hex) {
         return this.detailTable.status.color_hex
+      } else if(this.contract != null) {
+        if(this.contract.commission){
+          return this.contract.commission.status.color_hex;
+        }
       }
       else {
         return  'ffffff'
       }
+    },
+    getTotalCommission () {
+      let percent = this.contract.commission.managementCommissions +
+                    this.contract.commission.salesAdministrativeCommissions +
+                    this.contract.commission.brokerCommissions +
+                    this.contract.commission.salesExecutivesCommissions +
+                    this.contract.commission.thirdPartyCommissions
+      percent = percent / 100
+
+      return this.contract.salesprice * percent
     }
   }
 }

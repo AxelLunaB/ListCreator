@@ -17,7 +17,7 @@ module.exports = (app) => {
     salesprice: DataTypes.DOUBLE
   }, {});
   contracts.associate = function(models) {
-    // associations can be defined here
+    contracts.belongsTo(models.commissions);
   };
   return contracts;
 };
