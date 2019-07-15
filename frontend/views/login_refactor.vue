@@ -51,23 +51,23 @@
               <table class="table table-striped table-dark">
                   <tbody>
                     <tr>
-                        <td class="text-center">Name</td>
-                        <td class="text-center">#1525</td>
+                        <td class="text-center" style="padding-top:14px;">Name</td>
+                        <td class="text-center" style="padding-top:14px;">#1525</td>
                         <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/05/2019</td>
                     </tr>
                     <tr>
-                        <td class="text-center">Name</td>
-                        <td class="text-center">#1535</td>
+                        <td class="text-center" style="padding-top:14px;">Name</td>
+                        <td class="text-center" style="padding-top:14px;">#1535</td>
                         <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
                     </tr>
                     <tr>
-                        <td class="text-center">Name</td>
-                        <td class="text-center">#1333</td>
+                        <td class="text-center" style="padding-top:14px;">Name</td>
+                        <td class="text-center" style="padding-top:14px;">#1333</td>
                         <td class="text-center"><b style="color:#e89005;">Reserved</b><br> 26/06/2019</td>
                     </tr>
                     <tr>
-                        <td class="text-center">Name</td>
-                        <td class="text-center">#2232</td>
+                        <td class="text-center" style="padding-top:14px;">Name</td>
+                        <td class="text-center" style="padding-top:14px;">#2232</td>
                         <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
                     </tr>
                   </tbody>
