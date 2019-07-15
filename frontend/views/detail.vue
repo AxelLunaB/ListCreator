@@ -9,13 +9,11 @@
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light">Reports</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
+          <button type="button" class="btn btn-outline-light">View full list</button>
           </div>
         </div>
       </div>
-      <div class="card-body" id="printMe">
+      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;">
         <div class="row">
           <div class="col-12">
             <div>
@@ -30,7 +28,7 @@
                 <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
                 <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
                 <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                <td style="header-t text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
             </tr>
             </tbody>
         </table>
@@ -40,7 +38,7 @@
         </div>
       </div>
       <towerdetail></towerdetail>
-      <div class="navbar-container">
+      <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light">Dowload sheet</button>
@@ -141,8 +139,7 @@
   @import 'node_modules/bootstrap-vue/src/index.scss';
 
   .main-tables-container {
-    width:100vw;
-    background: rgb(81, 111, 77);
+    background: #2a333c;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,7 +163,7 @@
   }
 
     .card-body {
-      background: rgb(106, 142, 103);
+      background: #3c4857;
       margin:10px;
       border-radius: 3px;
       color: white;
@@ -201,8 +198,9 @@
   .title-header {
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin:0 auto;
+    padding-bottom:25px;
   }
 
   .buttons-header {
