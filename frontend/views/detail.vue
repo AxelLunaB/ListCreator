@@ -44,7 +44,7 @@
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light" @click="tableToExcel('table', 'printMe')">Dowload sheet</button>
-            <button type="button" class="btn btn-outline-light" v-print="'#printMe'" id="sendtopdf">Print PDF</button>
+            <button type="button" class="btn btn-outline-light" id="sendtopdf">Print PDF</button>
             </div>
           </div>
         </div>
