@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;">
+      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
             <div>
@@ -42,7 +42,7 @@
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light" @click="tableToExcel('table', 'printMe')">Dowload sheet</button>
-            <button type="button" class="btn btn-outline-light" id="sendtopdf">Print PDF</button>
+            <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
             </div>
           </div>
         </div>

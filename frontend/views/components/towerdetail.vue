@@ -4,64 +4,64 @@
       <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
-  <div class="row" :class="{ animate: isActive }">
+  <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
-                <div class="row">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Level</td>
+                                <td class="textalign">Level</td>
                                 <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Bedrooms</td>
+                                <td class="textalign">Bedrooms</td>
                                 <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Lock Off (keys)</td>
+                                <td class="textalign">Lock Off (keys)</td>
                                 <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Bathrooms</td>
+                                <td class="textalign">Bathrooms</td>
                                 <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Interior m2</td>
+                                <td class="textalign">Interior m2</td>
                                 <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Exterior m2</td>
+                                <td class="textalign">Exterior m2</td>
                                 <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Total Interior m2</td>
+                                <td class="textalign">Total Interior m2</td>
                                 <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>Total m2</td>
+                                <td class="textalign">Total m2</td>
                                 <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
                             </tr>
                             <tr>
-                                <td>$/m2 Interior</td>
+                                <td class="textalign">$/m2 Interior</td>
                                 <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
                             </tr>
                             <tr>
-                                <td>$/m2 Total</td>
+                                <td class="textalign">$/m2 Total</td>
                                 <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
                             </tr>
                             <tr>
-                                <td>List Price</td>
+                                <td class="textalign">List Price</td>
                                 <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
+                                <td class="textalign">Status</td>
+                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -74,50 +74,75 @@
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
-                <div class="row overflow">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>01</td>
+                                <td class="textalign">01</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">06/15/2019</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td>02</td>
+                                <td class="textalign">02</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">07/15/2019</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td>03</td>
+                                <td class="textalign">03</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">08/15/2019</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td>04</td>
+                                <td class="textalign">04</td>
                                 <td class="text-center"><span style="color:red;font-weight:bolder">09/15/2019</span></td>
                                 <td><i class="far fa-envelope"></i></td>
                             </tr>
                             <tr>
-                                <td>05</td>
+                                <td class="textalign">05</td>
                                 <td class="text-center"><span style="color:red;font-weight:bolder">10/15/2019</span></td>
                                 <td><i class="far fa-envelope"></i></td>
                             </tr>
                             <tr>
-                                <td>06</td>
+                                <td class="textalign">06</td>
                                 <td class="text-center">11/15/2019</td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>07</td>
-                                <td class="text-center">11/15/2019</td>
+                                <td class="textalign">07</td>
+                                <td class="text-center">12/15/2019</td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>08</td>
-                                <td class="text-center">11/15/2019</td>
+                                <td class="textalign">08</td>
+                                <td class="text-center">01/15/2020</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">08</td>
+                                <td class="text-center">02/15/2020</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">09</td>
+                                <td class="text-center">03/15/2020</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">10</td>
+                                <td class="text-center">04/15/2020</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">11</td>
+                                <td class="text-center">05/15/2020</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">12</td>
+                                <td class="text-center">06/15/2020</td>
                                 <td></td>
                             </tr>
                             </tbody>
@@ -131,46 +156,62 @@
   <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                <div class="row overflow">
+                <div class="row fullh">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
                             <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Offer letter</span></td>
+                                <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Reserve sheet</span></td>
+                                <td class="text-left"><span style="color:green;font-weight:bolder">Reserve sheet</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">Reserve deposit</span></td>
+                                <td class="text-left"><span style="color:green;font-weight:bolder">Reserve deposit</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">First Draft Contract</span></td>
+                                <td class="text-left"><span style="color:green;font-weight:bolder">First Draft Contract</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">Final Contract</span></td>
+                                <td class="text-left"><span style="color:red;font-weight:bolder">Final Contract</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">ROI Contract</span></td>
+                                <td class="text-left"><span style="color:red;font-weight:bolder">ROI Contract</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span>Official ID</span></td>
+                                <td class="text-left"><span>Official ID</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span>Proof of Address</span></td>
+                                <td class="text-left"><span>Proof of Address</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
-                                <td class="text-center"><span>Payment Checkbooks</span></td>
+                                <td class="text-left"><span>-</span></td>
+                                <td><i class="fas fa-file-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><span>-</span></td>
+                                <td><i class="fas fa-file-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><span>-</span></td>
+                                <td><i class="fas fa-file-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><span>-</span></td>
+                                <td><i class="fas fa-file-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><span>-</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
@@ -184,8 +225,8 @@
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
-            <div class="row">
-              <div class="col-md-12">
+            <div class="row" style="height:100%;">
+              <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
                   <form id="dropFileForm" action="#">
                     <input type="file" name="files[]" id="fileInput" multiple>
@@ -203,72 +244,72 @@
         </div>
       </div>
     </div>
-    <div class="row" :class="{ animate: isActive }">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+    <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
   <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row" style="height:100%;">
                     <div class="col-12">
-                        <table class="table table-hover table-modifier">
+                        <table class="table table-hover table-modifier" style="height:95%;margin-bottom:0;">
                             <thead>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><b>Sale Price</b></td>
+                            <!-- <tr>
+                                <td class="textalign"><b>Sale Price</b></td>
                                 <td class="text-center"><b>{{contract.salesprice != 0 ? contract.salesprice : "-"}}</b></td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td>Currency</td>
-                                <td class="text-center"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
+                                <td class="textalign" style="border:none!important;">Currency</td>
+                                <td class="text-center" style="border:none!important"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
                             </tr>
-                            <tr>
-                                <td>Payment Method</td>
+                            <!-- <tr>
+                                <td class="textalign">Payment Method</td>
                                 <td class="text-center"><b>{{contract.paymentMethod != null ? contract.paymentMethod : "N/A" }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Exchange Rate</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <td class="textalign">Exchange Rate</td>
                                 <td class="text-center"><b>{{contract.exchangerate != 0 ? contract.exchangerate : "-"}}</b></td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td>Sales Channel</td>
+                                <td class="textalign">Sales Channel</td>
                                 <td class="text-center">Internal</td>
                             </tr>
                             <tr>
-                                <td>Sales Executive</td>
+                                <td class="textalign">Sales Executive</td>
                                 <td class="text-center">Alejandra Ruiz</td>
                             </tr>
                             <tr>
-                                <td>Customer</td>
+                                <td class="textalign">Customer</td>
                                 <td class="text-center">Mayabmex</td>
                             </tr>
                             <tr>
-                                <td>Man Comm</td>
+                                <td class="textalign">Man Comm</td>
                                 <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions}}%</span></td>
                             </tr>
                             <tr>
-                                <td>Sales Ex Comm</td>
+                                <td class="textalign">Sales Ex Comm</td>
                                 <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions}}%</span></td>
                             </tr>
                             <tr>
-                                <td>Sales Adm/Comm</td>
+                                <td class="textalign">Sales Adm/Comm</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions}}%</span></td>
                             </tr>
-                            <tr>
-                                <td>3rd Party Comm</td>
+                            <!-- <tr>
+                                <td class="textalign">3rd Party Comm</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.thirdPartyCommissions}}%</span></td>
                             </tr>
                             <tr>
-                                <td>Broker Comm</td>
+                                <td class="textalign">Broker Comm</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.brokerCommissions}}%</span></td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td>Total Comm</td>
+                                <td class="textalign">Total Comm</td>
                                 <td class="text-center">$ {{contract.commission.totalCommissions != 0 ? contract.commission.totalCommissions : getTotalCommission}}</td>
                             </tr>
-                            <tr>
-                                <td>Status</td>
+                            <!-- <tr>
+                                <td class="textalign">Status</td>
                                 <td class="text-center" v-bind:style="{color: getColor }">{{contract.commission.status.name}}</td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -276,34 +317,38 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
       <div class="card">
           <div class="card-body">
-              <div class="row">
+              <div class="row" style="height:100%">
                   <div class="col-12">
-                      <table class="table table-hover table-modifier">
+                      <table class="table table-hover table-modifier" style="height:100%">
                           <thead>
                               <h5 class="m-b-30 m-t-0 text-left">ROI</h5>
                           </thead>
                           <tbody>
                           <tr>
-                              <td>ROI</td>
+                              <td class="textalign">ROI</td>
                               <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
                           </tr>
                           <tr>
-                              <td>ROI %</td>
+                              <td class="textalign">ROI %</td>
                               <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
                           </tr>
                           <tr>
-                              <td>Years</td>
+                              <td class="textalign">Years</td>
                               <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
-                              <td>Closing Date</td>
+                              <td class="textalign">Closing Date</td>
                               <td class="text-center">{{contract.closingDate != 0 ? contract.closingDate : "-"}}</td>
                           </tr>
                           <tr>
-                              <td>Renewal years</td>
+                              <td class="textalign">Renewal</td>
+                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
+                          </tr>
+                          <tr>
+                              <td class="textalign">Renewal years</td>
                               <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
                           </tr>
                           </tbody>
@@ -313,12 +358,13 @@
           </div>
       </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
         <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-12" style="flex-direction:column;">
-                <h4 class="m-t-0 m-b-30 text-left">AVAILABILITY</h4>
+                <h5 class="m-t-0 m-b-30 text-left">AVAILABILITY</h5>
+                <div style="width:100%;display:flex;justify-content:center;">
                   <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="datasets"
@@ -326,17 +372,28 @@
                   :width="mywidth"
                   :height="myheight"
                    ></chartjs-doughnut>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
-            <h4 class="m-t-0 m-b-30 text-left" style="flex-grow:3;">SALES</h4>
-              <chartjs-bar :beginzero="myboolean" :backgroundcolor="mybackgroundcolor" :bordercolor="mybordercolor"  :datalabel="mylabel" :labels="mylabels" :data="mydata" v-bind:option="myoption" style="flex-grow:3;">
+            <h5 class="m-t-0 m-b-30 text-left">SALES</h5>
+          <div style="width:100%;display:flex;justify-content:center;height:100%;align-items:center;">
+              <chartjs-bar
+              :beginzero="myboolean"
+              :backgroundcolor="mybackgroundcolor"
+              :bordercolor="mybordercolor"
+              :datalabel="mylabel"
+              :labels="mylabels"
+              :data="mydata"
+              v-bind:option="myoption">
       </chartjs-bar>
+              </div>
+          </div>
           </div>
         </div>
       </div>
@@ -364,8 +421,8 @@ export default {
   },
   data() {
     return {
-      mywidth: 300,
-      myheight: 300,
+      mywidth: 200,
+      myheight: 200,
       show: false,
       isActive: true,
       detailTable: {},
@@ -373,7 +430,7 @@ export default {
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
         data:[3,15,30],
-        backgroundColor:["#A6A867", "#E3DC95", "#E3DCC2"],
+        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"],
       }],
       option: {
         title: {
@@ -389,18 +446,18 @@ export default {
       },
     myboolean : true,
     mybackgroundcolor : [
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)'
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)'
       ],
     mybordercolor : [
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)',
-      'rgba(181, 255, 225, 0.50)'
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)',
+      'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
     mylabels : ['January', 'February', 'March', 'June', 'July'],
@@ -477,7 +534,7 @@ export default {
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
   body {
-    background: #516f4d!important;
+    background: #2a333c!important;
   }
 
     .container-fluid {
@@ -536,11 +593,11 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right: 60px;
-    bottom:40px;
+    right: 0;
+    bottom:0;
     z-index: 30;
     cursor:pointer;
-    background: #a7a7a7;
+    background: #181d22;
     width: 150px;
     height: 50px;
     border-radius: 5px;
@@ -548,10 +605,6 @@ export default {
     align-items: center;
     justify-content: center;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
-  }
-
-  #returntwo:hover {
-    transform: transa
   }
 
   .active {
@@ -568,15 +621,35 @@ export default {
     height: 200px;
     width:100%;
     border-radius: 6px;
-    border:2px dashed #f6fff7;
+    border:2px dashed #a8a8a8;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
+    color:#a8a8a8;
   }
 
 #dropFileForm #fileInput {
   display: none
+}
+
+.textalign {
+    text-align: left;
+    color: #a8a8a8!important;
+    font-weight: 600;
+}
+
+.fullh {
+  height:95%;
+}
+
+td {
+  border-top:1px solid #a8a8a8!important;
+}
+
+.row-one,
+.row-two {
+  max-width: 1600px;
 }
 
   @keyframes fadeInAnimation {
@@ -600,6 +673,16 @@ export default {
   .container-fluid {
     overflow-x: hidden;
     overflow-y:scroll;
+  }
+}
+
+  @media screen and (min-width: 1200px) {
+  .row-one {
+    height: 60%;
+  }
+
+  .row-two {
+    height: 35%;
   }
 }
 
