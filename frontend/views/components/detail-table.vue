@@ -3,7 +3,7 @@
         <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;">
             <tbody>
             <tr>
-                <td>{{detailTable.unitNumber}}</td>
+                <td><b>{{detailTable.unitNumber}}</b></td>
                 <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: "-" }}</td>
                 <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"-" }}</td>
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"-" }}</td>
@@ -11,7 +11,7 @@
                 <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"-" }}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "-"}}</td>
                 <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"-")}}</td>
-                <td><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
+                <td style="text-align:center"><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
             </tr>
             </tbody>
         </table>
