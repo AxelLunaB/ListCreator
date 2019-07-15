@@ -17,6 +17,7 @@ import towerdetail from '@/views/components/towerdetail.vue';
 import VueTransmit from "vue-transmit";
 import "chart.js";
 import "hchs-vue-charts";
+import Print from "vue-print-nb";
 
 Vue.use(window.VueCharts);
 
@@ -25,6 +26,8 @@ Vue.use(BootstrapVue)
 Vue.use(VueTransmit);
 
 Vue.use(Router);
+
+Vue.use(Print);
 
 
 // Vue.use(filesaver);

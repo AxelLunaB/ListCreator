@@ -42,7 +42,7 @@
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light" @click="tableToExcel('table', 'printMe')">Dowload sheet</button>
-            <button type="button" class="btn btn-outline-light" id="sendtopdf">Print PDF</button>
+            <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
             </div>
           </div>
         </div>
@@ -56,6 +56,7 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
+  import Print from 'vue-print-nb';
 
 
   export default {
