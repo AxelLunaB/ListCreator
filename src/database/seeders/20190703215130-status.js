@@ -24,7 +24,6 @@ module.exports = {
       {
         name: 'RESERVED',
         color_hex: '#e89005',
-<<<<<<< HEAD
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -37,8 +36,6 @@ module.exports = {
       {
         name: 'PAID',
         color_hex: '#7ddc0f',
-=======
->>>>>>> 28375d9ef5f5b916d21e8bea17defb407e7c9065
         createdAt: new Date(),
         updatedAt: new Date()
       }
