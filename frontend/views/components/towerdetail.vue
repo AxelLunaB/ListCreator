@@ -477,7 +477,7 @@ export default {
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
   body {
-    background: #2a333c!important;
+    background: #516f4d!important;
   }
 
     .container-fluid {
