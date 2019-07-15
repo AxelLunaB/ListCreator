@@ -44,31 +44,31 @@
           </div>
         </div>
         <div class="card col-md-5 col-sm-12 right-card" style="background:#3f4c5c"  :class="{ fadeEntry: isLoaded }">
-           <h5 class="text-center">Real-time updates</h5>
+           <h4 class="text-center">REAL-TIME UPDATES</h4>
            <hr style="margin:0;">
           <div class="row h-100">
             <div class="col-12">
-              <table class="table">
+              <table class="table table-striped table-dark">
                   <tbody>
                     <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center">#1525</td>
-                        <td class="text-center"><b style="color:#9e0000;">Sold</b><br> 26/05/2019</td>
+                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/05/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center">#1535</td>
-                        <td class="text-center"><b style="color:#9e0000;">Sold</b><br> 26/06/2019</td>
+                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center">#1333</td>
-                        <td class="text-center"><b style="color:#dad900;">Taken</b><br> 26/06/2019</td>
+                        <td class="text-center"><b style="color:#e89005;">Reserved</b><br> 26/06/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center">Name</td>
                         <td class="text-center">#2232</td>
-                        <td class="text-center"><b style="color:#9e0000;">Sold</b><br> 26/06/2019</td>
+                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
                     </tr>
                   </tbody>
               </table>

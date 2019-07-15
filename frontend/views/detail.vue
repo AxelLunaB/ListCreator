@@ -9,9 +9,7 @@
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light">Reports</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
-          <button type="button" class="btn btn-outline-light">Other</button>
+          <button type="button" class="btn btn-outline-light">View full list</button>
           </div>
         </div>
       </div>

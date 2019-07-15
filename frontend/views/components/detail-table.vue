@@ -3,7 +3,7 @@
         <table class="table table-hover" style="table-layout: fixed;margin-bottom:0px;" id="toprint">
             <tbody>
             <tr>
-                <td>{{detailTable.unitNumber}}</td>
+                <td><b>{{detailTable.unitNumber}}</b></td>
                 <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: "-" }}</td>
                 <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"-" }}</td>
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"-" }}</td>
