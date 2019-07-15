@@ -11,7 +11,7 @@ module.exports = {
       fs.createReadStream(csvFilePath).pipe(csv()).on('data', function (data) {
         seed.push({
           id: data[0],
-          closingDate:new Date(),
+          closingDate:data[1],
           WROI:data[2],
           percent:data[3],
           years:data[4],

@@ -300,7 +300,7 @@
                           </tr>
                           <tr>
                               <td>Closing Date</td>
-                              <td class="text-center">{{contract.closingDate != 0 ? contract.closingDate : "-"}}</td>
+                              <td class="text-center">{{contract.closingDate != 'null' ? contract.closingDate : "-"}}</td>
                           </tr>
                           <tr>
                               <td>Renewal years</td>
@@ -372,7 +372,7 @@ export default {
       contract: {},
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
-        data:[3,15,30],
+        data:[13,26,9],
         backgroundColor:["#A6A867", "#E3DC95", "#E3DCC2"],
       }],
       option: {
@@ -404,7 +404,7 @@ export default {
       ],
     mylabel : 'Sales',
     mylabels : ['January', 'February', 'March', 'June', 'July'],
-    mydata : [14, 11, 7, 7 , 9],
+    mydata : [0, 0, 1, 0, 0],
         myoption: {
           legend: {
             display:false

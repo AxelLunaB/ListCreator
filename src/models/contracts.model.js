@@ -6,7 +6,7 @@ module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
   const contracts = sequelizeClient.define('contracts', {
     id: { type: DataTypes.INTEGER, primaryKey: true},
-    closingDate: DataTypes.DATE,
+    closingDate: { type: DataTypes.STRING},
     WROI: DataTypes.STRING,
     percent: DataTypes.INTEGER,
     years: DataTypes.INTEGER,
