@@ -91,6 +91,7 @@
     "vue-loader": "^14.1.1",
     "vue-print-nb": "^1.3.0",
     "vue-router": "^3.0.1",
+    "vue-style-loader": "^4.1.2",
     "vue-transmit": "^8.1.4",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.2",
