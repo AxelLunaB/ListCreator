@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;">
+      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
             <div>

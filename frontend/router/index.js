@@ -26,6 +26,7 @@ Vue.use(VueTransmit);
 
 Vue.use(Router);
 
+
 // Vue.use(filesaver);
 
 export default new Router({
