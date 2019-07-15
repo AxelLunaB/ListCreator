@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
+                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -477,7 +477,7 @@ export default {
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
   body {
-    background: #516f4d!important;
+    background: #2a333c!important;
   }
 
     .container-fluid {
