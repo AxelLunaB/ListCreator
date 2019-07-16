@@ -276,7 +276,7 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-center">Alejandra Ruiz</td>
+                                <td class="text-center">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
@@ -522,7 +522,7 @@ export default {
                     this.contract.commission.thirdPartyCommissions
       percent = percent / 100
 
-      return this.contract.salesprice * percent
+      return (this.contract.salesprice * percent).toFixed(2);
     }
   }
 }
