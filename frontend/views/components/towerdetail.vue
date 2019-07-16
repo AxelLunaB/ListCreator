@@ -340,7 +340,7 @@
                               <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
-                              <td>Closing Date</td>
+                              <td class="textalign">Closing Date</td>
                               <td class="text-center">{{contract.closingDate != 'null' ? contract.closingDate : "-"}}</td>
                           </tr>
                           <tr>
