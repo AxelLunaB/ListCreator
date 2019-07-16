@@ -399,7 +399,6 @@
       </div>
       </div>
     </div>
-    </div>
 </template>
 
 <script>
@@ -676,16 +675,16 @@ td {
   }
 }
 
-  @media screen and (min-width: 1200px) and (min-height: 900px) {
+  @media screen and (min-width: 1200px) and (min-height: 800px) {
   .row-one {
     height: 60%;
   }
 
   .row-two {
-    height: 35%;
+    height: 37%;
   }
 }
-  @media screen and (max-height: 900px) {
+  @media screen and (max-height: 800px) {
   .container-fluid {
     overflow-y: scroll;
   }
