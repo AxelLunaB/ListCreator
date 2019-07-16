@@ -10,21 +10,6 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [
       togglePagination(),
-    //   addAssociations({
-    //     models: [
-    //       {
-    //         model: 'api/commissions',
-    //         as: 'commission'
-    //       }
-    //     ]
-    //   }),
-    //   context => {
-    //     if (context.params.query.$sort == undefined) {
-    //       context.params.query.$sort = {
-    //         id: 1
-    //       }
-    //     }
-    //   }
     ],
     get: [],
     create: [preventDuplicate({ service: 'api/contracts' })],
@@ -42,6 +27,11 @@ module.exports = {
         await context.app.service('api/commissions').get(contract.id).then(result => {
           contract.commission = result;
         })
+        if(contract.paymentId != null) {
+          await context.app.service('api/payments').get(contract.paymentId).then(result => {
+            contract.payments = result;
+          })
+        }
       }
     }
     ],
