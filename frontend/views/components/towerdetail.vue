@@ -676,7 +676,7 @@ td {
   }
 }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1200px) and (min-height: 900px) {
   .row-one {
     height: 60%;
   }
@@ -685,8 +685,10 @@ td {
     height: 35%;
   }
 }
-
-
-
+  @media screen and (max-height: 900px) {
+  .container-fluid {
+    overflow-y: scroll;
+  }
+}
 
 </style>

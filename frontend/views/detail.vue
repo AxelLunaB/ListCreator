@@ -7,9 +7,9 @@
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
-        <div class="buttons-header">
+        <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light">View full list</button>
+          <button type="button" class="btn btn-outline-light" @click="showList">View full list</button>
           </div>
         </div>
       </div>
@@ -17,27 +17,28 @@
         <div class="row">
           <div class="col-12">
             <div>
-        <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
-            <tbody>
-            <tr>
-                <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
-                <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
-                <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
-                <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
-                <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
-            </tr>
-            </tbody>
-        </table>
+              <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+                  <tbody>
+                  <tr>
+                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
+                      <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
+                      <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
+                      <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                  </tr>
+                  </tbody>
+              </table>
               <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
             </div>
           </div>
         </div>
       <towerdetail></towerdetail>
+        <full-list-view></full-list-view>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -56,13 +57,15 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
+  import fullListView from "./components/fullListView.vue"
 
 
   export default {
     components: {
       detailTable,
       returnPage,
-      towerdetail
+      towerdetail,
+      fullListView
     },
     mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -114,6 +117,9 @@
       if (!table.nodeType) table = this.$refs.table
       var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
       window.location.href = this.uri + this.base64(this.format(this.template, ctx))
+    },
+    showList(){
+      document.getElementById("listView").style.display = "inline";
     }
     },
     computed: {
