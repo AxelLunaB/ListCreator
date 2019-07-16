@@ -42,7 +42,7 @@
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light" @click="tableToExcel('table', 'printMe')">Dowload sheet</button>
+            <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
             </div>
           </div>
@@ -58,7 +58,8 @@
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
-
+  import XLSX from 'xlsx';
+  import $ from "jquery";
 
   export default {
     components: {
@@ -103,20 +104,15 @@
     data(){
       return {
         detailTable: 3,
-        isAnimated: true,
-        uri :'data:application/vnd.ms-excel;base64,',
-        template:'<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-        base64: function(s){ return window.btoa(unescape(encodeURIComponent(s))) },
-        format: function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        isAnimated: true
       }
     },
     methods: {
       ...mapActions("departments", ["nextPage", "prevPage"]),
-          tableToExcel(table, name){
-
-      if (!table.nodeType) table = this.$refs.table
-      var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-      window.location.href = this.uri + this.base64(this.format(this.template, ctx))
+      tableToExcel(){
+        var dom = document.getElementById('printMe');
+        const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
+        return XLSX.writeFile(wb, 'Departments.xlsx')
     },
     showList(){
       document.getElementById("listView").style.display = "inline";

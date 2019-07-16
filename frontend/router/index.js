@@ -18,6 +18,7 @@ import VueTransmit from "vue-transmit";
 import "chart.js";
 import "hchs-vue-charts";
 import Print from "vue-print-nb";
+import XSLX from 'xlsx';
 
 Vue.use(window.VueCharts);
 
@@ -29,6 +30,7 @@ Vue.use(Router);
 
 Vue.use(Print);
 
+Vue.use(XSLX);
 
 // Vue.use(filesaver);
 
