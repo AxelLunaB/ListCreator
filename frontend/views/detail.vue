@@ -9,7 +9,7 @@
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light">View full list</button>
+          <button type="button" class="btn btn-outline-light" @click="showList">View full list</button>
           </div>
         </div>
       </div>
@@ -38,6 +38,7 @@
           </div>
         </div>
       <towerdetail></towerdetail>
+      <full-list-view></full-list-view>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -56,15 +57,17 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
+  import fullListView from "./components/fullListView.vue"
 
 
   export default {
     components: {
       detailTable,
       returnPage,
-      towerdetail
+      towerdetail,
+      fullListView
     },
-    mounted: function() {
+      mounted: function() {
       this.$eventHub.$on("go-search", params => {
         var query = {};
         params.forEach(v => {
@@ -114,7 +117,15 @@
       if (!table.nodeType) table = this.$refs.table
       var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
       window.location.href = this.uri + this.base64(this.format(this.template, ctx))
-    }
+    },
+    showList(){
+      let info = {
+         departments: this.departments,
+         contracts: this.contracts
+      }
+        this.$eventHub.$emit("show-fullView-detail-tower-modal", info);
+      document.getElementById("listView").style.display = "inline";
+      }
     },
     computed: {
       ...mapGetters({
