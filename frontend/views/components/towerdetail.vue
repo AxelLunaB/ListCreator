@@ -80,70 +80,10 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="textalign">01</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">06/15/2019</span></td>
+                            <tr  v-for="(u,index) in (contract.payments ? contract.payments.paymentsDetails : 12)" :key="u.id">
+                                <td class="textalign">{{contract.payments ? u.paymentNo : index +1}}</td>
+                                <td class="text-center"><span v-bind:style="{color:contract.payments ? u.status.color_hex : 'white'}">{{contract.payments ? u.dueDate : '-'}}</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">02</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">07/15/2019</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">03</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">08/15/2019</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">04</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">09/15/2019</span></td>
-                                <td><i class="far fa-envelope"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">05</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">10/15/2019</span></td>
-                                <td><i class="far fa-envelope"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">06</td>
-                                <td class="text-center">11/15/2019</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">07</td>
-                                <td class="text-center">12/15/2019</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">08</td>
-                                <td class="text-center">01/15/2020</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">08</td>
-                                <td class="text-center">02/15/2020</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">09</td>
-                                <td class="text-center">03/15/2020</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">10</td>
-                                <td class="text-center">04/15/2020</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">11</td>
-                                <td class="text-center">05/15/2020</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">12</td>
-                                <td class="text-center">06/15/2020</td>
-                                <td></td>
                             </tr>
                             </tbody>
                         </table>

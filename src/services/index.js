@@ -10,6 +10,8 @@ const status = require('./status/status.service.js');
 const clusters = require('./clusters/clusters.service.js');
 const countByCluster = require('./count-by-cluster/count-by-cluster.service.js');
 const credix = require('./credix/credix.service.js');
+const payments = require('./payments/payments.service.js');
+const paymentsDetails = require('./paymentsDetails/paymentsDetails.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -24,4 +26,6 @@ module.exports = function (app) {
   app.configure(clusters);
   app.configure(countByCluster);
   app.configure(credix);
+  app.configure(paymentsDetails);
+  app.configure(payments);
 };

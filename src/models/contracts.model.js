@@ -18,6 +18,7 @@ module.exports = (app) => {
   }, {});
   contracts.associate = function(models) {
     contracts.belongsTo(models.commissions);
+    contracts.belongsTo(models.payments);
   };
   return contracts;
 };

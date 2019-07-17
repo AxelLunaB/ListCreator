@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const csv = require('fast-csv');
-const csvFilePath = __dirname + '/../csv/contracts.csv'
+const csvFilePath = __dirname + '/../csv/payments.csv'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -10,16 +10,9 @@ module.exports = {
       var seed = [];
       fs.createReadStream(csvFilePath).pipe(csv()).on('data', function (data) {
         seed.push({
-          id: data[0],
-          closingDate:data[1],
-          WROI:data[2],
-          percent:data[3],
-          years:data[4],
-          paymentMethod:data[5],
-          discount:data[6],
-          currency:data[7],
-          exchangerate:data[8],
-          salesprice:data[9],
+          totalPayments: data[1],
+          totalSale: data[2],
+          differencePayments: data[3],
           createdAt: new Date(),
           updatedAt: new Date()
         })
@@ -28,10 +21,11 @@ module.exports = {
         resolve(seed);
       })
     }).then(seed => {
-      return queryInterface.bulkInsert('contracts', seed, {});
+      return queryInterface.bulkInsert('payments', seed, {});
     });
     return x;
   },
+
 
   down: (queryInterface, Sequelize) => {
 
