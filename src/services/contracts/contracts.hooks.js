@@ -23,13 +23,23 @@ module.exports = {
     find: [
       async context => {
       for (i = 0; i < context.result.data.length; i++) {
+    
         let contract = context.result.data[i];
+
         await context.app.service('api/commissions').get(contract.id).then(result => {
           contract.commission = result;
+
         })
-        if(contract.paymentId != null) {
+        }
+    },
+    async context => {
+      for (i = 0; i < context.result.data.length; i++) {
+
+        let contract = context.result.data[i];
+        if(contract.paymentId != null){
           await context.app.service('api/payments').get(contract.paymentId).then(result => {
             contract.payments = result;
+
           })
         }
       }

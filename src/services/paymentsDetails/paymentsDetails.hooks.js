@@ -17,7 +17,7 @@ module.exports = {
   },
 
   after: {
-    all: [setStatusObject()],
+    all: [],
     find: [],
     get:[],
     create: [
