@@ -70,7 +70,11 @@ import fullView from "./fullView.vue"
     methods: {
       ...mapActions("departments","detailTable","contract"),
       closePopup() {
-          document.getElementById("listView").style.display = "none";
+          document.getElementById("listView").style.transition = "opacity 1s";
+          document.getElementById("listView").style.opacity = 0;
+          setTimeout(function () {
+            document.getElementById('listView').style.display='none';
+            }, 1000);
       }
     },
     computed: {

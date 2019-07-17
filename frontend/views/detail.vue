@@ -124,7 +124,12 @@
          contracts: this.contracts
       }
         this.$eventHub.$emit("show-fullView-detail-tower-modal", info);
-      document.getElementById("listView").style.display = "inline";
+        document.getElementById('listView').style.display='inline';
+        document.getElementById("listView").style.opacity = 0;
+        setTimeout(function () {
+          document.getElementById("listView").style.transition = "opacity 0.5s";
+          document.getElementById("listView").style.opacity = 1;
+            }, 100);
       }
     },
     computed: {

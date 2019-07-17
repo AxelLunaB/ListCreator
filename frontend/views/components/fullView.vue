@@ -1,5 +1,5 @@
 <template>
-  <div class="table-container colors">
+  <div class="table-container colors" @click="departmentClicked()">
     <table class="table full-table" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
@@ -43,14 +43,27 @@ export default {
   data() {
     return {
     }
-  },
-  methods: {
-    toPrice(x) {
-      var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-      return r;
-      }
-  },
-  computed:{
+    },
+    methods: {
+      toPrice(x) {
+        var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+        return r;
+        },
+        departmentClicked(){
+          console.log("pop");
+          document.getElementById("listView").style.transition = "opacity 1s";
+          document.getElementById("listView").style.opacity = 0;
+          setTimeout(function () {
+            document.getElementById('listView').style.display='none';
+            }, 1000);
+          let info = {
+            detailUnit : this.detailTable,
+            detailContract : this.contracts
+          }
+          this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
+        }
+    },
+      computed:{
         getColor() {
       if (this.detailTable.status.color_hex) {
         return this.detailTable.status.color_hex
@@ -80,5 +93,9 @@ export default {
 <style>
 .colors:nth-child(even) {
   background: #425061;
+}
+
+.table-container{
+  cursor: pointer;
 }
 </style>
