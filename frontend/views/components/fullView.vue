@@ -29,7 +29,7 @@
           <td>{{contracts.WROI != null ? contracts.WROI : "N/A"}}</td>
           <td>{{contracts.percent != 0 ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 ? contracts.years : "-"}}</td>
-          <td>{{contracts.closingDate != null ? contracts.closingDate : "-"}}</td>
+          <td>{{contracts.closingDate != null && contracts.closingDate != 'null' ? contracts.closingDate : "-"}}</td>
       </tr>
     </tbody>
         </table>
