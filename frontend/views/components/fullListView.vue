@@ -12,13 +12,13 @@
         <table class="table full-table" style="margin-bottom:0;">
           <tbody>
             <tr style="line-heigh:10px;">
-              <td v-for="u in deps" :key="u.id" class="header-t fulltable" style="vertical-align:middle;">
+              <td v-for="u in deps" :key="u.id" style="vertical-align:middle;font-weight:bold;">
                 <span v-html="u.title"></span>
               </td>
             </tr>
           </tbody>
         </table>
-      <full-view v-for="e in departments" :key="e.index" :departments="departments" :detailTable="e" contract="contract" ></full-view>
+          <full-view  v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="contracts[index]"></full-view>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ import fullView from "./fullView.vue"
           {title:'BATHROOMS'},
           {title:'M<sup>2</sup> int'},
           {title:'M<sup>2</sup> ext'},
-          {title:'TOTAL INTERIOR M<sup>2</sup>'},
+          {title:'TOTAL INT M<sup>2</sup>'},
           {title:'TOTAL M<sup>2</sup>'},
           {title:'$/M<sup>2</sup>INTERIOR'},
           {title:'$/M<sup>2</sup>TOTAL'},
@@ -82,31 +82,8 @@ import fullView from "./fullView.vue"
       clusters: "others/clusters",
       filteredValue: "departments/filterValue",
       specialSort: "departments/specialSort"
-    })
-},
-    mounted: function(){
-      // var isAuthenticated = this.$store.state.others.isAuthenticated;
-      // if (isAuthenticated) {
-        // Dispatch actions &&  subscribe to rt events.
-      //   console.log("auth");
-      //   this.$store.dispatch("departments/getDepartments");
-      //   this.$store.dispatch("contracts/getContracts");
-      //   this.$store.dispatch("commissions/getCommissions");
-      //   this.$store.dispatch("others/setPlusButton", true);
-      //   this.$store.dispatch("departments/listenEvents");
-        // listen to authenticated event
-      // } else {
-      //   console.log("no auth");
-      //   let _ = this;
-      //   this.$eventHub.$on("authenticated", function() {
-      //     _.$store.dispatch("departments/getDepartments");
-      //     _.$store.dispatch("contracts/getContracts");
-      //     _.$store.dispatch("commissions/getCommissions");
-      //     _.$store.dispatch("others/setPlusButton", true);
-      //     _.$store.dispatch("departments/listenEvents");
-      //   });
-      // }
-    }
+      })
+    },
   }
 </script>
 
@@ -131,7 +108,7 @@ import fullView from "./fullView.vue"
 }
 
 .table-container {
-  width: 1850px;
+  width: 3000px;
   margin:0 auto;
 }
 

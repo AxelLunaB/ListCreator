@@ -38,7 +38,7 @@
           </div>
         </div>
       <towerdetail></towerdetail>
-      <!-- <full-list-view></full-list-view> -->
+      <full-list-view></full-list-view>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -57,7 +57,7 @@
   import detailTable from "./components/detail-table.vue";
   import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
-  // import fullListView from "./components/fullListView.vue"
+  import fullListView from "./components/fullListView.vue"
 
 
   export default {
@@ -65,7 +65,7 @@
       detailTable,
       returnPage,
       towerdetail,
-      // fullListView
+      fullListView
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -119,6 +119,11 @@
       window.location.href = this.uri + this.base64(this.format(this.template, ctx))
     },
     showList(){
+      let info = {
+         departments: this.departments,
+         contracts: this.contracts
+      }
+        this.$eventHub.$emit("show-fullView-detail-tower-modal", info);
       document.getElementById("listView").style.display = "inline";
       }
     },
