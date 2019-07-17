@@ -116,7 +116,7 @@
         var year = downloadTime.getFullYear();
         var dom = document.getElementById('printMe');
         const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
-        return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'-'+'.xlsx')
+        return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'.xlsx')
     },
     showList(){
       document.getElementById("listView").style.display = "inline";
