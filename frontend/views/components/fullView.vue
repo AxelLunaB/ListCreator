@@ -1,8 +1,8 @@
 <template>
-  <div class="table-container">
+  <div class="table-container colors">
     <table class="table full-table" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
-      <tr v-if="contracts != undefined">
+      <tr v-if="contracts != undefined" class="colors">
           <td>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</td>
           <td>{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
@@ -18,8 +18,8 @@
           <td>${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
           <td v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
           <td>{{ contracts.currency }}</td>
-           <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "N/A" }}</td>
-           <td>{{contracts.exchangerate != 0 ? contracts.exchangerate : "-"}}</td>
+          <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "N/A" }}</td>
+          <td>{{contracts.exchangerate != 0 ? contracts.exchangerate : "-"}}</td>
           <td>{{contracts.commission.managementCommissions}}%</td>
           <td>{{contracts.commission.salesExecutivesCommissions}}%</td>
           <td>{{contracts.commission.salesAdministrativeCommissions}}%</td>
@@ -30,8 +30,6 @@
           <td>{{contracts.percent != 0 ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 ? contracts.years : "-"}}</td>
           <td>{{contracts.closingDate != null ? contracts.closingDate : "-"}}</td>
-          <td>{{contracts.years != 0 ? contracts.years : "-"}} </td>
-          <td>{{contracts.years != 0 ? contracts.years : "-"}} </td>
       </tr>
     </tbody>
         </table>
@@ -73,12 +71,14 @@ export default {
           this.contracts.commission.thirdPartyCommissions
           percent = percent / 100
 
-      return this.contracts.salesprice * percent
+      return (this.contracts.salesprice * percent).toFixed(2)
     },
   }
 }
 </script>
 
 <style>
-
+.colors:nth-child(even) {
+  background: #425061;
+}
 </style>

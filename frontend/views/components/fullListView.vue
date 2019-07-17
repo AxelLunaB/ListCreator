@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="table-container">
-        <table class="table full-table" style="margin-bottom:0;">
+        <table class="table full-table" style="margin-bottom:0;width:3300px;">
           <tbody>
             <tr style="line-heigh:10px;">
               <td v-for="u in deps" :key="u.id" style="vertical-align:middle;font-weight:bold;">
@@ -108,7 +108,7 @@ import fullView from "./fullView.vue"
 }
 
 .table-container {
-  width: 3000px;
+  width: 3300px;
   margin:0 auto;
 }
 
