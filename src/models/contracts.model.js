@@ -20,6 +20,7 @@ module.exports = (app) => {
     contracts.belongsTo(models.commissions);
     contracts.belongsTo(models.payments);
     contracts.belongsTo(models.salesDetails);
+    contracts.belongsTo(models.customers);
   };
   return contracts;
 };

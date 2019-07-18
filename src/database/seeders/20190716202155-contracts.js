@@ -23,6 +23,7 @@ module.exports = {
           commissionId: data[10] != 'null' ? data[10] : null,
           paymentId: data[11] != 'null' ? data[11] : null,
           salesDetailId: data[12] != 'null' ? data[12] : null,
+          customerId: data[13] != 'null' ? data[13] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         })

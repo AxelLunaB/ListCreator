@@ -13,9 +13,11 @@ const countByCluster = require('./count-by-cluster/count-by-cluster.service.js')
 const credix = require('./credix/credix.service.js');
 const payments = require('./payments/payments.service.js');
 const paymentsDetails = require('./paymentsDetails/paymentsDetails.service.js');
+const customers = require('./customers/customers.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
+  app.configure(customers);
   app.configure(executives);
   app.configure(departments);
   app.configure(contracts);

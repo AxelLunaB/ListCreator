@@ -54,8 +54,23 @@ module.exports = {
 
           })
         }
+       }
+      },
+      async context => {
+        for (i = 0; i < context.result.data.length; i++) {
+
+          let contract = context.result.data[i];
+          if(contract.customerId != null){
+            await context.app.service('customers').get(contract.customerId).then(result => {
+              delete result.password;
+              delete result.usertype;
+              delete result.deleted;
+              contract.customer = result;
+
+            })
+          }
+        }
       }
-    }
     ],
     get: [
     ],
