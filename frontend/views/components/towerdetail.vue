@@ -1,7 +1,7 @@
 <template>
-<div v-if="shouldShow === true">
-  <div class="container-fluid">
-      <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
+<div v-if="shouldShow === true" id="fadeOutAnimation">
+  <div class="container-fluid" v-bind:class="{ active: show}">
+      <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
@@ -83,7 +83,7 @@
                             <tr  v-for="(u,index) in (contract.payments ? contract.payments.paymentsDetails : 12)" :key="u.id">
                                 <td class="textalign">{{contract.payments ? u.paymentNo : index +1}}</td>
                                 <td class="text-center"><span v-bind:style="{color:contract.payments ? u.status.color_hex : 'white'}">{{contract.payments ? u.dueDate : '-'}}</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
+                                <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
                         </table>
@@ -416,7 +416,12 @@ export default {
           yAxes:[{
             ticks:{
               fontColor:'white',
-              beginAtZero:true
+              beginAtZero:true,
+              userCallback:function(label,index,labels){
+                if (Math.floor(label)=== label) {
+                  return label
+                }
+              }
             }
           }],
           xAxes:[{
@@ -430,7 +435,12 @@ export default {
   },
   methods: {
     closeBtn() {
-      this.show = false;
+      self = this
+      document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
+      document.getElementById("fadeOutAnimation").style.opacity = 0;
+      setTimeout(function () {
+        self.show = false;
+        }, 250);
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -483,7 +493,7 @@ export default {
     position:fixed;
     top:47px;
     left:0;
-    z-index:1;
+    z-index:2;
     max-height: 97vh;
     padding-top: 18px;
   }
@@ -497,6 +507,10 @@ export default {
 
   .animate {
     animation: fadeInAnimation 1s forwards;
+  }
+
+  .animateOut {
+    animation: fadeOutAnimation 1S forwards;
   }
 
   .send {
@@ -532,8 +546,8 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right: 0;
-    bottom:0;
+    right: -3px;
+    bottom:19px;
     z-index: 30;
     cursor:pointer;
     background: #181d22;
@@ -597,14 +611,21 @@ td {
       transform: translateY(-5px);
        }
 
-    40%   {
-      opacity: 0;
-      transform: translateY(-5px);
-       }
-
     100% {
       opacity: 1;
       transform: translateY(5px);
+      }
+  }
+
+    @keyframes fadeOutAnimation {
+    0%   {
+      opacity: 1;
+      transform: translateY(5px);
+       }
+
+    100% {
+      opacity: 0;
+      transform: translateY(-5px);
       }
   }
 

@@ -51,11 +51,6 @@ export default {
         },
         departmentClicked(){
           console.log("pop");
-          document.getElementById("listView").style.transition = "opacity 1s";
-          document.getElementById("listView").style.opacity = 0;
-          setTimeout(function () {
-            document.getElementById('listView').style.display='none';
-            }, 1000);
           let info = {
             detailUnit : this.detailTable,
             detailContract : this.contracts
