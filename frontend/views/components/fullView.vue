@@ -20,10 +20,10 @@
           <td>{{ contracts.currency != null ? contracts.currency : '-'}}</td>
           <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "-" }}</td>
           <td>{{contracts.exchangerate != 0 && contracts.exchangerate != null ? contracts.exchangerate : "-"}}</td>
-          <td>{{contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions : '-'}}</td>
-          <td>{{contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions : '-'}}</td>
-          <td>{{contracts.commission.salesAdministrativeCommissions != null ? contracts.commission.salesAdministrativeCommissions: '-'}}</td>
-          <td>{{contracts.commission.thirdPartyCommissions != null ? contracts.commission.thirdPartyCommissions : '-'}}</td>
+          <td>{{contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission.salesAdministrativeCommissions != null ? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission.thirdPartyCommissions != null ? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
           <td>{{contracts.commission.brokerCommissions != null ? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
           <td>{{contracts.commission.totalCommissions != 0 && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : getTotalCommission}}</td>
           <td>{{contracts.WROI != null ? contracts.WROI : "-"}}</td>

@@ -194,29 +194,17 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <!-- <tr>
-                                <td class="textalign"><b>Sale Price</b></td>
-                                <td class="text-center"><b>{{contract.salesprice != 0 ? contract.salesprice : "-"}}</b></td>
-                            </tr> -->
                             <tr>
                                 <td class="textalign" style="border:none!important;">Currency</td>
                                 <td class="text-center" style="border:none!important"><b>{{contract.currency != null ? contract.currency : '-'}}</b></td>
                             </tr>
-                            <!-- <tr>
-                                <td class="textalign">Payment Method</td>
-                                <td class="text-center"><b>{{contract.paymentMethod != null ? contract.paymentMethod : "N/A" }}</b></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">Exchange Rate</td>
-                                <td class="text-center"><b>{{contract.exchangerate != 0 ? contract.exchangerate : "-"}}</b></td>
-                            </tr> -->
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-center">Internal</td>
+                                <td class="text-center">{{contract.salesDetails.salesChannel ? contract.salesDetails.salesChannel : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-center">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
+                                <td class="text-center">{{contract.salesDetails.executive.name ? contract.salesDetails.executive.name : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
@@ -234,22 +222,10 @@
                                 <td class="textalign">Sales Adm/Comm</td>
                                 <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-'}}</span></td>
                             </tr>
-                            <!-- <tr>
-                                <td class="textalign">3rd Party Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.thirdPartyCommissions}}%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Broker Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.brokerCommissions}}%</span></td>
-                            </tr> -->
                             <tr>
                                 <td class="textalign">Total Comm</td>
                                 <td class="text-center">{{contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission}}</td>
                             </tr>
-                            <!-- <tr>
-                                <td class="textalign">Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }">{{contract.commission.status.name}}</td>
-                            </tr> -->
                             </tbody>
                         </table>
                     </div>
