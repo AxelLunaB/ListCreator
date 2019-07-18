@@ -546,9 +546,9 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right: -3px;
-    bottom:19px;
-    z-index: 30;
+    right:0;
+    bottom:-3px;
+    z-index: 2;
     cursor:pointer;
     background: #181d22;
     width: 150px;
@@ -608,24 +608,20 @@ td {
   @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
-      transform: translateY(-5px);
        }
 
     100% {
       opacity: 1;
-      transform: translateY(5px);
       }
   }
 
     @keyframes fadeOutAnimation {
     0%   {
       opacity: 1;
-      transform: translateY(5px);
        }
 
     100% {
       opacity: 0;
-      transform: translateY(-5px);
       }
   }
 
