@@ -17,18 +17,18 @@
           <td>{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
           <td>${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
           <td v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
-          <td>{{ contracts.currency }}</td>
-          <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "N/A" }}</td>
-          <td>{{contracts.exchangerate != 0 ? contracts.exchangerate : "-"}}</td>
-          <td>{{contracts.commission.managementCommissions}}%</td>
-          <td>{{contracts.commission.salesExecutivesCommissions}}%</td>
-          <td>{{contracts.commission.salesAdministrativeCommissions}}%</td>
-          <td>{{contracts.commission.thirdPartyCommissions}}%</td>
-          <td>{{contracts.commission.brokerCommissions}}%</td>
-          <td>$ {{contracts.commission.totalCommissions != 0 ? contracts.commission.totalCommissions : getTotalCommission}}</td>
-          <td>{{contracts.WROI != null ? contracts.WROI : "N/A"}}</td>
-          <td>{{contracts.percent != 0 ? contracts.percent : "-"}}</td>
-          <td>{{contracts.years != 0 ? contracts.years : "-"}}</td>
+          <td>{{ contracts.currency != null ? contracts.currency : '-'}}</td>
+          <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "-" }}</td>
+          <td>{{contracts.exchangerate != 0 && contracts.exchangerate != null ? contracts.exchangerate : "-"}}</td>
+          <td>{{contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions : '-'}}</td>
+          <td>{{contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions : '-'}}</td>
+          <td>{{contracts.commission.salesAdministrativeCommissions != null ? contracts.commission.salesAdministrativeCommissions: '-'}}</td>
+          <td>{{contracts.commission.thirdPartyCommissions != null ? contracts.commission.thirdPartyCommissions : '-'}}</td>
+          <td>{{contracts.commission.brokerCommissions != null ? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission.totalCommissions != 0 && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : getTotalCommission}}</td>
+          <td>{{contracts.WROI != null ? contracts.WROI : "-"}}</td>
+          <td>{{contracts.percent != 0 && contracts.percent != null ? contracts.percent : "-"}}</td>
+          <td>{{contracts.years != 0 && contracts.years != null ? contracts.years : "-"}}</td>
           <td>{{contracts.closingDate != null && contracts.closingDate != 'null' ? contracts.closingDate : "-"}}</td>
       </tr>
     </tbody>
@@ -76,15 +76,20 @@ export default {
         return  'ffffff'
       }
     },
-        getTotalCommission () {
-          let percent = this.contracts.commission.managementCommissions +
-          this.contracts.commission.salesAdministrativeCommissions +
-          this.contracts.commission.brokerCommissions +
-          this.contracts.commission.salesExecutivesCommissions +
-          this.contracts.commission.thirdPartyCommissions
-          percent = percent / 100
+    getTotalCommission () {
 
-      return (this.contracts.salesprice * percent).toFixed(2)
+          const totalC = function () {
+            let percent = this.contracts.commission.managementCommissions +
+            this.contracts.commission.salesAdministrativeCommissions +
+            this.contracts.commission.brokerCommissions +
+            this.contracts.commission.salesExecutivesCommissions +
+            this.contracts.commission.thirdPartyCommissions
+            percent = percent / 100
+            return (this.contract.salesprice * percent).toFixed(2)
+          }
+
+
+    return this.contract != undefined ? this.contract.salesprice > 0 && this.contract.salesprice != null ? '$ ' + totalC : '-' : '-';
     },
   }
 }
