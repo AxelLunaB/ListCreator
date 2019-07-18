@@ -6,6 +6,7 @@ const commissions = require('./commissions/commissions.service.js');
 const departmentsHistorics = require('./departments-historics/departments-historics.service.js');
 const mailer = require('./mailer/mailer.service.js');
 const authmanagement = require('./authmanagement/authmanagement.service.js');
+const salesDetails = require('./salesDetails/salesDetails.service.js');
 const status = require('./status/status.service.js');
 const clusters = require('./clusters/clusters.service.js');
 const countByCluster = require('./count-by-cluster/count-by-cluster.service.js');
@@ -19,6 +20,7 @@ module.exports = function (app) {
   app.configure(departments);
   app.configure(contracts);
   app.configure(commissions);
+  app.configure(salesDetails);
   //app.configure(departmentsHistorics);
   app.configure(mailer);
   app.configure(authmanagement);
