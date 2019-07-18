@@ -1,9 +1,9 @@
 <template>
   <div class="table-container colors" @click="departmentClicked()">
-    <table class="table full-table" style="table-layout: fixed;margin-bottom:0px!important;">
+    <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
-          <td>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</td>
+          <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
           <td>{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
           <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
@@ -30,6 +30,8 @@
           <td>{{contracts.percent != 0 && contracts.percent != null ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 && contracts.years != null ? contracts.years : "-"}}</td>
           <td>{{contracts.closingDate != null && contracts.closingDate != 'null' ? contracts.closingDate : "-"}}</td>
+          <td style='font-size:12px;'>{{contracts.commission.executive != undefined ? contracts.commission.executive.name != null ? contracts.commission.executive.name : '-' : '-' }}</td>
+          <td>{{contracts.salesDetails != undefined ? contracts.salesDetails.salesChannel != null ? contracts.salesDetails.salesChannel : '-' : '-' }}</td>
       </tr>
     </tbody>
         </table>
@@ -51,11 +53,6 @@ export default {
         },
         departmentClicked(){
           console.log("pop");
-          document.getElementById("listView").style.transition = "opacity 1s";
-          document.getElementById("listView").style.opacity = 0;
-          setTimeout(function () {
-            document.getElementById('listView').style.display='none';
-            }, 1000);
           let info = {
             detailUnit : this.detailTable,
             detailContract : this.contracts

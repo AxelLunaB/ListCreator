@@ -1,21 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 2;">
     <a class="navbar-brand" href="#"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button> -->
     <div class="mobile-container-flex" style="display:flex;">
-      <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul> -->
       <ul class="navbar-nav ml-auto icons-bar">
           <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
             <i class="far fa-bell"></i>
@@ -60,6 +46,9 @@ export default {
     this.$eventHub.$on("hide-search-modal", () => {
       _.searchActive = false;
     });
+    $(document).on('click',function(){
+      $('.collapse').collapse('hide');
+})
   },
   data() {
     return {
