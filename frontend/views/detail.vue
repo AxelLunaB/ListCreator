@@ -112,7 +112,9 @@
       tableToExcel(){
         var downloadTime = new Date();
         var day = downloadTime.getDate();
+        day < 10 ? day = "0"+day : day;
         var month = downloadTime.getMonth()+1;
+        month < 10 ? month = "0" + month : month;
         var year = downloadTime.getFullYear();
         var dom = document.getElementById('printMe');
         const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
