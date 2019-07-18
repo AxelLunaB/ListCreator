@@ -66,7 +66,7 @@ import fullView from "./fullView.vue"
           {title:'CLOSING DATE'},
           {title:'EXECUTIVE'},
           {title:'SALES CHANNEL'},
-          {title:'CLIENT'}
+          {title:'CUSTOMER'}
         ]
       }
     },

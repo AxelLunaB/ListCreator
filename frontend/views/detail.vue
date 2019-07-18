@@ -88,6 +88,7 @@
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
+
         // listen to authenticated event
       } else {
         console.log("no auth");
@@ -98,6 +99,8 @@
           _.$store.dispatch("commissions/getCommissions");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
+
+
         });
       }
     },
@@ -143,9 +146,44 @@
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort"
-      })
+      }),
+      currentAvailability () {
+          var cData= {}
+          var available = 0
+          var reserved = 0
+          var sold =  0
+
+        if(this.departments.length > 0) {
+           for(let i = 0 ; i < this.departments.length ; i++) {
+             var cDep = this.departments[i].status.name
+
+            if ( cDep == 'AVAILABLE' ) {
+              available = available + 1
+             } else if ( cDep == 'SOLD') {
+               sold = sold +1
+             } else {
+               reserved = reserved +1
+             }
+           }
+
+        }
+             cData = {
+             available: available,
+             sold: sold,
+             reserved: reserved
+           }
+
+         return cData
+         }
+      },
+      watch : {
+        currentAvailability(newVal){
+           this.$store.dispatch("departments/setCurrentAvailability",newVal);
+        }
+      }
     }
-  }
+
+
 </script>
 
 <style  lang="scss">

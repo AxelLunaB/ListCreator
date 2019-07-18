@@ -200,15 +200,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-right">{{contract.salesDetails.salesChannel ? contract.salesDetails.salesChannel : '-'}}</td>
+                                <td class="text-right">{{contract.salesDetails != undefined ? contract.salesDetails.salesChannel != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-right">{{contract.salesDetails.executive.name ? contract.salesDetails.executive.name : '-'}}</td>
+                                <td class="text-right">{{contract.commission.executive != undefined ? contract.commission.executive.name != null ? contract.commission.executive.name : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
-                                <td class="text-right">Mayabmex</td>
+                                <td class="text-right">{{contract.customer !=undefined ? contract.customer.name != null? contract.customer.name : '-' : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
@@ -323,6 +323,7 @@
 
 import returnPage from "./returnPage.vue";
 import swal from "sweetalert";
+import { mapGetters } from "vuex";
 
 export default {
   mounted: function() {
@@ -346,7 +347,7 @@ export default {
       contract: {},
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
-        data:[13,26,9],
+        data:[12,26,9],
         backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"]
       }],
       option: {
@@ -427,6 +428,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+          cAvailability: "departments/currentAvailability",
+      }),
     shouldShow() {
       return this.show;
     },

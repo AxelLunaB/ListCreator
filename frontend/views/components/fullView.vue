@@ -32,6 +32,7 @@
           <td>{{contracts.closingDate != null && contracts.closingDate != 'null' ? contracts.closingDate : "-"}}</td>
           <td style='font-size:12px;'>{{contracts.commission.executive != undefined ? contracts.commission.executive.name != null ? contracts.commission.executive.name : '-' : '-' }}</td>
           <td>{{contracts.salesDetails != undefined ? contracts.salesDetails.salesChannel != null ? contracts.salesDetails.salesChannel : '-' : '-' }}</td>
+          <td style='font-size:12px;'>{{contracts.customer !=undefined ? contracts.customer.name != null? contracts.customer.name : '-' : '-'}}</td>
       </tr>
     </tbody>
         </table>
