@@ -9,16 +9,16 @@
       </div>
     </div>
     <div class="table-container">
-        <table class="table full-table" style="margin-bottom:0;width:3300px;">
+        <table class="table full-table" style="margin-bottom:0;width:3300px;height:50px;">
           <tbody>
-            <tr style="line-heigh:10px;">
+            <tr style="line-heigh:10px; font-size:10px;">
               <td v-for="u in deps" :key="u.id" style="vertical-align:middle;font-weight:bold;">
                 <span v-html="u.title"></span>
               </td>
             </tr>
           </tbody>
         </table>
-          <full-view  v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="contracts[index]"></full-view>
+          <full-view v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="contracts[index]"></full-view>
     </div>
   </div>
 </template>
@@ -63,7 +63,9 @@ import fullView from "./fullView.vue"
           {title:'ROI'},
           {title:'ROI %'},
           {title:'YEARS'},
-          {title:'CLOSING DATE'}
+          {title:'CLOSING DATE'},
+          {title:'EXECUTIVE'},
+          {title:'SALES CHANNEL'}
         ]
       }
     },

@@ -200,11 +200,11 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-center">{{contract.salesDetails.salesChannel ? contract.salesDetails.salesChannel : '-'}}</td>
+                                <td class="text-right">{{contract.salesDetails.salesChannel ? contract.salesDetails.salesChannel : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-center">{{contract.salesDetails.executive.name ? contract.salesDetails.executive.name : '-'}}</td>
+                                <td class="text-right">{{contract.salesDetails.executive.name ? contract.salesDetails.executive.name : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
@@ -519,9 +519,6 @@ export default {
   overflow-x:hidden;
   }
 
-  .table th, .table td {
-    padding:0!important;
-  }
   #returntwo {
     color: white;
     position: fixed;
