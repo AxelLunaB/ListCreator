@@ -74,7 +74,7 @@ import fullView from "./fullView.vue"
           document.getElementById("listView").style.opacity = 0;
           setTimeout(function () {
             document.getElementById('listView').style.display='none';
-            }, 1000);
+            }, 250);
       }
     },
     computed: {
@@ -103,7 +103,7 @@ import fullView from "./fullView.vue"
   overflow-x: scroll;
   display:none;
   overflow-y: auto;
-  z-index:2;
+  z-index:0;
 }
 
 .full-table {
