@@ -88,6 +88,10 @@ tr td {
   padding-right:0;
 }
 
+.table-hover tbody tr:hover {
+    background-color: #2b353f99;
+}
+
 @media screen and (max-width: 867px) {
   .title-header {
     flex-direction: column;

@@ -1,6 +1,6 @@
 <template>
   <div class="table-container colors" @click="departmentClicked()">
-    <table class="table full-table" style="table-layout: fixed;margin-bottom:0px!important;">
+    <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
           <td>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</td>
