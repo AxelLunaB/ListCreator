@@ -17,51 +17,51 @@
                             <tbody>
                             <tr>
                                 <td class="textalign">Level</td>
-                                <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
+                                <td class="text-right">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bedrooms</td>
-                                <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Lock Off (keys)</td>
-                                <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
+                                <td class="text-right">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bathrooms</td>
-                                <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Interior m2</td>
-                                <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Exterior m2</td>
-                                <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
+                                <td class="text-right">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Interior m2</td>
-                                <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total m2</td>
-                                <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
+                                <td class="text-right">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Total</td>
-                                <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
+                                <td class="text-right">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">List Price</td>
-                                <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+                                <td class="text-right">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
+                                <td class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -176,7 +176,7 @@
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="btn btn-outline-light">Send Files</button>
+                  <button type="button" class="btn btn-info">Send Files</button>
                 </div>
               </div>
             </div>
@@ -200,7 +200,7 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign" style="border:none!important;">Currency</td>
-                                <td class="text-center" style="border:none!important"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
+                                <td class="text-right" style="border:none!important"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">Payment Method</td>
@@ -212,27 +212,27 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-center">Internal</td>
+                                <td class="text-right">Internal</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-center">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
+                                <td class="text-right">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
-                                <td class="text-center">Mayabmex</td>
+                                <td class="text-right">Mayabmex</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions}}%</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions}}%</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions}}%</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions}}%</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions}}%</span></td>
+                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions}}%</span></td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">3rd Party Comm</td>
@@ -244,7 +244,7 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign">Total Comm</td>
-                                <td class="text-center">$ {{contract.commission.totalCommissions != 0 ? contract.commission.totalCommissions : getTotalCommission}}</td>
+                                <td class="text-right">$ {{contract.commission.totalCommissions != 0 ? contract.commission.totalCommissions : getTotalCommission}}</td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">Status</td>
@@ -269,27 +269,27 @@
                           <tbody>
                           <tr>
                               <td class="textalign">ROI</td>
-                              <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
+                              <td class="text-right">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">ROI %</td>
-                              <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
+                              <td class="text-right">{{contract.percent != 0 ? contract.percent : "-"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">Years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
+                              <td class="text-right">{{contract.years != 0 ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">Closing Date</td>
-                              <td class="text-center">{{contract.closingDate != 'null' ? contract.closingDate : "-"}}</td>
+                              <td class="text-right">{{contract.closingDate != 'null' ? contract.closingDate : "-"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">Renewal</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
+                              <td class="text-right">{{contract.years != 0 ? contract.years : "-"}} </td>
                           </tr>
                           <tr>
                               <td class="textalign">Renewal years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
+                              <td class="text-right">{{contract.years != 0 ? contract.years : "-"}} </td>
                           </tr>
                           </tbody>
                       </table>
@@ -311,6 +311,7 @@
                   v-bind:option="option"
                   :width="mywidth"
                   :height="myheight"
+                  style="height:226px;"
                    ></chartjs-doughnut>
                 </div>
               </div>
@@ -330,7 +331,8 @@
               :datalabel="mylabel"
               :labels="mylabels"
               :data="mydata"
-              v-bind:option="myoption">
+              v-bind:option="myoption"
+              style="width:100%;">
       </chartjs-bar>
               </div>
           </div>
@@ -597,7 +599,7 @@ export default {
 }
 
 td {
-  border-top:1px solid #a8a8a8!important;
+  border-top:1px solid #a8a8a896!important;
 }
 
 .row-one,

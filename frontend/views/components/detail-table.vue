@@ -89,7 +89,7 @@ tr td {
 }
 
 .table-hover tbody tr:hover {
-    background-color: #2b353f99;
+    background-color: #2b353fb4;
 }
 
 @media screen and (max-width: 867px) {
