@@ -62,8 +62,8 @@ import fullView from "./fullView.vue"
           {title:'TOTAL COMM'},
           {title:'ROI'},
           {title:'ROI %'},
-          {title:'RENEWAL'},
-          {title:'RENEWAL YEARS'}
+          {title:'YEARS'},
+          {title:'CLOSING DATE'}
         ]
       }
     },

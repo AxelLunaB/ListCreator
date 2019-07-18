@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A"}}</h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : '-'}}</h4>
                 <div class="row fullh">
                     <div class="col-12">
                         <table class="table table-hover table-modifier fullh">
@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
+                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -200,7 +200,7 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign" style="border:none!important;">Currency</td>
-                                <td class="text-center" style="border:none!important"><b>{{contract.currency != null ? contract.currency : "N/A"}}</b></td>
+                                <td class="text-center" style="border:none!important"><b>{{contract.currency != null ? contract.currency : '-'}}</b></td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">Payment Method</td>
@@ -224,15 +224,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions}}%</span></td>
+                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions != null ? contract.commission.managementCommissions + ' %' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions}}%</span></td>
+                                <td class="text-center"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions != null ? contract.commission.salesExecutivesCommissions + ' %' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions}}%</span></td>
+                                <td class="text-center"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-'}}</span></td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">3rd Party Comm</td>
@@ -244,7 +244,7 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign">Total Comm</td>
-                                <td class="text-center">$ {{contract.commission.totalCommissions != 0 ? contract.commission.totalCommissions : getTotalCommission}}</td>
+                                <td class="text-center">{{contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission}}</td>
                             </tr>
                             <!-- <tr>
                                 <td class="textalign">Status</td>
@@ -269,28 +269,28 @@
                           <tbody>
                           <tr>
                               <td class="textalign">ROI</td>
-                              <td class="text-center">{{contract.WROI != null ? contract.WROI : "N/A"}}</td>
+                              <td class="text-center">{{contract.WROI != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">ROI %</td>
-                              <td class="text-center">{{contract.percent != 0 ? contract.percent : "-"}}</td>
+                              <td class="text-center">{{contract.percent != 0 && contract.percent != null ? contract.percent : "-"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">Years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}}</td>
+                              <td class="text-center">{{contract.years != 0 && contract.years != null ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
                               <td class="textalign">Closing Date</td>
-                              <td class="text-center">{{contract.closingDate != 'null' ? contract.closingDate : "-"}}</td>
+                              <td class="text-center">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
                           </tr>
-                          <tr>
+                          <!-- <tr>
                               <td class="textalign">Renewal</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
+                              <td class="text-center">{{contract.years != 0 && contract.percent != null ? contract.years : "-"}} </td>
                           </tr>
                           <tr>
                               <td class="textalign">Renewal years</td>
                               <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
-                          </tr>
+                          </tr> -->
                           </tbody>
                       </table>
                   </div>
@@ -461,7 +461,7 @@ export default {
                     this.contract.commission.thirdPartyCommissions
       percent = percent / 100
 
-      return (this.contract.salesprice * percent).toFixed(2);
+      return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
     }
   }
 }
