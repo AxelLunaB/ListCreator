@@ -371,7 +371,7 @@ export default {
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
         data:[13,26,9],
-        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"],
+        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"]
       }],
       option: {
         title: {
@@ -417,6 +417,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
+              max:10,
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
