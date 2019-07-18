@@ -1,6 +1,6 @@
 <template>
   <div class="table-container colors" @click="departmentClicked()">
-    <table class="table full-table" style="table-layout: fixed;margin-bottom:0px!important;">
+    <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
           <td>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</td>
@@ -51,11 +51,6 @@ export default {
         },
         departmentClicked(){
           console.log("pop");
-          document.getElementById("listView").style.transition = "opacity 1s";
-          document.getElementById("listView").style.opacity = 0;
-          setTimeout(function () {
-            document.getElementById('listView').style.display='none';
-            }, 1000);
           let info = {
             detailUnit : this.detailTable,
             detailContract : this.contracts

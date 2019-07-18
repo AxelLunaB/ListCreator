@@ -1,7 +1,7 @@
 <template>
-<div v-if="shouldShow === true">
-  <div class="container-fluid">
-      <div id="returntwo" @click="closeBtn()" v-bind:class="{ active: show }">
+<div v-if="shouldShow === true" id="fadeOutAnimation">
+  <div class="container-fluid" v-bind:class="{ active: show}">
+      <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
@@ -17,47 +17,47 @@
                             <tbody>
                             <tr>
                                 <td class="textalign">Level</td>
-                                <td class="text-center">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
+                                <td class="text-right">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bedrooms</td>
-                                <td class="text-center">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Lock Off (keys)</td>
-                                <td class="text-center">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
+                                <td class="text-right">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bathrooms</td>
-                                <td class="text-center">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Interior m2</td>
-                                <td class="text-center">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Exterior m2</td>
-                                <td class="text-center">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
+                                <td class="text-right">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Interior m2</td>
-                                <td class="text-center">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total m2</td>
-                                <td class="text-center">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-center">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
+                                <td class="text-right">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Total</td>
-                                <td class="text-center">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
+                                <td class="text-right">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">List Price</td>
-                                <td class="text-center">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+                                <td class="text-right">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
@@ -83,7 +83,7 @@
                             <tr  v-for="(u,index) in (contract.payments ? contract.payments.paymentsDetails : 12)" :key="u.id">
                                 <td class="textalign">{{contract.payments ? u.paymentNo : index +1}}</td>
                                 <td class="text-center"><span v-bind:style="{color:contract.payments ? u.status.color_hex : 'white'}">{{contract.payments ? u.dueDate : '-'}}</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
+                                <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
                         </table>
@@ -176,7 +176,7 @@
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="btn btn-outline-light">Send Files</button>
+                  <button type="button" class="btn btn-info">Send Files</button>
                 </div>
               </div>
             </div>
@@ -212,15 +212,15 @@
                             </tr> -->
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-center">Internal</td>
+                                <td class="text-right">Internal</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-center">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
+                                <td class="text-right">{{contract.commission.executive ? contract.commission.executive.name : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
-                                <td class="text-center">Mayabmex</td>
+                                <td class="text-right">Mayabmex</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
@@ -311,6 +311,7 @@
                   v-bind:option="option"
                   :width="mywidth"
                   :height="myheight"
+                  style="height:226px;"
                    ></chartjs-doughnut>
                 </div>
               </div>
@@ -330,7 +331,8 @@
               :datalabel="mylabel"
               :labels="mylabels"
               :data="mydata"
-              v-bind:option="myoption">
+              v-bind:option="myoption"
+              style="width:100%;">
       </chartjs-bar>
               </div>
           </div>
@@ -369,7 +371,7 @@ export default {
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
         data:[13,26,9],
-        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"],
+        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"]
       }],
       option: {
         title: {
@@ -415,8 +417,14 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
+              max:10,
               fontColor:'white',
-              beginAtZero:true
+              beginAtZero:true,
+              userCallback:function(label,index,labels){
+                if (Math.floor(label)=== label) {
+                  return label
+                }
+              }
             }
           }],
           xAxes:[{
@@ -430,7 +438,12 @@ export default {
   },
   methods: {
     closeBtn() {
-      this.show = false;
+      self = this
+      document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
+      document.getElementById("fadeOutAnimation").style.opacity = 0;
+      setTimeout(function () {
+        self.show = false;
+        }, 250);
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -483,7 +496,7 @@ export default {
     position:fixed;
     top:47px;
     left:0;
-    z-index:1;
+    z-index:2;
     max-height: 97vh;
     padding-top: 18px;
   }
@@ -497,6 +510,10 @@ export default {
 
   .animate {
     animation: fadeInAnimation 1s forwards;
+  }
+
+  .animateOut {
+    animation: fadeOutAnimation 1S forwards;
   }
 
   .send {
@@ -532,9 +549,9 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right: 0;
-    bottom:0;
-    z-index: 30;
+    right:0;
+    bottom:-3px;
+    z-index: 2;
     cursor:pointer;
     background: #181d22;
     width: 150px;
@@ -583,7 +600,7 @@ export default {
 }
 
 td {
-  border-top:1px solid #a8a8a8!important;
+  border-top:1px solid #a8a8a896!important;
 }
 
 .row-one,
@@ -594,17 +611,20 @@ td {
   @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
-      transform: translateY(-5px);
-       }
-
-    40%   {
-      opacity: 0;
-      transform: translateY(-5px);
        }
 
     100% {
       opacity: 1;
-      transform: translateY(5px);
+      }
+  }
+
+    @keyframes fadeOutAnimation {
+    0%   {
+      opacity: 1;
+       }
+
+    100% {
+      opacity: 0;
       }
   }
 
