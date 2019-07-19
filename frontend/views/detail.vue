@@ -211,10 +211,6 @@
     color:  white;
   }
 
-  .test {
-    background: red;;
-  }
-
     .card-body {
       background: #3c4857;
       margin:10px;

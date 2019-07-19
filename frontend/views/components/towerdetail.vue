@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-center" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -233,30 +233,30 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
-      <div class="card">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="card" style="height:93%">
           <div class="card-body">
               <div class="row" style="height:100%">
                   <div class="col-12">
-                      <table class="table table-hover table-modifier" style="height:100%">
+                      <table class="table table-hover table-modifier" style="height:100%;margin-bottom:0;">
                           <thead>
                               <h5 class="m-b-30 m-t-0 text-left">ROI</h5>
                           </thead>
                           <tbody>
                           <tr>
-                              <td class="textalign">ROI</td>
+                              <td class="textalign" style="padding-top:15px;">ROI</td>
                               <td class="text-right">{{contract.WROI != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign">ROI %</td>
+                              <td class="textalign" style="padding-top:15px;">ROI %</td>
                               <td class="text-right">{{contract.percent != 0 && contract.percent != null ? contract.percent : "-"}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign">Years</td>
+                              <td class="textalign" style="padding-top:15px;">Years</td>
                               <td class="text-right">{{contract.years != 0 && contract.years != null ? contract.years : "-"}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign">Closing Date</td>
+                              <td class="textalign" style="padding-top:15px;">Closing Date</td>
                               <td class="text-right">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
                           </tr>
                           <!-- <tr>
@@ -276,11 +276,11 @@
       </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
         <div class="card">
-          <div class="card-body">
-            <div class="row">
+          <div class="card-body" style="padding-bottom:0;">
+            <div class="row" style="height:242px;">
               <div class="col-12" style="flex-direction:column;">
                 <h5 class="m-t-0 m-b-30 text-left">AVAILABILITY</h5>
-                <div style="width:100%;display:flex;justify-content:center;">
+                <div style="width:100%;display:flex;justify-content:center;height:79%">
                   <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="dynamicChart"
@@ -291,6 +291,11 @@
                    ></chartjs-doughnut>
                 </div>
               </div>
+            </div>
+            <div class="labels">
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(5,162,179);"></div><p>Available</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(0,163,254)"></div><p>Sold</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(235,239,242);"></div><p>Reserved</p></div>
             </div>
           </div>
         </div>
@@ -355,10 +360,11 @@ export default {
           responsive:false,
         },
         legend: {
-          position:'bottom',
-          labels: {
-            fontColor:'white'
-          }
+          // position:'bottom',
+          // labels: {
+          // fontColor:'white'
+          // }
+          display:false
         },
       },
     myboolean : true,
@@ -582,12 +588,29 @@ export default {
 }
 
 td {
-  border-top:1px solid #a8a8a896!important;
+  border-top:1px solid #d1d1d18a!important; /*table border*/
 }
 
 .row-one,
 .row-two {
   max-width: 1600px;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-around;
+}
+
+.labels p {
+  margin-bottom:0;
+  font-size: 12px;
+}
+
+ .chartdata {
+  width:12px;
+  height: 12px;
+  margin-top:3px;
+  margin-right:3px;
 }
 
   @keyframes fadeInAnimation {
