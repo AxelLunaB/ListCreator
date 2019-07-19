@@ -36,7 +36,7 @@ const REMOVE_FILTER = (state, payload) => {
 
   state.specialFilter.forEach (filter => {
     if(filter.value != null) {
-      filter.value = null 
+      filter.value = null
     }
   })
 
@@ -69,6 +69,11 @@ const DEPARTMENT_UPDATED = (state, department) => {
     }
   }
 };
+const UPDATE_AVAILABILITY = (state, payload) => {
+    state.currentAvailability.sold = payload.sold
+    state.currentAvailability.available = payload.available
+    state.currentAvailability.reserved = payload.reserved
+ }
 
 
 const QUERY_UPDATED = (state, query) => {
@@ -84,5 +89,6 @@ export default {
   SET_VIEW_TYPE,
   SET_FILTER,
   SPECIAL_FILTER,
-  REMOVE_FILTER
+  REMOVE_FILTER,
+  UPDATE_AVAILABILITY
 };

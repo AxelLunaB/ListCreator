@@ -104,11 +104,16 @@ const setListType = ( context, commit ) => {
   context.commit('SET_VIEW_TYPE');
 }
 
+const setCurrentAvailability = (context, payload) =>{
+  context.commit('UPDATE_AVAILABILITY', payload)
+}
+
 
 
 
 export default {
   getDepartments,
+  setCurrentAvailability,
   listenEvents,
   newDepartment,
   nextPage,
