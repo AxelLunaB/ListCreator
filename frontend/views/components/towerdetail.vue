@@ -283,7 +283,7 @@
                 <div style="width:100%;display:flex;justify-content:center;">
                   <chartjs-doughnut
                   v-bind:labels="labels"
-                  v-bind:datasets="datasets"
+                  v-bind:datasets="dynamicChart"
                   v-bind:option="option"
                   :width="mywidth"
                   :height="myheight"
@@ -331,7 +331,6 @@ export default {
       this.detailTable = details.detailUnit;
       this.contract = details.detailContract;
       this.show = true;
-      console.log (details);
     });
   },
   components: {
@@ -347,7 +346,7 @@ export default {
       contract: {},
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
-        data:[12,26,9],
+        data:[1,2,3],
         backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"]
       }],
       option: {
@@ -455,6 +454,12 @@ export default {
       percent = percent / 100
 
       return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
+    },
+    dynamicChart () {
+      this.datasets[0].data[0] = this.cAvailability.available
+      this.datasets[0].data[1] = this.cAvailability.reserved
+      this.datasets[0].data[2] = this.cAvailability.sold
+      return this.datasets
     }
   }
 }
