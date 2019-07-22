@@ -18,17 +18,17 @@ const state = {
   },
   specialFilter: [
     {
-      id: 'statusId',
-      value: null
-    },
-    {
-      id: 'type',
-      value: null
-    },
-    {
       id: 'level',
       value: null
-    }
+    },
+    {
+      id: 'priceTotal',
+      value: null
+    },
+    {
+      id: 'status',
+      value: null
+    },
   ],
   query: null,
   isList: false,

@@ -60,13 +60,15 @@
   import fullListView from "./components/fullListView.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
+  import filterTable from "./components/filterTable.vue"
 
   export default {
     components: {
       detailTable,
       returnPage,
       towerdetail,
-      fullListView
+      fullListView,
+      filterTable
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -107,7 +109,8 @@
     data(){
       return {
         detailTable: 3,
-        isAnimated: true
+        isAnimated: true,
+        sDepartments:[]
       }
     },
     methods: {
@@ -180,7 +183,65 @@
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
+      },
+      sortedArray() {
+        let s =  this.filteredValue.toString()
+        function compare(a, b) {
+          if (a[s] < b[s])
+          return -1;
+          if (a[s] > b[s])
+          return 1;
+          return 0;
       }
+
+     return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
+    },
+     filtersArray () {
+      let filters = this.specialSort
+      var deptos = []
+      this.sDepartments = []
+
+       this.departments.forEach ((dep, index) => {
+        filters.forEach (filter => {
+          if(filter.value === null)
+           return
+          if(dep[filter.id] == filter['value']) {
+            let shouldAdd = true
+            for( var i = 0; i < deptos.length; i++) {
+              if(deptos[i].id == dep.id) {
+                shouldAdd = false
+              }
+            }
+            if (shouldAdd === true) {
+            deptos.push(dep)
+          }
+        }
+      })
+    })
+
+      if(deptos.length > 0) {
+       for (var i = deptos.length -1 ; i >= 0; i--) {
+        for (let a = 0; a < filters.length; a ++) {
+
+          if(filters[a].value == null) {
+          continue
+          }
+          if(deptos[i][filters[a].id] != filters[a].value) {
+            deptos.splice (i,1)
+            break
+          }
+        }
+      }
+    }
+
+      console.log(this.sDepartments);
+      console.log(deptos)
+      this.sDepartments = deptos
+      // return deptos.length > 0 ? this.sDepartments : this.sortedArray
+       return this.sortedArray
+          //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+
+    },
     }
 
 
@@ -281,6 +342,8 @@
 
   .header-t {
     height: 50px;
+    text-align:center!important;
+    vertical-align:middle!important;
   }
 
   .navbar-container {

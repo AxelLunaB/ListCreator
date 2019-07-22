@@ -110,7 +110,6 @@ const setCurrentAvailability = (context, payload) =>{
 
 
 
-
 export default {
   getDepartments,
   setCurrentAvailability,
