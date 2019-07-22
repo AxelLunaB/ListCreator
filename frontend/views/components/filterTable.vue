@@ -12,7 +12,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id}), show = true">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
