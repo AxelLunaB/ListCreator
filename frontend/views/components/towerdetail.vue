@@ -469,10 +469,11 @@ export default {
       var PenMonth = (monthName(month-2))
       var anteMonth = (monthName(month-3))
       return [anteMonth,PenMonth,lastMonth,c]
-    },
-    dynamicBar(){
-
     }
+    //,
+    // dynamicBar(){
+
+    // }
   }
 }
 </script>
