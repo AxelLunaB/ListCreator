@@ -377,7 +377,6 @@ export default {
       'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
-    // mylabels : ['January', 'February', 'March', 'June', 'July'],
     mydata : [0, 0, 1, 0, 0],
         myoption: {
           legend: {
