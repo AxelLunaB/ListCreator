@@ -106,7 +106,7 @@ import fullView from "./fullView.vue"
   overflow-x: scroll;
   display:none;
   overflow-y: auto;
-  z-index:0;
+  z-index:1;
 }
 
 .full-table {

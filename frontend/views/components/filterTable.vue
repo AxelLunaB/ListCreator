@@ -240,7 +240,7 @@ input .dropdown {
 }
 
   .close-filter {
-    background:#252d33;
+    background:#3c4857;
     color:white;
     position:fixed;
     right:20px;

@@ -1,6 +1,6 @@
 <template>
 <div v-if="shouldShow === true" id="fadeOutAnimation">
-  <div class="container-fluid" v-bind:class="{ active: show}">
+  <div class="container-fluid" v-bind:class="{ active: show}" id="container-fluid">
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
@@ -487,9 +487,12 @@ export default {
     position:fixed;
     top:47px;
     left:0;
-    z-index:2;
     max-height: 97vh;
     padding-top: 18px;
+  }
+
+  #container-fluid {
+    z-index:3!important;
   }
 
   .card {
@@ -649,9 +652,16 @@ td {
     height: 37%;
   }
 }
+
   @media screen and (max-height: 800px) {
-  .container-fluid {
-    overflow-y: scroll;
+    .container-fluid {
+      overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width:867px) {
+    .title-header {
+    margin-bottom:10px;
   }
 }
 
