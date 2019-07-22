@@ -280,7 +280,7 @@
             <div class="row">
               <div class="col-12" style="flex-direction:column;">
                 <h5 class="m-t-0 m-b-30 text-left">AVAILABILITY</h5>
-                <div style="width:100%;display:flex;justify-content:center;">
+                <div style="width:100%;display:flex;justify-content:center;">()
                   <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="dynamicChart"
@@ -305,7 +305,7 @@
               :backgroundcolor="mybackgroundcolor"
               :bordercolor="mybordercolor"
               :datalabel="mylabel"
-              :labels="mylabels"
+              :labels="pastMonths"
               :data="mydata"
               v-bind:option="myoption"
               style="width:100%;">
@@ -377,7 +377,7 @@ export default {
       'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
-    mylabels : ['January', 'February', 'March', 'June', 'July'],
+    // mylabels : ['January', 'February', 'March', 'June', 'July'],
     mydata : [0, 0, 1, 0, 0],
         myoption: {
           legend: {
@@ -460,6 +460,18 @@ export default {
       this.datasets[0].data[1] = this.cAvailability.reserved
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
+    },
+    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+      var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
+      var month = new Date().getMonth();
+      var c = (monthName(month))
+      var lastMonth = (monthName(month-1))
+      var PenMonth = (monthName(month-2))
+      var anteMonth = (monthName(month-3))
+      return [anteMonth,PenMonth,lastMonth,c]
+    },
+    dynamicBar(){
+
     }
   }
 }
