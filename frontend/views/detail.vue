@@ -149,7 +149,8 @@
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
-        specialSort: "departments/specialSort"
+        specialSort: "departments/specialSort",
+        priceSort: "departments/priceSort"
       }),
       currentAvailability () {
           var cData= {}

@@ -32,6 +32,24 @@ const SET_FILTER = (state, payload) => {
 
 };
 
+const PRICE_FILTER = (state,payload)=> {
+  if(payload.value <= state.priceFilter.priceOne){
+    alert("less than 200,000")
+  }
+  if(payload.value > state.priceFilter.priceOne && payload.value <= state.priceFilter.priceTwo ){
+    alert("price is between 200,001 -250,000")
+  }
+  if(payload.value > state.priceFilter.priceTwo && payload.value <= state.priceFilter.priceThree ){
+    alert("price between 250,001 - 300,000")
+  }
+  if(payload.value > state.priceFilter.priceThree && payload.value <= state.priceFilter.priceFour ){
+    alert("price between 300,001 - 350,000")
+  }
+  if(payload.value > state.priceFilter.priceFour && payload.value <= state.priceFilter.priceFive ){
+    alert("price between 351,000 - 400,000")
+  }
+}
+
 const REMOVE_FILTER = (state, payload) => {
 
   state.specialFilter.forEach (filter => {
@@ -90,5 +108,6 @@ export default {
   SET_FILTER,
   SPECIAL_FILTER,
   REMOVE_FILTER,
-  UPDATE_AVAILABILITY
+  UPDATE_AVAILABILITY,
+  PRICE_FILTER
 };

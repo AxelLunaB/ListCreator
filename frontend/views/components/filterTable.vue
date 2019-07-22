@@ -12,7 +12,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id}), show = true">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
@@ -24,7 +24,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
                     <ul>
-                      <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
+                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), show = true">
                         <p> {{ item.cost }} </p>
                       </li>
                     </ul>
@@ -50,6 +50,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data:function(){
@@ -61,11 +62,11 @@ export default {
         {level: '4',value:'4', id:'level'}
       ],
       price:[
-        {cost: 'Menos de $200,000.00', value: "200000", id:'priceTotal'},
-        {cost: '$200,001.00 - $250,000.00', value: "250000", id:'priceTotal'},
-        {cost: '$251,000.00 - $300,000.00', value: "300000", id:'priceTotal'},
-        {cost: '$300,001.00 - $350,000.00', value: "350000", id:'priceTotal'},
-        {cost: '$351,000.00 - $400,000.00', value: "400000", id:'priceTotal'}
+        {cost: 'Menos de $200,000.00', value: 200000, id:'priceTotal'},
+        {cost: '$200,001.00 - $250,000.00', value: 250000, id:'priceTotal'},
+        {cost: '$251,000.00 - $300,000.00', value: 300000, id:'priceTotal'},
+        {cost: '$300,001.00 - $350,000.00', value: 350000, id:'priceTotal'},
+        {cost: '$351,000.00 - $400,000.00', value: 400000, id:'priceTotal'}
       ],
       status:[
         {stat: 'Available', value:1, id:'statusId'},
@@ -79,8 +80,14 @@ export default {
     ...mapActions ({
       setFilterAs: 'departments/setFilter',
       setSpecialFilter: 'departments/setSpecialFilter',
-      removeFilter: 'departments/removeSpecialFilter'
+      removeFilter: 'departments/removeSpecialFilter',
+      setPriceFilter:'departments/setPriceFilter'
     })
+  },
+  computed:{
+    ...mapGetters({
+      priceDep: "departments/priceDep",
+      }),
   }
 }
 </script>
@@ -191,7 +198,8 @@ export default {
     display: flex;
     justify-content:space-around;
     height: 100%;
-    margin-bottom:15px;
+    margin:15px 0 15px 0;
+
 }
 
  .close-search {

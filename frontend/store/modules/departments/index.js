@@ -30,6 +30,14 @@ const state = {
       value: null
     }
   ],
+  priceFilter: {
+    priceOne: 200000,
+    priceTwo: 250000,
+    priceThree: 300000,
+    priceFour: 350000,
+    priceFive: 400000
+  },
+  priceDep: 0,
   query: null,
   isList: false,
   filterValue: "cons"
