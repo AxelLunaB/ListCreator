@@ -18,7 +18,7 @@ const state = {
   },
   specialFilter: [
     {
-      id: 'level',
+      id: 'statusId',
       value: null
     },
     {
@@ -26,9 +26,9 @@ const state = {
       value: null
     },
     {
-      id: 'status',
+      id: 'level',
       value: null
-    },
+    }
   ],
   query: null,
   isList: false,

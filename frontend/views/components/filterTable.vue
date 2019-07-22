@@ -1,6 +1,6 @@
 <template>
   <div class="filter-container">
-      <div v-if="show" v-bind:class ="{ fadeIn : show }"class="close-filter" @click="removeFilter(),show = false">
+      <div v-if="show" v-bind:class ="{ fadeIn : show }" class="close-filter" @click="removeFilter(),show = false">
         <span><i class="fas fa-times"></i>	&nbsp;	&nbsp;Remove filters</span>
       </div>
       <div class="container-filter">
@@ -31,7 +31,7 @@
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('status')" value="status" id="name">Status</button>
+              <button class="btn-buy" @click="setFilterAs('statusId')" value="statusId" id="name">Status</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
@@ -68,9 +68,9 @@ export default {
         {cost: '$351,000.00 - $400,000.00', value: "400000", id:'priceTotal'}
       ],
       status:[
-        {stat: 'Available', value:'Available', id:'status'},
-        {stat: 'Sold', value:'Sold', id:'status'},
-        {stat: 'reserved', value:'Reserved', id:'status'}
+        {stat: 'Available', value:1, id:'statusId'},
+        {stat: 'Sold', value:2, id:'statusId'},
+        {stat: 'Reserved', value:3, id:'statusId'}
       ],
       show:false
     }
@@ -86,6 +86,11 @@ export default {
 </script>
 
 <style>
+.filter-container{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .dropdown-container {
     display: flex;
     justify-content: center;
@@ -110,7 +115,7 @@ export default {
   display: inline-block;
   color: black;
   text-decoration: none;
-  background:#314734;
+  background:#252d33;
 }
 
 .dropdown input[type=checkbox] {
@@ -141,8 +146,8 @@ export default {
   padding: 4px 0px;
   display: none;
   color: white;
-  background: #415f45;
-  border:1px solid #415f45;
+  background: #252d33;
+  border:1px solid #252d33;
   z-index:2;
 }
 
@@ -158,7 +163,7 @@ export default {
 }
 
 .dropdown ul li:hover {
-  background-color: #314734;
+  background-color: #323d46;
   cursor: pointer;
 }
 
@@ -222,7 +227,7 @@ export default {
   padding: 0 5px;
   border-radius: 3px 0 0 3px;
   color: white;
-  background: #415f45;
+  background: #21282e;
 }
 
 .btn-buy,
@@ -235,7 +240,7 @@ input .dropdown {
 }
 
   .close-filter {
-    background:#314734;
+    background:#252d33;
     color:white;
     position:fixed;
     right:20px;

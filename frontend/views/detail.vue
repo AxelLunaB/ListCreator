@@ -13,6 +13,7 @@
           </div>
         </div>
       </div>
+      <filter-table />
       <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
@@ -32,7 +33,7 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
             </div>
           </div>
@@ -177,14 +178,8 @@
            }
 
          return cData
-         }
-      },
-      watch : {
-        currentAvailability(newVal){
-           this.$store.dispatch("departments/setCurrentAvailability",newVal);
-        }
-      },
-      sortedArray() {
+         },
+ sortedArray() {
         let s =  this.filteredValue.toString()
         function compare(a, b) {
           if (a[s] < b[s])
@@ -241,7 +236,13 @@
        return this.sortedArray
           //return deptos.length > 0 ? this.sDepartments : this.sortedArray
 
-    },
+    }
+      },
+      watch : {
+        currentAvailability(newVal){
+           this.$store.dispatch("departments/setCurrentAvailability",newVal);
+        }
+      }
     }
 
 
@@ -310,7 +311,6 @@
     justify-content: space-between;
     max-width: 1000px;
     margin:0 auto;
-    padding-bottom:25px;
   }
 
   .buttons-header {
