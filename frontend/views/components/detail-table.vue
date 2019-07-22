@@ -20,8 +20,6 @@
 
 <script>
 
-import { mapActions } from "vuex";
-
 export default {
   props: ["detailTable","contracts"],
   data(){
@@ -51,7 +49,7 @@ export default {
       else {
         return '#ffffff'
       }
-    },
+    }
   }
 }
 </script>

@@ -33,20 +33,45 @@ const SET_FILTER = (state, payload) => {
 };
 
 const PRICE_FILTER = (state,payload)=> {
-  if(payload.value <= state.priceFilter.priceOne){
-    alert("less than 200,000")
+  var p = payload.value
+  var pt =state.departments
+
+  if(p <= state.priceFilter.priceOne){
+    for(var i = 0 ; i < pt.length ; i++) {
+      if(pt[i].priceTotal < state.priceFilter.priceOne){
+        console.log(pt[i].priceTotal)
+      }
+    }
   }
-  if(payload.value > state.priceFilter.priceOne && payload.value <= state.priceFilter.priceTwo ){
-    alert("price is between 200,001 -250,000")
+
+  if(p > state.priceFilter.priceOne && p <= state.priceFilter.priceTwo ){
+    for(var i = 0 ; i < pt.length ; i++) {
+      if(pt[i].priceTotal > state.priceFilter.priceOne && pt[i].priceTotal <= state.priceFilter.priceTwo ){
+        console.log(pt[i].priceTotal)
+      }
+    }
   }
-  if(payload.value > state.priceFilter.priceTwo && payload.value <= state.priceFilter.priceThree ){
-    alert("price between 250,001 - 300,000")
+
+  if(p > state.priceFilter.priceTwo && p <= state.priceFilter.priceThree ){
+    for(var i = 0 ; i < pt.length ; i++) {
+      if(pt[i].priceTotal > state.priceFilter.priceTwo && pt[i].priceTotal <= state.priceFilter.priceThree ){
+        console.log(pt[i].priceTotal)
+      }
+    }
   }
-  if(payload.value > state.priceFilter.priceThree && payload.value <= state.priceFilter.priceFour ){
-    alert("price between 300,001 - 350,000")
+  if(p > state.priceFilter.priceThree && p <= state.priceFilter.priceFour ){
+    for(var i = 0 ; i < pt.length ; i++) {
+      if(pt[i].priceTotal > state.priceFilter.priceThree && pt[i].priceTotal <= state.priceFilter.priceFour ){
+          console.log(pt[i].priceTotal)
+      }
+    }
   }
-  if(payload.value > state.priceFilter.priceFour && payload.value <= state.priceFilter.priceFive ){
-    alert("price between 351,000 - 400,000")
+  if(p > state.priceFilter.priceFour && p <= state.priceFilter.priceFive ){
+    for(var i = 0 ; i < pt.length ; i++) {
+      if(pt[i].priceTotal > state.priceFilter.priceFour && pt[i].priceTotal <= state.priceFilter.priceFive ){
+        console.log(pt[i].priceTotal)
+      }
+    }
   }
 }
 

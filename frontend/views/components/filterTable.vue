@@ -83,11 +83,6 @@ export default {
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
     })
-  },
-  computed:{
-    ...mapGetters({
-      priceDep: "departments/priceDep",
-      }),
   }
 }
 </script>

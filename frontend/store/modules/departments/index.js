@@ -37,7 +37,7 @@ const state = {
     priceFour: 350000,
     priceFive: 400000
   },
-  priceDep: 0,
+  selectedDeps:[],
   query: null,
   isList: false,
   filterValue: "cons"
