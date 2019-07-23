@@ -4,7 +4,7 @@ const isListGetter = (state) => state.isList;
 const filterValue = (state) => state.filterValue;
 const specialSort = (state) => state.specialFilter;
 const currentAvailability = (state) => state.currentAvailability;
-const priceSort = (state) => state.priceFilter;
+const priceSort = (state) => state.depsByPrice;
 
 export default {
   departments,

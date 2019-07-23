@@ -36,43 +36,81 @@ const PRICE_FILTER = (state,payload)=> {
   var p = payload.value
   var pt =state.departments
 
+
   if(p <= state.priceFilter.priceOne){
+    if(state.depsByPrice == 0) {
+      state.depsByPrice = state.depsByPrice
+    } else {
+      state.depsByPrice = []
+    }
     for(var i = 0 ; i < pt.length ; i++) {
       if(pt[i].priceTotal < state.priceFilter.priceOne){
-        console.log(pt[i].priceTotal)
+        state.depsByPrice.push(pt[i])
       }
     }
+    console.log(state.depsByPrice)
   }
+
 
   if(p > state.priceFilter.priceOne && p <= state.priceFilter.priceTwo ){
+    if(state.depsByPrice == 0) {
+      state.depsByPrice = state.depsByPrice
+    } else {
+      state.depsByPrice = []
+    }
     for(var i = 0 ; i < pt.length ; i++) {
       if(pt[i].priceTotal > state.priceFilter.priceOne && pt[i].priceTotal <= state.priceFilter.priceTwo ){
-        console.log(pt[i].priceTotal)
+        state.depsByPrice.push(pt[i])
       }
     }
+    console.log(state.depsByPrice)
   }
 
+
   if(p > state.priceFilter.priceTwo && p <= state.priceFilter.priceThree ){
+    if(state.depsByPrice == 0) {
+      state.depsByPrice = state.depsByPrice
+    } else {
+      state.depsByPrice = []
+    }
     for(var i = 0 ; i < pt.length ; i++) {
       if(pt[i].priceTotal > state.priceFilter.priceTwo && pt[i].priceTotal <= state.priceFilter.priceThree ){
-        console.log(pt[i].priceTotal)
+        state.depsByPrice.push(pt[i])
       }
     }
+    console.log(state.depsByPrice)
   }
+
+
   if(p > state.priceFilter.priceThree && p <= state.priceFilter.priceFour ){
+    if(state.depsByPrice == 0) {
+      state.depsByPrice = state.depsByPrice
+    } else {
+      state.depsByPrice = []
+    }
     for(var i = 0 ; i < pt.length ; i++) {
       if(pt[i].priceTotal > state.priceFilter.priceThree && pt[i].priceTotal <= state.priceFilter.priceFour ){
-          console.log(pt[i].priceTotal)
+        state.depsByPrice.push(pt[i])
       }
     }
+    console.log(state.depsByPrice)
   }
+
   if(p > state.priceFilter.priceFour && p <= state.priceFilter.priceFive ){
+    if(state.depsByPrice == 0) {
+      state.depsByPrice = state.depsByPrice
+    } else {
+      state.depsByPrice = []
+    }
     for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal > state.priceFilter.priceFour && pt[i].priceTotal <= state.priceFilter.priceFive ){
-        console.log(pt[i].priceTotal)
+      if(pt[i].priceTotal > state.priceFilter.priceFour && pt[i].priceTotal <= state.priceFilter.priceFive){
+        state.depsByPrice.push(pt[i])
       }
     }
+    console.log(state.depsByPrice)
+
   }
+
 }
 
 const REMOVE_FILTER = (state, payload) => {
