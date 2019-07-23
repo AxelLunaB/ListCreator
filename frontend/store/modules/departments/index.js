@@ -21,23 +21,12 @@ const state = {
       id: 'statusId',
       value: null
     },
-    // {
-    //   id: 'priceTotal',
-    //   value: null
-    // },
     {
       id: 'level',
       value: null
     }
   ],
-  priceFilter: {
-    priceOne: 200000,
-    priceTwo: 250000,
-    priceThree: 300000,
-    priceFour: 350000,
-    priceFive: 400000
-  },
-  depsByPrice:[],
+  priceRange:0,
   query: null,
   isList: false,
   filterValue: "cons"

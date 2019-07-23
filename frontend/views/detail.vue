@@ -33,7 +33,7 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in rangeFilter" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
             </div>
           </div>
@@ -111,7 +111,8 @@
       return {
         detailTable: 3,
         isAnimated: true,
-        sDepartments:[]
+        sDepartments:[],
+        fDepartments:[]
       }
     },
     methods: {
@@ -150,7 +151,7 @@
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort",
-        priceSort: "departments/priceSort"
+        priceRange: "departments/priceRange"
       }),
       currentAvailability () {
           var cData= {}
@@ -180,7 +181,7 @@
 
          return cData
          },
- sortedArray() {
+         sortedArray() {
         let s =  this.filteredValue.toString()
         function compare(a, b) {
           if (a[s] < b[s])
@@ -237,15 +238,59 @@
        return this.sortedArray
           //return deptos.length > 0 ? this.sDepartments : this.sortedArray
 
+    },
+    rangeFilter(){
+      var pr = this.priceRange
+      if(this.fDepartments == 0) {
+        console.log("0")
+      } else {
+          this.fDepartments = [];
+      }
+      if( pr == 100000 ){
+      for(var i = 0; i < this.departments.length; i++){
+        if(this.departments[i].priceTotal < 200000) {
+          console.log("less than $200,000.00")
+          this.fDepartments.push(this.departments[i])
+          }
+        }
+      } else if (pr == 200000) {
+      for(var i = 0; i < this.departments.length; i++){
+        if(this.departments[i].priceTotal >= 200000 && this.departments[i].priceTotal < 250000 ) {
+          console.log("200000 - 2500000")
+          this.fDepartments.push(this.departments[i])
+          }
+        }
+      } else if (pr == 250000){
+      for(var i = 0; i < this.departments.length; i++){
+        if(this.departments[i].priceTotal >= 250000 && this.departments[i].priceTotal < 300000 ) {
+          console.log("250000-300000")
+          this.fDepartments.push(this.departments[i])
+          }
+        }
+      } else if (pr == 30000) {
+      for(var i = 0; i < this.departments.length; i++){
+        if(this.departments[i].priceTotal >= 300000 && this.departments[i].priceTotal < 350000 ) {
+          console.log("300000 - 350000")
+          this.fDepartments.push(this.departments[i])
+          }
+        }
+      } else if (pr == 350000) {
+      for(var i = 0; i < this.departments.length; i++){
+        if(this.departments[i].priceTotal >= 350000) {
+          console.log("+350000")
+          this.fDepartments.push(this.departments[i])
+          }
+        }
+      }
+      return this.fDepartments;
     }
-      },
+  },
       watch : {
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
       }
     }
-
 
 </script>
 

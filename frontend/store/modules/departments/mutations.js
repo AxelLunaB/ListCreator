@@ -33,84 +33,7 @@ const SET_FILTER = (state, payload) => {
 };
 
 const PRICE_FILTER = (state,payload)=> {
-  var p = payload.value
-  var pt =state.departments
-
-
-  if(p <= state.priceFilter.priceOne){
-    if(state.depsByPrice == 0) {
-      state.depsByPrice = state.depsByPrice
-    } else {
-      state.depsByPrice = []
-    }
-    for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal < state.priceFilter.priceOne){
-        state.depsByPrice.push(pt[i])
-      }
-    }
-    console.log(state.depsByPrice)
-  }
-
-
-  if(p > state.priceFilter.priceOne && p <= state.priceFilter.priceTwo ){
-    if(state.depsByPrice == 0) {
-      state.depsByPrice = state.depsByPrice
-    } else {
-      state.depsByPrice = []
-    }
-    for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal > state.priceFilter.priceOne && pt[i].priceTotal <= state.priceFilter.priceTwo ){
-        state.depsByPrice.push(pt[i])
-      }
-    }
-    console.log(state.depsByPrice)
-  }
-
-
-  if(p > state.priceFilter.priceTwo && p <= state.priceFilter.priceThree ){
-    if(state.depsByPrice == 0) {
-      state.depsByPrice = state.depsByPrice
-    } else {
-      state.depsByPrice = []
-    }
-    for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal > state.priceFilter.priceTwo && pt[i].priceTotal <= state.priceFilter.priceThree ){
-        state.depsByPrice.push(pt[i])
-      }
-    }
-    console.log(state.depsByPrice)
-  }
-
-
-  if(p > state.priceFilter.priceThree && p <= state.priceFilter.priceFour ){
-    if(state.depsByPrice == 0) {
-      state.depsByPrice = state.depsByPrice
-    } else {
-      state.depsByPrice = []
-    }
-    for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal > state.priceFilter.priceThree && pt[i].priceTotal <= state.priceFilter.priceFour ){
-        state.depsByPrice.push(pt[i])
-      }
-    }
-    console.log(state.depsByPrice)
-  }
-
-  if(p > state.priceFilter.priceFour && p <= state.priceFilter.priceFive ){
-    if(state.depsByPrice == 0) {
-      state.depsByPrice = state.depsByPrice
-    } else {
-      state.depsByPrice = []
-    }
-    for(var i = 0 ; i < pt.length ; i++) {
-      if(pt[i].priceTotal > state.priceFilter.priceFour && pt[i].priceTotal <= state.priceFilter.priceFive){
-        state.depsByPrice.push(pt[i])
-      }
-    }
-    console.log(state.depsByPrice)
-
-  }
-
+  state.priceRange = payload.value
 }
 
 const REMOVE_FILTER = (state, payload) => {
@@ -118,6 +41,10 @@ const REMOVE_FILTER = (state, payload) => {
   state.specialFilter.forEach (filter => {
     if(filter.value != null) {
       filter.value = null
+    }
+
+    if(state.priceRange != 0) {
+      state.priceRange = 0
     }
   })
 
