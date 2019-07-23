@@ -24,6 +24,10 @@ const state = {
     {
       id: 'level',
       value: null
+    },
+    {
+      id: 'price',
+      value: null
     }
   ],
   priceRange:0,

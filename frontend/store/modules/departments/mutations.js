@@ -1,4 +1,5 @@
 const DEPARTMENTS_UPDATED = (state, departments) => {
+
   state.departments = departments;
 };
 
@@ -33,7 +34,7 @@ const SET_FILTER = (state, payload) => {
 };
 
 const PRICE_FILTER = (state,payload)=> {
-  state.priceRange = payload.value
+  state.specialFilter[2].value = payload.value
 }
 
 const REMOVE_FILTER = (state, payload) => {

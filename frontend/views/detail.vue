@@ -33,7 +33,7 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in rangeFilter" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
             </div>
           </div>
@@ -181,7 +181,8 @@
 
          return cData
          },
-         sortedArray() {
+
+      sortedArray() {
         let s =  this.filteredValue.toString()
         function compare(a, b) {
           if (a[s] < b[s])
@@ -194,100 +195,133 @@
      return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
     },
      filtersArray () {
-      let filters = this.specialSort
-      var deptos = []
-      this.sDepartments = []
+        let filters = this.specialSort
+        var deptos = []
+        this.sDepartments = []
 
-       this.departments.forEach ((dep, index) => {
-        filters.forEach (filter => {
-          if(filter.value === null)
-           return
-          if(dep[filter.id] == filter['value']) {
-            let shouldAdd = true
-            for( var i = 0; i < deptos.length; i++) {
-              if(deptos[i].id == dep.id) {
-                shouldAdd = false
+        this.departments.forEach ((dep, index) => {
+          filters.forEach (filter => {
+            if(filter.value === null || filter.value == 0 || filter.id == 'price')
+            return
+            if(dep[filter.id] == filter['value']) {
+              let shouldAdd = true
+              for( var i = 0; i < deptos.length; i++) {
+                if(deptos[i].id == dep.id) {
+                  shouldAdd = false
+                }
               }
+              if (shouldAdd === true) {
+              deptos.push(dep)
             }
-            if (shouldAdd === true) {
-            deptos.push(dep)
           }
-        }
+        })
       })
-    })
 
-      if(deptos.length > 0) {
-       for (var i = deptos.length -1 ; i >= 0; i--) {
-        for (let a = 0; a < filters.length; a ++) {
+        if(deptos.length > 0) {
+        for (var i = deptos.length -1 ; i >= 0; i--) {
+          for (let a = 0; a < filters.length; a ++) {
 
-          if(filters[a].value == null) {
-          continue
-          }
-          if(deptos[i][filters[a].id] != filters[a].value) {
-            deptos.splice (i,1)
-            break
+            if(filters[a].value == null || filters[a].id == 'price') {
+            continue
+            }
+            if(deptos[i][filters[a].id] != filters[a].value) {
+              deptos.splice (i,1)
+              break
+            }
           }
         }
       }
-    }
 
-      console.log(this.sDepartments);
-      console.log(deptos)
-      this.sDepartments = deptos
-      // return deptos.length > 0 ? this.sDepartments : this.sortedArray
-       return this.sortedArray
-          //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+      // console.log(filters)
+      // console.log(deptos.length);
 
-    },
-    rangeFilter(){
-      var pr = this.priceRange
-      this.fDepartments = this.departments;
 
-      if( pr == 100000 ){
-        this.fDepartments = []
-        for(var i = 0; i < this.departments.length; i++){
-          if(this.departments[i].priceTotal < 200000) {
-            this.fDepartments.push(this.departments[i])
-            }
+
+        // console.log("----------------");
+        // console.log(deptos);
+          console.log(deptos.length);
+
+       const pr = filters[2].value;
+       var canApply = false;
+       if(pr != null && pr != 0) {
+         console.log("im in");
+
+          if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
+            console.log("im in boss");
+
+            deptos = Array.from(this.departments)
+            console.log(this.departments);
+
+            canApply = true;
+          } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
+            deptos = Array.from(this.departments)
+            canApply = true;
+          } else if (deptos.length > 0) {
+             canApply = true;
           }
-      }else if (pr == 200000) {
-        this.fDepartments = []
-        for(var i = 0; i < this.departments.length; i++){
-          if(this.departments[i].priceTotal >= 200000 && this.departments[i].priceTotal < 250000 ) {
-            this.fDepartments.push(this.departments[i])
-            }
-        }
-      } else if (pr == 250000){
-        this.fDepartments = []
-        for(var i = 0; i < this.departments.length; i++){
-          if(this.departments[i].priceTotal >= 250000 && this.departments[i].priceTotal < 300000 ) {
-            this.fDepartments.push(this.departments[i])
-            }
-          }
-      } else if (pr == 30000) {
-        this.fDepartments = []
-        for(var i = 0; i < this.departments.length; i++){
-          if(this.departments[i].priceTotal >= 300000 && this.departments[i].priceTotal < 350000 ) {
-            this.fDepartments.push(this.departments[i])
-            }
-          }
-      } else if (pr == 350000) {
-          this.fDepartments = []
-          for(var i = 0; i < this.departments.length; i++){
-            if(this.departments[i].priceTotal >= 350000) {
-              this.fDepartments.push(this.departments[i])
+
+
+          if(canApply){
+            console.log("can apply to");
+            console.log(deptos);
+
+
+              switch (pr) {
+                case 100000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 200000 ) {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                    console.log(this.departments);
+
+                break;
+                case 200000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal < 250000 ) {
+
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
               }
             }
+           }
+
+      //   console.log(deptos);
+
+      //  console.log("----------------");
+
+
+        console.log(this.sDepartments);
+        console.log(deptos)
+        console.log(this.departments);
+
+        this.sDepartments = deptos
+        // return deptos.length > 0 ? this.sDepartments : this.sortedArray
+        return this.sortedArray
+            //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+
       }
-      return this.fDepartments;
-    }
-  },
+    },
       watch : {
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
       }
-    }
+  }
 
 </script>
 
