@@ -14,7 +14,7 @@ module.exports = (app) => {
   }, {});
   commissions.associate = function(models) {
     commissions.belongsTo(models.status);
-    commissions.belongsTo(models.executives);
+    commissions.belongsTo(models.users);
   };
   return commissions;
 };

@@ -1,5 +1,5 @@
 const users = require('./users/users.service.js');
-const executives = require('./executives/executives.service.js');
+// const executives = require('./executives/executives.service.js');
 const departments = require('./departments/departments.service.js');
 const contracts = require('./contracts/contracts.service.js');
 const commissions = require('./commissions/commissions.service.js');
@@ -18,7 +18,7 @@ const customers = require('./customers/customers.service.js');
 module.exports = function (app) {
   app.configure(users);
   app.configure(customers);
-  app.configure(executives);
+  // app.configure(executives);
   app.configure(departments);
   app.configure(contracts);
   app.configure(commissions);

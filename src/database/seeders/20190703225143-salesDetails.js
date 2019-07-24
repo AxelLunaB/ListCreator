@@ -13,7 +13,7 @@ module.exports = {
         seed.push({
           referral: data[1] != 'null' ? data[1] : null,
           salesChannel: data[2] != 'null' ? data[2] : null,
-          executiveId: data[3] != 'null' ? data[3] : null,
+          userId: data[3] != 'null' ? data[3] : null,
           createdAt: new Date(),
           updatedAt: new Date()
 
