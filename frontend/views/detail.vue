@@ -56,17 +56,18 @@
   import { mapActions } from "vuex";
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
-  import returnPage from "./components/returnPage.vue";
+  // import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
   import filterTable from "./components/filterTable.vue"
+  import swal from "sweetalert";
 
   export default {
     components: {
       detailTable,
-      returnPage,
+      // returnPage,
       towerdetail,
       fullListView,
       filterTable
@@ -191,8 +192,31 @@
           return 1;
           return 0;
       }
+    //if 0 return compare
 
-     return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
+    //  return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
+
+        var verify = null
+
+         if(this.sDepartments.length > 0) {
+
+           verify = this.sDepartments.sort(compare)
+
+         } else if( this.specialSort[0].value == null && this.specialSort[1].value == null && this.specialSort[2].value == null) {
+
+           verify = this.departments.sort(compare)
+
+         } else {
+            verify = this.sDepartments.sort(compare)
+            swal({
+              text: "No departments within range.",
+              icon: "warning",
+              buttons: false,
+              timer: 3000
+          });
+         }
+
+         return verify
     },
      filtersArray () {
         let filters = this.specialSort
@@ -232,25 +256,14 @@
         }
       }
 
-      // console.log(filters)
-      // console.log(deptos.length);
-
-
-
-        // console.log("----------------");
-        // console.log(deptos);
-          console.log(deptos.length);
-
        const pr = filters[2].value;
        var canApply = false;
        if(pr != null && pr != 0) {
-         console.log("im in");
 
           if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
-            console.log("im in boss");
 
             deptos = Array.from(this.departments)
-            console.log(this.departments);
+
 
             canApply = true;
           } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
@@ -260,10 +273,7 @@
              canApply = true;
           }
 
-
           if(canApply){
-            console.log("can apply to");
-            console.log(deptos);
 
 
               switch (pr) {
@@ -278,14 +288,13 @@
                       }
 
                     }
-                    console.log(this.departments);
 
                 break;
                 case 200000:
                     for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-                      if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal < 250000 ) {
+                      if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
 
 
                       }else {
@@ -296,6 +305,48 @@
 
                     }
                 break;
+                case 250000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
+
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
+                case 300000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
+                case 350000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  < 350000 ) {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+
+                break;
               }
             }
            }
@@ -304,10 +355,6 @@
 
       //  console.log("----------------");
 
-
-        console.log(this.sDepartments);
-        console.log(deptos)
-        console.log(this.departments);
 
         this.sDepartments = deptos
         // return deptos.length > 0 ? this.sDepartments : this.sortedArray
