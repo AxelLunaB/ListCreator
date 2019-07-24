@@ -16,6 +16,12 @@ const state = {
     reserved: 0,
     sold: 0
   },
+  monthlySales:{
+    antMonth: 10,
+    penMonth: 8,
+    pastMonth:6,
+    currentMonth:4
+  },
   specialFilter: [
     {
       id: 'statusId',

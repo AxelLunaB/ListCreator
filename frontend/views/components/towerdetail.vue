@@ -428,6 +428,7 @@ export default {
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
+          monthlySales: "departments/monthlySales"
       }),
     shouldShow() {
       return this.show;
@@ -471,10 +472,10 @@ export default {
     }
     ,
     dynamicBar(){
-      this.mydata[0] = 4 //add dynamic data in this array
-      this.mydata[1] = 2
-      this.mydata[2] = 3
-      this.mydata[3] = 1
+      this.mydata[0] = this.monthlySales.antMonth
+      this.mydata[1] = this.monthlySales.penMonth
+      this.mydata[2] = this.monthlySales.pastMonth
+      this.mydata[3] = this.monthlySales.currentMonth
 
       return this.mydata
     }
