@@ -351,10 +351,6 @@
             }
            }
 
-      //   console.log(deptos);
-
-      //  console.log("----------------");
-
 
         this.sDepartments = deptos
         // return deptos.length > 0 ? this.sDepartments : this.sortedArray
