@@ -24,7 +24,7 @@ const SET_VIEW_TYPE = (state) => {
 };
 
 const SET_FILTER = (state, payload) => {
-
+  console.log(payload);
   if(payload != state.filterValue) {
     state.filterValue = payload;
   } else {

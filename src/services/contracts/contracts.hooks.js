@@ -70,6 +70,18 @@ module.exports = {
             })
           }
         }
+      },
+      async context => {
+        for (i = 0; i < context.result.data.length; i++) {
+
+          let contract = context.result.data[i];
+          if(contract.referenceId != null){
+            await context.app.service('api/references').get(contract.referenceId).then(result => {
+              contract.reference = result;
+
+            })
+          }
+        }
       }
     ],
     get: [

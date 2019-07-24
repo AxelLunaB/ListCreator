@@ -14,13 +14,15 @@
         <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
 
           <!--<i class="fas fa-user"></i>-->
-          <img style="width: 38px; height: 38px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'" />
+          <img style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'" />
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>
           <li class="dropdown-divider"></li>
           </span>
         <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
+          <p style="color: white; margin: 0">{{currentUser.name}}</p>
+          <li class="dropdown-divider"></li>
           <a href="#">Settings</a>
           <li class="dropdown-divider"></li>
           <a href="/logout"><b>Log out</b></a>

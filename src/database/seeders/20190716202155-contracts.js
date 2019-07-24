@@ -24,6 +24,7 @@ module.exports = {
           paymentId: data[11] != 'null' ? data[11] : null,
           salesDetailId: data[12] != 'null' ? data[12] : null,
           customerId: data[13] != 'null' ? data[13] : null,
+          referenceId: data[14] != 'null' ? data[14] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         })
