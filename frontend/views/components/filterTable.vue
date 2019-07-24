@@ -19,7 +19,7 @@
               </span>
               </div>
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setSpecialFilter('priceTotal')" value="precio" id="name">Price</button>
+              <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">

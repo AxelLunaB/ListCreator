@@ -192,9 +192,6 @@
           return 1;
           return 0;
       }
-    //if 0 return compare
-
-    //  return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
 
         var verify = null
 
