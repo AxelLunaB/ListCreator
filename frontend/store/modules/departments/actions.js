@@ -79,6 +79,12 @@ const setSpecialFilter = (context, payload) => {
 
 };
 
+const setPriceFilter = (context, payload) => {
+
+  context.commit('PRICE_FILTER', payload);
+
+};
+
 const removeSpecialFilter = (context, payload) => {
 
   context.commit('REMOVE_FILTER', payload);
@@ -110,7 +116,6 @@ const setCurrentAvailability = (context, payload) =>{
 
 
 
-
 export default {
   getDepartments,
   setCurrentAvailability,
@@ -123,5 +128,6 @@ export default {
   setListType,
   setFilter,
   setSpecialFilter,
-  removeSpecialFilter
+  removeSpecialFilter,
+  setPriceFilter
 }

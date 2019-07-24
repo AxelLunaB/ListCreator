@@ -22,14 +22,15 @@ const state = {
       value: null
     },
     {
-      id: 'type',
+      id: 'level',
       value: null
     },
     {
-      id: 'level',
+      id: 'price',
       value: null
     }
   ],
+  priceRange:0,
   query: null,
   isList: false,
   filterValue: "cons"

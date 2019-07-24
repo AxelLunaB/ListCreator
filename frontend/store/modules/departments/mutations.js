@@ -1,4 +1,5 @@
 const DEPARTMENTS_UPDATED = (state, departments) => {
+
   state.departments = departments;
 };
 
@@ -32,11 +33,19 @@ const SET_FILTER = (state, payload) => {
 
 };
 
+const PRICE_FILTER = (state,payload)=> {
+  state.specialFilter[2].value = payload.value
+}
+
 const REMOVE_FILTER = (state, payload) => {
 
   state.specialFilter.forEach (filter => {
     if(filter.value != null) {
       filter.value = null
+    }
+
+    if(state.priceRange != 0) {
+      state.priceRange = 0
     }
   })
 
@@ -90,5 +99,6 @@ export default {
   SET_FILTER,
   SPECIAL_FILTER,
   REMOVE_FILTER,
-  UPDATE_AVAILABILITY
+  UPDATE_AVAILABILITY,
+  PRICE_FILTER
 };

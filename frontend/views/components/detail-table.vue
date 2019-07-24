@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
   props: ["detailTable","contracts"],
   data(){
@@ -48,7 +49,7 @@ export default {
       else {
         return '#ffffff'
       }
-    },
+    }
   }
 }
 </script>
@@ -84,8 +85,6 @@ tr td {
 .row {
   margin-left:0;
   margin-right: 0;
-  padding-left:0;
-  padding-right:0;
 }
 
 .table-hover tbody tr:hover {

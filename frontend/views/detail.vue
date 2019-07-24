@@ -13,6 +13,7 @@
           </div>
         </div>
       </div>
+      <filter-table />
       <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
@@ -32,7 +33,7 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in departments" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
               </div>
             </div>
           </div>
@@ -55,18 +56,21 @@
   import { mapActions } from "vuex";
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
-  import returnPage from "./components/returnPage.vue";
+  // import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
+  import filterTable from "./components/filterTable.vue"
+  import swal from "sweetalert";
 
   export default {
     components: {
       detailTable,
-      returnPage,
+      // returnPage,
       towerdetail,
-      fullListView
+      fullListView,
+      filterTable
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -107,7 +111,9 @@
     data(){
       return {
         detailTable: 3,
-        isAnimated: true
+        isAnimated: true,
+        sDepartments:[],
+        fDepartments:[]
       }
     },
     methods: {
@@ -145,7 +151,8 @@
         searchQuery: "departments/query",
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
-        specialSort: "departments/specialSort"
+        specialSort: "departments/specialSort",
+        priceRange: "departments/priceRange"
       }),
       currentAvailability () {
           var cData= {}
@@ -174,15 +181,190 @@
            }
 
          return cData
+         },
+
+      sortedArray() {
+        let s =  this.filteredValue.toString()
+        function compare(a, b) {
+          if (a[s] < b[s])
+          return -1;
+          if (a[s] > b[s])
+          return 1;
+          return 0;
+      }
+    //if 0 return compare
+
+    //  return this.sDepartments.length > 0 ? this.sDepartments.sort(compare) : this.departments.sort(compare);
+
+        var verify = null
+
+         if(this.sDepartments.length > 0) {
+
+           verify = this.sDepartments.sort(compare)
+
+         } else if( this.specialSort[0].value == null && this.specialSort[1].value == null && this.specialSort[2].value == null) {
+
+           verify = this.departments.sort(compare)
+
+         } else {
+            verify = this.sDepartments.sort(compare)
+            swal({
+              text: "No departments within range.",
+              icon: "warning",
+              buttons: false,
+              timer: 3000
+          });
          }
-      },
+
+         return verify
+    },
+     filtersArray () {
+        let filters = this.specialSort
+        var deptos = []
+        this.sDepartments = []
+
+        this.departments.forEach ((dep, index) => {
+          filters.forEach (filter => {
+            if(filter.value === null || filter.value == 0 || filter.id == 'price')
+            return
+            if(dep[filter.id] == filter['value']) {
+              let shouldAdd = true
+              for( var i = 0; i < deptos.length; i++) {
+                if(deptos[i].id == dep.id) {
+                  shouldAdd = false
+                }
+              }
+              if (shouldAdd === true) {
+              deptos.push(dep)
+            }
+          }
+        })
+      })
+
+        if(deptos.length > 0) {
+        for (var i = deptos.length -1 ; i >= 0; i--) {
+          for (let a = 0; a < filters.length; a ++) {
+
+            if(filters[a].value == null || filters[a].id == 'price') {
+            continue
+            }
+            if(deptos[i][filters[a].id] != filters[a].value) {
+              deptos.splice (i,1)
+              break
+            }
+          }
+        }
+      }
+
+       const pr = filters[2].value;
+       var canApply = false;
+       if(pr != null && pr != 0) {
+
+          if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
+
+            deptos = Array.from(this.departments)
+
+
+            canApply = true;
+          } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
+            deptos = Array.from(this.departments)
+            canApply = true;
+          } else if (deptos.length > 0) {
+             canApply = true;
+          }
+
+          if(canApply){
+
+
+              switch (pr) {
+                case 100000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 200000 ) {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+
+                break;
+                case 200000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
+
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
+                case 250000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
+
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
+                case 300000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
+
+                      }else {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+                break;
+                case 350000:
+                    for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+                      if(deptos[i].priceTotal  < 350000 ) {
+
+                        deptos.splice (i,1)
+
+                      }
+
+                    }
+
+                break;
+              }
+            }
+           }
+
+
+        this.sDepartments = deptos
+        // return deptos.length > 0 ? this.sDepartments : this.sortedArray
+        return this.sortedArray
+            //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+
+      }
+    },
       watch : {
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
       }
-    }
-
+  }
 
 </script>
 
@@ -249,7 +431,6 @@
     justify-content: space-between;
     max-width: 1000px;
     margin:0 auto;
-    padding-bottom:25px;
   }
 
   .buttons-header {
@@ -281,6 +462,8 @@
 
   .header-t {
     height: 50px;
+    text-align:center!important;
+    vertical-align:middle!important;
   }
 
   .navbar-container {

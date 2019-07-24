@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 2;">
+  <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
     <a class="navbar-brand" href="#"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
@@ -12,7 +12,9 @@
           </div>
 
         <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
-          <i class="fas fa-user"></i>
+
+          <!--<i class="fas fa-user"></i>-->
+          <img style="width: 38px; height: 38px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'" />
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>

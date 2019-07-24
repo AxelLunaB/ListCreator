@@ -40,7 +40,6 @@ import { mapGetters } from "vuex";
 import department from "./components/departments.vue";
 import departmentDetail from "./components/departmentDetail.vue";
 import newDepartment from "./components/newDepartment.vue";
-import filterDepartment from "./components/filter.vue";
 import arrow from "./components/arrow.vue"
 // import { lookup } from 'dns';
 
@@ -49,7 +48,6 @@ export default {
     department,
     departmentDetail,
     newDepartment,
-    filterDepartment,
     arrow
   },
   mounted: function() {

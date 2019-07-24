@@ -17,7 +17,7 @@ module.exports = {
           brokerCommissions: data[5] != 'null' ? data[5] : null,
           totalCommissions: data[6] != 'null' ? data[6] : null,
           statusId: data[7] != 'null' ? data[7] : null,
-          executiveId: data[8] != 'null' ? data[8] : null,
+          userId: data[8] != 'null' ? data[8] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         })
