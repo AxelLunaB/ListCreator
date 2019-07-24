@@ -306,7 +306,7 @@
               :bordercolor="mybordercolor"
               :datalabel="mylabel"
               :labels="pastMonths"
-              :data="mydata"
+              :data="dynamicBar"
               v-bind:option="myoption"
               style="width:100%;">
       </chartjs-bar>
@@ -377,7 +377,7 @@ export default {
       'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
-    mydata : [0, 0, 1, 0, 0],
+    mydata : [],
         myoption: {
           legend: {
             display:false
@@ -469,10 +469,15 @@ export default {
       var anteMonth = (monthName(month-3))
       return [anteMonth,PenMonth,lastMonth,c]
     }
-    //,
-    // dynamicBar(){
+    ,
+    dynamicBar(){
+      this.mydata[0] = 4 //add dynamic data in this array
+      this.mydata[1] = 2
+      this.mydata[2] = 3
+      this.mydata[3] = 1
 
-    // }
+      return this.mydata
+    }
   }
 }
 </script>
