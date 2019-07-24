@@ -239,9 +239,10 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 0;
     max-width: 1200px;
     margin-top:30px;
+    width:80vw;
   }
 
 @media (max-width: 769px) {
