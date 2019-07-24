@@ -392,7 +392,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:10,
+              max:0, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
