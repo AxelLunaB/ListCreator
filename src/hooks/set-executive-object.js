@@ -4,8 +4,8 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    if(context.result.executiveId != null) {
-    await context.app.service('executives').find({ query: { id: context.result.executiveId } }).then(result => {
+    if(context.result.userId != null) {
+    await context.app.service('users').find({ query: { id: context.result.userId } }).then(result => {
       if (result.data.length > 0) {
         delete result.data[0].password;
         delete result.data[0].usertype;

@@ -12,7 +12,9 @@
           </div>
 
         <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
-          <i class="fas fa-user"></i>
+
+          <!--<i class="fas fa-user"></i>-->
+          <img style="width: 38px; height: 38px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'" />
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>

@@ -18,7 +18,7 @@ module.exports = {
           contactNumber: data[3],
           email: data[4],
           password: bcrypt.hashSync(data[5], salt),
-          userType: data[6],
+          type: data[6],
           createdAt: new Date(),
           updatedAt: new Date()
         })
@@ -27,7 +27,7 @@ module.exports = {
         resolve(seed);
       })
     }).then(seed => {
-      return queryInterface.bulkInsert('executives', seed, {});
+      return queryInterface.bulkInsert('users', seed, {});
     });
     return x;
   },
