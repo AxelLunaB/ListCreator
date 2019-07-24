@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 2;">
-    <a class="navbar-brand" href="#"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
+    <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
           <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
