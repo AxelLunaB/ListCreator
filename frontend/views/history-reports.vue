@@ -29,10 +29,8 @@
       </table>
       <table class="table table-hover">
           <thead>
-          <tr>
-            <th v-for="item in departments" :key="item.id">
-
-            </th> <!--Reports here-->
+          <tr v-for="item in departments" :key="item.id">
+            <th></th> <!--Reports here-->
           </tr>
         </thead>
       </table>
@@ -58,8 +56,52 @@
 import $ from "jquery";
 import { mapGetters } from "vuex";
 import { Printd} from 'printd';
+import io from "socket.io-client";
+import departmentHistoric from "./components/departmentHistoric.vue";
+import cookie from "../utils/cookie";
+
+const DEPARTMENT = 0;
+const LOTS = 1;
+const LOT_DETAIL = 2;
+const DEPARTMENT_DETAIL = 3;
+
+
+var socket = io();
 
 export default {
+  mounted: function () {
+    const _ = this;
+    this.$eventHub.$on("add-department-historic-detail", department => {
+      this.selectedDepartment = department;
+      this.view = DEPARTMENT_DETAIL;
+      this.retrieveData();
+    });
+    socket.emit(
+      "authenticate", {
+        strategy: "jwt",
+        accessToken: cookie()
+      },
+      function (message, data) {
+        _.retrieveData();
+      }
+    );
+    var isAuthenticated = this.$store.state.others.isAuthenticated;
+    if (isAuthenticated) {
+      // Dispatch actions &&  subscribe to rt events.
+      this.$store.dispatch("users/getUsers");
+      this.$store.dispatch("users/listenEvents");
+      // listen to authenticated event
+    } else {
+      let _ = this;
+      this.$eventHub.$on("authenticated", function () {
+        _.$store.dispatch("users/getUsers");
+        _.$store.dispatch("users/listenEvents");
+      });
+    }
+  },
+  components: {
+    departmentHistoric
+  },
   data() {
     return {
       header:[
@@ -93,8 +135,12 @@ export default {
         } else {
           this.departments = this.dateArray;
         }
-
       },
+      // print(item){ this is the function that handles the printd plugin
+      // const cssText =`` here's where the css template of whatever we want to print will be
+      // const d = newPrintd();
+      // d.print(document.getEelementById('willPrint'),[cssText])
+      //},
     goToPage(page) {
       this.index = page;
       this.retrieveData();
@@ -118,16 +164,41 @@ export default {
       // console.log(n,cssClass);
 
       return cssClass;
+      },
+    retrieveDepartmentHistorics(query) {
+      const _ = this;
+      var q = {
+        $skip: _.index * _.limit
+      };
+      if (query != null || query != undefined) {
+        for (var k in query) {
+          q[k] = query[k];
+        }
       }
-      ,
-      print(){
-        const cssText = `` //here goes the css of the div we will print
-      }
-
-    },
+      socket.emit("api/departments-historics::find", q, (error, department) => {
+        _.total = department.total;
+        _.limit = department.limit;
+        _.pages = department.total / department.limit;
+        _.departments = [];
+        department.data.forEach(element => {
+          _.departments.push(element);
+        });
+        _.dateArray = _.departments;
+        });
+      },
+      retrieveData(){
+        if (this.view === DEPARTMENT) {
+          this.retrieveDepartmentHistorics();
+          } else if (this.view === DEPARTMENT_DETAIL){
+            this.retrieveDepartmentHistorics({
+              departmentid: this.selectedDepartment.departmentid
+              });
+            }
+          }
+        },
     computed:{
       ...mapGetters({
-        //here b getters
+        users: "users/users"
       }),
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {

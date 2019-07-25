@@ -259,14 +259,6 @@
                               <td class="textalign">Closing Date</td>
                               <td class="text-right">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
                           </tr>
-                          <!-- <tr>
-                              <td class="textalign">Renewal</td>
-                              <td class="text-center">{{contract.years != 0 && contract.percent != null ? contract.years : "-"}} </td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">Renewal years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
-                          </tr> -->
                           </tbody>
                       </table>
                   </div>
