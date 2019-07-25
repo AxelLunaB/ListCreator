@@ -280,7 +280,7 @@
             <div class="row">
               <div class="col-12" style="flex-direction:column;">
                 <h5 class="m-t-0 m-b-30 text-left">AVAILABILITY</h5>
-                <div style="width:100%;display:flex;justify-content:center;">()
+                <div style="width:100%;display:flex;justify-content:center;">
                   <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="dynamicChart"

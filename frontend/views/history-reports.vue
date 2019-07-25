@@ -30,19 +30,21 @@
       <table class="table table-hover">
           <thead>
           <tr>
-            <th></th> <!--Reports here-->
+            <th v-for="item in departments" :key="item.id">
+
+            </th> <!--Reports here-->
           </tr>
         </thead>
       </table>
     </div>
-    <nav class="pagination" role="navigation" aria-label="Page navigation">
+    <nav class="pagination" role="navigation" aria-label="Page navigation" v-if="index != 0">
       <button class="btn btn-outline-light pagination-previous" v-on:click="prevPage">Previous</button>
       <ul class="pagination-list pagination-wrapper">
         <li v-for="n in pagesDisplay" :key="n" v-on:click="goToPage(n)" class="page-item">
-          <a :class="pageClass(n)" aria-label="Goto page 1" class="page-link">{{n+1}}</a>
+          <a :class="pageClass(n)" aria-label="Goto page 1" class="page-link btn btn-outline-light">{{n+1}}</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light pagination-next" v-on:click="nextPage">Next page</button>
+      <button class="btn btn-outline-light pagination-next" v-on:click="nextPage">Next</button>
     </nav>
     <!--Print section-->
     <div class="willPrint d-none" id="willPrint">
@@ -67,8 +69,11 @@ export default {
         {title:'PRICE'},
         {title:'INFO'}
       ],
+      index:0,
       initDate: null,
-      endDate:null
+      endDate:null,
+      departments:[],
+      selectedDepartment:{}
     }
   },
   methods:{
@@ -114,33 +119,36 @@ export default {
 
       return cssClass;
       }
+      ,
+      print(){
+        const cssText = `` //here goes the css of the div we will print
+      }
+
     },
     computed:{
       ...mapGetters({
         //here b getters
       }),
       pagesDisplay() {
-        var array= [0,2,3,4]
-        return array
-        // if (Math.ceil(this.pages) > 10) {
-        //   var array = [0, 1];
-        //   var start = this.index > 3 ? this.index : 4;
-        //   for (var i = 0, j = start - 2; i < 5; i++) {
-        //     var k = j + i;
-        //     if (k <= Math.ceil(this.pages) - 3) {
-        //       array.push(k);
-        //     }
-        //   }
-        //   array.push(Math.ceil(this.pages) - 2);
-        //   array.push(Math.ceil(this.pages) - 1);
-        //   return array;
-        // } else {
-        //   var array = [];
-        //   for (i = 0; i < Math.ceil(this.pages); i++) {
-        //     array.push(i);
-        //   }
-        //   return array;
-        // }
+        if (Math.ceil(this.pages) > 10) {
+          var array = [0, 1];
+          var start = this.index > 3 ? this.index : 4;
+          for (var i = 0, j = start - 2; i < 5; i++) {
+            var k = j + i;
+            if (k <= Math.ceil(this.pages) - 3) {
+              array.push(k);
+            }
+          }
+          array.push(Math.ceil(this.pages) - 2);
+          array.push(Math.ceil(this.pages) - 1);
+          return array;
+        } else {
+          var array = [];
+          for (i = 0; i < Math.ceil(this.pages); i++) {
+            array.push(i);
+          }
+          return array;
+        }
       }
     }
   }
@@ -187,7 +195,7 @@ export default {
     padding: 20px;
     border-radius: 10px;
     width:80vw;
-    max-width: 1200px;
+    max-width: 1000px;
   }
 
     .history-body {
@@ -196,7 +204,7 @@ export default {
     border-radius: 10px;
     width:80vw;
     margin-top:50px;
-    max-width: 1200px;
+    max-width: 1000px;
   }
 
   .history-titles h2,
@@ -215,11 +223,20 @@ export default {
     bottom: 10px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 0;
-    max-width: 1200px;
-    width:66vw;
+    justify-content: space-evenly;
     margin-bottom:0;
+    padding-left:0;
+    list-style: none;
+  }
+
+  .pagination {
+    width:80vw;
+    margin-top:50px;
+    max-width: 1000px;
+  }
+
+  .page-link {
+    background: none;
   }
 
     @media (max-width: 769px) {
