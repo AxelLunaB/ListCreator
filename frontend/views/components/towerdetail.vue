@@ -259,14 +259,6 @@
                               <td class="textalign" style="padding-top:15px;">Closing Date</td>
                               <td class="text-right">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
                           </tr>
-                          <!-- <tr>
-                              <td class="textalign">Renewal</td>
-                              <td class="text-center">{{contract.years != 0 && contract.percent != null ? contract.years : "-"}} </td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">Renewal years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
-                          </tr> -->
                           </tbody>
                       </table>
                   </div>
@@ -310,8 +302,8 @@
               :backgroundcolor="mybackgroundcolor"
               :bordercolor="mybordercolor"
               :datalabel="mylabel"
-              :labels="mylabels"
-              :data="mydata"
+              :labels="pastMonths"
+              :data="dynamicBar"
               v-bind:option="myoption"
               style="width:100%;">
       </chartjs-bar>
@@ -383,8 +375,7 @@ export default {
       'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
-    mylabels : ['January', 'February', 'March', 'June', 'July'],
-    mydata : [0, 0, 1, 0, 0],
+    mydata : [],
         myoption: {
           legend: {
             display:false
@@ -399,7 +390,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:10,
+              max:0, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
@@ -435,6 +426,7 @@ export default {
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
+          monthlySales: "departments/monthlySales"
       }),
     shouldShow() {
       return this.show;
@@ -466,6 +458,24 @@ export default {
       this.datasets[0].data[1] = this.cAvailability.reserved
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
+    },
+    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+      var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
+      var month = new Date().getMonth();
+      var c = (monthName(month))
+      var lastMonth = (monthName(month-1))
+      var PenMonth = (monthName(month-2))
+      var anteMonth = (monthName(month-3))
+      return [anteMonth,PenMonth,lastMonth,c]
+    }
+    ,
+    dynamicBar(){
+      this.mydata[0] = this.monthlySales.antMonth
+      this.mydata[1] = this.monthlySales.penMonth
+      this.mydata[2] = this.monthlySales.pastMonth
+      this.mydata[3] = this.monthlySales.currentMonth
+
+      return this.mydata
     }
   }
 }

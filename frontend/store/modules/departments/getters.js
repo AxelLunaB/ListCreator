@@ -6,6 +6,7 @@ const specialSort = (state) => state.specialFilter;
 const currentAvailability = (state) => state.currentAvailability;
 const priceRange = (state) => state.priceRange;
 
+const monthlySales = (state) => state.monthlySales;
 export default {
   departments,
   query,
@@ -13,5 +14,6 @@ export default {
   isListGetter,
   filterValue,
   specialSort,
-  priceRange
+  priceRange,
+  monthlySales
 }
