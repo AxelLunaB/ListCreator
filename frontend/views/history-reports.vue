@@ -21,16 +21,21 @@
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
-            <th v-for="(t,index) in header" :key="index" style="border-bottom:none;" :class="responsiveTable(index)">
+            <td v-for="(t,index) in header" :key="index" style="border-bottom:none;" :class="responsiveTable(index)">
               {{ t.title }}
-            </th>
+            </td>
           </tr>
         </thead>
       </table>
       <table class="table table-hover">
-          <thead>
+          <thead class="table-body">
           <tr v-for="item in departments" :key="item.id">
-            <th></th> <!--Reports here-->
+            <td class="responsive0"> {{ item.status.id }} </td>
+            <td> {{ item.unitNumber }} </td>
+            <td> {{ item.cluster.abb }} </td>
+            <td class="responsive0"> $ {{ toPrice(item.priceTotal) }} </td>
+            <td> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
+
           </tr>
         </thead>
       </table>
@@ -90,12 +95,20 @@ export default {
       // Dispatch actions &&  subscribe to rt events.
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("users/listenEvents");
+
+      this.$store.dispatch("departments/getDepartments");
+
+
       // listen to authenticated event
     } else {
       let _ = this;
       this.$eventHub.$on("authenticated", function () {
         _.$store.dispatch("users/getUsers");
         _.$store.dispatch("users/listenEvents");
+
+        _.$store.dispatch("departments/getDepartments");
+
+
       });
     }
   },
@@ -107,18 +120,22 @@ export default {
       header:[
         {title: 'ID'},
         {title:'#'},
-        {title:'FLOOR'},
+        {title:'TOWER'},
         {title:'PRICE'},
         {title:'INFO'}
       ],
       index:0,
       initDate: null,
       endDate:null,
-      departments:[],
+      // department:[],
       selectedDepartment:{}
     }
   },
   methods:{
+    toPrice(x) {
+      var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+      return r;
+    },
     responsiveTable(n){
 
         return 'responsive' + n
@@ -198,7 +215,8 @@ export default {
         },
     computed:{
       ...mapGetters({
-        users: "users/users"
+        // users: "users/users"
+        departments:"departments/departments"
       }),
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
@@ -243,10 +261,10 @@ export default {
   height: 100%;
   width: 100%;
   background: #2a333c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
   color:white;
 
   [type="date"] {
@@ -267,6 +285,7 @@ export default {
     border-radius: 10px;
     width:80vw;
     max-width: 1000px;
+    margin:100px auto 0 auto;
   }
 
     .history-body {
@@ -276,6 +295,7 @@ export default {
     width:80vw;
     margin-top:50px;
     max-width: 1000px;
+    margin:50px auto 50px auto;
   }
 
   .history-titles h2,
@@ -283,11 +303,20 @@ export default {
     text-align: center;
   }
 
-  .history-body .table thead th {
+  .history-body .table thead td {
     color:white;
     border-bottom:1px solid #a8a8a896;
     border-top:1px solid #a8a8a896;
     text-align: center;
+    font-weight: bold;
+  }
+
+  .history-body .table thead.table-body td {
+    font-weight: 100;
+  }
+
+  .table-hover {
+    table-layout: fixed;
   }
 
   .pagination-wrapper {
@@ -311,7 +340,7 @@ export default {
   }
 
     @media (max-width: 769px) {
-      .responsive2,
+      .responsive0,
       .responsive3 {
         display: none;
         }
