@@ -29,11 +29,11 @@
       </table>
       <table class="table table-hover">
           <thead class="table-body">
-          <tr v-for="item in filterByDate" :key="item.id">
-            <td class="responsive0"> {{ item.status.id }} </td>
-            <td> {{ item.unitNumber }} </td>
-            <td> {{ item.cluster.abb }} </td>
-            <td class="responsive0"> $ {{ toPrice(item.priceTotal) }} </td>
+          <tr v-for="(item,index) in filterByDate" :key="index">
+            <td class="responsive0"> {{ item.customer.name }} </td>
+            <td> {{ toDate(item.reference.reserveDate) }} </td>
+            <!-- <td> {{ item.cluster.abb }} </td>
+            <td class="responsive0"> $ {{ toPrice(item.priceTotal) }} </td> -->
             <td> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
 
           </tr>
@@ -116,11 +116,14 @@ export default {
   data() {
     return {
       header:[
-        {title: 'ID'},
-        {title:'#'},
-        {title:'TOWER'},
-        {title:'PRICE'},
+        {title:'CLIENT'},
+        {title: 'DATE'},
         {title:'INFO'}
+        //,
+        // {title:'#'},
+        // {title:'TOWER'},
+        // {title:'PRICE'},
+        // {title:'INFO'}
       ],
       index:0,
       initDate: null,
@@ -133,27 +136,16 @@ export default {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
     },
+    toDate(date){
+      var year = date.substring(0,4)
+      var month = date.substring(5,7)
+      var day = date.substring(8,10)
+      return day +'/'+ month + '/'+ year
+    },
     responsiveTable(n){
 
         return 'responsive' + n
 
-      },
-    filterByDate(){
-      if(this.initDate != null && this.endDate != null) {
-        alert('fetch a date between ' + this.initDate + ' and ' + this.endDate)
-          for(var i = 0 ; i < this.contracts.length ; i++ ) {
-            console.log([i+1] + 'th department ' + this.contracts[i].reference.reserveDate)
-          }
-        }
-        // if (this.initDate !== null && this.initDate !== '' && this.endDate !== null && this.endDate !== '') {
-        //   const helper = new Date(this.endDate);
-        //   helper.setDate(new Date(this.endDate).getDate() + 1);
-        //   this.departments = this.dateArray.filter((element) => {
-        //     return new Date(element.updatedAt).getTime() >= new Date(this.initDate).getTime() && new Date(element.updatedAt).getTime() <= helper.getTime();
-        //   });
-        // } else {
-        //   this.departments = this.dateArray;
-        // }
       },
       // print(item){ //this is the function that handles the printd plugin
       // const cssText =`` //here's where the css template of whatever we want to print will be
@@ -220,6 +212,25 @@ export default {
         // users: "users/users"
         contracts: "contracts/contracts"
       }),
+    filterByDate(){
+      var init = this.initDate
+      var end = this.endDate
+      var datesArray = []
+      if(this.initDate != null && this.endDate != null) {
+        console.log('fetching dates between ' + this.initDate + ' and ' + this.endDate)
+        for(var i = 0 ; i < this.contracts.length ; i++ ) {
+            if(this.contracts[i].reference != undefined){
+              var current = this.contracts[i].reference.reserveDate
+              if(current > init && current < end) {
+                datesArray.push(this.contracts[i])
+                }
+              }
+            }
+          }
+      console.log(datesArray)
+      datesArray.sort()
+      return datesArray
+      },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
           var array = [0, 1];
@@ -342,8 +353,7 @@ export default {
   }
 
     @media (max-width: 769px) {
-      .responsive0,
-      .responsive3 {
+      .responsive0 {
         display: none;
         }
     }
