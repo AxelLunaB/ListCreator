@@ -30,10 +30,9 @@
       <table class="table table-hover">
           <thead class="table-body">
           <tr v-for="(item,index) in filterByDate" :key="index">
-            <td class="responsive0"> {{ item.customer.name }} </td>
+            <td class="responsive0" style="font-size:12px;"> {{ item.customer.name }} </td>
+            <td> {{ item.commission.executive.name }} </td>
             <td> {{ toDate(item.reference.reserveDate) }} </td>
-            <!-- <td> {{ item.cluster.abb }} </td>
-            <td class="responsive0"> $ {{ toPrice(item.priceTotal) }} </td> -->
             <td> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
 
           </tr>
@@ -117,6 +116,7 @@ export default {
     return {
       header:[
         {title:'CLIENT'},
+        {title:'EXECUTIVE'},
         {title: 'DATE'},
         {title:'INFO'}
         //,
@@ -228,9 +228,11 @@ export default {
             }
           }
       console.log(datesArray)
-      datesArray.sort()
       return datesArray
       },
+    sortedArray() {
+
+    },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
           var array = [0, 1];
