@@ -29,7 +29,7 @@
       </table>
       <table class="table table-hover">
           <thead class="table-body">
-          <tr v-for="item in departments" :key="item.id">
+          <tr v-for="item in filterByDate" :key="item.id">
             <td class="responsive0"> {{ item.status.id }} </td>
             <td> {{ item.unitNumber }} </td>
             <td> {{ item.cluster.abb }} </td>
@@ -142,22 +142,27 @@ export default {
 
       },
     filterByDate(){
-
-        if (this.initDate !== null && this.initDate !== '' && this.endDate !== null && this.endDate !== '') {
-          const helper = new Date(this.endDate);
-          helper.setDate(new Date(this.endDate).getDate() + 1);
-          this.departments = this.dateArray.filter((element) => {
-            return new Date(element.updatedAt).getTime() >= new Date(this.initDate).getTime() && new Date(element.updatedAt).getTime() <= helper.getTime();
-          });
-        } else {
-          this.departments = this.dateArray;
+      if(this.initDate != null && this.endDate != null) {
+        alert('fetch a date between ' + this.initDate + ' and ' + this.endDate)
+          for(var i = 0 ; i < this.departments.length ; i++ ) {
+            console.log([i+1] + 'th department ' + this.departments[i].status.updatedAt)
+          }
         }
+        // if (this.initDate !== null && this.initDate !== '' && this.endDate !== null && this.endDate !== '') {
+        //   const helper = new Date(this.endDate);
+        //   helper.setDate(new Date(this.endDate).getDate() + 1);
+        //   this.departments = this.dateArray.filter((element) => {
+        //     return new Date(element.updatedAt).getTime() >= new Date(this.initDate).getTime() && new Date(element.updatedAt).getTime() <= helper.getTime();
+        //   });
+        // } else {
+        //   this.departments = this.dateArray;
+        // }
       },
-      // print(item){ this is the function that handles the printd plugin
-      // const cssText =`` here's where the css template of whatever we want to print will be
+      // print(item){ //this is the function that handles the printd plugin
+      // const cssText =`` //here's where the css template of whatever we want to print will be
       // const d = newPrintd();
       // d.print(document.getEelementById('willPrint'),[cssText])
-      //},
+      // },
     goToPage(page) {
       this.index = page;
       this.retrieveData();
