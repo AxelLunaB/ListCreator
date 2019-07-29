@@ -19,8 +19,6 @@ import "hchs-vue-charts";
 import Print from "vue-print-nb";
 import XSLX from 'xlsx';
 import DatePicker from 'vue-bootstrap-datetimepicker';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
 
 Vue.use(DatePicker);

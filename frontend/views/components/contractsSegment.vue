@@ -5,93 +5,93 @@
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row row-full" :class="{ animate: isActive }" style="margin:0 auto;">
-      <div class="col-xl-2">
-
+      <div class="col-xs-0 col-3">
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8">
+      <div class="col-xs-12 col-6" style="display:flex;align-items:center;">
         <div class="card">
             <div class="card-body">
-              <div class="page-header-title">
-                <h4 class="page-title">Contract Application</h4><br /><br />
-              </div>
-                <form class="form-horizontal" role="form">
-                  <div class="form-group row">
-                     <label class="col-sm-2 control-label" for="label-executive">Development</label>
-                     <b-dropdown id="dropdown-clusters" name="drop-clusters" :text="formData.sCluster == null ? 'Select executive..' : formData.sCluster" class="m-md-2">
-                     <b-dropdown-item v-for="option in clusters" :key="option.id" :value="option.id" @click="setData('sCluster',option.name)">{{option.name}} </b-dropdown-item>
-                     </b-dropdown>
+              <h4 class="page-title">Contract Application</h4>
+              <div class="form-group" role="form">
+                <label class="control-label" for="label-executive"><p>Development</p></label>
 
-                     <label class="col-sm-2 control-label" for="label-executive">Executive</label>
-                     <b-dropdown id="dropdown-executives" name="drop-executive" :text="formData.sExecutive == null ? 'Select executive..' : formData.sExecutive" class="m-md-2">
-                     <b-dropdown-item v-for="option in executives" :key="option.id" :value="option.id"  @click="setData('sExecutive',option.name)">{{option.name}}</b-dropdown-item>
-                     </b-dropdown>
-                  </div>
-                  <div class="form-group row">
-                     <label class="col-sm-2 control-label" for="label-executive">Unit</label>
-                     <b-dropdown id="dropdown-unit" name="drop-unit" :text="formData.sUnit == null ? 'Select Unit..' : formData.sUnit" class="m-md-2">
-                     <b-dropdown-item v-for="option in getAvailableDepartments" :key="option.id" :value="option.id" @click="setData('sUnit',option.unitNumber);setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
-                     </b-dropdown>
-                      <input type="text" class="form-control" placeholder="Unit price" value="" id="unit-price-input">
-                  </div>
-                  <div class="form-group row">
-                     <label class="col-sm-2 control-label" for="label-executive">Client</label>
-                     <b-dropdown id="dropdown-customer" name="drop-customer" :text="formData.sCustomer == null ? 'Select Client..' : formData.sCustomer" class="m-md-2">
-                     <b-dropdown-item v-for="option in customers.data" :key="option.id" :value="option.id" @click="setData('sCustomer',option.name)">{{option.name}} </b-dropdown-item>
-                     </b-dropdown>
-                     <button type="button" class="btn btn-light btn-sm waves-effect">new +</button>
-                  </div>
-                  <div class="form-group row">
-                     <label class="col-sm-2 control-label" for="label-executive">Payment Method</label>
-                     <input type="text" class="form-control" value="" placeholder="Payment method" id="payment-method">
-                     <label class="col-sm-2 control-label" for="label-executive">Currency</label>
-                     <b-dropdown id="dropdown-currency" name="drop-currency" :text="formData.sCurrency == null ? 'Select currency..' : formData.sCurrency" class="m-md-2">
-                     <b-dropdown-item value="USD" @click="setData('sCurrency','USD')">USD</b-dropdown-item>
+                <b-dropdown id="dropdown-clusters" name="drop-clusters" :text="formData.sCluster == null ? 'Select development' : formData.sCluster" class="m-md-2">
+                <b-dropdown-item v-for="option in clusters" :key="option.id" :value="option.id" @click="setData('sCluster',option.name)">{{option.name}} </b-dropdown-item>
+                </b-dropdown>
+
+                <label class="control-label" for="label-executive">Executive</label>
+
+                <b-dropdown id="dropdown-executives" name="drop-executive" :text="formData.sExecutive == null ? 'Select executive' : formData.sExecutive" class="m-md-2">
+                <b-dropdown-item v-for="option in executives" :key="option.id" :value="option.id"  @click="setData('sExecutive',option.name)">{{option.name}}</b-dropdown-item>
+                </b-dropdown>
+
+                <label class="control-label" for="label-executive"><p>Unit</p></label>
+                  <b-dropdown id="dropdown-unit" name="drop-unit" :text="formData.sUnit == null ? 'Select Unit' : formData.sUnit" class="m-md-2">
+                  <b-dropdown-item v-for="option in getAvailableDepartments" :key="option.id" :value="option.id" @click="setData('sUnit',option.unitNumber);setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                  </b-dropdown>
+                  <input type="text" class="form-control col-6" placeholder="Unit price" value="" id="unit-price-input">
+                <div style="text-align:left;">
+                  <label class="control-label" for="label-executive"><p>Client</p></label>
+                  <b-dropdown id="dropdown-customer" name="drop-customer" :text="formData.sCustomer == null ? 'Select Client' : formData.sCustomer" class="m-md-2">
+                  <b-dropdown-item v-for="option in customers.data" :key="option.id" :value="option.id" @click="setData('sCustomer',option.name)">{{option.name}} </b-dropdown-item>
+                  </b-dropdown>
+                  <button type="button" class="btn btn-light btn-sm waves-effect"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                </div>
+                    <label class="control-label col-12" for="label-executive"><p>Payment Method</p></label>
+                    <input type="text" class="form-control col-6" value="" placeholder="Payment method" id="payment-method">
+                    <div style="text-align:left;">
+                      <label class="control-label" for="label-executive"><p>Currency</p></label>
+                      <b-dropdown id="dropdown-currency" name="drop-currency" :text="formData.sCurrency == null ? 'Select currency' : formData.sCurrency" class="m-md-2">
+                      <b-dropdown-item value="USD" @click="setData('sCurrency','USD')">USD</b-dropdown-item>
                       <b-dropdown-item value="MXN" @click="setData('sCurrency','MXN')">MXN</b-dropdown-item>
-                     </b-dropdown>
+                      </b-dropdown>
+                    </div>
+
+                <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
+                  <input type="text" class="form-control col-6" :value="new Date().toDateString()" readonly="readonly"  id="date-signatures">
+                    <div style="text-align:left;">
+                      <label><p>Date of Payment</p></label>
+                    </div>
+                    <div class="col-6" style="padding:0;">
+                      <date-picker v-model="date" :config="options"></date-picker>
+                    </div>
                   </div>
+
                   <div class="form-group row">
-                     <label class="col-sm-2 control-label" for="label-executive">Signature date</label>
-                     <input type="text" class="form-control" :value="new Date().toDateString()" readonly="readonly"  id="date-signatures">
-                     <label>Date of Payment</label>
-                      <div>
-                        <date-picker v-model="date" :config="options"></date-picker>
-                      </div>
-                  </div>
-                  <div class="form-grop row">
-                    <div class="checkbox checkbox-primary">
+                    <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                       <input id="Furniture" type="checkbox" checked="checked">
                       <label for="Furniture">
                           Furniture
                       </label>
                     </div>
 
-                    <div class="checkbox checkbox-primary">
+                    <div class="checkbox checkbox-primary col-4">
                       <input id="Contract" type="checkbox" checked="checked">
                       <label for="Contract">
                           ROI contract
                       </label>
                     </div>
 
-                    <label class="control-label"># of years</label>
-                    <input id="demo0" type="text" value="0" name="demo0" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1"
+                    <div class="col-4 row">
+                    <label class="control-label col-6"># of years</label>
+                    <input class ="col-6 form-control" id="demo0" type="text" value="0" name="demo0" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1"
                     data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round"
                      data-bts-step-interval-delay="500" data-bts-prefix=""
                      data-bts-postfix="" data-bts-prefix-extra-class=""
                       data-bts-postfix-extra-class="" data-bts-booster="true"
                       data-bts-boostat="10" data-bts-max-boosted-
                       step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary"/>
+                    </div>
                   </div>
-                  <div class="form-grop row">
+                  <div class="form-group row">
                     <label class="col-sm-2 control-label" for="example-textarea-input">Comments</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" rows="5" id="example-textarea-input"></textarea>
                     </div>
-                  </div>
-              </form>
+              </div>
             </div>
         </div>
       </div>
-            <div class="col-xl-2">
+            <div class="col-xs-0 col-3">
 
             </div>
         </div>
@@ -107,6 +107,7 @@ import swal from "sweetalert";
 import { mapGetters } from "vuex";
 import $ from "jquery";
 import moment from "moment";
+import datePicker from 'vue-bootstrap-datetimepicker';
 
 export default {
   mounted: function() {
@@ -211,24 +212,92 @@ export default {
 
   @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
+  @import '../../../node_modules/pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
   body {
     background: #2a333c!important;
   }
 
-    .container-fluid {
+  #dropdown-clusters .dropdown-item:hover,
+  .dropdown-item:focus {
+      text-decoration: none;
+      background-color: none!important;
+  }
+
+  #dropdown-clusters .container-fluid {
     text-align:center;
     background:#2a333c;
     height: 100%;
     position:fixed;
-    top:47px;
+    top:57px;
     left:0;
     max-height: 97vh;
     padding-top: 18px;
   }
 
+  .form-control:disabled, .form-control[readonly] {
+      background-color: #2a333c;
+      opacity: 1;
+      color:#757b80!important;
+  }
+
+  .form-control:focus {
+    background: #2a333c;
+  }
+
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="date"]:focus,
+  input[type="month"]:focus,
+  input[type="time"]:focus,
+  input[type="week"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="color"]:focus,
+  textarea,
+  .uneditable-input:focus {
+    border-color: #687c94;
+    box-shadow: none;
+    outline: 0 none;
+  }
+
+  input.form-control {
+    color: #757b80!important;
+  }
+
+  .bootstrap-datetimepicker-widget {
+    background: #2a333c;
+    color:white;
+  }
+
+  .form-control {
+    background-color: #2a333c;
+    border-radius: 2px;
+    border: 1px solid #4a5869;
+    box-shadow: none;
+    height: 38px;
+    color: #ffffff !important;
+    font-size: 14px;
+  }
   #container-fluid {
     z-index:3!important;
+  }
+
+    .dropdown ul li a:hover {
+      background:none;
+      color:white;
+  }
+
+    .dropdown ul li a {
+      color: white;
+      border-bottom: 1px solid #4a5869;
+      text-align: center;
   }
 
   .card {

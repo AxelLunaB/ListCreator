@@ -495,7 +495,7 @@ export default {
     background:#2a333c;
     height: 100%;
     position:fixed;
-    top:47px;
+    top:57px;
     left:0;
     max-height: 97vh;
     padding-top: 18px;

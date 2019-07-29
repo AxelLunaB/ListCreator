@@ -115,7 +115,7 @@ export default {
   padding: 10px;
   border-radius: 0 4px 4px 0;
   display: inline-block;
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   background:#252d33;
 }
