@@ -28,23 +28,27 @@
                   <b-dropdown id="dropdown-unit" name="drop-unit" :text="formData.sUnit == null ? 'Select Unit' : formData.sUnit" class="m-md-2">
                   <b-dropdown-item v-for="option in getAvailableDepartments" :key="option.id" :value="option.id" @click="setData('sUnit',option.unitNumber);setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
                   </b-dropdown>
-                  <input type="text" class="form-control col-6" placeholder="Unit price" value="" id="unit-price-input">
-                <div style="text-align:left;">
-                  <label class="control-label" for="label-executive"><p>Client</p></label>
-                  <b-dropdown id="dropdown-customer" name="drop-customer" :text="formData.sCustomer == null ? 'Select Client' : formData.sCustomer" class="m-md-2">
-                  <b-dropdown-item v-for="option in customers.data" :key="option.id" :value="option.id" @click="setData('sCustomer',option.name)">{{option.name}} </b-dropdown-item>
-                  </b-dropdown>
-                  <button type="button" class="btn btn-light btn-sm waves-effect"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
-                </div>
-                    <label class="control-label col-12" for="label-executive"><p>Payment Method</p></label>
-                    <input type="text" class="form-control col-6" value="" placeholder="Payment method" id="payment-method">
-                    <div style="text-align:left;">
-                      <label class="control-label" for="label-executive"><p>Currency</p></label>
+                  <p style="text-align:left;">Unit price</p>
+                  <div class="row" style="align-items:center;">
+                    <input type="text" class="form-control col-6" placeholder="Unit price" value="" id="unit-price-input">
+                    <div class="col-6">
+                      <label class="control-label" for="label-executive"><p style="margin-left:30px;">Currency</p></label>
                       <b-dropdown id="dropdown-currency" name="drop-currency" :text="formData.sCurrency == null ? 'Select currency' : formData.sCurrency" class="m-md-2">
                       <b-dropdown-item value="USD" @click="setData('sCurrency','USD')">USD</b-dropdown-item>
                       <b-dropdown-item value="MXN" @click="setData('sCurrency','MXN')">MXN</b-dropdown-item>
                       </b-dropdown>
                     </div>
+                  </div>
+
+                  <div style="text-align:left;">
+                    <label class="control-label" for="label-executive"><p>Client</p></label>
+                    <b-dropdown id="dropdown-customer" name="drop-customer" :text="formData.sCustomer == null ? 'Select Client' : formData.sCustomer" class="m-md-2">
+                    <b-dropdown-item v-for="option in customers.data" :key="option.id" :value="option.id" @click="setData('sCustomer',option.name)">{{option.name}} </b-dropdown-item>
+                    </b-dropdown>
+                    <button type="button" class="btn btn-light btn-sm waves-effect"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                  </div>
+                    <label class="control-label col-12" for="label-executive"><p>Payment Method</p></label>
+                    <input type="text" class="form-control col-6" value="" placeholder="Payment method" id="payment-method">
 
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
                   <input type="text" class="form-control col-6" :value="new Date().toDateString()" readonly="readonly"  id="date-signatures">
@@ -79,7 +83,7 @@
 
                     <div class="col-4 row">
                     <label class="control-label col-6"># of years</label>
-                    <input class ="col-6 form-control" id="demo0" type="text" value="0" name="demo0" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1"
+                    <input @click='scrollNumber' class ="col-6 form-control" id="demo0" type="text" value="0" name="demo0" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1"
                     data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round"
                      data-bts-step-interval-delay="500" data-bts-prefix=""
                      data-bts-postfix="" data-bts-prefix-extra-class=""
@@ -169,6 +173,9 @@ export default {
     },
     setData (who, nVal) {
       this.formData[who] = nVal;
+    },
+    scrollNumber(){
+      this.years = window.scrollY > 0;
     }
   },
 
@@ -239,6 +246,11 @@ export default {
     left:0;
     max-height: 97vh;
     padding-top: 18px;
+  }
+
+  .form-group p {
+    margin-top:8px;
+    margin-bottom:8px;
   }
 
   .custom-control-label::before {
