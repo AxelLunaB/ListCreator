@@ -211,8 +211,8 @@ export default {
       var init = this.initDate
       var end = this.endDate
       var datesArray = []
+
       if(this.initDate != null && this.endDate != null) {
-        console.log('fetching dates between ' + this.initDate + ' and ' + this.endDate)
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
@@ -222,11 +222,10 @@ export default {
               }
             }
           }
-      datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
-      for (var i = 0; i < datesArray.length; i++)
-      console.log(datesArray[i].edad)
-      console.log(datesArray)
-      return datesArray
+
+          datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+          return datesArray
+
       },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
