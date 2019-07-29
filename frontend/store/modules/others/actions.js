@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -25,6 +25,14 @@ const getStatus = (context) => {
 const getClusters = (context) => {
   fetchClusters().then(response => {
     context.commit('CLUSTERS_UPDATED', response);
+  }).catch(err => {
+    // ?
+  });
+};
+
+const getCustomers = (context) => {
+  fetchCustomers().then(response => {
+    context.commit('CUSTOMERS_UPDATED', response);
   }).catch(err => {
     // ?
   });
@@ -59,6 +67,7 @@ const getCountDepartments = (context) => {
 export default {
   authenticate,
   getClusters,
+  getCustomers,
   getStatus,
   setPlusButton,
   getCountHouses,

@@ -11,31 +11,19 @@ module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [
-
-      softDelete('deleted'),
-      iff(isCurrent(), context => {
-        if (context.params.query.current != undefined && context.params.query.current == 'true') {
-          context.result = context.params.user;
-          delete context.params.query.current;
-        }
-      }).else(isAdmin())
     ],
-    get: [softDelete('deleted'),],
-    create: [softDelete('deleted'), isAdmin(), local.hooks.hashPassword(), verifyHooks.addVerification()],
-    update: [softDelete('deleted'), isAdmin(), local.hooks.hashPassword()],
-    patch: [softDelete('deleted'), isAdmin()],
-    remove: [preventSelfDelete(), softDelete('deleted'), isAdmin()]
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
   },
 
   after: {
-    all: [local.hooks.protect('password'), local.hooks.protect('deleted')],
+    all: [],
     find: [],
     get: [],
     create: [
-      context => {
-        accountService(context.app).notifier('resendVerifySignup',context.result);
-      },
-      verifyHooks.removeVerification()
     ],
     update: [],
     patch: [],

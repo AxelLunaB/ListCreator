@@ -97,7 +97,19 @@ const fetchContracts = ($skip, query) => {
     });
   })
 };
+const createContract = (department) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'api/contracts', department, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
 
+// commissions
 const fetchCommissions = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -179,6 +191,21 @@ const fetchUsers = ($skip) => {
     });
   })
 };
+
+const fetchCustomers = ($skip, query) => {
+  query = query != null ? query : {};
+  query['$skip'] = $skip;
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'customers', query, (error, customers) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(customers);
+      }
+    });
+  });
+};
+
 const deleteUser = (user) => {
   return new Promise((resolve, reject) => {
     socket.emit('remove', 'users', user.id, user, (error, response) => {
@@ -265,6 +292,7 @@ export {
   patchDepartments,
   //
   fetchContracts,
+  createContract,
   fetchCommissions,
   //
   createLot,
@@ -276,6 +304,8 @@ export {
   deleteUser,
   fetchUsers,
   patchUser,
+  //
+  fetchCustomers,
   //
   fetchCountHouses,
   fetchCountDepartments,
