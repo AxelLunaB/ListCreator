@@ -119,11 +119,6 @@ export default {
         {title:'EXECUTIVE'},
         {title: 'DATE'},
         {title:'INFO'}
-        //,
-        // {title:'#'},
-        // {title:'TOWER'},
-        // {title:'PRICE'},
-        // {title:'INFO'}
       ],
       index:0,
       initDate: null,
@@ -227,12 +222,12 @@ export default {
               }
             }
           }
+      datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+      for (var i = 0; i < datesArray.length; i++)
+      console.log(datesArray[i].edad)
       console.log(datesArray)
       return datesArray
       },
-    sortedArray() {
-
-    },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
           var array = [0, 1];
