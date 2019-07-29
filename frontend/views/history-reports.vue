@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="history-body">
+    <div class="history-body" v-if="watchMe">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
@@ -38,6 +38,9 @@
           </tr>
         </thead>
       </table>
+    </div>
+    <div class="history-body" v-if="watchMe == false">
+      <p>Please choose a date range</p>
     </div>
     <nav class="pagination" role="navigation" aria-label="Page navigation" v-if="index != 0">
       <button class="btn btn-outline-light pagination-previous" v-on:click="prevPage">Previous</button>
@@ -123,7 +126,8 @@ export default {
       index:0,
       initDate: null,
       endDate:null,
-      selectedDepartment:{}
+      selectedDepartment:{},
+      watchMe: false
     }
   },
   methods:{
@@ -213,6 +217,7 @@ export default {
       var datesArray = []
 
       if(this.initDate != null && this.endDate != null) {
+        this.watchMe = true
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
@@ -306,6 +311,11 @@ export default {
     max-width: 1000px;
     margin:50px auto 50px auto;
   }
+
+   .history-body p {
+    text-align: center;
+    margin: 0;
+   }
 
   .history-titles h2,
   .history-titles p {
