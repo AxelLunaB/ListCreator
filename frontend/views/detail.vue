@@ -1,5 +1,5 @@
 <template>
-  <div class="main-tables-container">
+  <div class="main-tables-container" id="main-tables-container">
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->
@@ -45,6 +45,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
+            <button type="button" class="btn btn-outline-light" id="toPage"><a href="/history_reports">Reserve reports</a></button>
             </div>
           </div>
         </div>
@@ -466,6 +467,15 @@
   .navbar-container {
     max-width: 1200px;
     margin:0 auto;
+  }
+
+  a  {
+    color:white!important;
+  }
+
+  a:hover {
+    text-decoration: none!important;
+    color:black!important;
   }
 
   @media screen and (max-width: 867px) {

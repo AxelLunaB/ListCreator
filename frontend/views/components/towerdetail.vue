@@ -203,7 +203,7 @@
                                 <td class="text-right">{{contract.salesDetails != undefined ? contract.salesDetails.salesChannel != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">Sales Executive</td>
+                                <td class="textalign">Sales Ex</td>
                                 <td class="text-right">{{contract.commission.executive != undefined ? contract.commission.executive.name != null ? contract.commission.executive.name : '-' : '-' }}</td>
                             </tr>
                             <tr>
@@ -390,7 +390,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:0, //add a computed here
+              max:10, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
@@ -459,7 +459,7 @@ export default {
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
     },
-    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+    pastMonths(){
       var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
       var month = new Date().getMonth();
       var c = (monthName(month))
@@ -473,7 +473,7 @@ export default {
       this.mydata[0] = this.monthlySales.antMonth
       this.mydata[1] = this.monthlySales.penMonth
       this.mydata[2] = this.monthlySales.pastMonth
-      this.mydata[3] = this.monthlySales.currentMonth
+      this.mydata[3] = this.monthlySales.cMonth
 
       return this.mydata
     }
@@ -495,7 +495,7 @@ export default {
     background:#2a333c;
     height: 100%;
     position:fixed;
-    top:47px;
+    top:59px;
     left:0;
     max-height: 97vh;
     padding-top: 18px;
