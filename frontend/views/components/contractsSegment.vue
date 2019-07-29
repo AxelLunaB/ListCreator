@@ -58,17 +58,23 @@
 
                   <div class="form-group row">
                     <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
-                      <input id="Furniture" type="checkbox" checked="checked">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1"></label>
+                      </div>
                       <label for="Furniture">
                           Furniture
                       </label>
                     </div>
 
                     <div class="checkbox checkbox-primary col-4">
-                      <input id="Contract" type="checkbox" checked="checked">
-                      <label for="Contract">
+                      <div class="custom-control custom-checkbox text-left" style="padding-left:9px!important;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2"></label>
+                        <label for="Contract">
                           ROI contract
                       </label>
+                      </div>
                     </div>
 
                     <div class="col-4 row">
@@ -233,6 +239,11 @@ export default {
     left:0;
     max-height: 97vh;
     padding-top: 18px;
+  }
+
+  .custom-control-label::before {
+    background:#3c4857;
+    border-color: #687c94;
   }
 
   .form-control:disabled, .form-control[readonly] {
