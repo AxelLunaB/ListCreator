@@ -40,11 +40,13 @@
         </div>
       <towerdetail></towerdetail>
       <full-list-view></full-list-view>
+      <contractsSegment></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
+            <button type="button" class="btn btn-outline-light" id="newContract" @click="showContracts" >Contracts/References</button>
             </div>
           </div>
         </div>
@@ -59,6 +61,7 @@
   // import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
+  import contractsSegment from "./components/contractsSegment.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
   import filterTable from "./components/filterTable.vue"
@@ -67,7 +70,7 @@
   export default {
     components: {
       detailTable,
-      // returnPage,
+      contractsSegment,
       towerdetail,
       fullListView,
       filterTable
@@ -141,6 +144,12 @@
           document.getElementById("listView").style.transition = "opacity 0.5s";
           document.getElementById("listView").style.opacity = 1;
             }, 100);
+      },
+      showContracts() {
+        let info = {
+          departments : this.departments
+        }
+        this.$eventHub.$emit("show-contractsSegment-modal", info);
       }
     },
     computed: {

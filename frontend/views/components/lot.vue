@@ -6,7 +6,7 @@
           <div class="media-left logo-background-color">
             <figure class="image is-96x96">
               <object :data="`/static/img/clusters/${lot.cluster.code}.png`" type="image/png" class="cluster-logo-house">
-                <img src="../../assets/altozano_generico.png" />
+                <!-- <img src="../../assets/altozano_generico.png" /> -->
               </object>
               <!-- <img :src="`/static/img/clusters/${lot.cluster}.png`"
               :alt="`${lot.division}`"

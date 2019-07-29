@@ -1,4 +1,4 @@
-import { fetchContracts } from '@/api';
+import { fetchContracts,createContract } from '@/api';
 import socket from '@/io';
 
 
@@ -32,16 +32,16 @@ const getContracts = (context) => {
 //   })
 //
 // };
-// const newDepartment = (context, department) => {
-//   return new Promise((resolve, reject) => {
-//     createDepartments(department).then(response => {
-//       // context should be called to commit some mutation in order to send popups or something.
-//       resolve(response);
-//     }).catch(err => {
-//       reject(err);
-//     });
-//   })
-// };
+const newContract = (context, contract) => {
+  return new Promise((resolve, reject) => {
+    createContract(contract).then(response => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  })
+};
 const nextPage = (context) => {
 
   const { index, pages } = context.state.pagination;
@@ -110,7 +110,7 @@ const setListType = ( context, commit ) => {
 export default {
   getContracts,
   listenEvents,
-  // newDepartment,
+  newContract,
   nextPage,
   prevPage,
   // updateDepartment,

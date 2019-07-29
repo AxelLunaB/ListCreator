@@ -304,24 +304,24 @@
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
             <h5 class="m-t-0 m-b-30 text-left">SALES</h5>
-          <div style="width:100%;display:flex;justify-content:center;height:100%;align-items:center;">
-              <chartjs-bar
-              :beginzero="myboolean"
-              :backgroundcolor="mybackgroundcolor"
-              :bordercolor="mybordercolor"
-              :datalabel="mylabel"
-              :labels="mylabels"
-              :data="mydata"
-              v-bind:option="myoption"
-              style="width:100%;">
-      </chartjs-bar>
+              <div style="width:100%;display:flex;justify-content:center;height:100%;align-items:center;">
+                <chartjs-bar
+                  :beginzero="myboolean"
+                  :backgroundcolor="mybackgroundcolor"
+                  :bordercolor="mybordercolor"
+                  :datalabel="mylabel"
+                  :labels="mylabels"
+                  :data="mydata"
+                  v-bind:option="myoption"
+                  style="width:100%;">
+                </chartjs-bar>
               </div>
-          </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
+  </div>
+</div>
 </template>
 
 <script>
