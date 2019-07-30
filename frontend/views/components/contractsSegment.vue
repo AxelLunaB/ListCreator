@@ -84,8 +84,8 @@
                       </label>
                     </div>
 
-                    <div class="checkbox checkbox-primary col-md-4 col-sm-12">
-                      <div class="custom-control custom-checkbox text-left" style="padding-left:9px!important;">
+                    <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
+                      <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck2">
                         <label class="custom-control-label" for="customCheck2"></label>
                         <label for="Contract">
@@ -94,8 +94,10 @@
                       </div>
                     </div>
 
+
+
                     <div class="col-md-8 col-sm-12 row">
-                      <label class="control-label col-6"># of years</label>
+                      <label class="control-label col-6 text-left"># of years</label>
                       <input @click='touchSpin'
                       id="demo3"
                       name="demo3"
