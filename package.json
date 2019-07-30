@@ -90,7 +90,7 @@
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
     "style-loader": "^0.20.1",
-    "sweetalert": "^2.1.0",
+    "sweetalert": "^2.1.2",
     "vue": "^2.6.10",
     "vue-bootstrap-datetimepicker": "^5.0.1",
     "vue-loader": "^14.1.1",
