@@ -481,5 +481,12 @@
     .navbar-brand {
       justify-content: center;
     }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-container {
+    text-align: center;
+    }
   }
 </style>
