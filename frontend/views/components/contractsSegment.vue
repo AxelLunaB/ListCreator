@@ -26,68 +26,149 @@
                     </div>
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive"><p>Development</p></label> -->
-                    <b-dropdown id="dropdown-clusters" name="drop-clusters" :text="formData.cluster.name == null ? 'Select development' : formData.cluster.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in clusters" :key="option.id" :value="option.id" @click="setData('cluster',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                    <b-dropdown
+                    id="dropdown-clusters"
+                    name="drop-clusters"
+                    :class="{ 'form-group--error': $v.development.$error }"
+                    :text="formData.cluster.name == null ? 'Development' : formData.cluster.name" class="m-md-2">
+                    <b-dropdown-item v-for="option in clusters"
+                    :key="option.id"
+                    :value="option.id"
+                    @click="selectDev(option.name),setData('cluster',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive">Executive</label> -->
-                    <b-dropdown id="dropdown-executives" name="drop-executive" :text="formData.executive.name == null ? 'Select executive' : formData.executive.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in executives" :key="option.id" :value="option.id"  @click="setData('executive',{id :option.id, name: option.name})">{{option.name}}</b-dropdown-item>
-                    </b-dropdown>
-                    </div>
 
-                    <div class="col-lg-3">
-                    <!-- <label class="control-label" for="label-executive"><p>Unit</p></label> -->
-                    <b-dropdown id="dropdown-unit" name="drop-unit" :text="formData.unit.name == null ? 'Select Unit' : formData.unit.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in getAvailableDepartments" name="salePrice" :key="option.id" :value="option.id" @click="setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                                        <!-- @click="setData('executive',{id :option.id, name: option.name})"> -->
+
+
+                    <b-dropdown
+                    id="dropdown-executives"
+                    name="drop-executive"
+                    :text="formData.executive.name == null ? 'Executive' : formData.executive.name" class="m-md-2"
+                    :class="{ 'form-group--error': $v.executive.$error }">
+                    <b-dropdown-item v-for="option in executives" :key="option.id" :value="option.id"
+                    @click="selectExec(option.name),setData('executive',{id :option.id, name: option.name})">
+                      {{option.name}}
+                    </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive"><p>Currency</p></label> -->
-                    <b-dropdown id="dropdown-currency" :text="formData.currency.name == null ? 'Select currency' : formData.currency.name" class="m-md-2">
-                    <b-dropdown-item value="USD" @click="setData('currency',{id: 1,name: 'USD'})">USD</b-dropdown-item>
-                    <b-dropdown-item value="MXN" @click="setData('currency',{id: 2,name: 'MXN'})">MXN</b-dropdown-item>
+                    <b-dropdown
+                    id="dropdown-currency"
+                    :text="formData.currency.name == null ? 'Currency' : formData.currency.name" class="m-md-2"
+                    :class="{ 'form-group--error': $v.currency.$error }">
+                    <b-dropdown-item value="USD"
+                    @click="selectCurr('USD'),setData('currency',{id: 1,name: 'USD'})">
+                      USD
+                    </b-dropdown-item>
+                    <b-dropdown-item value="MXN"
+                    @click="selectCurr('MXN'),setData('currency',{id: 2,name: 'MXN'})">
+                      MXN
+                    </b-dropdown-item>
                     </b-dropdown>
                     </div>
+
+                    <div class="col-lg-3">
+                    <!-- <label class="control-label" for="label-executive"><p>Unit</p></label> -->
+                    <b-dropdown
+                    id="dropdown-unit"
+                    name="drop-unit"
+                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2"
+                    :class="{ 'form-group--error': $v.unit.$error }">
+                    <b-dropdown-item v-for="option in getAvailableDepartments"
+                    name="salePrice"
+                    :key="option.id"
+                    :value="option.id"
+                    @click="selectUnit(option.unitNumber),setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    </b-dropdown>
+                    </div>
+
                   </div>
 
                   <p style="text-align:left;">Unit price</p>
+
                   <div class="row" style="align-items:center;">
-                    <input type="text" class="form-control col-sm-12 col-lg-6" placeholder="Unit price" name="price" value="" id="unit-price-input" required>
+                    <input
+                    type="text"
+                    class="form-control disabled-option col-sm-12 col-lg-6"
+                    placeholder="Select unit"
+                    name="price"
+                    value=""
+                    id="unit-price-input"
+                    readonly="readonly">
+
                     <div class="col-sm-12 col-lg-6">
+
                       <label class="control-label" for="label-executive"><p>Client</p></label>
-                      <b-dropdown id="dropdown-customer" name="drop-customer" :text="formData.customer.name == null ? 'Select Client' : formData.customer.name" class="m-md-2">
+                      <b-dropdown
+                      id="dropdown-customer"
+                      name="drop-customer"
+                      :text="formData.customer.name == null ? 'Select Client' : formData.customer.name" class="m-md-2"
+                      :class="{ 'form-group--error': $v.client.$error }">
                       <div style="overflow-y:scroll;height:200px;">
-                       <b-dropdown-item v-for="option in customers.data" :key="option.id" :value="option.id" @click="setData('customer',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                       <b-dropdown-item v-for="option in customers.data"
+                       :key="option.id"
+                       :value="option.id"
+                       @click="selectClient(option.name),setData('customer',{id :option.id, name: option.name})">
+                       {{option.name}}
+                       </b-dropdown-item>
                       </div>
                       </b-dropdown>
-                      <button type="button" class="btn btn-light btn-sm waves-effect"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                      <button type="button" class="btn btn-light btn-sm"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
                     </div>
                   </div>
 
-                <label class="control-label col-12" for="label-executive"><p>Payment Method</p></label>
-                <input type="text" class="form-control col-md-6 col-sm-12" value="" placeholder="Payment method" id="payment-method" required>
+                <label
+                class="control-label col-12"
+                for="label-executive">
+                  <p>Payment Method</p>
+                </label>
+
+                <input
+                type="text"
+                class="form-control col-md-6 col-sm-12"
+                value=""
+                placeholder="Payment method"
+                id="payment-method"
+                v-model.trim="$v.pMethod.$model"
+                :class="{ 'form-group--error': $v.pMethod.$error }">
+                <!-- <div class="error" v-if="$v.pMethod.$error">Field must have at least 5 letters</div> -->
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
-                <input type="text" class="form-control col-md-6 col-sm-12" :value="getFormatDate()" readonly="readonly"  name="signatureDate" id="date-signatures">
+
+                <input
+                type="text"
+                class="form-control col-md-6 col-sm-12 disabled-option"
+                :value="getFormatDate()"
+                readonly="readonly"
+                name="signatureDate"
+                id="date-signatures">
+
                 <div style="text-align:left;">
                   <label><p>Date of Payment</p></label>
                 </div>
                 <div class="col-md-6 col-sm-12" style="padding:0;">
-                  <date-picker v-model="date" :config="options" name="dateOfPayment"></date-picker>
-                  <div style="text-align:left;">
+                  <date-picker
+                  :config="options"
+                  name="dateOfPayment"
+                  :class="{ 'form-group--error': $v.date.$error }"
+                  v-model.trim="$v.date.$model"></date-picker>
+                  <!-- <div class="error" v-if="$v.date.$error">Field must be a future date</div> -->
+                  <!-- <div style="text-align:left;">
                     <label><p>Date of Payment</p></label>
                   </div>
                   <div class="col-6" style="padding:0;">
                     <date-picker v-model="date" :config="options" name="dateOfPayment"></date-picker>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-group row">
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="furniture" required>
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="furniture">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                     <label for="Furniture">
@@ -96,20 +177,23 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="formData.wROI" required>
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="formData.wROI">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
                       </label>
                     </div>
                   </div>
-                  <div class="col-md-8 col-sm-12 row">
+                  <div class="col-md-12 col-sm-12 row" style="padding-left:0;">
                     <template v-if="formData.wROI != 0">
-                    <label class="control-label col-6 text-left"># of years</label>
+                    <label class="control-label col-12 text-left row"># of years</label>
                     <input @click='touchSpin'
                     id="years"
                     type="text"
                     value="0"
+                    class="form-control row col-6"
+                    :class="{ 'form-group--error': $v.years.$error }"
+                    v-model.trim="$v.years.$model"
                     name="ROIyears"
                     data-bts-min="0"
                     data-bts-max="100"
@@ -135,12 +219,13 @@
                 <div class="form-group row">
                   <label class="col-sm-2 control-label" for="example-textarea-input">Comments</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" id="example-textarea-input" name="comments" required></textarea>
+                    <textarea class="form-control" rows="5" id="example-textarea-input" name="comments"></textarea>
                   </div>
                 </div>
                 </div>
                 <div>
                 <button type="button" class="btn btn-outline-light waves-light" @click="addNewContract()" >Send</button>
+                <p class="alert_button" v-if="submitStatus === 'ERROR'">Please fill the missing data</p>
                 </div>
               </form>
             </div>
@@ -163,6 +248,8 @@ import { mapGetters } from "vuex";
 import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
+import Vuelidate from 'Vuelidate';
+const { required, minLength, between  } = require('Vuelidate/lib/validators')
 
 export default {
   mounted: function() {
@@ -187,10 +274,13 @@ export default {
   },
   data() {
     return {
+      submitStatus:"",
       errors:[],
       show: false,
       isActive: true,
       contract: {},
+      years:0,
+      pMethod:"",
       formData: {
         executive: {id: null, name: null},
         cluster : {id: null, name: null},
@@ -207,7 +297,55 @@ export default {
       date:new Date()
     }
   },
+  validations:{
+    pMethod: {
+      required,
+      minLength: minLength(4)
+    },
+    date:{
+      required,
+      minValue: value => value < new Date().toISOString()
+      },
+    years:{
+      required,
+      between: between(1, 99)
+    },
+    development:{
+      required
+    },
+    executive:{
+      required,
+      minLength: minLength(1)
+    },
+    unit:{
+      required,
+      minLength: minLength(1)
+    },
+    currency:{
+      required,
+      minLength: minLength(1)
+    },
+    client:{
+      required,
+      minLength: minLength(1)
+    }
+  },
   methods: {
+    selectExec(option){
+      this.$v.executive.$model = option
+    },
+    selectDev(option){
+      this.$v.development.$model = option
+    },
+    selectUnit(option){
+      this.$v.unit.$model = option
+    },
+    selectCurr(option){
+      this.$v.currency.$model = option
+    },
+    selectClient(option){
+      this.$v.client.$model = option
+    },
     touchSpin(){
         $("input[name='ROIyears']").TouchSpin();
       },
@@ -226,7 +364,9 @@ export default {
       return dateString
     },
     setUnitPrice(x) {
-      document.getElementById('unit-price-input').value = x;
+      const self = this;
+      var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      document.getElementById('unit-price-input').value = self.formData.currency.name != null ? y + '.00 ' + self.formData.currency.name : y + '.00 ' ;
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -237,41 +377,46 @@ export default {
       this.formData[who].name = nVal.name;
     },
     addNewContract () {
-      const _ = this;
-      var frm = $("#new-contract-form").serializeArray();
-      var contract = {};
-      var success = true;
-      frm.forEach(element => {
-        contract[element.name] = element.value;
-      });
-      Object.keys(this.formData).forEach(k => {
+       this.$v.$touch()
+        if (this.$v.$invalid) {
+          this.submitStatus = 'ERROR'
+        } else {
+          this.submitStatus = 'OK'
+          const _ = this;
+          var frm = $("#new-contract-form").serializeArray();
+          var contract = {};
+          var success = true;
+          frm.forEach(element => {
+            contract[element.name] = element.value;
+            });
+            Object.keys(this.formData).forEach(k => {
 
-        frm.push({
-          name: k,
-          value: this.formData[k]
-        });
-      });
-      swal({
-        title: "Please confirm information",
-        text: "Cluster" + " : " + this.formData.cluster.name + "\n" + "Unit" + " : " + this.formData.unit.name + "\n" + "Sold to : " + this.formData.customer.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
-        icon: "info",
-        buttons: {
-          cancel: true,
-          confirm: true,
-        }
+              frm.push({
+                name: k,
+                value: this.formData[k]
+                });
+              });
+              swal({
+                title: "Please confirm information",
+                text: "Cluster" + " : " + this.formData.cluster.name + "\n" + "Unit" + " : " + this.formData.unit.name + "\n" + "Sold to : " + this.formData.customer.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
+                icon: "info",
+                buttons: {
+                  cancel: true,
+                  confirm: true,
+                }
 
-      }).then(function(isConfirm) {
-      if (isConfirm) {
-        swal({
-          title: 'Success!',
-          text: 'Your contract has been created',
-          icon: 'success'
-        }).then(function() {
-          //form.submit(); // <--- submit form programmatically
-        });
-      } else {
-        swal("Cancelled", "did not create contract", "error");
-      }
+                }).then(function(isConfirm) {
+                if (isConfirm) {
+                  swal({
+                    title: 'Success!',
+                    text: 'Your contract has been created',
+                    icon: 'success'
+                  }).then(function() {
+                    //form.submit(); // <--- submit form programmatically
+                  });
+                } else {
+                  swal("Cancelled", "did not create contract", "error");
+                }
     });
       // this.formData.forEach(ele =>{
       //   frm.push({
@@ -280,6 +425,7 @@ export default {
       //   });
       // })
       console.log(frm);
+        }
       }
     },
   computed: {
@@ -313,6 +459,18 @@ export default {
     background: #2a333c!important;
   }
 
+  .error {
+    text-align: left;
+    font-size: 12px;
+    color: #ff3c3c;
+  }
+
+  .alert_button {
+    margin:10px 0 0 0;
+    color: #ff3c3c;
+
+  }
+
   #dropdown-clusters .dropdown-item:hover,
   .dropdown-item:focus {
       text-decoration: none;
@@ -340,6 +498,10 @@ export default {
     border-color: #687c94;
   }
 
+  input#years {
+    color:#495057
+  }
+
   .bootstrap-touchspin-injected {
     width: 50%;
   }
@@ -351,12 +513,6 @@ export default {
     color: black;
   }
 
-  .form-control:disabled,
-  .form-control[readonly] {
-      background-color: #2a333c;
-      opacity: 1;
-      color:#757b80!important;
-  }
 
   .form-control:focus {
     background: #2a333c;
@@ -379,25 +535,27 @@ export default {
   input[type="color"]:focus,
   textarea,
   .uneditable-input:focus {
-    border-color: #687c94;
     box-shadow: none;
     outline: 0 none;
   }
 
-  input.form-control {
-    color: #757b80!important;
-  }
 
   input[type="text"] {
     background: #2a333c;
     border:1px solid #ffffff4b;
-    color: #757b80;
   }
+
+  .form-control[readonly] {
+    background-color: #3c4857;
+    border:none;
+    opacity: 1;
+    padding-left: 0;
+    font-weight: bolder;
+}
 
   input#ROIyears {
     background:#2a333c;
     border:1px solid #4a5869;
-    color: #757b80;
     padding:4px;
   }
 
@@ -412,7 +570,6 @@ export default {
     border: 1px solid #4a5869;
     box-shadow: none;
     height: 38px;
-    color: #ffffff !important;
     font-size: 14px;
   }
   #container-fluid {
@@ -522,7 +679,6 @@ export default {
 
  .textalign {
     text-align: left;
-    color: #a8a8a8!important;
     font-weight: 600;
  }
 
@@ -554,6 +710,22 @@ export default {
     margin-top:3px;
     margin-right:3px;
   }
+
+
+  .form-group--error {
+    border: 1px solid #ff3c3c!important;
+  }
+
+.disabled-option::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.disabled-option {
+  color: white;
+}
+
+
 
     @keyframes fadeInAnimation {
       0%   {
