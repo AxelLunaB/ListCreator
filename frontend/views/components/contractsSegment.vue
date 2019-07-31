@@ -14,9 +14,16 @@
             <div class="card-body">
               <h4 class="page-title">Contract Application</h4>
               <form id="new-contract-form">
-                <div class="form-group" role="form">
+                <div class="form-group">
                   <div class="row">
-
+                    <div class="col-12">
+                      <p v-if="errors.length">
+                        <b>Please correct the following error(s):</b>
+                        <ul>
+                          <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+                        </ul>
+                      </p>
+                    </div>
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive"><p>Development</p></label> -->
                     <b-dropdown id="dropdown-clusters" name="drop-clusters" :text="formData.cluster.name == null ? 'Select development' : formData.cluster.name" class="m-md-2">
@@ -34,7 +41,7 @@
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive"><p>Unit</p></label> -->
                     <b-dropdown id="dropdown-unit" name="drop-unit" :text="formData.unit.name == null ? 'Select Unit' : formData.unit.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in getAvailableDepartments" name="salePrice" :key="option.id" :value="option.id" @click="setData('unit',{id :option.id, name: option.name});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    <b-dropdown-item v-for="option in getAvailableDepartments" name="salePrice" :key="option.id" :value="option.id" @click="setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
@@ -180,6 +187,7 @@ export default {
   },
   data() {
     return {
+      errors:[],
       show: false,
       isActive: true,
       contract: {},
@@ -245,7 +253,7 @@ export default {
       });
       swal({
         title: "Please confirm information",
-        text: "Cluster" + " : " + this.formData.cluster.name + "\n" + "Unit#" + " : " + this.formData.unit.name + "\n" + "Sold to : " + this.formData.customer.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
+        text: "Cluster" + " : " + this.formData.cluster.name + "\n" + "Unit" + " : " + this.formData.unit.name + "\n" + "Sold to : " + this.formData.customer.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
         icon: "info",
         buttons: {
           cancel: true,
@@ -271,12 +279,9 @@ export default {
       //     value: ele.value
       //   });
       // })
-
       console.log(frm);
-
-    }
-  },
-
+      }
+    },
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
