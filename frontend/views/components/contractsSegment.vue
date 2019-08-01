@@ -57,6 +57,21 @@
                     </div>
 
                     <div class="col-lg-3">
+                    <!-- <label class="control-label" for="label-executive"><p>Unit</p></label> -->
+                    <b-dropdown
+                    id="dropdown-unit"
+                    name="drop-unit"
+                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2"
+                    :class="{ 'form-group--error': $v.unit.$error }">
+                    <b-dropdown-item v-for="option in getAvailableDepartments"
+                    name="salePrice"
+                    :key="option.id"
+                    :value="option.id"
+                    @click="selectUnit(option.unitNumber),setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    </b-dropdown>
+                    </div>
+
+                    <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive"><p>Currency</p></label> -->
                     <b-dropdown
                     id="dropdown-currency"
@@ -70,21 +85,6 @@
                     @click="selectCurr('MXN'),setData('currency',{id: 2,name: 'MXN'})">
                       MXN
                     </b-dropdown-item>
-                    </b-dropdown>
-                    </div>
-
-                    <div class="col-lg-3">
-                    <!-- <label class="control-label" for="label-executive"><p>Unit</p></label> -->
-                    <b-dropdown
-                    id="dropdown-unit"
-                    name="drop-unit"
-                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2"
-                    :class="{ 'form-group--error': $v.unit.$error }">
-                    <b-dropdown-item v-for="option in getAvailableDepartments"
-                    name="salePrice"
-                    :key="option.id"
-                    :value="option.id"
-                    @click="selectUnit(option.unitNumber),setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
@@ -137,7 +137,7 @@
                 id="payment-method"
                 v-model.trim="$v.pMethod.$model"
                 :class="{ 'form-group--error': $v.pMethod.$error }">
-                <!-- <div class="error" v-if="$v.pMethod.$error">Field must have at least 5 letters</div> -->
+                <div class="error" v-if="!$v.pMethod.alpha && $v.pMethod.required">Numbers not allowed</div>
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
 
                 <input
@@ -155,9 +155,9 @@
                   <date-picker
                   :config="options"
                   name="dateOfPayment"
-                  :class="{ 'form-group--error': $v.date.$error }"
+                  :class="{ 'form-group--error': !$v.date.minValue && $v.date.$dirty }"
                   v-model.trim="$v.date.$model"></date-picker>
-                  <!-- <div class="error" v-if="$v.date.$error">Field must be a future date</div> -->
+                  <div class="error" v-if="$v.date.$dirty && !$v.date.minValue">value must be a future date</div>
                   <!-- <div style="text-align:left;">
                     <label><p>Date of Payment</p></label>
                   </div>
@@ -191,7 +191,7 @@
                     id="years"
                     type="text"
                     value="0"
-                    class="form-control row col-6"
+                    class="form-control row col-4"
                     :class="{ 'form-group--error': $v.years.$error }"
                     v-model.trim="$v.years.$model"
                     name="ROIyears"
@@ -214,6 +214,8 @@
                     data-bts-button-down-class="btn btn-primary"
                     data-bts-button-up-class="btn btn-primary"/>
                     </template>
+                    <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>
+                    <div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 0-99</div>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -249,7 +251,7 @@ import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
 import Vuelidate from 'Vuelidate';
-const { required, minLength, between  } = require('Vuelidate/lib/validators')
+const { required, minLength, between, numeric, alpha  } = require('Vuelidate/lib/validators')
 
 export default {
   mounted: function() {
@@ -291,8 +293,7 @@ export default {
       },
       departments: {},
       options: {
-          format: 'DD/MM/YYYY',
-          useCurrent: false,
+          format: 'DD/MM/YYYY'
       },
       date:new Date()
     }
@@ -300,7 +301,7 @@ export default {
   validations:{
     pMethod: {
       required,
-      minLength: minLength(4)
+      alpha
     },
     date:{
       required,
@@ -308,6 +309,7 @@ export default {
       },
     years:{
       required,
+      numeric,
       between: between(1, 99)
     },
     development:{
@@ -366,7 +368,7 @@ export default {
     setUnitPrice(x) {
       const self = this;
       var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-      document.getElementById('unit-price-input').value = self.formData.currency.name != null ? y + '.00 ' + self.formData.currency.name : y + '.00 ' ;
+      document.getElementById('unit-price-input').value =  y + '.00 ' ;
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
