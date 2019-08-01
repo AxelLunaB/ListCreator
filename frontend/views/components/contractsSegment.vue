@@ -175,23 +175,22 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="formData.wROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isChecked">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
                       </label>
                     </div>
                   </div>
-                  <div class="col-md-12 col-sm-12 row" style="padding-left:0;">
-                    <template v-if="formData.wROI != 0">
-                    <label class="control-label col-12 text-left row"># of years</label>
+                  <div class="col-md-12 col-sm-6 row" style="padding-left:0;">
+                    <template v-if="isChecked == true">
+                    <label class="control-label col-6 text-left row"># of years</label>
                     <input @click='touchSpin'
                     id="years"
                     type="text"
+                    v-model="years"
                     value="0"
-                    class="form-control row col-4"
-                    :class="{ 'form-group--error': $v.years.$error }"
-                    v-model.trim="$v.years.$model"
+                    class="form-control row col-6"
                     name="ROIyears"
                     data-bts-min="0"
                     data-bts-max="100"
@@ -211,9 +210,12 @@
                     data-bts-mousewheel="true"
                     data-bts-button-down-class="btn btn-primary"
                     data-bts-button-up-class="btn btn-primary"/>
+                    <div style="font-weight: lighter;text-align: right;width: 100%;" >value must be numeric</div>
                     </template>
-                    <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>
-                    <div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div>
+                    <!-- <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>-->
+                    <!--<div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div> -->
+                                        <!-- :class="{ 'form-group--error': $v.years.$error }"
+                    v-model.trim="$v.years.$model" -->
                   </div>
                 </div>
                 <div class="form-group row">
@@ -273,6 +275,7 @@ export default {
   },
   data() {
     return {
+      isChecked:false,
       errors:[],
       show: false,
       isActive: true,
@@ -304,12 +307,13 @@ export default {
     date:{
       required,
       minValue: value => value > new Date().toISOString()
-      },
-    years:{
-      required,
-      numeric,
-      between: between(1, 99)
-    }
+      }
+    //   ,
+    // years:{
+    //   required,
+    //   numeric,
+    //   between: between(1, 99)
+    // }
   },
   methods: {
     selectExec(option){
@@ -385,6 +389,13 @@ export default {
     addNewContract () {
        this.$v.$touch()
         if (this.$v.$invalid || this.validation.length != 5) {
+          if(this.isChecked == true) {
+            if(this.years == 0) {
+              var selectYears = document.getElementById("years");
+              selectYears.classList.add("form-group--error");
+
+            }
+          }
           for(let i = 0; i < 5; i++){
             if(this.validation[i] == undefined){
 
@@ -423,11 +434,13 @@ export default {
           var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
           var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
           var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+          var selectYears = document.getElementById("years");
           clusterDropdown.classList.remove("error");
           executiveDropdown.classList.remove("error");
           unitDropdown.classList.remove("error");
           currencyDropdown.classList.remove("error");
           clientDropdown.classList.remove("error");
+          selectYears.classList.remove("form-group--error");
 
           const _ = this;
           var frm = $("#new-contract-form").serializeArray();
