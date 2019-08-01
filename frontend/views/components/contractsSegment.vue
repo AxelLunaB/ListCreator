@@ -1,6 +1,6 @@
 <template>
   <div v-if="shouldShow === true" id="fadeOutAnimation">
-    <div class="container-fluid" v-bind:class="{ active: show}" id="container-fluid" style="height:95%">
+    <div class="container-fluid" :class="{ active: show}" id="container-fluid" style="height:95%">
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
@@ -24,32 +24,30 @@
                         </ul>
                       </p>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" id="dropdown-validation0" >
                     <!-- <label class="control-label" for="label-executive"><p>Development</p></label> -->
-                    <b-dropdown
-                    id="dropdown-clusters"
-                    name="drop-clusters"
-                    :class="{ 'form-group--error': $v.development.$error }"
-                    :text="formData.cluster.name == null ? 'Development' : formData.cluster.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in clusters"
-                    :key="option.id"
-                    :value="option.id"
-                    @click="selectDev(option.name),setData('cluster',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
-                    </b-dropdown>
+                      <b-dropdown
+                      id="dropdown-clusters"
+                      name="drop-clusters"
+                      :text="formData.cluster.name == null ? 'Development' : formData.cluster.name" class="m-md-2">
+                      <b-dropdown-item v-for="option in clusters"
+                      :key="option.id"
+                      :value="option.id"
+                      @click="selectDev(option.name),setData('cluster',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                      </b-dropdown>
                     </div>
 
                     <div class="col-lg-3">
                     <!-- <label class="control-label" for="label-executive">Executive</label> -->
-
-                                        <!-- @click="setData('executive',{id :option.id, name: option.name})"> -->
-
-
+                    <!-- @click="setData('executive',{id :option.id, name: option.name})"> -->
                     <b-dropdown
                     id="dropdown-executives"
                     name="drop-executive"
-                    :text="formData.executive.name == null ? 'Executive' : formData.executive.name" class="m-md-2"
-                    :class="{ 'form-group--error': $v.executive.$error }">
-                    <b-dropdown-item v-for="option in executives" :key="option.id" :value="option.id"
+                    :text="formData.executive.name == null ? 'Executive' : formData.executive.name"
+                    class="m-md-2">
+                    <b-dropdown-item v-for="option in executives"
+                    :key="option.id"
+                    :value="option.id"
                     @click="selectExec(option.name),setData('executive',{id :option.id, name: option.name})">
                       {{option.name}}
                     </b-dropdown-item>
@@ -61,8 +59,7 @@
                     <b-dropdown
                     id="dropdown-unit"
                     name="drop-unit"
-                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2"
-                    :class="{ 'form-group--error': $v.unit.$error }">
+                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2">
                     <b-dropdown-item v-for="option in getAvailableDepartments"
                     name="salePrice"
                     :key="option.id"
@@ -75,8 +72,7 @@
                     <!-- <label class="control-label" for="label-executive"><p>Currency</p></label> -->
                     <b-dropdown
                     id="dropdown-currency"
-                    :text="formData.currency.name == null ? 'Currency' : formData.currency.name" class="m-md-2"
-                    :class="{ 'form-group--error': $v.currency.$error }">
+                    :text="formData.currency.name == null ? 'Currency' : formData.currency.name" class="m-md-2">
                     <b-dropdown-item value="USD"
                     @click="selectCurr('USD'),setData('currency',{id: 1,name: 'USD'})">
                       USD
@@ -104,13 +100,13 @@
 
                     <div class="col-sm-12 col-lg-6">
 
-                      <label class="control-label" for="label-executive"><p>Client</p></label>
+                      <!-- <label class="control-label" for="label-executive"><p>Client</p></label> -->
                       <b-dropdown
                       id="dropdown-customer"
                       name="drop-customer"
-                      :text="formData.customer.name == null ? 'Select Client' : formData.customer.name" class="m-md-2"
-                      :class="{ 'form-group--error': $v.client.$error }">
+                      :text="formData.customer.name == null ? 'Select Client' : formData.customer.name" class="m-md-2">
                       <div style="overflow-y:scroll;height:200px;">
+
                        <b-dropdown-item v-for="option in customers.data"
                        :key="option.id"
                        :value="option.id"
@@ -137,7 +133,8 @@
                 id="payment-method"
                 v-model.trim="$v.pMethod.$model"
                 :class="{ 'form-group--error': $v.pMethod.$error }">
-                <div class="error" v-if="!$v.pMethod.alpha && $v.pMethod.required">Numbers not allowed</div>
+                <div class="error" v-if="!$v.pMethod.alpha && $v.pMethod.required && $v.pMethod.$dirty">Numbers not allowed</div>
+                <div class="error" v-if="$v.pMethod.$dirty && $v.pMethod.$invalid">Payment method must be letters only</div>
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
 
                 <input
@@ -158,7 +155,8 @@
                   :class="{ 'form-group--error': !$v.date.minValue && $v.date.$dirty }"
                   v-model.trim="$v.date.$model"></date-picker>
                   <div class="error" v-if="$v.date.$dirty && !$v.date.minValue">value must be a future date</div>
-                  <!-- <div style="text-align:left;">
+
+                                  <!-- <div style="text-align:left;">
                     <label><p>Date of Payment</p></label>
                   </div>
                   <div class="col-6" style="padding:0;">
@@ -215,7 +213,7 @@
                     data-bts-button-up-class="btn btn-primary"/>
                     </template>
                     <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>
-                    <div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 0-99</div>
+                    <div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -227,7 +225,6 @@
                 </div>
                 <div>
                 <button type="button" class="btn btn-outline-light waves-light" @click="addNewContract()" >Send</button>
-                <p class="alert_button" v-if="submitStatus === 'ERROR'">Please fill the missing data</p>
                 </div>
               </form>
             </div>
@@ -276,13 +273,13 @@ export default {
   },
   data() {
     return {
-      submitStatus:"",
       errors:[],
       show: false,
       isActive: true,
       contract: {},
       years:0,
       pMethod:"",
+      validation:[],
       formData: {
         executive: {id: null, name: null},
         cluster : {id: null, name: null},
@@ -293,7 +290,8 @@ export default {
       },
       departments: {},
       options: {
-          format: 'DD/MM/YYYY'
+          // format: 'DD/MM/YYYY'
+          format: 'YYYY-MM-DD'
       },
       date:new Date()
     }
@@ -305,48 +303,54 @@ export default {
     },
     date:{
       required,
-      minValue: value => value < new Date().toISOString()
+      minValue: value => value > new Date().toISOString()
       },
     years:{
       required,
       numeric,
       between: between(1, 99)
-    },
-    development:{
-      required
-    },
-    executive:{
-      required,
-      minLength: minLength(1)
-    },
-    unit:{
-      required,
-      minLength: minLength(1)
-    },
-    currency:{
-      required,
-      minLength: minLength(1)
-    },
-    client:{
-      required,
-      minLength: minLength(1)
     }
   },
   methods: {
     selectExec(option){
-      this.$v.executive.$model = option
+      var exec = option
+      if (exec != null && exec != undefined) {
+        this.validation[1] = exec
+        var clusterDropdown = document.getElementById("dropdown-executives__BV_toggle_");
+        clusterDropdown.classList.remove("error");
+      }
     },
     selectDev(option){
-      this.$v.development.$model = option
+      var dev = option
+      if (dev != null && dev != undefined) {
+        this.validation[0] = dev
+        var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
+        devDropdown.classList.remove("error");
+      }
     },
     selectUnit(option){
-      this.$v.unit.$model = option
+      var unit = option
+      if (unit != null && unit != undefined) {
+        this.validation[2] = unit
+        var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
+        unitDropdown.classList.remove("error");
+      }
     },
     selectCurr(option){
-      this.$v.currency.$model = option
+      var curr = option
+      if (curr != null && curr != undefined) {
+        this.validation[3] = curr
+        var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
+        currencyDropdown.classList.remove("error");
+      }
     },
     selectClient(option){
-      this.$v.client.$model = option
+      var client = option
+      if (client != null && client != undefined) {
+        this.validation[4] = client
+        var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+        clientDropdown.classList.remove("error");
+      }
     },
     touchSpin(){
         $("input[name='ROIyears']").TouchSpin();
@@ -368,7 +372,7 @@ export default {
     setUnitPrice(x) {
       const self = this;
       var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-      document.getElementById('unit-price-input').value =  y + '.00 ' ;
+      document.getElementById('unit-price-input').value =  y + '.00 '
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -380,10 +384,51 @@ export default {
     },
     addNewContract () {
        this.$v.$touch()
-        if (this.$v.$invalid) {
-          this.submitStatus = 'ERROR'
+        if (this.$v.$invalid || this.validation.length != 5) {
+          for(let i = 0; i < 5; i++){
+            if(this.validation[i] == undefined){
+
+              switch(i){
+                case 0:
+                  var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
+                  devDropdown.classList.add("error");
+                break;
+
+                case 1:
+                  var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
+                  executiveDropdown.classList.add("error");
+                break;
+
+                case 2:
+                  var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
+                  unitDropdown.classList.add("error");
+                break;
+
+                case 3:
+                  var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
+                  currencyDropdown.classList.add("error");
+                break;
+
+                case 4:
+                  var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+                  clientDropdown.classList.add("error");
+
+              }
+            }
+          }
+
         } else {
-          this.submitStatus = 'OK'
+          var clusterDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
+          var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
+          var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
+          var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
+          var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+          clusterDropdown.classList.remove("error");
+          executiveDropdown.classList.remove("error");
+          unitDropdown.classList.remove("error");
+          currencyDropdown.classList.remove("error");
+          clientDropdown.classList.remove("error");
+
           const _ = this;
           var frm = $("#new-contract-form").serializeArray();
           var contract = {};
@@ -464,12 +509,12 @@ export default {
   .error {
     text-align: left;
     font-size: 12px;
-    color: #ff3c3c;
+    color: #D64933!important;
   }
 
   .alert_button {
     margin:10px 0 0 0;
-    color: #ff3c3c;
+    color: #D64933;
 
   }
 
@@ -715,7 +760,7 @@ export default {
 
 
   .form-group--error {
-    border: 1px solid #ff3c3c!important;
+    border: 1px solid #D64933!important;
   }
 
 .disabled-option::placeholder {
