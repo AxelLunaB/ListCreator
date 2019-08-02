@@ -251,6 +251,9 @@ import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
 import Vuelidate from 'Vuelidate';
 const { required, minLength, between, numeric, alpha  } = require('Vuelidate/lib/validators')
+import io from "socket.io-client";
+
+var socket = io();
 
 export default {
   mounted: function() {

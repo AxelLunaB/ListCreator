@@ -97,9 +97,9 @@ const fetchContracts = ($skip, query) => {
     });
   })
 };
-const createContract = (department) => {
+const createContract = (contract) => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', 'api/contracts', department, (error, message) => {
+    socket.emit('create', 'api/contracts', contract, (error, message) => {
       if (error) {
         reject(error);
       } else {
