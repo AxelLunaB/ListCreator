@@ -287,7 +287,7 @@ export default {
         unit: {id: null, name: null},
         customer: {id: null, name: null},
         currency: {id: null, name: null},
-        wROI: {id: null, name: null}
+        wROI: {id: null, name: 0}
       },
       years:0,
       pMethod:"",
@@ -389,10 +389,12 @@ export default {
        this.$v.$touch()
         if (this.$v.$invalid || this.validation.length != 5) {
           if(this.isROI == true) {
-            if(this.years == 0) {
+            if(this.formData.wROI.name == 0 || this.formData.wROI.name == null || isNaN(this.formData.wROI.name) ) {
               var selectYears = document.getElementById("years");
               selectYears.classList.add("form-group--error");
-
+            } else {
+                var selectYears = document.getElementById("years");
+                selectYears.classList.remove("form-group--error");
             }
           }
           for(let i = 0; i < 5; i++){
