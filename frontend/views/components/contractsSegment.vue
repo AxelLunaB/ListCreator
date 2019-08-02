@@ -175,7 +175,7 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isChecked">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
@@ -183,12 +183,12 @@
                     </div>
                   </div>
                   <div class="col-md-12 col-sm-6 row" style="padding-left:0;">
-                    <template v-if="isChecked == true">
+                    <template v-if="isROI == true">
                     <label class="control-label col-6 text-left row"># of years</label>
                     <input @click='touchSpin'
                     id="years"
                     type="text"
-                    v-model="years"
+                    v-model="formData.wROI.name"
                     value="0"
                     class="form-control row col-6"
                     name="ROIyears"
@@ -219,7 +219,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-2 control-label" for="example-textarea-input">Comments</label>
+                  <label class="col-sm-2 control-label control-label-text" for="example-textarea-input">Comments</label>
                   <div class="col-sm-10">
                     <textarea class="form-control" rows="5" id="example-textarea-input" name="comments"></textarea>
                   </div>
@@ -275,13 +275,11 @@ export default {
   },
   data() {
     return {
-      isChecked:false,
+      isROI:false,
       errors:[],
       show: false,
       isActive: true,
       contract: {},
-      years:0,
-      pMethod:"",
       validation:[],
       formData: {
         executive: {id: null, name: null},
@@ -291,9 +289,10 @@ export default {
         currency: {id: null, name: null},
         wROI: {id: null, name: null}
       },
+      years:0,
+      pMethod:"",
       departments: {},
       options: {
-          // format: 'DD/MM/YYYY'
           format: 'YYYY-MM-DD'
       },
       date:new Date()
@@ -389,7 +388,7 @@ export default {
     addNewContract () {
        this.$v.$touch()
         if (this.$v.$invalid || this.validation.length != 5) {
-          if(this.isChecked == true) {
+          if(this.isROI == true) {
             if(this.years == 0) {
               var selectYears = document.getElementById("years");
               selectYears.classList.add("form-group--error");
@@ -517,6 +516,17 @@ export default {
 
   body {
     background: #2a333c!important;
+  }
+
+  #tosheet,
+  #sendtopdf,
+  #newContract {
+    margin-bottom:15px;
+  }
+  .control-label-text {
+    font-size: calc(0.2vw + 10px);
+    display: flex;
+    align-items: center;
   }
 
   .error {
