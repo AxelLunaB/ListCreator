@@ -13,8 +13,8 @@ module.exports = {
     ],
     get: [],
     create: [
-   //  preventDuplicate({ service: 'api/contracts' })
-    ],
+      // preventDuplicate({ service: 'api/contracts' })
+  ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]
@@ -30,7 +30,6 @@ module.exports = {
 
         await context.app.service('api/commissions').get(contract.id).then(result => {
           contract.commission = result;
-
         })
         }
     },
@@ -84,7 +83,19 @@ module.exports = {
             })
           }
         }
-      }
+      },
+      // async context => {
+      //   for (i = 0; i < context.result.data.length; i++) {
+
+      //     let contract = context.result.data[i];
+      //     if(contract.referenceId != null){
+      //       await context.app.service('api/references').get(contract.id).then(result => {
+      //         contract.reference = result;
+
+      //       })
+      //     }
+      //   }
+      // }
     ],
     get: [
     ],

@@ -251,7 +251,10 @@ import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
 import Vuelidate from 'Vuelidate';
+import io from "socket.io-client";
 const { required, minLength, between, numeric, alpha  } = require('Vuelidate/lib/validators')
+
+var socket = io();
 
 export default {
   mounted: function() {
@@ -283,6 +286,7 @@ export default {
       contract: {},
       validation:[],
       formData: {
+        // id: null,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},
         unitId: {id: null, name: null},
@@ -387,6 +391,7 @@ export default {
       this.formData[who].name = nVal.name;
     },
     addNewContract () {
+
         if(this.isROI === true) {
           var selectYears = null
           if(this.formData.WROI.name === 0 || this.formData.WROI.name === null || isNaN(this.formData.WROI.name) ) {
@@ -400,7 +405,7 @@ export default {
         this.$v.$touch()
         if (this.$v.$invalid) {
           for(let i = 0; i < 5; i++){
-            if(this.validation[i] == undefined){
+            if(this.validation[i] == undefined){ //if pmethod and dmethod are working it wont enter this loop
 
               switch(i){
                 case 0:
@@ -473,8 +478,7 @@ export default {
                 }
 
                 })
-             this.$store
-                .dispatch("contracts/newContract", frm)
+
                 .then(function(isConfirm) {
                 if (isConfirm) {
                   swal({
@@ -482,12 +486,14 @@ export default {
                     text: 'Your contract has been created',
                     icon: 'success'
                   }).then(function() {
-                    //form.submit(); // <--- submit form programmatically
+                    _.$store
+                    .dispatch("contracts/newContract", frm)
                   });
                 } else {
                   swal("Cancelled", "did not create contract", "error");
                 }
-    });
+
+    })
       // this.formData.forEach(ele =>{
       //   frm.push({
       //     name: ele,

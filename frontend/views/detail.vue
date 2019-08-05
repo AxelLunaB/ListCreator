@@ -46,7 +46,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Dowload sheet</button>
             <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn btn-outline-light" id="newContract" @click="showContracts" >Contracts/References</button>
+            <button type="button" class="btn btn-outline-light" id="newContract" @click="showContracts">Contracts/References</button>
             </div>
           </div>
         </div>
