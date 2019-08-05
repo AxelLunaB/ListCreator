@@ -386,15 +386,18 @@ export default {
       this.formData[who].name = nVal.name;
     },
     addNewContract () {
-       this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length != 5) {
-          if(this.isROI == true) {
-            if(this.years == 0) {
-              var selectYears = document.getElementById("years");
-              selectYears.classList.add("form-group--error");
-
-            }
+        if(this.isROI === true) {
+          var selectYears = null
+          if(this.formData.wROI.name === 0 || this.formData.wROI.name === null || isNaN(this.formData.wROI.name) ) {
+            selectYears = document.getElementById("years");
+            selectYears.classList.add("form-group--error");
+          } else {
+              selectYears = document.getElementById("years");
+              selectYears.classList.remove("form-group--error");
           }
+        }
+        this.$v.$touch()
+        if (this.$v.$invalid || this.validation.length != 5) {
           for(let i = 0; i < 5; i++){
             if(this.validation[i] == undefined){
 
