@@ -12,7 +12,9 @@ module.exports = {
       togglePagination(),
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/contracts' })],
+    create: [
+   //  preventDuplicate({ service: 'api/contracts' })
+    ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]

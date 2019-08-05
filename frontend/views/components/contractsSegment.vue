@@ -29,11 +29,11 @@
                       <b-dropdown
                       id="dropdown-clusters"
                       name="drop-clusters"
-                      :text="formData.cluster.name == null ? 'Development' : formData.cluster.name" class="m-md-2">
+                      :text="formData.clusterId.name == null ? 'Development' : formData.clusterId.name" class="m-md-2">
                       <b-dropdown-item v-for="option in clusters"
                       :key="option.id"
                       :value="option.id"
-                      @click="selectDev(option.name),setData('cluster',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                      @click="selectDev(option.name),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
                       </b-dropdown>
                     </div>
 
@@ -59,12 +59,12 @@
                     <b-dropdown
                     id="dropdown-unit"
                     name="drop-unit"
-                    :text="formData.unit.name == null ? 'Unit' : formData.unit.name" class="m-md-2">
+                    :text="formData.unitId.name == null ? 'Unit' : formData.unitId.name" class="m-md-2">
                     <b-dropdown-item v-for="option in getAvailableDepartments"
                     name="salePrice"
                     :key="option.id"
                     :value="option.id"
-                    @click="selectUnit(option.unitNumber),setData('unit',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    @click="selectUnit(option.unitNumber),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
@@ -104,13 +104,13 @@
                       <b-dropdown
                       id="dropdown-customer"
                       name="drop-customer"
-                      :text="formData.customer.name == null ? 'Select Client' : formData.customer.name" class="m-md-2">
+                      :text="formData.customerId.name == null ? 'Select Client' : formData.customerId.name" class="m-md-2">
                       <div style="overflow-y:scroll;height:200px;">
 
                        <b-dropdown-item v-for="option in customers.data"
                        :key="option.id"
                        :value="option.id"
-                       @click="selectClient(option.name),setData('customer',{id :option.id, name: option.name})">
+                       @click="selectClient(option.name),setData('customerId',{id :option.id, name: option.name})">
                        {{option.name}}
                        </b-dropdown-item>
                       </div>
@@ -130,11 +130,12 @@
                 class="form-control col-md-6 col-sm-12"
                 value=""
                 placeholder="Payment method"
+                name="PaymentMethod"
                 id="payment-method"
-                v-model.trim="$v.pMethod.$model"
-                :class="{ 'form-group--error': $v.pMethod.$error }">
-                <div class="error" v-if="!$v.pMethod.alpha && $v.pMethod.required && $v.pMethod.$dirty">Numbers not allowed</div>
-                <div class="error" v-if="$v.pMethod.$dirty && $v.pMethod.$invalid">Payment method must be letters only</div>
+                v-model.trim="$v.paymentMethod.$model"
+                :class="{ 'form-group--error': $v.paymentMethod.$error }">
+                <div class="error" v-if="!$v.paymentMethod.alpha && $v.paymentMethod.required && $v.paymentMethod.$dirty">Numbers not allowed</div>
+                <div class="error" v-if="$v.paymentMethod.$dirty && $v.paymentMethod.$invalid">Payment method must be letters only</div>
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
 
                 <input
@@ -188,7 +189,7 @@
                     <input @click='touchSpin'
                     id="years"
                     type="text"
-                    v-model="formData.wROI.name"
+                    v-model="formData.WROI.name"
                     value="0"
                     class="form-control row col-6"
                     name="ROIyears"
@@ -221,7 +222,7 @@
                 <div class="form-group row">
                   <label class="col-sm-2 control-label control-label-text" for="example-textarea-input">Comments</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" id="example-textarea-input" name="comments"></textarea>
+                    <textarea v-model="formData.comment" class="form-control" rows="5" id="example-textarea-input" name="comment"></textarea>
                   </div>
                 </div>
                 </div>
@@ -283,14 +284,14 @@ export default {
       validation:[],
       formData: {
         executive: {id: null, name: null},
-        cluster : {id: null, name: null},
-        unit: {id: null, name: null},
-        customer: {id: null, name: null},
+        clusterId : {id: null, name: null},
+        unitId: {id: null, name: null},
+        customerId: {id: null, name: null},
         currency: {id: null, name: null},
-        wROI: {id: null, name: null}
+        WROI: {id: null, name: null},
+        comment:null
       },
-      years:0,
-      pMethod:"",
+      paymentMethod:"",
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
@@ -299,7 +300,7 @@ export default {
     }
   },
   validations:{
-    pMethod: {
+    paymentMethod: {
       required,
       alpha
     },
@@ -388,16 +389,16 @@ export default {
     addNewContract () {
         if(this.isROI === true) {
           var selectYears = null
-          if(this.formData.wROI.name === 0 || this.formData.wROI.name === null || isNaN(this.formData.wROI.name) ) {
+          if(this.formData.WROI.name === 0 || this.formData.WROI.name === null || isNaN(this.formData.WROI.name) ) {
             selectYears = document.getElementById("years");
             selectYears.classList.add("form-group--error");
           } else {
-              selectYears = document.getElementById("years");
-              selectYears.classList.remove("form-group--error");
+            selectYears = document.getElementById("years");
+            selectYears.classList.remove("form-group--error");
           }
         }
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length != 5) {
+        if (this.$v.$invalid) {
           for(let i = 0; i < 5; i++){
             if(this.validation[i] == undefined){
 
@@ -431,18 +432,21 @@ export default {
           }
 
         } else {
+
           var clusterDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
           var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
           var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
           var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
           var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
-          var selectYears = document.getElementById("years");
           clusterDropdown.classList.remove("error");
           executiveDropdown.classList.remove("error");
           unitDropdown.classList.remove("error");
           currencyDropdown.classList.remove("error");
           clientDropdown.classList.remove("error");
-          selectYears.classList.remove("form-group--error");
+          if(this.isROI == true) {
+            var selectYears = document.getElementById("years");
+            selectYears.classList.remove("form-group--error");
+          }
 
           const _ = this;
           var frm = $("#new-contract-form").serializeArray();
@@ -458,9 +462,10 @@ export default {
                 value: this.formData[k]
                 });
               });
+              console.log(frm)
               swal({
                 title: "Please confirm information",
-                text: "Cluster" + " : " + this.formData.cluster.name + "\n" + "Unit" + " : " + this.formData.unit.name + "\n" + "Sold to : " + this.formData.customer.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
+                text: "Cluster" + " : " + this.formData.clusterId.name + "\n" + "Unit" + " : " + this.formData.unitId.name + "\n" + "Sold to : " + this.formData.customerId.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
                 icon: "info",
                 buttons: {
                   cancel: true,

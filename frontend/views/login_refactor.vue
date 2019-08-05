@@ -162,7 +162,7 @@ body {
 .custom-control-label:after,
 .custom-control-label:before {
   background: #3f4c5c;
-  border:1px solid #2a333c;
+  border:1px solid #687c94;
   border-radius: 2px;
 }
 
