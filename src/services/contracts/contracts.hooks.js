@@ -14,6 +14,8 @@ module.exports = {
     get: [],
     create: [
       // preventDuplicate({ service: 'api/contracts' })
+      context => {console.log(context.data)}
+
   ],
     update: [canUpdate()],
     patch: [],

@@ -167,7 +167,7 @@
                 <div class="form-group row">
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="furniture">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                     <label for="Furniture">
@@ -192,7 +192,6 @@
                     v-model="formData.WROI.name"
                     value="0"
                     class="form-control row col-6"
-                    name="ROIyears"
                     data-bts-min="0"
                     data-bts-max="100"
                     data-bts-init-val=""
@@ -222,7 +221,7 @@
                 <div class="form-group row">
                   <label class="col-sm-2 control-label control-label-text" for="example-textarea-input">Comments</label>
                   <div class="col-sm-10">
-                    <textarea v-model="formData.comment" class="form-control" rows="5" id="example-textarea-input" name="comment"></textarea>
+                    <textarea v-model="formData.comment" class="form-control" rows="5" id="example-textarea-input"></textarea>
                   </div>
                 </div>
                 </div>
@@ -266,11 +265,11 @@ export default {
       this.show = true;
     });
 
-    $( document ).ready(function() {
-      $("input[name='ROIyears']").TouchSpin({
-        verticalbuttons: true
-        });
-      });
+    // $( document ).ready(function() {
+    //   $("input[id='ROIyears']").TouchSpin({
+    //     verticalbuttons: true
+    //     });
+    //   });
 
 
   },
@@ -279,23 +278,26 @@ export default {
   },
   data() {
     return {
+      ids:[],
       isROI:false,
       errors:[],
       show: false,
       isActive: true,
       contract: {},
       validation:[],
-      formData: {
-        // id: null,
+      formData: { // findme
+        id: 49,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},
         unitId: {id: null, name: null},
         customerId: {id: null, name: null},
         currency: {id: null, name: null},
-        WROI: {id: null, name: null},
-        comment:null
+        WROI: { name: 0},
+        furniture:false,
+        comment:null,
       },
       paymentMethod:"",
+
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
@@ -312,14 +314,39 @@ export default {
       required,
       minValue: value => value > new Date().toISOString()
       }
-    //   ,
-    // years:{
-    //   required,
-    //   numeric,
-    //   between: between(1, 99)
-    // }
   },
   methods: {
+    getValue(k){
+      switch(k){
+      case 'executive':
+        return this.formData.executive.id
+      break;
+      case 'clusterId':
+        return this.formData.clusterId.id
+      break;
+      case 'unitId':
+        return this.formData.unitId.id
+      break;
+      case 'customerId':
+        return this.formData.customerId.id
+      break;
+      case 'currency':
+        return this.formData.currency.id
+      break;
+      case 'WROI':
+      return this.isROI == true ? parseInt(this.formData.WROI.name) : "No"
+      break;
+      case "comment":
+        return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
+      break;
+      case "id":
+      return this.formData.id
+      case "furniture":
+      return this.formData.furniture == false  ? "NO" : "YES"
+
+      }
+    }
+    ,
     selectExec(option){
       var exec = option
       if (exec != null && exec != undefined) {
@@ -361,7 +388,7 @@ export default {
       }
     },
     touchSpin(){
-        $("input[name='ROIyears']").TouchSpin();
+        $("input[id='years']").TouchSpin();
       },
     closeBtn() {
       self = this
@@ -392,6 +419,7 @@ export default {
     },
     addNewContract () {
 
+
         if(this.isROI === true) {
           var selectYears = null
           if(this.formData.WROI.name === 0 || this.formData.WROI.name === null || isNaN(this.formData.WROI.name) ) {
@@ -402,10 +430,12 @@ export default {
             selectYears.classList.remove("form-group--error");
           }
         }
+
+
         this.$v.$touch()
-        if (this.$v.$invalid) {
+        if (this.$v.$invalid || this.validation.length !== 5 ) {
           for(let i = 0; i < 5; i++){
-            if(this.validation[i] == undefined){ //if pmethod and dmethod are working it wont enter this loop
+            if(this.validation[i] == undefined){
 
               switch(i){
                 case 0:
@@ -461,12 +491,20 @@ export default {
             contract[element.name] = element.value;
             });
             Object.keys(this.formData).forEach(k => {
-
               frm.push({
                 name: k,
-                value: this.formData[k]
+                value:this.getValue(k)
                 });
+
               });
+              frm[0].value = (frm[0].value).replace(/\,/g,'');
+              frm[0].value = parseInt(frm[0].value,10);
+
+              var yyyy = frm[3].value.slice(0,4)
+              var dd = frm[3].value.slice(8,10)
+              var mm = frm[3].value.slice(5,7)
+              frm[3].value = dd + "/" + mm + "/" + yyyy
+
               console.log(frm)
               swal({
                 title: "Please confirm information",
@@ -508,7 +546,8 @@ export default {
           cAvailability: "departments/currentAvailability",
           executives: "users/users",
           clusters: "others/clusters",
-          customers: "others/customers"
+          customers: "others/customers",
+          contracts: "contracts/contracts"
       }),
     shouldShow() {
       return this.show;
@@ -518,6 +557,13 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
+    }
+    ,
+    getId(){
+      for( var i = 0 ; i < this.contracts.length ; i++) {
+        this.ids.push(this.contracts[i].id)
+      }
+      this.formData.id = Math.max.apply(null, this.ids) + 1
     }
   }
 }
