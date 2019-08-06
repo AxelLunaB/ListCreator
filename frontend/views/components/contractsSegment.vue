@@ -392,6 +392,7 @@ export default {
     },
     addNewContract () {
 
+
         if(this.isROI === true) {
           var selectYears = null
           if(this.formData.WROI.name === 0 || this.formData.WROI.name === null || isNaN(this.formData.WROI.name) ) {
@@ -403,9 +404,9 @@ export default {
           }
         }
         this.$v.$touch()
-        if (this.$v.$invalid) {
+        if (this.$v.$invalid || this.validation !== 5 ) {
           for(let i = 0; i < 5; i++){
-            if(this.validation[i] == undefined){ //if pmethod and dmethod are working it wont enter this loop
+            if(this.validation[i] == undefined){
 
               switch(i){
                 case 0:
