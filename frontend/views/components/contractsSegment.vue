@@ -167,7 +167,7 @@
                 <div class="form-group row">
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="furniture">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                     <label for="Furniture">
@@ -192,7 +192,6 @@
                     v-model="formData.WROI.name"
                     value="0"
                     class="form-control row col-6"
-                    name="ROIyears"
                     data-bts-min="0"
                     data-bts-max="100"
                     data-bts-init-val=""
@@ -222,7 +221,7 @@
                 <div class="form-group row">
                   <label class="col-sm-2 control-label control-label-text" for="example-textarea-input">Comments</label>
                   <div class="col-sm-10">
-                    <textarea v-model="formData.comment" class="form-control" rows="5" id="example-textarea-input" name="comment"></textarea>
+                    <textarea v-model="formData.comment" class="form-control" rows="5" id="example-textarea-input"></textarea>
                   </div>
                 </div>
                 </div>
@@ -266,11 +265,11 @@ export default {
       this.show = true;
     });
 
-    $( document ).ready(function() {
-      $("input[name='ROIyears']").TouchSpin({
-        verticalbuttons: true
-        });
-      });
+    // $( document ).ready(function() {
+    //   $("input[id='ROIyears']").TouchSpin({
+    //     verticalbuttons: true
+    //     });
+    //   });
 
 
   },
@@ -294,9 +293,11 @@ export default {
         customerId: {id: null, name: null},
         currency: {id: null, name: null},
         WROI: { name: 0},
+        furniture:false,
         comment:null,
       },
       paymentMethod:"",
+
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
@@ -333,12 +334,16 @@ export default {
         return this.formData.currency.id
       break;
       case 'WROI':
-      return this.isROI == true ? this.formData.WROI.name : "No"
+      return this.isROI == true ? parseInt(this.formData.WROI.name) : "No"
       break;
       case "comment":
         return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
+      break;
       case "id":
       return this.formData.id
+      case "furniture":
+      return this.formData.furniture == false  ? "NO" : "YES"
+
       }
     }
     ,
@@ -383,7 +388,7 @@ export default {
       }
     },
     touchSpin(){
-        $("input[name='ROIyears']").TouchSpin();
+        $("input[id='years']").TouchSpin();
       },
     closeBtn() {
       self = this
@@ -490,10 +495,15 @@ export default {
                 name: k,
                 value:this.getValue(k)
                 });
-              });
 
+              });
               frm[0].value = (frm[0].value).replace(/\,/g,'');
               frm[0].value = parseInt(frm[0].value,10);
+
+              var yyyy = frm[3].value.slice(0,4)
+              var dd = frm[3].value.slice(8,10)
+              var mm = frm[3].value.slice(5,7)
+              frm[3].value = dd + "/" + mm + "/" + yyyy
 
               console.log(frm)
               swal({
