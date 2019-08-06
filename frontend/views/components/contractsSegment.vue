@@ -279,21 +279,22 @@ export default {
   },
   data() {
     return {
+      ids:[],
       isROI:false,
       errors:[],
       show: false,
       isActive: true,
       contract: {},
       validation:[],
-      formData: {
-        // id: null,
+      formData: { // findme
+        id: 49,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},
         unitId: {id: null, name: null},
         customerId: {id: null, name: null},
         currency: {id: null, name: null},
-        WROI: {id: null, name: null},
-        comment:null
+        WROI: { name: 0},
+        comment:null,
       },
       paymentMethod:"",
       departments: {},
@@ -312,14 +313,35 @@ export default {
       required,
       minValue: value => value > new Date().toISOString()
       }
-    //   ,
-    // years:{
-    //   required,
-    //   numeric,
-    //   between: between(1, 99)
-    // }
   },
   methods: {
+    getValue(k){
+      switch(k){
+      case 'executive':
+        return this.formData.executive.id
+      break;
+      case 'clusterId':
+        return this.formData.clusterId.id
+      break;
+      case 'unitId':
+        return this.formData.unitId.id
+      break;
+      case 'customerId':
+        return this.formData.customerId.id
+      break;
+      case 'currency':
+        return this.formData.currency.id
+      break;
+      case 'WROI':
+      return this.isROI == true ? this.formData.WROI.name : "No"
+      break;
+      case "comment":
+        return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
+      case "id":
+      return this.formData.id
+      }
+    }
+    ,
     selectExec(option){
       var exec = option
       if (exec != null && exec != undefined) {
@@ -403,8 +425,10 @@ export default {
             selectYears.classList.remove("form-group--error");
           }
         }
+
+
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation !== 5 ) {
+        if (this.$v.$invalid || this.validation.length !== 5 ) {
           for(let i = 0; i < 5; i++){
             if(this.validation[i] == undefined){
 
@@ -462,12 +486,15 @@ export default {
             contract[element.name] = element.value;
             });
             Object.keys(this.formData).forEach(k => {
-
               frm.push({
                 name: k,
-                value: this.formData[k]
+                value:this.getValue(k)
                 });
               });
+
+              frm[0].value = (frm[0].value).replace(/\,/g,'');
+              frm[0].value = parseInt(frm[0].value,10);
+
               console.log(frm)
               swal({
                 title: "Please confirm information",
@@ -509,7 +536,8 @@ export default {
           cAvailability: "departments/currentAvailability",
           executives: "users/users",
           clusters: "others/clusters",
-          customers: "others/customers"
+          customers: "others/customers",
+          contracts: "contracts/contracts"
       }),
     shouldShow() {
       return this.show;
@@ -519,6 +547,13 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
+    }
+    ,
+    getId(){
+      for( var i = 0 ; i < this.contracts.length ; i++) {
+        this.ids.push(this.contracts[i].id)
+      }
+      this.formData.id = Math.max.apply(null, this.ids) + 1
     }
   }
 }
