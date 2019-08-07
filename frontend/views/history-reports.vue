@@ -11,13 +11,36 @@
               <input class="form-control" type="date" v-model="initDate" @change="filterByDate">
           </div>
           <div class="col-sm-12 col-md-6">
-              <label>From</label>
+              <label>To</label>
               <input class="form-control" type="date" v-model="endDate" @change="filterByDate">
           </div>
         </div>
       </div>
     </div>
     <div class="history-body" v-if="watchMe">
+      <div style="width:20%">
+      <table class="table table-hover" style="margin-bottom:0;">
+          <thead>
+          <tr>
+            <td>
+              TOWER
+            </td>
+            <td>
+              UNIT #
+            </td>
+          </tr>
+        </thead>
+      </table>
+      <table class="table table-hover">
+          <thead class="table-body">
+          <tr v-for="(itemDep,index) in filterByContract" :key="index">
+            <td style="font-weight:bold;font-size:16px;">{{ itemDep.cluster.abb }}</td>
+            <td style="font-weight:bold;font-size:16px;">{{ itemDep.unitNumber }}</td>
+          </tr>
+        </thead>
+      </table>
+      </div>
+      <div style="width:90%">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
@@ -30,14 +53,14 @@
       <table class="table table-hover">
           <thead class="table-body">
           <tr v-for="(item,index) in filterByDate" :key="index">
-            <td class="responsive0" style="font-size:12px;"> {{ item.customer.name }} </td>
-            <td> {{ item.commission.executive.name }} </td>
-            <td> {{ toDate(item.reference.reserveDate) }} </td>
-            <td> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
-
+            <td style="font-size:14px;"> {{ item.customer.name }} </td>
+            <td style="width:150px;"> {{ item.commission.executive.name }} </td>
+            <td style="width:150px;"> {{ toDate(item.reference.reserveDate) }} </td>
+            <td style="width:100px;"> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
           </tr>
         </thead>
       </table>
+      </div>
     </div>
     <div class="history-body" v-if="watchMe == false">
       <p>Please choose a date range</p>
@@ -98,6 +121,7 @@ export default {
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("users/listenEvents");
       this.$store.dispatch("contracts/getContracts");
+      this.$store.dispatch("contracts/getContracts");
 
 
       // listen to authenticated event
@@ -107,6 +131,7 @@ export default {
         _.$store.dispatch("users/getUsers");
         _.$store.dispatch("users/listenEvents");
         _.$store.dispatch("contracts/getContracts");
+        _.$store.dispatch("departments/getDepartments");
 
 
       });
@@ -127,7 +152,9 @@ export default {
       initDate: null,
       endDate:null,
       selectedDepartment:{},
-      watchMe: false
+      watchMe: false,
+      datesArray:[],
+      datesContracts: []
     }
   },
   methods:{
@@ -209,12 +236,12 @@ export default {
     computed:{
       ...mapGetters({
         // users: "users/users"
-        contracts: "contracts/contracts"
+        contracts: "contracts/contracts",
+        departments: "departments/departments"
       }),
     filterByDate(){
       var init = this.initDate
       var end = this.endDate
-      var datesArray = []
 
       if(this.initDate != null && this.endDate != null) {
         this.watchMe = true
@@ -222,15 +249,26 @@ export default {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
               if(current > init && current < end) {
-                datesArray.push(this.contracts[i])
+                this.datesArray.push(this.contracts[i])
                 }
               }
             }
           }
+          console.log(this.datesArray)
 
-          datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
-          return datesArray
+          this.datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+          return this.datesArray
 
+      },
+      filterByContract(){
+          for(var i = 0 ; i < this.datesArray.length ; i++ ) {
+            for(var e = 0 ; e < this.departments.length ; e++ ) {
+              if(this.datesArray[i].id == this.departments[e].id) {
+                this.datesContracts.push(this.departments[e])
+              }
+            }
+          }
+          return this.datesContracts
       },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
@@ -271,14 +309,14 @@ export default {
     background: #2a333c;
   }
 
+  body #app-history-reports .history-body .table thead td {
+    border-bottom:none;
+  }
+
   #app-history-reports {
   height: 100%;
   width: 100%;
   background: #2a333c;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
   color:white;
 
   [type="date"] {
@@ -310,6 +348,7 @@ export default {
     margin-top:50px;
     max-width: 1000px;
     margin:50px auto 50px auto;
+    display:flex;
   }
 
    .history-body p {
@@ -356,6 +395,18 @@ export default {
 
   .page-link {
     background: none;
+  }
+
+  .responsive3{
+    width:100px;
+  }
+
+  .responsive2{
+    width:150px;
+  }
+
+  .responsive1{
+    width:150px;
   }
 
     @media (max-width: 769px) {
