@@ -33,7 +33,7 @@
                       <b-dropdown-item v-for="option in clusters"
                       :key="option.id"
                       :value="option.id"
-                      @click="selectDev(option.name),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                      @click="selectDev('cluster'),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
                       </b-dropdown>
                     </div>
 
@@ -48,7 +48,7 @@
                     <b-dropdown-item v-for="option in executives"
                     :key="option.id"
                     :value="option.id"
-                    @click="selectExec(option.name),setData('executive',{id :option.id, name: option.name})">
+                    @click="selectExec('executive'),setData('executive',{id :option.id, name: option.name})">
                       {{option.name}}
                     </b-dropdown-item>
                     </b-dropdown>
@@ -64,7 +64,7 @@
                     name="salePrice"
                     :key="option.id"
                     :value="option.id"
-                    @click="selectUnit(option.unitNumber),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
                     </b-dropdown>
                     </div>
 
@@ -74,11 +74,11 @@
                     id="dropdown-currency"
                     :text="formData.currency.name == null ? 'Currency' : formData.currency.name" class="m-md-2">
                     <b-dropdown-item value="USD"
-                    @click="selectCurr('USD'),setData('currency',{id: 1,name: 'USD'})">
+                    @click="selectCurr('curr'),setData('currency',{id: 1,name: 'USD'})">
                       USD
                     </b-dropdown-item>
                     <b-dropdown-item value="MXN"
-                    @click="selectCurr('MXN'),setData('currency',{id: 2,name: 'MXN'})">
+                    @click="selectCurr('curr'),setData('currency',{id: 2,name: 'MXN'})">
                       MXN
                     </b-dropdown-item>
                     </b-dropdown>
@@ -110,7 +110,7 @@
                        <b-dropdown-item v-for="option in customers.data"
                        :key="option.id"
                        :value="option.id"
-                       @click="selectClient(option.name),setData('customerId',{id :option.id, name: option.name})">
+                       @click="selectClient('client'),setData('customerId',{id :option.id, name: option.name})">
                        {{option.name}}
                        </b-dropdown-item>
                       </div>
@@ -349,42 +349,52 @@ export default {
     ,
     selectExec(option){
       var exec = option
-      if (exec != null && exec != undefined) {
-        this.validation[1] = exec
+      if(this.validation.includes(option)){
+
+      } else {
+        this.validation.push(exec)
         var clusterDropdown = document.getElementById("dropdown-executives__BV_toggle_");
         clusterDropdown.classList.remove("error");
       }
     },
     selectDev(option){
       var dev = option
-      if (dev != null && dev != undefined) {
-        this.validation[0] = dev
+      if (this.validation.includes(option)) {
+
+      } else {
+        this.validation.push(dev)
         var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
         devDropdown.classList.remove("error");
       }
     },
     selectUnit(option){
       var unit = option
-      if (unit != null && unit != undefined) {
-        this.validation[2] = unit
+      if (this.validation.includes(option)) {
+
+      } else {
+        this.validation.push(unit)
         var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
         unitDropdown.classList.remove("error");
       }
     },
     selectCurr(option){
       var curr = option
-      if (curr != null && curr != undefined) {
-        this.validation[3] = curr
-        var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
-        currencyDropdown.classList.remove("error");
+      if (this.validation.includes(option)) {
+
+      } else {
+      this.validation.push(curr)
+      var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
+      currencyDropdown.classList.remove("error");
       }
     },
     selectClient(option){
       var client = option
-      if (client != null && client != undefined) {
-        this.validation[4] = client
-        var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
-        clientDropdown.classList.remove("error");
+      if (this.validation.includes(option)) {
+
+      } else {
+      this.validation.push(client)
+      var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+      clientDropdown.classList.remove("error");
       }
     },
     touchSpin(){
@@ -433,36 +443,38 @@ export default {
 
 
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length !== 5 ) {
+        if (this.$v.$invalid || this.validation.length < 5 ) {
+
           for(let i = 0; i < 5; i++){
-            if(this.validation[i] == undefined){
+            if(this.validation.includes("unit")){
 
-              switch(i){
-                case 0:
-                  var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
-                  devDropdown.classList.add("error");
-                break;
-
-                case 1:
-                  var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
-                  executiveDropdown.classList.add("error");
-                break;
-
-                case 2:
+            } else {
                   var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
                   unitDropdown.classList.add("error");
-                break;
+            }
+            if(this.validation.includes("cluster")){
 
-                case 3:
-                  var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
-                  currencyDropdown.classList.add("error");
-                break;
+            } else {
+                  var unitDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
+                  unitDropdown.classList.add("error");
+            }
+            if(this.validation.includes("executive")){
 
-                case 4:
-                  var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
-                  clientDropdown.classList.add("error");
+            } else {
+                  var unitDropdown = document.getElementById("dropdown-executives__BV_toggle_");
+                  unitDropdown.classList.add("error");
+            }
+            if(this.validation.includes("curr")){
 
-              }
+            } else {
+                  var unitDropdown = document.getElementById("dropdown-currency__BV_toggle_");
+                  unitDropdown.classList.add("error");
+            }
+            if(this.validation.includes("client")){
+
+            } else {
+                  var unitDropdown = document.getElementById("dropdown-customer__BV_toggle_");
+                  unitDropdown.classList.add("error");
             }
           }
 
