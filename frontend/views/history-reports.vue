@@ -207,8 +207,9 @@ export default {
       endDate:null,
       selectedDepartment:{},
       watchMe: false,
-      datesArray:[],
-      datesContracts: []
+      depsAndContractsArray:[],
+      contractsArray: [],
+      concatArray:[]
     }
   },
   methods:{
@@ -374,17 +375,17 @@ export default {
       var end = this.endDate
 
       if(this.initDate != null && this.endDate != null) {
-        this.datesArray = []
+        this.depsAndContractsArray = []
         this.watchMe = true
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
               if(current >= init && current <= end) {
-                this.datesArray.push(this.contracts[i])
+                this.depsAndContractsArray.push(this.contracts[i])
                 }
               }
             }
-            if(this.datesArray == 0) {
+            if(this.depsAndContractsArray == 0) {
           swal({
             text: `No apartments within range`,
             icon: "error",
@@ -393,22 +394,28 @@ export default {
           });
             }
           }
-          console.log(this.datesArray)
+          console.log(this.depsAndContractsArray)
 
-          this.datesArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
-          return this.datesArray
+          this.depsAndContractsArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+          return this.depsAndContractsArray
 
       },
       filterByContract(){
-        this.datesContracts = []
-          for(var i = 0 ; i < this.datesArray.length ; i++ ) {
+        this.contractsArray = []
+        this.concatArray = []
+        var newE = {}
+          for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
             for(var e = 0 ; e < this.departments.length ; e++ ) {
-              if(this.datesArray[i].id == this.departments[e].id) {
-                this.datesContracts.push(this.departments[e])
+              if(this.depsAndContractsArray[i].id == this.departments[e].id) {
+                this.contractsArray.push(this.departments[e])
               }
             }
           }
-          return this.datesContracts
+          for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
+             newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
+            // this.concatArray.push(newE)
+          }
+          return this.contractsArray
       },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
