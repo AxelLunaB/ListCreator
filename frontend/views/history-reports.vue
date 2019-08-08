@@ -18,29 +18,6 @@
       </div>
     </div>
     <div class="history-body relative" v-if="watchMe">
-      <div class="left-table">
-      <table class="table table-hover" style="margin-bottom:0;">
-          <thead>
-          <tr>
-            <td>
-              TOWER
-            </td>
-            <td class="mobile-text">
-              UNIT #
-            </td>
-          </tr>
-        </thead>
-      </table>
-      <table class="table table-hover">
-          <thead class="table-body">
-          <tr v-for="(itemDep,index) in filterByContract" :key="index">
-            <td style="font-weight:bold;font-size:16px;">{{ itemDep.cluster.abb }}</td>
-            <td style="font-weight:bold;font-size:16px;">{{ itemDep.unitNumber }}</td>
-          </tr>
-        </thead>
-      </table>
-      </div>
-      <div class="right-table">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
@@ -51,16 +28,17 @@
         </thead>
       </table>
       <table class="table table-hover">
-          <thead class="table-body">
-          <tr v-for="(item,index) in filterByDate" :key="index">
-            <td class="responsive0"> {{ item.customer.name }} </td>
-            <td class="responsive1"> {{ item.commission.executive.name }} </td>
-            <td class="responsive2"> {{ toDate(item.reference.reserveDate) }} </td>
-            <td class="responsive3"> <i @click="print(item)" class="fas fa-file-pdf fa-lg hover-mouse"></i></td>
+          <thead class="table-body" v-if="depsAndContractsArray != undefined">
+          <tr v-for="(item,index) in depsAndContractsArray" :key="index">
+            <td> {{ item.cluster != null ? item.cluster.abb != null ? item.cluster.abb : '-' : '-' }} </td>
+            <td> {{ item.unitNumber != null ? item.unitNumber  :'-' }} </td>
+            <td> {{ item.customer.name != null ? item.customer.name  :'-' }} </td>
+            <td> {{ item.commission.executive.name != null ? item.commission.executive.name  :'-' }} </td>
+            <td> {{ toDate(item.reference.reserveDate) }} </td>
+            <td><i @click="print(item)" class="fas fa-file-pdf fa-lg hover-mouse"></i></td>
           </tr>
         </thead>
       </table>
-      </div>
     </div>
     <div class="history-body" v-if="watchMe == false" style="display: flex;align-items: center;justify-content: center;">
       <p>Please choose a date range</p>
@@ -197,6 +175,8 @@ export default {
   data() {
     return {
       header:[
+        {title:'TOWER'},
+        {title:'UNIT No'},
         {title:'CLIENT'},
         {title:'EXECUTIVE'},
         {title: 'DATE'},
@@ -474,19 +454,12 @@ export default {
     border-bottom:none;
   }
 
-  .left-table{
-    width:20%
-    }
-
-  .right-table{
-    width:80%
-  }
-
   #app-history-reports {
   height: 100%;
   width: 100%;
   background: #2a333c;
   color:white;
+  }
 
   [type="date"] {
     background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
@@ -517,7 +490,6 @@ export default {
     margin-top:50px;
     max-width: 1000px;
     margin:50px auto 50px auto;
-    display:flex;
   }
 
    .history-body p {
@@ -566,59 +538,20 @@ export default {
     background: none;
   }
 
+  //   @media (max-width: 1100px) {
 
-    @media (max-width: 1100px) {
-      .responsive0 {
-        display: none;
-        font-size: 12px;
-        }
-      .left-table {
-        width:40%;
-      }
-    }
+  //   }
 
-    @media (min-width:768px){
-      .responsive3{
-        width:100px;
-      }
+  //   @media (min-width:768px){
 
-      .responsive2,
-      .responsive1{
-        width:150px;
-      }
+  //   }
 
-    }
+  //     @media (max-width:768px){
 
-      @media (max-width:768px){
-      .responsive1{
-        display: none
-      }
+  //   }
 
-      .left-table{
-        width:50%;
-      }
+  //   @media (max-width:446px){
 
-      .right-table{
-        width:50%;
-      }
-    }
+  // }
 
-    @media (max-width:446px){
-      .responsive2{
-        display:none;
-      }
-
-      .left-table{
-        width:70%;
-      }
-
-      .right-table{
-        width:30%;
-      }
-
-      .mobile-text {
-        font-size: 15px;
-      }
-    }
-  }
 </style>
