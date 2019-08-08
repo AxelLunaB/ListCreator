@@ -17,15 +17,15 @@
         </div>
       </div>
     </div>
-    <div class="history-body" v-if="watchMe">
-      <div style="width:20%">
+    <div class="history-body relative" v-if="watchMe">
+      <div class="left-table">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
             <td>
               TOWER
             </td>
-            <td>
+            <td class="mobile-text">
               UNIT #
             </td>
           </tr>
@@ -40,7 +40,7 @@
         </thead>
       </table>
       </div>
-      <div style="width:90%">
+      <div class="right-table">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
@@ -53,16 +53,16 @@
       <table class="table table-hover">
           <thead class="table-body">
           <tr v-for="(item,index) in filterByDate" :key="index">
-            <td style="font-size:14px;"> {{ item.customer.name }} </td>
-            <td style="width:150px;"> {{ item.commission.executive.name }} </td>
-            <td style="width:150px;"> {{ toDate(item.reference.reserveDate) }} </td>
-            <td style="width:100px;"> <i @click="print(item)" class="fas fa-file-pdf fa-lg"></i></td>
+            <td class="responsive0"> {{ item.customer.name }} </td>
+            <td class="responsive1"> {{ item.commission.executive.name }} </td>
+            <td class="responsive2"> {{ toDate(item.reference.reserveDate) }} </td>
+            <td class="responsive3"> <i @click="print(item)" class="fas fa-file-pdf fa-lg hover-mouse"></i></td>
           </tr>
         </thead>
       </table>
       </div>
     </div>
-    <div class="history-body" v-if="watchMe == false">
+    <div class="history-body" v-if="watchMe == false" style="display: flex;align-items: center;justify-content: center;">
       <p>Please choose a date range</p>
     </div>
     <nav class="pagination" role="navigation" aria-label="Page navigation" v-if="index != 0">
@@ -76,7 +76,60 @@
     </nav>
     <!--Print section-->
     <div class="willPrint d-none" id="willPrint">
-
+      <section class="hero print">
+        <div class="container-header">
+          <div class="container-inner-header">
+            <h4>SALES REPORT</h4>
+            <img src="https://i.imgur.com/jqiuuYB.png" width="200px">
+          </div>
+          <div class= "container-date">
+            <p id="date"></p>
+            <p>Tulum, Quintana Roo, México</p>
+          </div>
+        </div>
+        <div class="container-body">
+          <h4>CONTRACT INFORMATION</h4>
+          <div class="flex" >
+            <div>
+              <h5 style="margin-bottom:0;">CUSTOMER</h5>
+                <p id="customer" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">COUNTRY</h6>
+                <p id="country" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">STATE</h6>
+                <p id="state" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">ADDRESS</h6>
+                <p id="address" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">PHONE</h6>
+                <p id="customerPhone" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">EMAIL</h6>
+                <p id="customerEmail" style="margin-top:0;"></p>
+            </div>
+            <div>
+              <h5 style="margin-bottom:0;">EXECUTIVE</h5>
+              <p id="executive" style="margin-top:0;"></p>
+              <h6 style="margin-bottom:0;">CONTACT INFO</h6>
+              <p id="phoneExec" style="margin:0;"></p>
+              <p id="emailExec" style="margin-top:0"></p>
+              <h5 style="margin-bottom:0;">PAYMENT INFO</h5>
+              <h6 style="margin:0;">PAYMENT METHOD</h6>
+                <p id="paymentMethod" style="margin-top:0"></p>
+              <h6 style="margin-bottom:0;">RESERVE DATE</h6>
+                <p id="reserveDate" style="margin-top:0"></p>
+              <h6 style="margin-bottom:0;">EXPIRATION DATE</h6>
+                <p id="reserveExpiration" style="margin-top:0"></p>
+            </div>
+          </div>
+        </div>
+        <div class="container-body">
+          <h4>DEPARTMENT INFORMATION</h4>
+          <div>
+            <h5 style="margin-bottom:0;">TOWER</h5>
+            <p id="cluster" style="margin-top:0;"></p>
+            <h5 style="margin-bottom:0;">UNIT No.</h5>
+            <p id="unitNo" style="margin-top:0;"></p>
+          </div>
+        </div>
+      </section>
     </div>
     <!-- End of print section -->
   </div>
@@ -89,6 +142,7 @@ import { Printd} from 'printd';
 import io from "socket.io-client";
 import departmentHistoric from "./components/departmentHistoric.vue";
 import cookie from "../utils/cookie";
+import swal from "sweetalert";
 
 const DEPARTMENT = 0;
 const LOTS = 1;
@@ -173,11 +227,87 @@ export default {
         return 'responsive' + n
 
       },
-      // print(item){ //this is the function that handles the printd plugin
-      // const cssText =`` //here's where the css template of whatever we want to print will be
-      // const d = newPrintd();
-      // d.print(document.getEelementById('willPrint'),[cssText])
-      // },
+      print(item){
+
+      const monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
+
+      var today = new Date();
+      var month = today.getMonth();
+      var dd = today.getDate();
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+
+
+      document.getElementById("date").innerHTML = monthName(month)+ " " + dd + " " + yyyy ;
+      $('#executive').html(item.commission.executive.name == undefined ? '-' : item.commission.executive.name);
+      $('#customer').html(item.customer.name == undefined ? '-' : item.customer.name);
+      $('#phoneExec').html(item.salesDetails.executive.contactNumber == undefined ? '-' : item.salesDetails.executive.contactNumber);
+      $('#emailExec').html(item.salesDetails.executive.email == undefined ? '-' : item.salesDetails.executive.email);
+      $('#country').html(item.customer.country == undefined ? '-' : item.customer.country);
+      $('#state').html(item.customer.state == undefined ? '-' : item.customer.state);
+      $('#address').html(item.customer.address == undefined ? '-' : item.customer.address);
+      $('#customerPhone').html(item.customer.contactNumber == undefined ? '-' : item.customer.contactNumber);
+      $('#customerEmail').html(item.customer.email == undefined ? '-' : item.customer.email);
+      $('#paymentMethod').html(item.paymentMethod == undefined ? '-' : item.paymentMethod);
+      $('#reserveDate').html(item.reference.reserveDate == undefined ? '-' : item.reference.reserveDate.substring(0,10));
+      $('#reserveExpiration').html(item.reference.reserveExpiration == undefined ? '-' : item.reference.reserveExpiration.substring(0,10));
+
+      // $('#clusterName').html(item.cluster.name == undefined ? '-' : filterByContract.cluster.name);
+      // $('#level').html(item.cluster.level == undefined ? '-' : filterByContract.cluster.leve);
+      // $('#statusName').html(item.status.name == undefined ? '-' : filterByContract.status.name);
+      // $('#unitNumber').html(item.unitNumber == undefined ? '-' : filterByContract.unitNumber);
+      // $('#priceTotal').html(item.priceTotal == undefined ? '-' : filterByContract.priceTotal);
+
+      const cssText =`
+        @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+        body,
+        html {
+          height:100%;
+          width:100%;
+          margin:0;
+          font-family: 'Oswald', sans-serif;
+        }
+
+        .container-header,
+        .container-body{
+          width:100%;
+          border: 1px solid #dfd756;
+          padding:10px;
+          box-sizing:border-box;
+          margin: 10px 0 10px 0;
+        }
+
+        .container-inner-header,
+        .container-date {
+          text-align:center;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+        }
+
+        .willPrint p{
+          font-size:0.8rem;
+        }
+
+        .willPrint h4{
+          margin-top:0;
+        }
+
+        .inner-header-sub {
+          border:1px solid green;
+        }
+
+        .flex{
+          display:flex;
+          flex-direction:row;
+          justify-content:space-between;
+        }`
+      const d = new Printd();
+      d.print(document.getElementById('willPrint'),[cssText])
+      },
     goToPage(page) {
       this.index = page;
       this.retrieveData();
@@ -244,14 +374,23 @@ export default {
       var end = this.endDate
 
       if(this.initDate != null && this.endDate != null) {
+        this.datesArray = []
         this.watchMe = true
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
-              if(current > init && current < end) {
+              if(current >= init && current <= end) {
                 this.datesArray.push(this.contracts[i])
                 }
               }
+            }
+            if(this.datesArray == 0) {
+          swal({
+            text: `No apartments within range`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
             }
           }
           console.log(this.datesArray)
@@ -261,6 +400,7 @@ export default {
 
       },
       filterByContract(){
+        this.datesContracts = []
           for(var i = 0 ; i < this.datesArray.length ; i++ ) {
             for(var e = 0 ; e < this.departments.length ; e++ ) {
               if(this.datesArray[i].id == this.departments[e].id) {
@@ -309,8 +449,33 @@ export default {
     background: #2a333c;
   }
 
+  .relative {
+    position:relative;
+  }
+
+  .hover-mouse{
+    cursor:pointer;
+  }
+
+  .absolute {
+    position:absolute;
+    left:0;
+    top:7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   body #app-history-reports .history-body .table thead td {
     border-bottom:none;
+  }
+
+  .left-table{
+    width:20%
+    }
+
+  .right-table{
+    width:80%
   }
 
   #app-history-reports {
@@ -397,22 +562,59 @@ export default {
     background: none;
   }
 
-  .responsive3{
-    width:100px;
-  }
 
-  .responsive2{
-    width:150px;
-  }
-
-  .responsive1{
-    width:150px;
-  }
-
-    @media (max-width: 769px) {
+    @media (max-width: 1100px) {
       .responsive0 {
         display: none;
+        font-size: 12px;
         }
+      .left-table {
+        width:40%;
+      }
+    }
+
+    @media (min-width:768px){
+      .responsive3{
+        width:100px;
+      }
+
+      .responsive2,
+      .responsive1{
+        width:150px;
+      }
+
+    }
+
+      @media (max-width:768px){
+      .responsive1{
+        display: none
+      }
+
+      .left-table{
+        width:50%;
+      }
+
+      .right-table{
+        width:50%;
+      }
+    }
+
+    @media (max-width:446px){
+      .responsive2{
+        display:none;
+      }
+
+      .left-table{
+        width:70%;
+      }
+
+      .right-table{
+        width:30%;
+      }
+
+      .mobile-text {
+        font-size: 15px;
+      }
     }
   }
 </style>
