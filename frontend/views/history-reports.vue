@@ -208,8 +208,7 @@ export default {
       selectedDepartment:{},
       watchMe: false,
       depsAndContractsArray:[],
-      contractsArray: [],
-      concatArray:[]
+      contractsArray: []
     }
   },
   methods:{
@@ -402,7 +401,6 @@ export default {
       },
       filterByContract(){
         this.contractsArray = []
-        this.concatArray = []
         var newE = {}
           for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
             for(var e = 0 ; e < this.departments.length ; e++ ) {
@@ -413,7 +411,6 @@ export default {
           }
           for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
              newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
-            // this.concatArray.push(newE)
           }
           return this.contractsArray
       },

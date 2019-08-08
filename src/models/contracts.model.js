@@ -22,6 +22,7 @@ module.exports = (app) => {
     contracts.belongsTo(models.salesDetails);
     contracts.belongsTo(models.customers);
     contracts.belongsTo(models.references);
+    contracts.belongsTo(models.units);
   };
   return contracts;
 };
