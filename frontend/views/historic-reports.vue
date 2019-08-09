@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="historic-body relative" v-if="watchMe">
-      <table class="table table-hover" style="margin-bottom:0;">
+      <table class="table" style="margin-bottom:0;">
           <thead>
           <tr>
             <td v-for="(t,index) in header" :key="index" style="border-bottom:none;" :class="responsiveTable(index)">
@@ -121,7 +121,7 @@
             </div>
           </div>
         </div>
-        <div class="container-body">
+        <div class="container-body" style="height:200px;">
 
         </div>
       </section>
