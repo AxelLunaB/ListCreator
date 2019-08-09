@@ -99,7 +99,7 @@ const fetchContracts = ($skip, query) => {
 };
 const createContract = (contract) => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', 'api/contracts', contract, (error, message) => {
+    socket.emit('api/contracts::create', contract, (error, message) => {
       if (error) {
         reject(error);
       } else {
