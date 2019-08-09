@@ -1,23 +1,23 @@
 <template>
-  <div id="app-history-reports">
-    <div class="history-titles">
-      <h2>History reports</h2>
+  <div id="app-historic-reports">
+    <div class="historic-titles">
+      <h2>Historic reports</h2>
       <p>Filter by date</p>
 
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
               <label>From</label>
-              <input class="form-control" type="date" v-model="initDate" @change="filterByDate">
+              <input class="form-control" type="date" v-model="initDate" @change="filterByDate()">
           </div>
           <div class="col-sm-12 col-md-6">
               <label>To</label>
-              <input class="form-control" type="date" v-model="endDate" @change="filterByDate">
+              <input class="form-control" type="date" v-model="endDate" @change="filterByDate()">
           </div>
         </div>
       </div>
     </div>
-    <div class="history-body relative" v-if="watchMe">
+    <div class="historic-body relative" v-if="watchMe">
       <table class="table table-hover" style="margin-bottom:0;">
           <thead>
           <tr>
@@ -28,19 +28,19 @@
         </thead>
       </table>
       <table class="table table-hover">
-          <thead class="table-body" v-if="depsAndContractsArray != undefined">
-          <tr v-for="(item,index) in depsAndContractsArray" :key="index">
-            <td> {{ item.cluster != null ? item.cluster.abb != null ? item.cluster.abb : '-' : '-' }} </td>
-            <td> {{ item.unitNumber != null ? item.unitNumber  :'-' }} </td>
-            <td> {{ item.customer.name != null ? item.customer.name  :'-' }} </td>
-            <td> {{ item.commission.executive.name != null ? item.commission.executive.name  :'-' }} </td>
-            <td> {{ toDate(item.reference.reserveDate) }} </td>
-            <td><i @click="print(item)" class="fas fa-file-pdf fa-lg hover-mouse"></i></td>
+          <thead class="table-body" v-if="filterByDate != undefined">
+          <tr v-for="(item,index) in filterByDate" :key="index" class="colors">
+            <td class="responsive0" style="font-weight:bolder;">{{ item.cluster.abb != null ? item.cluster.abb : '-' }} </td>
+            <td class="responsive1" style="font-weight:bolder;">{{ item.unitNumber != null ? item.unitNumber  :'-' }} </td>
+            <td class="responsive2" style="font-size:14px;"> {{ item.customer.name != null ? item.customer.name  :'-' }} </td>
+            <td class="responsive3"> {{ item.commission.executive.name != null ? item.commission.executive.name  :'-' }} </td>
+            <td class="responsive4"> {{ item.reference.reserveDate != null ? toDate(item.reference.reserveDate) : '-' }} </td>
+            <td class="responsive5"><i @click="print(item)" class="fas fa-file-pdf fa-lg hover-mouse"></i></td>
           </tr>
         </thead>
       </table>
     </div>
-    <div class="history-body" v-if="watchMe == false" style="display: flex;align-items: center;justify-content: center;">
+    <div class="historic-body" v-if="watchMe == false" style="display: flex;align-items: center;justify-content: center;">
       <p>Please choose a date range</p>
     </div>
     <nav class="pagination" role="navigation" aria-label="Page navigation" v-if="index != 0">
@@ -100,12 +100,29 @@
         </div>
         <div class="container-body">
           <h4>DEPARTMENT INFORMATION</h4>
-          <div>
-            <h5 style="margin-bottom:0;">TOWER</h5>
-            <p id="cluster" style="margin-top:0;"></p>
-            <h5 style="margin-bottom:0;">UNIT No.</h5>
-            <p id="unitNo" style="margin-top:0;"></p>
+          <div class="flex">
+            <div>
+              <h5 style="margin-bottom:0;">TOWER</h5>
+              <p id="clusterName" style="margin-top:0;"></p>
+              <h5 style="margin-bottom:0;">UNIT No.</h5>
+              <p id="unitNo" style="margin-top:0;"></p>
+            </div>
+            <div>
+              <h5 style="margin-bottom:0;">LEVEL</h5>
+              <p id="level"></p>
+              <h5 style="margin-bottom:0;">STATUS</h5>
+              <p id="statusName" style="margin-top:0;"></p>
+            </div>
+            <div>
+              <h5 style="margin-bottom:0;">PRICE</h5>
+              <p id="priceTotal"></p>
+              <h5 style="margin-bottom:0;">CURRENCY</h5>
+              <p id="currency" style="margin-top:0;"></p>
+            </div>
           </div>
+        </div>
+        <div class="container-body">
+
         </div>
       </section>
     </div>
@@ -176,7 +193,7 @@ export default {
     return {
       header:[
         {title:'TOWER'},
-        {title:'UNIT No'},
+        {title:'UNIT'},
         {title:'CLIENT'},
         {title:'EXECUTIVE'},
         {title: 'DATE'},
@@ -234,12 +251,12 @@ export default {
       $('#paymentMethod').html(item.paymentMethod == undefined ? '-' : item.paymentMethod);
       $('#reserveDate').html(item.reference.reserveDate == undefined ? '-' : item.reference.reserveDate.substring(0,10));
       $('#reserveExpiration').html(item.reference.reserveExpiration == undefined ? '-' : item.reference.reserveExpiration.substring(0,10));
-
-      // $('#clusterName').html(item.cluster.name == undefined ? '-' : filterByContract.cluster.name);
-      // $('#level').html(item.cluster.level == undefined ? '-' : filterByContract.cluster.leve);
-      // $('#statusName').html(item.status.name == undefined ? '-' : filterByContract.status.name);
-      // $('#unitNumber').html(item.unitNumber == undefined ? '-' : filterByContract.unitNumber);
-      // $('#priceTotal').html(item.priceTotal == undefined ? '-' : filterByContract.priceTotal);
+      $('#clusterName').html(item.cluster.name == undefined ? '-' : item.cluster.name);
+      $('#level').html(item.level == undefined ? '-' : item.level);
+      $('#statusName').html(item.status.name == undefined ? '-' : item.status.name);
+      $('#unitNo').html(item.unitNumber == undefined ? '-' : item.unitNumber);
+      $('#priceTotal').html(item.priceTotal == undefined ? '-' : item.priceTotal);
+      $('#currency').html(item.currency == undefined ? '-' : item.currency);
 
       const cssText =`
         @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
@@ -350,12 +367,15 @@ export default {
         departments: "departments/departments"
       }),
     filterByDate(){
+      this.depsAndContractsArray = []
       var init = this.initDate
       var end = this.endDate
+      this.contractsArray = []
+      var newE = {}
 
       if(this.initDate != null && this.endDate != null) {
-        this.depsAndContractsArray = []
         this.watchMe = true
+        var newW = {}
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
               var current = this.contracts[i].reference.reserveDate
@@ -364,35 +384,32 @@ export default {
                 }
               }
             }
-            if(this.depsAndContractsArray == 0) {
-          swal({
-            text: `No apartments within range`,
-            icon: "error",
-            buttons: false,
-            timer: 1500
+            if(this.depsAndContractsArray == 0 ) {
+              if(this.initDate != null || this.endDate != null)
+            swal({
+              text: `No apartments within range`,
+              icon: "error",
+              buttons: false,
+              timer: 1500
           });
             }
           }
           console.log(this.depsAndContractsArray)
 
-          this.depsAndContractsArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
-          return this.depsAndContractsArray
-
-      },
-      filterByContract(){
-        this.contractsArray = []
-        var newE = {}
           for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
             for(var e = 0 ; e < this.departments.length ; e++ ) {
               if(this.depsAndContractsArray[i].id == this.departments[e].id) {
                 this.contractsArray.push(this.departments[e])
+                }
               }
             }
-          }
-          for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
-             newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
-          }
-          return this.contractsArray
+            for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
+              newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
+              }
+
+          this.depsAndContractsArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+          return this.depsAndContractsArray
+
       },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
@@ -450,11 +467,11 @@ export default {
     justify-content: center;
   }
 
-  body #app-history-reports .history-body .table thead td {
+  body #app-historic-reports .historic-body .table thead td {
     border-bottom:none;
   }
 
-  #app-history-reports {
+  #app-historic-reports {
   height: 100%;
   width: 100%;
   background: #2a333c;
@@ -473,7 +490,7 @@ export default {
     opacity: 0;
   }
 
-  .history-titles {
+  .historic-titles {
     background: #3c4857;
     padding: 20px;
     border-radius: 10px;
@@ -482,7 +499,7 @@ export default {
     margin:100px auto 0 auto;
   }
 
-    .history-body {
+    .historic-body {
     background: #3c4857;
     padding: 20px;
     border-radius: 10px;
@@ -492,17 +509,17 @@ export default {
     margin:50px auto 50px auto;
   }
 
-   .history-body p {
+   .historic-body p {
     text-align: center;
     margin: 0;
    }
 
-  .history-titles h2,
-  .history-titles p {
+  .historic-titles h2,
+  .historic-titles p {
     text-align: center;
   }
 
-  .history-body .table thead td {
+  .historic-body .table thead td {
     color:white;
     border-bottom:1px solid #a8a8a896;
     border-top:1px solid #a8a8a896;
@@ -510,12 +527,16 @@ export default {
     font-weight: bold;
   }
 
-  .history-body .table thead.table-body td {
+  .historic-body .table thead.table-body td {
     font-weight: 100;
   }
 
   .table-hover {
     table-layout: fixed;
+  }
+
+  .table-hover tr:hover {
+    background: #2b353fb4;
   }
 
   .pagination-wrapper {
@@ -538,20 +559,60 @@ export default {
     background: none;
   }
 
-  //   @media (max-width: 1100px) {
+  .responsive0,
+  .responsive1,
+  .responsive4 {
+    width:100px;
+  }
 
-  //   }
+  .responsive5{
+    width:80px;
+  }
 
-  //   @media (min-width:768px){
+  .responsive3{
+    width:150px;
+  }
 
-  //   }
+  td.responsive0,
+  td.responsive1,
+  td.responsive2,
+  td.responsive3,
+  td.responsive4,
+  td.responsive5{
+    padding: 6px 12px 6px 12px
+  }
 
-  //     @media (max-width:768px){
+  .colors:nth-child(odd) {
+  background: #425061;
+}
 
-  //   }
 
-  //   @media (max-width:446px){
+    @media (max-width: 1000px) {
+      .responsive2{
+        display: none;
+      }
+    }
 
-  // }
+    @media (max-width:578px){
+      .responsive4{
+        display:none;
+      }
+    }
+
+      @media (max-width:768px){
+        .responsive3{
+          display:none;
+        }
+    }
+
+      @media (max-width:411px){
+        .responsive1{
+          width:33%;
+        }
+
+        .responsive0{
+          width:75px;
+        }
+    }
 
 </style>

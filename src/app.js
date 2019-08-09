@@ -86,7 +86,7 @@ app.get('/departments', cookieParser(), auth.express.authenticate('jwt', { failu
 app.get('/historics', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
     res.render('generic', getBundle('main'))
 });
-app.get('/history_reports', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
+app.get('/historic_reports', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
     res.render('generic', getBundle('main'))
 });
 app.get('/admin/users', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
