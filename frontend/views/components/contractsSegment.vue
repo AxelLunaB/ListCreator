@@ -261,6 +261,7 @@ export default {
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("others/getClusters");
       this.$store.dispatch("others/getCustomers");
+      this.$store.dispatch("contracts/getContracts");
       this.show = true;
     });
 
@@ -285,7 +286,7 @@ export default {
       contract: {},
       validation:[],
       formData: { // findme
-        id: 49,
+        id: null,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},
         unitId: {id: null, name: null},

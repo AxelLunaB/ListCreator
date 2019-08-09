@@ -32,10 +32,11 @@ module.exports = {
       for (i = 0; i < context.result.data.length; i++) {
 
         let contract = context.result.data[i];
-
-        await context.app.service('api/commissions').get(contract.id).then(result => {
-          contract.commission = result;
-        })
+        if(contract.commissionId != null) {
+         await context.app.service('api/commissions').get(contract.id).then(result => {
+           contract.commission = result;
+         })
+        }
         }
     },
     async context => {
@@ -115,7 +116,7 @@ module.exports = {
       //
       // tomar el unitId del result
       // hacer patch de la unidad del statusId a apartado = 3
-      
+
     ],
     update: [
 
