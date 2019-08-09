@@ -130,7 +130,7 @@
                 class="form-control col-md-6 col-sm-12"
                 value=""
                 placeholder="Payment method"
-                name="PaymentMethod"
+
                 id="payment-method"
                 v-model.trim="$v.paymentMethod.$model"
                 :class="{ 'form-group--error': $v.paymentMethod.$error }">
@@ -294,10 +294,10 @@ export default {
         currency: {id: null, name: null},
         WROI: { name: 0},
         furniture:false,
-        comment:null
+        comment:null,
+        paymentMethod:null
       },
       paymentMethod:"",
-
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
@@ -318,6 +318,10 @@ export default {
   methods: {
     getValue(k){
       switch(k){
+      case 'paymentMethod':
+        this.formData.paymentMethod = this.paymentMethod
+        return this.formData.paymentMethod
+      break
       case 'executive':
         return this.formData.executive.id
       break;
@@ -516,10 +520,10 @@ export default {
               frm[0].value = (frm[0].value).replace(/\,/g,'');
               frm[0].value = parseInt(frm[0].value,10);
 
-              var yyyy = frm[3].value.slice(0,4)
-              var dd = frm[3].value.slice(8,10)
-              var mm = frm[3].value.slice(5,7)
-              frm[3].value = dd + "/" + mm + "/" + yyyy
+              var yyyy = frm[2].value.slice(0,4)
+              var dd = frm[2].value.slice(8,10)
+              var mm = frm[2].value.slice(5,7)
+              frm[2].value = dd + "/" + mm + "/" + yyyy
 
               console.log(frm)
               var data = {};
