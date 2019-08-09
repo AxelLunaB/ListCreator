@@ -74,11 +74,11 @@
                     id="dropdown-currency"
                     :text="formData.currency.name == null ? 'Currency' : formData.currency.name" class="m-md-2">
                     <b-dropdown-item value="USD"
-                    @click="selectCurr('curr'),setData('currency',{id: 1,name: 'USD'})">
+                    @click="selectCurr('curr'),setData('currency',{id: 'USD',name: 'USD'})">
                       USD
                     </b-dropdown-item>
                     <b-dropdown-item value="MXN"
-                    @click="selectCurr('curr'),setData('currency',{id: 2,name: 'MXN'})">
+                    @click="selectCurr('curr'),setData('currency',{id: 'MXN',name: 'MXN'})">
                       MXN
                     </b-dropdown-item>
                     </b-dropdown>
@@ -294,7 +294,7 @@ export default {
         currency: {id: null, name: null},
         WROI: { name: 0},
         furniture:false,
-        comment:null,
+        comment:null
       },
       paymentMethod:"",
 
@@ -429,6 +429,10 @@ export default {
     },
     addNewContract () {
 
+      for( var i = 0 ; i < this.contracts.length ; i++) {
+        this.ids.push(this.contracts[i].id)
+        }
+        this.formData.id = Math.max.apply(null, this.ids) + 1
 
         if(this.isROI === true) {
           var selectYears = null
@@ -543,6 +547,8 @@ export default {
                   }).then(function() {
                     _.$store
                     .dispatch("contracts/newContract", data)
+                    _.$store
+                    .dispatch("contracts/getContracts");
                   });
                 } else {
                   swal("Cancelled", "did not create contract", "error");
@@ -574,13 +580,6 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
-    }
-    ,
-    getId(){
-      for( var i = 0 ; i < this.contracts.length ; i++) {
-        this.ids.push(this.contracts[i].id)
-      }
-      this.formData.id = Math.max.apply(null, this.ids) + 1
     }
   }
 }
