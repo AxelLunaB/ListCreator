@@ -13,8 +13,11 @@ module.exports = {
     ],
     get: [],
     create: [
-      // preventDuplicate({ service: 'api/contracts' })
       context => {console.log(context.data)}
+
+
+      //
+      //
 
   ],
     update: [canUpdate()],
@@ -102,7 +105,17 @@ module.exports = {
     get: [
     ],
     create: [
+      context => { console.log(context.result)}
 
+      //llamar a api/references y crear una nueva referencia
+      //reserveDate :hoy
+      //reserveExpiration: dentro de 5 dias
+      //leer el id resultante del .then
+      // agregas el id al context.data
+      //
+      // tomar el unitId del result
+      // hacer patch de la unidad del statusId a apartado = 3
+      
     ],
     update: [
 

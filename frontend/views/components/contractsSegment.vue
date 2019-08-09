@@ -93,7 +93,7 @@
                     type="text"
                     class="form-control disabled-option col-sm-12 col-lg-6"
                     placeholder="Select unit"
-                    name="price"
+                    name="salesprice"
                     value=""
                     id="unit-price-input"
                     readonly="readonly">
@@ -214,7 +214,7 @@
                     </template>
                     <!-- <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>-->
                     <!--<div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div> -->
-                                        <!-- :class="{ 'form-group--error': $v.years.$error }"
+                                        <!-- :class="{ 'form-group-error': $v.years.$error }"
                     v-model.trim="$v.years.$model" -->
                   </div>
                 </div>
@@ -249,9 +249,8 @@ import { mapGetters } from "vuex";
 import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
-import Vuelidate from 'Vuelidate';
 import io from "socket.io-client";
-const { required, minLength, between, numeric, alpha  } = require('Vuelidate/lib/validators')
+import { required, minLength, between, numeric, alpha  } from 'Vuelidate/lib/validators';
 
 var socket = io();
 
@@ -518,6 +517,11 @@ export default {
               frm[3].value = dd + "/" + mm + "/" + yyyy
 
               console.log(frm)
+              var data = {};
+              frm.map(function(m){
+                data[m.name] = m.value;
+              })
+              console.log(data);
               swal({
                 title: "Please confirm information",
                 text: "Cluster" + " : " + this.formData.clusterId.name + "\n" + "Unit" + " : " + this.formData.unitId.name + "\n" + "Sold to : " + this.formData.customerId.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
@@ -537,7 +541,7 @@ export default {
                     icon: 'success'
                   }).then(function() {
                     _.$store
-                    .dispatch("contracts/newContract", frm)
+                    .dispatch("contracts/newContract", data)
                   });
                 } else {
                   swal("Cancelled", "did not create contract", "error");
