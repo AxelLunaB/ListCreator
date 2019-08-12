@@ -33,7 +33,7 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="getUnitId(e.id)"></detail-table>
               </div>
             </div>
           </div>
@@ -116,7 +116,8 @@
         detailTable: 3,
         isAnimated: true,
         sDepartments:[],
-        fDepartments:[]
+        fDepartments:[],
+        depsAndContracts:[]
       }
     },
     methods: {
@@ -150,7 +151,19 @@
           departments : this.departments
         }
         this.$eventHub.$emit("show-contractsSegment-modal", info);
-      }
+      },
+      
+      getUnitId(idunit){
+       let c = null;
+       for(let i = 0; i < this.contracts.length ; i ++) {
+         if(this.contracts[i].unitId != null){
+           if(this.contracts[i].unitId == idunit){
+             c = this.contracts[i];
+           }
+         }
+       }
+       return c
+     }
     },
     computed: {
       ...mapGetters({
