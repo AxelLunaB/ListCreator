@@ -454,9 +454,6 @@ export default {
                       this.contract.commission.thirdPartyCommissions
         percent = percent / 100
       }
-
-
-      }
       return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
     },
     dynamicChart () {
