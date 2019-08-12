@@ -22,7 +22,9 @@ module.exports = {
       })
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/references' })],
+    create: [
+      // preventDuplicate({ service: 'api/references' })
+  ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]

@@ -10,7 +10,6 @@ module.exports = {
       var seed = [];
       fs.createReadStream(csvFilePath).pipe(csv()).on('data', function (data) {
         seed.push({
-          id: data[0],
           reserveDate: data[1] != 'null' ? data[1] : null,
           reserveExpiration: data[2] != 'null' ? data[2] : null,
           customerId: data[3] != 'null' ? data[3] : null,

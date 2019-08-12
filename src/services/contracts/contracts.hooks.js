@@ -13,7 +13,7 @@ module.exports = {
     ],
     get: [],
     create: [
-    //  context => { console.log(context) }
+            // context => { console.log(context) }
 
 
       //
@@ -127,12 +127,39 @@ module.exports = {
       // }
 
       async context => {
-        console.log(context.result.data.length);
-
-          let contractId = context.result.id;
           
-          await context.app.service('api/references').get(contractId).then(result => {
-          console.log(result);
+          const today = new Date();
+          const finalDate = new Date(today);
+          const daysToExpire = 5;
+          const reserveExpiration = finalDate.setDate(today.getDate() + daysToExpire);
+          const contractId = context.data.id;
+          const unitId = context.data.unitId;
+
+          let referenceObject = {
+            reserveDate: today,
+            reserveExpiration: reserveExpiration
+          };
+          
+          await context.app.service('api/references').create(referenceObject).then(result => {
+            // Retrieves new ID from result
+            const referenceId = result.id;
+            return referenceId;
+
+          }).then(async referenceId => {
+
+            let dataToMerge = { 
+              referenceId: referenceId
+            };
+
+            await context.app.service('api/contracts').patch(contractId, dataToMerge).then(res => {
+            }).then(async () => {
+
+              await context.app.service('api/departments').patch(unitId, {statusId: 3}).then(res => {
+                console.log(res);
+              });
+
+            });
+
           });
       }
 
