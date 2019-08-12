@@ -62,11 +62,11 @@ export default {
         {level: '4',value:'4', id:'level'}
       ],
       price:[
-        {cost: 'Menos de $199,999.00', value: 100000, id:'priceTotal'},
+        {cost: '< $199,999.00', value: 100000, id:'priceTotal'},
         {cost: '$200,000.00 - $249,999.00', value: 200000, id:'priceTotal'},
         {cost: '$250,000.00 - $299,999.00', value: 250000, id:'priceTotal'},
         {cost: '$300,000.00 - $349,999.00', value: 300000, id:'priceTotal'},
-        {cost: 'Mayor a $350,000.00', value: 350000, id:'priceTotal'}
+        {cost: '> $350,000.00', value: 350000, id:'priceTotal'}
       ],
       status:[
         {stat: 'Available', value:1, id:'statusId'},

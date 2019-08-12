@@ -204,7 +204,7 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-right">{{contract != undefined ? contract.commission != undefined ? contract.commission.executive.name != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
+                                <td class="text-right">{{contract ? contract.commission != undefined ? contract.commission.executive != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>

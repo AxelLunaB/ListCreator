@@ -546,7 +546,8 @@ export default {
                   swal({
                     title: 'Success!',
                     text: 'Your contract has been created',
-                    icon: 'success'
+                    icon: 'success',
+                    timer:1500
                   }).then(function() {
                     _.$store
                     .dispatch("contracts/newContract", data)
