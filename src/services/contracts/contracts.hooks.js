@@ -143,7 +143,7 @@ module.exports = {
           await context.app.service('api/references').create(referenceObject).then(result => {
             // Retrieves new ID from result
             const referenceId = result.id;
-            return referenceId;
+            return Promise.resolve(referenceId);
 
           }).then(async referenceId => {
 
