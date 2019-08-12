@@ -554,8 +554,17 @@ export default {
                     _.$store
                     .dispatch("contracts/getContracts");
 
-                    for(var prop in _.formData){
-                      console.log(prop)
+
+                    _.formData.paymentMethod != null ? _.formData.paymentMethod = " " : _.formData.paymentMethod
+                    _.paymentMethod != null ? _.paymentMethod = " " : _.paymentMethod
+                    _.date != null ? _.date = null : _.date
+                    _.isROI == true ? _.isROI = false : _.isROI
+
+                    for(var x in _.formData) {
+                      _.formData[x].name != undefined ? _.formData[x].name = null : _.formData[x].name
+                      _.formData[x].id != null ? _.formData[x].id = null : _.formData[x].id
+                      _.formData.comment != null ? _.formData.comment = null : _.formData.comment
+                      _.formData.furniture == true ? _.formData.furniture = false : _.formData.furniture
                     }
 
                   });
