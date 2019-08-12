@@ -270,8 +270,6 @@ export default {
     //     verticalbuttons: true
     //     });
     //   });
-
-
   },
   components: {
     returnPage

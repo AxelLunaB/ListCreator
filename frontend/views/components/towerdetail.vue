@@ -329,6 +329,7 @@ export default {
       this.contract = details.detailContract;
       this.show = true;
     });
+
   },
   components: {
     returnPage
