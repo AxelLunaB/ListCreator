@@ -130,7 +130,7 @@
                 class="form-control col-md-6 col-sm-12"
                 value=""
                 placeholder="Payment method"
-                name="PaymentMethod"
+
                 id="payment-method"
                 v-model.trim="$v.paymentMethod.$model"
                 :class="{ 'form-group--error': $v.paymentMethod.$error }">
@@ -186,7 +186,7 @@
                   <div class="col-md-12 col-sm-6 row" style="padding-left:0;">
                     <template v-if="isROI == true">
                     <label class="control-label col-6 text-left row"># of years</label>
-                    <input @click='touchSpin'
+                    <input
                     id="years"
                     type="text"
                     v-model="formData.WROI.name"
@@ -294,10 +294,10 @@ export default {
         currency: {id: null, name: null},
         WROI: { name: 0},
         furniture:false,
-        comment:null
+        comment:null,
+        paymentMethod:null
       },
       paymentMethod:"",
-
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
@@ -318,6 +318,10 @@ export default {
   methods: {
     getValue(k){
       switch(k){
+      case 'paymentMethod':
+        this.formData.paymentMethod = this.paymentMethod
+        return this.formData.paymentMethod
+      break
       case 'executive':
         return this.formData.executive.id
       break;
@@ -334,7 +338,7 @@ export default {
         return this.formData.currency.id
       break;
       case 'WROI':
-      return this.isROI == true ? parseInt(this.formData.WROI.name) : "No"
+      return this.isROI == true ? parseInt(this.formData.WROI.name) : "NO"
       break;
       case "comment":
         return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
@@ -397,9 +401,9 @@ export default {
       clientDropdown.classList.remove("error");
       }
     },
-    touchSpin(){
-        $("input[id='years']").TouchSpin();
-      },
+    // touchSpin(){
+    //     $("input[id='years']").TouchSpin();
+    //   },
     closeBtn() {
       self = this
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
@@ -516,10 +520,10 @@ export default {
               frm[0].value = (frm[0].value).replace(/\,/g,'');
               frm[0].value = parseInt(frm[0].value,10);
 
-              var yyyy = frm[3].value.slice(0,4)
-              var dd = frm[3].value.slice(8,10)
-              var mm = frm[3].value.slice(5,7)
-              frm[3].value = dd + "/" + mm + "/" + yyyy
+              var yyyy = frm[2].value.slice(0,4)
+              var dd = frm[2].value.slice(8,10)
+              var mm = frm[2].value.slice(5,7)
+              frm[2].value = dd + "/" + mm + "/" + yyyy
 
               console.log(frm)
               var data = {};
@@ -549,6 +553,20 @@ export default {
                     .dispatch("contracts/newContract", data)
                     _.$store
                     .dispatch("contracts/getContracts");
+
+
+                    _.formData.paymentMethod != null ? _.formData.paymentMethod = " " : _.formData.paymentMethod
+                    _.paymentMethod != null ? _.paymentMethod = " " : _.paymentMethod
+                    _.date != null ? _.date = new Date() : _.date
+                    _.isROI == true ? _.isROI = false : _.isROI
+
+                    for(var x in _.formData) {
+                      _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
+                      _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
+                      _.formData.comment != null ? _.formData.comment = null : _.formData.comment
+                      _.formData.furniture == true ? _.formData.furniture = false : _.formData.furniture
+                    }
+
                   });
                 } else {
                   swal("Cancelled", "did not create contract", "error");
@@ -650,18 +668,6 @@ export default {
     color:#495057
   }
 
-  .bootstrap-touchspin-injected {
-    width: 50%;
-  }
-
-  .bootstrap-touchspin-up,
-  .bootstrap-touchspin-down {
-    background: rgb(255, 251, 251);
-    border:1px solid white;
-    color: black;
-  }
-
-
   .form-control:focus {
     background: #2a333c;
   }
@@ -719,6 +725,7 @@ export default {
     box-shadow: none;
     height: 38px;
     font-size: 14px;
+    color: #62686f;
   }
   #container-fluid {
     z-index:3!important;
