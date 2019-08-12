@@ -186,7 +186,7 @@
                   <div class="col-md-12 col-sm-6 row" style="padding-left:0;">
                     <template v-if="isROI == true">
                     <label class="control-label col-6 text-left row"># of years</label>
-                    <input @click='touchSpin'
+                    <input
                     id="years"
                     type="text"
                     v-model="formData.WROI.name"
@@ -401,9 +401,9 @@ export default {
       clientDropdown.classList.remove("error");
       }
     },
-    touchSpin(){
-        $("input[id='years']").TouchSpin();
-      },
+    // touchSpin(){
+    //     $("input[id='years']").TouchSpin();
+    //   },
     closeBtn() {
       self = this
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
@@ -557,12 +557,12 @@ export default {
 
                     _.formData.paymentMethod != null ? _.formData.paymentMethod = " " : _.formData.paymentMethod
                     _.paymentMethod != null ? _.paymentMethod = " " : _.paymentMethod
-                    _.date != null ? _.date = null : _.date
+                    _.date != null ? _.date = new Date() : _.date
                     _.isROI == true ? _.isROI = false : _.isROI
 
                     for(var x in _.formData) {
-                      _.formData[x].name != undefined ? _.formData[x].name = null : _.formData[x].name
-                      _.formData[x].id != null ? _.formData[x].id = null : _.formData[x].id
+                      _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
+                      _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
                       _.formData.comment != null ? _.formData.comment = null : _.formData.comment
                       _.formData.furniture == true ? _.formData.furniture = false : _.formData.furniture
                     }
@@ -668,18 +668,6 @@ export default {
     color:#495057
   }
 
-  .bootstrap-touchspin-injected {
-    width: 50%;
-  }
-
-  .bootstrap-touchspin-up,
-  .bootstrap-touchspin-down {
-    background: rgb(255, 251, 251);
-    border:1px solid white;
-    color: black;
-  }
-
-
   .form-control:focus {
     background: #2a333c;
   }
@@ -737,6 +725,7 @@ export default {
     box-shadow: none;
     height: 38px;
     font-size: 14px;
+    color: #62686f;
   }
   #container-fluid {
     z-index:3!important;
