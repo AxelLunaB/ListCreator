@@ -152,21 +152,7 @@
         }
         this.$eventHub.$emit("show-contractsSegment-modal", info);
       },
-<<<<<<< HEAD
-      getUnitId(idunit){
-        let c = null;
 
-        for(var i = 0; i < this.contracts.length ; i ++) {
-          if(this.contracts[i].unitId != null){
-            if(this.contracts[i].unitId == idunit){
-              c = this.contracts[i];
-            }
-          }
-        }
-        return c
-      }
-=======
-      
       getUnitId(idunit){
        let c = null;
        for(let i = 0; i < this.contracts.length ; i ++) {
@@ -178,7 +164,6 @@
        }
        return c
      }
->>>>>>> 46e988f38a9ff61fe06fb5e185dc24b8f7dd3644
     },
     computed: {
       ...mapGetters({
