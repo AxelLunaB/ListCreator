@@ -338,7 +338,7 @@ export default {
         return this.formData.currency.id
       break;
       case 'WROI':
-      return this.isROI == true ? parseInt(this.formData.WROI.name) : "No"
+      return this.isROI == true ? parseInt(this.formData.WROI.name) : "NO"
       break;
       case "comment":
         return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
@@ -553,6 +553,11 @@ export default {
                     .dispatch("contracts/newContract", data)
                     _.$store
                     .dispatch("contracts/getContracts");
+
+                    for(var prop in _.formData){
+                      console.log(prop)
+                    }
+
                   });
                 } else {
                   swal("Cancelled", "did not create contract", "error");
