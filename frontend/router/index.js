@@ -20,7 +20,7 @@ import Print from "vue-print-nb";
 import XSLX from 'xlsx';
 import DatePicker from 'vue-bootstrap-datetimepicker';
 import touchspin from 'bootstrap-touchspin';
-import vuelidateLib from 'Vuelidate';
+import vuelidateLib from 'vuelidate';
 
 Vue.use(vuelidateLib);
 Vue.use(DatePicker);

@@ -250,7 +250,7 @@ import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
 import io from "socket.io-client";
-import { required, minLength, between, numeric, alpha  } from 'Vuelidate/lib/validators';
+import { required, minLength, between, numeric, alpha  } from 'vuelidate/lib/validators';
 
 var socket = io();
 
