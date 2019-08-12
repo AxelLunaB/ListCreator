@@ -80,9 +80,9 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <tr  v-for="(u,index) in (contract.payments ? contract.payments.paymentsDetails : 12)" :key="u.id">
-                                <td class="textalign">{{contract.payments ? u.paymentNo : index +1}}</td>
-                                <td class="text-center"><span v-bind:style="{color:contract.payments ? u.status.color_hex : 'white'}">{{contract.payments ? u.dueDate : '-'}}</span></td>
+                            <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
+                                <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
+                                <td class="text-center"><span v-bind:style="{color:contract ? contract.payments ? u.status.color_hex : 'white' : 'white'}">{{contract ? contract.payments ? u.dueDate : '-' : '-'}}</span></td>
                                 <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
@@ -196,35 +196,35 @@
                             <tbody>
                             <tr>
                                 <td class="textalign" style="border:none!important;">Currency</td>
-                                <td class="text-right" style="border:none!important"><b>{{contract.currency != null ? contract.currency : '-'}}</b></td>
+                                <td class="text-right" style="border:none!important"><b>{{contract != undefined ? contract.currency : '-'}}</b></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-right">{{contract.salesDetails != undefined ? contract.salesDetails.salesChannel != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
+                                <td class="text-right">{{contract != undefined ? contract.salesDetails != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-right">{{contract.commission != undefined ? contract.commission.executive != undefined ? contract.commission.executive.name != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
+                                <td class="text-right">{{contract ? contract.commission != undefined ? contract.commission.executive != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
-                                <td class="text-right">{{contract.customer !=undefined ? contract.customer.name != null? contract.customer.name : '-' : '-'}}</td>
+                                <td class="text-right">{{contract !=undefined ? contract.customer != null? contract.customer.name : '-' : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission != undefined ? contract.commission.managementCommissions != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission != undefined ? contract.commission.salesExecutivesCommissions != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract.commission != undefined ? contract.commission.salesAdministrativeCommissions != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
-                                <td class="text-right">{{contract.commission != undefined  && contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission}}</td>
+                                <td class="text-right">{{contract != undefined ? contract.commission != undefined  && contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission : getTotalCommission}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -245,19 +245,19 @@
                           <tbody>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">ROI</td>
-                              <td class="text-right">{{contract.WROI != null ? contract.WROI : '-'}}</td>
+                              <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">ROI %</td>
-                              <td class="text-right">{{contract.percent != 0 && contract.percent != null ? contract.percent : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">Years</td>
-                              <td class="text-right">{{contract.years != 0 && contract.years != null ? contract.years : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">Closing Date</td>
-                              <td class="text-right">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
                           </tr>
                           </tbody>
                       </table>
@@ -446,17 +446,19 @@ export default {
     getTotalCommission () {
       let percent = 0
 
-      if(this.contract.commission != null) {
-        percent = this.contract.commission.managementCommissions +
-                      this.contract.commission.salesAdministrativeCommissions +
-                      this.contract.commission.brokerCommissions +
-                      this.contract.commission.salesExecutivesCommissions +
-                      this.contract.commission.thirdPartyCommissions
-        percent = percent / 100
+      if(this.contract != null ) {
+        if(this.contract.commission != null) {
+          percent = this.contract.commission.managementCommissions +
+          this.contract.commission.salesAdministrativeCommissions +
+          this.contract.commission.brokerCommissions +
+          this.contract.commission.salesExecutivesCommissions +
+          this.contract.commission.thirdPartyCommissions
+          percent = percent / 100
+
+         return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
+        }
       }
 
-
-      return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
     },
     dynamicChart () {
       this.datasets[0].data[0] = this.cAvailability.available

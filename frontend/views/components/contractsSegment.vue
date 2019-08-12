@@ -134,8 +134,8 @@
                 id="payment-method"
                 v-model.trim="$v.paymentMethod.$model"
                 :class="{ 'form-group--error': $v.paymentMethod.$error }">
-                <div class="error" v-if="!$v.paymentMethod.alpha && $v.paymentMethod.required && $v.paymentMethod.$dirty">Numbers not allowed</div>
-                <div class="error" v-if="$v.paymentMethod.$dirty && $v.paymentMethod.$invalid">Payment method must be letters only</div>
+                <!-- <div class="error" v-if="$v.paymentMethod.required && $v.paymentMethod.$dirty">Numbers not allowed</div> -->
+                <!-- <div class="error" v-if="$v.paymentMethod.$dirty && $v.paymentMethod.$invalid">Payment method must be letters only</div> -->
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
 
                 <input
@@ -176,7 +176,7 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
@@ -307,8 +307,7 @@ export default {
   },
   validations:{
     paymentMethod: {
-      required,
-      alpha
+      required
     },
     date:{
       required,
@@ -547,7 +546,8 @@ export default {
                   swal({
                     title: 'Success!',
                     text: 'Your contract has been created',
-                    icon: 'success'
+                    icon: 'success',
+                    timer:1500
                   }).then(function() {
                     _.$store
                     .dispatch("contracts/newContract", data)
@@ -598,6 +598,9 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
+    },
+    isRoiContract(){
+        this.formData.furniture == false ? this.formData.furniture = true : this.formData.furniture
     }
   }
 }

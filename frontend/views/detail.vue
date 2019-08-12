@@ -152,7 +152,7 @@
         }
         this.$eventHub.$emit("show-contractsSegment-modal", info);
       },
-      
+
       getUnitId(idunit){
        let c = null;
        for(let i = 0; i < this.contracts.length ; i ++) {
