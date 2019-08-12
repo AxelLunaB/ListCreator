@@ -176,7 +176,7 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
@@ -598,6 +598,9 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
+    },
+    isRoiContract(){
+        this.formData.furniture == false ? this.formData.furniture = true : this.formData.furniture
     }
   }
 }
