@@ -58,9 +58,8 @@
         <div class="container-header">
           <div class="container-inner-header">
             <h4>SALES REPORT</h4>
-            <img src="https://i.imgur.com/jqiuuYB.png" width="200px">
+            <img src="https://i.imgur.com/jqiuuYB.png" width="150px">
           </div>
-          ADD ROI,YEARS
           <div class= "container-date">
             <p id="date"></p>
             <p>Tulum, Quintana Roo, México</p>
@@ -70,7 +69,9 @@
           <h4 style="margin-bottom:0;">CONTRACT INFORMATION</h4>
           <div class="flex" >
             <div>
-              <h5>CUSTOMER</h5>
+              <h6>CLOSING DATE</h6>
+                <p id="closingDate"></p>
+              <h6>CUSTOMER</h6>
                 <p id="customer"></p>
               <h6>COUNTRY</h6>
                 <p id="country"></p>
@@ -84,12 +85,17 @@
                 <p id="customerEmail"></p>
             </div>
             <div>
-              <h5>EXECUTIVE</h5>
+              <h6>DISCOUNT</h6>
+                <p id="discount"></p>
+              <h6>EXCHANGE RATE</h6>
+                <p id="exchangeRate"></p>
+              <h6>ROI</h6>
+                <p id="roi"></p>
+              <h6>EXECUTIVE</h6>
                 <p id="executive"></p>
               <h6>CONTACT INFO</h6>
                 <p id="phoneExec"></p>
                 <p id="emailExec"></p>
-              <h5 style="margin-bottom:0;">PAYMENT INFO</h5>
               <h6>PAYMENT METHOD</h6>
                 <p id="paymentMethod"></p>
               <h6>RESERVE DATE</h6>
@@ -100,37 +106,37 @@
           </div>
         </div>
         <div class="container-body">
-          <h4>DEPARTMENT INFORMATION</h4>
-          <div class="flex">
-            <div>
-              <h5 style="margin-bottom:0;">TOWER</h5>
-              <p id="clusterName" style="margin-top:0;"></p>
-              <h5 style="margin-bottom:0;">UNIT No.</h5>
-              <p id="unitNo" style="margin-top:0;"></p>
-            </div>
-            <div>
-              <h5 style="margin-bottom:0;">LEVEL</h5>
-              <p id="level"></p>
-              <h5 style="margin-bottom:0;">STATUS</h5>
-              <p id="statusName" style="margin-top:0;"></p>
-            </div>
-            <div>
-              <h5 style="margin-bottom:0;">PRICE</h5>
-              <p id="priceTotal"></p>
-              <h5 style="margin-bottom:0;">CURRENCY</h5>
-              <p id="currency" style="margin-top:0;"></p>
-            </div>
+          <h4 style="margin-bottom:0;">DEPARTMENT INFORMATION</h4>
+            <div class="flex">
+                <div>
+                  <h6 style="margin-bottom:0;">CLUSTER</h6>
+                  <p id="clusterName" style="margin-top:0;"></p>
+                  <h6 style="margin-bottom:0;">UNIT No.</h6>
+                  <p id="unitNo" style="margin-top:0;"></p>
+                </div>
+                <div>
+                  <h6 style="margin-bottom:0;">LEVEL</h6>
+                  <p id="level"></p>
+                  <h6 style="margin-bottom:0;">STATUS</h6>
+                  <p id="statusName" style="margin-top:0;"></p>
+                </div>
+                <div>
+                  <h6 style="margin-bottom:0;">PRICE</h6>
+                  <p id="priceTotal"></p>
+                  <h6 style="margin-bottom:0;">CURRENCY</h6>
+                  <p id="currency" style="margin-top:0;"></p>
+                </div>
+              </div>
           </div>
-        </div>
         <div class="container-body">
           <h4>PAYMENT INFORMATION</h4>
-          <table>
+          <table class="table-payments">
               <thead>
               <tr>
-                <td>Payment No.</td>
-                <td>Due date</td>
-                <td>Payment Date</td>
-                <td>Status</td>
+                <td>PAYMENT No.</td>
+                <td>DUE DATE</td>
+                <td>PAYMENT DATE</td>
+                <td>STATUS</td>
               </tr>
             </thead>
             <tbody>
@@ -342,43 +348,47 @@ export default {
       $('#unitNo').html(item.unitNumber ? item.unitNumber : '-');
       $('#priceTotal').html(item.priceTotal ? item.priceTotal.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ".00" : '-');
       $('#currency').html(item.currency ? item.currency : '-');
-      $('#dueDate1').html(item.payments ? item.payments.paymentsDetails[0].dueDate ? item.payments.paymentsDetails[0].dueDate : '-' : '-')
-      $('#dueDate2').html(item.payments ? item.payments.paymentsDetails[1].dueDate ? item.payments.paymentsDetails[1].dueDate : '-' : '-')
-      $('#dueDate3').html(item.payments ? item.payments.paymentsDetails[2].dueDate ? item.payments.paymentsDetails[2].dueDate : '-' : '-')
-      $('#dueDate4').html(item.payments ? item.payments.paymentsDetails[3].dueDate ? item.payments.paymentsDetails[3].dueDate : '-' : '-')
-      $('#dueDate5').html(item.payments ? item.payments.paymentsDetails[4].dueDate ? item.payments.paymentsDetails[4].dueDate : '-' : '-')
-      $('#dueDate6').html(item.payments ? item.payments.paymentsDetails[5].dueDate ? item.payments.paymentsDetails[5].dueDate : '-' : '-')
-      $('#dueDate7').html(item.payments ? item.payments.paymentsDetails[6].dueDate ? item.payments.paymentsDetails[6].dueDate : '-' : '-')
-      $('#dueDate8').html(item.payments ? item.payments.paymentsDetails[7].dueDate ? item.payments.paymentsDetails[7].dueDate : '-' : '-')
-      $('#dueDate9').html(item.payments ? item.payments.paymentsDetails[8].dueDate ? item.payments.paymentsDetails[8].dueDate : '-' : '-')
-      $('#dueDate10').html(item.payments ? item.payments.paymentsDetails[9].dueDate ? item.payments.paymentsDetails[9].dueDate : '-' : '-')
-      $('#dueDate11').html(item.payments ? item.payments.paymentsDetails[10].dueDate ? item.payments.paymentsDetails[10].dueDate : '-' : '-')
-      $('#dueDate12').html(item.payments ? item.payments.paymentsDetails[11].dueDate ? item.payments.paymentsDetails[11].dueDate : '-' : '-')
-      $('#paymentDate1').html(item.payments ? item.payments.paymentsDetails[0].paymentDate ? item.payments.paymentsDetails[0].paymentDate : '-': '-')
-      $('#paymentDate2').html(item.payments ? item.payments.paymentsDetails[1].paymentDate ? item.payments.paymentsDetails[1].paymentDate : '-': '-')
-      $('#paymentDate3').html(item.payments ? item.payments.paymentsDetails[2].paymentDate ? item.payments.paymentsDetails[2].paymentDate : '-': '-')
-      $('#paymentDate4').html(item.payments ? item.payments.paymentsDetails[3].paymentDate ? item.payments.paymentsDetails[3].paymentDate : '-': '-')
-      $('#paymentDate5').html(item.payments ? item.payments.paymentsDetails[4].paymentDate ? item.payments.paymentsDetails[4].paymentDate : '-': '-')
-      $('#paymentDate6').html(item.payments ? item.payments.paymentsDetails[5].paymentDate ? item.payments.paymentsDetails[5].paymentDate : '-': '-')
-      $('#paymentDate7').html(item.payments ? item.payments.paymentsDetails[6].paymentDate ? item.payments.paymentsDetails[6].paymentDate : '-': '-')
-      $('#paymentDate8').html(item.payments ? item.payments.paymentsDetails[7].paymentDate ? item.payments.paymentsDetails[7].paymentDate : '-': '-')
-      $('#paymentDate9').html(item.payments ? item.payments.paymentsDetails[8].paymentDate ? item.payments.paymentsDetails[8].paymentDate : '-': '-')
-      $('#paymentDate10').html(item.payments ? item.payments.paymentsDetails[9].paymentDate ? item.payments.paymentsDetails[9].paymentDate : '-': '-')
+      $('#dueDate1').html(item.payments ? item.payments.paymentsDetails[0].dueDate ? item.payments.paymentsDetails[0].dueDate : '-' : '-');
+      $('#dueDate2').html(item.payments ? item.payments.paymentsDetails[1].dueDate ? item.payments.paymentsDetails[1].dueDate : '-' : '-');
+      $('#dueDate3').html(item.payments ? item.payments.paymentsDetails[2].dueDate ? item.payments.paymentsDetails[2].dueDate : '-' : '-');
+      $('#dueDate4').html(item.payments ? item.payments.paymentsDetails[3].dueDate ? item.payments.paymentsDetails[3].dueDate : '-' : '-');
+      $('#dueDate5').html(item.payments ? item.payments.paymentsDetails[4].dueDate ? item.payments.paymentsDetails[4].dueDate : '-' : '-');
+      $('#dueDate6').html(item.payments ? item.payments.paymentsDetails[5].dueDate ? item.payments.paymentsDetails[5].dueDate : '-' : '-');
+      $('#dueDate7').html(item.payments ? item.payments.paymentsDetails[6].dueDate ? item.payments.paymentsDetails[6].dueDate : '-' : '-');
+      $('#dueDate8').html(item.payments ? item.payments.paymentsDetails[7].dueDate ? item.payments.paymentsDetails[7].dueDate : '-' : '-');
+      $('#dueDate9').html(item.payments ? item.payments.paymentsDetails[8].dueDate ? item.payments.paymentsDetails[8].dueDate : '-' : '-');
+      $('#dueDate10').html(item.payments ? item.payments.paymentsDetails[9].dueDate ? item.payments.paymentsDetails[9].dueDate : '-' : '-');
+      $('#dueDate11').html(item.payments ? item.payments.paymentsDetails[10].dueDate ? item.payments.paymentsDetails[10].dueDate : '-' : '-');
+      $('#dueDate12').html(item.payments ? item.payments.paymentsDetails[11].dueDate ? item.payments.paymentsDetails[11].dueDate : '-' : '-');
+      $('#paymentDate1').html(item.payments ? item.payments.paymentsDetails[0].paymentDate ? item.payments.paymentsDetails[0].paymentDate : '-': '-');
+      $('#paymentDate2').html(item.payments ? item.payments.paymentsDetails[1].paymentDate ? item.payments.paymentsDetails[1].paymentDate : '-': '-');
+      $('#paymentDate3').html(item.payments ? item.payments.paymentsDetails[2].paymentDate ? item.payments.paymentsDetails[2].paymentDate : '-': '-');
+      $('#paymentDate4').html(item.payments ? item.payments.paymentsDetails[3].paymentDate ? item.payments.paymentsDetails[3].paymentDate : '-': '-');
+      $('#paymentDate5').html(item.payments ? item.payments.paymentsDetails[4].paymentDate ? item.payments.paymentsDetails[4].paymentDate : '-': '-');
+      $('#paymentDate6').html(item.payments ? item.payments.paymentsDetails[5].paymentDate ? item.payments.paymentsDetails[5].paymentDate : '-': '-');
+      $('#paymentDate7').html(item.payments ? item.payments.paymentsDetails[6].paymentDate ? item.payments.paymentsDetails[6].paymentDate : '-': '-');
+      $('#paymentDate8').html(item.payments ? item.payments.paymentsDetails[7].paymentDate ? item.payments.paymentsDetails[7].paymentDate : '-': '-');
+      $('#paymentDate9').html(item.payments ? item.payments.paymentsDetails[8].paymentDate ? item.payments.paymentsDetails[8].paymentDate : '-': '-');
+      $('#paymentDate10').html(item.payments ? item.payments.paymentsDetails[9].paymentDate ? item.payments.paymentsDetails[9].paymentDate : '-': '-');
       $('#paymentDate11').html(item.payments ? item.payments.paymentsDetails[10].paymentDate ? item.payments.paymentsDetails[10].paymentDate : '-': '-')
-      $('#paymentDate12').html(item.payments ? item.payments.paymentsDetails[11].paymentDate ? item.payments.paymentsDetails[11].paymentDate : '-': '-')
-      $('#paymentStatus1').html(item.payments ? item.payments.paymentsDetails[0].status ? item.payments.paymentsDetails[0].status.name : '-': '-')
-      $('#paymentStatus2').html(item.payments ? item.payments.paymentsDetails[1].status ? item.payments.paymentsDetails[1].status.name : '-': '-')
-      $('#paymentStatus3').html(item.payments ? item.payments.paymentsDetails[2].status ? item.payments.paymentsDetails[2].status.name : '-': '-')
-      $('#paymentStatus4').html(item.payments ? item.payments.paymentsDetails[3].status ? item.payments.paymentsDetails[3].status.name : '-': '-')
-      $('#paymentStatus5').html(item.payments ? item.payments.paymentsDetails[4].status ? item.payments.paymentsDetails[4].status.name : '-': '-')
-      $('#paymentStatus6').html(item.payments ? item.payments.paymentsDetails[5].status ? item.payments.paymentsDetails[5].status.name : '-': '-')
-      $('#paymentStatus7').html(item.payments ? item.payments.paymentsDetails[6].status ? item.payments.paymentsDetails[6].status.name : '-': '-')
-      $('#paymentStatus8').html(item.payments ? item.payments.paymentsDetails[7].status ? item.payments.paymentsDetails[7].status.name : '-': '-')
-      $('#paymentStatus9').html(item.payments ? item.payments.paymentsDetails[8].status ? item.payments.paymentsDetails[8].status.name : '-': '-')
-      $('#paymentStatus10').html(item.payments ? item.payments.paymentsDetails[9].status ? item.payments.paymentsDetails[9].status.name : '-': '-')
-      $('#paymentStatus11').html(item.payments ? item.payments.paymentsDetails[10].status ? item.payments.paymentsDetails[10].status.name : '-': '-')
-      $('#paymentStatus12').html(item.payments ? item.payments.paymentsDetails[11].status ? item.payments.paymentsDetails[11].status.name : '-': '-')
-      $('#totalSale').html(item.payments ? "$" + item.payments.totalSale.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ".00": '-')
+      $('#paymentDate12').html(item.payments ? item.payments.paymentsDetails[11].paymentDate ? item.payments.paymentsDetails[11].paymentDate : '-': '-');
+      $('#paymentStatus1').html(item.payments ? item.payments.paymentsDetails[0].status ? item.payments.paymentsDetails[0].status.name : '-': '-');
+      $('#paymentStatus2').html(item.payments ? item.payments.paymentsDetails[1].status ? item.payments.paymentsDetails[1].status.name : '-': '-');
+      $('#paymentStatus3').html(item.payments ? item.payments.paymentsDetails[2].status ? item.payments.paymentsDetails[2].status.name : '-': '-');
+      $('#paymentStatus4').html(item.payments ? item.payments.paymentsDetails[3].status ? item.payments.paymentsDetails[3].status.name : '-': '-');
+      $('#paymentStatus5').html(item.payments ? item.payments.paymentsDetails[4].status ? item.payments.paymentsDetails[4].status.name : '-': '-');
+      $('#paymentStatus6').html(item.payments ? item.payments.paymentsDetails[5].status ? item.payments.paymentsDetails[5].status.name : '-': '-');
+      $('#paymentStatus7').html(item.payments ? item.payments.paymentsDetails[6].status ? item.payments.paymentsDetails[6].status.name : '-': '-');
+      $('#paymentStatus8').html(item.payments ? item.payments.paymentsDetails[7].status ? item.payments.paymentsDetails[7].status.name : '-': '-');
+      $('#paymentStatus9').html(item.payments ? item.payments.paymentsDetails[8].status ? item.payments.paymentsDetails[8].status.name : '-': '-');
+      $('#paymentStatus10').html(item.payments ? item.payments.paymentsDetails[9].status ? item.payments.paymentsDetails[9].status.name : '-': '-');
+      $('#paymentStatus11').html(item.payments ? item.payments.paymentsDetails[10].status ? item.payments.paymentsDetails[10].status.name : '-': '-');
+      $('#paymentStatus12').html(item.payments ? item.payments.paymentsDetails[11].status ? item.payments.paymentsDetails[11].status.name : '-': '-');
+      $('#totalSale').html(item.payments ? "$" + item.payments.totalSale.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00': '-');
+      $('#roi').html(item.percent ? item.percent + '%' : '- %');
+      $('#closingDate').html(item.closingDate ? item.closingDate : 'N/A');
+      $('#discount').html(item.discount ? item.discount + '%' : '- %');
+      $('#exchangeRate').html(item.exchangerate ? item.exchangerate : 'N/A');
 
 
 
@@ -403,9 +413,9 @@ export default {
         .container-body{
           width:100%;
           border: 1px solid #dfd756;
-          padding:10px;
+          padding:5px;
           box-sizing:border-box;
-          margin: 10px 0 10px 0;
+          margin: 5px 0 5px 0;
         }
 
         .container-inner-header,
@@ -438,7 +448,12 @@ export default {
         .willPrint table {
           width:100%;
           font-family: 'Oswald', sans-serif;
-          }`
+        }
+
+        .willPrint .container-body table.table-payments {
+          background:red!important;
+        }
+          `
       const d = new Printd();
       d.print(document.getElementById('willPrint'),[cssText])
       },
