@@ -53,48 +53,49 @@
       <button class="btn btn-outline-light pagination-next" v-on:click="nextPage">Next</button>
     </nav>
     <!--Print section-->
-    <div class="willPrint d-none" id="willPrint">
+    <div class="willPrint d-none" id="willPrint" style="font-family: 'Oswald', sans-serif;">
       <section class="hero print">
         <div class="container-header">
           <div class="container-inner-header">
             <h4>SALES REPORT</h4>
             <img src="https://i.imgur.com/jqiuuYB.png" width="200px">
           </div>
+          ADD ROI,YEARS
           <div class= "container-date">
             <p id="date"></p>
             <p>Tulum, Quintana Roo, México</p>
           </div>
         </div>
         <div class="container-body">
-          <h4>CONTRACT INFORMATION</h4>
+          <h4 style="margin-bottom:0;">CONTRACT INFORMATION</h4>
           <div class="flex" >
             <div>
-              <h5 style="margin-bottom:0;">CUSTOMER</h5>
-                <p id="customer" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">COUNTRY</h6>
-                <p id="country" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">STATE</h6>
-                <p id="state" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">ADDRESS</h6>
-                <p id="address" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">PHONE</h6>
-                <p id="customerPhone" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">EMAIL</h6>
-                <p id="customerEmail" style="margin-top:0;"></p>
+              <h5>CUSTOMER</h5>
+                <p id="customer"></p>
+              <h6>COUNTRY</h6>
+                <p id="country"></p>
+              <h6>STATE</h6>
+                <p id="state"></p>
+              <h6>ADDRESS</h6>
+                <p id="address"></p>
+              <h6>PHONE</h6>
+                <p id="customerPhone"></p>
+              <h6>EMAIL</h6>
+                <p id="customerEmail"></p>
             </div>
             <div>
-              <h5 style="margin-bottom:0;">EXECUTIVE</h5>
-              <p id="executive" style="margin-top:0;"></p>
-              <h6 style="margin-bottom:0;">CONTACT INFO</h6>
-              <p id="phoneExec" style="margin:0;"></p>
-              <p id="emailExec" style="margin-top:0"></p>
+              <h5>EXECUTIVE</h5>
+                <p id="executive"></p>
+              <h6>CONTACT INFO</h6>
+                <p id="phoneExec"></p>
+                <p id="emailExec"></p>
               <h5 style="margin-bottom:0;">PAYMENT INFO</h5>
-              <h6 style="margin:0;">PAYMENT METHOD</h6>
-                <p id="paymentMethod" style="margin-top:0"></p>
-              <h6 style="margin-bottom:0;">RESERVE DATE</h6>
-                <p id="reserveDate" style="margin-top:0"></p>
-              <h6 style="margin-bottom:0;">EXPIRATION DATE</h6>
-                <p id="reserveExpiration" style="margin-top:0"></p>
+              <h6>PAYMENT METHOD</h6>
+                <p id="paymentMethod"></p>
+              <h6>RESERVE DATE</h6>
+                <p id="reserveDate"></p>
+              <h6>EXPIRATION DATE</h6>
+                <p id="reserveExpiration"></p>
             </div>
           </div>
         </div>
@@ -121,8 +122,94 @@
             </div>
           </div>
         </div>
-        <div class="container-body" style="height:200px;">
-
+        <div class="container-body">
+          <h4>PAYMENT INFORMATION</h4>
+          <table>
+              <thead>
+              <tr>
+                <td>Payment No.</td>
+                <td>Due date</td>
+                <td>Payment Date</td>
+                <td>Status</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td id="dueDate1"></td>
+                <td id="paymentDate1"></td>
+                <td id="paymentStatus1"></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td id="dueDate2"></td>
+                <td id="paymentDate2"></td>
+                <td id="paymentStatus2"></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td id="dueDate3"></td>
+                <td id="paymentDate3"></td>
+                <td id="paymentStatus3"></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td id="dueDate4"></td>
+                <td id="paymentDate4"></td>
+                <td id="paymentStatus4"></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td id="dueDate5"></td>
+                <td id="paymentDate5"></td>
+                <td id="paymentStatus5"></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td id="dueDate6"></td>
+                <td id="paymentDate6"></td>
+                <td id="paymentStatus6"></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td id="dueDate7"></td>
+                <td id="paymentDate7"></td>
+                <td id="paymentStatus7"></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td id="dueDate8"></td>
+                <td id="paymentDate8"></td>
+                <td id="paymentStatus8"></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td id="dueDate9"></td>
+                <td id="paymentDate9"></td>
+                <td id="paymentStatus9"></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td id="dueDate10"></td>
+                <td id="paymentDate10"></td>
+                <td id="paymentStatus10"></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td id="dueDate11"></td>
+                <td id="paymentDate11"></td>
+                <td id="paymentStatus11"></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td id="dueDate12"></td>
+                <td id="paymentDate12"></td>
+                <td id="paymentStatus12"></td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 style="margin-bottom:0;">Total sales</h5>
+          <p id="totalSale"></p>
         </div>
       </section>
     </div>
@@ -170,7 +257,6 @@ export default {
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("users/listenEvents");
       this.$store.dispatch("contracts/getContracts");
-      this.$store.dispatch("contracts/getContracts");
 
 
       // listen to authenticated event
@@ -196,7 +282,7 @@ export default {
         {title:'UNIT'},
         {title:'CLIENT'},
         {title:'EXECUTIVE'},
-        {title: 'DATE'},
+        {title:'DATE'},
         {title:'INFO'}
       ],
       index:0,
@@ -225,7 +311,6 @@ export default {
 
       },
       print(item){
-
       const monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
 
       var today = new Date();
@@ -239,33 +324,79 @@ export default {
 
 
       document.getElementById("date").innerHTML = monthName(month)+ " " + dd + " " + yyyy ;
-      $('#executive').html(item.commission.executive.name == undefined ? '-' : item.commission.executive.name);
-      $('#customer').html(item.customer.name == undefined ? '-' : item.customer.name);
-      $('#phoneExec').html(item.salesDetails.executive.contactNumber == undefined ? '-' : item.salesDetails.executive.contactNumber);
-      $('#emailExec').html(item.salesDetails.executive.email == undefined ? '-' : item.salesDetails.executive.email);
-      $('#country').html(item.customer.country == undefined ? '-' : item.customer.country);
-      $('#state').html(item.customer.state == undefined ? '-' : item.customer.state);
-      $('#address').html(item.customer.address == undefined ? '-' : item.customer.address);
-      $('#customerPhone').html(item.customer.contactNumber == undefined ? '-' : item.customer.contactNumber);
-      $('#customerEmail').html(item.customer.email == undefined ? '-' : item.customer.email);
-      $('#paymentMethod').html(item.paymentMethod == undefined ? '-' : item.paymentMethod);
-      $('#reserveDate').html(item.reference.reserveDate == undefined ? '-' : item.reference.reserveDate.substring(0,10));
-      $('#reserveExpiration').html(item.reference.reserveExpiration == undefined ? '-' : item.reference.reserveExpiration.substring(0,10));
-      $('#clusterName').html(item.cluster.name == undefined ? '-' : item.cluster.name);
-      $('#level').html(item.level == undefined ? '-' : item.level);
-      $('#statusName').html(item.status.name == undefined ? '-' : item.status.name);
-      $('#unitNo').html(item.unitNumber == undefined ? '-' : item.unitNumber);
-      $('#priceTotal').html(item.priceTotal == undefined ? '-' : item.priceTotal);
-      $('#currency').html(item.currency == undefined ? '-' : item.currency);
+      $('#executive').html(item.commission.executive.name ? item.commission.executive.name : '-' );
+      $('#customer').html(item.customer.name ? item.customer.name : '-');
+      $('#phoneExec').html(item.salesDetails.executive.contactNumber ? item.salesDetails.executive.contactNumber : '-');
+      $('#emailExec').html(item.salesDetails.executive.email ? item.salesDetails.executive.email : '-');
+      $('#country').html(item.customer.country ? item.customer.country : '-');
+      $('#state').html(item.customer.state ? item.customer.state : '-');
+      $('#address').html(item.customer.address ? item.customer.address : '-');
+      $('#customerPhone').html(item.customer.contactNumber ? item.customer.contactNumber : '-');
+      $('#customerEmail').html(item.customer.email ? item.customer.email : '-');
+      $('#paymentMethod').html(item.paymentMethod ? item.paymentMethod : '-');
+      $('#reserveDate').html(item.reference.reserveDate ? item.reference.reserveDate.substring(0,10) : '-');
+      $('#reserveExpiration').html(item.reference.reserveExpiration ? item.reference.reserveExpiration.substring(0,10) : '-');
+      $('#clusterName').html(item.cluster.name ? item.cluster.name : '-');
+      $('#level').html(item.level ? item.level : '-');
+      $('#statusName').html(item.status.name ? item.status.name : '-');
+      $('#unitNo').html(item.unitNumber ? item.unitNumber : '-');
+      $('#priceTotal').html(item.priceTotal ? item.priceTotal.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ".00" : '-');
+      $('#currency').html(item.currency ? item.currency : '-');
+      $('#dueDate1').html(item.payments ? item.payments.paymentsDetails[0].dueDate ? item.payments.paymentsDetails[0].dueDate : '-' : '-')
+      $('#dueDate2').html(item.payments ? item.payments.paymentsDetails[1].dueDate ? item.payments.paymentsDetails[1].dueDate : '-' : '-')
+      $('#dueDate3').html(item.payments ? item.payments.paymentsDetails[2].dueDate ? item.payments.paymentsDetails[2].dueDate : '-' : '-')
+      $('#dueDate4').html(item.payments ? item.payments.paymentsDetails[3].dueDate ? item.payments.paymentsDetails[3].dueDate : '-' : '-')
+      $('#dueDate5').html(item.payments ? item.payments.paymentsDetails[4].dueDate ? item.payments.paymentsDetails[4].dueDate : '-' : '-')
+      $('#dueDate6').html(item.payments ? item.payments.paymentsDetails[5].dueDate ? item.payments.paymentsDetails[5].dueDate : '-' : '-')
+      $('#dueDate7').html(item.payments ? item.payments.paymentsDetails[6].dueDate ? item.payments.paymentsDetails[6].dueDate : '-' : '-')
+      $('#dueDate8').html(item.payments ? item.payments.paymentsDetails[7].dueDate ? item.payments.paymentsDetails[7].dueDate : '-' : '-')
+      $('#dueDate9').html(item.payments ? item.payments.paymentsDetails[8].dueDate ? item.payments.paymentsDetails[8].dueDate : '-' : '-')
+      $('#dueDate10').html(item.payments ? item.payments.paymentsDetails[9].dueDate ? item.payments.paymentsDetails[9].dueDate : '-' : '-')
+      $('#dueDate11').html(item.payments ? item.payments.paymentsDetails[10].dueDate ? item.payments.paymentsDetails[10].dueDate : '-' : '-')
+      $('#dueDate12').html(item.payments ? item.payments.paymentsDetails[11].dueDate ? item.payments.paymentsDetails[11].dueDate : '-' : '-')
+      $('#paymentDate1').html(item.payments ? item.payments.paymentsDetails[0].paymentDate ? item.payments.paymentsDetails[0].paymentDate : '-': '-')
+      $('#paymentDate2').html(item.payments ? item.payments.paymentsDetails[1].paymentDate ? item.payments.paymentsDetails[1].paymentDate : '-': '-')
+      $('#paymentDate3').html(item.payments ? item.payments.paymentsDetails[2].paymentDate ? item.payments.paymentsDetails[2].paymentDate : '-': '-')
+      $('#paymentDate4').html(item.payments ? item.payments.paymentsDetails[3].paymentDate ? item.payments.paymentsDetails[3].paymentDate : '-': '-')
+      $('#paymentDate5').html(item.payments ? item.payments.paymentsDetails[4].paymentDate ? item.payments.paymentsDetails[4].paymentDate : '-': '-')
+      $('#paymentDate6').html(item.payments ? item.payments.paymentsDetails[5].paymentDate ? item.payments.paymentsDetails[5].paymentDate : '-': '-')
+      $('#paymentDate7').html(item.payments ? item.payments.paymentsDetails[6].paymentDate ? item.payments.paymentsDetails[6].paymentDate : '-': '-')
+      $('#paymentDate8').html(item.payments ? item.payments.paymentsDetails[7].paymentDate ? item.payments.paymentsDetails[7].paymentDate : '-': '-')
+      $('#paymentDate9').html(item.payments ? item.payments.paymentsDetails[8].paymentDate ? item.payments.paymentsDetails[8].paymentDate : '-': '-')
+      $('#paymentDate10').html(item.payments ? item.payments.paymentsDetails[9].paymentDate ? item.payments.paymentsDetails[9].paymentDate : '-': '-')
+      $('#paymentDate11').html(item.payments ? item.payments.paymentsDetails[10].paymentDate ? item.payments.paymentsDetails[10].paymentDate : '-': '-')
+      $('#paymentDate12').html(item.payments ? item.payments.paymentsDetails[11].paymentDate ? item.payments.paymentsDetails[11].paymentDate : '-': '-')
+      $('#paymentStatus1').html(item.payments ? item.payments.paymentsDetails[0].status ? item.payments.paymentsDetails[0].status.name : '-': '-')
+      $('#paymentStatus2').html(item.payments ? item.payments.paymentsDetails[1].status ? item.payments.paymentsDetails[1].status.name : '-': '-')
+      $('#paymentStatus3').html(item.payments ? item.payments.paymentsDetails[2].status ? item.payments.paymentsDetails[2].status.name : '-': '-')
+      $('#paymentStatus4').html(item.payments ? item.payments.paymentsDetails[3].status ? item.payments.paymentsDetails[3].status.name : '-': '-')
+      $('#paymentStatus5').html(item.payments ? item.payments.paymentsDetails[4].status ? item.payments.paymentsDetails[4].status.name : '-': '-')
+      $('#paymentStatus6').html(item.payments ? item.payments.paymentsDetails[5].status ? item.payments.paymentsDetails[5].status.name : '-': '-')
+      $('#paymentStatus7').html(item.payments ? item.payments.paymentsDetails[6].status ? item.payments.paymentsDetails[6].status.name : '-': '-')
+      $('#paymentStatus8').html(item.payments ? item.payments.paymentsDetails[7].status ? item.payments.paymentsDetails[7].status.name : '-': '-')
+      $('#paymentStatus9').html(item.payments ? item.payments.paymentsDetails[8].status ? item.payments.paymentsDetails[8].status.name : '-': '-')
+      $('#paymentStatus10').html(item.payments ? item.payments.paymentsDetails[9].status ? item.payments.paymentsDetails[9].status.name : '-': '-')
+      $('#paymentStatus11').html(item.payments ? item.payments.paymentsDetails[10].status ? item.payments.paymentsDetails[10].status.name : '-': '-')
+      $('#paymentStatus12').html(item.payments ? item.payments.paymentsDetails[11].status ? item.payments.paymentsDetails[11].status.name : '-': '-')
+      $('#totalSale').html(item.payments ? "$" + item.payments.totalSale.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ".00": '-')
+
+
 
       const cssText =`
-        @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
         body,
         html {
           height:100%;
           width:100%;
           margin:0;
-          font-family: 'Oswald', sans-serif;
+        }
+
+        .flex div p {
+          margin:0;
+        }
+
+        .flex div h5,
+        .flex div h6 {
+          margin:10px 0 5px 0;
         }
 
         .container-header,
@@ -285,7 +416,8 @@ export default {
           justify-content:space-between;
         }
 
-        .willPrint p{
+        .willPrint p,
+        .willPrint td{
           font-size:0.8rem;
         }
 
@@ -301,7 +433,12 @@ export default {
           display:flex;
           flex-direction:row;
           justify-content:space-between;
-        }`
+        }
+
+        .willPrint table {
+          width:100%;
+          font-family: 'Oswald', sans-serif;
+          }`
       const d = new Printd();
       d.print(document.getElementById('willPrint'),[cssText])
       },
@@ -374,7 +511,6 @@ export default {
       var newE = {}
 
       if(this.initDate != null && this.endDate != null) {
-        this.watchMe = true
         var newW = {}
         for(var i = 0 ; i < this.contracts.length ; i++ ) {
             if(this.contracts[i].reference != undefined){
@@ -393,6 +529,7 @@ export default {
               timer: 1500
           });
             }
+            this.watchMe = true
           }
           console.log(this.depsAndContractsArray)
 
@@ -442,6 +579,7 @@ export default {
 
   @import 'node_modules/bootstrap/scss/bootstrap';
   @import 'node_modules/bootstrap-vue/src/index.scss';
+  @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
   html,
   body{
