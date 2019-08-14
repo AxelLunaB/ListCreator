@@ -270,8 +270,6 @@ export default {
     //     verticalbuttons: true
     //     });
     //   });
-
-
   },
   components: {
     returnPage
@@ -600,7 +598,12 @@ export default {
       return res
     },
     isRoiContract(){
-        this.formData.furniture == false ? this.formData.furniture = true : this.formData.furniture
+      if(this.isROI == false) {
+        this.formData.furniture = true
+      }
+      if(this.isROI == true) {
+        this.formData.furniture = false
+      }
     }
   }
 }
