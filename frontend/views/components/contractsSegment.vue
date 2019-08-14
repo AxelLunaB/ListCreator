@@ -115,7 +115,7 @@
                        </b-dropdown-item>
                       </div>
                       </b-dropdown>
-                      <button type="button" class="btn btn-light btn-sm"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                      <button type="button" class="btn btn-light btn-sm"><i class="fas fa-plus" style="color:#2a333c;" @click="addUser = true"></i></button>
                     </div>
                   </div>
 
@@ -246,15 +246,15 @@
 
         <div class="col-sm-0 col-md-1 col-lg-1 col-xl-4">
         </div>
-
       </div>
     </div>
+    <new-user :addUser="addUser"/>
   </div>
 </template>
 
 <script>
 
-import returnPage from "./returnPage.vue";
+import newUser from "./newUser.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
 import $ from "jquery";
@@ -283,10 +283,11 @@ export default {
     //   });
   },
   components: {
-    returnPage
+    newUser
   },
   data() {
     return {
+      addUser:false,
       ids:[],
       isROI:false,
       errors:[],
