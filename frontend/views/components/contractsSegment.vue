@@ -6,10 +6,10 @@
       </div>
       <div class="row row-full" :class="{ animate: isActive }" style="margin:0 auto;">
 
-        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-3">
+        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-4">
         </div>
 
-        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6" style="display:flex;align-items:center;">
+        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-4" style="display:flex;align-items:center;">
           <div class="card">
             <div class="card-body">
               <h4 class="page-title">Contract Application</h4>
@@ -124,8 +124,19 @@
                 for="label-executive">
                   <p>Payment Method</p>
                 </label>
-
-                <input
+                <div class="col-12" style="align-items:center;">
+                  <b-dropdown
+                  id="dropdown-payment"
+                  name="drop-payment"
+                  :text="formData.paymentMethod.name == null ? 'Payment Method' : formData.paymentMethod.name" class="m-md-2">
+                  <b-dropdown-item v-for="option in methods"
+                  :key="option.id"
+                  :value="option.id"
+                  @click="selectPayment('payment'),setData('paymentMethod',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
+                  </b-dropdown>
+                  <input class="form-control col-4" v-if="formData.paymentMethod.id == 4 " v-model="formData.paymentMethod.other">
+                </div>
+                <!-- <input
                 type="text"
                 class="form-control col-md-6 col-sm-12"
                 value=""
@@ -133,7 +144,7 @@
 
                 id="payment-method"
                 v-model.trim="$v.paymentMethod.$model"
-                :class="{ 'form-group--error': $v.paymentMethod.$error }">
+                :class="{ 'form-group--error': $v.paymentMethod.$error }"> -->
                 <!-- <div class="error" v-if="$v.paymentMethod.required && $v.paymentMethod.$dirty">Numbers not allowed</div> -->
                 <!-- <div class="error" v-if="$v.paymentMethod.$dirty && $v.paymentMethod.$invalid">Payment method must be letters only</div> -->
                 <label class="control-label col-12" for="label-executive"><p>Signature date</p></label>
@@ -226,14 +237,14 @@
                 </div>
                 </div>
                 <div>
-                <button type="button" class="btn btn-outline-light waves-light" @click="addNewContract()">Send</button>
+                <button type="button" class="btn btn-info waves-light" @click="addNewContract()">Send</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-3">
+        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-4">
         </div>
 
       </div>
@@ -283,6 +294,12 @@ export default {
       isActive: true,
       contract: {},
       validation:[],
+      methods:[
+        {id:1, name:"30 - 70"},
+        {id:2, name:"50 - 50"},
+        {id:3, name:"80 - 20"},
+        {id:4, name: "Other"}
+        ],
       formData: { // findme
         id: null,
         executive: {id: null, name: null},
@@ -293,20 +310,17 @@ export default {
         WROI: { name: 0},
         furniture:false,
         comment:null,
-        paymentMethod:null
+        paymentMethod:{id:null, name:null, other:null}
       },
       paymentMethod:"",
       departments: {},
       options: {
           format: 'YYYY-MM-DD'
       },
-      date:new Date()
+      date:new Date((new Date().setDate(new Date().getDate()+1)))
     }
   },
   validations:{
-    paymentMethod: {
-      required
-    },
     date:{
       required,
       minValue: value => value > new Date().toISOString()
@@ -316,8 +330,11 @@ export default {
     getValue(k){
       switch(k){
       case 'paymentMethod':
-        this.formData.paymentMethod = this.paymentMethod
-        return this.formData.paymentMethod
+      if(this.formData.paymentMethod.id == 4) {
+        return this.formData.paymentMethod.other
+      } else {
+        return this.formData.paymentMethod.name
+      }
       break
       case 'executive':
         return this.formData.executive.id
@@ -356,6 +373,16 @@ export default {
         this.validation.push(exec)
         var clusterDropdown = document.getElementById("dropdown-executives__BV_toggle_");
         clusterDropdown.classList.remove("error");
+      }
+    },
+    selectPayment(option){
+      var payment = option
+      if (this.validation.includes(payment)) {
+
+      } else {
+        this.validation.push(payment)
+        var devDropdown = document.getElementById("dropdown-payment__BV_toggle_");
+        devDropdown.classList.remove("error");
       }
     },
     selectDev(option){
@@ -448,7 +475,7 @@ export default {
 
 
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length < 5 ) {
+        if (this.$v.$invalid || this.validation.length < 6 ) {
 
           for(let i = 0; i < 5; i++){
             if(this.validation.includes("unit")){
@@ -481,12 +508,19 @@ export default {
                   var unitDropdown = document.getElementById("dropdown-customer__BV_toggle_");
                   unitDropdown.classList.add("error");
             }
+            if(this.validation.includes("payment")){
+
+            } else {
+              var paymentDropdown = document.getElementById("dropdown-payment__BV_toggle_");
+              paymentDropdown.classList.add("error");
+            }
           }
 
         } else {
 
           var clusterDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
           var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
+          var paymentDropdown = document.getElementById("dropdown-payment__BV_toggle_");
           var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
           var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
           var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
@@ -495,6 +529,7 @@ export default {
           unitDropdown.classList.remove("error");
           currencyDropdown.classList.remove("error");
           clientDropdown.classList.remove("error");
+          paymentDropdown.classList.remove("error")
           if(this.isROI == true) {
             var selectYears = document.getElementById("years");
             selectYears.classList.remove("form-group--error");
@@ -552,10 +587,13 @@ export default {
                     _.$store
                     .dispatch("contracts/getContracts");
 
-
-                    _.formData.paymentMethod != null ? _.formData.paymentMethod = " " : _.formData.paymentMethod
+                    _.validation = []
+                    _.formData.furniture = false
+                    _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
+                    _.formData.paymentMethod.name != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.name
+                    _.formData.paymentMethod.other != null ? _.formData.paymentMethod.other = null : _.formData.paymentMethod.other
                     _.paymentMethod != null ? _.paymentMethod = " " : _.paymentMethod
-                    _.date != null ? _.date = new Date() : _.date
+                    _.date != null ? _.date = new Date((new Date().setDate(new Date().getDate()+1))) : _.date
                     _.isROI == true ? _.isROI = false : _.isROI
 
                     for(var x in _.formData) {
@@ -884,6 +922,10 @@ export default {
 
 .disabled-option {
   color: white;
+}
+
+#new-contract-form button {
+  border-radius: 4px;
 }
 
 

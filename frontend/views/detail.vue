@@ -5,7 +5,7 @@
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
+        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
@@ -501,5 +501,9 @@
     .navbar-container {
     text-align: center;
     }
+
+    #newContract, #sendtopdf, #tosheet {
+      border-radius: 5px;
+      }
   }
 </style>
