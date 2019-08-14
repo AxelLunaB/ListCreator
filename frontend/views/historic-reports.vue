@@ -29,7 +29,7 @@
       </table>
       <table class="table table-hover">
           <thead class="table-body" v-if="filterByDate != undefined">
-          <tr v-for="(item,index) in filterByDate" :key="index" class="colors">
+          <tr v-for="(item,index) in depsAndContractsArray" :key="index" class="colors">
             <td class="responsive0" style="font-weight:bolder;">{{ item.cluster.abb != null ? item.cluster.abb : '-' }} </td>
             <td class="responsive1" style="font-weight:bolder;">{{ item.unitNumber != null ? item.unitNumber  :'-' }} </td>
             <td class="responsive2" style="font-size:14px;"> {{ item.customer.name != null ? item.customer.name  :'-' }} </td>
@@ -305,6 +305,51 @@ export default {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
     },
+        filterByDate(){
+      this.depsAndContractsArray = []
+      var init = this.initDate
+      var end = this.endDate
+      this.contractsArray = []
+      var newE = {}
+
+      if(this.initDate != null && this.endDate != null) {
+        var newW = {}
+        for(var i = 0 ; i < this.contracts.length ; i++ ) {
+            if(this.contracts[i].reference != undefined){
+              var current = this.contracts[i].reference.reserveDate
+              if(current >= init && current <= end) {
+                this.depsAndContractsArray.push(this.contracts[i])
+                }
+              }
+            }
+            if(this.depsAndContractsArray == 0 ) {
+              if(this.initDate != null || this.endDate != null)
+            swal({
+              text: `No apartments within range`,
+              icon: "error",
+              buttons: false,
+              timer: 1500
+          });
+            }
+            this.watchMe = true
+          }
+          console.log(this.depsAndContractsArray)
+
+          for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
+            for(var e = 0 ; e < this.departments.length ; e++ ) {
+              if(this.depsAndContractsArray[i].id == this.departments[e].id) {
+                this.contractsArray.push(this.departments[e])
+                }
+              }
+            }
+            for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
+              newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
+              }
+
+          this.depsAndContractsArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
+          return this.depsAndContractsArray
+
+      },
     toDate(date){
       var year = date.substring(0,4)
       var month = date.substring(5,7)
@@ -518,51 +563,6 @@ export default {
         contracts: "contracts/contracts",
         departments: "departments/departments"
       }),
-    filterByDate(){
-      this.depsAndContractsArray = []
-      var init = this.initDate
-      var end = this.endDate
-      this.contractsArray = []
-      var newE = {}
-
-      if(this.initDate != null && this.endDate != null) {
-        var newW = {}
-        for(var i = 0 ; i < this.contracts.length ; i++ ) {
-            if(this.contracts[i].reference != undefined){
-              var current = this.contracts[i].reference.reserveDate
-              if(current >= init && current <= end) {
-                this.depsAndContractsArray.push(this.contracts[i])
-                }
-              }
-            }
-            if(this.depsAndContractsArray == 0 ) {
-              if(this.initDate != null || this.endDate != null)
-            swal({
-              text: `No apartments within range`,
-              icon: "error",
-              buttons: false,
-              timer: 1500
-          });
-            }
-            this.watchMe = true
-          }
-          console.log(this.depsAndContractsArray)
-
-          for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
-            for(var e = 0 ; e < this.departments.length ; e++ ) {
-              if(this.depsAndContractsArray[i].id == this.departments[e].id) {
-                this.contractsArray.push(this.departments[e])
-                }
-              }
-            }
-            for ( var a = 0 ; a < this.depsAndContractsArray.length ; a ++ ) {
-              newE = Object.assign(this.depsAndContractsArray[a],this.contractsArray[a])
-              }
-
-          this.depsAndContractsArray.sort((a,b) => (a.reference.reserveDate > b.reference.reserveDate) ? 1 : ((b.reference.reserveDate > a.reference.reserveDate) ? -1 : 0));
-          return this.depsAndContractsArray
-
-      },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
           var array = [0, 1];
