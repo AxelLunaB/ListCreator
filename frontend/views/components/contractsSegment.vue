@@ -295,9 +295,9 @@ export default {
       contract: {},
       validation:[],
       methods:[
-        {id:1, name:"60-40"},
-        {id:2, name:"70-30"},
-        {id:3, name:"50-50"},
+        {id:1, name:"30 - 70"},
+        {id:2, name:"50 - 50"},
+        {id:3, name:"80 - 20"},
         {id:4, name: "Other"}
         ],
       formData: { // findme
