@@ -12,7 +12,8 @@ module.exports = {
         seed.push({
           totalPayments: data[1],
           totalSale: data[2],
-          differencePayments: data[3],
+          totalToPay: data[3],
+          differencePayments: data[4],
           createdAt: new Date(),
           updatedAt: new Date()
         })
