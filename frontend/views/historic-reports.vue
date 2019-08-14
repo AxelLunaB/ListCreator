@@ -435,10 +435,6 @@ export default {
           margin-top:0;
         }
 
-        .inner-header-sub {
-          border:1px solid green;
-        }
-
         .flex{
           display:flex;
           flex-direction:row;
@@ -452,6 +448,10 @@ export default {
 
         .willPrint .container-body table.table-payments {
           background:red!important;
+        }
+
+        table tr:nth-child(even) {
+          background:#fffbba;
         }
           `
       const d = new Printd();
@@ -601,6 +601,10 @@ export default {
     height:100%;
     width:100%;
     background: #2a333c;
+  }
+
+  table .table-payments tr:nth-child(even) {
+    background:#fffbba;
   }
 
   .relative {
