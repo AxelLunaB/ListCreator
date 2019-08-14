@@ -226,7 +226,7 @@
                 </div>
                 </div>
                 <div>
-                <button type="button" class="btn btn-outline-light waves-light" @click="addNewContract()">Send</button>
+                <button type="button" class="btn btn-info waves-light" @click="addNewContract()">Send</button>
                 </div>
               </form>
             </div>
@@ -300,7 +300,7 @@ export default {
       options: {
           format: 'YYYY-MM-DD'
       },
-      date:new Date()
+      date:new Date((new Date().setDate(new Date().getDate()+1)))
     }
   },
   validations:{
@@ -555,7 +555,7 @@ export default {
 
                     _.formData.paymentMethod != null ? _.formData.paymentMethod = " " : _.formData.paymentMethod
                     _.paymentMethod != null ? _.paymentMethod = " " : _.paymentMethod
-                    _.date != null ? _.date = new Date() : _.date
+                    _.date != null ? _.date = new Date((new Date().setDate(new Date().getDate()+1))) : _.date
                     _.isROI == true ? _.isROI = false : _.isROI
 
                     for(var x in _.formData) {
