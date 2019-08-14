@@ -331,7 +331,7 @@ export default {
       switch(k){
       case 'paymentMethod':
       if(this.formData.paymentMethod.id == 4) {
-        return "Other / " + this.formData.paymentMethod.other
+        return this.formData.paymentMethod.other
       } else {
         return this.formData.paymentMethod.name
       }
