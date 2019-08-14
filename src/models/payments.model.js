@@ -7,6 +7,7 @@ module.exports = (app) => {
   const payments = sequelizeClient.define('payments', {
     totalPayments: { type: DataTypes.DOUBLE},
     totalSale: { type: DataTypes.DOUBLE},
+    totalToPay: { type: DataTypes.DOUBLE},
     differencePayments: { type: DataTypes.DOUBLE}
   }, {});
   payments.associate = function(models) {

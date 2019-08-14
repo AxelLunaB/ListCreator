@@ -564,7 +564,7 @@ export default {
               var yyyy = frm[2].value.slice(0,4)
               var dd = frm[2].value.slice(8,10)
               var mm = frm[2].value.slice(5,7)
-              frm[2].value = dd + "/" + mm + "/" + yyyy
+              frm[2].value = yyyy + "/" + mm + "/" + dd
 
               console.log(frm)
               var data = {};
