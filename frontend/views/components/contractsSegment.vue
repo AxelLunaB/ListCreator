@@ -178,7 +178,7 @@
                 <div class="form-group row">
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture" :disabled="isROI">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                     <label for="Furniture">
@@ -237,7 +237,7 @@
                 </div>
                 </div>
                 <div>
-                <button type="button" class="btn btn-info waves-light" @click="addNewContract()">Send</button>
+                <button type="button" class="waves ripple default" @click="addNewContract()">Send</button>
                 </div>
               </form>
             </div>
@@ -455,7 +455,16 @@ export default {
       this.formData[who].id = nVal.id;
       this.formData[who].name = nVal.name;
     },
-    addNewContract () {
+    isRoiContract(){
+      if(this.formData.furniture == false){
+        this.formData.furniture = true
+      }
+
+      if(this.formData.furniture == true && this.isROI == true){
+        this.formData.furniture = false
+      }
+    },
+    addNewContract() {
 
       for( var i = 0 ; i < this.contracts.length ; i++) {
         this.ids.push(this.contracts[i].id)
@@ -634,9 +643,6 @@ export default {
       res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
       return res
-    },
-    isRoiContract(){
-        this.formData.furniture == false ? this.formData.furniture = true : this.formData.furniture
     }
   }
 }
@@ -923,6 +929,54 @@ export default {
   border-radius: 4px;
 }
 
+button.waves {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  background: #17a2b8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+button.waves.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+button.waves.default {
+  background-color: #17a2b8;
+  color: white;
+  outline:none;
+}
 
 
     @keyframes fadeInAnimation {

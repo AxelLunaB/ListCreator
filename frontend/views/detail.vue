@@ -9,7 +9,7 @@
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light" @click="showList">View full list</button>
+          <button type="button" class="btn waves-white ripple" @click="showList">View full list</button>
           </div>
         </div>
       </div>
@@ -44,9 +44,9 @@
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Download sheet</button>
-            <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn btn-outline-light" id="newContract" @click="showContracts">Contracts/References</button>
+            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
+            <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Contracts/References</button>
             </div>
           </div>
         </div>
@@ -489,6 +489,57 @@
     max-width: 1200px;
     margin:0 auto;
   }
+
+button.waves-white {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid white;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  background-color: none;
+  color: white;
+}
+
+button.waves-white:hover {
+  background:white;
+  color:#2a333c;
+}
+button.waves-white.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves-white.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves-white.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
 
   @media screen and (max-width: 867px) {
     .navbar-brand {
