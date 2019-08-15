@@ -176,7 +176,7 @@
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="btn btn-info">Send Files</button>
+                  <button type="button" class="waves ripple">Send Files</button>
                 </div>
               </div>
             </div>
@@ -634,7 +634,56 @@ td {
   margin-right:3px;
 }
 
-  @keyframes fadeInAnimation {
+button.waves {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  background: #17a2b8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+button.waves.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+button.waves.default {
+  background-color: #17a2b8;
+  color: white;
+  outline:none;
+}
+
+@keyframes fadeInAnimation {
     0%   {
       opacity: 0;
        }
