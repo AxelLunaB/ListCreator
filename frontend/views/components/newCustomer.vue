@@ -1,5 +1,5 @@
 <template>
-  <div class="add-new-user" style="z-index:2" v-if="addUser" :class= "{ animate : addUser, animateOut: closeModalUser }" >
+  <div class="add-new-user" style="z-index:2" v-if="addClient" :class= "{ animate : addClient, animateOut: closeModalUser }" >
     <div class="container-fluid">
       <div id="returntwo" @click="closeModal()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
@@ -108,7 +108,7 @@ export default {
       this.$store.dispatch("others/getCustomers");
     })
   },
-  props:['addUser'],
+  props:['addClient'],
   data() {
     return {
       ids:[],
@@ -318,9 +318,6 @@ export default {
 </script>
 
 <style>
-
-  @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-  @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
 div.add-new-user {
     position: fixed;

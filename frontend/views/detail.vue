@@ -46,11 +46,13 @@
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Contracts/References</button>
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Add new contract</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
             </div>
           </div>
         </div>
     </div>
+    <references-list :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
   </div>
 </template>
 
@@ -62,6 +64,7 @@
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
   import contractsSegment from "./components/contractsSegment.vue"
+  import referencesList from "./components/referencesList.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
   import filterTable from "./components/filterTable.vue"
@@ -73,7 +76,8 @@
       contractsSegment,
       towerdetail,
       fullListView,
-      filterTable
+      filterTable,
+      referencesList
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -113,6 +117,7 @@
     },
     data(){
       return {
+        openReference:false,
         detailTable: 3,
         isAnimated: true,
         sDepartments:[],
@@ -163,6 +168,9 @@
          }
        }
        return c
+     },
+     closeReferences(x){
+       this.openReference = x
      }
     },
     computed: {
@@ -541,6 +549,10 @@ button.waves-white.ripple:active:after {
     box-shadow: none;
 }
 
+#toReferences {
+  margin-bottom: 15px;
+}
+
   @media screen and (max-width: 867px) {
     .navbar-brand {
       justify-content: center;
@@ -553,7 +565,10 @@ button.waves-white.ripple:active:after {
     text-align: center;
     }
 
-    #newContract, #sendtopdf, #tosheet {
+    #newContract,
+    #sendtopdf,
+    #tosheet,
+    #toReferences {
       border-radius: 5px;
       }
   }
