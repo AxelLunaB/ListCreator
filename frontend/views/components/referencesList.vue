@@ -16,11 +16,12 @@
                     <td class="header-t" style="text-align:center;vertical-align:middle;"><b>ID</b></td>
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Reserve date</b></td>
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Reserve expiration</b></td>
-                    <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Customer Id</b></td>
+                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Customer Id</b></td>
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Status Id</b></td>
                 </tr>
                 </tbody>
             </table>
+            <references-view v-for="(r, index) in references" :key="r.index"></references-view>
         </div>
       </div>
     </div>
@@ -31,8 +32,13 @@
 </template>
 
 <script>
+import referencesView from "./referencesView.vue"
+
 export default {
   props:['openReference'],
+  components: {
+    referencesView
+  },
   data(){
     return {
       closeReferencesWindow : false
@@ -49,7 +55,13 @@ export default {
         self.closeReferencesWindow = false
       }, 1000)
     }
+  },
+  computed: {
+  // ...mapGetters({
+  //     references: "other/references"
+  //     })
   }
+
 }
 </script>
 
