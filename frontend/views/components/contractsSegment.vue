@@ -578,7 +578,7 @@ export default {
                 if (isConfirm) {
                   swal({
                     title: 'Success!',
-                    text: 'Your contract has been created',
+                    text: 'Your contract has been created!',
                     icon: 'success',
                     timer:1500
                   }).then(function() {
@@ -586,7 +586,7 @@ export default {
                     .dispatch("contracts/newContract", data)
                     _.$store
                     .dispatch("contracts/getContracts");
-
+                    _.$eventHub.$emit("updateDataDetail");
                     _.validation = []
                     _.formData.furniture = false
                     _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
@@ -605,7 +605,7 @@ export default {
 
                   });
                 } else {
-                  swal("Cancelled", "did not create contract", "error");
+                  swal("Cancelled", "Contract not created.", "error");
                 }
 
     })

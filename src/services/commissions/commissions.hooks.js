@@ -12,17 +12,19 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [
       togglePagination(),
-      addAssociations({
-        models: [
-          {
-            model: 'api/status',
-            as: 'status'
-          }
-        ]
-      })
+      // addAssociations({
+      //   models: [
+      //     {
+      //       model: 'api/status',
+      //       as: 'status'
+      //     }
+      //   ]
+      // })
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/commissions' })],
+    create: [
+    // preventDuplicate({ service: 'api/commissions' })
+    ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]
@@ -54,15 +56,9 @@ module.exports = {
     //   ]
     // })
     ],
-    create: [
-
-    ],
-    update: [
-
-    ],
-    patch: [
-
-    ],
+    create: [],
+    update: [],
+    patch: [],
     remove: []
   },
 
