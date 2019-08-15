@@ -6,10 +6,10 @@
       </div>
       <div class="row row-full" :class="{ animate: isActive }" style="margin:0 auto;">
 
-        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-4">
+        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-3">
         </div>
 
-        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-4" style="display:flex;align-items:center;">
+        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6" style="display:flex;align-items:center;">
           <div class="card">
             <div class="card-body">
               <h4 class="page-title">Contract Application</h4>
@@ -90,15 +90,16 @@
 
                   <div class="row" style="align-items:center;">
                     <input
+                    style="text-align:center"
                     type="text"
-                    class="form-control disabled-option col-sm-12 col-lg-6"
+                    class="form-control disabled-option col-sm-12 col-lg-3"
                     placeholder="Select unit"
                     name="salesprice"
                     value=""
                     id="unit-price-input"
                     readonly="readonly">
 
-                    <div class="col-sm-12 col-lg-6">
+                    <div class="col-sm-12 col-lg-3">
 
                       <!-- <label class="control-label" for="label-executive"><p>Client</p></label> -->
                       <b-dropdown
@@ -115,8 +116,11 @@
                        </b-dropdown-item>
                       </div>
                       </b-dropdown>
-                      <button type="button" class="btn btn-light btn-sm"><i class="fas fa-plus" style="color:#2a333c;" @click="addUser = true"></i></button>
                     </div>
+                    <div class="col-sm-12 col-lg-3">
+                       <button type="button" class="btn btn-light btn-sm" title="Add new user"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                    </div>
+                    <div class="col-sm-12 col-lg-3"></div>
                   </div>
 
                 <label
@@ -134,7 +138,9 @@
                   :value="option.id"
                   @click="selectPayment('payment'),setData('paymentMethod',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
                   </b-dropdown>
-                  <input class="form-control col-4" v-if="formData.paymentMethod.id == 4 " v-model="formData.paymentMethod.other">
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control col-6" v-if="formData.paymentMethod.id == 4" v-model="formData.paymentMethod.other" placeholder="Other method...">
                 </div>
                 <!-- <input
                 type="text"
@@ -244,7 +250,7 @@
           </div>
         </div>
 
-        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-4">
+        <div class="col-sm-0 col-md-1 col-lg-1 col-xl-3">
         </div>
       </div>
     </div>
