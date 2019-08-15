@@ -23,6 +23,7 @@ import touchspin from 'bootstrap-touchspin';
 import vuelidateLib from 'vuelidate';
 
 Vue.use(vuelidateLib);
+
 Vue.use(DatePicker);
 
 Vue.use(window.VueCharts);
