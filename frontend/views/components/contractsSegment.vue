@@ -784,7 +784,7 @@ export default {
     box-shadow: none;
     height: 38px;
     font-size: 14px;
-    color: #62686f;
+    color: #797c80;
   }
   #container-fluid {
     z-index:3!important;

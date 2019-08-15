@@ -10,15 +10,15 @@
       <div class="col-12 col-sm-10 col-lg-6 col-xl-4" style="display:flex;align-items:center;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
-            <h4 class="page-title">Add new user</h4>
-            <form id="new-contract-form">
+            <h4 class="page-title" style="padding-bottom:20px;">Add new user</h4>
+            <form id="new-user-form">
             <div class="form-group">
             <div class="row margin-0">
               <div class="col-4">
                   Name
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.name.name">
+                <input class="form-control col-12"  type="text" v-model="formData.name.name" placeholder="John Doe">
               </div>
             </div>
             <div class="row margin-0">
@@ -26,7 +26,7 @@
                 Age
               </div>
               <div class="col-8">
-                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age.name">
+                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age.name" placeholder="18">
               </div>
             </div>
             <div class="error" v-if="!this.$v.formData.age.name.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Client must be 18 or older</div>
@@ -35,7 +35,7 @@
                   Address
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.address.name">
+                <input class="form-control col-12"  type="text" v-model="formData.address.name" placeholder="Street/Number/Zip code">
               </div>
             </div>
             <div class="row margin-0">
@@ -43,7 +43,7 @@
                 Country
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.country.name">
+                  <input class="form-control col-12"  type="text" v-model="formData.country.name" placeholder="México">
               </div>
             </div>
             <div class="row margin-0">
@@ -51,7 +51,7 @@
                   State
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.state.name">
+                <input class="form-control col-12"  type="text" v-model="formData.state.name" placeholder="Quintana Roo">
               </div>
             </div>
             <div class="row margin-0">
@@ -59,7 +59,7 @@
                 City
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.city.name">
+                  <input class="form-control col-12"  type="text" v-model="formData.city.name" placeholder="Tulum">
               </div>
             </div>
             <div class="row margin-0">
@@ -67,7 +67,7 @@
                   Phone
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="email" v-model="formData.contactNumber.name">
+                  <input class="form-control col-12"  type="email" v-model="formData.contactNumber.name" placeholder="123456789">
               </div>
             </div>
             <div class="row margin-0">
@@ -75,7 +75,7 @@
                 E-mail
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="email" v-model="formData.email.name">
+                  <input class="form-control col-12"  type="email" v-model="formData.email.name" placeholder="your@email.com">
               </div>
             </div>
             <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Please fill all missing data</div>
@@ -97,12 +97,21 @@
 
 <script>
 import { setTimeout } from 'timers';
+import { mapGetters } from "vuex";
 import { required , email , minValue , maxValue } from 'vuelidate/lib/validators';
 import swal from "sweetalert";
 export default {
+  mounted: function() {
+      this.$eventHub.$on("show-users-modal", details => {
+      this.departments = details.departments;
+      this.$store.dispatch("users/getUsers");
+      this.$store.dispatch("others/getCustomers");
+    })
+  },
   props:['addUser'],
   data() {
     return {
+      ids:[],
       closeModalUser:false,
       validation:false,
       formData: { // findme
@@ -119,6 +128,37 @@ export default {
     }
   },
   methods: {
+    getValue(k){
+     switch(k){
+      case 'address':
+        return this.formData.address.name
+      break
+      case 'age':
+        return this.formData.age.name
+      break;
+      case 'city':
+        return this.formData.city.name
+      break;
+      case 'contactNumber':
+        return this.formData.contactNumber.name
+      break;
+      case 'country':
+        return this.formData.country.name
+      break;
+      case 'email':
+        return this.formData.email.name
+      break;
+      case 'name':
+        return this.formData.name.name
+      break;
+      case "state":
+        return this.formData.state.name
+      break;
+      case "id":
+      return this.formData.id
+
+      }
+    },
     closeModal(){
       const self = this
 
@@ -155,9 +195,33 @@ export default {
         })
     },
     sendInfo(){
+
+      for( var i = 0 ; i < this.customers.data.length ; i++) {
+        this.ids.push(this.customers.data[i].id)
+        }
+
+        this.formData.id = Math.max.apply(null, this.ids) + 1
+
       this.validation = true;
       this.$v.$touch()
+
       if (!this.$v.$invalid) {
+
+        const _ = this;
+        var usr = $("#new-user-form").serializeArray();
+        var user = {};
+        usr.forEach(element => {
+          user[element.name] = element.value;
+          });
+          Object.keys(this.formData).forEach(k => {
+            usr.push({
+              name: k,
+              value:this.getValue(k)
+              });
+
+            });
+            console.log(usr)
+
         swal({
           title: "Please confirm information",
           text: "Name" + " : " + this.formData.name.name + "\n" +
@@ -174,8 +238,34 @@ export default {
             confirm: true,
           }
           })
+          .then(function(isConfirm) {
+            if(isConfirm) {
+                  swal({
+                    title: 'Success!',
+                    text: 'A new user has been created',
+                    icon: 'success',
+                    timer:1500
+                  })
+
+                  setTimeout(function () {
+                    _.$emit('closeModal', false)
+                    }, 1500);
+                    setTimeout(function() {
+                      _.closeModalUser = false
+                      }, 1500)
+
+            }
+          })
+
+        } else {
+
         }
       }
+    },
+    computed: {
+      ...mapGetters({
+        customers: "others/customers"
+      })
     },
   validations:{
       formData:{
@@ -252,6 +342,14 @@ div.add-new-user {
 
 .col-4 {
   padding: 0;
+}
+
+input {
+  padding-left: 10px!important;
+}
+
+button {
+  border-radius: 4px;
 }
 
 </style>
