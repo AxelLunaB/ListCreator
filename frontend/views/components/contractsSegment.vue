@@ -118,7 +118,9 @@
                       </b-dropdown>
                     </div>
                     <div class="col-sm-12 col-lg-3">
-                       <button type="button" class="btn btn-light btn-sm" title="Add new user"><i class="fas fa-plus" style="color:#2a333c;"></i></button>
+                      <button type="button" class="btn btn-light btn-sm" title="Add new user" @click="addUser = true">
+                         <i class="fas fa-plus" style="color:#2a333c;"></i>
+                      </button>
                     </div>
                     <div class="col-sm-12 col-lg-3"></div>
                   </div>
@@ -254,7 +256,7 @@
         </div>
       </div>
     </div>
-    <new-user :addUser="addUser"/>
+    <new-user :addUser="addUser" v-on:closeModal="closeModal($event)" />
   </div>
 </template>
 
@@ -470,6 +472,9 @@ export default {
       if(this.formData.furniture == true && this.isROI == true){
         this.formData.furniture = false
       }
+    },
+    closeModal(x){
+      this.addUser = x
     },
     addNewContract() {
 
@@ -746,7 +751,9 @@ export default {
   }
 
 
-  input[type="text"] {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"] {
     background: #2a333c;
     border:1px solid #ffffff4b;
   }
@@ -849,7 +856,7 @@ export default {
     z-index: 2;
     cursor:pointer;
     background: #181d22;
-    width: 150px;
+    width: 100px;
     height: 50px;
     border-radius: 5px;
     display: flex;

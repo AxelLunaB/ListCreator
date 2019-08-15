@@ -563,7 +563,7 @@ export default {
     z-index: 2;
     cursor:pointer;
     background: #181d22;
-    width: 150px;
+    width: 100px;
     height: 50px;
     border-radius: 5px;
     display: flex;
