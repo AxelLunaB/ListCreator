@@ -16,6 +16,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        name:'A TOWER',
+        code:2,
+        abb:'A',
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      {
+        name:'B TOWER',
+        code:3,
+        abb:'B',
+        createdAt:new Date(),
+        updatedAt:new Date()
+      }
     ], {});
   },
 
