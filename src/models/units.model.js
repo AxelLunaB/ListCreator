@@ -8,7 +8,7 @@ module.exports = (app) => {
     unitNumber: DataTypes.STRING,
     phase: DataTypes.INTEGER,
     level: DataTypes.INTEGER,
-    bedrooms: DataTypes.INTEGER,
+    bedrooms: DataTypes.STRING,
     nkeys: DataTypes.INTEGER,
     bathrooms: DataTypes.INTEGER,
     interiorM2: DataTypes.DOUBLE,
