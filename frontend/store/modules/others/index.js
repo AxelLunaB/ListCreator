@@ -9,7 +9,8 @@ const state = {
   clusters: [],
   countHouses: [],
   countLots: [],
-  customers: []
+  customers: [],
+  references:[]
 };
 
 export default {

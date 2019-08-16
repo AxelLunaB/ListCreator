@@ -1,5 +1,5 @@
 <template>
-  <div class="add-new-user" style="z-index:2" v-if="addUser" :class= "{ animate : addUser, animateOut: closeModalUser }" >
+  <div class="add-new-user" style="z-index:2" v-if="addClient" :class= "{ animate : addClient, animateOut: closeModalUser }" >
     <div class="container-fluid">
       <div id="returntwo" @click="closeModal()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
@@ -10,7 +10,7 @@
       <div class="col-12 col-sm-10 col-lg-6 col-xl-4" style="display:flex;align-items:center;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
-            <h4 class="page-title" style="padding-bottom:20px;">Add new user</h4>
+            <h4 class="page-title" style="padding-bottom:20px;">Add new client</h4>
             <form id="new-user-form">
             <div class="form-group">
             <div class="row margin-0">
@@ -110,7 +110,7 @@ export default {
       this.$store.dispatch("others/getCustomers");
     })
   },
-  props:['addUser'],
+  props:['addClient'],
   data() {
     return {
       ids:[],
@@ -325,9 +325,6 @@ export default {
 </script>
 
 <style>
-
-  @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-  @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
 div.add-new-user {
     position: fixed;

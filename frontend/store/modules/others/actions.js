@@ -73,6 +73,14 @@ const getCountDepartments = (context) => {
   })
 };
 
+const getReferences = (context) => {
+  fetchReferences().then(response => {
+    context.commit('REFERENCES_UPDATED', response);
+  }).catch(err => {
+
+  })
+}
+
 
 
 export default {
@@ -84,4 +92,5 @@ export default {
   setNewCustomer,
   getCountHouses,
   getCountDepartments,
+  getReferences
 };

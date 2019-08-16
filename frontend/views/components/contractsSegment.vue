@@ -118,7 +118,7 @@
                       </b-dropdown>
                     </div>
                     <div class="col-sm-12 col-lg-3">
-                      <button type="button" class="btn btn-light btn-sm" title="Add new user" @click="addUser = true">
+                      <button type="button" class="btn btn-light btn-sm" title="Add new client" @click="addClient = true">
                          <i class="fas fa-plus" style="color:#2a333c;"></i>
                       </button>
                     </div>
@@ -256,13 +256,13 @@
         </div>
       </div>
     </div>
-    <new-user :addUser="addUser" v-on:closeModal="closeModal($event)" />
+    <new-customer :addClient="addClient" v-on:closeModal="closeModal($event)" />
   </div>
 </template>
 
 <script>
 
-import newUser from "./newUser.vue";
+import newCustomer from "./newCustomer.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
 import $ from "jquery";
@@ -291,11 +291,11 @@ export default {
     //   });
   },
   components: {
-    newUser
+    newCustomer
   },
   data() {
     return {
-      addUser:false,
+      addClient:false,
       ids:[],
       isROI:false,
       errors:[],
@@ -474,7 +474,7 @@ export default {
       }
     },
     closeModal(x){
-      this.addUser = x
+      this.addClient = x
     },
     addNewContract() {
 
@@ -851,7 +851,7 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right:0;
+    right:23px;
     bottom:-3px;
     z-index: 2;
     cursor:pointer;

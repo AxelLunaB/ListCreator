@@ -5,6 +5,7 @@ const countHouses = (state) => state.countHouses;
 const countLots = (state) => state.countLots;
 const countDepartments = (state) => state.countDepartments;
 const customers= (state) => state.customers;
+const getReferences= (state) => state.references;
 
 export default {
   clusters,
@@ -13,5 +14,6 @@ export default {
   countHouses,
   countLots,
   countDepartments,
-  customers
+  customers,
+  getReferences
 };
