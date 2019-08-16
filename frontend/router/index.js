@@ -18,6 +18,13 @@ import "chart.js";
 import "hchs-vue-charts";
 import Print from "vue-print-nb";
 import XSLX from 'xlsx';
+import DatePicker from 'vue-bootstrap-datetimepicker';
+import touchspin from 'bootstrap-touchspin';
+import vuelidateLib from 'vuelidate';
+
+Vue.use(vuelidateLib);
+
+Vue.use(DatePicker);
 
 Vue.use(window.VueCharts);
 
@@ -30,6 +37,9 @@ Vue.use(Router);
 Vue.use(Print);
 
 Vue.use(XSLX);
+
+Vue.use(touchspin);
+
 
 // Vue.use(filesaver);
 
@@ -78,5 +88,3 @@ export default new Router({
         }
     ]
 })
-
-

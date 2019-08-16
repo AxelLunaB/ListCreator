@@ -80,9 +80,9 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <tr  v-for="(u,index) in (contract.payments ? contract.payments.paymentsDetails : 12)" :key="u.id">
-                                <td class="textalign">{{contract.payments ? u.paymentNo : index +1}}</td>
-                                <td class="text-center"><span v-bind:style="{color:contract.payments ? u.status.color_hex : 'white'}">{{contract.payments ? u.dueDate : '-'}}</span></td>
+                            <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
+                                <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
+                                <td class="text-center"><span v-bind:style="{color:contract ? contract.payments ? u.status.color_hex : 'white' : 'white'}">{{contract ? contract.payments ? u.dueDate : '-' : '-'}}</span></td>
                                 <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
@@ -176,7 +176,7 @@
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="btn btn-info">Send Files</button>
+                  <button type="button" class="waves ripple">Send Files</button>
                 </div>
               </div>
             </div>
@@ -196,35 +196,35 @@
                             <tbody>
                             <tr>
                                 <td class="textalign" style="border:none!important;">Currency</td>
-                                <td class="text-right" style="border:none!important"><b>{{contract.currency != null ? contract.currency : '-'}}</b></td>
+                                <td class="text-right" style="border:none!important"><b>{{contract != undefined ? contract.currency : '-'}}</b></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Channel</td>
-                                <td class="text-right">{{contract.salesDetails != undefined ? contract.salesDetails.salesChannel != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
+                                <td class="text-right">{{contract != undefined ? contract.salesDetails != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Executive</td>
-                                <td class="text-right">{{contract.commission.executive != undefined ? contract.commission.executive.name != null ? contract.commission.executive.name : '-' : '-' }}</td>
+                                <td class="text-right">{{contract ? contract.commission != undefined ? contract.commission.executive != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Customer</td>
-                                <td class="text-right">{{contract.customer !=undefined ? contract.customer.name != null? contract.customer.name : '-' : '-'}}</td>
+                                <td class="text-right">{{contract !=undefined ? contract.customer != null? contract.customer.name : '-' : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission.managementCommissions != null ? contract.commission.managementCommissions + ' %' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract.commission.salesExecutivesCommissions != null ? contract.commission.salesExecutivesCommissions + ' %' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract.commission.salesAdministrativeCommissions != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
-                                <td class="text-right">{{contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission}}</td>
+                                <td class="text-right">{{contract != undefined ? contract.commission != undefined  && contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission : getTotalCommission}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -245,28 +245,20 @@
                           <tbody>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">ROI</td>
-                              <td class="text-right">{{contract.WROI != null ? contract.WROI : '-'}}</td>
+                              <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">ROI %</td>
-                              <td class="text-right">{{contract.percent != 0 && contract.percent != null ? contract.percent : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">Years</td>
-                              <td class="text-right">{{contract.years != 0 && contract.years != null ? contract.years : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
                           </tr>
                           <tr>
                               <td class="textalign" style="padding-top:15px;">Closing Date</td>
-                              <td class="text-right">{{contract.closingDate != 'null' && contract.closingDate != null ? contract.closingDate : "-"}}</td>
+                              <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
                           </tr>
-                          <!-- <tr>
-                              <td class="textalign">Renewal</td>
-                              <td class="text-center">{{contract.years != 0 && contract.percent != null ? contract.years : "-"}} </td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">Renewal years</td>
-                              <td class="text-center">{{contract.years != 0 ? contract.years : "-"}} </td>
-                          </tr> -->
                           </tbody>
                       </table>
                   </div>
@@ -310,18 +302,18 @@
               :backgroundcolor="mybackgroundcolor"
               :bordercolor="mybordercolor"
               :datalabel="mylabel"
-              :labels="mylabels"
-              :data="mydata"
+              :labels="pastMonths"
+              :data="dynamicBar"
               v-bind:option="myoption"
               style="width:100%;">
       </chartjs-bar>
               </div>
           </div>
-          </div>
         </div>
       </div>
-      </div>
     </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -337,6 +329,7 @@ export default {
       this.contract = details.detailContract;
       this.show = true;
     });
+
   },
   components: {
     returnPage
@@ -383,8 +376,7 @@ export default {
       'rgba(56,144,184)'
       ],
     mylabel : 'Sales',
-    mylabels : ['January', 'February', 'March', 'June', 'July'],
-    mydata : [0, 0, 1, 0, 0],
+    mydata : [],
         myoption: {
           legend: {
             display:false
@@ -399,7 +391,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:10,
+              max:0, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
@@ -435,6 +427,7 @@ export default {
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
+          monthlySales: "departments/monthlySales"
       }),
     shouldShow() {
       return this.show;
@@ -452,20 +445,45 @@ export default {
       }
     },
     getTotalCommission () {
-      let percent = this.contract.commission.managementCommissions +
-                    this.contract.commission.salesAdministrativeCommissions +
-                    this.contract.commission.brokerCommissions +
-                    this.contract.commission.salesExecutivesCommissions +
-                    this.contract.commission.thirdPartyCommissions
-      percent = percent / 100
+      let percent = 0
 
-      return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
+      if(this.contract != null ) {
+        if(this.contract.commission != null) {
+          percent = this.contract.commission.managementCommissions +
+          this.contract.commission.salesAdministrativeCommissions +
+          this.contract.commission.brokerCommissions +
+          this.contract.commission.salesExecutivesCommissions +
+          this.contract.commission.thirdPartyCommissions
+          percent = percent / 100
+
+         return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
+        }
+      }
+
     },
     dynamicChart () {
       this.datasets[0].data[0] = this.cAvailability.available
       this.datasets[0].data[1] = this.cAvailability.reserved
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
+    },
+    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+      var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
+      var month = new Date().getMonth();
+      var c = (monthName(month))
+      var lastMonth = (monthName(month-1))
+      var PenMonth = (monthName(month-2))
+      var anteMonth = (monthName(month-3))
+      return [anteMonth,PenMonth,lastMonth,c]
+    }
+    ,
+    dynamicBar(){
+      this.mydata[0] = this.monthlySales.antMonth
+      this.mydata[1] = this.monthlySales.penMonth
+      this.mydata[2] = this.monthlySales.pastMonth
+      this.mydata[3] = this.monthlySales.currentMonth
+
+      return this.mydata
     }
   }
 }
@@ -485,7 +503,7 @@ export default {
     background:#2a333c;
     height: 100%;
     position:fixed;
-    top:47px;
+    top:57px;
     left:0;
     max-height: 97vh;
     padding-top: 18px;
@@ -545,7 +563,7 @@ export default {
     z-index: 2;
     cursor:pointer;
     background: #181d22;
-    width: 150px;
+    width: 100px;
     height: 50px;
     border-radius: 5px;
     display: flex;
@@ -616,7 +634,56 @@ td {
   margin-right:3px;
 }
 
-  @keyframes fadeInAnimation {
+button.waves {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  background: #17a2b8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+button.waves.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+button.waves.default {
+  background-color: #17a2b8;
+  color: white;
+  outline:none;
+}
+
+@keyframes fadeInAnimation {
     0%   {
       opacity: 0;
        }

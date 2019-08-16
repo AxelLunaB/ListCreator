@@ -22,6 +22,14 @@ const COUNT_LOTS_UPDATED = (state, count) => {
 const COUNT_DEPARTMENTS_UPDATED = (state, count) => {
   state.countDepartments = count;
 }
+const CUSTOMERS_UPDATED = (state, customers) => {
+  state.customers = customers;
+}
+
+const REFERENCES_UPDATED = (state, references) => {
+  state.references = references;
+}
+
 export default {
   ADD_BUTTON,
   CLUSTERS_UPDATED,
@@ -30,4 +38,6 @@ export default {
   COUNT_HOUESES_UPDATED,
   COUNT_LOTS_UPDATED,
   COUNT_DEPARTMENTS_UPDATED,
+  CUSTOMERS_UPDATED,
+  REFERENCES_UPDATED
 };

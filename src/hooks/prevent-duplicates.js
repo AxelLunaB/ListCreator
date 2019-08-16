@@ -19,7 +19,7 @@ module.exports = function (options = {}) {
       });
 
       if (exists) {//you should not be able to create the same regiter, trwo exception.
-        throw new errors.Conflict('There is already a a register on that clúster/block.');
+        throw new errors.Conflict('There is already a contract.');
       }
     }
     return context;

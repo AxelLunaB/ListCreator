@@ -5,11 +5,11 @@
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/favico.png"></div>
+        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
         <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light" @click="showList">View full list</button>
+          <button type="button" class="btn waves-white ripple" @click="showList">View full list</button>
           </div>
         </div>
       </div>
@@ -33,22 +33,26 @@
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="contracts[index]"></detail-table>
+              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="getUnitId(e.id)"></detail-table>
               </div>
             </div>
           </div>
         </div>
       <towerdetail></towerdetail>
       <full-list-view></full-list-view>
+      <contractsSegment></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light"  id="tosheet" @click="tableToExcel">Dowload sheet</button>
-            <button type="button" class="btn btn-outline-light" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
+            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
+            <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Add new contract</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
             </div>
           </div>
         </div>
     </div>
+    <references-list :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
   </div>
 </template>
 
@@ -59,6 +63,8 @@
   // import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
+  import contractsSegment from "./components/contractsSegment.vue"
+  import referencesList from "./components/referencesList.vue"
   import XLSX from 'xlsx';
   import $ from "jquery";
   import filterTable from "./components/filterTable.vue"
@@ -67,10 +73,11 @@
   export default {
     components: {
       detailTable,
-      // returnPage,
+      contractsSegment,
       towerdetail,
       fullListView,
-      filterTable
+      filterTable,
+      referencesList
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -82,6 +89,14 @@
         });
         this.$store.dispatch("departments/goSearch", query);
       });
+
+      this.$eventHub.$on("updateDataDetail", () => {
+           this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("contracts/getContracts");
+        this.$store.dispatch("commissions/getCommissions");
+        this.$store.dispatch("others/setPlusButton", true);
+        this.$store.dispatch("departments/listenEvents");
+      });   
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {
@@ -110,10 +125,12 @@
     },
     data(){
       return {
+        openReference:false,
         detailTable: 3,
         isAnimated: true,
         sDepartments:[],
-        fDepartments:[]
+        fDepartments:[],
+        depsAndContracts:[]
       }
     },
     methods: {
@@ -141,7 +158,28 @@
           document.getElementById("listView").style.transition = "opacity 0.5s";
           document.getElementById("listView").style.opacity = 1;
             }, 100);
-      }
+      },
+      showContracts() {
+        let info = {
+          departments : this.departments
+        }
+        this.$eventHub.$emit("show-contractsSegment-modal", info);
+      },
+
+      getUnitId(idunit){
+       let c = null;
+       for(let i = 0; i < this.contracts.length ; i ++) {
+         if(this.contracts[i].unitId != null){
+           if(this.contracts[i].unitId == idunit){
+             c = this.contracts[i];
+           }
+         }
+       }
+       return c
+     },
+     closeReferences(x){
+       this.openReference = x
+     }
     },
     computed: {
       ...mapGetters({
@@ -468,9 +506,78 @@
     margin:0 auto;
   }
 
+button.waves-white {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid white;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  background-color: none;
+  color: white;
+}
+
+button.waves-white:hover {
+  background:white;
+  color:#2a333c;
+}
+button.waves-white.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves-white.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves-white.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#toReferences {
+  margin-bottom: 15px;
+}
+
   @media screen and (max-width: 867px) {
     .navbar-brand {
       justify-content: center;
     }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-container {
+    text-align: center;
+    }
+
+    #newContract,
+    #sendtopdf,
+    #tosheet,
+    #toReferences {
+      border-radius: 5px;
+      }
   }
 </style>

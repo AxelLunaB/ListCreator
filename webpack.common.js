@@ -72,6 +72,13 @@ module.exports  = {
     ]
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      Vue: ['vue/dist/vue.esm.js', 'default'],
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      $: 'jquery',
+      moment: 'moment',
+    }),
     new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('[name].css'),
     new BundleTracker({ filename: './webpack-stats.json' }),

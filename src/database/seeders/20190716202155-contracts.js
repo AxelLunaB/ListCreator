@@ -25,8 +25,11 @@ module.exports = {
           salesDetailId: data[12] != 'null' ? data[12] : null,
           customerId: data[13] != 'null' ? data[13] : null,
           referenceId: data[14] != 'null' ? data[14] : null,
+          clusterId: data[15] != 'null' ? data[15] : null,
+          comment: data[17] != 'null' ? data[17] : null,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          unitId: data[0]
         })
       }).on('end', function (data) {
 

@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, createNewCustomer } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -14,6 +14,17 @@ const setPlusButton = (context, plusBtn) => {
   context.commit('ADD_BUTTON', plusBtn);
 };
 
+const setNewCustomer = (context, customer) => {
+  return new Promise((resolve, reject) => {
+    createNewCustomer(customer).then(res => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  })
+};
+
 const getStatus = (context) => {
   fetchStatus().then(response => {
     context.commit('STATUS_UPDATED', response.data);
@@ -25,6 +36,14 @@ const getStatus = (context) => {
 const getClusters = (context) => {
   fetchClusters().then(response => {
     context.commit('CLUSTERS_UPDATED', response);
+  }).catch(err => {
+    // ?
+  });
+};
+
+const getCustomers = (context) => {
+  fetchCustomers().then(response => {
+    context.commit('CUSTOMERS_UPDATED', response);
   }).catch(err => {
     // ?
   });
@@ -54,13 +73,24 @@ const getCountDepartments = (context) => {
   })
 };
 
+const getReferences = (context) => {
+  fetchReferences().then(response => {
+    context.commit('REFERENCES_UPDATED', response);
+  }).catch(err => {
+
+  })
+}
+
 
 
 export default {
   authenticate,
   getClusters,
+  getCustomers,
   getStatus,
   setPlusButton,
+  setNewCustomer,
   getCountHouses,
   getCountDepartments,
+  getReferences
 };

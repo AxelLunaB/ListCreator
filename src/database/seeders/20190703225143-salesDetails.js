@@ -16,7 +16,6 @@ module.exports = {
           userId: data[3] != 'null' ? data[3] : null,
           createdAt: new Date(),
           updatedAt: new Date()
-
         })
       }).on('end', function (data) {
 

@@ -14,7 +14,8 @@ module.exports = (app) => {
     discount: DataTypes.INTEGER,
     currency: DataTypes.STRING,
     exchangerate: DataTypes.DOUBLE,
-    salesprice: DataTypes.DOUBLE
+    salesprice: DataTypes.DOUBLE,
+    comment: DataTypes.STRING
   }, {});
   contracts.associate = function(models) {
     contracts.belongsTo(models.commissions);
@@ -22,6 +23,8 @@ module.exports = (app) => {
     contracts.belongsTo(models.salesDetails);
     contracts.belongsTo(models.customers);
     contracts.belongsTo(models.references);
+    contracts.belongsTo(models.clusters);
+    contracts.belongsTo(models.units);
   };
   return contracts;
 };

@@ -7,6 +7,7 @@ const setCustomerObject = require('../../hooks/set-customer-object');
 const canUpdate = require('../../hooks/can-update');
 const preventDuplicate = require('../../hooks/prevent-duplicates');
 const iff = require('feathers-hooks-common').iff;
+
 module.exports = {
   before: {
     all: [authenticate('jwt')],
@@ -22,7 +23,9 @@ module.exports = {
       })
     ],
     get: [],
-    create: [preventDuplicate({ service: 'api/references' })],
+    create: [
+      // preventDuplicate({ service: 'api/references' })
+  ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]
@@ -32,22 +35,12 @@ module.exports = {
     all: [
     setStatusObject(),
     setCustomerObject()
-
-  ],
-    find: [
     ],
-    get:[
-
-    ],
-    create: [
-
-    ],
-    update: [
-
-    ],
-    patch: [
-
-    ],
+    find: [],
+    get:[],
+    create: [],
+    update: [],
+    patch: [],
     remove: []
   },
 

@@ -97,7 +97,19 @@ const fetchContracts = ($skip, query) => {
     });
   })
 };
+const createContract = (contract) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('api/contracts::create', contract, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
 
+// commissions
 const fetchCommissions = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -179,6 +191,29 @@ const fetchUsers = ($skip) => {
     });
   })
 };
+
+const fetchCustomers = ($skip, query) => {
+  query = query != null ? query : {};
+  query['$skip'] = $skip;
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'customers', query, (error, customers) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(customers);
+      }
+    });
+  });
+};
+
+const createNewCustomer = (customer) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'customers', customer, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const deleteUser = (user) => {
   return new Promise((resolve, reject) => {
     socket.emit('remove', 'users', user.id, user, (error, response) => {
@@ -251,6 +286,19 @@ const fetchCountDepartments = () => {
   });
 }
 
+const fetchReferences = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'api/references', {}, (error, count) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(count);
+        //console.log(count.data);
+      }
+    });
+  });
+}
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -265,6 +313,7 @@ export {
   patchDepartments,
   //
   fetchContracts,
+  createContract,
   fetchCommissions,
   //
   createLot,
@@ -277,6 +326,10 @@ export {
   fetchUsers,
   patchUser,
   //
+  createNewCustomer,
+  fetchCustomers,
+  //
   fetchCountHouses,
   fetchCountDepartments,
+  fetchReferences
 }

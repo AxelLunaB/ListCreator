@@ -46,7 +46,7 @@ app.use(helmet());
 app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
+app.use(favicon(path.join(app.get('public'), 'fav.png')));
 // Host the public folder
 app.use('/static', express.static(app.get('public')));
 // ROUTES

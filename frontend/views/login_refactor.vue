@@ -22,11 +22,9 @@
             </div>
             <div class="form-group">
               <div class="col-12">
-                <div class="checkbox checkbox-primary">
-                  <input id="checkbox-signup" type="checkbox">
-                  <label for="checkbox-signup" style="color:white;">
-                  Remember me
-                  </label>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember me</label>
                 </div>
               </div>
             </div>
@@ -159,6 +157,13 @@ export default {
 html,
 body {
   height: 100%;
+}
+
+.custom-control-label:after,
+.custom-control-label:before {
+  background: #3f4c5c;
+  border:1px solid #687c94;
+  border-radius: 2px;
 }
 
 .login-wrapper {
