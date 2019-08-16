@@ -7,7 +7,7 @@
     <div class="col-0 col-sm-1 col-lg-2 col-xl-4">
     </div>
     <div class="col-12 col-sm-10 col-lg-8 col-xl-4" style="display:flex;align-items:center;">
-      <div class="card">
+      <div class="card" style="margin-bottom:50px;">
         <div class="card-body" style="padding-bottom:0;">
           <h4 class="page-title" style="padding-bottom:20px;">References list</h4>
             <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
