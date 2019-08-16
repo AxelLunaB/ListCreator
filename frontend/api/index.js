@@ -278,6 +278,19 @@ const fetchCountDepartments = () => {
   });
 }
 
+const fetchReferences = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'api/references', {}, (error, count) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(count);
+        //console.log(count.data);
+      }
+    });
+  });
+}
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -309,4 +322,5 @@ export {
   //
   fetchCountHouses,
   fetchCountDepartments,
+  fetchReferences
 }

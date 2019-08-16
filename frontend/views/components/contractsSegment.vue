@@ -851,7 +851,7 @@ export default {
   #returntwo {
     color: white;
     position: fixed;
-    right:0;
+    right:23px;
     bottom:-3px;
     z-index: 2;
     cursor:pointer;

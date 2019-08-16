@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers, fetchReferences } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -62,6 +62,14 @@ const getCountDepartments = (context) => {
   })
 };
 
+const getReferences = (context) => {
+  fetchReferences().then(response => {
+    context.commit('REFERENCES_UPDATED', response);
+  }).catch(err => {
+
+  })
+}
+
 
 
 export default {
@@ -72,4 +80,5 @@ export default {
   setPlusButton,
   getCountHouses,
   getCountDepartments,
+  getReferences
 };

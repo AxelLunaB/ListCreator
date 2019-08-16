@@ -10,7 +10,7 @@
       <div class="col-12 col-sm-10 col-lg-6 col-xl-4" style="display:flex;align-items:center;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
-            <h4 class="page-title" style="padding-bottom:20px;">Add new user</h4>
+            <h4 class="page-title" style="padding-bottom:20px;">Add new client</h4>
             <form id="new-user-form">
             <div class="form-group">
             <div class="row margin-0">
