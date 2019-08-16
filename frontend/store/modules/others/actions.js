@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers, createNewCustomer } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, createNewCustomer } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
