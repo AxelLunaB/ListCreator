@@ -12,8 +12,6 @@ module.exports = (app) => {
     password: { type: DataTypes.STRING, allowNull: false },
     type: { type: DataTypes.STRING, allowNull: false },
     deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
-
-
   }, {});
   users.associate = function(models) {
     // associations can be defined here

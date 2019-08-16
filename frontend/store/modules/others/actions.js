@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses,fetchCountDepartments,fetchCustomers, createNewCustomer } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -12,6 +12,17 @@ const authenticate = (context) => {
 };
 const setPlusButton = (context, plusBtn) => {
   context.commit('ADD_BUTTON', plusBtn);
+};
+
+const setNewCustomer = (context, customer) => {
+  return new Promise((resolve, reject) => {
+    createNewCustomer(customer).then(res => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  })
 };
 
 const getStatus = (context) => {
@@ -70,6 +81,7 @@ export default {
   getCustomers,
   getStatus,
   setPlusButton,
+  setNewCustomer,
   getCountHouses,
   getCountDepartments,
 };

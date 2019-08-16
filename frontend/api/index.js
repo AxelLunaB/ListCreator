@@ -206,6 +206,14 @@ const fetchCustomers = ($skip, query) => {
   });
 };
 
+const createNewCustomer = (customer) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'customers', customer, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const deleteUser = (user) => {
   return new Promise((resolve, reject) => {
     socket.emit('remove', 'users', user.id, user, (error, response) => {
@@ -305,6 +313,7 @@ export {
   fetchUsers,
   patchUser,
   //
+  createNewCustomer,
   fetchCustomers,
   //
   fetchCountHouses,
