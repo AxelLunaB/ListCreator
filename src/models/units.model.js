@@ -20,7 +20,8 @@ module.exports = (app) => {
     priceInteriorM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
-    priceTotal: DataTypes.DOUBLE
+    priceTotal: DataTypes.DOUBLE,
+    unitType:DataTypes.STRING
   }, {
     hooks: {
       beforeCount(options) {
