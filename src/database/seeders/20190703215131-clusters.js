@@ -17,14 +17,14 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name:'A TOWER',
+        name:'GAIDA TOWERS A',
         code:2,
         abb:'A',
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:'B TOWER',
+        name:'GIADA TOWERS B',
         code:3,
         abb:'B',
         createdAt:new Date(),
