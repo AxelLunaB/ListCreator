@@ -17,7 +17,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name:'GAIDA TOWERS A',
+        name:'GIADA TOWERS A',
         code:2,
         abb:'A',
         createdAt:new Date(),
