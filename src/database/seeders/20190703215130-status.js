@@ -38,6 +38,18 @@ module.exports = {
         color_hex: '#7ddc0f',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        name: 'REFERRED',
+        color_hex: '#8fb5ff',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'BLOCKED',
+        color_hex: '#8a8a8a',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

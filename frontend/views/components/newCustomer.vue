@@ -18,7 +18,7 @@
                   Name
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.name.name" placeholder="John Doe">
+                <input class="form-control col-12"  type="text" v-model="formData.name" placeholder="John Doe">
               </div>
             </div>
             <div class="row margin-0">
@@ -26,16 +26,16 @@
                 Age
               </div>
               <div class="col-8">
-                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age.name" placeholder="18">
+                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="">
               </div>
             </div>
-            <div class="error" v-if="!this.$v.formData.age.name.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Client must be 18 or older</div>
+            <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Client must be 18 or older</div>
             <div class="row margin-0">
               <div class="col-4">
                   Address
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.address.name" placeholder="Street/Number/Zip code">
+                <input class="form-control col-12"  type="text" v-model="formData.address" placeholder="Street/Number/Zip code">
               </div>
             </div>
             <div class="row margin-0">
@@ -43,7 +43,7 @@
                 Country
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.country.name" placeholder="México">
+                  <input class="form-control col-12"  type="text" v-model="formData.country" placeholder="Country">
               </div>
             </div>
             <div class="row margin-0">
@@ -51,7 +51,7 @@
                   State
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.state.name" placeholder="Quintana Roo">
+                <input class="form-control col-12"  type="text" v-model="formData.state" placeholder="State">
               </div>
             </div>
             <div class="row margin-0">
@@ -59,7 +59,7 @@
                 City
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.city.name" placeholder="Tulum">
+                  <input class="form-control col-12"  type="text" v-model="formData.city" placeholder="City">
               </div>
             </div>
             <div class="row margin-0">
@@ -67,7 +67,7 @@
                   Phone
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="email" v-model="formData.contactNumber.name" placeholder="123456789">
+                  <input class="form-control col-12"  type="tel" v-model="formData.contactNumber" placeholder="12 3456 7890">
               </div>
             </div>
             <div class="row margin-0">
@@ -75,11 +75,11 @@
                 E-mail
               </div>
               <div class="col-8">
-                  <input class="form-control col-12"  type="email" v-model="formData.email.name" placeholder="your@email.com">
+                  <input class="form-control col-12"  type="email" v-model="formData.email" placeholder="your@email.com">
               </div>
             </div>
             <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Please fill all missing data</div>
-            <div class="error" v-if="!this.$v.formData.email.name.email && this.validation" style="text-align:center;padding-top:20px;">Please enter valid email</div>
+            <div class="error" v-if="!this.$v.formData.email && this.validation" style="text-align:center;padding-top:20px;">Please enter valid email</div>
             <div style="margin-top:30px;">
               <button type="button" class="waves ripple default" @click="sendInfo()">Confirm info</button>
             </div>
@@ -100,6 +100,8 @@ import { setTimeout } from 'timers';
 import { mapGetters } from "vuex";
 import { required , email , minValue , maxValue } from 'vuelidate/lib/validators';
 import swal from "sweetalert";
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 export default {
   mounted: function() {
       this.$eventHub.$on("show-users-modal", details => {
@@ -123,44 +125,53 @@ export default {
         state:{ id:null, name:null},
         city:{ id:null, name:null},
         contactNumber:{ id:null, name:null},
-        email:{ id:null, name:null}
+        email:{ id:null, email:null}
       },
     }
   },
   methods: {
-    getValue(k){
-     switch(k){
+    getValue(k) {
+
+     switch(k) {
+
       case 'address':
-        return this.formData.address.name
-      break
+        return this.formData.address
+      break;
+
       case 'age':
-        return this.formData.age.name
+        return this.formData.age
       break;
+
       case 'city':
-        return this.formData.city.name
+        return this.formData.city
       break;
+
       case 'contactNumber':
-        return this.formData.contactNumber.name
+        return this.formData.contactNumber
       break;
+
       case 'country':
-        return this.formData.country.name
+        return this.formData.country
       break;
+
       case 'email':
-        return this.formData.email.name
+        return this.formData.email
       break;
+
       case 'name':
-        return this.formData.name.name
+        return this.formData.name
       break;
+
       case "state":
-        return this.formData.state.name
+        return this.formData.state
       break;
+
       case "id":
       return this.formData.id
-
       }
     },
     closeModal(){
-      const self = this
+      const self = this;
 
       swal({
         text: "Information will not be saved." + "\n" + "Are you sure you want to exit?",
@@ -174,14 +185,14 @@ export default {
           if(isConfirm) {
             self.closeModalUser = true
 
-            self.formData.name.name = null
-            self.formData.age.name = null
-            self.formData.address.name = null
-            self.formData.country.name = null
-            self.formData.state.name = null
-            self.formData.city.name = null
-            self.formData.contactNumber.name = null
-            self.formData.email.name = null
+            self.formData.name = null
+            self.formData.age = null
+            self.formData.address = null
+            self.formData.country = null
+            self.formData.state = null
+            self.formData.city = null
+            self.formData.contactNumber = null
+            self.formData.email = null
 
             setTimeout(function () {
               self.$emit('closeModal', false)
@@ -194,44 +205,55 @@ export default {
           }
         })
     },
-    sendInfo(){
 
-      for( var i = 0 ; i < this.customers.data.length ; i++) {
+    sendInfo() {
+
+      for(let i = 0 ; i < this.customers.data.length ; i++) {
         this.ids.push(this.customers.data[i].id)
-        }
+      }
 
-        this.formData.id = Math.max.apply(null, this.ids) + 1
+      this.formData.id = Math.max.apply(null, this.ids) + 1
 
       this.validation = true;
-      this.$v.$touch()
+      this.$v.$touch();
 
       if (!this.$v.$invalid) {
 
         const _ = this;
         var usr = $("#new-user-form").serializeArray();
         var user = {};
+
         usr.forEach(element => {
           user[element.name] = element.value;
-          });
-          Object.keys(this.formData).forEach(k => {
-            usr.push({
-              name: k,
-              value:this.getValue(k)
-              });
+        });
 
-            });
-            console.log(usr)
+        function prefix(name) {
+          return "" + name;
+        }
+
+        function property(p) {
+          return p;
+        }
+
+        let obj = { userType: '0', password: bcrypt.hashSync('secreto1', salt), };
+
+        Object.keys(this.formData).forEach(k => {
+          obj[prefix(k)] = this.getValue(k);
+          usr = obj;
+        });
+
+        console.log(usr)
 
         swal({
           title: "Please confirm information",
-          text: "Name" + " : " + this.formData.name.name + "\n" +
-                "Age" + " : " + this.formData.age.name + "\n" +
-                "Address " + " : " + this.formData.address.name + "\n" +
-                "Country " + " : " + this.formData.country.name + "\n" +
-                "State " + " : " + this.formData.state.name + "\n" +
-                "City " + " : " + this.formData.city.name + "\n" +
-                "Contact number " + " : " + this.formData.contactNumber.name + "\n" +
-                "E-mail " + " : " + this.formData.email.name + "\n",
+          text: "Name" + " : " + this.formData.name + "\n" +
+                "Age" + " : " + this.formData.age + "\n" +
+                "Address " + " : " + this.formData.address + "\n" +
+                "Country " + " : " + this.formData.country + "\n" +
+                "State " + " : " + this.formData.state + "\n" +
+                "City " + " : " + this.formData.city + "\n" +
+                "Contact number " + " : " + this.formData.contactNumber + "\n" +
+                "E-mail " + " : " + this.formData.email + "\n",
           icon: "info",
           buttons: {
             cancel: true,
@@ -240,11 +262,13 @@ export default {
           })
           .then(function(isConfirm) {
             if(isConfirm) {
+
+              _.$store.dispatch("others/setNewCustomer", usr)
                   swal({
                     title: 'Success!',
                     text: 'A new client has been created',
                     icon: 'success',
-                    timer:1500
+                    timer: 1500
                   })
 
                   setTimeout(function () {
@@ -253,7 +277,6 @@ export default {
                     setTimeout(function() {
                       _.closeModalUser = false
                       }, 1500)
-
             }
           })
 
@@ -270,47 +293,31 @@ export default {
   validations:{
       formData:{
         name:{
-          name:{
-            required
-          }
+          required
         },
         age:{
-          name:{
             required,
             minValue: value => value > 17,
             maxValue: value =>  value < 100
-          }
         },
         address:{
-          name:{
-            required
-          }
+          required
         },
         country:{
-          name:{
-            required
-          }
+          required
         },
         state:{
-          name:{
-            required
-          }
+          required
         },
         city:{
-          name:{
-            required
-          }
+        required
         },
         contactNumber:{
-          name:{
-            required
-          }
+          required
         },
         email:{
-          name:{
-            required,
-            email
-          }
+          required,
+          email
         }
       }
   }

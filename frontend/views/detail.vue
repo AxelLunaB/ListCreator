@@ -89,6 +89,14 @@
         });
         this.$store.dispatch("departments/goSearch", query);
       });
+
+      this.$eventHub.$on("updateDataDetail", () => {
+           this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("contracts/getContracts");
+        this.$store.dispatch("commissions/getCommissions");
+        this.$store.dispatch("others/setPlusButton", true);
+        this.$store.dispatch("departments/listenEvents");
+      });   
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {

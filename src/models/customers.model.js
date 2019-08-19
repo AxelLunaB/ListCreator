@@ -13,10 +13,9 @@ module.exports = (app) => {
     country: { type: DataTypes.STRING},
     state: { type: DataTypes.STRING},
     city: { type: DataTypes.STRING},
-    password: { type: DataTypes.STRING, allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: true },
     userType: { type: DataTypes.STRING, allowNull: false },
     deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
-
   }, {});
   customers.associate = function(models) {
     // associations can be defined here

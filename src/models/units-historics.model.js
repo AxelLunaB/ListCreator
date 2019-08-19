@@ -7,7 +7,7 @@ module.exports = (app) => {
   const units_historics = sequelizeClient.define('units_historics', {
     name: { type: DataTypes.STRING, allowNull: false },
     code: { type: DataTypes.INTEGER, allowNull: false }
-  }, {{
+  }, {
     hooks: {
       beforeCount(options) {
         options.raw = true;
