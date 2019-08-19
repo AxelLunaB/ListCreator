@@ -8,7 +8,7 @@
         <div class="info-card">
                 <div>
                     <div class="col-12">
-                        <table class="table table-hover">
+                        <table class="table table-hover tower-card">
                             <tbody>
                             <tr>
                                 <td>Units</td>
@@ -37,14 +37,13 @@
         </div>
       </div>
       <div class="card-down">
-        <hr>
         <p> % vendido </p>
         <div class="progress">
           <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
               <span class="sr-only">60% Complete</span>
           </div>
         </div>
-        <table class="table table-hover" style="width:100%;">
+        <table class="table table-hover tower-card" style="width:100%;">
             <tbody>
             <tr>
                 <td>AVAILABLE</td>
@@ -91,7 +90,7 @@ export default {
 <style lang="scss">
 
   .card-body {
-    background: rgb(106, 142, 103);
+    background: #3c4857;
     margin:10px;
     border-radius: 3px;
     color: white;
@@ -113,7 +112,7 @@ export default {
   }
 
   .table-hover tbody tr:hover {
-    color: #ddffe4;
+    color: #758daa;
     background-color: rgba(0,0,0,.075);
 }
 
@@ -138,6 +137,10 @@ export default {
 .router:hover {
   text-decoration: none;
   color:white;
+}
+
+.tower-card tbody tr td:nth-child(2)  {
+  text-align: right;
 }
 
 @keyframes fadeInAnimation {

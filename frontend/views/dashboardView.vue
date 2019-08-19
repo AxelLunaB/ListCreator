@@ -3,12 +3,12 @@
           <div class="wrapper-page row">
                   <development  v-for="d in development" :key="d" :development="d"></development>
           </div>
-          <ul class="pagination pagination-lg m-0">
+          <!-- <ul class="pagination pagination-lg m-0">
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
             <li class="page-item" v-for="p in pagination" :key="p"> <a href="#" class="page-link">{{ p }}</a> </li>
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-          </ul>
-            <!-- <ul class="pagination pagination-lg m-0" :class="{ fadeInAnimate: isAnimated }">
+          </ul> -->
+            <!-- <ul class="pagination pagination-lg m-0 fadeInAnimate">
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
                 <li class="page-item"> <a href="#" class="page-link active">1</a> </li>
                 <li class="active"> <a href="#" class="page-link">2</a> </li>
@@ -28,9 +28,8 @@ export default {
   },
   data() {
     return {
-      development: [1, 2 ,3 ], //replace with the back end of developments
-      isAnimated: true,
-      pagination: [1, 2, 3,]
+      development: [1, 2 ,3 ] //replace with the back end of developments
+      //,pagination: [1, 2, 3,]
     }
   }
 }
@@ -47,7 +46,7 @@ body {
 }
 
 .main {
-  background: rgb(81, 111, 77);
+  background: #2a333c;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,21 +62,21 @@ body {
   padding-top: 65px;
 }
 
-.page-link {
-    background: rgb(98, 134, 94)!important;
-    border: 1px solid rgb(62, 85, 60)!important;
-    color: white!important;
-}
+// .page-link {
+//     background: rgb(98, 134, 94)!important;
+//     border: 1px solid rgb(62, 85, 60)!important;
+//     color: white!important;
+// }
 
-.page-link:hover {
-    z-index: 2;
-    text-decoration: none!important;
-    color: rgb(230, 255, 228)!important;
-    background:rgb(106, 145, 101)!important;
-}
+// .page-link:hover {
+//     z-index: 2;
+//     text-decoration: none!important;
+//     color: rgb(230, 255, 228)!important;
+//     background:#50657a!important;
+// }
 
 .active {
-    background: rgb(81, 111, 77)!important;
+    background: #50657a!important;
 }
 
 .page-link:hover {
@@ -95,11 +94,11 @@ body {
 }
 
 .progress-bar{
-  background: rgb(36, 85, 30)!important;
+  background: #1b2025!important;
 }
 
 .progress {
-  background: #a8c7a4!important;
+  background: #50657a!important;
 }
 
 
