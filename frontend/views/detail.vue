@@ -1,5 +1,5 @@
 <template>
-  <div class="main-tables-container">
+  <div class="main-tables-container" id="main-tables-container">
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->

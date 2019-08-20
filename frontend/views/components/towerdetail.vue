@@ -395,7 +395,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:0, //add a computed here
+              max:10, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
@@ -507,7 +507,7 @@ export default {
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
     },
-    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+    pastMonths(){
       var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
       var month = new Date().getMonth();
       var c = (monthName(month))
@@ -521,7 +521,7 @@ export default {
       this.mydata[0] = this.monthlySales.antMonth
       this.mydata[1] = this.monthlySales.penMonth
       this.mydata[2] = this.monthlySales.pastMonth
-      this.mydata[3] = this.monthlySales.currentMonth
+      this.mydata[3] = this.monthlySales.cMonth
 
       return this.mydata
     }
