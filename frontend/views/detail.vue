@@ -102,7 +102,10 @@
         case 3:
         this.title = "GIADA TOWER B"
       }
-    });
+    })
+
+
+
 
       this.$eventHub.$on("updateDataDetail", () => {
         this.$store.dispatch("departments/getDepartmentById",tower);
@@ -206,6 +209,20 @@
         specialSort: "departments/specialSort",
         priceRange: "departments/priceRange"
       }),
+      towerValidation(){
+        if(this.filtersArray == 0 && this.title == null) {
+            swal({
+              text: "Please select a tower first",
+              icon: "warning",
+              buttons: false,
+              timer: 1700
+          });
+
+        setTimeout(function () {
+          document.location.href = '/'
+          }, 2000);
+        }
+      },
       currentAvailability () {
           var cData= {}
           var available = 0
@@ -271,10 +288,9 @@
         let filters = this.specialSort
         var deptos = []
         this.sDepartments = []
-
         this.departments.forEach ((dep, index) => {
           filters.forEach (filter => {
-            if(filter.value === null || filter.value == 0 || filter.id == 'price')
+            if(filter.value === null|| filter.id == 'price')
             return
             if(dep[filter.id] == filter['value']) {
               let shouldAdd = true
@@ -407,17 +423,6 @@
             //return deptos.length > 0 ? this.sDepartments : this.sortedArray
 
       },
-      towerValidation(){
-        if(this.title == null) {
-            swal({
-              text: "Please select a tower first",
-              icon: "warning",
-              buttons: false,
-              timer: 3000
-          });
-          this.$router.push('/')
-        }
-      }
     },
       watch : {
         currentAvailability(newVal){
