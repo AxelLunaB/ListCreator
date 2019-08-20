@@ -56,6 +56,7 @@ export default {
   data:function(){
     return{
       level:[
+        {level:'Ground Floor', value:'0', id:'level'},
         {level: '1', value:'1', id:'level'},
         {level: '2', value:'2', id:'level'},
         {level: '3' ,value:'3', id:'level'},
@@ -103,12 +104,10 @@ export default {
 .dropdown {
   position: relative;
   display: inline-block;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
 .dropdown > a, .dropdown > button {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   background-color: white;
   border: none;

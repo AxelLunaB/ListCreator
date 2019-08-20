@@ -4,10 +4,10 @@
     <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
   </div>
     <div class="row row-full margin-0">
-    <div class="col-0 col-sm-1 col-lg-2 col-xl-4">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-3 col-xl-3">
     </div>
-    <div class="col-12 col-sm-10 col-lg-8 col-xl-4" style="display:flex;align-items:center;">
-      <div class="card" style="margin-bottom:50px;">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 card-references-main">
+      <div class="card card-references" style="margin-bottom:50px;">
         <div class="card-body" style="padding-bottom:0;">
           <h4 class="page-title" style="padding-bottom:20px;">References list</h4>
             <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="col-0 col-sm-1 col-lg-2 col-xl-4">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-3 col-xl-3">
     </div>
   </div>
 </div>
@@ -95,10 +95,11 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    top: 69px;
+    top: 64px;
     right: 0;
     z-index:3;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .page-title {
@@ -113,6 +114,15 @@ export default {
     animation: fadeOutAnimation 1s forwards;
   }
 
+  .card-references {
+    max-width:700px;
+  }
+
+  .card-references-main {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
 
 @keyframes fadeInAnimation {
     0%   {

@@ -74,6 +74,16 @@ const fetchDepartments = ($skip, query) => {
     });
   })
 };
+
+const fetchDepartmentsByCluster = ($skip,cluster) => {
+  console.log(cluster);
+
+  return new Promise((resolve) => {
+    socket.emit("api/departments::find", {clusterId: cluster}, (error, lots) => {
+      resolve(lots);
+    });
+  })
+};
 const patchDepartments = (department) => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'api/departments', department.id, department, (error, message) => {
@@ -329,6 +339,7 @@ export {
   createDepartments,
   fetchDepartments,
   patchDepartments,
+  fetchDepartmentsByCluster,
   //
   fetchContracts,
   createContract,
