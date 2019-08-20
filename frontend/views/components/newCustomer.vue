@@ -266,7 +266,7 @@ export default {
               _.$store.dispatch("others/setNewCustomer", usr)
                   swal({
                     title: 'Success!',
-                    text: 'A new user has been created!',
+                    text: 'A new client has been created',
                     icon: 'success',
                     timer: 1500
                   })

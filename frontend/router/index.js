@@ -8,7 +8,7 @@ import users from '@/views/users.vue';
 import departments from '@/views/departments.vue';
 import history_reports from '@/views/history-reports.vue';
 import BootstrapVue from 'bootstrap-vue';
-// import dashboardView from '@/views/dashboardView.vue';
+import dashboardView from '@/views/dashboardView.vue';
 import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -46,13 +46,13 @@ Vue.use(touchspin);
 export default new Router({
   mode: 'history',
     routes:  [
-      //{
-            // path: '/',
-            // name: 'Vista de dashboard',
-            // component: dashboardView
-        //},
+      {
+            path: '/',
+            name: 'Vista de dashboard',
+            component: dashboardView
+        },
         {
-          path:'/',
+          path:'/detail',
           name:'Listado de desarrollo',
           component: detail
         },
