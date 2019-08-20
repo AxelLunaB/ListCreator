@@ -39,7 +39,7 @@
           </div>
         </div>
       <towerdetail></towerdetail>
-      <full-list-view></full-list-view>
+      <full-list-view :title="this.title"></full-list-view>
       <contractsSegment></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">

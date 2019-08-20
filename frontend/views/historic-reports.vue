@@ -1,5 +1,5 @@
 <template>
-  <div id="app-historic-reports">
+  <div id="app-historic-reports" class="animate">
     <div class="historic-titles">
       <h2>Historic reports</h2>
       <p>Filter by date</p>
@@ -8,13 +8,24 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
               <label>From</label>
-              <input class="form-control" type="date" v-model="initDate" @change="filterByDate()">
+              <date-picker
+              :config="options"
+              name="initDate"
+              v-model="initDate"
+              ></date-picker>
           </div>
           <div class="col-sm-12 col-md-6">
               <label>To</label>
-              <input class="form-control" type="date" v-model="endDate" @change="filterByDate()">
+              <date-picker
+              :config="options"
+              name="endDate"
+              v-model="endDate"
+              ></date-picker>
           </div>
         </div>
+      </div>
+      <div class="row" style="align-items:center;justify-content:center;align-items:center;margin-top:20px;">
+        <button @click="filterByDate()" class="waves ripple default">send</button>
       </div>
     </div>
     <div class="historic-body relative" v-if="watchMe">
@@ -224,6 +235,7 @@
 </template>
 
 <script>
+import datePicker from 'vue-bootstrap-datetimepicker';
 import $ from "jquery";
 import { mapGetters } from "vuex";
 import { Printd} from 'printd';
@@ -297,7 +309,10 @@ export default {
       selectedDepartment:{},
       watchMe: false,
       depsAndContractsArray:[],
-      contractsArray: []
+      contractsArray: [],
+      options: {
+          format: 'YYYY-MM-DD'
+      },
     }
   },
   methods:{
@@ -563,6 +578,10 @@ export default {
         contracts: "contracts/contracts",
         departments: "departments/departments"
       }),
+      getToday(){
+        this.initDate = new Date();;
+        this.endDate = new Date();;
+      },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {
           var array = [0, 1];
@@ -595,6 +614,7 @@ export default {
   @import 'node_modules/bootstrap/scss/bootstrap';
   @import 'node_modules/bootstrap-vue/src/index.scss';
   @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+  @import '../../node_modules/pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
   html,
   body{
@@ -635,16 +655,16 @@ export default {
   color:white;
   }
 
-  [type="date"] {
-    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
-  }
+  [type="text"] {
+    border: 1px solid #ffffff4b;
+    background: #2a333c;
+    }
 
-  [type="date"]::-webkit-inner-spin-button {
-    display: none;
-  }
-
-  [type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
+  [type="text"]:focus {
+    border: 1px solid #ffffff4b;
+    background: #2a333c;
+    border:none;
+    box-shadow: none;
   }
 
   .historic-titles {
@@ -730,6 +750,55 @@ export default {
     width:150px;
   }
 
+button.waves {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  background: #17a2b8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+button.waves.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+button.waves.default {
+  background-color: #17a2b8;
+  color: white;
+  outline:none;
+}
+
   td.responsive0,
   td.responsive1,
   td.responsive2,
@@ -743,6 +812,24 @@ export default {
   background: #425061;
 }
 
+  .bootstrap-datetimepicker-widget {
+    background: #2a333c;
+    color:white;
+  }
+
+   .animate {
+    animation: fadeInAnimation 1s forwards;
+  }
+
+    @keyframes fadeInAnimation {
+      0%   {
+        opacity: 0;
+         }
+
+      100% {
+        opacity: 1;
+        }
+    }
 
     @media (max-width: 1000px) {
       .responsive2{

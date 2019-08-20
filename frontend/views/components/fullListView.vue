@@ -2,7 +2,7 @@
   <div class="list-view" id="listView">
     <div style="height:44px;width:100%;">
       <div class="title">
-        <h2 style="margin: 4px 0 4px 10px;">Brava Tower</h2>
+        <h4 style="margin: 4px 0 4px 10px;">{{ this.title }}</h4>
         <div class="close-fullview" @click="closePopup">
           <i class="far fa-window-close fa-2x"></i>
         </div>
@@ -31,6 +31,7 @@ import fullView from "./fullView.vue"
 
 
   export default {
+    props:['title'],
     components: {
       fullView
     },
@@ -151,6 +152,11 @@ import fullView from "./fullView.vue"
 
 .table29 {
   width:200px;
+}
+
+h4 {
+  color:white;
+  padding-bottom:7px;
 }
 
 </style>
