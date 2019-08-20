@@ -28,16 +28,12 @@ class Service {
       await this.app.service('/api/departments').find({ query: { $paginate: 'false' } }).then(res => {
         units = res;
       });
-<<<<<<< HEAD
 
       // Add each cluster to data object
       clusters.forEach(cluster => {
         // Checks if cluster is not already in the object by name
         console.log(cluster);
       });
-=======
-    });
->>>>>>> 61-add-tower-select-view
 
       console.log('Data Object -------------------------------------->');
       console.log(data);
