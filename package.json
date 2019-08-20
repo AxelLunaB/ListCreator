@@ -68,6 +68,7 @@
     "feathers-sequelize": "^3.0.0",
     "file-loader": "^1.1.6",
     "filesaver": "0.0.13",
+    "formidable": "^1.2.1",
     "hchs-vue-charts": "^1.2.8",
     "helmet": "^3.10.0",
     "jquery": "^3.4.1",
