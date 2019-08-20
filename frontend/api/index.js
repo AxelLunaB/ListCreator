@@ -261,6 +261,14 @@ const fetchClusters = () => {
   });
 };
 
+const fetchCountByCluster = clusterObj => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/api/countByCluster', clusterObj, (error, cluster) => {
+      error ? reject(error) : resolve(cluster);
+    });
+  });
+};
+
 const fetchCountHouses = () => {
   return new Promise((resolve, reject) => {
     socket.emit('find', 'api/countByCluster', {}, (error, count) => {
@@ -299,10 +307,20 @@ const fetchReferences = () => {
   });
 }
 
+/* Attachments */
+const newFileUpload = file => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', '/attachments', file, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 export {
   authenticateSocket,
   fetchStatus,
   fetchClusters,
+  fetchCountByCluster,
   //
   createHouse,
   fetchHouses,
@@ -331,5 +349,7 @@ export {
   //
   fetchCountHouses,
   fetchCountDepartments,
-  fetchReferences
+  fetchReferences,
+  //
+  newFileUpload
 }

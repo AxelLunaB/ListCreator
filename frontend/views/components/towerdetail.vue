@@ -168,15 +168,16 @@
             <div class="row" style="height:100%;">
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
-                  <form id="dropFileForm" action="#">
+                  <form id="dropFileForm" method="POST" enctype="multipart/form-data">
                     <input type="file" name="files[]" id="fileInput" multiple>
-                    <label for="fileInput" id="fileLabel">
+                    <!-- <label for="fileInput" id="fileLabel">
                       Drop files here to upload
-                    </label>
+                    </label> -->
+                    <input type="submit" value="Upload Files" name="submit" @click="sendFiles()" />
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="waves ripple">Send Files</button>
+                  <!-- <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button> -->
                 </div>
               </div>
             </div>
@@ -321,9 +322,10 @@
 import returnPage from "./returnPage.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
-  mounted: function() {
+  mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details.detailUnit;
       this.contract = details.detailContract;
@@ -331,9 +333,11 @@ export default {
     });
 
   },
+
   components: {
     returnPage
   },
+
   data() {
     return {
       mywidth: 200,
@@ -410,6 +414,7 @@ export default {
       }
     }
   },
+
   methods: {
     closeBtn() {
       self = this
@@ -417,13 +422,48 @@ export default {
       document.getElementById("fadeOutAnimation").style.opacity = 0;
       setTimeout(function () {
         self.show = false;
-        }, 250);
+      }, 250);
     },
+
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
+    },
+
+    sendFiles: function () {
+      const self = this;
+      const form = document.getElementById('dropFileForm');
+      console.log('sendFiles has been called!');
+
+      form.addEventListener('submit', e => {
+        // Prevent default action from firing
+        e.preventDefault();
+
+        const files = document.querySelector('[type=file]').files;
+        const formData = new FormData();
+
+        // Append files to files array
+        for (let i = 0; i < files.length; i++) {
+          let file = files[i];
+          formData.append('files[]', file);
+        }
+
+        const contentType = files[0].type;
+        const url = 'www.google.com';
+        const size = files[0].size.toString();
+
+        let file = {
+          contentType: contentType,
+          url: url,
+          size: size
+        };
+
+        console.log(file);
+        this.$store.dispatch("attachments/setNewAttachment", file);
+      });
     }
   },
+
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
@@ -594,9 +634,9 @@ export default {
     color:#a8a8a8;
   }
 
-#dropFileForm #fileInput {
-  display: none
-}
+  #dropFileForm #fileInput {
+    display: none !important;
+  }
 
 .textalign {
     text-align: left;
