@@ -1,7 +1,7 @@
 <template>
     <div class="main">
           <div class="wrapper-page row">
-                  <development  v-for="d in development" :key="d" :development="d"></development>
+                  <development  v-for="(d,index) in development" :key="index" :idN="index"></development>
           </div>
           <!-- <ul class="pagination pagination-lg m-0">
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
@@ -21,16 +21,42 @@
 
 <script>
 import development from "./components/development.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     development
   },
+  mounted:function(){
+      // logic
+      var isAuthenticated = this.$store.state.others.isAuthenticated;
+      if (isAuthenticated) {
+        // Dispatch actions &&  subscribe to rt events.
+        console.log("auth");
+        this.$store.dispatch("departments/getDepartments");
+
+        // listen to authenticated event
+      } else {
+        console.log("no auth");
+        let _ = this;
+
+        this.$eventHub.$on("authenticated", function() {
+          _.$store.dispatch("departments/getDepartments");
+        });
+      }
+  },
   data() {
     return {
-      development: [1, 2 ,3 ] //replace with the back end of developments
-      //,pagination: [1, 2, 3,]
+      development: [1, 2 ,3 ]
     }
+  },
+  methods:{
+  },
+  computed:{
+          ...mapGetters({
+        departments: "departments/departments",
+      })
+
   }
 }
 </script>
@@ -59,7 +85,6 @@ body {
   justify-content: space-around;
   width:100%;
   max-width:1500px;
-  padding-top: 65px;
 }
 
 // .page-link {
@@ -75,9 +100,6 @@ body {
 //     background:#50657a!important;
 // }
 
-.active {
-    background: #50657a!important;
-}
 
 .page-link:hover {
     z-index: 2;
@@ -125,5 +147,11 @@ body {
     height: 100vh;
     }
   }
+
+@media (max-width: 576px) {
+  .wrapper-page .row  {
+    padding-top: 60px!important;
+  }
+}
 
 </style>

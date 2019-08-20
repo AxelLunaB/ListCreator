@@ -1,6 +1,6 @@
 <template>
 <div v-if="shouldShow === true" id="fadeOutAnimation">
-  <div class="container-fluid" v-bind:class="{ active: show}" id="container-fluid">
+  <div class="container-fluid cards-detail" v-bind:class="{ active: show}" id="container-fluid">
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
@@ -49,15 +49,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-right">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
+                                <td class="text-right">{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '-'}}</td>
                             </tr>
-                            <tr>
+                             <tr>
                                 <td class="textalign">$/m2 Total</td>
-                                <td class="text-right">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
+                                <td class="text-right">{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2) : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">List Price</td>
-                                <td class="text-right">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+                                <td class="text-right">${{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal) : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
@@ -212,15 +212,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
@@ -542,6 +542,7 @@ export default {
 
   .table-modifier  tbody tr td {
     color:white;
+    padding:0;
   }
 
   .card .card-body h4,

@@ -35,27 +35,6 @@ class Service {
         x[e.cluster.name]['TOTAL'].total++;
       });
     });
-    await this.app.service('api/lots').find({ query: { $paginate: 'false' } }).then(result => {
-      result.forEach(e => {
-        if (x[e.cluster.name] == undefined) {
-          x[e.cluster.name] = {};
-          x[e.cluster.name]['TOTAL'] = { color: '#fff', total: 0 };
-          x[e.cluster.name]['id'] = e.cluster.id;
-          x[e.cluster.name]['code'] = e.cluster.code;
-          x[e.cluster.name]['values'] = {};
-          status.forEach(s => {
-            if (x[e.cluster.name]['values'][s.name] == undefined) {
-              x[e.cluster.name]['values'][s.name] = { color: s.color_hex, total: 0, id: s.id };
-            }
-          })
-        }
-        if (x[e.cluster.name]['values'][e.status.name] == undefined) {
-          x[e.cluster.name]['values'][e.status.name] = { color: e.status.color_hex, total: 0, id: e.status.id };
-        }
-        x[e.cluster.name]['values'][e.status.name]['total']++;
-        x[e.cluster.name]['TOTAL'].total++;
-      });
-    });
 
     var finalResult = [];
 

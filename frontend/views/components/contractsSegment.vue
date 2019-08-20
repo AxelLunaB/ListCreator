@@ -788,7 +788,6 @@ export default {
   }
   #container-fluid {
     z-index:3!important;
-    padding-top:0;
   }
 
     .dropdown ul li a:hover {

@@ -1,14 +1,14 @@
 <template>
-  <div class="card-body col-md-3 col-sm-12" :class="{ animate: isActive }">
+  <div class="card-body col-md-4 col-sm-12 col-lg-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
       <h5 class="m-b-30 m-t-0 text-center">Nombre del desarrollo</h5>
       <div class="card-upper">
         <div class="image-card">
         </div>
         <div class="info-card">
-                <div>
+                <div class="row">
                     <div class="col-12">
-                        <table class="table table-hover tower-card">
+                        <table class="table table-hover">
                             <tbody>
                             <tr>
                                 <td>Units</td>
@@ -75,14 +75,17 @@
 <script>
 
 export default {
-  props:["development"],
+  props:["idN"],
   data(){
     return {
       isActive: true
     }
   },
   methods: {
-
+    selectTower() {
+      let tower = this.idN + 1
+      this.$eventHub.$emit("select-tower", tower);
+    }
   }
 }
 </script>
@@ -139,8 +142,20 @@ export default {
   color:white;
 }
 
+.tower-card tbody tr td:nth-child(1)  {
+  text-align: left;
+}
+
 .tower-card tbody tr td:nth-child(2)  {
   text-align: right;
+}
+
+.tower-card tbody tr td {
+  padding:0;
+}
+
+.tower-card .col-12 {
+  padding: 0 12px 0 12px;
 }
 
 @keyframes fadeInAnimation {

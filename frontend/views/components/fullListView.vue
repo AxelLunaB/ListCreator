@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="table-container">
-        <table class="table full-table" style="margin-bottom:0;width:3300px;height:50px;">
+        <table class="table full-table" style="margin-bottom:0;width:3500px;height:50px;">
           <tbody>
             <tr style="line-heigh:10px; font-size:10px;">
-              <td v-for="u in deps" :key="u.id" style="vertical-align:middle;font-weight:bold;">
+              <td v-for="(u, index) in deps" :key="u.id" style="vertical-align:middle;font-weight:bold;" :class="responsiveTable(index)">
                 <span v-html="u.title"></span>
               </td>
             </tr>
@@ -78,7 +78,10 @@ import fullView from "./fullView.vue"
           setTimeout(function () {
             document.getElementById('listView').style.display='none';
             }, 250);
-      }
+      },
+    responsiveTable(n){
+        return 'table' + n
+      },
     },
     computed: {
   ...mapGetters({
@@ -115,7 +118,7 @@ import fullView from "./fullView.vue"
 }
 
 .table-container {
-  width: 3300px;
+  width: 3500px;
   margin:0 auto;
 }
 
@@ -144,6 +147,10 @@ import fullView from "./fullView.vue"
   width:80px;
   font-size:12px;
   font-weight:bold;
+}
+
+.table29 {
+  width:200px;
 }
 
 </style>

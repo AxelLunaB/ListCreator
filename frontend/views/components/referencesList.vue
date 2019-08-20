@@ -99,6 +99,7 @@ export default {
     right: 0;
     z-index:3;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .page-title {
