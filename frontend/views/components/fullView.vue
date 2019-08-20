@@ -21,11 +21,11 @@
           <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "-" }}</td>
           <td>{{contracts.exchangerate != 0 && contracts.exchangerate != null ? contracts.exchangerate : "-"}}</td>
           <td>{{contracts.commission != null? contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions + ' %' :'-' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : getTotalCommission}}</td>
+          <td>{{contracts.commission != null && contracts.commission.salesExecutivesCommissions !== null? contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.salesAdministrativeCommissions !== null? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.thirdPartyCommissions !== null? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.brokerCommissions !== null? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : 'ayy'}}</td>
           <td>{{contracts.WROI != null ? contracts.WROI : "-"}}</td>
           <td>{{contracts.percent != 0 && contracts.percent != null ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 && contracts.years != null ? contracts.years : "-"}}</td>
