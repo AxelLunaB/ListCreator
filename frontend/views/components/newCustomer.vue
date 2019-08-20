@@ -310,7 +310,7 @@ export default {
           required
         },
         city:{
-        required
+          required
         },
         contactNumber:{
           required

@@ -265,6 +265,7 @@
 import newCustomer from "./newCustomer.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
@@ -281,6 +282,8 @@ export default {
       this.$store.dispatch("others/getClusters");
       this.$store.dispatch("others/getCustomers");
       this.$store.dispatch("contracts/getContracts");
+      this.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
+
       this.show = true;
     });
 

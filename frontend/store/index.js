@@ -7,6 +7,7 @@ import commissionsModule from './modules/commissions';
 import lotsModule from './modules/lots';
 import othersModule from './modules/others';
 import usersModule from './modules/users';
+import countByClusterModule from './modules/count-by-cluster';
 
 Vue.use(Vuex);
 
@@ -19,5 +20,6 @@ export default new Vuex.Store({
     others: othersModule,
     lots: lotsModule,
     users: usersModule,
+    countByCluster: countByClusterModule
   }
 });
