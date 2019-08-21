@@ -46,7 +46,7 @@ class Service {
         reserved: 0,
         sold: 0
       };
-    
+
 
       // Restarts variables for every status
       availableStatus = 0;
@@ -62,6 +62,7 @@ class Service {
 
           // Initialize an object for each cluster added
           data[cluster.name] = {
+            name:cluster.name,
             keys: 0,
             oneBR: null,
             twoBR: null,
@@ -75,7 +76,7 @@ class Service {
 
             if(unit.dataValues.clusterId === cluster.id) {
               totalKeys += unit.dataValues.nkeys;
-            
+
               switch(unit.dataValues.statusId) {
                 case 1:
                   availableStatus += 1;
@@ -86,12 +87,12 @@ class Service {
                   soldStatus += 1;
                   statusCount.sold += 1;
                   break;
-                
+
                 case 3:
                   reservedStatus += 1;
                   statusCount.reserved += 1;
                   break;
-                
+
                 case 4:
                   notPaidStatus += 1;
                   statusCount.notPaid += 1;
@@ -128,14 +129,14 @@ class Service {
       });
 
       // Add Total for each status to data object
-      data.statusCount = {};
-      data.statusCount.available = availableStatus;
-      data.statusCount.sold = soldStatus;
-      data.statusCount.reserved = reservedStatus;
-      data.statusCount.notPaid = notPaidStatus;
-      data.statusCount.paid = paidStatus;
-      data.statusCount.referred = referredStatus;
-      data.statusCount.blocked = blockedStatus;
+      // data.statusCount = {};
+      // data.statusCount.available = availableStatus;
+      // data.statusCount.sold = soldStatus;
+      // data.statusCount.reserved = reservedStatus;
+      // data.statusCount.notPaid = notPaidStatus;
+      // data.statusCount.paid = paidStatus;
+      // data.statusCount.referred = referredStatus;
+      // data.statusCount.blocked = blockedStatus;
 
     } catch(e) {
       console.log(e);

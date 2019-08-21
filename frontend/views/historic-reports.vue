@@ -579,8 +579,8 @@ export default {
         departments: "departments/departments"
       }),
       getToday(){
-        this.initDate = new Date();;
-        this.endDate = new Date();;
+        this.initDate = new Date();
+        this.endDate = new Date();
       },
       pagesDisplay() {
         if (Math.ceil(this.pages) > 10) {

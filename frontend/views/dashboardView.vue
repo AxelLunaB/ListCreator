@@ -1,7 +1,7 @@
 <template>
     <div class="main">
           <div class="wrapper-page row">
-                  <development  v-for="(d,index) in development" :key="index" :idN="index"></development>
+                  <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :idN="index" ></development>
           </div>
           <!-- <ul class="pagination pagination-lg m-0">
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
@@ -34,7 +34,6 @@ export default {
       if (isAuthenticated) {
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
-        this.$store.dispatch("departments/getDepartments");
         this.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
 
         // listen to authenticated event
@@ -43,23 +42,27 @@ export default {
         const _ = this;
 
         this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("departments/getDepartments");
           _.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
         });
       }
   },
   data() {
     return {
-      development: [1, 2 ,3 ]
     }
   },
   methods:{
   },
   computed:{
       ...mapGetters({
-        departments: "departments/departments",
         countByCluster: "countByCluster/countByCluster"
-      })
+      }),
+      getTowers(){
+        let clusters = []
+        clusters.push(this.countByCluster['BRAVA TOWER'])
+        clusters.push(this.countByCluster['GIADA TOWERS A'])
+        clusters.push(this.countByCluster['GIADA TOWERS B'])
+        return clusters
+      }
 
   }
 }
