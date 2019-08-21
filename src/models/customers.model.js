@@ -8,7 +8,7 @@ module.exports = (app) => {
     name: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING},
-    contactNumber: { type: DataTypes.INTEGER, allowNull: false},
+    contactNumber: { type: DataTypes.STRING, allowNull: false},
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     country: { type: DataTypes.STRING},
     state: { type: DataTypes.STRING},
