@@ -60,11 +60,13 @@
                     id="dropdown-unit"
                     name="drop-unit"
                     :text="formData.unitId.name == null ? 'Unit' : formData.unitId.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in getAvailableDepartments"
-                    name="salePrice"
-                    :key="option.id"
-                    :value="option.id"
-                    @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    <div style="overflow-y:scroll;height:200px;">
+ <b-dropdown-item v-for="option in getAvailableDepartments"
+                      name="salePrice"
+                      :key="option.id"
+                      :value="option.id"
+                      @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    </div>
                     </b-dropdown>
                     </div>
 
@@ -285,12 +287,9 @@ export default {
 
       this.show = true;
     });
-
-    // $( document ).ready(function() {
-    //   $("input[id='ROIyears']").TouchSpin({
-    //     verticalbuttons: true
-    //     });
-    //   });
+    console.log(this.departments)
+    // this.departments != undefined ? this.formData.clusterId.name = this.departments[0].cluster.name : this.formData.clusterId.id = '-'
+    // this.departments != undefined ? this.formData.clusterId.id = this.departments[0].clusterId : this.formData.clusterId.id = '-'
   },
   components: {
     newCustomer
@@ -311,7 +310,7 @@ export default {
         {id:3, name:"80 - 20"},
         {id:4, name: "Other"}
         ],
-      formData: { // findme
+      formData: {
         id: null,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},

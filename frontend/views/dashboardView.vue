@@ -25,6 +25,9 @@ import development from "./components/development.vue";
 import { mapGetters } from "vuex";
 
 export default {
+  mounted:function(){
+
+  },
   components: {
     development
   },

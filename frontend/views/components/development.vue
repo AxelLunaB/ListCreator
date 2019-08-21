@@ -37,13 +37,19 @@
         </div>
       </div>
       <div class="card-down">
-        <p style="margin-bottom:0;"> % SOLD </p>
-        <div class="progress">
-          <div class="progressbarload" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-              <span class="sr-only">60% Complete</span>
-          </div>
+        <div style="width:100%; height:65px;">
+            <span v-if="getDepsP.sold != 0">
+            <p style="margin-bottom:0;"> {{getDepsP.sold}} % SOLD </p>
+            <div class="myProgress">
+              <div :style="{width:getDepsP.sold + '%', height: '100%', backgroundColor: '#24303b'}"></div>
+            </div>
+          </span>
         </div>
-        <table class="table table-hover tower-card" style="width:100%;">
+        <p style="margin-bottom:0;"> {{getDepsP.reserved}} % RESERVED </p>
+        <div class="myProgress">
+          <div :style="{width:getDepsP.reserved + '%', height: '100%', backgroundColor: '#24303b'}"></div>
+        </div>
+        <table class="table tower-card" style="width:100%;margin-top:18px;">
             <tbody class="colors-main">
             <tr>
                  <td>AVAILABLE</td>
@@ -86,7 +92,11 @@ export default {
   props:['tower','idN'],
   data(){
     return {
-      isActive: true
+      isActive: true,
+      barData : {
+        sold: 50,
+        reserved: 80
+      }
     }
   },
   methods: {
@@ -105,6 +115,29 @@ export default {
       this.tower.statusCount.sold
 
       return total
+    }
+  },
+  computed: {
+    getDepsP(){
+
+      if(this.tower !== undefined){
+      let mData = this.barData
+
+      for(var bData in mData) {
+       let totalDeps = this.getUnits();
+       console.log(bData);
+
+       let pSoldDeps = this.tower.statusCount[bData];
+       let per = Math.ceil((parseFloat(100 * pSoldDeps) / totalDeps ));
+        mData[bData] = per
+
+      }
+
+      return mData
+
+      } else {
+        return 0
+      }
     }
   }
 }
@@ -178,6 +211,7 @@ export default {
   padding: 0 12px 0 12px;
 }
 
+
 .colors-main tr:nth-child(odd) {
   background: #425061;
 }
@@ -186,14 +220,12 @@ export default {
   border:none!important;
 }
 
-.progressbarload {
-  background: rgb(27,32,37);
-  background: linear-gradient(45deg, rgb(23, 30, 44) 30%, rgb(34, 44, 65) 60%, rgb(17, 22, 33) 100%);
-}
 
-.progress {
+.myProgress {
     height: 25px;
     border-radius: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
 
 @keyframes fadeInAnimation {
