@@ -8,18 +8,23 @@ class Service {
   }
 
   async find(params) {
-    // Use params.query to retrieve the clusterId
+    // Use params.query.id to retrieve the clusterId
 
     let data = {};
-
-    let status = [];
+    let totalKeys = 0;
     let clusters = [];
     let units = [];
 
+    // Status Counters
+    let availableStatus = 0;
+    let soldStatus = 0;
+    let reservedStatus = 0;
+    let notPaidStatus = 0;
+    let paidStatus = 0;
+    let referredStatus = 0;
+    let blockedStatus = 0;
+
     try {
-      await this.app.service('api/status').find({ query: { $paginate: 'false' } }).then(res => {
-        status = res;
-      });
 
       await this.app.service('api/clusters').find({ query: { $paginate: 'false' } }).then(res => {
         clusters = res;
@@ -31,12 +36,106 @@ class Service {
 
       // Add each cluster to data object
       clusters.forEach(cluster => {
+
+      let statusCount = {
+        available: 0,
+        blocked: 0,
+        notPaid: 0,
+        paid: 0,
+        referred: 0,
+        reserved: 0,
+        sold: 0
+      };
+    
+
+      // Restarts variables for every status
+      availableStatus = 0;
+      soldStatus = 0;
+      reservedStatus = 0;
+      notPaidStatus = 0;
+      paidStatus = 0;
+      referredStatus = 0;
+      blockedStatus = 0;
+
         // Checks if cluster is not already in the object by name
-        console.log(cluster);
+        if(data[cluster.name] === undefined) {
+
+          // Initialize an object for each cluster added
+          data[cluster.name] = {
+            keys: 0,
+            oneBR: null,
+            twoBR: null,
+            threeBR: null,
+            total: 0,
+            statusCount: statusCount
+          };
+
+          // Add total of keys to specific cluster
+          units.forEach(unit => {
+
+            if(unit.dataValues.clusterId === cluster.id) {
+              totalKeys += unit.dataValues.nkeys;
+            
+              switch(unit.dataValues.statusId) {
+                case 1:
+                  availableStatus += 1;
+                  statusCount.available += 1;
+                  break;
+
+                case 2:
+                  soldStatus += 1;
+                  statusCount.sold += 1;
+                  break;
+                
+                case 3:
+                  reservedStatus += 1;
+                  statusCount.reserved += 1;
+                  break;
+                
+                case 4:
+                  notPaidStatus += 1;
+                  statusCount.notPaid += 1;
+                  break;
+
+                case 5:
+                  paidStatus += 1;
+                  statusCount.paid += 1;
+                  break;
+
+                case 6:
+                  referredStatus += 1;
+                  statusCount.referred += 1;
+                  break;
+
+                case 7:
+                  blockedStatus += 1;
+                  statusCount.blocked += 1;
+                  break;
+
+                default:
+                  throw new Error('Incorrect status.');
+              } // Switch closing bracket
+            }
+
+          });
+
+          let clusterName = cluster.name;
+          data[clusterName]['keys'] = totalKeys;
+          data[clusterName]['statusCount'] = statusCount;
+          totalKeys = 0;
+        }
+
       });
 
-      console.log('Data Object -------------------------------------->');
-      console.log(data);
+      // Add Total for each status to data object
+      data.statusCount = {};
+      data.statusCount.available = availableStatus;
+      data.statusCount.sold = soldStatus;
+      data.statusCount.reserved = reservedStatus;
+      data.statusCount.notPaid = notPaidStatus;
+      data.statusCount.paid = paidStatus;
+      data.statusCount.referred = referredStatus;
+      data.statusCount.blocked = blockedStatus;
 
     } catch(e) {
       console.log(e);
@@ -99,6 +198,8 @@ class Service {
     //   b.name[0] > a.name[0]
     // });
     // return finalResult;
+
+    return data;
   }
 
   async get(id, params) {
@@ -126,6 +227,7 @@ class Service {
   async remove(id, params) {
     return { id };
   }
+
 }
 
 module.exports = function (options) {

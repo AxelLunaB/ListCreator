@@ -17,6 +17,7 @@
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
             </ul> -->
     </div>
+
 </template>
 
 <script>
@@ -34,14 +35,16 @@ export default {
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
         this.$store.dispatch("departments/getDepartments");
+        this.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
 
         // listen to authenticated event
       } else {
         console.log("no auth");
-        let _ = this;
+        const _ = this;
 
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("departments/getDepartments");
+          _.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
         });
       }
   },
@@ -53,8 +56,9 @@ export default {
   methods:{
   },
   computed:{
-          ...mapGetters({
+      ...mapGetters({
         departments: "departments/departments",
+        countByCluster: "countByCluster/countByCluster"
       })
 
   }
