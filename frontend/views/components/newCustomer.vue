@@ -374,4 +374,7 @@ button {
   border-radius: 4px;
 }
 
+.form-control:focus {
+  color: #aeb9c4;
+}
 </style>
