@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-          <div class="wrapper-page row cards-container" style="background:#2a333c">
+          <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :idN="index" ></development>
           </div>
           <!-- <ul class="pagination pagination-lg m-0">

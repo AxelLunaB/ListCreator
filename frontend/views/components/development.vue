@@ -82,7 +82,7 @@
             </tbody>
         </table>
       </div>
-    </router-link>
+     </router-link>
   </div>
 </template>
 
@@ -226,6 +226,21 @@ export default {
     border-radius: 5px;
     margin-top: 7px;
     margin-bottom: 7px;
+    animation: loadAnimation 1.5s forwards;
+}
+
+@keyframes loadAnimation {
+  0%   {
+    width:0%;
+     }
+
+  30% {
+    width:0%;
+  }
+
+  100% {
+    width:100%;
+    }
 }
 
 @keyframes fadeInAnimation {
