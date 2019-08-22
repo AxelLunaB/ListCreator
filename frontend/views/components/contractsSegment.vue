@@ -31,8 +31,10 @@
                       name="drop-clusters"
                       :text="formData.clusterId.name == null ? 'Development' : formData.clusterId.name" class="m-md-2">
                       <b-dropdown-item v-for="option in clusters"
+                      disabled
                       :key="option.id"
                       :value="option.id"
+                      readonly="readonly"
                       @click="selectDev('cluster'),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
                       </b-dropdown>
                     </div>
@@ -61,7 +63,7 @@
                     name="drop-unit"
                     :text="formData.unitId.name == null ? 'Unit' : formData.unitId.name" class="m-md-2">
                     <div style="overflow-y:scroll;height:200px;">
- <b-dropdown-item v-for="option in getAvailableDepartments"
+                      <b-dropdown-item v-for="option in getAvailableDepartments"
                       name="salePrice"
                       :key="option.id"
                       :value="option.id"
@@ -287,9 +289,23 @@ export default {
 
       this.show = true;
     });
-    console.log(this.departments)
     // this.departments != undefined ? this.formData.clusterId.name = this.departments[0].cluster.name : this.formData.clusterId.id = '-'
     // this.departments != undefined ? this.formData.clusterId.id = this.departments[0].clusterId : this.formData.clusterId.id = '-'
+
+    this.$eventHub.$on("select-tower", tower => {
+      this.$store.dispatch("departments/getDepartmentById", tower);
+      switch(tower) {
+        case 1:
+        this.formData.clusterId.name = "BRAVA TOWER"
+        break;
+        case 2 :
+        this.formData.clusterId.name ="GIADA TOWER A"
+        break;
+        case 3:
+        this.formData.clusterId.name = "GIADA TOWER B"
+      }
+    })
+
   },
   components: {
     newCustomer
@@ -1046,6 +1062,12 @@ button.waves.default {
     }
     .col-lg-3 {
       margin:10px;
+    }
+  }
+
+  @media screen and (min-width:1200px) and (max-width:1430px) {
+    #dropdown-clusters__BV_toggle_{
+      transform: translateX(-32px);
     }
   }
 

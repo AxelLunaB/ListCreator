@@ -215,12 +215,16 @@
               text: "Please select a tower first",
               icon: "warning",
               buttons: false,
-              timer: 1700
+              timer: 1500
           });
 
         setTimeout(function () {
           document.location.href = '/'
-          }, 2000);
+          }, 1500);
+
+        return false
+        } else {
+          return true
         }
       },
       currentAvailability () {

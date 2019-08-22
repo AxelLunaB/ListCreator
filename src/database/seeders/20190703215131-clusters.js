@@ -19,14 +19,14 @@ module.exports = {
       {
         name: 'GIADA TOWERS A',
         code: 2,
-        abb: 'A',
+        abb: 'GTA',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'GIADA TOWERS B',
         code: 3,
-        abb: 'B',
+        abb: 'GTB',
         createdAt: new Date(),
         updatedAt: new Date()
       }

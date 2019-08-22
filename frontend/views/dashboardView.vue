@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-          <div class="wrapper-page row">
+          <div class="wrapper-page row cards-container" style="background:#2a333c">
                   <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :idN="index" ></development>
           </div>
           <!-- <ul class="pagination pagination-lg m-0">
@@ -163,5 +163,12 @@ body {
     padding-top: 60px!important;
   }
 }
+
+ @media screen and (min-width:768px) and (max-width:992px) {
+    .cards-container {
+      margin-top: 57px;
+      overflow-y: auto;
+    }
+  }
 
 </style>

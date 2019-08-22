@@ -1,5 +1,5 @@
 <template>
-  <div class="card-body col-md-4 col-sm-12 col-lg-3 animate tower-card" @click="selectTower()">
+  <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
       <h4 class="m-b-30 m-t-0 text-center"> {{ tower != null ? tower.name != null ? tower.name : '-' : '-'}} </h4>
       <div class="card-upper">
