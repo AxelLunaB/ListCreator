@@ -163,6 +163,7 @@
         const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
         return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'.xlsx')
     },
+
     showList(){
       let info = {
          departments: this.departments,
@@ -176,6 +177,7 @@
           document.getElementById("listView").style.opacity = 1;
             }, 100);
       },
+
       showContracts() {
         let info = {
           departments : this.departments
@@ -194,10 +196,13 @@
        }
        return c
      },
+
      closeReferences(x){
        this.openReference = x
      }
+
     },
+
     computed: {
       ...mapGetters({
         departments: "departments/departments",

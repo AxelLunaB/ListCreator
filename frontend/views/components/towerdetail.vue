@@ -459,7 +459,7 @@ export default {
         };
 
         console.log(file);
-        this.$store.dispatch("attachments/setNewAttachment", file);
+        self.$store.dispatch("attachments/setNewAttachment", file);
       });
     }
   },

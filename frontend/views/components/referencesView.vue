@@ -7,25 +7,87 @@
           <td class="xs-mobile">{{references.reserveExpiration != null ? getDate(references.reserveExpiration) : '-'}}</td>
           <td>{{references.customerId != undefined ? references.customerId : '-'}}</td>
           <td><span v-bind:style="{color: getColor}">{{references.status != undefined ? references.status.name : '-'  }}</span></td>
+          <td>
+            <select id="myList" v-if="references.statusId !== 5">
+              <option value = "1">Available</option>
+              <option value = "2">Sold</option>
+              <option value = "3">Reserved</option>
+            </select>
+          </td>
       </tr>
     </tbody>
-        </table>
+    </table>
   </div>
 </template>
 
 <script>
+
+function isAvailable(statusId = this.references.statusId) {
+
+  let isAvailable = false;
+
+  switch(statusId) {
+    case 1:
+      isAvailable = true;
+      break;
+
+    case 2:
+      isAvailable = false;
+      break;
+
+    case 3:
+      isAvailable = true;
+      break;
+
+    case 4:
+      isAvailable = true;
+      break;
+
+    case 5:
+      isAvailable = false;
+      break;
+
+    case 6:
+      isAvailable = false;
+      break;
+
+    case 7:
+      isAvailable = false;
+      break;
+  }
+
+  return isAvailable;
+}
+
 export default {
     props:['references'],
-    data(){
+
+    data() {
       return {
+
       }
     },
+
     methods:{
+
       getDate(date) {
         return date.substring(0,10)
+      },
+
+      patchStatus() {
+        const statusId = this.references.statusId;
+
+        if(statusId !== null && isAvailable(statusId)) {
+          alert('You can change status!');
+        } else {
+          alert('You cannot change status!');
+        }
       }
+
     },
+
     computed:{
+
     getColor() {
       if(this.references.status) {
         if (this.references.status.color_hex) {

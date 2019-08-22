@@ -326,6 +326,15 @@ const newFileUpload = file => {
   });
 };
 
+/* References */
+const patchReferences = reference => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'api/references', reference, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -360,6 +369,8 @@ export {
   //
   fetchCountHouses,
   fetchCountDepartments,
+  //
+  patchReferences,
   fetchReferences,
   //
   newFileUpload

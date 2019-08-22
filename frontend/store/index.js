@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import attachmentsModule from './modules/attachments';
 import housesModule from './modules/houses';
 import departmentsModule from './modules/departments';
 import contractsModule from './modules/contracts';
@@ -13,6 +14,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    attachments: attachmentsModule,
     houses: housesModule,
     departments: departmentsModule,
     commissions: commissionsModule,
