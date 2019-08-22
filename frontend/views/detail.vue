@@ -1,5 +1,5 @@
 <template>
-  <div class="main-tables-container" id="main-tables-container">
+  <div class="main-tables-container animate" id="main-tables-container">
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->
@@ -529,6 +529,10 @@
     border-radius: 15%;
   }
 
+    .animate {
+    animation: fadeInAnimation 1s forwards;
+  }
+
   .header-t {
     height: 50px;
     text-align:center!important;
@@ -623,4 +627,14 @@ button.waves-white.ripple:active:after {
       border-radius: 5px;
       }
   }
+
+      @keyframes fadeInAnimation {
+      0%   {
+        opacity: 0;
+         }
+
+      100% {
+        opacity: 1;
+        }
+    }
 </style>
