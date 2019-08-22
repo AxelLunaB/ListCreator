@@ -18,6 +18,7 @@
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Reserve expiration</b></td>
                     <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Customer Id</b></td>
                     <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Status</b></td>
+                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Update Status</b></td>
                 </tr>
                 </tbody>
             </table>
@@ -37,7 +38,7 @@ import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 
 export default {
-  mounted:function(){
+  mounted: function(){
 
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
@@ -77,12 +78,15 @@ export default {
       setTimeout(function() {
         self.closeReferencesWindow = false
       }, 1000)
-    }
+    },
   },
+
   computed: {
+
   ...mapGetters({
       references: "others/getReferences"
-      })
+  })
+  
   }
 
 }

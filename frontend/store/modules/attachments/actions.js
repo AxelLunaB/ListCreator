@@ -1,5 +1,4 @@
 import { newFileUpload } from '@/api';
-import socket from '@/io';
 
 const setNewAttachment = (context, attachment) => {
     return new Promise((resolve, reject) => {

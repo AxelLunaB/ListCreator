@@ -27,7 +27,9 @@ module.exports = {
       // preventDuplicate({ service: 'api/references' })
   ],
     update: [canUpdate()],
-    patch: [],
+    patch: [
+      
+    ],
     remove: [canUpdate()]
   },
 

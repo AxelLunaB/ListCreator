@@ -1,4 +1,4 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, createNewCustomer } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, patchReferences, createNewCustomer } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -79,7 +79,18 @@ const getReferences = (context) => {
   }).catch(err => {
 
   })
-}
+};
+
+const setNewPatchedReference = (context, reference) => {
+  return new Promise((resolve, reject) => {
+    patchReferences(reference).then(res => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  })
+};
 
 
 
@@ -92,5 +103,6 @@ export default {
   setNewCustomer,
   getCountHouses,
   getCountDepartments,
-  getReferences
+  getReferences,
+  setNewPatchedReference
 };
