@@ -79,12 +79,16 @@
                     </div>
 
                   </div>
-
-                  <p style="text-align:left;">Unit price</p>
-
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <p style="margin:0;">Unit price</p>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class ="col-lg-3"></div>
+                  </div>
                   <div class="row" style="align-items:center;">
                     <input
-                    style="text-align:center"
+                    style="text-align:center;padding-right:10px;"
                     type="text"
                     class="form-control disabled-option col-sm-12 col-lg-3"
                     placeholder="Select unit"
@@ -110,6 +114,8 @@
                        </b-dropdown-item>
                       </div>
                       </b-dropdown>
+                    </div>
+                    <div class = "col-sm-12 col-lg-3">
                     </div>
                     <div class="col-sm-12 col-lg-3">
                       <button type="button" class="btn btn-light btn-sm" title="Add new client" @click="addClient = true">
