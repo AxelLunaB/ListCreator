@@ -410,16 +410,6 @@ export default {
         devDropdown.classList.remove("error");
       }
     },
-    selectDev(option){
-      var dev = option
-      if (this.validation.includes(option)) {
-
-      } else {
-        this.validation.push(dev)
-        var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
-        devDropdown.classList.remove("error");
-      }
-    },
     selectUnit(option){
       var unit = option
       if (this.validation.includes(option)) {
@@ -450,9 +440,6 @@ export default {
       clientDropdown.classList.remove("error");
       }
     },
-    // touchSpin(){
-    //     $("input[id='years']").TouchSpin();
-    //   },
     closeBtn() {
       self = this
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
@@ -512,7 +499,7 @@ export default {
 
 
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length < 6 ) {
+        if (this.$v.$invalid || this.validation.length < 5 ) {
 
           for(let i = 0; i < 5; i++){
             if(this.validation.includes("unit")){
@@ -521,12 +508,7 @@ export default {
                   var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
                   unitDropdown.classList.add("error");
             }
-            if(this.validation.includes("cluster")){
 
-            } else {
-                  var unitDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
-                  unitDropdown.classList.add("error");
-            }
             if(this.validation.includes("executive")){
 
             } else {
@@ -555,13 +537,11 @@ export default {
 
         } else {
 
-          var clusterDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
           var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
           var paymentDropdown = document.getElementById("dropdown-payment__BV_toggle_");
           var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
           var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
           var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
-          clusterDropdown.classList.remove("error");
           executiveDropdown.classList.remove("error");
           unitDropdown.classList.remove("error");
           currencyDropdown.classList.remove("error");
@@ -646,15 +626,9 @@ export default {
                 }
 
     })
-      // this.formData.forEach(ele =>{
-      //   frm.push({
-      //     name: ele,
-      //     value: ele.value
-      //   });
-      // })
-        }
       }
-    },
+    }
+  },
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",

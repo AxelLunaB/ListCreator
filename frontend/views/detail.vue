@@ -95,12 +95,15 @@
       switch(tower) {
         case 1:
         this.title = "BRAVA TOWER"
+        this.tower = 1;
         break;
         case 2 :
         this.title ="GIADA TOWER A"
+        this.tower = 2
         break;
         case 3:
         this.title = "GIADA TOWER B"
+        this.tower = 3
       }
     })
 
@@ -108,7 +111,8 @@
 
 
       this.$eventHub.$on("updateDataDetail", () => {
-        this.$store.dispatch("departments/getDepartmentById",tower);
+        // this.$store.dispatch("departments/getDepartmentById",tower);
+        this.$store.dispatch("departments/getDepartmentById", this.tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -147,7 +151,8 @@
         sDepartments:[],
         fDepartments:[],
         depsAndContracts:[],
-        title:null
+        title:null,
+        tower:null
       }
     },
     methods: {
