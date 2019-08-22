@@ -26,17 +26,7 @@
                     </div>
                     <div class="col-lg-3" id="dropdown-validation0" >
                     <!-- <label class="control-label" for="label-executive"><p>Development</p></label> -->
-                      <b-dropdown
-                      id="dropdown-clusters"
-                      name="drop-clusters"
-                      :text="formData.clusterId.name == null ? 'Development' : formData.clusterId.name" class="m-md-2">
-                      <b-dropdown-item v-for="option in clusters"
-                      disabled
-                      :key="option.id"
-                      :value="option.id"
-                      readonly="readonly"
-                      @click="selectDev('cluster'),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
-                      </b-dropdown>
+                    <b>{{this.formData.clusterId.name}}</b>
                     </div>
 
                     <div class="col-lg-3">
@@ -296,12 +286,15 @@ export default {
       this.$store.dispatch("departments/getDepartmentById", tower);
       switch(tower) {
         case 1:
+        this.formData.clusterId.id = 1
         this.formData.clusterId.name = "BRAVA TOWER"
         break;
-        case 2 :
+        case 2:
+        this.formData.clusterId.id = 2
         this.formData.clusterId.name ="GIADA TOWER A"
         break;
         case 3:
+        this.formData.clusterId.id = 3
         this.formData.clusterId.name = "GIADA TOWER B"
       }
     })
@@ -901,6 +894,13 @@ export default {
     justify-content: center;
     font-size: 22px;
     color:#a8a8a8;
+  }
+
+  #dropdown-validation0 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
   }
 
  #dropFileForm #fileInput {
