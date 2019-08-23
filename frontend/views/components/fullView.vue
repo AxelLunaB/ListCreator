@@ -4,7 +4,7 @@
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
           <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
-          <td style="font-size:14px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
+          <td style="font-size:13px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
           <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
           <td>{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
