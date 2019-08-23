@@ -10,7 +10,7 @@ module.exports = (app) => {
     level: DataTypes.INTEGER,
     bedrooms: DataTypes.STRING,
     nkeys: DataTypes.INTEGER,
-    bathrooms: DataTypes.INTEGER,
+    bathrooms: DataTypes.STRING,
     interiorM2: DataTypes.DOUBLE,
     exteriorM2: DataTypes.DOUBLE,
     roofInteriorM2: DataTypes.DOUBLE,
