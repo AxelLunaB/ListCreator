@@ -208,7 +208,7 @@
                     <input
                     id="years"
                     type="text"
-                    v-model="formData.WROI.name"
+                    v-model="formData.years.name"
                     value="0"
                     class="form-control row col-6"
                     data-bts-min="0"
@@ -332,7 +332,8 @@ export default {
         unitId: {id: null, name: null},
         customerId: {id: null, name: null},
         currency: {id: null, name: null},
-        WROI: { name: 0},
+        WROI: { name: null},
+        years:{name: null},
         furniture:false,
         comment:null,
         paymentMethod:{id:null, name:null, other:null}
@@ -377,7 +378,7 @@ export default {
         return this.formData.currency.id
       break;
       case 'WROI':
-      return this.isROI == true ? parseInt(this.formData.WROI.name) : "NO"
+      return this.isROI == true ? 'YES' : 'NO'
       break;
       case "comment":
         return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
@@ -386,6 +387,10 @@ export default {
       return this.formData.id
       case "furniture":
       return this.formData.furniture == false  ? "NO" : "YES"
+      break;
+      case 'years':
+      return this.formData.years.name
+      break;
 
       }
     }
@@ -450,7 +455,7 @@ export default {
     },
     getFormatDate() {
       var now = new Date();
-      var dateString = moment(now).format('DD/MM/YYYY');
+      var dateString = moment(now).format('YYYY-MM-DD');
 
       return dateString
     },
@@ -564,7 +569,6 @@ export default {
                 name: k,
                 value:this.getValue(k)
                 });
-
               });
               frm[0].value = (frm[0].value).replace(/\,/g,'');
               frm[0].value = parseInt(frm[0].value,10);
