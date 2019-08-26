@@ -184,13 +184,13 @@
                   </div> -->
                 </div>
                 <div class="form-group row">
-                  <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
+                  <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;" >
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="withFurniture" :disabled="isROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="withFurniture" :disabled="disableFurniture()" @click="addFurniture">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                     <label for="Furniture" style='margin:0;'>
-                    Furniture
+                    Add furniture
                     </label>
                     <input
                     style="text-align:center;padding-right:10px;"
@@ -204,7 +204,7 @@
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()" :disabled="disableROI()">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
@@ -339,11 +339,12 @@ export default {
         currency: {id: null, name: null},
         WROI: { name: null},
         years:{name: null},
-        furniture:0,
+        furniture:{ name:null},
         comment:null,
         paymentMethod:{id:null, name:null, other:null}
       },
       withFurniture:false,
+      furnitureChecked:false,
       paymentMethod:"",
       departments: {},
       options: {
@@ -359,6 +360,32 @@ export default {
       }
   },
   methods: {
+    disableFurniture(){
+      if(this.isROI == true) {
+        return true
+      } else {
+        if(this.formData.unitId.name == null){
+          return true
+        }
+      }
+    },
+    disableROI(){
+        if(this.formData.unitId.name == null){
+          return true
+        }
+    },
+    addFurniture(){
+      this.furnitureChecked = !this.furnitureChecked
+      if(this.withFurniture == false) {
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p + parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
+      } else {
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p - parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
+      }
+    },
     getValue(k){
       switch(k){
       case 'paymentMethod':
@@ -392,13 +419,11 @@ export default {
       case "id":
       return this.formData.id
       case "furniture":
-      return this.formData.furniture == false  ? 'NO' : 'YES'
+      return this.formData.furniture.name == 0  ? 0 : this.formData.furniture.name
       break;
       case 'years':
       return this.formData.years.name
       break;
-      case 'furniture':
-      return this.formData.furniture.name != null ? this.formData.furniture.name : 0
 
       }
     }
@@ -455,6 +480,9 @@ export default {
     },
     closeBtn() {
       self = this
+      self.formData.unitId.name = null
+      this.withFurniture = false
+      this.isROI = false
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
       document.getElementById("fadeOutAnimation").style.opacity = 0;
       setTimeout(function () {
@@ -469,9 +497,12 @@ export default {
     },
     setInfo(x,f) {
       const self = this;
+      this.withFurniture = false
+      this.isROI = false
       var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
       document.getElementById('unit-price-input').value =  y + '.00 '
       f != 0 ? document.getElementById('furniture-price-input').value = f + '.00' : document.getElementById('furniture-price-input').value = '-'
+      this.formData.furniture.name = f;
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -484,10 +515,16 @@ export default {
     isRoiContract(){
       if(this.withFurniture == false){
         this.withFurniture = true
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p + parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
       }
 
       if(this.withFurniture == true && this.isROI == true){
         this.withFurniture = false
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p - parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
       }
     },
     closeModal(x){
@@ -999,6 +1036,10 @@ button.waves.default {
   background-color: #17a2b8;
   color: white;
   outline:none;
+}
+
+.custom-control-input:disabled ~ .custom-control-label::before {
+    background-color: #e9ecef1f;
 }
 
 

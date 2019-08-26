@@ -152,6 +152,7 @@ export default {
 @import "~bulma/css/bulma.css";
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 html,
 body {
@@ -171,6 +172,7 @@ body {
   background-size:cover;
   box-shadow:inset 0 0 0 2000px rgba(0, 23, 0, 0.1);
   height: 100%;
+  font-family: 'Raleway', sans-serif!important;
 }
 
 .card {
