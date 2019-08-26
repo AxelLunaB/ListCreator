@@ -1,5 +1,5 @@
 <template>
-  <div class="main-tables-container">
+  <div class="main-tables-container animate" id="main-tables-container">
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->
@@ -39,7 +39,7 @@
           </div>
         </div>
       <towerdetail></towerdetail>
-      <full-list-view></full-list-view>
+      <full-list-view :title="this.title"></full-list-view>
       <contractsSegment></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
@@ -91,26 +91,20 @@
       });
 
     this.$eventHub.$on("select-tower", tower => {
-
-      if(tower !== undefined) {
-
-        this.$store.dispatch("departments/getDepartmentById", tower);
-        this.clusterId = tower;
-
-        switch(tower) {
-          case 1:
-            this.title = "BRAVA TOWER"
-            break;
-          case 2:
-            this.title ="GIADA TOWER A"
-            break;
-          case 3:
-            this.title = "GIADA TOWER B"
-            break;
-        }
-
-      } else {
-        console.log('Tower object is missing!');
+      this.$store.dispatch("departments/getDepartmentById", tower);
+      this.clusterId = tower;
+      switch(tower) {
+        case 1:
+        this.title = "BRAVA TOWER"
+        this.tower = 1;
+        break;
+        case 2 :
+        this.title ="GIADA TOWER A"
+        this.tower = 2
+        break;
+        case 3:
+        this.title = "GIADA TOWER B"
+        this.tower = 3
       }
       
     })
@@ -119,7 +113,8 @@
 
 
       this.$eventHub.$on("updateDataDetail", () => {
-        this.$store.dispatch("departments/getDepartmentById", tower);
+        // this.$store.dispatch("departments/getDepartmentById",tower);
+        this.$store.dispatch("departments/getDepartmentById", this.tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -158,7 +153,8 @@
         sDepartments:[],
         fDepartments:[],
         depsAndContracts:[],
-        title: null,
+        title:null,
+        tower:null,
         clusterId: undefined
       }
     },
@@ -232,12 +228,16 @@
               text: "Please select a tower first",
               icon: "warning",
               buttons: false,
-              timer: 1700
+              timer: 1500
           });
 
         setTimeout(function () {
           document.location.href = '/'
-          }, 2000);
+          }, 1500);
+
+        return false
+        } else {
+          return true
         }
       },
       currentAvailability () {
@@ -542,6 +542,10 @@
     border-radius: 15%;
   }
 
+    .animate {
+    animation: fadeInAnimation 1s forwards;
+  }
+
   .header-t {
     height: 50px;
     text-align:center!important;
@@ -636,4 +640,14 @@ button.waves-white.ripple:active:after {
       border-radius: 5px;
       }
   }
+
+      @keyframes fadeInAnimation {
+      0%   {
+        opacity: 0;
+         }
+
+      100% {
+        opacity: 1;
+        }
+    }
 </style>

@@ -6,6 +6,7 @@ const isCurrent = adminRole => context => context.params.query.current != undefi
 const accountService = require('../authmanagement/notifier');
 const preventSelfDelete = require('../../hooks/prevent-self-delete');
 const verifyHooks = require('feathers-authentication-management').hooks;
+const togglePagination = require('../../hooks/toggle-pagination');
 
 const newCustomer = async context => {
   const name = context.data.name;
@@ -42,7 +43,7 @@ const newCustomer = async context => {
 module.exports = {
   before: {
     all: [authenticate('jwt')],
-    find: [
+    find: [  togglePagination()
     ],
     get: [],
     create: [],

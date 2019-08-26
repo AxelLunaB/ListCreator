@@ -4,7 +4,7 @@
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
           <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
-          <td style="font-size:14px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
+          <td style="font-size:13px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
           <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
           <td>{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
@@ -25,7 +25,7 @@
           <td>{{contracts.commission != null && contracts.commission.salesAdministrativeCommissions !== null? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
           <td>{{contracts.commission != null && contracts.commission.thirdPartyCommissions !== null? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
           <td>{{contracts.commission != null && contracts.commission.brokerCommissions !== null? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : 'ayy'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? contracts.commission.totalCommissions == 0 ? 'N/A':'$ ' + contracts.commission.totalCommissions : '-'}}</td>
           <td>{{contracts.WROI != null ? contracts.WROI : "-"}}</td>
           <td>{{contracts.percent != 0 && contracts.percent != null ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 && contracts.years != null ? contracts.years : "-"}}</td>

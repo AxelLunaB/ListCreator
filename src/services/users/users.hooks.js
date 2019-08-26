@@ -6,6 +6,7 @@ const isCurrent = adminRole => context => context.params.query.current != undefi
 const accountService = require('../authmanagement/notifier');
 const preventSelfDelete = require('../../hooks/prevent-self-delete');
 const verifyHooks = require('feathers-authentication-management').hooks;
+const togglePagination = require('../../hooks/toggle-pagination');
 
 module.exports = {
   before: {
@@ -18,7 +19,8 @@ module.exports = {
           context.result = context.params.user;
           delete context.params.query.current;
         }
-      }).else(isAdmin())
+      }).else(isAdmin()),
+      togglePagination()
     ],
     get: [softDelete('deleted'),],
     create: [softDelete('deleted'), isAdmin(), local.hooks.hashPassword(), verifyHooks.addVerification()],

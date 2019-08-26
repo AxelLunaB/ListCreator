@@ -26,15 +26,7 @@
                     </div>
                     <div class="col-lg-3" id="dropdown-validation0" >
                     <!-- <label class="control-label" for="label-executive"><p>Development</p></label> -->
-                      <b-dropdown
-                      id="dropdown-clusters"
-                      name="drop-clusters"
-                      :text="formData.clusterId.name == null ? 'Development' : formData.clusterId.name" class="m-md-2">
-                      <b-dropdown-item v-for="option in clusters"
-                      :key="option.id"
-                      :value="option.id"
-                      @click="selectDev('cluster'),setData('clusterId',{id :option.id, name: option.name})">{{option.name}} </b-dropdown-item>
-                      </b-dropdown>
+                    <b>{{this.formData.clusterId.name}}</b>
                     </div>
 
                     <div class="col-lg-3">
@@ -60,11 +52,13 @@
                     id="dropdown-unit"
                     name="drop-unit"
                     :text="formData.unitId.name == null ? 'Unit' : formData.unitId.name" class="m-md-2">
-                    <b-dropdown-item v-for="option in getAvailableDepartments"
-                    name="salePrice"
-                    :key="option.id"
-                    :value="option.id"
-                    @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                    <div style="overflow-y:scroll;height:200px;">
+                      <b-dropdown-item v-for="option in getAvailableDepartments"
+                      name="salePrice"
+                      :key="option.id"
+                      :value="option.id"
+                      @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setInfo(option.priceTotal, option.furniture)">{{option.unitNumber}} </b-dropdown-item>
+                    </div>
                     </b-dropdown>
                     </div>
 
@@ -85,12 +79,16 @@
                     </div>
 
                   </div>
-
-                  <p style="text-align:left;">Unit price</p>
-
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <p style="margin:0;">Unit price</p>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class ="col-lg-3"></div>
+                  </div>
                   <div class="row" style="align-items:center;">
                     <input
-                    style="text-align:center"
+                    style="text-align:center;padding-right:10px;"
                     type="text"
                     class="form-control disabled-option col-sm-12 col-lg-3"
                     placeholder="Select unit"
@@ -116,6 +114,8 @@
                        </b-dropdown-item>
                       </div>
                       </b-dropdown>
+                    </div>
+                    <div class = "col-sm-12 col-lg-3">
                     </div>
                     <div class="col-sm-12 col-lg-3">
                       <button type="button" class="btn btn-light btn-sm" title="Add new client" @click="addClient = true">
@@ -184,18 +184,27 @@
                   </div> -->
                 </div>
                 <div class="form-group row">
-                  <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
+                  <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;" >
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture" :disabled="isROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="withFurniture" :disabled="disableFurniture()" @click="addFurniture">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
-                    <label for="Furniture">
-                    Furniture
+                    <label for="Furniture" style='margin:0;'>
+                    Add furniture
                     </label>
+                    <input
+                    style="text-align:center;padding-right:10px;"
+                    type="text"
+                    class="form-control disabled-option col-3"
+                    placeholder="Select unit"
+                    name="furniture"
+                    value=""
+                    id="furniture-price-input"
+                    readonly="readonly">
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" v-model="isROI" @click="isRoiContract()" :disabled="disableROI()">
                       <label class="custom-control-label" for="customCheck2"></label>
                       <label for="Contract">
                         ROI contract
@@ -208,7 +217,7 @@
                     <input
                     id="years"
                     type="text"
-                    v-model="formData.WROI.name"
+                    v-model="formData.years.name"
                     value="0"
                     class="form-control row col-6"
                     data-bts-min="0"
@@ -231,10 +240,6 @@
                     data-bts-button-up-class="btn btn-primary"/>
                     <div style="font-weight: lighter;text-align: right;width: 100%;" >value must be numeric</div>
                     </template>
-                    <!-- <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>-->
-                    <!--<div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div> -->
-                                        <!-- :class="{ 'form-group-error': $v.years.$error }"
-                    v-model.trim="$v.years.$model" -->
                   </div>
                 </div>
                 <div class="form-group row">
@@ -285,12 +290,26 @@ export default {
 
       this.show = true;
     });
+    // this.departments != undefined ? this.formData.clusterId.name = this.departments[0].cluster.name : this.formData.clusterId.id = '-'
+    // this.departments != undefined ? this.formData.clusterId.id = this.departments[0].clusterId : this.formData.clusterId.id = '-'
 
-    // $( document ).ready(function() {
-    //   $("input[id='ROIyears']").TouchSpin({
-    //     verticalbuttons: true
-    //     });
-    //   });
+    this.$eventHub.$on("select-tower", tower => {
+      this.$store.dispatch("departments/getDepartmentById", tower);
+      switch(tower) {
+        case 1:
+        this.formData.clusterId.id = 1
+        this.formData.clusterId.name = "BRAVA TOWER"
+        break;
+        case 2:
+        this.formData.clusterId.id = 2
+        this.formData.clusterId.name ="GIADA TOWER A"
+        break;
+        case 3:
+        this.formData.clusterId.id = 3
+        this.formData.clusterId.name = "GIADA TOWER B"
+      }
+    })
+
   },
   components: {
     newCustomer
@@ -311,18 +330,21 @@ export default {
         {id:3, name:"80 - 20"},
         {id:4, name: "Other"}
         ],
-      formData: { // findme
+      formData: {
         id: null,
         executive: {id: null, name: null},
         clusterId : {id: null, name: null},
         unitId: {id: null, name: null},
         customerId: {id: null, name: null},
         currency: {id: null, name: null},
-        WROI: { name: 0},
-        furniture:false,
+        WROI: { name: null},
+        years:{name: null},
+        furniture:{ name:null},
         comment:null,
         paymentMethod:{id:null, name:null, other:null}
       },
+      withFurniture:false,
+      furnitureChecked:false,
       paymentMethod:"",
       departments: {},
       options: {
@@ -338,6 +360,32 @@ export default {
       }
   },
   methods: {
+    disableFurniture(){
+      if(this.isROI == true) {
+        return true
+      } else {
+        if(this.formData.unitId.name == null){
+          return true
+        }
+      }
+    },
+    disableROI(){
+        if(this.formData.unitId.name == null){
+          return true
+        }
+    },
+    addFurniture(){
+      this.furnitureChecked = !this.furnitureChecked
+      if(this.withFurniture == false) {
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p + parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
+      } else {
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p - parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
+      }
+    },
     getValue(k){
       switch(k){
       case 'paymentMethod':
@@ -363,7 +411,7 @@ export default {
         return this.formData.currency.id
       break;
       case 'WROI':
-      return this.isROI == true ? parseInt(this.formData.WROI.name) : "NO"
+      return this.isROI == true ? 'YES' : 'NO'
       break;
       case "comment":
         return this.formData.comment == undefined ||this.formData.comment == "" ? "No comments" : this.formData.comment
@@ -371,7 +419,11 @@ export default {
       case "id":
       return this.formData.id
       case "furniture":
-      return this.formData.furniture == false  ? "NO" : "YES"
+      return this.formData.furniture.name == 0  ? 0 : this.formData.furniture.name
+      break;
+      case 'years':
+      return this.formData.years.name
+      break;
 
       }
     }
@@ -393,16 +445,6 @@ export default {
       } else {
         this.validation.push(payment)
         var devDropdown = document.getElementById("dropdown-payment__BV_toggle_");
-        devDropdown.classList.remove("error");
-      }
-    },
-    selectDev(option){
-      var dev = option
-      if (this.validation.includes(option)) {
-
-      } else {
-        this.validation.push(dev)
-        var devDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
         devDropdown.classList.remove("error");
       }
     },
@@ -436,11 +478,11 @@ export default {
       clientDropdown.classList.remove("error");
       }
     },
-    // touchSpin(){
-    //     $("input[id='years']").TouchSpin();
-    //   },
     closeBtn() {
       self = this
+      self.formData.unitId.name = null
+      this.withFurniture = false
+      this.isROI = false
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
       document.getElementById("fadeOutAnimation").style.opacity = 0;
       setTimeout(function () {
@@ -449,14 +491,18 @@ export default {
     },
     getFormatDate() {
       var now = new Date();
-      var dateString = moment(now).format('DD/MM/YYYY');
+      var dateString = moment(now).format('YYYY-MM-DD');
 
       return dateString
     },
-    setUnitPrice(x) {
+    setInfo(x,f) {
       const self = this;
+      this.withFurniture = false
+      this.isROI = false
       var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
       document.getElementById('unit-price-input').value =  y + '.00 '
+      f != 0 ? document.getElementById('furniture-price-input').value = f + '.00' : document.getElementById('furniture-price-input').value = '-'
+      this.formData.furniture.name = f;
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -467,12 +513,18 @@ export default {
       this.formData[who].name = nVal.name;
     },
     isRoiContract(){
-      if(this.formData.furniture == false){
-        this.formData.furniture = true
+      if(this.withFurniture == false){
+        this.withFurniture = true
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p + parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
       }
 
-      if(this.formData.furniture == true && this.isROI == true){
-        this.formData.furniture = false
+      if(this.withFurniture == true && this.isROI == true){
+        this.withFurniture = false
+        let p = parseInt(document.getElementById('unit-price-input').value.replace(/,/g, ""));
+        let f = p - parseInt(this.formData.furniture.name)
+        document.getElementById('unit-price-input').value = f.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '.00'
       }
     },
     closeModal(x){
@@ -498,7 +550,7 @@ export default {
 
 
         this.$v.$touch()
-        if (this.$v.$invalid || this.validation.length < 6 ) {
+        if (this.$v.$invalid || this.validation.length < 5 ) {
 
           for(let i = 0; i < 5; i++){
             if(this.validation.includes("unit")){
@@ -507,12 +559,7 @@ export default {
                   var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
                   unitDropdown.classList.add("error");
             }
-            if(this.validation.includes("cluster")){
 
-            } else {
-                  var unitDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
-                  unitDropdown.classList.add("error");
-            }
             if(this.validation.includes("executive")){
 
             } else {
@@ -541,13 +588,11 @@ export default {
 
         } else {
 
-          var clusterDropdown = document.getElementById("dropdown-clusters__BV_toggle_");
           var executiveDropdown = document.getElementById("dropdown-executives__BV_toggle_");
           var paymentDropdown = document.getElementById("dropdown-payment__BV_toggle_");
           var unitDropdown = document.getElementById("dropdown-unit__BV_toggle_");
           var currencyDropdown = document.getElementById("dropdown-currency__BV_toggle_");
           var clientDropdown = document.getElementById("dropdown-customer__BV_toggle_");
-          clusterDropdown.classList.remove("error");
           executiveDropdown.classList.remove("error");
           unitDropdown.classList.remove("error");
           currencyDropdown.classList.remove("error");
@@ -570,7 +615,6 @@ export default {
                 name: k,
                 value:this.getValue(k)
                 });
-
               });
               frm[0].value = (frm[0].value).replace(/\,/g,'');
               frm[0].value = parseInt(frm[0].value,10);
@@ -611,7 +655,7 @@ export default {
                     .dispatch("contracts/getContracts");
                     _.$eventHub.$emit("updateDataDetail");
                     _.validation = []
-                    _.formData.furniture = false
+                    _.withFurniture = false
                     _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
                     _.formData.paymentMethod.name != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.name
                     _.formData.paymentMethod.other != null ? _.formData.paymentMethod.other = null : _.formData.paymentMethod.other
@@ -623,7 +667,7 @@ export default {
                       _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
                       _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
                       _.formData.comment != null ? _.formData.comment = null : _.formData.comment
-                      _.formData.furniture == true ? _.formData.furniture = false : _.formData.furniture
+                      _.withFurniture == true ? _.withFurniture = false : _.withFurniture
                     }
 
                   });
@@ -632,15 +676,9 @@ export default {
                 }
 
     })
-      // this.formData.forEach(ele =>{
-      //   frm.push({
-      //     name: ele,
-      //     value: ele.value
-      //   });
-      // })
-        }
       }
-    },
+    }
+  },
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
@@ -889,6 +927,13 @@ export default {
     color:#a8a8a8;
   }
 
+  #dropdown-validation0 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+  }
+
  #dropFileForm #fileInput {
   display: none
  }
@@ -994,6 +1039,10 @@ button.waves.default {
   outline:none;
 }
 
+.custom-control-input:disabled ~ .custom-control-label::before {
+    background-color: #e9ecef1f;
+}
+
 
     @keyframes fadeInAnimation {
       0%   {
@@ -1048,6 +1097,12 @@ button.waves.default {
     }
     .col-lg-3 {
       margin:10px;
+    }
+  }
+
+  @media screen and (min-width:1200px) and (max-width:1430px) {
+    #dropdown-clusters__BV_toggle_{
+      transform: translateX(-32px);
     }
   }
 
