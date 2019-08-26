@@ -75,7 +75,7 @@
 <script>
 
 export default {
-  props:["idN"],
+  props:["clusterId"],
   data(){
     return {
       isActive: true
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     selectTower() {
-      let tower = this.idN + 1
+      let tower = this.clusterId + 1
       this.$eventHub.$emit("select-tower", tower);
     }
   }

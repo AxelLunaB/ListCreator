@@ -6,7 +6,7 @@
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
-        <h2 style=" display: flex;align-items: center;">{{ title }}</h2>
+        <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList">View full list</button>
@@ -52,7 +52,7 @@
           </div>
         </div>
     </div>
-    <references-list :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
+    <references-list :title="title" :departments ="departments" :clusterId="clusterId" :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
   </div>
 </template>
 
@@ -91,24 +91,35 @@
       });
 
     this.$eventHub.$on("select-tower", tower => {
-      this.$store.dispatch("departments/getDepartmentById", tower);
-      switch(tower) {
-        case 1:
-        this.title = "BRAVA TOWER"
-        break;
-        case 2 :
-        this.title ="GIADA TOWER A"
-        break;
-        case 3:
-        this.title = "GIADA TOWER B"
+
+      if(tower !== undefined) {
+
+        this.$store.dispatch("departments/getDepartmentById", tower);
+        this.clusterId = tower;
+
+        switch(tower) {
+          case 1:
+            this.title = "BRAVA TOWER"
+            break;
+          case 2:
+            this.title ="GIADA TOWER A"
+            break;
+          case 3:
+            this.title = "GIADA TOWER B"
+            break;
+        }
+
+      } else {
+        console.log('Tower object is missing!');
       }
+      
     })
 
 
 
 
       this.$eventHub.$on("updateDataDetail", () => {
-        this.$store.dispatch("departments/getDepartmentById",tower);
+        this.$store.dispatch("departments/getDepartmentById", tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -147,7 +158,8 @@
         sDepartments:[],
         fDepartments:[],
         depsAndContracts:[],
-        title:null
+        title: null,
+        clusterId: undefined
       }
     },
     methods: {
@@ -433,7 +445,7 @@
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
-      }
+      },
   }
 
 </script>

@@ -40,7 +40,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'REFERRED',
+        name: 'AVAILABLE*',
         color_hex: '#8fb5ff',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -48,6 +48,12 @@ module.exports = {
       {
         name: 'BLOCKED',
         color_hex: '#8a8a8a',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'CANCELLED',
+        color_hex: '#f27777',
         createdAt: new Date(),
         updatedAt: new Date()
       }

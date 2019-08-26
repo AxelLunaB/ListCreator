@@ -1,7 +1,7 @@
 <template>
     <div class="main">
           <div class="wrapper-page row">
-                  <development  v-for="(d,index) in development" :key="index" :idN="index"></development>
+                  <development  v-for="(d,index) in development" :key="index" :clusterId="index"></development>
           </div>
           <!-- <ul class="pagination pagination-lg m-0">
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
@@ -15,7 +15,9 @@
                 <li class="page-item"> <a href="#" class="page-link">3</a> </li>
                 <li class="page-item"> <a href="#" class="page-link">4</a> </li>
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-            </ul> -->
+            </ul> 
+            
+            <development  v-for="(d,index) in development" :key="index" :idN="index"></development>-->
     </div>
 
 </template>

@@ -652,11 +652,12 @@ export default {
     shouldShow() {
       return this.show;
     },
-    getAvailableDepartments () {
-      let res = null
-      res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1) : null
 
-      return res
+    getAvailableDepartments () {
+      let res = null;
+      res = this.departments.length > 0 ? res = this.departments.filter(dep => dep.statusId == 1 || dep.statusId == 6) : null;
+
+      return res;
     }
   }
 }
