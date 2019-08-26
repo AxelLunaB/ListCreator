@@ -21,7 +21,8 @@ module.exports = (app) => {
     priceTotalM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
     priceTotal: DataTypes.DOUBLE,
-    unitType:DataTypes.STRING
+    unitType:DataTypes.STRING,
+    furniture:DataTypes.FLOAT
   }, {
     hooks: {
       beforeCount(options) {

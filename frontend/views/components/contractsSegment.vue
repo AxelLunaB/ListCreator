@@ -57,7 +57,7 @@
                       name="salePrice"
                       :key="option.id"
                       :value="option.id"
-                      @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setUnitPrice(option.priceTotal)">{{option.unitNumber}} </b-dropdown-item>
+                      @click="selectUnit('unit'),setData('unitId',{id :option.id, name: option.unitNumber});setInfo(option.priceTotal, option.furniture)">{{option.unitNumber}} </b-dropdown-item>
                     </div>
                     </b-dropdown>
                     </div>
@@ -186,12 +186,21 @@
                 <div class="form-group row">
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="formData.furniture" :disabled="isROI">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="withFurniture" :disabled="isROI">
                       <label class="custom-control-label" for="customCheck1"></label>
                     </div>
-                    <label for="Furniture">
+                    <label for="Furniture" style='margin:0;'>
                     Furniture
                     </label>
+                    <input
+                    style="text-align:center;padding-right:10px;"
+                    type="text"
+                    class="form-control disabled-option col-3"
+                    placeholder="Select unit"
+                    name="furniture"
+                    value=""
+                    id="furniture-price-input"
+                    readonly="readonly">
                   </div>
                   <div class="checkbox checkbox-primary col-12" style="text-align:left;align-items:center;">
                     <div class="custom-control custom-checkbox">
@@ -231,10 +240,6 @@
                     data-bts-button-up-class="btn btn-primary"/>
                     <div style="font-weight: lighter;text-align: right;width: 100%;" >value must be numeric</div>
                     </template>
-                    <!-- <div class="error col-12" v-if="!$v.years.numeric">value must be numeric</div>-->
-                    <!--<div class="error col-12" v-if="!$v.years.between && $v.years.$dirty && $v.years.numeric">value must be between 1-99</div> -->
-                                        <!-- :class="{ 'form-group-error': $v.years.$error }"
-                    v-model.trim="$v.years.$model" -->
                   </div>
                 </div>
                 <div class="form-group row">
@@ -334,10 +339,11 @@ export default {
         currency: {id: null, name: null},
         WROI: { name: null},
         years:{name: null},
-        furniture:false,
+        furniture:0,
         comment:null,
         paymentMethod:{id:null, name:null, other:null}
       },
+      withFurniture:false,
       paymentMethod:"",
       departments: {},
       options: {
@@ -386,11 +392,13 @@ export default {
       case "id":
       return this.formData.id
       case "furniture":
-      return this.formData.furniture == false  ? "NO" : "YES"
+      return this.formData.furniture == false  ? 'NO' : 'YES'
       break;
       case 'years':
       return this.formData.years.name
       break;
+      case 'furniture':
+      return this.formData.furniture.name != null ? this.formData.furniture.name : 0
 
       }
     }
@@ -459,10 +467,11 @@ export default {
 
       return dateString
     },
-    setUnitPrice(x) {
+    setInfo(x,f) {
       const self = this;
       var y = x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
       document.getElementById('unit-price-input').value =  y + '.00 '
+      f != 0 ? document.getElementById('furniture-price-input').value = f + '.00' : document.getElementById('furniture-price-input').value = '-'
     },
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -473,12 +482,12 @@ export default {
       this.formData[who].name = nVal.name;
     },
     isRoiContract(){
-      if(this.formData.furniture == false){
-        this.formData.furniture = true
+      if(this.withFurniture == false){
+        this.withFurniture = true
       }
 
-      if(this.formData.furniture == true && this.isROI == true){
-        this.formData.furniture = false
+      if(this.withFurniture == true && this.isROI == true){
+        this.withFurniture = false
       }
     },
     closeModal(x){
@@ -609,7 +618,7 @@ export default {
                     .dispatch("contracts/getContracts");
                     _.$eventHub.$emit("updateDataDetail");
                     _.validation = []
-                    _.formData.furniture = false
+                    _.withFurniture = false
                     _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
                     _.formData.paymentMethod.name != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.name
                     _.formData.paymentMethod.other != null ? _.formData.paymentMethod.other = null : _.formData.paymentMethod.other
@@ -621,7 +630,7 @@ export default {
                       _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
                       _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
                       _.formData.comment != null ? _.formData.comment = null : _.formData.comment
-                      _.formData.furniture == true ? _.formData.furniture = false : _.formData.furniture
+                      _.withFurniture == true ? _.withFurniture = false : _.withFurniture
                     }
 
                   });

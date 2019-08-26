@@ -27,6 +27,7 @@ module.exports = {
           referenceId: data[14] != 'null' ? data[14] : null,
           clusterId: data[15] != 'null' ? data[15] : null,
           comment: data[17] != 'null' ? data[17] : null,
+          furniturePrice:data[18] != 'null' ? data[18]:null,
           createdAt: new Date(),
           updatedAt: new Date(),
           unitId: data[0]
