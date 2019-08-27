@@ -29,529 +29,386 @@
       </div>
     </div>
     <div style="text-align:center;" @click="printContract()">
-      Generate PDF contract
+      Generar CONTRATO DE PROMESA DE COMPRAVENTA
     </div>
-    <div class="willPrintContract d-none" id="willPrintContract">
-      <p><b>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, GIADA CONSULTING, S. DE R.L. DE C.V. REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO “EL PROMITENTE VENDEDOR”, Y POR LA OTRA PARTE ________</b>0_<b>_____, QUIEN EN LO SUCESIVO SERÁ REFERIDO COMO “EL PROMITENTE COMPRADOR”, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </b> </p>
+    <div class="willPrintContract d-none" id="willPrintContract" style="margin:30px;">
+<p></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE ______________, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
 
-      <br/>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DECLARACIONES</strong></span></span></span></p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>PRIMERA. &ldquo;EL PROMITENTE VENDEDOR&rdquo; A TRAVÉS DE SU REPRESENTANTE LEGAL DECLARA: </strong></span></span></span></p>
 
-      <p><b>DECLARACIONES</b></p>
-
-      <br/>
-
-      <p><b>PRIMERA. “EL PROMITENTE VENDEDOR” A TRAVÉS DE SU REPRESENTANTE LEGAL DECLARA: </b> </p>
-
-      <br/>
-
-      <ol type="a">
-        <li>
-          <p>Que es una persona moral constituida conforme a las leyes mexicanas, según consta en el instrumento notarial 657 de fecha 23 de noviembre de 2017, otorgado ante la fe del Lic. Ricardo Dehesa Cortes titular de la Notaría Pública 90 en el Estado de Quintana Roo, México, debidamente inscrita en el registro público de comercio bajo el folio mercantil electrónico número <b>N-2018015273</b>.</p>
-        </li>
-      </ol>
-
-      <br/>
-
-      <ol type="a" start="2">
-        <li>
-          <p>Que su representante cuenta con facultades necesarias para celebrar el presente contrato según consta en instrumento mencionado en el inciso anterior, y que sus facultades no le han sido revocadas ni limitadas en forma alguna.</p>
-        </li>
-      </ol>
-
-      <br/>
-
-      <ol type="a" start="3">
-        <li>
-          <p>Que se encuentra debidamente inscrita en el Registro Federal de Contribuyentes con el número <b>GCO171123H98</b>.</p>
-        </li>
-      </ol>
-
-      <br/>
-
-      <ol type="a" start="4">
-        <li>
-          <p>Que su domicilio es el ubicado en “Av. 10 sur, comercios, local 36, Manzana 3, Lote 1, Centro Plaza Paraíso Caribe, Playa del Carmen, Quintana Roo,77710” y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electrónico a la dirección electrónica <a href="mailto:office@giadarealestate.com">office@giadarealestate</a><a href="mailto:office@giadarealestate.com">.com</a>.</p>
-        </li>
-      </ol>
-
-<br/>
-
-<ol type="a" start="5"> <li><p>Que mediante escritura pública número ___ de fecha _____ otorgada ante la fe del Lic. _____ titular de la notaría pública número ___ del estado de ____, adquirió la propiedad del bien inmueble identificado como ____________, en lo sucesivo referido como <b>“EL TERRENO”</b></p>
-
+<ol type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es una persona moral constituida conforme a las leyes mexicanas, seg&uacute;n consta en el instrumento notarial </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">657</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> de fecha </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">23 de noviembre de 2017</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">, otorgado ante la fe del </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Lic. Ricardo Dehesa Cortes</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> titular de la Notar&iacute;a P&uacute;blica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">90</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> en el Estado de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Quintana Roo</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, M&eacute;xico, debidamente inscrita en el registro p&uacute;blico de comercio bajo el folio mercantil electr&oacute;nico n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>N-2018015273</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="6"> <li><p>Que en EL TERRENO, está llevando a cabo la construcción y desarrollo de un proyecto inmobiliario, que se sujetará al régimen de propiedad en condominio, y estará integrado por _1_ unidades habitacionales y _2_ locales comerciales, (en lo sucesivo referido como <b>“EL PROYECTO”</b>), el cual se describe en términos generales en el documento adjunto al presente contrato como <b>ANEXO “A”</b>, y que será comercialmente identificado como “<b>_______3______</b>”.</p>
-
+<ol start="2" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que su representante cuenta con facultades necesarias para celebrar el presente contrato seg&uacute;n consta en instrumento mencionado en el inciso anterior, y que sus facultades no le han sido revocadas ni limitadas en forma alguna.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<ol type="a" start="7"> <li><p>Entre las unidades habitacionales que integran EL PROYECTO, se encuentra la identificada convencionalmente con el número __4__ (en lo sucesivo <b>“LA UNIDAD”</b>), en el entendido que dicha nomenclatura podrá variar atendiendo al determinado por las autoridades al formalizar el régimen de propiedad en condominio; cuyas dimensiones, acabados y características se describen en el <b>ANEXO “A”</b>. </p>
-
+</ol>
+<p lang="es-MX">&nbsp;</p>
+<ol start="3" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que se encuentra debidamente inscrita en el Registro Federal de Contribuyentes con el n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>GCO171123H98</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="8"> <li><p>Que es su voluntad celebrar el presente contrato con la finalidad de celebrar en un futuro un contrato de compra venta de LA UNIDAD, bajo las bases y lineamientos aquí́ pactados así como con las formalidades establecidas en la ley. </p>
-
+<ol start="4" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que su domicilio es el ubicado en &ldquo;Av. 10 sur, comercios, local 36, Manzana 3, Lote 1, Centro Plaza Para&iacute;so Caribe, Playa del Carmen, Quintana Roo,77710&rdquo; </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica <a href="mailto:office@giadarealestate.com">office@giadarealestate</a></span></span></span><a href="mailto:office@giadarealestate.com"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.com</span></span></span></a><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><b>SEGUNDA. EL PROMITENTE COMPRADOR por su propio y personal derecho declara:</b></p>
-
-<ol type="a"> <li><p>Que es una persona física de nacionalidad mexicana, mayor de edad, con capacidad legal y económica suficiente para obligarse en los términos del presente contrato, quien se identifica con ________5_______. </p>
-
+</ol>
+<p lang="es-MX">&nbsp;</p>
+<ol start="5" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que mediante escritura p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> de fecha </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> otorgada ante la fe del Lic. </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> titular de la notar&iacute;a p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del estado de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, adquiri&oacute; la propiedad del bien inmueble identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL TERRENO&rdquo;</strong></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<ol type="a" start="2"> <li><p>Que su domicilio para efectos del presente contrato es el ubicado en ________6_______, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electrónico a la dirección electrónica ______________7__________.</p>
-
+</ol>
+<p align="JUSTIFY">&nbsp;</p>
+<ol start="6" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que en EL TERRENO, est&aacute; llevando a cabo la construcci&oacute;n y desarrollo de un proyecto inmobiliario, que se sujetar&aacute; al r&eacute;gimen de propiedad en condominio, y estar&aacute; integrado por </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> unidades habitacionales y </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> locales comerciales, (en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL PROYECTO&rdquo;</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">), el cual se describe en t&eacute;rminos generales en el documento adjunto al presente contrato como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, y que ser&aacute; comercialmente identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&ldquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>_____________</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&rdquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="3"> <li><p>Que los recursos con los cuales pagará a EL PROMITENTE VENDEDOR son de origen licito, por lo que en este acto se obliga a responder de cualquier afectación que EL PROMITENTE VENDEDOR pudiera tener en razón del origen de dichos recursos.</p>
-
+<ol start="7" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Entre las unidades habitacionales que integran EL PROYECTO, </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">se encuentra la identificada convencionalmente con el n&uacute;mero </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> (en lo sucesivo </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA UNIDAD&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">), en el entendido que dicha nomenclatura podr&aacute; variar atendiendo al determinado por las autoridades al formalizar el r&eacute;gimen de propiedad en condominio; cuyas dimensiones, acabados y caracter&iacute;sticas se describen en el </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<ol type="a" start="4"> <li><p>Que es su voluntad celebrar el presente contrato con la finalidad de celebrar en un futuro un contrato de compra venta de LA UNIDAD, bajo las bases y lineamientos aquí́ pactados así como con las formalidades establecidas en la ley.</p>
-
+</ol>
+<p lang="es-MX">&nbsp;</p>
+<ol start="8" type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es su voluntad celebrar el presente contrato con la finalidad de celebrar en un futuro un contrato de compra venta de LA UNIDAD, bajo las bases y lineamientos aqu&iacute;́ pactados as&iacute; como con las formalidades establecidas en la ley. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<p><b>TERCERA. Ambas partes declaran:</b></p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
 
-<ol type="a"> <li><p>Que se reconocen mutuamente la personalidad con que comparecen a la celebración del presente instrumento. </p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEGUNDA. EL PROMITENTE COMPRADOR por su propio y personal derecho declara:</strong></span></span></span></p>
 
+<ol type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es una persona f&iacute;sica de nacionalidad mexicana, mayor de edad, con capacidad legal y econ&oacute;mica suficiente para obligarse en los t&eacute;rminos del presente contrato, quien se identifica con </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_______________. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="2"> <li><p>Que celebran el presente instrumento de manera voluntaria, libre y responsable, sin que al efecto exista dolo, lesión, error, violencia o mala fe y/o algún vicio de la voluntad que lo invalide. </p>
-
+<ol start="2" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">________________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="3"> <li><p>Que es su deseo obligarse en los términos del presente Instrumento. </p>
-
+<ol start="3" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que los recursos con los cuales pagará a EL PROMITENTE VENDEDOR son de origen licito, por lo que en este acto se obliga a responder de cualquier afectaci&oacute;n que EL PROMITENTE VENDEDOR pudiera tener en raz&oacute;n del origen de dichos recursos.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol type="a" start="4"> <li><p>Que el presente acuerdo expresa la voluntad de ambas partes, por lo que no se puede considerar contrato de adhesión. </p>
-
+<ol start="4" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es su voluntad celebrar el presente contrato con la finalidad de celebrar en un futuro un contrato de compra venta de LA UNIDAD, bajo las bases y lineamientos aqu&iacute;́ pactados as&iacute; como con las formalidades establecidas en la ley.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<p><br />
-</p>
-
-<p>En merito a lo anteriormente declarado, las partes celebran el presente contrato con sujeción a las siguientes: </p>
-
-<p><br />
-</p>
-
-<p><b>CLÁUSULAS</b></p>
-
-<p><br />
-</p>
-
-<p><b>PRIMERA. Objeto del Contrato. </b> </p>
-
-<p>Por medio del presente contrato las partes se obligan a celebrar un contrato de compraventa por medio del cual EL PROMITENTE VENDEDOR transmita la propiedad y EL PROMITENTE COMPRADOR adquiera la propiedad de LA UNIDAD con todo cuanto de hecho y por derecho corresponda, con las formalidades establecidas por la ley y por las bases aquí pactadas y, cuyas medidas, especificaciones y acabados se estipulan en el ANEXO “A”, mismo que forma parte integral del presente contrato. </p>
-
-<p><br />
-</p>
-
-<p><b>SEGUNDA. Formalización. </b> </p>
-
-<p>El contrato de compraventa prometido deberá celebrarse bajo las formalidades establecidas por la ley, ante la fe de notario público, a más tardar 60 (sesenta) días posteriores a la entrega física de LA UNIDAD, siempre y cuando se cumplan con los requisitos, términos y condiciones pactados mediante el presente contrato.</p>
-
-<p><br />
-</p>
-
-<p>Ambas partes establecen como condición suspensiva para la celebración del contrato prometido, la entrega de la garantía pactada mediante cláusula tercera, así como la constitución del régimen de propiedad en condominio.</p>
-
-<p><br />
-</p>
-
-<p><b>TERCERA. – Precio y garantía. </b> </p>
-
-<p>Las partes acuerdan fijar como precio justo por la transmisión de propiedad de LA UNIDAD en el contrato prometido, la cantidad de $___8____.00 USD (_____9_____ dólares 00/100, moneda de curso legal en Estados Unidos de América). La anterior cantidad deberá ser cubierta en su totalidad a más tardar el día en que se lleve a cabo la firma del contrato prometido.</p>
-
-<p>Con el propósito de garantizar el cumplimiento de sus obligaciones, EL PROMITENTE COMPRADOR debe entregar a EL PROMITENTE VENDEDORy a título de arras, confirmatorias, la cantidad de $ ___10__.00 USD (_____11_____ dólares 00/100, moneda de curso legal en Estados Unidos de América), mismos que serán entregados de la siguiente manera:</p>
-
-<p><br />
-</p>
-
-<ol> <li><p><a name="_Hlk2597239"></a> La cantidad de $ __12___.00 USD (____13______ dólares 00/100, moneda de curso legal en Estados Unidos de América) cantidad que se entregó a EL PROMITENTE VENDEDOR el día __ de ___ de 2019, EL PROMITENTE VENDEDOR manifiesta haber recibido a su entera satisfacción de dicha suma de dinero, sirviendo el presente contrato como recibo más amplio que en derecho proceda.</p>
-
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>TERCERA. Ambas partes declaran:</strong></span></span></span></p>
+<ol type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que se reconocen mutuamente la personalidad con que comparecen a la celebraci&oacute;n del presente instrumento. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol start="2"> <li><p>La cantidad de $ ___14__.00 USD (____15______ dólares 00/100, moneda de curso legal en Estados Unidos de América), a más tardar a los 7 (siete) días posteriores a la fecha de firma del presente acuerdo y,</p>
-
+<ol start="2" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que celebran el presente instrumento de manera voluntaria, libre y responsable, sin que al efecto exista dolo, lesi&oacute;n, error, violencia o mala fe y/o alg&uacute;n vicio de la voluntad que lo invalide. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+</ol>
 
-<ol start="3"> <li><p>La cantidad de $ __16___.00 USD (______17____ dólares 00/100, moneda de curso legal en Estados Unidos de América), a más tardar el día en que se lleve a cabo la entrega física de LA UNIDAD.</p>
-
+<ol start="3" type="a">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es su deseo obligarse en los t&eacute;rminos del presente Instrumento. </span></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<p><a name="_Hlk2598045"></a> Las cantidades establecidas en el párrafo anterior, serán aplicadas al precio que se pacte en el contrato prometido y a solicitud de EL PROMITENTE COMPRADOR, al momento de llevarse a cabo la firma ante notario público del contrato prometido. En caso de efectuarse lo anterior, EL PROMITENTE COMPRADOR deberá llevar a cabo el pago por la cantidad de $ __18___.00 USD (____19______ dólares 00/100, moneda de curso legal en Estados Unidos de América) para que se tenga por totalmente cubierto el precio a pactarse en el contrato respectivo y en la fecha en que se lleve a cabo la firma del mismo.</p>
-
-<p><br />
-</p>
-
-<p>Los montos anteriormente pactados deberán depositarse o transferirse a las cuentas bancarias siguientes: </p>
-
-<p><br />
-</p>
-
-<p><b>PARA TRANSFERENCIAS VIA SPEI </b>(Transferencias nacionales en pesos)</p>
-
-<p><br />
-</p>
-
-<p><b>BANCO: </b>MONEX (BMONEX)</p>
-
-<p><b>BENEFICIARIO: </b>GIADA CONSULTING S DE RL DE CV</p>
-
-<p><b>CUENTA: </b>3144128</p>
-
-<p><b>CLABE: </b>112180000031441284</p>
-
-<p><br />
-</p>
-
-<p><b>PARA TRANSFERENCIAS VIA SPID </b>(recepción de dólares usd desde otro banco dentro del País)</p>
-
-<p><br />
-</p>
-
-<p><b>BANCO: </b>MONEX (BMONEX)</p>
-
-<p><b>BENEFICIARIO: </b>GIADA CONSULTING S DE RL DE CV</p>
-
-<p><b>R.F.C.: </b>GCO171123H98</p>
-
-<p><b>CUENTA: </b>3144128</p>
-
-<p><b>CLABE SPID: </b>112962000031441282</p>
-
-<p><br />
-</p>
-
-<p><b>PARA TRANSFERENCIAS INTERNACIONALES EN DOLARES:</b></p>
-
-<p><br />
-</p>
-
-<p><b>BANCO INTERMEDIARIO: </b>Standard Chartered Bank</p>
-
-<p><b>DIRECCIÓN BANCO INTERMEDIARIO: </b>1095 Avenue of the Americas , New York City, N.Y. 10036, United States</p>
-
-<p><b>SWIFT: </b>SCBLUS33</p>
-
-<p><b>ABA: </b>026002561</p>
-
-<p><b>CUENTA INTERBANCARIA: </b>3544039183001</p>
-
-<p><br />
-</p>
-
-<p><b>BANCO BENEFICIARIO: </b>Banco Monex S.A.</p>
-
-<p><b>SWIFT BANCO BENEFICIARIO: </b>MONXMXMM.</p>
-
-<p><b>BENEFICIARIO: </b>GIADA CONSULTING, S de RL de CV.</p>
-
-<p><b>CONTRATO: </b>3144128</p>
-
-<p><br />
-</p>
-
-<p>EL PROMITENTE COMPRADOR asume la obligación de cubrir todo tipo de costo, cargo, comisión bancaria o cualquier otra cantidad que sea necesaria para llevar a cabo el pago a favor de EL PROMITENTE VENDEDOR.</p>
-
-<p><br />
-</p>
-
-<p>EL PROMITENTE COMPRADOR deberá entregar en el domicilio o enviar vía correo electrónico a EL PROMITENTE VENDEDOR, copia del documento que acredite dichos pagos.</p>
-
-<p><br />
-</p>
-
-<p>En caso de que el pago sea llevado a cabo mediante cheque, y éste no sea pagado por la institución bancaria por causas imputables a EL PROMITENTE COMPRADOR, éste deberá pagar a EL PROMITENTE VENDEDOR el 20% (veinte por ciento) del importe del título devuelto, de conformidad con lo establecido por el artículo 193 de la Ley General de Títulos y Operaciones de Crédito.</p>
-
-<p><b>CUARTA. Modalidad de la compraventa prometida.</b></p>
-
-<p>La transmisión de la propiedad prometida mediante el presente contrato se lleva a cabo bajo la modalidad <i>“ad corpus”</i>, motivo por el cual, el aumento o disminución de la superficie de LA UNIDAD en un porcentaje no mayor al 2% (dos por ciento) de lo pactado, no originará modificación al precio pactado, ni será causal de rescisión del presente contrato</p>
-
-<p><b>QUINTA. - Entrega. </b> </p>
-
-<p>Se entenderá por “Fecha de Entrega”, la fecha en que EL PROMITENTE VENDEDOR deberá hacer la entrega física de LA UNIDAD y a partir de la cual, EL PROMITENTE COMPRADOR tendrá la posesión de LA UNIDAD. La “Fecha de Entrega” deberá ocurrir a más tardar el día ________20_________, siempre y cuando EL PROMITENTE COMPRADOR haya cumplido con sus obligaciones. </p>
-
-<p><br />
-</p>
-
-<p>Las partes acuerdan que EL PROMITENTE VENDEDOR tendrá un término de gracia de 30 (treinta) días naturales posteriores a la “Fecha de Entrega” para el caso de que tal entrega se demore por cualquier motivo (en lo sucesivo el “Período de Gracia”), período durante el cual no se generará penalidad alguna para EL PROMITENTE VENDEDOR.</p>
-
-<p><br />
-</p>
-
-<p>Las partes acuerdan que en caso de que EL PROMITENTE VENDEDOR no entregue LA UNIDAD en la “Fecha de Entrega” y en el “Periodo de Gracia” anteriormente establecidos, se generará la obligación de EL PROMITENTE VENDEDOR de pagar a favor de EL PROMITENTE COMPRADOR la cantidad de $600.00 USD (seiscientos dólares 00/100, moneda de curso legal en los Estados Unidos de América) por cada mes de retraso. Dicha obligación de pago se generará a partir del primer día de cada mes excedido y podrá prolongarse hasta un máximo de 3 (tres) meses. Asimismo, las partes acuerdan que la presente obligación no se considerará incumplimiento ni será motivo de rescisión del presente acuerdo. </p>
-
-<p><br />
-</p>
-
-<p>En caso de que EL PROMITENTE VENDEDOR no haya llevado a cabo la entrega de LA UNIDAD una vez transcurrido el plazo máximo de 3 (tres) meses establecido en el párrafo anterior, EL PROMITENTE COMPRADOR podrá a su elección, continuar acumulando el importe de $600.00 USD (seiscientos dólares 00/100 moneda de curso legal en los Estados Unidos de América) por cada mes que se retrase en dicha entrega, quedando vigentes las obligaciones de ambas partes o, rescindir el presente contrato con las consecuencias pactadas. </p>
-
-<p><br />
-</p>
-
-<p>EL PROMITENTE VENDEDOR notificará a EL PROMITENTE COMPRADOR, con 30 (treinta) días naturales de anticipación, la fecha y hora de la entrega física de LA UNIDAD, por lo que EL PROMITENTE COMPRADOR deberá comparecer por sí o por medio de apoderado con facultades suficientes. </p>
-
-<p><br />
-</p>
-
-<p>Dentro del periodo de 30 (treinta) días establecido en el párrafo anterior, las partes deberán inspeccionar LA UNIDAD para verificar que cumpla con las especificaciones establecidas en los anexos de este contrato. De esta inspección se levantará un acta (en lo sucesivo denominada el “Acta de Revisión”) en la cual se asentarán, en su caso, los detalles que no cumplan con tales especificaciones. En caso de que se verifique lo anterior, EL PROMITENTE VENDEDOR deberá reparar de los detalles mencionados en el “Acta de Revisión” en un término máximo de 30 (treinta) días posteriores a la fecha en que se verifique la inspección, sin que dicho término se considere incumplimiento en el término establecido para la entrega. </p>
-
-<p><br />
-</p>
-
-<p>A partir de la entrega física de LA UNIDAD, EL PROMITENTE COMPRADOR será responsable de todos y cada uno de los gastos, cuotas de mantenimiento, impuestos y contribuciones propios de LA UNIDAD, asimismo, deberá asumir a su cargo los daños que sufra LA UNIDAD, incluyendo los que se deriven de casos fortuitos o de fuerza mayor.</p>
-
-<p><br />
-</p>
-
-<p><b>SEXTA. Mobiliario.</b></p>
-
-<p>Las partes acuerdan que EL PROMITENTE VENDEDOR entregará LA UNIDAD amueblada y equipada, de conformidad con el ANEXO “B” y que genera obligación de pago diversa de la establecida mediante cláusula tercera, que es por la cantidad de $___21__.00 USD (_____22____ dólares 00/100 moneda de curso legal en Estados Unidos de América), mismo que EL PROMIENTE COMPRADOR se obliga a pagar a más tardar el día _______23_______. </p>
-
-<p><br />
-</p>
-
-<p><b>SEPTIMA. Obligaciones de EL PROMITENTE COMPRADOR:</b></p>
-
-<p>EL PROMITENTE COMPRADOR, se obliga a:</p>
-
-<p><br />
-</p>
-
-<ol> <li><p><a name="_Hlk2598240"></a> Entregar las cantidades en garantía y en las fechas pactadas.</p>
-
+</ol>
+<p lang="es-MX">&nbsp;</p>
+<ol start="4" type="a">
+<li>
+<p lang="es-ES"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que el presente acuerdo expresa la voluntad de ambas partes, por lo que no se puede considerar contrato de adhesi&oacute;n. </span></span></span></p>
 </li>
-<li><p>Pagar en su momento, el precio a pactarse en el contrato prometido.</p>
+</ol>
 
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">En merito a lo anteriormente declarado, las partes celebran el presente contrato con sujeci&oacute;n a las siguientes: </span></span></span></p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CLÁUSULAS</strong></span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>PRIMERA. Objeto del Contrato. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Por medio del presente contrato las partes se obligan a celebrar un contrato de compraventa por medio del cual EL PROMITENTE VENDEDOR transmita la propiedad y EL PROMITENTE COMPRADOR adquiera la propiedad de LA UNIDAD con todo cuanto de hecho y por derecho corresponda, con las formalidades establecidas por la ley y por las bases aqu&iacute; pactadas y, cuyas medidas, especificaciones y acabados se estipulan en el ANEXO &ldquo;A&rdquo;, mismo que forma parte integral del presente contrato. </span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEGUNDA. Formalizaci&oacute;n. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">El contrato de compraventa prometido deber&aacute; celebrarse bajo las formalidades establecidas por la ley, ante la fe de notario p&uacute;blico, a m&aacute;s tardar 60 (sesenta) d&iacute;as posteriores a la entrega f&iacute;sica de LA UNIDAD, siempre y cuando se cumplan con los requisitos, t&eacute;rminos y condiciones pactados mediante el presente contrato.</span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Ambas partes establecen como condici&oacute;n suspensiva para la celebraci&oacute;n del contrato prometido, la entrega de la garant&iacute;a pactada mediante cl&aacute;usula tercera, as&iacute; como la constituci&oacute;n del r&eacute;gimen de propiedad en condominio.</span></span></span></p>
+<p lang="es-MX">&nbsp;</p>
+
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+
+
+<p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>TERCERA. &ndash; Precio y garant&iacute;a. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan fijar como precio justo por la transmisi&oacute;n de propiedad de LA UNIDAD en el contrato prometido, la cantidad de $</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_______</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">.00 USD (</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">__________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica). La anterior cantidad deber&aacute; ser cubierta en su totalidad a m&aacute;s tardar el d&iacute;a en que se lleve a cabo la firma del contrato prometido.</span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Con el prop&oacute;sito de garantizar el cumplimiento de sus obligaciones, EL PROMITENTE COMPRADOR debe entregar a EL PROMITENTE VENDEDOR</span></span></span> <span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">y a t&iacute;tulo de arras, confirmatorias, la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">$ </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.00 USD (</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica), mismos que ser&aacute;n entregados de la siguiente manera:</span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<ol>
+<li>
+<p lang="es-ES" align="JUSTIFY"><a name="_Hlk2597239"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;">La cantidad de $ </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.00 USD </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">(__________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> cantidad que se entreg&oacute; a EL PROMITENTE VENDEDOR el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">__</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">___</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> de 2019, EL PROMITENTE VENDEDOR manifiesta haber recibido a su entera satisfacci&oacute;n de dicha suma de dinero, sirviendo el presente contrato como recibo m&aacute;s amplio que en derecho proceda.</span></span></span></p>
 </li>
-<li><p>Proporcionar la información y documentación solicitada por la notaría designada, para la celebración del contrato prometido.</p>
-
+</ol>
+<p align="JUSTIFY">&nbsp;</p>
+<ol start="2">
+<li>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">La cantidad de $ </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_____</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">.00 USD (</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">__________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica), a m&aacute;s tardar a los 7 (siete) d&iacute;as posteriores a la fecha de firma del presente acuerdo y,</span></span></span></p>
 </li>
-<li><p>Sujetarse a las obligaciones, términos y condiciones establecidos en el Reglamento de Régimen de Propiedad Inmueble en Condominio que se apruebe por la autoridad competente para EL PROYECTO.</p>
-
+</ol>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<ol start="3">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">La cantidad de $ </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.00 USD (</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica), a m&aacute;s tardar el d&iacute;a en que se lleve a cabo la entrega f&iacute;sica de LA UNIDAD.</span></span></p>
 </li>
-<li><p>Cubrir oportunamente las cuotas de mantenimiento al efecto fijadas por la administración de EL PROYECTO a partir de le sea entregada físicamente LA UNIDAD.</p>
+</ol>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><a name="_Hlk2598045"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;">Las cantidades establecidas en el p&aacute;rrafo anterior, ser&aacute;n aplicadas al precio que se pacte en el contrato prometido y a solicitud de EL PROMITENTE COMPRADOR, al momento de llevarse a cabo la firma ante notario p&uacute;blico del contrato prometido. En caso de efectuarse lo anterior, EL PROMITENTE COMPRADOR deber&aacute; llevar a cabo el pago por la cantidad de $ </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.00 USD (</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> d&oacute;lares 00/100, moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> para que se tenga por totalmente cubierto el precio a pactarse en el contrato respectivo y en la fecha en que se lleve a cabo la firma del mismo.</span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Los montos anteriormente pactados deber&aacute;n depositarse o transferirse a las cuentas bancarias siguientes: </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><u><strong>PARA TRANSFERENCIAS VIA SPEI </strong></u></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><u>(Transferencias nacionales en pesos)</u></span></span></span></p>
 
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BANCO:&nbsp;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">MONEX&nbsp;(BMONEX)</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BENEFICIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">GIADA CONSULTING S DE RL DE CV</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CUENTA: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">3144128</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CLABE: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">112180000031441284</span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><u><strong>PARA TRANSFERENCIAS VIA SPID&nbsp;</strong></u></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><u>(recepci&oacute;n de&nbsp;d&oacute;lares usd&nbsp;desde otro banco dentro del Pa&iacute;s)</u></span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BANCO:&nbsp;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">MONEX&nbsp;(BMONEX)</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BENEFICIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">GIADA CONSULTING S DE RL DE CV</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>R.F.C.: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">GCO171123H98</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CUENTA: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">3144128</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CLABE SPID: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">112962000031441282</span></span></span></p>
+
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><u><strong>PARA TRANSFERENCIAS INTERNACIONALES EN DOLARES:</strong></u></span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BANCO INTERMEDIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Standard Chartered Bank</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DIRECCI&Oacute;N BANCO INTERMEDIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">1095 Avenue of the Americas , New York City, N.Y. 10036, United States</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SWIFT: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">SCBLUS33</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ABA: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">026002561</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CUENTA INTERBANCARIA: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">3544039183001</span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BANCO BENEFICIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Banco Monex S.A.</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SWIFT BANCO BENEFICIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">MONXMXMM.</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>BENEFICIARIO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">GIADA CONSULTING, S de RL de CV.</span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO: </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">3144128</span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">EL PROMITENTE COMPRADOR asume la obligaci&oacute;n de cubrir todo tipo de costo, cargo, comisi&oacute;n bancaria o cualquier otra cantidad que sea necesaria para llevar a cabo el pago a favor de EL PROMITENTE VENDEDOR.</span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">EL PROMITENTE COMPRADOR deber&aacute; entregar en el domicilio o enviar v&iacute;a correo electr&oacute;nico a EL PROMITENTE VENDEDOR, copia del documento que acredite dichos pagos.</span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de que el pago sea llevado a cabo mediante cheque, y &eacute;ste no sea pagado por la instituci&oacute;n bancaria por causas imputables a EL PROMITENTE COMPRADOR, &eacute;ste deber&aacute; pagar a EL PROMITENTE VENDEDOR el 20% (veinte por ciento) del importe del t&iacute;tulo devuelto, de conformidad con lo establecido por el art&iacute;culo 193 de la Ley General de T&iacute;tulos y Operaciones de Cr&eacute;dito.</span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>CUARTA. Modalidad de la compraventa prometida.</strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">La transmisi&oacute;n de la propiedad prometida mediante el presente contrato se lleva a cabo bajo la modalidad </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><em>&ldquo;ad corpus&rdquo;</em></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, motivo por el cual, el aumento o disminuci&oacute;n de la superficie de LA UNIDAD en un porcentaje no mayor al 2% (dos por ciento) de lo pactado, no originar&aacute; modificaci&oacute;n al precio pactado, ni ser&aacute; causal de rescisi&oacute;n del presente contrato</span></span></span></p>
+<p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>QUINTA. - Entrega. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Se entender&aacute; por &ldquo;Fecha de Entrega&rdquo;, la fecha en que EL PROMITENTE VENDEDOR deber&aacute; hacer la entrega f&iacute;sica de LA UNIDAD y a partir de la cual, EL PROMITENTE COMPRADOR tendr&aacute; la posesi&oacute;n de LA UNIDAD. La &ldquo;Fecha de Entrega&rdquo; deber&aacute; ocurrir a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, siempre y cuando EL PROMITENTE COMPRADOR haya cumplido con sus obligaciones</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR tendr&aacute; un t&eacute;rmino de gracia de 30 (treinta) d&iacute;as naturales posteriores a la &ldquo;Fecha de Entrega&rdquo; para el caso de que tal entrega se demore por cualquier motivo (en lo sucesivo el &ldquo;Per&iacute;odo de Gracia&rdquo;), per&iacute;odo durante el cual no se generar&aacute; penalidad alguna para EL PROMITENTE VENDEDOR.</span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Las partes acuerdan que en caso de que EL PROMITENTE VENDEDOR no entregue LA UNIDAD en la &ldquo;Fecha de Entrega&rdquo; y en el &ldquo;Periodo de Gracia&rdquo; anteriormente establecidos, se generar&aacute; la obligaci&oacute;n de EL PROMITENTE VENDEDOR de pagar a favor de EL PROMITENTE COMPRADOR la cantidad de $600.00 USD (seiscientos d&oacute;lares 00/100, moneda de curso legal en los Estados Unidos de Am&eacute;rica) por cada mes de retraso. Dicha obligaci&oacute;n de pago se generar&aacute; a partir del primer d&iacute;a de cada mes excedido y podr&aacute; prolongarse hasta un m&aacute;ximo de 3 (tres) meses. Asimismo, las partes acuerdan que la presente obligaci&oacute;n no se considerar&aacute; incumplimiento ni ser&aacute; motivo de rescisi&oacute;n del presente acuerdo. </span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">En caso de que EL PROMITENTE VENDEDOR no haya llevado a cabo la entrega de LA UNIDAD una vez transcurrido el plazo m&aacute;ximo de 3 (tres) meses establecido en el p&aacute;rrafo anterior, EL PROMITENTE COMPRADOR podr&aacute; a su elecci&oacute;n, continuar acumulando el importe de $600.00 USD (seiscientos d&oacute;lares 00/100 moneda de curso legal en los Estados Unidos de Am&eacute;rica) por cada mes que se retrase en dicha entrega, quedando vigentes las obligaciones de ambas partes o, rescindir el presente contrato con las consecuencias pactadas. </span></span></span></p>
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">EL PROMITENTE VENDEDOR notificar&aacute; a EL PROMITENTE COMPRADOR, con 30 (treinta) d&iacute;as naturales de anticipaci&oacute;n, la fecha y hora de la entrega f&iacute;sica de LA UNIDAD, por lo que EL PROMITENTE COMPRADOR deber&aacute; comparecer por s&iacute; o por medio de apoderado con facultades suficientes. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+
+
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Dentro del periodo de 30 (treinta) d&iacute;as establecido en el p&aacute;rrafo anterior, las partes deber&aacute;n inspeccionar LA UNIDAD para verificar que cumpla con las especificaciones establecidas en los anexos de este contrato. De esta inspecci&oacute;n se levantar&aacute; un acta (en lo sucesivo denominada el &ldquo;Acta de Revisi&oacute;n&rdquo;) en la cual se asentar&aacute;n, en su caso, los detalles que no cumplan con tales especificaciones. En caso de que se verifique lo anterior, EL PROMITENTE VENDEDOR deber&aacute; reparar de los detalles mencionados en el &ldquo;Acta de Revisi&oacute;n&rdquo; en un t&eacute;rmino m&aacute;ximo de 30 (treinta) d&iacute;as posteriores a la fecha en que se verifique la inspecci&oacute;n, sin que dicho t&eacute;rmino se considere incumplimiento en el t&eacute;rmino establecido para la entrega. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">A partir de la entrega f&iacute;sica de LA UNIDAD, EL PROMITENTE COMPRADOR ser&aacute; responsable de todos y cada uno de los gastos, cuotas de mantenimiento, impuestos y contribuciones propios de LA UNIDAD, asimismo, deber&aacute; asumir a su cargo los da&ntilde;os que sufra LA UNIDAD, incluyendo los que se deriven de casos fortuitos o de fuerza mayor.</span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>SEXTA. Mobiliario.</strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR entregar&aacute; LA UNIDAD amueblada y equipada, de conformidad con el ANEXO &ldquo;B&rdquo; y que genera obligaci&oacute;n de pago diversa de la establecida mediante cl&aacute;usula tercera, que es por la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">$</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_____</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.00 USD (</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> d&oacute;lares 00/100 moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, mismo que EL PROMIENTE COMPRADOR se obliga a pagar a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">. </span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEPTIMA. Obligaciones de EL PROMITENTE COMPRADOR:</strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL PROMITENTE COMPRADOR, se obliga a:</span></span></span></p>
+
+<ol>
+<li>
+<p lang="es-ES" align="JUSTIFY"><a name="_Hlk2598240"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Entregar las cantidades en garant&iacute;a y en las fechas pactadas.</span></span></span></p>
 </li>
-<li><p>Acudir puntualmente a la fecha de la entrega física de LA UNIDAD e inspección.</p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Pagar en su momento, el precio a pactarse en el contrato prometido.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
-
-<p><b>OCTAVA. Obligaciones de EL PROMITENTE VENDEDOR:</b></p>
-
-<ol> <li><p>Entregar LA UNIDAD en la “Fecha de Entrega” establecida, con las prórrogas y periodo de gracia acordados.</p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Proporcionar la informaci&oacute;n y documentaci&oacute;n solicitada por la notar&iacute;a designada, para la celebraci&oacute;n del contrato prometido.</span></span></span></p>
 </li>
-<li><p>Entregar LA UNIDAD con las especificaciones pactadas en los anexos.</p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Sujetarse a las obligaciones, t&eacute;rminos y condiciones establecidos en el Reglamento de R&eacute;gimen de Propiedad Inmueble en Condominio que se apruebe por la autoridad competente para EL PROYECTO.</span></span></span></p>
 </li>
-<li><p>Constituir el régimen de propiedad en condominio de conformidad con las declaraciones del presente contrato.</p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Cubrir oportunamente las cuotas de mantenimiento al efecto fijadas por la administraci&oacute;n de EL PROYECTO a partir de le sea entregada f&iacute;sicamente LA UNIDAD.</span></span></span></p>
 </li>
-<li><p>Proporcionar la documentación requerida por la notaría designada para la celebración del contrato prometido.</p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Acudir puntualmente a la fecha de la entrega f&iacute;sica de LA UNIDAD e inspecci&oacute;n.</span></span></span></p>
 </li>
-<li><p>Una vez cumplidas las obligaciones previas, transmitir la propiedad de LA UNIDAD a favor de EL PROMITENTE COMPRADOR, con todo cuanto de hecho y por derecho corresponda con las formalidades establecidas en la ley.</p>
+</ol>
 
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>OCTAVA. Obligaciones de EL PROMITENTE VENDEDOR:</strong></span></span></span></p>
+<ol>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Entregar LA UNIDAD en la &ldquo;Fecha de Entrega&rdquo; establecida, con las pr&oacute;rrogas y periodo de gracia acordados.</span></span></span></p>
 </li>
-<li><p>Responder por los vicios ocultos que llegue a presentar LA UNIDAD durante el plazo señalado para tal efecto por la legislación aplicable. </p>
-
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Entregar LA UNIDAD con las especificaciones pactadas en los anexos.</span></span></span></p>
 </li>
-</ol><p><br />
-</p>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Constituir el r&eacute;gimen de propiedad en condominio de conformidad con las declaraciones del presente contrato.</span></span></span></p>
+</li>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Proporcionar la documentaci&oacute;n requerida por la notar&iacute;a designada para la celebraci&oacute;n del contrato prometido.</span></span></span></p>
+</li>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Una vez cumplidas las obligaciones previas, transmitir la propiedad de LA UNIDAD a favor de EL PROMITENTE COMPRADOR, con todo cuanto de hecho y por derecho corresponda con las formalidades establecidas en la ley.</span></span></span></p>
+</li>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Responder por los vicios ocultos que llegue a presentar LA UNIDAD durante el plazo se&ntilde;alado para tal efecto por la legislaci&oacute;n aplicable. </span></span></span></p>
+</li>
+</ol>
 
-<p><b>NOVENA. Rescisión. </b> </p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
 
-<p>En caso de que alguna de las partes no cumpla con cualquiera de las obligaciones asumidas conforme a este contrato, la parte afectada tendrá derecho a rescindir el presente contrato, sin responsabilidad alguna y sin necesidad de declaración judicial, mediante simple notificación a la otra parte. Para tales efectos, la parte que hubiese incumplido gozará de un plazo de 5 días naturales contados a partir de la notificación correspondiente para manifestar lo que a su derecho convenga y, para subsanar de ser posible, cualquier incumplimiento en que haya incurrido. </p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>NOVENA. Rescisi&oacute;n. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de que alguna de las partes no cumpla con cualquiera de las obligaciones asumidas conforme a este contrato, la parte afectada tendr&aacute; derecho a rescindir el presente contrato, sin responsabilidad alguna y sin necesidad de declaraci&oacute;n judicial, mediante simple notificaci&oacute;n a la otra parte. Para tales efectos, la parte que hubiese incumplido gozar&aacute; de un plazo de 5 d&iacute;as naturales contados a partir de la notificaci&oacute;n correspondiente para manifestar lo que a su derecho convenga y, para subsanar de ser posible, cualquier incumplimiento en que haya incurrido. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Asimismo, en caso de rescisi&oacute;n del contrato por incumplimiento de EL PROMITENTE VENDEDOR, &eacute;ste deber&aacute; rembolsar a EL PROMITENTE COMPRADOR las cantidades entregadas de conformidad con la cl&aacute;usula tercera, m&aacute;s un importe equivalente al 20% (vente por ciento) de la cantidad efectivamente entregada por EL PROMITENTE COMPRADOR, por concepto de pena convencional. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de rescisi&oacute;n del contrato por incumplimiento de EL PROMITENTE COMPRADOR, &eacute;ste deber&aacute; pagar como pena convencional a EL PROMITENTE VENDEDOR la cantidad correspondiente al 20% (veinte por ciento) del precio pactado por la transmisi&oacute;n de propiedad de LA UNIDAD mediante cl&aacute;usula tercera; para lo anterior, EL PROMITENTE COMPRADOR autoriza a EL PROMITENTE VENDEDOR retener de las cantidades entregadas a t&iacute;tulo de arras confirmatorias dicha cantidad, y en caso de existir remanente, &eacute;ste se reembolsar&aacute; a EL PROMITENTE COMPRADOR</span></span></span></p>
 
-<p><br />
-</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>D&Eacute;CIMA.- Cesi&oacute;n de derechos. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">EL PROMITENTE COMPRADOR podr&aacute; ceder, traspasar o transmitir a favor de terceras personas los derechos del presente acuerdo para lo cual, deber&aacute; notificar a EL PROMITENTE VENDEDOR al menos 5 (d&iacute;as) previos a la celebraci&oacute;n del acto en que conste la cesi&oacute;n, traspaso o transmisi&oacute;n respectiva. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>D&Eacute;CIMA PRIMERA.- Impuestos y gastos.</strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Todos los impuestos, derechos, gastos, honorarios notariales y cualquier otra erogaci&oacute;n que se derive de la celebraci&oacute;n y formalizaci&oacute;n del contrato prometido mediante el presente acuerdo, ser&aacute;n por cuenta y a cargo de EL PROMITENTE COMPRADOR, a excepci&oacute;n del impuesto sobre la renta que corresponda a EL PROMITENTE VENDEDOR conforme a las disposiciones legales aplicables. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">EL PROMITENTE COMPRADOR se hace sabedor y se compromete a realizar el pago del impuesto sobre adquisici&oacute;n de bienes inmuebles en los t&eacute;rminos de la ley de la materia. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>D&Eacute;CIMA SEGUNDA.- Avisos y notificaciones. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Cualquier notificaci&oacute;n, solicitud o requerimiento, deber&aacute; ser hecho al domicilio o correo electr&oacute;nico establecido en el cap&iacute;tulo de declaraciones. </span></span></span></p>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de que hubiere alg&uacute;n cambio de domicilio o correo electr&oacute;nico, la parte que hubiese cambiado su domicilio, deber&aacute; notificarlo a la otra parte y en caso de no hacerlo, los avisos y las notificaciones que se les haga al &uacute;ltimo domicilio y correo electr&oacute;nico se&ntilde;alado surtir&aacute;n plenamente sus efectos legales y liberar&aacute;n a la otra parte de cualquier responsabilidad</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>D&Eacute;CIMA TERCERA.- Jurisdicci&oacute;n. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Para la soluci&oacute;n de cualquier controversia derivada de la interpretaci&oacute;n, ejecuci&oacute;n y/o cumplimiento de este contrato, las partes se someten en forma expresa a la jurisdicci&oacute;n de los Tribunales competentes de la Ciudad de Playa del Carmen, Quintana Roo, renunciando expresamente a cualquier otro fuero que en virtud de su domicilio presente o futuro pudiera corresponderles. </span></span></span></p>
 
-<p>Asimismo, en caso de rescisión del contrato por incumplimiento de EL PROMITENTE VENDEDOR, éste deberá rembolsar a EL PROMITENTE COMPRADOR las cantidades entregadas de conformidad con la cláusula tercera, más un importe equivalente al 20% (vente por ciento) de la cantidad efectivamente entregada por EL PROMITENTE COMPRADOR, por concepto de pena convencional. </p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>D&Eacute;CIMA CUARTA.- Ausencia de vicios.</strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Las partes declaran que en la celebraci&oacute;n de este contrato no existe error, dolo, violencia, mala fe, o cualquier otro vicio que pudiera invalidarlo.</span></span></p>
 
-<p><br />
-</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
 
-<p>En caso de rescisión del contrato por incumplimiento de EL PROMITENTE COMPRADOR, éste deberá pagar como pena convencional a EL PROMITENTE VENDEDOR la cantidad correspondiente al 20% (veinte por ciento) del precio pactado por la transmisión de propiedad de LA UNIDAD mediante cláusula tercera; para lo anterior, EL PROMITENTE COMPRADOR autoriza a EL PROMITENTE VENDEDOR retener de las cantidades entregadas a título de arras confirmatorias dicha cantidad, y en caso de existir remanente, éste se reembolsará a EL PROMITENTE COMPRADOR</p>
+<p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DÉCIMA QUINTA. - Disposiciones generales. </strong></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Ambas partes est&aacute;n de acuerdo en que los encabezados de las cl&aacute;usulas que anteceden, han sido asentados exclusivamente para fines de facilidad de referencia, sin que por ello deban utilizarse para interpretar el contenido de las mismas o la voluntad de las partes. </span></span></span></p>
 
-<p><br />
-</p>
+<p align="JUSTIFY"><a name="_GoBack"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Enteradas de su contenido y alcance, y sabedoras de las obligaciones que por virtud del presente contrato contraen, ambas partes lo firman al margen y al calce, por duplicado, quedando un ejemplar en poder de cada una de ellas, en Playa del Carmen, Municipio de Solidaridad, Quintana Roo, a los </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____ d&iacute;as del mes de ____ del _____.</span></span></span></p>
 
-<p><b>DÉCIMA.- Cesión de derechos. </b> </p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
+<p lang="es-MX" align="CENTER">&nbsp;</p>
 
-<p>EL PROMITENTE COMPRADOR podrá ceder, traspasar o transmitir a favor de terceras personas los derechos del presente acuerdo para lo cual, deberá notificar a EL PROMITENTE VENDEDOR al menos 5 (días) previos a la celebración del acto en que conste la cesión, traspaso o transmisión respectiva. </p>
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+   <table border="1">
+  <tbody>
+  <tr valign="TOP">
+  <td width="250px" >
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  <td width="250px">
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  </tr>
+  <tr valign="TOP">
+  <td bgcolor="#ffffff">
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:25px;"><span style="font-size: small;"><strong>&ldquo;EL PROMITENTE VENDEDOR&rdquo;</strong></span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;">GIADA CONSULTING, S. DE R.L. DE C.V.</span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:70px;"><span style="font-size: small;">Representada por </span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;serif;margin-left:45px;"><span style="font-size: small;">HORIA TRAIAN CHIRIGUT</span></span></p>
+  </td>
+  <td bgcolor="#ffffff">
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:20px"><span style="font-size: small;"><strong>&ldquo;EL PROMITENTE COMPRADOR&rdquo;</strong></span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:60px"><span style="font-size: small;"><span lang="es-MX">_________________</span></span></span></p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
 
-<p><br />
-</p>
+  <p align="CENTER">&nbsp;</p>
 
-<p><b>DÉCIMA PRIMERA.- Impuestos y gastos.</b></p>
-
-<p>Todos los impuestos, derechos, gastos, honorarios notariales y cualquier otra erogación que se derive de la celebración y formalización del contrato prometido mediante el presente acuerdo, serán por cuenta y a cargo de EL PROMITENTE COMPRADOR, a excepción del impuesto sobre la renta que corresponda a EL PROMITENTE VENDEDOR conforme a las disposiciones legales aplicables. </p>
-
-<p><br />
-</p>
-
-<p>EL PROMITENTE COMPRADOR se hace sabedor y se compromete a realizar el pago del impuesto sobre adquisición de bienes inmuebles en los términos de la ley de la materia. </p>
-
-<p><br />
-</p>
-
-<p><b>DÉCIMA SEGUNDA.- Avisos y notificaciones. </b> </p>
-
-<p>Cualquier notificación, solicitud o requerimiento, deberá ser hecho al domicilio o correo electrónico establecido en el capítulo de declaraciones. </p>
-
-<p><br />
-</p>
-
-<p>En caso de que hubiere algún cambio de domicilio o correo electrónico, la parte que hubiese cambiado su domicilio, deberá notificarlo a la otra parte y en caso de no hacerlo, los avisos y las notificaciones que se les haga al último domicilio y correo electrónico señalado surtirán plenamente sus efectos legales y liberarán a la otra parte de cualquier responsabilidad. </p>
-
-<p><b>DÉCIMA TERCERA.- Jurisdicción. </b> </p>
-
-<p>Para la solución de cualquier controversia derivada de la interpretación, ejecución y/o cumplimiento de este contrato, las partes se someten en forma expresa a la jurisdicción de los Tribunales competentes de la Ciudad de Playa del Carmen, Quintana Roo, renunciando expresamente a cualquier otro fuero que en virtud de su domicilio presente o futuro pudiera corresponderles. </p>
-
-<p><br />
-</p>
-
-<p><b>DÉCIMA CUARTA.- Ausencia de vicios.</b></p>
-
-<p>Las partes declaran que en la celebración de este contrato no existe error, dolo, violencia, mala fe, o cualquier otro vicio que pudiera invalidarlo.</p>
-
-<p><br />
-</p>
-
-<p><b>DÉCIMA QUINTA. - Disposiciones generales. </b> </p>
-
-<p>Ambas partes están de acuerdo en que los encabezados de las cláusulas que anteceden, han sido asentados exclusivamente para fines de facilidad de referencia, sin que por ello deban utilizarse para interpretar el contenido de las mismas o la voluntad de las partes. </p>
-
-<p><br />
-</p>
-
-<p><a name="_GoBack"></a> Enteradas de su contenido y alcance, y sabedoras de las obligaciones que por virtud del presente contrato contraen, ambas partes lo firman al margen y al calce, por duplicado, quedando un ejemplar en poder de cada una de ellas, en Playa del Carmen, Municipio de Solidaridad, Quintana Roo, a los __24__ días del mes de __25__ del ___26__. </p>
-
-<p><br />
-</p>
-
-<p><br />
-</p>
-
-<table border="1" bordercolor="#00000a" cellpadding="7" cellspacing="1"> <colgroup><col > <col > </colgroup>
-<tbody>
-<tr valign="TOP"> <td><p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p></td>
-<td><p><br />
-</p></td>
-</tr>
-
-<tr valign="TOP"> <td><p>“<b>EL PROMITENTE VENDEDOR”</b></p>
-
-<p>GIADA CONSULTING, S. DE R.L. DE C.V.</p>
-
-<p>Representada por </p>
-
-<p>HORIA TRAIAN CHIRIGUT</p></td>
-<td><p>“<b>EL PROMITENTE COMPRADOR”</b></p>
-
-<p>______27_____</p></td>
-</tr>
-
-</tbody>
-</table>
-
-<p><br />
-</p>
-
-<table border="1" bordercolor="#00000a" cellpadding="7" cellspacing="1"> <colgroup><col > <col > </colgroup>
-<tbody>
-<tr valign="TOP"> <td><p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p></td>
-<td><p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p>
-
-<p><br />
-</p></td>
-</tr>
-
-<tr valign="TOP"> <td><p><b>TESTIGO</b></p></td>
-<td><p><b>TESTIGO</b></p>
-
-<p><br />
-</p>
-
-<p><br />
-</p></td>
-</tr>
-
-</tbody>
-</table>
-
-<p><br />
-</p>
-
+  <table border="1">
+  <tbody>
+  <tr valign="TOP">
+  <td width="250px">
+  <p align="CENTER">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  <td width="250px">
+  </td>
+  </tr>
+  <tr valign="TOP">
+  <td bgcolor="#ffffff">
+  <p><span style="font-family: Arial, serif;margin-left:100px;"><span style="font-size: small;"><strong>TESTIGO</strong></span></span></p>
+  </td>
+  <td bgcolor="#ffffff">
+  <p><span style="font-family: Arial, serif;margin-left:100px;"><span style="font-size: small;"><strong>TESTIGO</strong></span></span></p>
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+</div><p>&nbsp;</p>
+<p>&nbsp;</p>
     </div>
     <div class="historic-body relative" v-if="watchMe">
       <table class="table" style="margin-bottom:0;">
