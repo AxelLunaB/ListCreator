@@ -111,7 +111,7 @@ export default {
         swal(
         {
           title: 'Please confirm information',
-          text: 'CustomerID: ' + _.references.customerId + '\nCurrent Status: ' + _.references.status.name + '\nChange to: ' + event.target[event.target.selectedIndex].label,
+          text: 'CustomerID: ' + _.references.customerId + '\nCurrent Status: ' + _.references.reference.status.name + '\nChange to: ' + event.target[event.target.selectedIndex].label,
           icon: "info",
           buttons: {
           cancel: true,
@@ -122,13 +122,17 @@ export default {
             const statusSelected = event.target.value;
 
             const reference = {
-              paidReference: _.references.id,
+              paidReference: _.references.referenceId,
               statusId: statusSelected,
-              unitId: this.unitId
+              unitId: this.unitId === null ? this.references.unitId : null
             };
 
             if(reference !== undefined) {
+              console.log('jjujjj');
+              
               _.$store.dispatch("others/callCancelReferences", reference);
+               _.$eventHub.$emit("updateReferenceParent");
+               _.$eventHub.$emit('updateDataDetail');
             }
           }
           
@@ -140,9 +144,9 @@ export default {
 
     computed: {
 
-      ...mapGetters({
-        // contracts: "contracts/contracts"
-      }),
+      // ...mapGetters({
+      //   references: "others/getReferences"
+      // }),
 
       // filterContracts: function () {
       //   var filter = this.contracts.filter(contract => {

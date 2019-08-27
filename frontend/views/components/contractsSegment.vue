@@ -399,7 +399,7 @@ export default {
         return this.formData.executive.id
       break;
       case 'clusterId':
-        return this.formData.clusterId.id
+        return this.formData.clusterId.id === undefined || this.formData.clusterId.id === null ? this.clusterId : this.clusterId;
       break;
       case 'unitId':
         return this.formData.unitId.id
@@ -530,6 +530,7 @@ export default {
     closeModal(x){
       this.addClient = x
     },
+
     addNewContract() {
 
       for( var i = 0 ; i < this.contracts.length ; i++) {
@@ -697,7 +698,9 @@ export default {
 
       return res;
     }
-  }
+  },
+
+  props: ['clusterId']
 }
 </script>
 

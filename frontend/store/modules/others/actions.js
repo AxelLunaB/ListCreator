@@ -77,7 +77,7 @@ const getReferences = (context) => {
   fetchReferences().then(response => {
     context.commit('REFERENCES_UPDATED', response);
   }).catch(err => {
-
+    console.error(err);
   })
 };
 
@@ -90,12 +90,14 @@ const setNewPatchedReference = (context, reference) => {
       reject(e);
     });
   })
+
+  
 };
 
 const callCancelReferences = (context, reference) => {
   return new Promise((resolve, reject) => {
     cancelReferences(reference).then(res => {
-      context.commit('REFERENCES_UPDATED', res);
+      //context.commit('REFERENCES_UPDATED', res);
       resolve(res);
     }).catch(e => {
       reject(e);

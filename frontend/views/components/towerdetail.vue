@@ -169,7 +169,7 @@
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
                   <form id="dropFileForm" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="files[]" id="fileInput" multiple>
+                    <input type="file" name="files[]" id="fileInput" accept=".pdf, image/jpeg, image/png" data-max-file-size="5MB" data-max-files="5" multiple>
                     <!-- <label for="fileInput" id="fileLabel">
                       Drop files here to upload
                     </label> -->
@@ -448,18 +448,20 @@ export default {
           formData.append('files[]', file);
         }
 
-        const contentType = files[0].type;
-        const url = 'www.google.com';
-        const size = files[0].size.toString();
+        console.log(files);
 
-        let file = {
-          contentType: contentType,
-          url: url,
-          size: size
-        };
+        // const contentType = files[0].type; // File's MIME type
+        // const url = 'www.google.com';
+        // const size = files[0].size.toString(); // Size in bytes
 
-        console.log(file);
-        self.$store.dispatch("attachments/setNewAttachment", file);
+        // let file = {
+        //   contentType: contentType,
+        //   url: url,
+        //   size: size
+        // };
+
+        // console.log(file);
+        // self.$store.dispatch("attachments/setNewAttachment", file);
       });
     }
   },

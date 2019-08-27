@@ -354,6 +354,9 @@ const cancelReferences = async reference => {
    // First fetchTotalContracts that belongs to the same unit in api/contracts
    const totalContracts = await fetchTotalContracts(unitId); // Returns an objects array
 
+   console.log('Total Contracts ------------>');
+   console.log(totalContracts);
+
    try {
 
     // First patch the reference paid

@@ -40,7 +40,7 @@
         </div>
       <towerdetail></towerdetail>
       <full-list-view :title="this.title"></full-list-view>
-      <contractsSegment></contractsSegment>
+      <contractsSegment :clusterId="clusterId"></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">

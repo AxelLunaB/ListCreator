@@ -46,7 +46,12 @@ export default {
 
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
-
+       this.$eventHub.$on("updateReferenceParent", () => {
+          console.log('uiouiouioiouioi');
+          
+          this.$store.dispatch("others/getReferences");
+          this.$store.dispatch("contracts/getContracts");
+        });
       if (isAuthenticated) {
         let _ = this;
         // Dispatch actions &&  subscribe to rt events.
@@ -57,9 +62,7 @@ export default {
       } else {
         console.log("no auth");
         let _ = this;
-        this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("others/getReferences");
-        });
+        _.$store.dispatch("others/getReferences");
       }
   },
   props: ['openReference', 'title', 'departments' ,'clusterId'],
@@ -131,18 +134,27 @@ export default {
 
     // Filter each reference belong to current selected clusterId
     referencesByCluster: function () {
-      let references = [];
+      console.log("dasfsfasadsfa");
+      
+      let refs = this.references;
+      let referencesByCluster = [];
       this.contracts.forEach(contract => {
-        this.references.data.forEach(reference => {
+        refs.data.forEach(reference => {
           if(contract.clusterId === this.clusterId && contract.referenceId === reference.id) {
-            references.push(contract);
+            referencesByCluster.push(contract);
           }
         });
       });
 
-      return references;
+      return referencesByCluster;
     }
 
+  },
+
+  watch: {
+    openReference: function () {
+      this.openReference === true ? this.$store.dispatch("others/getReferences") : this.$store.dispatch("others/getReferences");
+    }
   }
 
 }
