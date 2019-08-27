@@ -31,6 +31,229 @@
     <div style="text-align:center;" @click="printContract()">
       Generar CONTRATO DE PROMESA DE COMPRAVENTA
     </div>
+    <div style="text-align:center;" @click="printLease()">
+      Generar CONTRATO DE ARRENDAMIENTO
+    </div>
+    <div class="willPrintLease d-none" id="willPrintLease" style="margin:30px;">
+<p></p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>CONTRATO DE ARRENDAMIENTO, QUE CELEBRAN POR UNA PARTE </strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>___________________</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>, EN LO SUCESIVO REFERIDO COMO &ldquo;EL ARRENDADOR&rdquo;, Y POR LA OTRA PARTE </strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>, REPRESENTADA POR HORIA TRAIAN CHIRIGUT, EN LO SUCESIVO REFERIDO COMO &ldquo;EL ARRENDATARIO&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CL&Aacute;USULAS.</strong></span></span></span></span></p>
+<h2 class="western" lang="es-MX"><span style="font-size: small;"><span lang="pt-BR">DECLARACIONES</span></span></h2>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>PRIMERA. EL ARRENDADOR </strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">por su propio y personal derecho declara:</span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<ol>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es persona f&iacute;sica, de nacionalidad </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> y que cuenta con la capacidad jur&iacute;dica y econ&oacute;mica para obligarse en t&eacute;rminos del presente acuerdo, quien se identifica con </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></span></span></p>
+</li>
+</ol>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<ol start="2">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">________________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></span></span></p>
+</li>
+</ol>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<ol start="3">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que en fecha </span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;">______</span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;">, celebr&oacute; contrato de promesa de compra venta con </span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;">__________</span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;">, por medio del cual, EL ARRENDADOR adquirir&aacute; la propiedad del bien inmueble que se identificar&aacute; como </span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">departamento </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">__</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> del condominio </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">__________</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">, </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> piso, Aldea Zama, Tulum, Quintana Roo, en lo sucesivo referido como </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;EL INMUEBLE&rdquo;</strong></span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">; contrato que en lo sucesivo ser&aacute; referido como </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA PROMESA&rdquo;.</strong></span></span></span></span></span></span></p>
+</li>
+</ol>
+<p lang="es-ES" align="LEFT">&nbsp;</p>
+<ol start="4">
+<li>
+<p lang="es-ES"><span style="font-size: small;">Que es su voluntad celebrar el presente contrato y otorgar en arrendamiento </span><span style="font-size: small;">EL INMUEBLE, toda vez que cuenta con autorizaci&oacute;n del propietario para ello en t&eacute;rminos de la ley, bajo las bases y lineamientos aqu&iacute; pactados. </span></p>
+</li>
+</ol>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>SEGUNDA</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">. EL ARRENDATARIO declara a trav&eacute;s de su representante legal: </span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<ol>
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Ser persona moral constituida de conformidad con las leyes mexicanas, seg&uacute;n consta en el instrumento notarial 657 de fecha 23 de noviembre de 2017, otorgado ante la fe del Lic. Ricardo Dehesa Cortés titular de la Notaría P&uacute;blica 90 en el Estado de Quintana Roo, </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">M&eacute;xico, debidamente inscrita en el registro p&uacute;blico de comercio bajo el folio mercantil electr&oacute;nico n&uacute;mero </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>N-2018015273</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></span></span></p>
+</li>
+</ol>
+<p lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<ol start="2">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que su representante cuenta con facultades suficientes para obligarla en los t&eacute;rminos de este contrato, y que dichas facultades no le han sido revocadas ni disminuidas en forma alguna. </span></span></span></span></span></p>
+</li>
+</ol>
+<p class="western" lang="es-MX" align="LEFT">&nbsp;</p>
+<ol start="3">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que su domicilio es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">&ldquo;</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Av. 10 sur, comercios, local 36, Manzana 3, Lote 1, Centro Plaza Para&iacute;so Caribe, Playa del Carmen, Quintana Roo, 77710</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">&rdquo; </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica <a href="mailto:office@giadarealestate.com">office@giadarealestate</a></span></span></span><a href="mailto:office@giadarealestate.com"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.com</span></span></span></a><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></span></span></p>
+</li>
+</ol>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<ol start="4">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que es su voluntad celebrar el presente contrato y recibir en arrendamiento EL INMUEBLE, para ser destinado casa habitaci&oacute;n, sin responsabilidad para EL ARRENDADOR por el uso indebido del mismo. </span></span></span></span></p>
+</li>
+</ol>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<ol start="5">
+<li>
+<p lang="es-ES" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que los recursos con los cuales pagar&aacute; a EL ARRENDADOR son de origen l&iacute;cito, por lo que en este acto se obliga a responder por cualquier afectaci&oacute;n que EL ARRENDADOR pudiera tener en raz&oacute;n del origen de dichos recursos.</span></span></span></span></p>
+</li>
+</ol>
+<p class="western" align="LEFT">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Las partes, aceptan someterse a lo dispuesto por las siguientes:</span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="CENTER"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>C L &Aacute; U S U L A S</strong></span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>PRIMERA. Objeto del Contrato.</strong></span></span> </span></span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Por medio del presente contrato EL ARRENDADOR otorga en arrendamiento en t&eacute;rminos de lo dispuesto por el art&iacute;culo 2676 del C&oacute;digo Civil vigente en el Estado de Quintana Roo a favor de EL ARRENDATARIO, EL INMUEBLE seg&uacute;n es descrito en el cap&iacute;tulo de declaraciones respectivo, sujeto a la condici&oacute;n suspensiva establecida en la siguiente cl&aacute;usula.</span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>SEGUNDA.- Condici&oacute;n suspensiva.</strong></span></span></span></span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">El cumplimiento del objeto del presente contrato, est&aacute; condicionado a que EL ARRENDADOR tenga la legal posesi&oacute;n de EL INMUEBLE, derivado de la ejecuci&oacute;n de LA PROMESA.</span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>TERCERA. Vigencia.</strong></span></span></span></span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">La vigencia del arrendamiento ser&aacute; de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__ (___)</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> a&ntilde;os, mismos que iniciar&aacute;n precisamente el d&iacute;a </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del mes de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del a&ntilde;o </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, d&iacute;a en que EL ARRENDADOR deber&aacute; entregar EL INMUEBLE, finalizando precisamente el d&iacute;a </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del mes de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del a&ntilde;o </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></span></span></p>
+<p class="western" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>CUARTA.- Renta y forma de Pago.</strong></span></span></span></span></p>
+<p class="western" lang="en-US"><span style="font-size: small;"><span lang="es-ES">EL ARRENDATARIO deber&aacute; pagar como precio por la renta objeto del presente contrato por periodos de tres meses, a pagar dentro de los 15 (quince) d&iacute;as posteriores al vencimiento de cada trimestre y por la cantidad de $</span></span><span style="font-size: small;"><span lang="es-ES">________</span></span><span style="font-size: small;"><span lang="es-ES">.00 USD (</span></span><span style="font-size: small;"><span lang="es-ES">_________________</span></span><span style="font-size: small;"><span lang="es-ES"> d&oacute;lares 00/100, moneda de curso legal en los Estados Unidos de Am&eacute;rica).</span></span></p>
+<p class="western" lang="es-ES">&nbsp;</p>
+<p class="western" lang="en-US"><span style="font-size: small;"><span lang="es-ES">Dichos pagos deber&aacute;n llevarse a cabo en las fechas estipuladas anteriormente mediante transferencia bancaria a la cuenta que EL ARRENDADOR indique, o mediante cheque debidamente librado a favor de EL ARRENDADOR.</span></span></p>
+<p class="western" lang="es-ES">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>QUINTA.- Subarrendamiento.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Las partes acuerdan que EL ARRENDATARIO podr&aacute; otorgar EL INMUEBLE en sub-arrendamiento o en ocupaci&oacute;n temporal a su libre elecci&oacute;n y sin necesidad de aviso previo, debiendo respetar en todo momento lo pactado en el presente contrato.</span></span></span></span></span></p>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">En el contrato de sub-arrendamiento, el obligado en todo momento frente al subarrendatario ser&aacute; EL ARRENDATARIO, por lo que desde este momento libera a EL ARRENDADOR de cualquier responsabilidad frente al subarrendatario o frente a terceros derivado de la ejecuci&oacute;n o aplicaci&oacute;n del contrato de subarrendamiento respectivo. </span></span></span></span></span></p>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><a name="_GoBack"></a><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL ARRENDATARIO ser&aacute; responsable de cumplir con el presente contrato en todos sus t&eacute;rminos, independientemente de lo que llegare a pactar mediante contrato de sub-arrendamiento, en el entendido de que en caso de incumplimiento por parte del subarrendatario al contrato de subarrendamiento, no ser&aacute; causa ni justificante para que EL ARRENDATARIO incumpla con el presente contrato de arrendamiento.</span></span></span></span></span></p>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>SEXTA.- Uso del inmueble.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL ARRENDATARIO podr&aacute; usar EL INMUEBLE para fines habitacionales, recreativos y vacacionales, sin que dentro del mismo se lleven a cabo actividades contrarias a la ley.</span></span></span></span></span></p>
+<p lang="es-MX" align="LEFT">&nbsp;</p>
+<p align="LEFT"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>S&Eacute;PTIMA.- Transmisi&oacute;n de la propiedad.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Si durante la vigencia del presente contrato de arrendamiento se verificare la transmisi&oacute;n de la propiedad de EL INMUEBLE arrendado; el arrendamiento subsistir&aacute; en los mismos t&eacute;rminos que establece este contrato de conformidad con la legislaci&oacute;n aplicable. </span></span></span></span></span></p>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>OCTAVA.- Servicios.</strong></span></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL ARRENDATARIO deber&aacute; pagar los servicios de luz, internet, televisi&oacute;n por cable, agua, cuotas de mantenimiento y los dem&aacute;s servicios que se contraten para EL INMUEBLE, y EL ARRENDADOR deber&aacute; pagar los impuestos relativos a la propiedad como lo es el impuesto predial.</span></span></span></span></span></p>
+<p lang="es-MX" align="JUSTIFY">&nbsp;</p>
+<p align="LEFT"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>NOVENA.- Mobiliario.</strong></span></span> </span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL ARRENDADOR deber&aacute; entregar &eacute;l departamento completamente amueblado y equipado para ser habitado.</span></span></span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="LEFT"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA.- Obligaciones de EL ARRENDADOR.</strong></span></span></span></span></p>
+<ol type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Mantener el bien arrendado en estado de servir para el uso convenido, y a falta de convenio al respecto, para el uso a que aquel, por su misma naturaleza, estuviere destinado, haciendo para ello todas las reparaciones necesarias.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">A garantizar el uso y goce pac&iacute;fico de EL INMUEBLE por la duraci&oacute;n del arrendamiento.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">No modificar la forma de EL INMUEBLE ni intervenir en el uso leg&iacute;timo de &eacute;l. </span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Amueblar EL INMUEBLE con los muebles que al efecto proponga EL ARRENDATARIO. </span></span></span></span></p>
+</li>
+</ol>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA PRMERA.- Obligaciones de EL ARRENDATARIO.</strong></span></span></span></span></p>
+<ol type="a">
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">A cubrir la renta en forma y tiempo convenidos.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Responder de los perjuicios que el bien arrendado sufra por su culpa o negligencia, la de sus familiares, visitas, sirvientes o subarrendatarios.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">A hacer las reparaciones de los deterioros de poca importancia que sufra el inmueble o sus accesorios y que regularmente se causan al habitar una casa.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Utilizar EL INMUEBLE para los fines pactados.</span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Restituir EL INMUEBLE una vez terminado el contrato si el mismo no se prorroga. </span></span></span></span></p>
+</li>
+<li>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">No variar la forma de EL INMUEBLE, y en caso de hacerlo, deber&aacute; restablecerlo al estado que lo recibi&oacute; cuando devuelva el bien.</span></span></span></span></p>
+</li>
+</ol>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA SEGUNDA.- Rescisi&oacute;n.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de que alguna de las partes no cumpla con cualquiera de las obligaciones asumidas conforme a este contrato, la parte afectada tendr&aacute; derecho a rescindir el presente contrato, sin responsabilidad alguna y sin necesidad de declaraci&oacute;n judicial, mediante simple notificaci&oacute;n a la otra parte. Para tales efectos, la parte que hubiese incumplido gozar&aacute; de un plazo de 5 d&iacute;as naturales contados a partir de la notificaci&oacute;n correspondiente para manifestar lo que a su derecho convenga y, para subsanar de ser posible, cualquier incumplimiento en que haya incurrido. En caso de no subsanarse o aclararse el incumplimiento respectivo, la parte que hubiere incumplido deber&aacute; pagar a la otra parte a t&iacute;tulo de pena convencional </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">la cantidad de $</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.00 USD (</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__________________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> d&oacute;lares 00/100, moneda de curso legal de los Estados Unidos de Am&eacute;rica).</span></span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA TERCERA.- Caso fortuito.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">En el evento de que por caso fortuito o fuerza mayor se impida el uso de EL INMUEBLE, no se causar&aacute; renta mientras dure dicho impedimento.</span></span></span></span></p>
+<p align="LEFT">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA CUARTA. Avisos y notificaciones. </strong></span></span></span></span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Cualquier notificaci&oacute;n, solicitud o requerimiento, deber&aacute; ser hecho al domicilio o correo electr&oacute;nico establecido en el cap&iacute;tulo de declaraciones. </span></span></span></span></span></span></p>
+<p class="western" lang="es-ES" align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">En caso de que hubiere alg&uacute;n cambio de domicilio o correo electr&oacute;nico, la parte que hubiese cambiado su domicilio, deber&aacute; notificarlo a la otra parte y en caso de no hacerlo, los avisos y las notificaciones que se les haga al &uacute;ltimo domicilio y correo electr&oacute;nico se&ntilde;alado surtir&aacute;n plenamente sus efectos legales y liberar&aacute;n a la otra parte de cualquier responsabilidad</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>DECIMA QUINTA. Ausencia de vicios.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Las partes declaran que en la celebraci&oacute;n de este contrato no existe error, dolo, violencia, mala fe, o cualquier otro vicio que pudiera invalidarlo.</span></span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA SEXTA.- Jurisdicci&oacute;n. </strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Para la soluci&oacute;n de cualquier controversia derivada de la interpretaci&oacute;n, ejecuci&oacute;n y/o cumplimiento de este contrato, las partes se someten en forma expresa a la jurisdicci&oacute;n de los Tribunales competentes de la Ciudad de Playa del Carmen, Quintana Roo, renunciando a cualquier otro fuero que en virtud de su domicilio presente o futuro pudiera corresponderles.</span></span></span></span></p>
+<p align="JUSTIFY">&nbsp;</p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>D&Eacute;CIMA S&Eacute;PTIMA.- Disposiciones generales.</strong></span></span></span></span></p>
+<p align="JUSTIFY"><span style="font-family: 'Courier New', serif;"><span style="font-size: medium;"><span style="font-family: Arial, serif;"><span style="font-size: small;">Ambas partes est&aacute;n de acuerdo en que los encabezados de las cl&aacute;usulas que anteceden, han sido asentados exclusivamente para fines de facilidad de referencia, sin que por ello deban utilizarse para interpretar el contenido de las mismas o la voluntad de las partes. </span></span></span></span></p>
+<p align="LEFT">&nbsp;</p>
+<p class="western" align="LEFT"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: medium;"><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Enteradas de su contenido y alcance, y sabedoras de las obligaciones que por virtud del presente contrato contraen, ambas partes lo firman al margen y al calce, por duplicado, quedando un ejemplar en poder de cada una de ellas, en Playa del Carmen, Municipio de Solidaridad, Quintana Roo, a los </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> d&iacute;as del mes de </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> del </span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_____</span></span></span></span><span style="color: #000000;"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></span></span></span></p>
+<p class="western" align="LEFT">&nbsp;</p>
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+   <table border="1">
+  <tbody>
+  <tr valign="TOP">
+  <td width="250px" >
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  <td width="250px">
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  </tr>
+  <tr valign="TOP">
+  <td bgcolor="#ffffff">
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:25px;"><span style="font-size: small;"><strong>&ldquo;EL PROMITENTE VENDEDOR&rdquo;</strong></span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;">GIADA CONSULTING, S. DE R.L. DE C.V.</span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:70px;"><span style="font-size: small;">Representada por </span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;serif;margin-left:45px;"><span style="font-size: small;">HORIA TRAIAN CHIRIGUT</span></span></p>
+  </td>
+  <td bgcolor="#ffffff">
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:20px"><span style="font-size: small;"><strong>&ldquo;EL PROMITENTE COMPRADOR&rdquo;</strong></span></span></p>
+  <p align="CENTER"><span style="font-family: Arial, serif;margin-left:60px"><span style="font-size: small;"><span lang="es-MX">_________________</span></span></span></p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+  <p align="CENTER">&nbsp;</p>
+
+  <table border="1">
+  <tbody>
+  <tr valign="TOP">
+  <td width="250px">
+  <p align="CENTER">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  <td width="250px">
+  </td>
+  </tr>
+  <tr valign="TOP">
+  <td bgcolor="#ffffff">
+  <p><span style="font-family: Arial, serif;margin-left:100px;"><span style="font-size: small;"><strong>TESTIGO</strong></span></span></p>
+  </td>
+  <td bgcolor="#ffffff">
+  <p><span style="font-family: Arial, serif;margin-left:100px;"><span style="font-size: small;"><strong>TESTIGO</strong></span></span></p>
+  <p align="CENTER">&nbsp;</p>
+  <p align="CENTER">&nbsp;</p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+    </div>
     <div class="willPrintContract d-none" id="willPrintContract" style="margin:30px;">
 <p></p>
 <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE ______________, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
@@ -45,7 +268,7 @@
 <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que es una persona moral constituida conforme a las leyes mexicanas, seg&uacute;n consta en el instrumento notarial </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">657</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> de fecha </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">23 de noviembre de 2017</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">, otorgado ante la fe del </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Lic. Ricardo Dehesa Cortes</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> titular de la Notar&iacute;a P&uacute;blica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">90</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> en el Estado de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Quintana Roo</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, M&eacute;xico, debidamente inscrita en el registro p&uacute;blico de comercio bajo el folio mercantil electr&oacute;nico n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>N-2018015273</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
 </li>
 </ol>
-
+<p lang="es-MX" align="CENTER">&nbsp;</p>
 <ol start="2" type="a">
 <li>
 <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Que su representante cuenta con facultades necesarias para celebrar el presente contrato seg&uacute;n consta en instrumento mencionado en el inciso anterior, y que sus facultades no le han sido revocadas ni limitadas en forma alguna.</span></span></span></p>
@@ -407,7 +630,8 @@
   </tr>
   </tbody>
   </table>
-</div><p>&nbsp;</p>
+</div>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
     </div>
     <div class="historic-body relative" v-if="watchMe">
@@ -773,6 +997,21 @@ export default {
       const e = new Printd();
       e.print(document.getElementById('willPrintContract'),[CSScontract])
 
+      },
+      printLease(){
+        const CSSlease = `
+        .willPrintLease p {
+          margin:0;
+          text-align: justify;
+          text-justify: inter-word;
+        }
+
+        .willPrintLease {
+          font-family: Arial, sans-serif;
+        }
+        `
+      const f = new Printd();
+      f.print(document.getElementById('willPrintLease'),[CSSlease])
       },
       print(item){
       const monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
