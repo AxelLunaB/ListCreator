@@ -713,6 +713,7 @@ export default {
 
   body {
     background: #2a333c!important;
+    height: 90%;
   }
 
   #tosheet,

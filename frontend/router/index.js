@@ -13,6 +13,7 @@ import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import towerdetail from '@/views/components/towerdetail.vue';
+import formats from '@/views/formats.vue';
 import VueTransmit from "vue-transmit";
 import "chart.js";
 import "hchs-vue-charts";
@@ -85,6 +86,12 @@ export default new Router({
           path:'/towerdetail',
           name:"Detalle de torre",
           component: towerdetail
+        },
+        {
+          path:'/formats',
+          name:'Formatos',
+          component:formats,
+          props:true
         }
     ]
 })
