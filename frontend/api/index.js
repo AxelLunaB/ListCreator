@@ -74,6 +74,16 @@ const fetchDepartments = ($skip, query) => {
     });
   })
 };
+
+const fetchDepartmentsByCluster = ($skip, cluster) => {
+  console.log(cluster);
+
+  return new Promise((resolve) => {
+    socket.emit("api/departments::find", {clusterId: cluster}, (error, lots) => {
+      resolve(lots);
+    });
+  })
+};
 const patchDepartments = (department) => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'api/departments', department.id, department, (error, message) => {
@@ -88,6 +98,14 @@ const patchDepartments = (department) => {
 
 /* CONTRACTS */
 
+const fetchTotalContracts = async unitId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'api/contracts', { unitId: unitId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const fetchContracts = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -97,6 +115,7 @@ const fetchContracts = ($skip, query) => {
     });
   })
 };
+
 const createContract = (contract) => {
   return new Promise((resolve, reject) => {
     socket.emit('api/contracts::create', contract, (error, message) => {
@@ -261,6 +280,14 @@ const fetchClusters = () => {
   });
 };
 
+const fetchCountByCluster = clusterObj => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/api/countByCluster', clusterObj, (error, cluster) => {
+      error ? reject(error) : resolve(cluster);
+    });
+  });
+};
+
 const fetchCountHouses = () => {
   return new Promise((resolve, reject) => {
     socket.emit('find', 'api/countByCluster', {}, (error, count) => {
@@ -299,10 +326,65 @@ const fetchReferences = () => {
   });
 }
 
+/* Attachments */
+const newFileUpload = file => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', '/attachments', file, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+/* References */
+const patchReferences = reference => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'api/references', reference.id, { statusId: reference.statusId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const cancelReferences = async reference => {
+   // Paid Reference
+   const paidReference = reference.paidReference;
+   // Status to patch
+   const statusId = reference.statusId;
+   // UnitID to patch
+   const unitId = reference.unitId;
+   // First fetchTotalContracts that belongs to the same unit in api/contracts
+   const totalContracts = await fetchTotalContracts(unitId); // Returns an objects array
+
+   console.log('Total Contracts ------------>');
+   console.log(totalContracts);
+
+   try {
+
+    // First patch the reference paid
+    socket.emit('patch', 'api/references', paidReference, { statusId: statusId },  (error, response) => {
+      console.log(`Paid ReferenceID: ${paidReference}`);
+    });
+
+    totalContracts.data.forEach(obj => {
+      if(obj.referenceId !== paidReference) {
+
+        socket.emit('patch', 'api/references', obj.referenceId, { statusId: 8 }, (error, response) => {
+          console.log(`Reference ID: ${obj.referenceId} cancelled.`);
+        });
+      }
+    });
+
+   } catch(e) {
+     console.log(e);
+   }
+
+   console.log('References cancelled sucessfully!');
+};
+
 export {
   authenticateSocket,
   fetchStatus,
   fetchClusters,
+  fetchCountByCluster,
   //
   createHouse,
   fetchHouses,
@@ -311,6 +393,7 @@ export {
   createDepartments,
   fetchDepartments,
   patchDepartments,
+  fetchDepartmentsByCluster,
   //
   fetchContracts,
   createContract,
@@ -331,5 +414,10 @@ export {
   //
   fetchCountHouses,
   fetchCountDepartments,
-  fetchReferences
+  //
+  patchReferences,
+  fetchReferences,
+  cancelReferences,
+  //
+  newFileUpload
 }

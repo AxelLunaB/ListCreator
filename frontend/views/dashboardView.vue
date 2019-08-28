@@ -1,37 +1,74 @@
 <template>
     <div class="main">
-          <div class="wrapper-page row">
-                  <development  v-for="d in development" :key="d" :development="d"></development>
+          <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
+                  <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :clusterId="index" ></development>
           </div>
-          <ul class="pagination pagination-lg m-0">
+          <!-- <ul class="pagination pagination-lg m-0">
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
             <li class="page-item" v-for="p in pagination" :key="p"> <a href="#" class="page-link">{{ p }}</a> </li>
             <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-          </ul>
-            <!-- <ul class="pagination pagination-lg m-0" :class="{ fadeInAnimate: isAnimated }">
+          </ul> -->
+            <!-- <ul class="pagination pagination-lg m-0 fadeInAnimate">
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
                 <li class="page-item"> <a href="#" class="page-link active">1</a> </li>
                 <li class="active"> <a href="#" class="page-link">2</a> </li>
                 <li class="page-item"> <a href="#" class="page-link">3</a> </li>
                 <li class="page-item"> <a href="#" class="page-link">4</a> </li>
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-            </ul> -->
+            </ul> 
+            
+            <development  v-for="(d,index) in development" :key="index" :idN="index"></development>-->
     </div>
+
 </template>
 
 <script>
 import development from "./components/development.vue";
+import { mapGetters } from "vuex";
 
 export default {
+  mounted:function(){
+
+  },
   components: {
     development
   },
+  mounted:function(){
+      // logic
+      var isAuthenticated = this.$store.state.others.isAuthenticated;
+      if (isAuthenticated) {
+        // Dispatch actions &&  subscribe to rt events.
+        console.log("auth");
+        this.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
+
+        // listen to authenticated event
+      } else {
+        console.log("no auth");
+        const _ = this;
+
+        this.$eventHub.$on("authenticated", function() {
+          _.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
+        });
+      }
+  },
   data() {
     return {
-      development: [1, 2 ,3 ], //replace with the back end of developments
-      isAnimated: true,
-      pagination: [1, 2, 3,]
     }
+  },
+  methods:{
+  },
+  computed:{
+      ...mapGetters({
+        countByCluster: "countByCluster/countByCluster"
+      }),
+      getTowers(){
+        let clusters = []
+        clusters.push(this.countByCluster['BRAVA TOWER'])
+        clusters.push(this.countByCluster['GIADA TOWERS A'])
+        clusters.push(this.countByCluster['GIADA TOWERS B'])
+        return clusters
+      }
+
   }
 }
 </script>
@@ -47,7 +84,7 @@ body {
 }
 
 .main {
-  background: rgb(81, 111, 77);
+  background: #2a333c;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,25 +97,21 @@ body {
   justify-content: space-around;
   width:100%;
   max-width:1500px;
-  padding-top: 65px;
 }
 
-.page-link {
-    background: rgb(98, 134, 94)!important;
-    border: 1px solid rgb(62, 85, 60)!important;
-    color: white!important;
-}
+// .page-link {
+//     background: rgb(98, 134, 94)!important;
+//     border: 1px solid rgb(62, 85, 60)!important;
+//     color: white!important;
+// }
 
-.page-link:hover {
-    z-index: 2;
-    text-decoration: none!important;
-    color: rgb(230, 255, 228)!important;
-    background:rgb(106, 145, 101)!important;
-}
+// .page-link:hover {
+//     z-index: 2;
+//     text-decoration: none!important;
+//     color: rgb(230, 255, 228)!important;
+//     background:#50657a!important;
+// }
 
-.active {
-    background: rgb(81, 111, 77)!important;
-}
 
 .page-link:hover {
     z-index: 2;
@@ -95,11 +128,11 @@ body {
 }
 
 .progress-bar{
-  background: rgb(36, 85, 30)!important;
+  background: #1b2025!important;
 }
 
 .progress {
-  background: #a8c7a4!important;
+  background: #50657a!important;
 }
 
 
@@ -124,6 +157,19 @@ body {
 @media (min-width: 768px) {
   .main {
     height: 100vh;
+    }
+  }
+
+@media (max-width: 576px) {
+  .wrapper-page .row  {
+    padding-top: 60px!important;
+  }
+}
+
+ @media screen and (min-width:768px) and (max-width:992px) {
+    .cards-container {
+      margin-top: 57px;
+      overflow-y: auto;
     }
   }
 

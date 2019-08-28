@@ -15,7 +15,8 @@ module.exports = (app) => {
     currency: DataTypes.STRING,
     exchangerate: DataTypes.DOUBLE,
     salesprice: DataTypes.DOUBLE,
-    comment: DataTypes.STRING
+    comment: DataTypes.STRING,
+    furniture: DataTypes.FLOAT
   }, {});
   contracts.associate = function(models) {
     contracts.belongsTo(models.commissions);

@@ -27,7 +27,27 @@ module.exports = {
       // preventDuplicate({ service: 'api/references' })
   ],
     update: [canUpdate()],
-    patch: [],
+    patch: [
+        // For each reference that is different from the one is paid will change its statusId to CANCELED
+        // console.log('TotalReferences ----------------->');
+        // console.log(totalReferences);
+        // for(let i = 0; i < totalReferences.data.length - 1; i++) {
+        //   if(totalReferences.data[i].referenceId !== paidReference) {
+        //     // Change Status to CANCELED
+        //     await context.app.service('/api/references').patch(totalReferences.data[i].referenceId, { statusId: 9 });
+        //     console.log(`ReferenceID: ${paidReference} now its status is PAID.
+        //     References CANCELED: ${totalReferences.data[i].referenceId}`);
+        //   }
+        // }
+        // totalReferences.data.forEach(async object => { 
+        //   if(object.id !== paidReference) {
+        //     // Change Status to CANCELED
+        //     await context.app.service('/api/references').patch(object.id, { statusId: 9 });
+        //     console.log(`ReferenceID: ${paidReference} now its status is PAID.
+        //     References CANCELED: ${object.id}`);
+        //   }
+        // });
+    ],
     remove: [canUpdate()]
   },
 

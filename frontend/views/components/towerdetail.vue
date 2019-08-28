@@ -1,6 +1,6 @@
 <template>
 <div v-if="shouldShow === true" id="fadeOutAnimation">
-  <div class="container-fluid" v-bind:class="{ active: show}" id="container-fluid">
+  <div class="container-fluid cards-detail" v-bind:class="{ active: show}" id="container-fluid">
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
@@ -49,15 +49,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-right">{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
+                                <td class="text-right">{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '-'}}</td>
                             </tr>
-                            <tr>
+                             <tr>
                                 <td class="textalign">$/m2 Total</td>
-                                <td class="text-right">{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
+                                <td class="text-right">{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2) : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">List Price</td>
-                                <td class="text-right">${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+                                <td class="text-right">${{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal) : '-'}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
@@ -168,15 +168,16 @@
             <div class="row" style="height:100%;">
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
-                  <form id="dropFileForm" action="#">
-                    <input type="file" name="files[]" id="fileInput" multiple>
-                    <label for="fileInput" id="fileLabel">
+                  <form id="dropFileForm" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="files[]" id="fileInput" accept=".pdf, image/jpeg, image/png" data-max-file-size="5MB" data-max-files="5" multiple>
+                    <!-- <label for="fileInput" id="fileLabel">
                       Drop files here to upload
-                    </label>
+                    </label> -->
+                    <input type="submit" value="Upload Files" name="submit" @click="sendFiles()" />
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <button type="button" class="waves ripple">Send Files</button>
+                  <!-- <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button> -->
                 </div>
               </div>
             </div>
@@ -212,15 +213,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;font-weight:bolder">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
@@ -321,9 +322,10 @@
 import returnPage from "./returnPage.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
-  mounted: function() {
+  mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details.detailUnit;
       this.contract = details.detailContract;
@@ -331,9 +333,11 @@ export default {
     });
 
   },
+
   components: {
     returnPage
   },
+
   data() {
     return {
       mywidth: 200,
@@ -391,7 +395,7 @@ export default {
         scales: {
           yAxes:[{
             ticks:{
-              max:0, //add a computed here
+              max:10, //add a computed here
               fontColor:'white',
               beginAtZero:true,
               userCallback:function(label,index,labels){
@@ -410,6 +414,7 @@ export default {
       }
     }
   },
+
   methods: {
     closeBtn() {
       self = this
@@ -417,13 +422,50 @@ export default {
       document.getElementById("fadeOutAnimation").style.opacity = 0;
       setTimeout(function () {
         self.show = false;
-        }, 250);
+      }, 250);
     },
+
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
+    },
+
+    sendFiles: function () {
+      const self = this;
+      const form = document.getElementById('dropFileForm');
+      console.log('sendFiles has been called!');
+
+      form.addEventListener('submit', e => {
+        // Prevent default action from firing
+        e.preventDefault();
+
+        const files = document.querySelector('[type=file]').files;
+        const formData = new FormData();
+
+        // Append files to files array
+        for (let i = 0; i < files.length; i++) {
+          let file = files[i];
+          formData.append('files[]', file);
+        }
+
+        console.log(files);
+
+        // const contentType = files[0].type; // File's MIME type
+        // const url = 'www.google.com';
+        // const size = files[0].size.toString(); // Size in bytes
+
+        // let file = {
+        //   contentType: contentType,
+        //   url: url,
+        //   size: size
+        // };
+
+        // console.log(file);
+        // self.$store.dispatch("attachments/setNewAttachment", file);
+      });
     }
   },
+
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
@@ -467,7 +509,7 @@ export default {
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
     },
-    pastMonths(){ //prints current Month + last 3 months. If current month = January then last month loops to december.
+    pastMonths(){
       var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
       var month = new Date().getMonth();
       var c = (monthName(month))
@@ -481,7 +523,7 @@ export default {
       this.mydata[0] = this.monthlySales.antMonth
       this.mydata[1] = this.monthlySales.penMonth
       this.mydata[2] = this.monthlySales.pastMonth
-      this.mydata[3] = this.monthlySales.currentMonth
+      this.mydata[3] = this.monthlySales.cMonth
 
       return this.mydata
     }
@@ -542,6 +584,7 @@ export default {
 
   .table-modifier  tbody tr td {
     color:white;
+    padding:0;
   }
 
   .card .card-body h4,
@@ -594,9 +637,9 @@ export default {
     color:#a8a8a8;
   }
 
-#dropFileForm #fileInput {
-  display: none
-}
+  #dropFileForm #fileInput {
+    display: none !important;
+  }
 
 .textalign {
     text-align: left;

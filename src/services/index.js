@@ -15,6 +15,7 @@ const payments = require('./payments/payments.service.js');
 const paymentsDetails = require('./paymentsDetails/paymentsDetails.service.js');
 const customers = require('./customers/customers.service.js');
 const references = require('./references/references.service.js');
+const attachments = require('./attachments/attachments.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -34,4 +35,5 @@ module.exports = function (app) {
   app.configure(paymentsDetails);
   app.configure(payments);
   app.configure(references);
+  app.configure(attachments);
 };

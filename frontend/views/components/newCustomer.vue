@@ -18,7 +18,7 @@
                   Name
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.name" placeholder="John Doe">
+                <input class="form-control col-12"  type="text" v-model="formData.name"  placeholder="Jhon Doe">
               </div>
             </div>
             <div class="row margin-0">
@@ -26,10 +26,11 @@
                 Age
               </div>
               <div class="col-8">
-                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="">
+                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="18">
               </div>
             </div>
             <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Client must be 18 or older</div>
+            <div class="error" v-if="!this.$v.formData.age.maxValue" style="text-align:center;padding:0 0 5px 0;">Please enter a valid age</div>
             <div class="row margin-0">
               <div class="col-4">
                   Address
@@ -109,6 +110,14 @@ export default {
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("others/getCustomers");
     })
+      this.formData.name = null
+      this.formData.age = null
+      this.formData.address = null
+      this.formData.country = null
+      this.formData.state = null
+      this.formData.city = null
+      this.formData.contactNumber = null
+      this.formData.email = null
   },
   props:['addClient'],
   data() {
@@ -266,10 +275,19 @@ export default {
               _.$store.dispatch("others/setNewCustomer", usr)
                   swal({
                     title: 'Success!',
-                    text: 'A new user has been created!',
+                    text: 'A new client has been created',
                     icon: 'success',
                     timer: 1500
                   })
+
+                  this.formData.name = null
+                  this.formData.age = null
+                  this.formData.address = null
+                  this.formData.country = null
+                  this.formData.state = null
+                  this.formData.city = null
+                  this.formData.contactNumber = null
+                  this.formData.email = null
 
                   setTimeout(function () {
                     _.$emit('closeModal', false)
@@ -298,7 +316,7 @@ export default {
         age:{
             required,
             minValue: value => value > 17,
-            maxValue: value =>  value < 100
+            maxValue: value =>  value < 130
         },
         address:{
           required
@@ -310,7 +328,7 @@ export default {
           required
         },
         city:{
-        required
+          required
         },
         contactNumber:{
           required
@@ -356,4 +374,7 @@ button {
   border-radius: 4px;
 }
 
+.form-control:focus {
+  color: #aeb9c4;
+}
 </style>

@@ -4,28 +4,30 @@
     <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
   </div>
     <div class="row row-full margin-0">
-    <div class="col-0 col-sm-1 col-lg-2 col-xl-4">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-3 col-xl-3">
     </div>
-    <div class="col-12 col-sm-10 col-lg-8 col-xl-4" style="display:flex;align-items:center;">
-      <div class="card" style="margin-bottom:50px;">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 card-references-main">
+      <div class="card card-references" style="margin-bottom:50px;">
         <div class="card-body" style="padding-bottom:0;">
-          <h4 class="page-title" style="padding-bottom:20px;">References list</h4>
+          <h4 class="page-title" style="padding-bottom:20px;">References List - {{ title }}</h4>
             <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
                 <tbody>
                 <tr>
-                    <!-- <td class="header-t" style="text-align:center;vertical-align:middle;"><b>ID</b></td> -->
+                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Unit #</b></td>
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Reserve date</b></td>
                     <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>Reserve expiration</b></td>
-                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Customer Id</b></td>
+                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Customer</b></td>
                     <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Status</b></td>
+                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Update Status</b></td>
                 </tr>
                 </tbody>
             </table>
-            <references-view v-for="(ref, index) in references.data" :key="ref.index" :references="ref"></references-view>
+            <references-view v-for="(ref, index) in referencesByCluster" :key="ref.index" :references="ref" :contracts="contracts" :unitNumber="filterContracts(ref, ref.id)" :unitId="filterUnitId(ref.id)"></references-view>
+            <!-- <references-view v-for="(ref, index) in references.data" :key="ref.index" :references="ref" :contracts="contracts" :unitNumber="filterContracts(ref.id)" :unitId="filterUnitId(ref.id)"></references-view> -->
         </div>
       </div>
     </div>
-    <div class="col-0 col-sm-1 col-lg-2 col-xl-4">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-3 col-xl-3">
     </div>
   </div>
 </div>
@@ -35,14 +37,23 @@
 import referencesView from "./referencesView.vue"
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import detailVue from '../detail.vue';
+import { log } from 'util';
+
 
 export default {
-  mounted:function(){
+  mounted: function(){
 
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
+       this.$eventHub.$on("updateReferenceParent", () => {
+          console.log('uiouiouioiouioi');
+          
+          this.$store.dispatch("others/getReferences");
+          this.$store.dispatch("contracts/getContracts");
+        });
       if (isAuthenticated) {
-        let _ = this
+        let _ = this;
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
         _.$store.dispatch("others/getReferences");
@@ -51,20 +62,18 @@ export default {
       } else {
         console.log("no auth");
         let _ = this;
-        this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("others/getReferences");
-
-
-        });
+        _.$store.dispatch("others/getReferences");
       }
   },
-  props:['openReference'],
+  props: ['openReference', 'title', 'departments' ,'clusterId'],
+
   components: {
     referencesView
   },
-  data(){
+
+  data() {
     return {
-      closeReferencesWindow : false
+      closeReferencesWindow : false,
     }
   },
   methods: {
@@ -77,12 +86,75 @@ export default {
       setTimeout(function() {
         self.closeReferencesWindow = false
       }, 1000)
+    },
+
+    filterContracts: function (ref, refId) {
+      let unitNumber = this.departments.filter(department => {
+        return department.id === ref.unitId && department.clusterId === this.clusterId;
+      });
+
+      return unitNumber[0] !== undefined ? unitNumber[0].unitNumber : null;
+        // var filter = this.contracts.filter(contract => {
+        //   return contract.referenceId === refId;
+        // });
+         
+        // if (filter[0] !== undefined) {
+        //   // console.log(filter[0]);
+        //    filter = this.departments.filter(dep => {
+        //     return dep.id === filter[0].unitId;
+        //   });
+         
+             
+        //   // console.log(filter);
+        //   // console.log("-------------");
+        // }
+          
+        // return filter[0] !== undefined ?  filter[0].unitNumber : "-";
+    },
+
+    filterUnitId: function (referenceId) {
+      let result = this.contracts.filter(contract => {
+        return contract.referenceId === referenceId && contract.clusterId === this.clusterId;
+      });
+
+      // console.log('Result ------------------------->');
+      // console.log(result);
+      return result[0] !== undefined ? result[0].unitId : null;
     }
+
   },
+  
+
   computed: {
-  ...mapGetters({
-      references: "others/getReferences"
-      })
+
+    ...mapGetters({
+      references: "others/getReferences",
+      contracts: "contracts/contracts"
+    }),
+
+    // Filter each reference belong to current selected clusterId
+    referencesByCluster: function () {
+      console.log("dasfsfasadsfa");
+      
+      let refs = this.references;
+      let referencesByCluster = [];
+      this.contracts.forEach(contract => {
+        refs.data.forEach(reference => {
+          if(contract.clusterId === this.clusterId && contract.referenceId === reference.id) {
+            referencesByCluster.push(contract);
+          }
+        });
+      });
+
+      return referencesByCluster;
+    }
+
+  },
+
+  watch: {
+    openReference: function () {
+      this.openReference === true ? this.$store.dispatch("others/getReferences") : this.$store.dispatch("others/getReferences");
+    }
   }
 
 }
@@ -95,10 +167,11 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    top: 69px;
+    top: 64px;
     right: 0;
     z-index:3;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .page-title {
@@ -113,6 +186,16 @@ export default {
     animation: fadeOutAnimation 1s forwards;
   }
 
+  .card-references {
+    max-width: 800px;
+    min-width: 580px;
+  }
+
+  .card-references-main {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
 
 @keyframes fadeInAnimation {
     0%   {

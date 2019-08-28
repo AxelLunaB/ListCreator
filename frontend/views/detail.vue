@@ -1,12 +1,12 @@
 <template>
-  <div class="main-tables-container">
+  <div class="main-tables-container animate" id="main-tables-container">
       <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
         <return-page />
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
-        <h2 style=" display: flex;align-items: center;">Brava Tower</h2>
+        <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList">View full list</button>
@@ -39,8 +39,8 @@
           </div>
         </div>
       <towerdetail></towerdetail>
-      <full-list-view></full-list-view>
-      <contractsSegment></contractsSegment>
+      <full-list-view :title="this.title"></full-list-view>
+      <contractsSegment :clusterId="clusterId"></contractsSegment>
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -52,7 +52,7 @@
           </div>
         </div>
     </div>
-    <references-list :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
+    <references-list :title="title" :departments ="departments" :clusterId="clusterId" :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
   </div>
 </template>
 
@@ -90,19 +90,41 @@
         this.$store.dispatch("departments/goSearch", query);
       });
 
+    this.$eventHub.$on("select-tower", tower => {
+      this.$store.dispatch("departments/getDepartmentById", tower);
+      this.clusterId = tower;
+      switch(tower) {
+        case 1:
+        this.title = "BRAVA TOWER"
+        this.tower = 1;
+        break;
+        case 2 :
+        this.title ="GIADA TOWER A"
+        this.tower = 2
+        break;
+        case 3:
+        this.title = "GIADA TOWER B"
+        this.tower = 3
+      }
+      
+    })
+
+
+
+
       this.$eventHub.$on("updateDataDetail", () => {
-           this.$store.dispatch("departments/getDepartments");
+        // this.$store.dispatch("departments/getDepartmentById",tower);
+        this.$store.dispatch("departments/getDepartmentById", this.tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
-      });   
+      });
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {
         // Dispatch actions &&  subscribe to rt events.
         console.log("auth");
-        this.$store.dispatch("departments/getDepartments");
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -113,7 +135,7 @@
         console.log("no auth");
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("departments/getDepartments");
+          // _.$store.dispatch("departments/getDepartmentById", _.tower);
           _.$store.dispatch("contracts/getContracts");
           _.$store.dispatch("commissions/getCommissions");
           _.$store.dispatch("others/setPlusButton", true);
@@ -130,7 +152,10 @@
         isAnimated: true,
         sDepartments:[],
         fDepartments:[],
-        depsAndContracts:[]
+        depsAndContracts:[],
+        title:null,
+        tower:null,
+        clusterId: undefined
       }
     },
     methods: {
@@ -146,6 +171,7 @@
         const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
         return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'.xlsx')
     },
+
     showList(){
       let info = {
          departments: this.departments,
@@ -159,6 +185,7 @@
           document.getElementById("listView").style.opacity = 1;
             }, 100);
       },
+
       showContracts() {
         let info = {
           departments : this.departments
@@ -177,10 +204,13 @@
        }
        return c
      },
+
      closeReferences(x){
        this.openReference = x
      }
+
     },
+
     computed: {
       ...mapGetters({
         departments: "departments/departments",
@@ -192,6 +222,24 @@
         specialSort: "departments/specialSort",
         priceRange: "departments/priceRange"
       }),
+      towerValidation(){
+        if(this.filtersArray == 0 && this.title == null) {
+            swal({
+              text: "Please select a tower first",
+              icon: "warning",
+              buttons: false,
+              timer: 1500
+          });
+
+        setTimeout(function () {
+          document.location.href = '/'
+          }, 1500);
+
+        return false
+        } else {
+          return true
+        }
+      },
       currentAvailability () {
           var cData= {}
           var available = 0
@@ -257,10 +305,9 @@
         let filters = this.specialSort
         var deptos = []
         this.sDepartments = []
-
         this.departments.forEach ((dep, index) => {
           filters.forEach (filter => {
-            if(filter.value === null || filter.value == 0 || filter.id == 'price')
+            if(filter.value === null|| filter.id == 'price')
             return
             if(dep[filter.id] == filter['value']) {
               let shouldAdd = true
@@ -392,13 +439,13 @@
         return this.sortedArray
             //return deptos.length > 0 ? this.sDepartments : this.sortedArray
 
-      }
+      },
     },
       watch : {
         currentAvailability(newVal){
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
         }
-      }
+      },
   }
 
 </script>
@@ -495,6 +542,10 @@
     border-radius: 15%;
   }
 
+    .animate {
+    animation: fadeInAnimation 1s forwards;
+  }
+
   .header-t {
     height: 50px;
     text-align:center!important;
@@ -561,6 +612,15 @@ button.waves-white.ripple:active:after {
   margin-bottom: 15px;
 }
 
+#printMe .row {
+  margin-left:0;
+  margin-right:0;
+}
+
+#printMe td {
+  padding:0
+}
+
   @media screen and (max-width: 867px) {
     .navbar-brand {
       justify-content: center;
@@ -580,4 +640,14 @@ button.waves-white.ripple:active:after {
       border-radius: 5px;
       }
   }
+
+      @keyframes fadeInAnimation {
+      0%   {
+        opacity: 0;
+         }
+
+      100% {
+        opacity: 1;
+        }
+    }
 </style>

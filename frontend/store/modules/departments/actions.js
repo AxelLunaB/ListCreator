@@ -1,13 +1,31 @@
-import { createDepartments, fetchDepartments, patchDepartments } from '@/api';
+import { createDepartments, fetchDepartments, patchDepartments, fetchDepartmentsByCluster } from '@/api';
 import socket from '@/io';
 
+const getDepartmentById = (context,cluster) => {
+  console.log(cluster);
+
+  fetchDepartmentsByCluster(context.state.pagination.skip, cluster)
+  .then(res => {
+    context.commit('DEPARTMENTS_UPDATED', res.data);
+    //console.log(response);
+
+    let pagination = {
+      total: res.total,
+      limit: res.limit,
+      skip: res.skip,
+      pages: res.total / res.limit,
+      index: Math.floor(res.skip / res.limit),
+    };
+    context.commit('PAGINATION_UPDATED', pagination);
+  });
+};
 
 const getDepartments = (context) => {
   // console.log('fetching houses...');
   fetchDepartments(context.state.pagination.skip, context.state.query).then(response => {
     //call context.commit
     context.commit('DEPARTMENTS_UPDATED', response.data);
-    console.log(response);
+    //console.log(response);
 
     let pagination = {
       total: response.total,
@@ -22,6 +40,7 @@ const getDepartments = (context) => {
     console.log(error);
   });
 };
+
 const updateDepartment = (context, department) => {
   return new Promise((resolve, reject) => {
     patchDepartments(department).then(response => {
@@ -29,9 +48,9 @@ const updateDepartment = (context, department) => {
     }).catch(err => {
       reject(err);
     });
-  })
-
+  });
 };
+
 const newDepartment = (context, department) => {
   return new Promise((resolve, reject) => {
     createDepartments(department).then(response => {
@@ -118,6 +137,7 @@ const setCurrentAvailability = (context, payload) =>{
 
 export default {
   getDepartments,
+  getDepartmentById,
   setCurrentAvailability,
   listenEvents,
   newDepartment,

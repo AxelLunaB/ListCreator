@@ -8,9 +8,9 @@ module.exports = (app) => {
     unitNumber: DataTypes.STRING,
     phase: DataTypes.INTEGER,
     level: DataTypes.INTEGER,
-    bedrooms: DataTypes.INTEGER,
+    bedrooms: DataTypes.STRING,
     nkeys: DataTypes.INTEGER,
-    bathrooms: DataTypes.INTEGER,
+    bathrooms: DataTypes.STRING,
     interiorM2: DataTypes.DOUBLE,
     exteriorM2: DataTypes.DOUBLE,
     roofInteriorM2: DataTypes.DOUBLE,
@@ -20,7 +20,9 @@ module.exports = (app) => {
     priceInteriorM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
     priceTotalM2: DataTypes.DOUBLE,
-    priceTotal: DataTypes.DOUBLE
+    priceTotal: DataTypes.DOUBLE,
+    unitType:DataTypes.STRING,
+    furniture:DataTypes.FLOAT
   }, {
     hooks: {
       beforeCount(options) {

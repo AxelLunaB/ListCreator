@@ -3,7 +3,7 @@
 <!-- Begin page -->
     <div class="wrapper-page container" id="main-cards">
       <div class="row main">
-        <div class="card col-md-4 col-sm-12"  :class="{ fadeEntry: isLoaded }">
+        <div class="card col-md-4 col-sm-12 fadeEntry">
           <div class="card-body">
             <h3 class="text-center">
               <a href="index.html" class="logo"><img src="../assets/logo_bco.png" alt="logo-img" width="250px"></a>
@@ -41,7 +41,7 @@
             </form>
           </div>
         </div>
-        <div class="card col-md-5 col-sm-12 right-card" style="background:#3f4c5c"  :class="{ fadeEntry: isLoaded }">
+        <div class="card col-md-5 col-sm-12 right-card fadeEntry" style="background:#3f4c5c">
            <h4 class="text-center">REAL-TIME UPDATES</h4>
            <hr style="margin:0;">
           <div class="row h-100">
@@ -51,22 +51,22 @@
                     <tr>
                         <td class="text-center" style="padding-top:14px;">Name</td>
                         <td class="text-center" style="padding-top:14px;">#1525</td>
-                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/05/2019</td>
+                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/05/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="padding-top:14px;">Name</td>
                         <td class="text-center" style="padding-top:14px;">#1535</td>
-                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
+                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="padding-top:14px;">Name</td>
                         <td class="text-center" style="padding-top:14px;">#1333</td>
-                        <td class="text-center"><b style="color:#e89005;">Reserved</b><br> 26/06/2019</td>
+                        <td class="text-center"><span style="color:#e89005;">Reserved</span><br> 26/06/2019</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="padding-top:14px;">Name</td>
                         <td class="text-center" style="padding-top:14px;">#2232</td>
-                        <td class="text-center"><b style="color:#cd110f;">Sold</b><br> 26/06/2019</td>
+                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
                     </tr>
                   </tbody>
               </table>
@@ -85,8 +85,7 @@ import swal from 'sweetalert';
 export default {
   data() {
     return {
-      logMessage: "Log in",
-      isLoaded: true
+      logMessage: "Log in"
     }
   },
   mounted: function () {
@@ -131,13 +130,13 @@ export default {
           document.getElementById("main-cards").style.opacity = "1";
           document.body.style.cursor = "auto";
           if (error.status === 401) {
-            swal("Correo o contraseña incorrectos");
+            swal("wrong email or password");
             self.logMessage = "Log in"
           } else if (error.status === 400) {
-            swal("Correo o contraseña incorrectos");
+            swal("wrong email or password");
             self.logMessage = "Log in"
           } else {
-            swal("Error inesperado, vuelve a intentarlo mas tarde.");
+            swal("Unexpected error, please try again later.");
             self.logMessage = "Log in"
           }
         }
@@ -153,6 +152,7 @@ export default {
 @import "~bulma/css/bulma.css";
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 html,
 body {
@@ -172,6 +172,7 @@ body {
   background-size:cover;
   box-shadow:inset 0 0 0 2000px rgba(0, 23, 0, 0.1);
   height: 100%;
+  font-family: 'Raleway', sans-serif!important;
 }
 
 .card {

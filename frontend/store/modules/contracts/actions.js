@@ -5,19 +5,21 @@ import socket from '@/io';
 const getContracts = (context) => {
   // console.log('fetching houses...');
   fetchContracts(context.state.pagination.skip, context.state.query).then(response => {
-    //call context.commit
-    context.commit('CONTRACTS_UPDATED', response.data);
-    console.log(response);
+    if(response.data !== undefined) {
+      //call context.commit
+      context.commit('CONTRACTS_UPDATED', response.data);
 
-    let pagination = {
-      total: response.total,
-      limit: response.limit,
-      skip: response.skip,
-      pages: response.total / response.limit,
-      index: Math.floor(response.skip / response.limit),
-    };
-    context.commit('PAGINATION_UPDATED', pagination);
-    // console.log(response);
+      let pagination = {
+        total: response.total,
+        limit: response.limit,
+        skip: response.skip,
+        pages: response.total / response.limit,
+        index: Math.floor(response.skip / response.limit),
+      };
+      
+      context.commit('PAGINATION_UPDATED', pagination);
+    }
+    
   }).catch(error => {
     console.log(error);
   });

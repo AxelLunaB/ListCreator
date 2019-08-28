@@ -16,6 +16,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        name: 'GIADA TOWERS A',
+        code: 2,
+        abb: 'GTA',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'GIADA TOWERS B',
+        code: 3,
+        abb: 'GTB',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
     ], {});
   },
 

@@ -27,6 +27,8 @@ module.exports = {
           priceTotal: data[15],
           clusterId: data[16],
           statusId: data[17],
+          unitType:data[18],
+          furniture:data[19],
           createdAt: new Date(),
           updatedAt: new Date()
         })

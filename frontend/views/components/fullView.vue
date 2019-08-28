@@ -4,7 +4,7 @@
     <tbody>
       <tr v-if="contracts != undefined" class="colors">
           <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
-          <td>{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
+          <td style="font-size:13px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
           <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
           <td>{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
@@ -13,26 +13,26 @@
           <td>{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
           <td>{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
           <td>{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
-          <td>{{toPrice(detailTable.priceInteriorM2 != 0 ? detailTable.priceInteriorM2 : "-")}}</td>
-          <td>{{toPrice(detailTable.priceTotalM2 !=0 ? detailTable.priceTotalM2 : "-")}}</td>
-          <td>${{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal : "-")}}</td>
+          <td>{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '-'}}</td>
+          <td>{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2): '-'}}</td>
+          <td>{{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal): '-'}}</td>
           <td v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
           <td>{{ contracts.currency != null ? contracts.currency : '-'}}</td>
           <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "-" }}</td>
           <td>{{contracts.exchangerate != 0 && contracts.exchangerate != null ? contracts.exchangerate : "-"}}</td>
-          <td>{{contracts.commission != null? contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions :'-' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null ? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
-          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? '$ ' + contracts.commission.totalCommissions : getTotalCommission}}</td>
+          <td>{{contracts.commission != null? contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions + ' %' :'-' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.salesExecutivesCommissions !== null? contracts.commission.salesExecutivesCommissions != null ? contracts.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.salesAdministrativeCommissions !== null? contracts.commission.salesAdministrativeCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.thirdPartyCommissions !== null? contracts.commission.thirdPartyCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.brokerCommissions !== null? contracts.commission.brokerCommissions + ' %' : '-'}}</td>
+          <td>{{contracts.commission != null && contracts.commission.totalCommissions != null ? contracts.commission.totalCommissions == 0 ? 'N/A':'$ ' + contracts.commission.totalCommissions : '-'}}</td>
           <td>{{contracts.WROI != null ? contracts.WROI : "-"}}</td>
           <td>{{contracts.percent != 0 && contracts.percent != null ? contracts.percent : "-"}}</td>
           <td>{{contracts.years != 0 && contracts.years != null ? contracts.years : "-"}}</td>
           <td>{{contracts.closingDate != null && contracts.closingDate != 'null' ? contracts.closingDate : "-"}}</td>
           <td style='font-size:12px;'>{{contracts.commission != undefined ? contracts.commission.executive != null ? contracts.commission.executive.name : '-' : '-' }}</td>
           <td>{{contracts.salesDetails != undefined ? contracts.salesDetails.salesChannel != null ? contracts.salesDetails.salesChannel : '-' : '-' }}</td>
-          <td style='font-size:12px;'>{{contracts.customer != undefined ? contracts.customer.name != null? contracts.customer.name : '-' : '-'}}</td>
+          <td style='font-size:12px;width:200px;'>{{contracts.customer != undefined ? contracts.customer.name != null? contracts.customer.name : '-' : '-'}}</td>
       </tr>
     </tbody>
         </table>
@@ -100,5 +100,9 @@ export default {
 
 .table-container{
   cursor: pointer;
+}
+
+.colors td {
+  padding:0;
 }
 </style>

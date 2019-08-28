@@ -17,10 +17,10 @@ const state = {
     sold: 0
   },
   monthlySales:{
-    antMonth: 10,
-    penMonth: 8,
-    pastMonth:6,
-    currentMonth:4
+    antMonth: 0, //iterate array departments w/ status.updatedAt in certain range, return its length
+    penMonth: 0,
+    pastMonth:0,
+    cMonth:0
   },
   specialFilter: [
     {

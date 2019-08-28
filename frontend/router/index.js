@@ -6,9 +6,9 @@ import historics from '@/views/historics.vue';
 import houses from '@/views/houses.vue';
 import users from '@/views/users.vue';
 import departments from '@/views/departments.vue';
-import history_reports from '@/views/history-reports.vue';
+import historic_reports from '@/views/historic-reports.vue';
 import BootstrapVue from 'bootstrap-vue';
-// import dashboardView from '@/views/dashboardView.vue';
+import dashboardView from '@/views/dashboardView.vue';
 import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -46,13 +46,13 @@ Vue.use(touchspin);
 export default new Router({
   mode: 'history',
     routes:  [
-      //{
-            // path: '/',
-            // name: 'Vista de dashboard',
-            // component: dashboardView
-        //},
+      {
+            path: '/',
+            name: 'Vista de dashboard',
+            component: dashboardView
+        },
         {
-          path:'/',
+          path:'/detail',
           name:'Listado de desarrollo',
           component: detail
         },
@@ -77,9 +77,9 @@ export default new Router({
             component: users
         },
         {
-            path: '/history_reports',
-            name: 'History_Reports',
-            component: history_reports
+            path: '/historic_reports',
+            name: 'historic_Reports',
+            component: historic_reports
         },
         {
           path:'/towerdetail',
