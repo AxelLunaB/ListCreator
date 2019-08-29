@@ -73,7 +73,7 @@
         </form>
         <div class="row" style="display:flex;justify-content:center;">
           <router-link to="/contractsFiles">
-            <button @click="setNewContract(dep)" class="waves ripple default" title="Generate contract">
+            <button @click="setNewContract(departmentContract)" class="waves ripple default" title="Generate contract">
               <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
               Generate sales contract for {{dep.unitNumber}}
               </div>
@@ -125,7 +125,7 @@ export default {
       selectedId:null,
       dep:[],
       contr:[],
-      departmentContract:[]
+      cluster:null
     }
   },
   methods:{
@@ -158,169 +158,7 @@ export default {
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
-    },
-    numbersToLetters(x){
-          function numeroALetras(num, currency) {
-            function Unidades(num) {
-              switch (num) {
-                case 1:
-                  return "UN";
-                case 2:
-                  return "DOS";
-                case 3:
-                  return "TRES";
-                case 4:
-                  return "CUATRO";
-                case 5:
-                  return "CINCO";
-                case 6:
-                  return "SEIS";
-                case 7:
-                  return "SIETE";
-                case 8:
-                  return "OCHO";
-                case 9:
-                  return "NUEVE";
-              }
-              return "";
-            }
-
-            function Decenas(num) {
-              let decena = Math.floor(num / 10);
-              let unidad = num - decena * 10;
-
-              switch (decena) {
-                case 1:
-                  switch (unidad) {
-                    case 0:
-                      return "DIEZ";
-                    case 1:
-                      return "ONCE";
-                    case 2:
-                      return "DOCE";
-                    case 3:
-                      return "TRECE";
-                    case 4:
-                      return "CATORCE";
-                    case 5:
-                      return "QUINCE";
-                    default:
-                      return "DIECI" + Unidades(unidad);
-                  }
-                  case 2:
-                    switch (unidad) {
-                      case 0:
-                        return "VEINTE";
-                      default:
-                        return "VEINTI" + Unidades(unidad);
-                    }
-                    case 3:
-                      return DecenasY("TREINTA", unidad);
-                    case 4:
-                      return DecenasY("CUARENTA", unidad);
-                    case 5:
-                      return DecenasY("CINCUENTA", unidad);
-                    case 6:
-                      return DecenasY("SESENTA", unidad);
-                    case 7:
-                      return DecenasY("SETENTA", unidad);
-                    case 8:
-                      return DecenasY("OCHENTA", unidad);
-                    case 9:
-                      return DecenasY("NOVENTA", unidad);
-                    case 0:
-                      return Unidades(unidad);
-              }
-            }
-
-            let DecenasY = (strSin, numUnidades) =>
-              numUnidades > 0 ? strSin + " Y " + Unidades(numUnidades) : strSin;
-
-            function Centenas(num) {
-              let centenas = Math.floor(num / 100);
-              let decenas = num - centenas * 100;
-
-              switch (centenas) {
-                case 1:
-                  return decenas > 0 ? "CIENTO " + Decenas(decenas) : "CIEN";
-                case 2:
-                  return "DOSCIENTOS " + Decenas(decenas);
-                case 3:
-                  return "TRESCIENTOS " + Decenas(decenas);
-                case 4:
-                  return "CUATROCIENTOS " + Decenas(decenas);
-                case 5:
-                  return "QUINIENTOS " + Decenas(decenas);
-                case 6:
-                  return "SEISCIENTOS " + Decenas(decenas);
-                case 7:
-                  return "SETECIENTOS " + Decenas(decenas);
-                case 8:
-                  return "OCHOCIENTOS " + Decenas(decenas);
-                case 9:
-                  return "NOVECIENTOS " + Decenas(decenas);
-              }
-              return Decenas(decenas);
-            }
-
-            function Seccion(num, divisor, strSingular, strPlural) {
-              let cientos = Math.floor(num / divisor);
-              let resto = num - cientos * divisor;
-
-              let letras = "";
-
-              if (cientos > 0)
-                letras = cientos > 1 ? Centenas(cientos) + " " + strPlural : strSingular;
-
-              if (resto > 0) letras += "";
-
-              return letras;
-            }
-
-            function Miles(num) {
-              let divisor = 1000;
-              let cientos = Math.floor(num / divisor);
-              let resto = num - cientos * divisor;
-
-              let strMiles = Seccion(num, divisor, "MIL", "MIL");
-              let strCentenas = Centenas(resto);
-
-              if (strMiles == "") return strCentenas;
-
-              return strMiles + " " + strCentenas;
-            }
-
-            function Millones(num) {
-              let divisor = 1000000;
-              let cientos = Math.floor(num / divisor);
-              let resto = num - cientos * divisor;
-
-              let strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-              let strMiles = Miles(resto);
-
-              if (strMillones == "") return strMiles;
-
-              return strMillones + " " + strMiles;
-            }
-            let data = {
-              numero: num,
-              enteros: Math.floor(num),
-              centavos: Math.round(num * 100) - Math.floor(num) * 100,
-              letrasCentavos: "",
-              letrasMonedaPlural: "DÓLARES",
-              letrasMonedaSingular: "DÓLAR"
-            };
-
-            data.letrasCentavos = " Y " + String(data.centavos).padEnd(2, "0") + "/100 " + data.letrasMonedaPlural
-
-            if (data.enteros == 0) return "CERO" + data.letrasCentavos;
-            if (data.enteros == 1) return "UNO" + data.letrasCentavos;
-            else return Millones(data.enteros).trim() + data.letrasCentavos
-          }
-
-          return numeroALetras(x);
-
-              }
+    }
   },
   computed:{
       ...mapGetters({
@@ -344,6 +182,10 @@ export default {
           }
         }
         return deps.length
+      },
+      departmentContract(){
+        var dc = {...this.dep, ...this.contr }
+        return dc
       }
   }
 }

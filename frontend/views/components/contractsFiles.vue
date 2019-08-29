@@ -4,7 +4,7 @@
 
  <div class="willPrintContract d-none" id="willPrintContract">
         <p></p>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE <span class="information">{{setNewContract.unitType}}</span>, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE <span class="information">{{setNewContract.customer.name != undefined? setNewContract.customer.name : '-' }}</span>, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
 
         <p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DECLARACIONES</strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>PRIMERA. &ldquo;EL PROMITENTE VENDEDOR&rdquo; A TRAVÉS DE SU REPRESENTANTE LEGAL DECLARA: </strong></span></span></span></p>
@@ -35,7 +35,7 @@
         <p lang="es-MX">&nbsp;</p>
         <ol start="5" type="a">
         <li>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que mediante escritura p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> de fecha </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> otorgada ante la fe del Lic. </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> titular de la notar&iacute;a p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del estado de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, adquiri&oacute; la propiedad del bien inmueble identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL TERRENO&rdquo;</strong></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que mediante escritura p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> de fecha </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> otorgada ante la fe del Lic. </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> titular de la notar&iacute;a p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del estado de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, adquiri&oacute; la propiedad del bien inmueble identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span class="information">{{setNewContract.cluster.name != null ? setNewContract.cluster.name : '-' }}</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL TERRENO&rdquo;</strong></span></span></p>
         </li>
         </ol>
         <p align="JUSTIFY">&nbsp;</p>
@@ -47,7 +47,7 @@
 
         <ol start="7" type="a">
         <li>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Entre las unidades habitacionales que integran EL PROYECTO, </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">se encuentra la identificada convencionalmente con el n&uacute;mero </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> (en lo sucesivo </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA UNIDAD&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">), en el entendido que dicha nomenclatura podr&aacute; variar atendiendo al determinado por las autoridades al formalizar el r&eacute;gimen de propiedad en condominio; cuyas dimensiones, acabados y caracter&iacute;sticas se describen en el </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Entre las unidades habitacionales que integran EL PROYECTO, </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">se encuentra la identificada convencionalmente con el número </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.unitNumber != undefined ? setNewContract.unitNumber : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> (en lo sucesivo </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA UNIDAD&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">), en el entendido que dicha nomenclatura podr&aacute; variar atendiendo al determinado por las autoridades al formalizar el r&eacute;gimen de propiedad en condominio; cuyas dimensiones, acabados y caracter&iacute;sticas se describen en el </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
         </li>
         </ol>
         <p lang="es-MX">&nbsp;</p>
@@ -57,6 +57,7 @@
         </li>
         </ol>
 
+        <p lang="es-MX" align="CENTER">&nbsp;</p>
         <p lang="es-MX" align="CENTER">&nbsp;</p>
 
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEGUNDA. EL PROMITENTE COMPRADOR por su propio y personal derecho declara:</strong></span></span></span></p>
@@ -69,7 +70,7 @@
 
         <ol start="2" type="a">
         <li>
-        <p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">________________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
+        <p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><span class="information">{{setNewContract.customer.address != null ? setNewContract.customer.address : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> <span class="information">{{setNewContract.customer.email != undefined? setNewContract.customer.email : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
         </li>
         </ol>
 
@@ -219,7 +220,7 @@
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">A partir de la entrega f&iacute;sica de LA UNIDAD, EL PROMITENTE COMPRADOR ser&aacute; responsable de todos y cada uno de los gastos, cuotas de mantenimiento, impuestos y contribuciones propios de LA UNIDAD, asimismo, deber&aacute; asumir a su cargo los da&ntilde;os que sufra LA UNIDAD, incluyendo los que se deriven de casos fortuitos o de fuerza mayor.</span></span></span></p>
         <p lang="es-ES" align="JUSTIFY">&nbsp;</p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>SEXTA. Mobiliario.</strong></span></span></span></p>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR entregar&aacute; LA UNIDAD amueblada y equipada, de conformidad con el ANEXO &ldquo;B&rdquo; y que genera obligaci&oacute;n de pago diversa de la establecida mediante cl&aacute;usula tercera, que es por la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">$</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_____</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.00 USD (</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> d&oacute;lares 00/100 moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, mismo que EL PROMIENTE COMPRADOR se obliga a pagar a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">. </span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR entregar&aacute; LA UNIDAD amueblada y equipada, de conformidad con el ANEXO &ldquo;B&rdquo; y que genera obligaci&oacute;n de pago diversa de la establecida mediante cl&aacute;usula tercera, que es por la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.furniture != null ? setNewContract.furniture + '.00 USD' : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">(</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.furniture != undefined ? numbersToLetters(setNewContract.furniture) : '-'}}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, mismo que EL PROMIENTE COMPRADOR se obliga a pagar a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">. </span></span></span></p>
         <p align="JUSTIFY">&nbsp;</p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEPTIMA. Obligaciones de EL PROMITENTE COMPRADOR:</strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL PROMITENTE COMPRADOR, se obliga a:</span></span></span></p>
@@ -398,6 +399,169 @@ export default {
     return{
     }
   },
+  methods:{
+  numbersToLetters(x){
+          function numeroALetras(num, currency) {
+            function Unidades(num) {
+              switch (num) {
+                case 1:
+                  return "UN";
+                case 2:
+                  return "DOS";
+                case 3:
+                  return "TRES";
+                case 4:
+                  return "CUATRO";
+                case 5:
+                  return "CINCO";
+                case 6:
+                  return "SEIS";
+                case 7:
+                  return "SIETE";
+                case 8:
+                  return "OCHO";
+                case 9:
+                  return "NUEVE";
+              }
+              return "";
+            }
+
+            function Decenas(num) {
+              let decena = Math.floor(num / 10);
+              let unidad = num - decena * 10;
+
+              switch (decena) {
+                case 1:
+                  switch (unidad) {
+                    case 0:
+                      return "DIEZ";
+                    case 1:
+                      return "ONCE";
+                    case 2:
+                      return "DOCE";
+                    case 3:
+                      return "TRECE";
+                    case 4:
+                      return "CATORCE";
+                    case 5:
+                      return "QUINCE";
+                    default:
+                      return "DIECI" + Unidades(unidad);
+                  }
+                  case 2:
+                    switch (unidad) {
+                      case 0:
+                        return "VEINTE";
+                      default:
+                        return "VEINTI" + Unidades(unidad);
+                    }
+                    case 3:
+                      return DecenasY("TREINTA", unidad);
+                    case 4:
+                      return DecenasY("CUARENTA", unidad);
+                    case 5:
+                      return DecenasY("CINCUENTA", unidad);
+                    case 6:
+                      return DecenasY("SESENTA", unidad);
+                    case 7:
+                      return DecenasY("SETENTA", unidad);
+                    case 8:
+                      return DecenasY("OCHENTA", unidad);
+                    case 9:
+                      return DecenasY("NOVENTA", unidad);
+                    case 0:
+                      return Unidades(unidad);
+              }
+            }
+
+            let DecenasY = (strSin, numUnidades) =>
+              numUnidades > 0 ? strSin + " Y " + Unidades(numUnidades) : strSin;
+
+            function Centenas(num) {
+              let centenas = Math.floor(num / 100);
+              let decenas = num - centenas * 100;
+
+              switch (centenas) {
+                case 1:
+                  return decenas > 0 ? "CIENTO " + Decenas(decenas) : "CIEN";
+                case 2:
+                  return "DOSCIENTOS " + Decenas(decenas);
+                case 3:
+                  return "TRESCIENTOS " + Decenas(decenas);
+                case 4:
+                  return "CUATROCIENTOS " + Decenas(decenas);
+                case 5:
+                  return "QUINIENTOS " + Decenas(decenas);
+                case 6:
+                  return "SEISCIENTOS " + Decenas(decenas);
+                case 7:
+                  return "SETECIENTOS " + Decenas(decenas);
+                case 8:
+                  return "OCHOCIENTOS " + Decenas(decenas);
+                case 9:
+                  return "NOVECIENTOS " + Decenas(decenas);
+              }
+              return Decenas(decenas);
+            }
+
+            function Seccion(num, divisor, strSingular, strPlural) {
+              let cientos = Math.floor(num / divisor);
+              let resto = num - cientos * divisor;
+
+              let letras = "";
+
+              if (cientos > 0)
+                letras = cientos > 1 ? Centenas(cientos) + " " + strPlural : strSingular;
+
+              if (resto > 0) letras += "";
+
+              return letras;
+            }
+
+            function Miles(num) {
+              let divisor = 1000;
+              let cientos = Math.floor(num / divisor);
+              let resto = num - cientos * divisor;
+
+              let strMiles = Seccion(num, divisor, "MIL", "MIL");
+              let strCentenas = Centenas(resto);
+
+              if (strMiles == "") return strCentenas;
+
+              return strMiles + " " + strCentenas;
+            }
+
+            function Millones(num) {
+              let divisor = 1000000;
+              let cientos = Math.floor(num / divisor);
+              let resto = num - cientos * divisor;
+
+              let strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+              let strMiles = Miles(resto);
+
+              if (strMillones == "") return strMiles;
+
+              return strMillones + " " + strMiles;
+            }
+            let data = {
+              numero: num,
+              enteros: Math.floor(num),
+              centavos: Math.round(num * 100) - Math.floor(num) * 100,
+              letrasCentavos: "",
+              letrasMonedaPlural: "DÓLARES",
+              letrasMonedaSingular: "DÓLAR"
+            };
+
+            data.letrasCentavos = " Y " + String(data.centavos).padEnd(2, "0") + "/100 " + data.letrasMonedaPlural
+
+            if (data.enteros == 0) return "CERO" + data.letrasCentavos;
+            if (data.enteros == 1) return "UNO" + data.letrasCentavos;
+            else return Millones(data.enteros).trim() + data.letrasCentavos
+          }
+
+          return numeroALetras(x);
+          }
+    },
     computed: {
     ...mapGetters({
       setNewContract: "contracts/setNewContract"

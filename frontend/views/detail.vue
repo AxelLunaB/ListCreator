@@ -109,7 +109,7 @@
         this.title = "GIADA TOWER B"
         this.tower = 3
       }
-      
+
     })
 
 
