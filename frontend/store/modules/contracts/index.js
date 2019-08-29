@@ -27,7 +27,8 @@ const state = {
   ],
   query: null,
   isList: false,
-  filterValue: "cons"
+  filterValue: "cons",
+  selectedDep:[]
 };
 
 

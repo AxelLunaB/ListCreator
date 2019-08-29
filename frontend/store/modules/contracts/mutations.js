@@ -74,6 +74,11 @@ const SPECIAL_FILTER = (state, payload) => {
 const QUERY_UPDATED = (state, query) => {
   state.query = query;
 }
+
+const NEW_CONTRACT = (state,payload)=> {
+  state.selectedDep = payload;
+}
+
 export default {
   CONTRACTS_UPDATED,
   PAGINATION_UPDATED,
@@ -84,5 +89,6 @@ export default {
   SET_VIEW_TYPE,
   SET_FILTER,
   SPECIAL_FILTER,
-  REMOVE_FILTER
+  REMOVE_FILTER,
+  NEW_CONTRACT
 };

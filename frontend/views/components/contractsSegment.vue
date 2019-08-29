@@ -270,7 +270,6 @@
 import newCustomer from "./newCustomer.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
 import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';

@@ -16,10 +16,10 @@ const getContracts = (context) => {
         pages: response.total / response.limit,
         index: Math.floor(response.skip / response.limit),
       };
-      
+
       context.commit('PAGINATION_UPDATED', pagination);
     }
-    
+
   }).catch(error => {
     console.log(error);
   });
@@ -106,6 +106,11 @@ const setListType = ( context, commit ) => {
   context.commit('SET_VIEW_TYPE');
 }
 
+const setNewContract = (context, payload) => {
+
+  context.commit('NEW_CONTRACT', payload);
+
+};
 
 
 
@@ -120,5 +125,6 @@ export default {
   setListType,
   setFilter,
   setSpecialFilter,
-  removeSpecialFilter
+  removeSpecialFilter,
+  setNewContract
 }

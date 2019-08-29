@@ -70,13 +70,17 @@
             </div>
             <div class="col-md-6"></div>
           </div>
-
-        <div class="row">
-          <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
-            <button type="button" class="waves ripple default" title="Generate contract" @click="generateContract()">Generate sales contract for {{dep.unitNumber}}  </button>
-          </div>
-        </div>
         </form>
+        <div class="row" style="display:flex;justify-content:center;">
+          <router-link to="/contractsFiles">
+            <button @click="setNewContract(dep)" class="waves ripple default" title="Generate contract">
+              <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
+              Generate sales contract for {{dep.unitNumber}}
+              </div>
+            </button>
+          </router-link>
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -84,8 +88,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Printd} from 'printd';
-import { setTimeout } from 'timers';
+import { mapActions } from "vuex";
 
 export default {
   mounted: function() {
@@ -126,11 +129,12 @@ export default {
     }
   },
   methods:{
+        ...mapActions ({
+      setNewContract:'contracts/setNewContract'
+    }),
   generateContract(){
-      let department = this.dep
-      this.$eventHub.$emit("contract-info", department)
       const e = new Printd();
-      e.printURL('http://localhost:3030/contractsFiles', ({ launchPrint }) => {
+      e.printURL('/contractsFiles', ({ launchPrint }) => {
           launchPrint();
       })
       },
@@ -464,6 +468,7 @@ button.waves {
   color: white;
   letter-spacing: 2px;
   font-weight: normal;
+  border:none;
 }
 button.waves.ripple {
   overflow: hidden;
