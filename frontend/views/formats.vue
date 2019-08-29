@@ -25,58 +25,67 @@
             </div>
             <div class="form-group col-md-4">
               <label for="Client">Client</label>
-              <input type="text" class="form-control add-contract" id="Client" :placeholder="contr.customer.name != null ? contr.customer.name : '-' " disabled>
+              <input type="text" class="form-control add-contract" id="Client" :placeholder="contr != undefined ? contr.customer.name != null ? contr.customer.name : '-' :'-'" disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="totalPrice">Client address</label>
-              <input type="text" class="form-control add-contract" id="address" :placeholder="contr.customer.address != null ? contr.customer.address : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="address" :placeholder="contr != undefined ? contr.customer.address != null ? contr.customer.address : '-' : '-'"  disabled>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Unit">Client email</label>
-              <input type="text" class="form-control add-contract" id="email" :placeholder="contr.customer.email != null ? contr.customer.email : '-'" disabled>
+              <input type="text" class="form-control add-contract" id="email" :placeholder="contr != undefined ? contr.customer.email != null ? contr.customer.email : '-' : '-'" disabled>
             </div>
             <div class="form-group col-md-4">
-              <!-- <label for="Client">--</label>
-              <input type="text" class="form-control add-contract" id="Client" :placeholder="contr.customer.name != null ? contr.customer.name : '-' " disabled> -->
+              <label for="Client">ID</label>
+              <input type="text" class="form-control add-contract" id="clientId" :placeholder="'-'" disabled>
             </div>
             <div class="form-group col-md-4">
-              <!-- <label for="totalPrice">--</label>
-              <input type="text" class="form-control add-contract" id="address" :placeholder="contr.customer.address != null ? contr.customer.address : '-'"  disabled> -->
+              <label for="totalPrice">Furniture price</label>
+              <input type="text" class="form-control add-contract" id="address" :placeholder="contr != undefined ? contr.furniture != null ? toPrice(contr.furniture) + ' USD' : '-' : '-'"  disabled>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Price">Full price</label>
-              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.priceTotal != null ? toPrice(dep.priceTotal)+ ' USD' : '-' " disabled>
+              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.priceTotal != null ? toPrice(dep.priceTotal): '-' " disabled>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="totalPrice">Currency</label>
+              <input type="text" class="form-control add-contract" id="currency" :placeholder="contr != undefined ? contr.currency != null ? contr.currency : '-' : '-'"  disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="Unit">Payment method</label>
-              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr.paymentMethod != null ? contr.paymentMethod : '-'" disabled>
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="totalPrice">--</label>
-              <input type="text" class="form-control add-contract" id="address" :placeholder="contr.customer.address != null ? contr.customer.address : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr != undefined ? contr.paymentMethod != null ? contr.paymentMethod : '-' : '-'" disabled>
             </div>
           </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="Price">Comments</label>
+              <textarea style="resize:none" type="text" rows="2" class="form-control add-contract" id="comments" :placeholder="contr != undefined ? contr.comment : 'No comments' " disabled></textarea>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+
+        <div class="row">
+          <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
+            <button type="button" class="waves ripple default" title="Generate contract" @click="generateContract()">Generate sales contract for {{dep.unitNumber}}  </button>
+          </div>
+        </div>
         </form>
       </div>
-              {{ dep }}
-        <br/>
-        --
-        <br/>
-        {{ contr }}
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { uptime } from 'os';
+import { Printd} from 'printd';
+import { setTimeout } from 'timers';
 
 export default {
   mounted: function() {
@@ -112,11 +121,22 @@ export default {
       selectedUnit:null,
       selectedId:null,
       dep:[],
-      contr:[]
+      contr:[],
+      departmentContract:[]
     }
   },
   methods:{
+  generateContract(){
+      let department = this.dep
+      this.$eventHub.$emit("contract-info", department)
+      const e = new Printd();
+      e.printURL('http://localhost:3030/contractsFiles', ({ launchPrint }) => {
+          launchPrint();
+      })
+      },
     selectUnit(u,i){
+      this.contr = null
+      this.dep = null
       this.selectedUnit = u
       this.selectedId = i
       for( let x = 0 ; x < this.departments.length ; x++) {
@@ -325,7 +345,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
   @import 'node_modules/bootstrap/scss/bootstrap';
   @import 'node_modules/bootstrap-vue/src/index.scss';
@@ -351,7 +371,8 @@ export default {
     height:auto;
   }
 
-  input.add-contract:disabled {
+  input.add-contract:disabled,
+  textarea.add-contract:disabled {
     background: #2a333c;
     border: 1px solid #ffffff4b;
     color: #697179;
@@ -407,7 +428,7 @@ export default {
 }
 
 .dropdown-menu div li  {
-  padding:7px;
+  padding:7px 7px 0 7px;
 }
 
 
@@ -428,4 +449,52 @@ export default {
   margin:60px 0 60px 0;
 }
 
+button.waves {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 8px 18px;
+  margin: 10px 1px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  background: #17a2b8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+button.waves.ripple {
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s linear, border 0.3s linear;
+}
+button.waves.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, rgba(0, 0, 0, 0) 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+button.waves.ripple:active:after {
+  transform: scale(0);
+  opacity: .2;
+  transition: 0s;
+}
+button.waves.default {
+  background-color: #17a2b8;
+  color: white;
+  outline:none;
+  border-radius: 4px;
+}
 </style>

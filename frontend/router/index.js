@@ -22,6 +22,7 @@ import XSLX from 'xlsx';
 import DatePicker from 'vue-bootstrap-datetimepicker';
 import touchspin from 'bootstrap-touchspin';
 import vuelidateLib from 'vuelidate';
+import contractsFiles from '@/views/components/contractsFiles.vue'
 
 Vue.use(vuelidateLib);
 
@@ -92,6 +93,11 @@ export default new Router({
           name:'Formatos',
           component:formats,
           props:true
+        },
+        {
+          path:'/contractsFiles',
+          name:'Formatos para contratos',
+          component:contractsFiles
         }
     ]
 })

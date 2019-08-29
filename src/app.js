@@ -86,6 +86,9 @@ app.get('/departments', cookieParser(), auth.express.authenticate('jwt', { failu
 app.get('/historics', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
     res.render('generic', getBundle('main'))
 });
+app.get('/contractsFiles', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
+  res.render('generic', getBundle('main'))
+});
 app.get('/historic_reports', cookieParser(), auth.express.authenticate('jwt', { failureRedirect: '/login' }), (req, res) => {
     res.render('generic', getBundle('main'))
 });
