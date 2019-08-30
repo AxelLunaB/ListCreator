@@ -4,6 +4,7 @@
 
  <div class="willPrintContract d-none" id="willPrintContract">
         <p></p>
+
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE <span class="information">{{setNewContract.customer.name != undefined? setNewContract.customer.name : '-' }}</span>, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
 
         <p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DECLARACIONES</strong></span></span></span></p>
@@ -377,6 +378,7 @@ import { Printd} from 'printd';
 import { mapGetters } from "vuex";
 import { setTimeout } from 'timers';
 export default {
+
   mounted: function() {
     const self = this;
     const CSScontract = `
@@ -400,6 +402,12 @@ export default {
     }
   },
   methods:{
+
+    getPrint() {
+       const e = new Printd();
+       e.print(document.getElementById('willPrintContract'),[CSScontract])
+    },
+
   numbersToLetters(x){
           function numeroALetras(num, currency) {
             function Unidades(num) {
