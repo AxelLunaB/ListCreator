@@ -23,7 +23,7 @@
           name="drop-contract"
           :text="selectedContract == 0 ? 'Select contract ID' : selectedContract.id + ' (' + selectedContract.customer.name + ')'">
           <div style="overflow-y:scroll;">
-            <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(index,con)">
+            <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(con.id,con)">
             {{con.id + ' (' + con.customer.name + ')'}}
             </b-dropdown-item>
           </div>
@@ -84,7 +84,7 @@
           </div>
           </form>
         <div style="display: flex;align-items: center;justify-content: center;">
-            <button @click="setNewContract(departmentContract)" class="waves ripple default" title="Generate contract">
+            <button class="waves ripple default" title="Generate contract" @click="contract()">
               <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
               {{selectedContract != 0 ? 'Generate contract for ' + selectedContract.customer.name : 'Please select contract'}}
               </div>
@@ -93,6 +93,9 @@
         </div>
       </div>
       </div>
+      <div v-if="showContract == true">
+        <contracts-files :departmentContract="departmentContract"></contracts-files>
+      </div>
     </div>
   </div>
 </template>
@@ -100,8 +103,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import swal from "sweetalert";
+import contractsFiles from './components/contractsFiles.vue'
 
 export default {
+  components:{
+    contractsFiles
+  },
   mounted: function() {
     this.$store.dispatch("departments/getDepartmentById", this.$attrs.tower);
 
@@ -135,23 +142,26 @@ export default {
       selectedUnit:null,
       selectedContract:[],
       contr:[],
-      dep:[]
+      dep:[],
+      showContract:false
     }
   },
   methods:{
-        ...mapActions ({
-      setNewContract:'contracts/setNewContract'
-    }),
+    contract(){
+      const self = this
+      self.showContract = true
+      setTimeout(function(){
+      self.showContract = false
+      },1000)
+      },
     selectCont(i,c){
-      this.dep = this.contr[i]
+      for(let x = 0 ; x < this.departments.length ; x++) {
+        if(this.departments[x].id == i) {
+          this.dep = this.departments[x]
+        }
+      }
       this.selectedContract = c
     },
-    generateContract(){
-      const e = new Printd();
-      e.printURL('/contractsFiles', ({ launchPrint }) => {
-          launchPrint();
-      })
-      },
     selectUnit(i,u){
       this.contr = []
       let id = i
@@ -161,7 +171,6 @@ export default {
           if(this.contracts[a].reference.status.name == "NOT PAID"){
             this.contr.push(this.contracts[a])
           }
-          // this.contr.push(this.contracts[a])
           this.selectedUnit = u
           NoContr = false
         }
@@ -203,7 +212,7 @@ export default {
         return deps.length
       },
       departmentContract(){
-        var dc = {...this.dep, ...this.contr }
+        var dc = {...this.selectedContract, ...this.dep }
         return dc
       }
   }

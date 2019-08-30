@@ -4,8 +4,76 @@
 
  <div class="willPrintContract d-none" id="willPrintContract">
         <p></p>
-
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE <span class="information">{{setNewContract.customer.name != undefined? setNewContract.customer.name : '-' }}</span>, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
+        { "id": 50, "closingDate": null, "WROI": "NO", "percent": null, "years": null, "paymentMethod": "50 - 50",
+"discount": null, "currency": "MXN", "exchangerate": null, "salesprice": 178000, "comment": "No comments",
+"furniture": 7400, "createdAt": "2019-08-30T14:08:27.103Z", "updatedAt": "2019-08-30T14:08:27.309Z",
+"commissionId": 51, "paymentId": 6, "salesDetailId": 51, "customerId": 3, "referenceId": 51, "clusterId": 2,
+"unitId": 97, "commission": { "id": 50, "managementCommissions": 3, "salesExecutivesCommissions": null,
+"salesAdministrativeCommissions": 2, "thirdPartyCommissions": 1, "brokerCommissions": 5,
+"totalCommissions": 140000, "createdAt": "2019-08-29T22:42:35.508Z", "updatedAt": "2019-08-
+29T22:42:35.508Z", "statusId": 4, "userId": 2, "status": { "id": 4, "name": "NOT PAID", "color_hex": "#f5e02a",
+"createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" }, "executive": { "id":
+2, "name": "Miguel Flores", "age": 40, "contactNumber": "33456783", "email": "m_flores@ar3d.net", "type":
+"A", "createdAt": "2019-08-29T21:56:01.292Z", "updatedAt": "2019-08-29T21:56:01.292Z" } }, "payments": {
+"id": 6, "totalPayments": 12, "totalSale": null, "totalToPay": 178000, "differencePayments": null, "createdAt":
+"2019-08-30T14:08:27.194Z", "updatedAt": "2019-08-30T14:08:27.194Z", "paymentsDetails": [ { "id": 38,
+"paymentNo": 1, "dueDate": "20/10/2019", "paymentDate": null, "createdAt": "2019-08-30T14:08:27.299Z",
+"updatedAt": "2019-08-30T14:08:27.299Z", "statusId": 4, "paymentId": 6, "status": { "id": 4, "name": "NOT
+PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-
+29T21:55:57.337Z" } }, { "id": 39, "paymentNo": 2, "dueDate": "20/11/2019", "paymentDate": null,
+"createdAt": "2019-08-30T14:08:27.319Z", "updatedAt": "2019-08-30T14:08:27.319Z", "statusId": 4,
+"paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-
+29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id": 40, "paymentNo": 3, "dueDate":
+"20/12/2019", "paymentDate": null, "createdAt": "2019-08-30T14:08:27.334Z", "updatedAt": "2019-08-
+30T14:08:27.334Z", "statusId": 4, "paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex":
+"#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id":
+41, "paymentNo": 4, "dueDate": "20/01/2020", "paymentDate": null, "createdAt": "2019-08-
+30T14:08:27.343Z", "updatedAt": "2019-08-30T14:08:27.343Z", "statusId": 4, "paymentId": 6, "status": { "id":
+4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt":
+"2019-08-29T21:55:57.337Z" } }, { "id": 42, "paymentNo": 5, "dueDate": "20/02/2020", "paymentDate": null,
+"createdAt": "2019-08-30T14:08:27.352Z", "updatedAt": "2019-08-30T14:08:27.352Z", "statusId": 4,
+"paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-
+29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id": 43, "paymentNo": 6, "dueDate":
+"20/03/2020", "paymentDate": null, "createdAt": "2019-08-30T14:08:27.362Z", "updatedAt": "2019-08-
+30T14:08:27.362Z", "statusId": 4, "paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex":
+"#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id":
+44, "paymentNo": 7, "dueDate": "20/04/2020", "paymentDate": null, "createdAt": "2019-08-
+30T14:08:27.370Z", "updatedAt": "2019-08-30T14:08:27.370Z", "statusId": 4, "paymentId": 6, "status": { "id":
+4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt":
+"2019-08-29T21:55:57.337Z" } }, { "id": 45, "paymentNo": 8, "dueDate": "20/05/2020", "paymentDate": null,
+"createdAt": "2019-08-30T14:08:27.380Z", "updatedAt": "2019-08-30T14:08:27.380Z", "statusId": 4,
+"paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-
+29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id": 46, "paymentNo": 9, "dueDate":
+"20/06/2020", "paymentDate": null, "createdAt": "2019-08-30T14:08:27.389Z", "updatedAt": "2019-08-
+30T14:08:27.389Z", "statusId": 4, "paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex":
+"#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id":
+47, "paymentNo": 10, "dueDate": "20/07/2020", "paymentDate": null, "createdAt": "2019-08-
+30T14:08:27.398Z", "updatedAt": "2019-08-30T14:08:27.398Z", "statusId": 4, "paymentId": 6, "status": { "id":
+4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt":
+"2019-08-29T21:55:57.337Z" } }, { "id": 48, "paymentNo": 11, "dueDate": "20/08/2020", "paymentDate": null,
+"createdAt": "2019-08-30T14:08:27.405Z", "updatedAt": "2019-08-30T14:08:27.405Z", "statusId": 4,
+"paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-
+29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } }, { "id": 49, "paymentNo": 12, "dueDate":
+"20/09/2020", "paymentDate": null, "createdAt": "2019-08-30T14:08:27.412Z", "updatedAt": "2019-08-
+30T14:08:27.412Z", "statusId": 4, "paymentId": 6, "status": { "id": 4, "name": "NOT PAID", "color_hex":
+"#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt": "2019-08-29T21:55:57.337Z" } } ] },
+30/8/2019 Giada Real State Tulum
+localhost:3030/formats 2/10
+"salesDetails": { "id": 51, "referral": "", "salesChannel": "Web Panel", "createdAt": "2019-08-
+30T14:08:27.197Z", "updatedAt": "2019-08-30T14:08:27.197Z", "userId": 2, "executive": { "id": 2, "name":
+"Miguel Flores", "age": 40, "contactNumber": "33456783", "email": "m_flores@ar3d.net", "type": "A",
+"createdAt": "2019-08-29T21:56:01.292Z", "updatedAt": "2019-08-29T21:56:01.292Z" } }, "customer": { "id":
+3, "name": "Erica Yunes", "age": 30, "address": null, "contactNumber": "1234", "email":
+"3cliente@servicio.com", "country": null, "state": null, "city": null, "userType": "0", "createdAt": "2019-08-
+29T21:55:57.934Z", "updatedAt": "2019-08-29T21:55:57.934Z" }, "reference": { "id": 51, "reserveDate":
+"2019-09-06T05:00:00.000Z", "reserveExpiration": "2019-09-20T05:00:00.000Z", "createdAt": "2019-08-
+30T14:08:27.196Z", "updatedAt": "2019-08-30T14:08:27.196Z", "customerId": 3, "statusId": 4, "status": { "id":
+4, "name": "NOT PAID", "color_hex": "#f5e02a", "createdAt": "2019-08-29T21:55:57.337Z", "updatedAt":
+"2019-08-29T21:55:57.337Z" }, "customer": { "id": 3, "name": "Erica Yunes", "age": 30, "address": null,
+"contactNumber": "1234", "email": "3cliente@servicio.com", "country": null, "state": null, "city": null,
+"userType": "0", "createdAt": "2019-08-29T21:55:57.934Z", "updatedAt": "2019-08-29T21:55:57.934Z" } } }
+{{departmentContract}}
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>CONTRATO DE PROMESA DE COMPRA VENTA, QUE CELEBRAN POR UNA PARTE, </strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>GIADA CONSULTING, S. DE R.L. DE C.V.</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong> REPRESENTADA EN ESTE ACTO POR HORIA TRAIAN CHIRIGUT, QUIEN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONTRATO SERA REFERIDO COMO &ldquo;EL PROMITENTE VENDEDOR&rdquo;, Y POR LA OTRA PARTE <span class="information">{{ departmentContract.customer.name }}</span>, QUIEN EN LO SUCESIVO SER&Aacute; REFERIDO COMO &ldquo;EL PROMITENTE COMPRADOR&rdquo;, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. </strong></span></span></span></p>
 
         <p align="CENTER"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DECLARACIONES</strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>PRIMERA. &ldquo;EL PROMITENTE VENDEDOR&rdquo; A TRAVÉS DE SU REPRESENTANTE LEGAL DECLARA: </strong></span></span></span></p>
@@ -36,19 +104,19 @@
         <p lang="es-MX">&nbsp;</p>
         <ol start="5" type="a">
         <li>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que mediante escritura p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> de fecha </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> otorgada ante la fe del Lic. </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> titular de la notar&iacute;a p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del estado de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, adquiri&oacute; la propiedad del bien inmueble identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span class="information">{{setNewContract.cluster.name != null ? setNewContract.cluster.name : '-' }}</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL TERRENO&rdquo;</strong></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que mediante escritura p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> de fecha </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> otorgada ante la fe del Lic. </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">_____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> titular de la notar&iacute;a p&uacute;blica n&uacute;mero </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> del estado de </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">____</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, adquiri&oacute; la propiedad del bien inmueble identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">___________________________</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL TERRENO&rdquo;</strong></span></span></p>
         </li>
         </ol>
         <p align="JUSTIFY">&nbsp;</p>
         <ol start="6" type="a">
         <li>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que en EL TERRENO, est&aacute; llevando a cabo la construcci&oacute;n y desarrollo de un proyecto inmobiliario, que se sujetar&aacute; al r&eacute;gimen de propiedad en condominio, y estar&aacute; integrado por </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> unidades habitacionales y </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> locales comerciales, (en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL PROYECTO&rdquo;</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">), el cual se describe en t&eacute;rminos generales en el documento adjunto al presente contrato como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, y que ser&aacute; comercialmente identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&ldquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>_____________</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&rdquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Que en EL TERRENO, est&aacute; llevando a cabo la construcci&oacute;n y desarrollo de un proyecto inmobiliario, que se sujetar&aacute; al r&eacute;gimen de propiedad en condominio, y estar&aacute; integrado por </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> unidades habitacionales y </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">__</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"> locales comerciales, (en lo sucesivo referido como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>&ldquo;EL PROYECTO&rdquo;</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">), el cual se describe en t&eacute;rminos generales en el documento adjunto al presente contrato como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong>ANEXO "A"</strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">, y que ser&aacute; comercialmente identificado como </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&ldquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><strong> <span class="information">{{ }}</span> </strong></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">&rdquo;</span></span><span style="font-family: Arial, serif;"><span style="font-size: small;">.</span></span></p>
         </li>
         </ol>
 
         <ol start="7" type="a">
         <li>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Entre las unidades habitacionales que integran EL PROYECTO, </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">se encuentra la identificada convencionalmente con el número </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.unitNumber != undefined ? setNewContract.unitNumber : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> (en lo sucesivo </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA UNIDAD&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">), en el entendido que dicha nomenclatura podr&aacute; variar atendiendo al determinado por las autoridades al formalizar el r&eacute;gimen de propiedad en condominio; cuyas dimensiones, acabados y caracter&iacute;sticas se describen en el </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;">Entre las unidades habitacionales que integran EL PROYECTO, </span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">se encuentra la identificada convencionalmente con el número </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> (en lo sucesivo </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>&ldquo;LA UNIDAD&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">), en el entendido que dicha nomenclatura podr&aacute; variar atendiendo al determinado por las autoridades al formalizar el r&eacute;gimen de propiedad en condominio; cuyas dimensiones, acabados y caracter&iacute;sticas se describen en el </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>ANEXO &ldquo;A&rdquo;</strong></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
         </li>
         </ol>
         <p lang="es-MX">&nbsp;</p>
@@ -71,7 +139,7 @@
 
         <ol start="2" type="a">
         <li>
-        <p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><span class="information">{{setNewContract.customer.address != null ? setNewContract.customer.address : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"> <span class="information">{{setNewContract.customer.email != undefined? setNewContract.customer.email : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
+        <p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_______________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">.</span></span></span></p>
         </li>
         </ol>
 
@@ -221,7 +289,7 @@
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">A partir de la entrega f&iacute;sica de LA UNIDAD, EL PROMITENTE COMPRADOR ser&aacute; responsable de todos y cada uno de los gastos, cuotas de mantenimiento, impuestos y contribuciones propios de LA UNIDAD, asimismo, deber&aacute; asumir a su cargo los da&ntilde;os que sufra LA UNIDAD, incluyendo los que se deriven de casos fortuitos o de fuerza mayor.</span></span></span></p>
         <p lang="es-ES" align="JUSTIFY">&nbsp;</p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>SEXTA. Mobiliario.</strong></span></span></span></p>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR entregar&aacute; LA UNIDAD amueblada y equipada, de conformidad con el ANEXO &ldquo;B&rdquo; y que genera obligaci&oacute;n de pago diversa de la establecida mediante cl&aacute;usula tercera, que es por la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.furniture != null ? setNewContract.furniture + '.00 USD' : '-' }}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">(</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><span class="information">{{setNewContract.furniture != undefined ? numbersToLetters(setNewContract.furniture) : '-'}}</span></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, mismo que EL PROMIENTE COMPRADOR se obliga a pagar a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">. </span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR entregar&aacute; LA UNIDAD amueblada y equipada, de conformidad con el ANEXO &ldquo;B&rdquo; y que genera obligaci&oacute;n de pago diversa de la establecida mediante cl&aacute;usula tercera, que es por la cantidad de </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">___________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">(</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">_________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"> moneda de curso legal en Estados Unidos de Am&eacute;rica)</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, mismo que EL PROMIENTE COMPRADOR se obliga a pagar a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">______________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">. </span></span></span></p>
         <p align="JUSTIFY">&nbsp;</p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>SEPTIMA. Obligaciones de EL PROMITENTE COMPRADOR:</strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">EL PROMITENTE COMPRADOR, se obliga a:</span></span></span></p>
@@ -378,24 +446,15 @@ import { Printd} from 'printd';
 import { mapGetters } from "vuex";
 import { setTimeout } from 'timers';
 export default {
-
+  props:['departmentContract'],
   mounted: function() {
-    const self = this;
     const CSScontract = `
-      .information {
-        text-transform: uppercase;
-        font-weight: bold;
-        text-decoration: underline;
-
-      }
-        `
-    const e = new Printd();
-    e.print(document.getElementById('willPrintContract'),[CSScontract])
-
-    setTimeout(function(){
-    self.$router.go(-1)
-    },1000)
-
+    .information{
+      text-transform: uppercase;
+      text-decoration: underline;
+}`
+      const e = new Printd();
+      e.print(document.getElementById('willPrintContract'),[CSScontract])
   },
   data(){
     return{
@@ -403,9 +462,6 @@ export default {
   },
   methods:{
 
-    getPrint() {
-       const e = new Printd();
-       e.print(document.getElementById('willPrintContract'),[CSScontract])
     },
 
   numbersToLetters(x){
@@ -568,17 +624,15 @@ export default {
           }
 
           return numeroALetras(x);
+          },
+          computed: {
+            }
           }
-    },
-    computed: {
-    ...mapGetters({
-      setNewContract: "contracts/setNewContract"
-    }),
-  }
-}
+
 </script>
 
 <style>
+
 .willPrintContract {
     margin: 30px;
     background: white;
@@ -590,6 +644,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top:0;
 }
 
 @keyframes lds-rolling {

@@ -106,12 +106,6 @@ const setListType = ( context, commit ) => {
   context.commit('SET_VIEW_TYPE');
 }
 
-const setNewContract = (context, payload) => {
-
-  context.commit('NEW_CONTRACT', payload);
-
-};
-
 
 
 export default {
@@ -125,6 +119,5 @@ export default {
   setListType,
   setFilter,
   setSpecialFilter,
-  removeSpecialFilter,
-  setNewContract
+  removeSpecialFilter
 }
