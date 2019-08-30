@@ -9,34 +9,47 @@
           name="drop-unit"
           :text="selectedUnit == null ? 'Select Unit' : selectedUnit">
           <div style="overflow-y:scroll;height:200px;">
-            <b-dropdown-item v-for="(dep,index) in departments" :key="dep.id" @click="selectUnit(dep.unitNumber, dep.id)">
-            {{dep.unitNumber}}
+            <b-dropdown-item v-for="(dep,index) in departments" :key="dep.id" @click="selectUnit(dep.id, dep.unitNumber)">
+              {{dep.unitNumber}}
             </b-dropdown-item>
           </div>
           </b-dropdown>
         </p>
       </div>
-      <div v-if="selectedUnit">
+      <div v-if="contr != 0" class="row" style="display:flex;justify-content:center;">
+        <div class="col-12 select-contract" style="margin-top:0;">
+          <b-dropdown
+          id="dropdown-contract"
+          name="drop-contract"
+          :text="selectedContract == 0 ? 'Select contract ID' : selectedContract.id + ' (' + selectedContract.customer.name + ')'">
+          <div style="overflow-y:scroll;">
+            <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(index,con)">
+            {{con.id + ' (' + con.customer.name + ')'}}
+            </b-dropdown-item>
+          </div>
+          </b-dropdown>
+        </div>
+        <div v-if="selectedContract != 0">
         <form style="width:80%;margin:0 auto">
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Unit">Unit number</label>
-              <input type="text" class="form-control add-contract" id="unitNo" :placeholder="dep.unitNumber != null ? dep.unitNumber : '-'" disabled>
+              <input type="text" class="form-control add-contract" id="unitNo" :placeholder="selectedUnit != null ? selectedUnit : '-'" disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="Client">Client</label>
-              <input type="text" class="form-control add-contract" id="Client" :placeholder="contr != undefined ? contr.customer.name != null ? contr.customer.name : '-' :'-'" disabled>
+              <input type="text" class="form-control add-contract" id="Client" :placeholder="selectedContract != undefined ? selectedContract.customer.name != null ? selectedContract.customer.name : '-' :'-'" disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="totalPrice">Client address</label>
-              <input type="text" class="form-control add-contract" id="address" :placeholder="contr != undefined ? contr.customer.address != null ? contr.customer.address : '-' : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="address" :placeholder="selectedContract != undefined ? selectedContract.customer.address != null ? selectedContract.customer.address : '-' : '-'"  disabled>
             </div>
           </div>
 
-          <div class="form-row">
+           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Unit">Client email</label>
-              <input type="text" class="form-control add-contract" id="email" :placeholder="contr != undefined ? contr.customer.email != null ? contr.customer.email : '-' : '-'" disabled>
+              <input type="text" class="form-control add-contract" id="email" :placeholder="selectedContract != undefined ? selectedContract.customer.email != null ? selectedContract.customer.email : '-' : '-'" disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="Client">ID</label>
@@ -44,51 +57,49 @@
             </div>
             <div class="form-group col-md-4">
               <label for="totalPrice">Furniture price</label>
-              <input type="text" class="form-control add-contract" id="address" :placeholder="contr != undefined ? contr.furniture != null ? toPrice(contr.furniture) + ' USD' : '-' : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="address" :placeholder="selectedContract != undefined ? selectedContract.furniture != null ? toPrice(selectedContract.furniture) + ' USD' : '-' : '-'"  disabled>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Price">Full price</label>
-              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.priceTotal != null ? toPrice(dep.priceTotal): '-' " disabled>
+              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.salesprice != null ? toPrice(dep.salesprice): '-' " disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="totalPrice">Currency</label>
-              <input type="text" class="form-control add-contract" id="currency" :placeholder="contr != undefined ? contr.currency != null ? contr.currency : '-' : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="currency" :placeholder="contr != undefined ? dep.currency != null ? dep.currency : '-' : '-'"  disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="Unit">Payment method</label>
-              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr != undefined ? contr.paymentMethod != null ? contr.paymentMethod : '-' : '-'" disabled>
+              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr != undefined ? dep.paymentMethod != null ? dep.paymentMethod : '-' : '-'" disabled>
             </div>
           </div>
-
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Price">Comments</label>
-              <textarea style="resize:none" type="text" rows="2" class="form-control add-contract" id="comments" :placeholder="contr != undefined ? contr.comment : 'No comments' " disabled></textarea>
+              <textarea style="resize:none" type="text" rows="2" class="form-control add-contract" id="comments" :placeholder="selectedContract != undefined ? selectedContract.comment : 'No comments' " disabled></textarea>
             </div>
             <div class="col-md-6"></div>
           </div>
-        </form>
-        <div class="row" style="display:flex;justify-content:center;">
-          <router-link to="/contractsFiles">
+          </form>
+        <div style="display: flex;align-items: center;justify-content: center;">
             <button @click="setNewContract(departmentContract)" class="waves ripple default" title="Generate contract">
               <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
-              Generate sales contract for {{dep.unitNumber}}
+              {{selectedContract != 0 ? 'Generate contract for ' + selectedContract.customer.name : 'Please select contract'}}
               </div>
             </button>
-          </router-link>
+            </div>
         </div>
-        </div>
+      </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import swal from "sweetalert";
 
 export default {
   mounted: function() {
@@ -122,37 +133,45 @@ export default {
         {cluster:'GIADA TOWERS B', clusterId:3}
       ],
       selectedUnit:null,
-      selectedId:null,
-      dep:[],
+      selectedContract:[],
       contr:[],
-      cluster:null
+      dep:[]
     }
   },
   methods:{
         ...mapActions ({
       setNewContract:'contracts/setNewContract'
     }),
-  generateContract(){
+    selectCont(i,c){
+      this.dep = this.contr[i]
+      this.selectedContract = c
+    },
+    generateContract(){
       const e = new Printd();
       e.printURL('/contractsFiles', ({ launchPrint }) => {
           launchPrint();
       })
       },
-    selectUnit(u,i){
-      this.contr = null
-      this.dep = null
-      this.selectedUnit = u
-      this.selectedId = i
-      for( let x = 0 ; x < this.departments.length ; x++) {
-        if(this.departments[x].id == this.selectedId){
-          this.dep = this.departments[x]
+    selectUnit(i,u){
+      this.contr = []
+      let id = i
+      let NoContr = true
+      for(let a = 0 ; a < this.contracts.length ; a++){
+        if(this.contracts[a].unitId == i) {
+          if(this.contracts[a].reference.status.name == "NOT PAID"){
+            this.contr.push(this.contracts[a])
+          }
+          // this.contr.push(this.contracts[a])
+          this.selectedUnit = u
+          NoContr = false
         }
       }
-
-      for( let a = 0 ; a < this.contracts.length ; a++) {
-        if(this.selectedId == this.contracts[a].unitId){
-          this.contr = this.contracts[a]
-        }
+      if(NoContr){
+        swal({
+          text: 'No contracts available for this unit',
+          icon: 'info',
+          timer:1500
+        })
       }
     },
     toPrice(x) {
@@ -288,7 +307,8 @@ export default {
   text-align:center;
 }
 
-.select-unit {
+.select-unit,
+.select-contract {
   display: flex;
   align-items: center;
   justify-content: center;
