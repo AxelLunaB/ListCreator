@@ -23,7 +23,7 @@
           name="drop-contract"
           :text="selectedContract == 0 ? 'Select contract ID' : selectedContract.id + ' (' + selectedContract.customer.name + ')'">
           <div style="overflow-y:scroll;">
-            <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(con.id,con)">
+            <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(con.unitId,con)">
             {{con.id + ' (' + con.customer.name + ')'}}
             </b-dropdown-item>
           </div>
@@ -63,16 +63,16 @@
 
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label for="Price">Full price</label>
-              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.salesprice != null ? toPrice(dep.salesprice): '-' " disabled>
+              <label for="Price">Initial price</label>
+              <input type="text" class="form-control add-contract" id="unitPrice" :placeholder="dep.priceTotal != null ? toPrice(dep.priceTotal): '-' " disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="totalPrice">Currency</label>
-              <input type="text" class="form-control add-contract" id="currency" :placeholder="contr != undefined ? dep.currency != null ? dep.currency : '-' : '-'"  disabled>
+              <input type="text" class="form-control add-contract" id="currency" :placeholder="contr != undefined ? selectedContract.currency != null ? selectedContract.currency : '-' : '-'"  disabled>
             </div>
             <div class="form-group col-md-4">
               <label for="Unit">Payment method</label>
-              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr != undefined ? dep.paymentMethod != null ? dep.paymentMethod : '-' : '-'" disabled>
+              <input type="text" class="form-control add-contract" id="paymentMethod" :placeholder="contr != undefined ? selectedContract.paymentMethod != null ? selectedContract.paymentMethod : '-' : '-'" disabled>
             </div>
           </div>
           <div class="form-row">
@@ -85,8 +85,8 @@
           </form>
         <div style="display: flex;align-items: center;justify-content: center;">
             <button class="waves ripple default" title="Generate contract" @click="contract()">
-              <div class="col-12" style="display: flex;align-items: center;justify-content: center;">
-              {{selectedContract != 0 ? 'Generate contract for ' + selectedContract.customer.name : 'Please select contract'}}
+              <div class="col-12" style="display: flex;align-items: center;justify-content: center;white-space: normal; padding-left:5px; padding-right:5px;">
+              <span>{{selectedContract != 0 ? 'Generate contract for ' + selectedContract.customer.name : 'Please select contract'}}</span>
               </div>
             </button>
             </div>
@@ -94,7 +94,7 @@
       </div>
       </div>
       <div v-if="showContract == true">
-        <contracts-files :departmentContract="departmentContract"></contracts-files>
+        <contracts-files :departmentContract="departmentContract" :dep="dep" :getComm="getComm" :getDeps="getDeps"></contracts-files>
       </div>
     </div>
   </div>
@@ -167,9 +167,16 @@ export default {
       let id = i
       let NoContr = true
       for(let a = 0 ; a < this.contracts.length ; a++){
+        //change to NOT PAID for testing / PAID for production
         if(this.contracts[a].unitId == i) {
-          if(this.contracts[a].reference.status.name == "NOT PAID"){
+          if(this.contracts[a].reference.status.name == "PAID"){
             this.contr.push(this.contracts[a])
+          } else {
+            swal({
+              text: 'No contracts available for this unit',
+              icon: 'info',
+              timer:1500
+            })
           }
           this.selectedUnit = u
           NoContr = false

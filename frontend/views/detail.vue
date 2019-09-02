@@ -49,7 +49,7 @@
             <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Contracts application</button>
             <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
             <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;">
-              <button type="button" class="btn waves-white ripple" id="createContract">Create contracts</button>
+              <button type="button" class="btn waves-white ripple" id="createContract">Get contract</button>
             </router-link>
             </div>
           </div>

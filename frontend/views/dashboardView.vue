@@ -15,8 +15,8 @@
                 <li class="page-item"> <a href="#" class="page-link">3</a> </li>
                 <li class="page-item"> <a href="#" class="page-link">4</a> </li>
                 <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-            </ul> 
-            
+            </ul>
+
             <development  v-for="(d,index) in development" :key="index" :idN="index"></development>-->
     </div>
 
@@ -173,4 +173,15 @@ body {
     }
   }
 
+ @media screen and (min-width:1000px) and (max-width:1199px) {
+    .wrapper-page {
+      padding-top:30vw;
+    }
+  }
+
+@media screen and (max-width:768px) {
+  .wrapper-page{
+    padding-top:56px;
+  }
+}
 </style>
