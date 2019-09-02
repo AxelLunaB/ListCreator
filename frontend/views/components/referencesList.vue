@@ -4,21 +4,21 @@
     <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
   </div>
     <div class="row margin-0">
-    <div class="col-0 col-sm-1 col-md-2 col-lg-2 col-xl-3">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-2 col-xl-1">
     </div>
-    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6 card-references-main">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-10 card-references-main">
       <div class="card card-references" style="margin-bottom:50px;">
-        <div class="card-body" style="padding-bottom:0;">
+        <div class="card-body">
           <h4 class="page-title" style="padding-bottom:20px;">References List - {{ title }}</h4>
-            <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
+            <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;table-layout:fixed">
                 <tbody>
-                <tr>
-                    <td class="header-t" style="text-align:center;vertical-align:middle;width:70px;"><b>Unit #</b></td>
-                    <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;width:140px;"><b>Reserve date</b></td>
-                    <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;width:140px"><b>Reserve expiration</b></td>
-                    <td class="header-t" style="text-align:center;vertical-align:middle;width:400px;"><b>Customer</b></td>
-                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Status</b></td>
-                    <td class="header-t" style="text-align:center;vertical-align:middle;"><b>Update Status</b></td>
+                <tr style="height:50px;">
+                    <td style="text-align:center;vertical-align:middle;"><b>Unit #</b></td>
+                    <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Reserve date</b></td>
+                    <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Reserve expiration</b></td>
+                    <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Customer</b></td>
+                    <td style="text-align:center;vertical-align:middle;"><b>Status</b></td>
+                    <td style="text-align:center;vertical-align:middle;"><b>Update Status</b></td>
                 </tr>
                 </tbody>
             </table>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="col-0 col-sm-1 col-md-2 col-lg-2 col-xl-3">
+    <div class="col-0 col-sm-1 col-md-2 col-lg-2 col-xl-1">
     </div>
   </div>
 </div>

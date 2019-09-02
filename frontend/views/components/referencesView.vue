@@ -3,12 +3,12 @@
     <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="references" class="table-references colors">
-        <td class="xs-mobile" style="width:70px;"> {{ unitNumber }} </td>
-          <td class="xs-mobile" style="width:140px;">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
-          <td class="xs-mobile" style="width:140px;">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
-          <td style="width:400px;">{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
-          <td><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
-          <td>
+        <td style="vertical-align: middle;"> {{ unitNumber }} </td>
+          <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
+          <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
+          <td style="vertical-align: middle;font-size:14px;" class="xs-mobile mobile">{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
+          <td style="vertical-align: middle;"><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
+          <td style="vertical-align: middle;">
             <select id="myList" v-if="references.reference.statusId !== 5 && references.reference.statusId !== 8 && references.reference.statusId !== null" v-on:change="status($event)">
               <option value = "4">Not Paid</option>
               <option value = "5">Paid</option>
@@ -16,7 +16,6 @@
           </td>
       </tr>
     </tbody>
-
     <!-- <tbody>
       <tr v-if="references" class="table-references colors">
         <td class="xs-mobile" > {{ unitNumber }} </td>
@@ -39,6 +38,7 @@
 </template>
 
 <script>
+import $ from "jquery";
 import swal from "sweetalert";
 import { mapGetters } from 'vuex';
 
@@ -190,10 +190,26 @@ export default {
 
 .table-references {
   width:auto;
+  height:50px;
 }
+
 
 .colors:nth-child(even) {
   background: #425061;
+}
+
+select {
+  background:#252d33;
+  border:none;
+  border-radius: 4px;
+  color:white;
+  padding:5px;
+  cursor:pointer;
+}
+
+select option {
+  padding-bottom:100px;
+  border-radius: 4px;
 }
 
 </style>
