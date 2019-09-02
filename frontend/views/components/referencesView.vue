@@ -3,10 +3,10 @@
     <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="references" class="table-references colors">
-        <td class="xs-mobile" > {{ unitNumber }} </td>
-          <td class="xs-mobile">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
-          <td class="xs-mobile">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
-          <td>{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
+        <td class="xs-mobile" style="width:70px;"> {{ unitNumber }} </td>
+          <td class="xs-mobile" style="width:140px;">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
+          <td class="xs-mobile" style="width:140px;">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
+          <td style="width:400px;">{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
           <td><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
           <td>
             <select id="myList" v-if="references.reference.statusId !== 5 && references.reference.statusId !== 8 && references.reference.statusId !== null" v-on:change="status($event)">
