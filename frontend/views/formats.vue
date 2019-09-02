@@ -83,10 +83,11 @@
             <div class="col-md-6"></div>
           </div>
           </form>
-        <div style="display: flex;align-items: center;justify-content: center;">
+        <div style="display: flex;align-items: center;justify-content: center;flex-direction:column;color:white;">
+          Available contracts for {{ selectedContract.customer.name }}
             <button class="waves ripple default" title="Generate contract" @click="contract()">
               <div class="col-12" style="display: flex;align-items: center;justify-content: center;white-space: normal; padding-left:5px; padding-right:5px;">
-              <span>{{selectedContract != 0 ? 'Generate contract for ' + selectedContract.customer.name : 'Please select contract'}}</span>
+              <span>Sales contract</span><i class="far fa-copy" style="margin-left:12px;"></i>
               </div>
             </button>
             </div>
@@ -167,9 +168,9 @@ export default {
       let id = i
       let NoContr = true
       for(let a = 0 ; a < this.contracts.length ; a++){
-        //change to NOT PAID for testing / PAID for production
+        //delete == 'PAID' for testing/ PAID for production
         if(this.contracts[a].unitId == i) {
-          if(this.contracts[a].reference.status.name == "PAID"){
+          if(this.contracts[a].reference.status.name){
             this.contr.push(this.contracts[a])
           } else {
             swal({

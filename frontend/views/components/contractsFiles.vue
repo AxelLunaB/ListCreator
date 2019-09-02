@@ -91,7 +91,7 @@
         <li>
         <p lang="es-ES" align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Que su domicilio para efectos del presente contrato es el ubicado en </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">
 
-          <span class="information">{{ departmentContract.customer.address != null? departmentContract.customer.address : '-' }}</span>
+          <span class="information">{{ departmentContract.customer.address != null? departmentContract.customer.address : 'N/A' }}</span>
 
         </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, y para efectos de recibir notificaciones y avisos relativas al presente contrato, autoriza que sean llevadas a cabo mediante correo electr&oacute;nico a la direcci&oacute;n electr&oacute;nica </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">
 
@@ -242,7 +242,11 @@
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><strong>CUARTA. Modalidad de la compraventa prometida.</strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">La transmisi&oacute;n de la propiedad prometida mediante el presente contrato se lleva a cabo bajo la modalidad </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES"><em>&ldquo;ad corpus&rdquo;</em></span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, motivo por el cual, el aumento o disminuci&oacute;n de la superficie de LA UNIDAD en un porcentaje no mayor al 2% (dos por ciento) de lo pactado, no originar&aacute; modificaci&oacute;n al precio pactado, ni ser&aacute; causal de rescisi&oacute;n del presente contrato</span></span></span></p>
         <p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>QUINTA. - Entrega. </strong></span></span></span></p>
-        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Se entender&aacute; por &ldquo;Fecha de Entrega&rdquo;, la fecha en que EL PROMITENTE VENDEDOR deber&aacute; hacer la entrega f&iacute;sica de LA UNIDAD y a partir de la cual, EL PROMITENTE COMPRADOR tendr&aacute; la posesi&oacute;n de LA UNIDAD. La &ldquo;Fecha de Entrega&rdquo; deber&aacute; ocurrir a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">_________________</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, siempre y cuando EL PROMITENTE COMPRADOR haya cumplido con sus obligaciones</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
+        <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Se entender&aacute; por &ldquo;Fecha de Entrega&rdquo;, la fecha en que EL PROMITENTE VENDEDOR deber&aacute; hacer la entrega f&iacute;sica de LA UNIDAD y a partir de la cual, EL PROMITENTE COMPRADOR tendr&aacute; la posesi&oacute;n de LA UNIDAD. La &ldquo;Fecha de Entrega&rdquo; deber&aacute; ocurrir a m&aacute;s tardar el d&iacute;a </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">
+
+        <span class="information">30 de Agosto 2021</span>
+
+        </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">, siempre y cuando EL PROMITENTE COMPRADOR haya cumplido con sus obligaciones</span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">. </span></span></span></p>
 
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-ES">Las partes acuerdan que EL PROMITENTE VENDEDOR tendr&aacute; un t&eacute;rmino de gracia de 30 (treinta) d&iacute;as naturales posteriores a la &ldquo;Fecha de Entrega&rdquo; para el caso de que tal entrega se demore por cualquier motivo (en lo sucesivo el &ldquo;Per&iacute;odo de Gracia&rdquo;), per&iacute;odo durante el cual no se generar&aacute; penalidad alguna para EL PROMITENTE VENDEDOR.</span></span></span></p>
 
@@ -358,7 +362,17 @@
         <p><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX"><strong>DÉCIMA QUINTA. - Disposiciones generales. </strong></span></span></span></p>
         <p align="JUSTIFY"><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Ambas partes est&aacute;n de acuerdo en que los encabezados de las cl&aacute;usulas que anteceden, han sido asentados exclusivamente para fines de facilidad de referencia, sin que por ello deban utilizarse para interpretar el contenido de las mismas o la voluntad de las partes. </span></span></span></p>
 
-        <p align="JUSTIFY"><a name="_GoBack"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Enteradas de su contenido y alcance, y sabedoras de las obligaciones que por virtud del presente contrato contraen, ambas partes lo firman al margen y al calce, por duplicado, quedando un ejemplar en poder de cada una de ellas, en Playa del Carmen, Municipio de Solidaridad, Quintana Roo, a los </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">____ d&iacute;as del mes de ____ del _____.</span></span></span></p>
+        <p align="JUSTIFY"><a name="_GoBack"></a> <span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">Enteradas de su contenido y alcance, y sabedoras de las obligaciones que por virtud del presente contrato contraen, ambas partes lo firman al margen y al calce, por duplicado, quedando un ejemplar en poder de cada una de ellas, en Playa del Carmen, Municipio de Solidaridad, Quintana Roo, a los </span></span></span><span style="font-family: Arial, serif;"><span style="font-size: small;"><span lang="es-MX">
+
+          <span class="information">{{ contractDate[0] }}</span>
+
+           d&iacute;as del mes de
+
+           <span class ="information">{{ contractDate[1] }}</span>
+
+           del
+
+           <span class="information">{{ contractDate[2] }}</span>.</span></span></span></p>
 
         <p lang="es-MX" align="CENTER">&nbsp;</p>
 
@@ -607,8 +621,37 @@ export default {
 
           return numeroALetras(x);
           }
+        },
+        computed:{
+          contractDate(){
+            let todaysDate = []
+            let months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+            let a = new Date();
+
+            let r = a.getDate();
+
+            let l;
+
+            if(r < 10) {
+             r = '0' + r
+            }
+
+            todaysDate.push(r)
+
+            let m = a.getMonth() + 1;
+
+            todaysDate.push(months[m])
+
+            let y = a.getFullYear()
+
+            todaysDate.push(y)
+
+
+            return todaysDate
         }
       }
+    }
 
 </script>
 
