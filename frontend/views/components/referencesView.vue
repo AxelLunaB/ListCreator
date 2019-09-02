@@ -120,24 +120,28 @@ export default {
         }).then(isConfirm => {
           if(isConfirm) {
             const statusSelected = event.target.value;
-
+            console.log(_.unitId);
             const reference = {
               paidReference: _.references.referenceId,
               statusId: statusSelected,
-              unitId: this.unitId === null ? this.references.unitId : null
+              unitId: _.references.unitId
             };
 
             if(reference !== undefined) {
-              console.log('jjujjj');
-              
-              _.$store.dispatch("others/callCancelReferences", reference);
-               _.$eventHub.$emit("updateReferenceParent");
-               _.$eventHub.$emit('updateDataDetail');
+                console.log(reference);
+              if( reference.unitId !== null) {
+                 _.$store.dispatch("others/callCancelReferences", reference);
+              } else {
+                console.log("id is null");
+              }
+              _.$eventHub.$emit("updateReferenceParent");
+              _.$eventHub.$emit('updateDataDetail');
+
             }
           }
-          
+
         });
-        
+
       }
 
     },

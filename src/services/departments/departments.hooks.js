@@ -6,18 +6,6 @@ const setStatusObject = require('../../hooks/set-status-object');
 const canUpdate = require('../../hooks/can-update');
 const preventDuplicate = require('../../hooks/prevent-duplicates');
 
-const getClusterById = async context => {
-  const clusterId = 1;
-
-  try {
-    await context.app.service('/api/departments').find({ clusterId: clusterId })
-    .then(res => {
-      console.log(res);
-    });
-  } catch(e) {
-    console.log(e);
-  }
-};
 
 module.exports = {
   before: {
@@ -25,7 +13,6 @@ module.exports = {
     authenticate('jwt')
     ],
     find: [
-     togglePagination(),
       addAssociations({
         models: [
           {
@@ -44,7 +31,8 @@ module.exports = {
             id: 1
           }
         }
-      }
+      }, togglePagination()
+
     ],
     get: [],
     create: [preventDuplicate({ service: 'api/departments' })],
@@ -87,9 +75,7 @@ module.exports = {
   after: {
     all: [],
     find: [
-      async context => {
-        getClusterById(context);
-      }
+
     ],
     get: [
       setClusterObject(),

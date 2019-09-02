@@ -47,8 +47,8 @@ export default {
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
        this.$eventHub.$on("updateReferenceParent", () => {
-          console.log('uiouiouioiouioi');
-          
+
+
           this.$store.dispatch("others/getReferences");
           this.$store.dispatch("contracts/getContracts");
         });
@@ -94,22 +94,7 @@ export default {
       });
 
       return unitNumber[0] !== undefined ? unitNumber[0].unitNumber : null;
-        // var filter = this.contracts.filter(contract => {
-        //   return contract.referenceId === refId;
-        // });
-         
-        // if (filter[0] !== undefined) {
-        //   // console.log(filter[0]);
-        //    filter = this.departments.filter(dep => {
-        //     return dep.id === filter[0].unitId;
-        //   });
-         
-             
-        //   // console.log(filter);
-        //   // console.log("-------------");
-        // }
-          
-        // return filter[0] !== undefined ?  filter[0].unitNumber : "-";
+
     },
 
     filterUnitId: function (referenceId) {
@@ -123,7 +108,7 @@ export default {
     }
 
   },
-  
+
 
   computed: {
 
@@ -135,13 +120,16 @@ export default {
     // Filter each reference belong to current selected clusterId
     referencesByCluster: function () {
       console.log("dasfsfasadsfa");
-      
+
       let refs = this.references;
+      let con = this.contracts;
       let referencesByCluster = [];
-      this.contracts.forEach(contract => {
+      con.forEach(contract => {
         refs.data.forEach(reference => {
-          if(contract.clusterId === this.clusterId && contract.referenceId === reference.id) {
-            referencesByCluster.push(contract);
+          if(contract.referenceId != null) {
+           if(contract.clusterId === this.clusterId && contract.referenceId === reference.id) {
+             referencesByCluster.push(contract);
+           }
           }
         });
       });
@@ -154,6 +142,9 @@ export default {
   watch: {
     openReference: function () {
       this.openReference === true ? this.$store.dispatch("others/getReferences") : this.$store.dispatch("others/getReferences");
+    },
+    referencesByCluster(newVal) {
+      console.log("asdafasfaasfdh2");
     }
   }
 

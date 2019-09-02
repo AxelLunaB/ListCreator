@@ -365,10 +365,13 @@ const cancelReferences = async reference => {
     });
 
     // Patch Department
-    socket.emit('patch', 'api/departments', unitId, { statusId: 3 }, (error, response) => {
-      console.log(`UnitID: ${unitId} RESERVED`);
-    });
-
+    if( unitId !== null) {
+     socket.emit('patch', 'api/departments', unitId, { statusId: 3 }, (error, response) => {
+       console.log(`UnitID: ${unitId} RESERVED`);
+     });
+   } else {
+      console.log("heeeeell no");
+   }
     totalContracts.data.forEach(obj => {
       if(obj.referenceId !== paidReference) {
 

@@ -651,10 +651,13 @@ export default {
                     timer:1500
                   }).then(function() {
                     _.$store
-                    .dispatch("contracts/newContract", data)
+                    .dispatch("contracts/newContract", data).then( result => (
+                      console.log(result),
+                      _.$eventHub.$emit("updateDataDetail"),
+                      _.$eventHub.$emit("updateReferenceParent")
+                    ));
                     _.$store
-                    .dispatch("contracts/getContracts");
-                    _.$eventHub.$emit("updateDataDetail");
+
                     _.validation = []
                     _.withFurniture = false
                     _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
@@ -665,11 +668,16 @@ export default {
                     _.isROI == true ? _.isROI = false : _.isROI
 
                     for(var x in _.formData) {
+                      if(x === "clusterId")
+                      continue;
                       _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
                       _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
                       _.formData.comment != null ? _.formData.comment = null : _.formData.comment
                       _.withFurniture == true ? _.withFurniture = false : _.withFurniture
                     }
+
+
+                    _.$eventHub.$emit("updateDataDetail");
 
                   });
                 } else {
