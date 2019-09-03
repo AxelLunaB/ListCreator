@@ -448,8 +448,6 @@ export default {
           formData.append('files[]', file);
         }
 
-        console.log(files);
-
         // const contentType = files[0].type; // File's MIME type
         // const url = 'www.google.com';
         // const size = files[0].size.toString(); // Size in bytes
@@ -460,8 +458,7 @@ export default {
         //   size: size
         // };
 
-        // console.log(file);
-        // self.$store.dispatch("attachments/setNewAttachment", file);
+        self.$store.dispatch("attachments/getAWSSignature", files);
       });
     }
   },

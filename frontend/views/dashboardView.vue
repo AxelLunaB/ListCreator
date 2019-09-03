@@ -33,7 +33,7 @@ export default {
   components: {
     development
   },
-  mounted:function(){
+  mounted: function () {
       // logic
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {

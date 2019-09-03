@@ -6,8 +6,10 @@ const setStatusObject = require('../../hooks/set-status-object');
 const canUpdate = require('../../hooks/can-update');
 const preventDuplicate = require('../../hooks/prevent-duplicates');
 const moment = require('moment');
+const iff = require('feathers-hooks-common').iff;
 
 const createReference = async context => {
+  console.log(context.data);
   const dayOfPayment = context.data.dateOfPayment;
   const today = new Date(dayOfPayment);
   const finalDate = new Date(today);
@@ -69,12 +71,12 @@ const createReference = async context => {
     try {
 
       if(salesPrice !== null || salesPrice !== undefined) {
-        
+
         await context.app.service('api/payments').create(
-        { 
-          totalPayments: totalPayments, 
-          totalSale: null, 
-          totalToPay: salesPrice, 
+        {
+          totalPayments: totalPayments,
+          totalSale: null,
+          totalToPay: salesPrice,
           differencePayments: differencePayments
         }, params);
       }
@@ -91,10 +93,10 @@ const createReference = async context => {
     const salesDetailsObj = { referral: "", salesChannel: "Web Panel", userId: executiveId };
     const contractId = context.data.id;
 
-    try { 
+    try {
       await context.app.service('api/salesDetails').create(salesDetailsObj).then(async res => {
         await context.app.service('api/contracts').patch(contractId, { salesDetailId: res.id });
-      }); 
+      });
     } catch(e) {
       console.log(e);
     }
@@ -128,7 +130,13 @@ module.exports = {
   all: [authenticate('jwt')],
     find: [togglePagination()],
     get: [],
-    create: [],
+    create: [
+     async context => {
+      let newId = await context.app.service('api/contracts').find({query: {$limit: 1,$sort: {id: -1} }})
+          context.data.id = newId.data[0].id + 1;
+      }
+
+    ],
     update: [canUpdate()],
     patch: [],
     remove: [canUpdate()]

@@ -327,9 +327,9 @@ const fetchReferences = () => {
 }
 
 /* Attachments */
-const newFileUpload = file => {
+const getS3Signature = files => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', '/attachments', file, (error, response) => {
+    socket.emit('create', '/attachments', files, (error, response) => {
       error ? reject(error) : resolve(response);
     });
   });
@@ -364,6 +364,14 @@ const cancelReferences = async reference => {
       console.log(`Paid ReferenceID: ${paidReference}`);
     });
 
+    // Patch Department
+    if( unitId !== null) {
+     socket.emit('patch', 'api/departments', unitId, { statusId: 3 }, (error, response) => {
+       console.log(`UnitID: ${unitId} RESERVED`);
+     });
+   } else {
+      console.log("heeeeell no");
+   }
     totalContracts.data.forEach(obj => {
       if(obj.referenceId !== paidReference) {
 
@@ -419,5 +427,5 @@ export {
   fetchReferences,
   cancelReferences,
   //
-  newFileUpload
+  getS3Signature
 }
