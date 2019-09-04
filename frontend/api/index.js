@@ -388,7 +388,7 @@ const fetchReferences = () => {
 /* Attachments */
 const getS3Signature = file => {
   return new Promise((resolve, reject) => {
-    socket.emit('/attachments::create', file, (error, response) => {
+    socket.emit('create', 'attachments', file, (error, response) => {
       error ? reject(error) : resolve(response);
     });
   });
