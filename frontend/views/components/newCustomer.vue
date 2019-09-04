@@ -280,21 +280,22 @@ export default {
                     timer: 1500
                   })
 
-                  this.formData.name = null
-                  this.formData.age = null
-                  this.formData.address = null
-                  this.formData.country = null
-                  this.formData.state = null
-                  this.formData.city = null
-                  this.formData.contactNumber = null
-                  this.formData.email = null
+                  _.formData.name = null
+                  _.formData.age = null
+                  _.formData.address = null
+                  _.formData.country = null
+                  _.formData.state = null
+                  _.formData.city = null
+                  _.formData.contactNumber = null
+                  _.formData.email = null
+                  _.validation = false
 
                   setTimeout(function () {
                     _.$emit('closeModal', false)
-                    }, 1500);
+                    }, 500);
                     setTimeout(function() {
                       _.closeModalUser = false
-                      }, 1500)
+                      }, 500)
             }
           })
 
