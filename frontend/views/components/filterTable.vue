@@ -10,8 +10,8 @@
               <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Level</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
-                    <ul>
+                    <input type="checkbox" @click="shouldHide(1)">
+                    <ul id="dropdown1">
                       <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
                         <p> {{ item.level }}</p>
                       </li>
@@ -20,10 +20,10 @@
               </div>
             <div class="dropdown-container">
               <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
-              <span class="dropdown">
+              <span class="dropdown" @click="shouldHide(2)">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox">
-                    <ul>
+                    <ul id="dropdown2">
                       <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), show = true">
                         <p> {{ item.cost }} </p>
                       </li>
@@ -34,8 +34,8 @@
               <button class="btn-buy" @click="setFilterAs('statusId')" value="statusId" id="name">Status</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
-                    <ul>
+                    <input type="checkbox" @click="shouldHide(3)">
+                    <ul id="dropdown3">
                       <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),  show = true">
                         <p> {{ item.stat }} </p>
                       </li>
@@ -83,7 +83,30 @@ export default {
       setSpecialFilter: 'departments/setSpecialFilter',
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
-    })
+    }),
+    shouldHide(x){
+      // switch(x){
+      //   case 1:
+      //   alert('1')
+      //     document.getElementById("dropdown1").style.display = "block";
+      //     document.getElementById("dropdown2").style.display = "none";
+      //     document.getElementById("dropdown3").style.display = "none";
+      //   break;
+      //   case 2:
+      //   alert('2')
+      //     document.getElementById("dropdown1").style.display = "none";
+      //     document.getElementById("dropdown2").style.display = "block";
+      //     document.getElementById("dropdown3").style.display = "none";
+      //   break;
+      //   case 3:
+      //   alert('3')
+      //     document.getElementById("dropdown1").style.display = "none";
+      //     document.getElementById("dropdown2").style.display = "none";
+      //     document.getElementById("dropdown3").style.display = "block";
+      //   break;
+      // }
+
+    }
   }
 }
 </script>
