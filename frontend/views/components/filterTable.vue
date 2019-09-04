@@ -10,9 +10,9 @@
               <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Level</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox" @click="shouldHide(1)">
+                    <input type="checkbox" class="checkboxes">
                     <ul id="dropdown1">
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown()">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
@@ -20,11 +20,11 @@
               </div>
             <div class="dropdown-container">
               <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
-              <span class="dropdown" @click="shouldHide(2)">
+              <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
+                    <input type="checkbox" class="checkboxes">
                     <ul id="dropdown2">
-                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), show = true">
+                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), hideDropdown()">
                         <p> {{ item.cost }} </p>
                       </li>
                     </ul>
@@ -34,9 +34,9 @@
               <button class="btn-buy" @click="setFilterAs('statusId')" value="statusId" id="name">Status</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox" @click="shouldHide(3)">
+                    <input type="checkbox" class="checkboxes">
                     <ul id="dropdown3">
-                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),  show = true">
+                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown()">
                         <p> {{ item.stat }} </p>
                       </li>
                     </ul>
@@ -84,27 +84,12 @@ export default {
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
     }),
-    shouldHide(x){
-      // switch(x){
-      //   case 1:
-      //   alert('1')
-      //     document.getElementById("dropdown1").style.display = "block";
-      //     document.getElementById("dropdown2").style.display = "none";
-      //     document.getElementById("dropdown3").style.display = "none";
-      //   break;
-      //   case 2:
-      //   alert('2')
-      //     document.getElementById("dropdown1").style.display = "none";
-      //     document.getElementById("dropdown2").style.display = "block";
-      //     document.getElementById("dropdown3").style.display = "none";
-      //   break;
-      //   case 3:
-      //   alert('3')
-      //     document.getElementById("dropdown1").style.display = "none";
-      //     document.getElementById("dropdown2").style.display = "none";
-      //     document.getElementById("dropdown3").style.display = "block";
-      //   break;
-      // }
+    hideDropdown(x){
+      this.show = true
+      var inputs = document.querySelectorAll('.checkboxes');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false;
+        }
 
     }
   }
@@ -158,6 +143,7 @@ export default {
   z-index:+0;
   top: 0px; left: 0px;
   right: 0px; bottom: 0px;
+  background: red;
 }
 
 .dropdown ul {
@@ -258,6 +244,10 @@ export default {
 .btn-buy,
 input .dropdown {
   cursor: pointer!important;
+}
+
+.filter-container p {
+  color: white;
 }
 
 .fa-sort-down {
