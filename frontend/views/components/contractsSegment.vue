@@ -12,7 +12,7 @@
         <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6" style="display:flex;align-items:center;">
           <div class="card">
             <div class="card-body">
-              <h4 class="page-title">Contract Application</h4>
+              <h4 class="page-title">Generate Reference</h4>
               <form id="new-contract-form">
                 <div class="form-group">
                   <div class="row">
