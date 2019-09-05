@@ -4,8 +4,8 @@
 
       <!-- Buttons / Search -->
       <div class="buttons has-addons is-right">
-        <span v-on:click="toggleUserUI()" class="button">{{ plusIcon }}</span>
-        <span class="button disabled">Search</span>
+        <span v-on:click="toggleUserUI()" class="button" style="font-weight: 900; font-size: 18px;">{{ plusIcon }}</span>
+        <!-- <span class="button disabled">Search</span> -->
       </div>
 
       <!-- USERS TABLE -->

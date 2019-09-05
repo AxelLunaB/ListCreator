@@ -44,13 +44,13 @@
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
+            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Contracts application</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
-            <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;">
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Generate Reference</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References List</button>
+            <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;">
               <button type="button" class="btn waves-white ripple" id="createContract">Get contract</button>
-            </router-link>
+            </router-link> -->
             </div>
           </div>
         </div>
@@ -193,6 +193,7 @@
         let info = {
           departments : this.departments
         }
+        
         this.$eventHub.$emit("show-contractsSegment-modal", info);
       },
 
