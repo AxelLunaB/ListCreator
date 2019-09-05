@@ -61,7 +61,14 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-if="detailTable.status.name !='RESERVED'" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-else class="text-right">
+                                  <select id="myList" v-on:change="status($event)">
+                                    <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
+                                    <option value = "4" style="color: rgb(245, 224, 42);">NOT PAID</option>
+                                    <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
+                                  </select>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -106,7 +113,7 @@
                             <thead>
                             </thead>
                             <tbody>
-                            
+
                             <tr v-on:click="selectedLabel = 'Offer Letter'">
                               <label for="fileInput">
                                 <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
@@ -114,7 +121,7 @@
                                 <td><i class="fas fa-file-alt"></i></td>
                               </label>
                             </tr>
-                           
+
                             <tr v-on:click="selectedLabel = 'Reserve Sheet'">
                                 <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
@@ -174,7 +181,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
-           
+
             <div class="row" style="height:100%;">
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
@@ -263,19 +270,19 @@
                           </thead>
                           <tbody>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI</td>
+                              <td class="textalign">ROI</td>
                               <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI %</td>
+                              <td class="textalign">ROI %</td>
                               <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Years</td>
+                              <td class="textalign">Years</td>
                               <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Closing Date</td>
+                              <td class="textalign">Closing Date</td>
                               <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
                           </tr>
                           </tbody>
@@ -361,14 +368,14 @@ const isFileValid = fileType => {
     case 'image/png':
       return valid = true
 
-    default: 
+    default:
       return valid
   }
 };
 
 async function getInputFiles (fileList) {
       let arrayOfFiles = [];
-      
+
       fileList.forEach(file => {
           let fileObj = {};
           const reader = new FileReader();
@@ -376,7 +383,7 @@ async function getInputFiles (fileList) {
           fileObj.fileName = file.name;
           fileObj.fileSize = file.size;
           fileObj.fileType = file.type;
-         
+
           reader.onload = () => {
             fileObj.fileBody = reader.result;
             arrayOfFiles.push(fileObj);
@@ -503,7 +510,7 @@ export default {
       return r;
     },
 
-    
+
 
     readFiles: function(event) {
       // Retrieve selected files
@@ -536,7 +543,7 @@ export default {
             obj.size = file.size;
             obj.type = file.type;
             obj.body = reader.result;
-            
+
             // Push File to Files[] Array in the Data component
             this.files.push(obj);
 
@@ -547,7 +554,7 @@ export default {
             //
             uploadTitle.innerText = validFiles === 1 ? `File uploaded!` : `${validFiles} files uploaded!`;
           }
-  
+
           reader.onerror = () => {
             console.log('Error reading file!');
             console.log(reader.error);
@@ -600,9 +607,37 @@ export default {
 
         _.files = null;
       });
-      
     },
+      status: function status(event) {
+        const _ = this;
+        let state = event.target[event.target.selectedIndex].label
+        if(state != 'Select...'){
+        swal(
+        {
+          title: 'Please confirm information',
+          text:  'Change status to ' + event.target[event.target.selectedIndex].label + ' ?',
+          icon: "info",
+          buttons: {
+          cancel: true,
+          confirm: true,
+        }
+        }).then(isConfirm => {
+          if(isConfirm) {
+            const unitId = this.detailTable.id
+            const statusId = parseInt(document.getElementById("myList").value);
+            const newStatus = {
+              unitId: unitId,
+              statusId: statusId
+            };
+            this.$store.dispatch('departments/updateStatus', newStatus);
+            confirm = true
+          } else {
+            document.getElementById("myList").selectedIndex = 0
+          }
 
+        });
+        }
+      }
   },
 
   computed: {
@@ -685,6 +720,19 @@ export default {
     background: #2a333c!important;
   }
 
+  select {
+  background:#252d33;
+  border:none;
+  border-radius: 4px;
+  color:white;
+  padding:5px;
+  cursor:pointer;
+}
+
+select option {
+  padding-bottom:100px;
+  border-radius: 4px;
+}
     .container-fluid {
     text-align:center;
     background:#2a333c;
@@ -871,6 +919,10 @@ button.waves.default {
   outline:none;
 }
 
+.table-modifier tbody tr td {
+  vertical-align: middle;
+}
+
 .dropzone {
   background: #212c38;
   border-radius: 5px;
@@ -931,5 +983,12 @@ button.waves.default {
     margin-bottom:10px;
   }
 }
+
+@media screen and (max-width:991px) {
+  .table-modifier tbody tr td {
+    padding:8px 0;
+  }
+}
+
 
 </style>

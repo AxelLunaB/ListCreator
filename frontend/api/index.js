@@ -98,6 +98,18 @@ const patchDepartments = (department) => {
 
 /* CONTRACTS */
 
+const updateUnitStat = (newStatus) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'api/departments', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
+
 const fetchTotalContracts = async unitId => {
   return new Promise((resolve, reject) => {
     socket.emit('find', 'api/contracts', { unitId: unitId }, (error, response) => {
@@ -466,6 +478,7 @@ export {
   fetchContractsByPaidRef,
   createContract,
   fetchCommissions,
+  updateUnitStat,
   //
   createLot,
   fetchLots,
