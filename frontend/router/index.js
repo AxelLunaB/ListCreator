@@ -98,6 +98,6 @@ export default new Router({
           path:'/contractsFiles',
           name:'Formatos para contratos',
           component:contractsFiles
-        }
+        },
     ]
 })

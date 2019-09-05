@@ -1,15 +1,15 @@
 // Initializes the `attachments` service on path `/attachments`
-const createService = require('./attachments.class.js');
-// const createService = require('feathers-sequelize');
-// const createModel = require('../../models/attachments.model');
+// const createService = require('./attachments.class.js');
+const createService = require('feathers-sequelize');
+const createModel = require('../../models/attachments.model');
 const hooks = require('./attachments.hooks');
 
 module.exports = function (app) {
-  //const Model = createModel(app);
+  const Model = createModel(app);
   const paginate = app.get('paginate');
 
   const options = {
-    //Model,
+    Model,
     paginate
   };
 
@@ -17,7 +17,6 @@ module.exports = function (app) {
   app.use('/attachments', createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('attachments');
-
+  const service = app.service('/attachments');
   service.hooks(hooks);
 };

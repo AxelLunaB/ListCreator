@@ -2,6 +2,10 @@ const CONTRACTS_UPDATED = (state, contracts) => {
   state.contracts = contracts;
 };
 
+const CONTRACTS_BY_PAID_REF = (state, payload) => {
+  state.contractsByPaidRef = payload;
+};
+
 const PAGINATION_UPDATED = (state, pagination) => {
   state.pagination = pagination;
 };
@@ -81,6 +85,7 @@ const NEW_CONTRACT = (state,payload)=> {
 
 export default {
   CONTRACTS_UPDATED,
+  CONTRACTS_BY_PAID_REF,
   PAGINATION_UPDATED,
   GO_NEXT_PAGE,
   GO_PREV_PAGE,

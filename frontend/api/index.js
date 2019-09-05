@@ -106,6 +106,65 @@ const fetchTotalContracts = async unitId => {
   });
 };
 
+/* Retrieves all contracts by Paid Reference */
+const fetchContractsByPaidRef = async () => {
+  // Contracts
+  const contracts = [];
+
+  // References ID
+  const referencesId = [];
+
+  // Fetch all references that belongs to
+  // a paid reference
+  await socket.emit('api/references::find', { statusId: 5 }, (error, references) => {
+
+    if(error) {
+      throw new Error(error);
+    }
+
+    // All Paid References as Array : []
+    const paidReferences = references;
+      
+    paidReferences.data.forEach(reference => {
+      let id = reference.id;
+      referencesId.push(id);
+    });
+  });
+
+  await socket.emit('find', 'api/contracts', { $sort: { id: 1 } }, (error, response) => {
+
+    if(error) {
+      throw new Error(error);
+    }
+
+    console.log('CONTRACTS');
+    console.log(response);
+
+    console.log('ReferencesID');
+    console.log(referencesId);
+      
+    if(response !== null || response !== undefined) {
+      referencesId.forEach(id => {
+        // Search for referenceId at Contracts
+        let contract = response.data.find(element => {
+          return element.referenceId === id;
+        });
+  
+        // Pushes the data to contracts array
+        contracts.push(contract);
+      });
+    }
+      
+  });
+    
+  console.log('CONTRACTS PAID');
+  console.log(contracts);
+
+  return new Promise((resolve) => {
+    resolve(contracts);
+  });
+};
+
 const fetchContracts = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -327,9 +386,9 @@ const fetchReferences = () => {
 }
 
 /* Attachments */
-const getS3Signature = files => {
+const getS3Signature = file => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', '/attachments', files, (error, response) => {
+    socket.emit('create', 'attachments', file, (error, response) => {
       error ? reject(error) : resolve(response);
     });
   });
@@ -404,6 +463,7 @@ export {
   fetchDepartmentsByCluster,
   //
   fetchContracts,
+  fetchContractsByPaidRef,
   createContract,
   fetchCommissions,
   //

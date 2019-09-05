@@ -43,9 +43,7 @@ const newCustomer = async context => {
 module.exports = {
   before: {
     all: [authenticate('jwt')],
-
-    find: [togglePagination()
-    ],
+    find: [ togglePagination() ],
     get: [],
     create: [
       async context => {

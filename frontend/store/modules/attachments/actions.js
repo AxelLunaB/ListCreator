@@ -1,9 +1,10 @@
 import { getS3Signature } from '@/api';
 
-const getAWSSignature = (context, files) => {
+const getAWSSignature = (context, file) => {
+  console.log('Current Object Sent');
+  console.log(file);
     return new Promise((resolve, reject) => {
-      getS3Signature(files).then(res => {
-        // context should be called to commit some mutation in order to send popups or something.
+      getS3Signature(file).then(res => {
         resolve(res);
       }).catch(e => {
         reject(e);
