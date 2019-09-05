@@ -61,10 +61,11 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td v-if="detailTable.status.name !='RESERVED'" class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-if="detailTable.status.name !='RESERVED'" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
                                 <td v-else class="text-right">
-                                  <select id="myList" v-on:change="status($event)" v-bind:style="{color: getColor }">
-                                    <option value = "4" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
+                                  <select id="myList" v-on:change="status($event)">
+                                    <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
+                                    <option value = "4" style="color: rgb(245, 224, 42);">NOT PAID</option>
                                     <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
                                   </select>
                                 </td>
@@ -474,7 +475,6 @@ export default {
       status: function status(event) {
         const _ = this;
         let state = event.target[event.target.selectedIndex].label
-        let confirm = false
         if(state != 'Select...'){
         swal(
         {
@@ -495,12 +495,11 @@ export default {
             };
             this.$store.dispatch('departments/updateStatus', newStatus);
             confirm = true
+          } else {
+            document.getElementById("myList").selectedIndex = 0
           }
 
         });
-        }
-        if(confirm){
-          alert('e we')
         }
       }
   },
