@@ -474,6 +474,7 @@ export default {
       status: function status(event) {
         const _ = this;
         let state = event.target[event.target.selectedIndex].label
+        let confirm = false
         if(state != 'Select...'){
         swal(
         {
@@ -486,28 +487,20 @@ export default {
         }
         }).then(isConfirm => {
           if(isConfirm) {
-            const statusSelected = event.target.value;
-            console.log(_.unitId);
-            const reference = {
-              paidReference: _.references.referenceId,
-              statusId: statusSelected,
-              unitId: _.references.unitId
+            const unitId = this.detailTable.id
+            const statusId = parseInt(document.getElementById("myList").value);
+            const newStatus = {
+              unitId: unitId,
+              statusId: statusId
             };
-
-            if(reference !== undefined) {
-                console.log(reference);
-              if( reference.unitId !== null) {
-                 _.$store.dispatch("others/callCancelReferences", reference);
-              } else {
-                console.log("id is null");
-              }
-              _.$eventHub.$emit("updateReferenceParent");
-              _.$eventHub.$emit('updateDataDetail');
-
-            }
+            this.$store.dispatch('departments/updateStatus', newStatus);
+            confirm = true
           }
 
         });
+        }
+        if(confirm){
+          alert('e we')
         }
       }
   },
