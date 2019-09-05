@@ -61,7 +61,13 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-if="detailTable.status.name !='RESERVED'" class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-else class="text-right">
+                                  <select id="myList" v-on:change="status($event)" v-bind:style="{color: getColor }">
+                                    <option value = "4" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
+                                    <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
+                                  </select>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -464,13 +470,52 @@ export default {
 
         self.$store.dispatch("attachments/getAWSSignature", files);
       });
-    }
+    },
+      status: function status(event) {
+        const _ = this;
+        let state = event.target[event.target.selectedIndex].label
+        if(state != 'Select...'){
+        swal(
+        {
+          title: 'Please confirm information',
+          text:  'Change status to ' + event.target[event.target.selectedIndex].label + ' ?',
+          icon: "info",
+          buttons: {
+          cancel: true,
+          confirm: true,
+        }
+        }).then(isConfirm => {
+          if(isConfirm) {
+            const statusSelected = event.target.value;
+            console.log(_.unitId);
+            const reference = {
+              paidReference: _.references.referenceId,
+              statusId: statusSelected,
+              unitId: _.references.unitId
+            };
+
+            if(reference !== undefined) {
+                console.log(reference);
+              if( reference.unitId !== null) {
+                 _.$store.dispatch("others/callCancelReferences", reference);
+              } else {
+                console.log("id is null");
+              }
+              _.$eventHub.$emit("updateReferenceParent");
+              _.$eventHub.$emit('updateDataDetail');
+
+            }
+          }
+
+        });
+        }
+      }
   },
 
   computed: {
     ...mapGetters({
           cAvailability: "departments/currentAvailability",
-          monthlySales: "departments/monthlySales"
+          monthlySales: "departments/monthlySales",
       }),
     shouldShow() {
       return this.show;
@@ -542,6 +587,19 @@ export default {
     background: #2a333c!important;
   }
 
+  select {
+  background:#252d33;
+  border:none;
+  border-radius: 4px;
+  color:white;
+  padding:5px;
+  cursor:pointer;
+}
+
+select option {
+  padding-bottom:100px;
+  border-radius: 4px;
+}
     .container-fluid {
     text-align:center;
     background:#2a333c;
@@ -726,6 +784,10 @@ button.waves.default {
   background-color: #17a2b8;
   color: white;
   outline:none;
+}
+
+.table-modifier tbody tr td {
+  vertical-align: middle;
 }
 
 @keyframes fadeInAnimation {
