@@ -54,7 +54,6 @@
                   </b-dropdown-item>
                 </div>
                 </b-dropdown>
-                  <!-- <input class="form-control col-12"  type="text" v-model="formData.country" placeholder="Country"> -->
               </div>
             </div>
             <div class="row margin-0">
@@ -141,6 +140,11 @@ export default {
       this.formData.city = null
       this.formData.contactNumber = null
       this.formData.email = null
+
+       window.onbeforeunload = function(event)
+    {
+        return confirm("Confirm refresh");
+    };
   },
   props:['addClient'],
   data() {
