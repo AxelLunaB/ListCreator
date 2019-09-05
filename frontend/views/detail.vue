@@ -46,8 +46,11 @@
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Add new contract</button>
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Contracts application</button>
             <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
+            <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;">
+              <button type="button" class="btn waves-white ripple" id="createContract">Get contract</button>
+            </router-link>
             </div>
           </div>
         </div>
@@ -106,7 +109,7 @@
         this.title = "GIADA TOWER B"
         this.tower = 3
       }
-      
+
     })
 
 
@@ -621,6 +624,10 @@ button.waves-white.ripple:active:after {
   padding:0
 }
 
+button.btn.waves-white.ripple#createContract {
+  border-radius: 0px 5px 5px 0px;
+}
+
   @media screen and (max-width: 867px) {
     .navbar-brand {
       justify-content: center;
@@ -633,12 +640,19 @@ button.waves-white.ripple:active:after {
     text-align: center;
     }
 
+
     #newContract,
     #sendtopdf,
     #tosheet,
-    #toReferences {
+    #toReferences,
+    button.btn.waves-white.ripple#createContract {
       border-radius: 5px;
+      width:150px;
       }
+
+    #newContract {
+      padding-left:8px;
+    }
   }
 
       @keyframes fadeInAnimation {

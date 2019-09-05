@@ -45,7 +45,11 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [ togglePagination() ],
     get: [],
-    create: [],
+    create: [
+      async context => {
+        console.log("sadas");
+      }
+    ],
     update: [],
     patch: [],
     remove: []
@@ -56,9 +60,9 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      async context => {
-        newCustomer(context);
-      }
+      // async context => {
+      //   newCustomer(context);
+      // }
     ],
     update: [],
     patch: [],

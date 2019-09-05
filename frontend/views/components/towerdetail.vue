@@ -82,7 +82,11 @@
                             <tbody>
                             <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
                                 <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
-                                <td class="text-center"><span v-bind:style="{color:contract ? contract.payments ? u.status.color_hex : 'white' : 'white'}">{{contract ? contract.payments ? u.dueDate : '-' : '-'}}</span></td>
+                                <td class="text-center">
+                                  <span v-bind:style="{color: contract ? contract.payments ? u.status ? u.status.color_hex : 'white' : 'white' : 'white'}">
+                                    {{contract ? contract.payments ? u.dueDate : '-' : '-'}}
+                                    </span>
+                                    </td>
                                 <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
@@ -613,7 +617,8 @@ export default {
     },
 
     getColor() {
-      if (this.detailTable.status.color_hex) {
+      // if (this.detailTable.status.color_hex) {
+        if(this.detailTable){
         return this.detailTable.status.color_hex
       } else if(this.contract != null) {
         if(this.contract.commission){

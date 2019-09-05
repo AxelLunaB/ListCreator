@@ -16,10 +16,10 @@ const getContracts = (context) => {
         pages: response.total / response.limit,
         index: Math.floor(response.skip / response.limit),
       };
-      
+
       context.commit('PAGINATION_UPDATED', pagination);
     }
-    
+
   }).catch(error => {
     console.log(error);
   });
@@ -107,7 +107,6 @@ const listenEvents = ({ dispatch, commit }) => {
 const setListType = ( context, commit ) => {
   context.commit('SET_VIEW_TYPE');
 }
-
 
 
 
