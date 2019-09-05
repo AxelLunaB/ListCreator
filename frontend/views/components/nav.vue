@@ -24,7 +24,10 @@
         <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
           <p style="color: white; margin: 0">{{currentUser.name}}</p>
           <li class="dropdown-divider"></li>
-          <a href="#">Settings</a>
+          <router-link to="/">Home</router-link>
+          <!-- <a href="/">Home</a> -->
+          <li class="dropdown-divider"></li>
+          <router-link to="/admin/users">Users</router-link>
           <li class="dropdown-divider"></li>
           <a href="/logout"><b>Log out</b></a>
           </span>

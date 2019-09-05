@@ -17,6 +17,34 @@ body {
     height: 100%;
 }
 
+input:-internal-autofill-selected {
+    background-color: #2a333c !important;
+    background-image: none !important;
+    color: #797c80;
+}
+
+input:-webkit-autofill {
+    background-color: #2a333c !important;
+    background-image: none !important;
+    color: #797c80;
+}
+
+input[data-v-87f50644]:-webkit-autofill {
+    background-color: #3b5977!important;
+    background-image: none!important;
+    color: #797c80;
+}    
+
+a.pagination-previous {
+    background-color: #2a333c;
+    color: #ececec !important;
+}
+
+a.pagination-next {
+    background-color: #2a333c;
+    color: #ececec !important;
+}
+
 .custom-select{
   width:11em;
 }
@@ -26,6 +54,7 @@ html {
 }
 
 #app {
+    background: #2a333c !important;
     width: 100%;
     height: 100%;
 }

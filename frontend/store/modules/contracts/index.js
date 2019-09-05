@@ -4,6 +4,7 @@ import mutations from './mutations';
 
 const state = {
   contracts: [],
+  contractsByPaidRef: [],
   pagination: {
     total: 0,
     limit: 0,
