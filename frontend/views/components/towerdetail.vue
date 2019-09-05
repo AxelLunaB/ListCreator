@@ -61,9 +61,9 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td v-if="detailTable.status.name !='RESERVED'" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-if="detailTable.status.name !='RESERVED' || !isAdmin" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
                                 <td v-else class="text-right">
-                                  <select id="myList" v-on:change="status($event)">
+                                  <select id="myList" v-on:change="status($event)" v-if="isAdmin">
                                     <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
                                     <option value = "4" style="color: rgb(245, 224, 42);">NOT PAID</option>
                                     <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
@@ -113,14 +113,13 @@
                             <thead>
                             </thead>
                             <tbody>
-
-                            <tr v-on:click="selectedLabel = 'Offer Letter'">
+                            <!-- <tr v-on:click="selectedLabel = 'Offer Letter'">
                               <label for="fileInput">
                                 <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
-                                <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td> -->
+                                <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                               </label>
-                            </tr>
+                            </tr> -->
 
                             <tr v-on:click="selectedLabel = 'Reserve Sheet'">
                                 <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
@@ -644,7 +643,8 @@ export default {
     ...mapGetters({
       cAvailability: "departments/currentAvailability",
       monthlySales: "departments/monthlySales",
-      contractsByPaidRef: "contracts/contractsByPaidRef"
+      contractsByPaidRef: "contracts/contractsByPaidRef",
+      isAdmin: "users/isAdmin",
     }),
 
     shouldShow() {

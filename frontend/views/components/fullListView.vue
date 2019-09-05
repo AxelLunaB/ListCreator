@@ -18,7 +18,7 @@
             </tr>
           </tbody>
         </table>
-          <full-view v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="contracts[index]"></full-view>
+          <full-view v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="getInfo(e.id)"></full-view>
     </div>
   </div>
 </template>
@@ -83,6 +83,13 @@ import fullView from "./fullView.vue"
     responsiveTable(n){
         return 'table' + n
       },
+      getInfo(id){
+        for(let a = 0 ; a < this.contracts.length ; a++){
+          if(this.contracts[a].unitId == id){
+            return this.contracts[a]
+          }
+        }
+      }
     },
     computed: {
   ...mapGetters({
