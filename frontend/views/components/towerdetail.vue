@@ -256,19 +256,19 @@
                           </thead>
                           <tbody>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI</td>
+                              <td class="textalign">ROI</td>
                               <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI %</td>
+                              <td class="textalign">ROI %</td>
                               <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Years</td>
+                              <td class="textalign">Years</td>
                               <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Closing Date</td>
+                              <td class="textalign">Closing Date</td>
                               <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
                           </tr>
                           </tbody>
@@ -830,5 +830,12 @@ button.waves.default {
     margin-bottom:10px;
   }
 }
+
+@media screen and (max-width:991px) {
+  .table-modifier tbody tr td {
+    padding:8px 0;
+  }
+}
+
 
 </style>

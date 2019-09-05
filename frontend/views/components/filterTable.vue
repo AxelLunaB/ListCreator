@@ -44,7 +44,7 @@
               </div>
           </div>
         </div>
-        <p style='font-size:1.2rem;'><span v-if="filters0">Level {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} status.</span></p>
+        <p style='font-size:1.2rem;'><span v-if="filters0">Level {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} status</span></p>
         </div>
         </div>
 </template>
