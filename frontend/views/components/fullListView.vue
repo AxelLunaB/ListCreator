@@ -18,7 +18,7 @@
             </tr>
           </tbody>
         </table>
-          <full-view v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="getContract(e.id)"></full-view>
+          <full-view v-for="(e, index) in departments ? departments : null" :key="e.index" :detailTable="e" :contracts="getInfo(e.id)"></full-view>
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 import fullView from "./fullView.vue"
+import { log } from 'util';
 
 
   export default {
@@ -37,6 +38,7 @@ import fullView from "./fullView.vue"
     },
     data() {
       return{
+        selectContract:[],
         deps:[
           {title: 'UNIT #'},
           {title:'BUILDING'},
@@ -82,12 +84,28 @@ import fullView from "./fullView.vue"
       },
     responsiveTable(n){
         return 'table' + n
+      },
+      getInfo(unitId){
+        console.log(unitId);
+        var scontract;
+        this.contracts.forEach(contract =>{
+          if(unitId === contract.unitId){
+
+            scontract = contract
+          }
+        })
+
+        return scontract;
+
+        // for(let a = 0 ; a < this.contracts.length; a++){
+        //   if(id === this.contracts[a].unitId) {
+        //      this.selectContract.push(this.contracts[a])
+        //      return this.selectContract
+        //   }
+        // }
+      }
     },
 
-    getContract(unitId) {
-      const departmentsInContract = this.contracts.filter(contract => contract.unitId === unitId);
-    }
-  },
     computed: {
   ...mapGetters({
       departments: "departments/departments",
