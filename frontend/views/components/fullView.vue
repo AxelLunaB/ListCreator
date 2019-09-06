@@ -5,17 +5,17 @@
       <tr  class="colors">
           <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
           <td style="font-size:13px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
-          <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
-          <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
-          <td>{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
-          <td>{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
-          <td>{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
-          <td>{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
-          <td>{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
-          <td>{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
-          <td>{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '-'}}</td>
-          <td>{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2): '-'}}</td>
-          <td>{{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal): '-'}}</td>
+          <td style="font-size:13px;">{{detailTable.level != 0 ? detailTable.level : "GROUND FLOOR"}}</td>
+          <td>{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "0"}}</td>
+          <td>{{detailTable.nkeys !=0 ? detailTable.nkeys : "0"}}</td>
+          <td>{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "0"}}</td>
+          <td>{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "0"}}</td>
+          <td>{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "0"}}</td>
+          <td>{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "0"}}</td>
+          <td>{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "0"}}</td>
+          <td>{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '0'}}</td>
+          <td>{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2): '0'}}</td>
+          <td>{{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal): '0'}}</td>
           <td v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
           <template v-if="contracts != undefined">
           <td>{{contracts.currency != null ? contracts.currency : '-'}}</td>
