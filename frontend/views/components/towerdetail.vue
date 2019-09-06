@@ -65,8 +65,7 @@
                                 <td v-else class="text-right">
                                   <select id="myList" v-on:change="status($event)" v-if="isAdmin">
                                     <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
-                                    <option value = "4" style="color: rgb(245, 224, 42);">NOT PAID</option>
-                                    <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
+                                    <option value = "2" style="color: rgb(205, 17, 15);;">SOLD</option>
                                   </select>
                                 </td>
                             </tr>
@@ -237,15 +236,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions ? contract.commission.managementCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
@@ -628,8 +627,12 @@ export default {
               unitId: unitId,
               statusId: statusId
             };
+
+            document.getElementById("myList").disabled = true;
+            document.getElementById("myList").style.color = '#ffffff1f';
+
             this.$store.dispatch('departments/updateStatus', newStatus);
-            confirm = true
+
           } else {
             document.getElementById("myList").selectedIndex = 0
           }

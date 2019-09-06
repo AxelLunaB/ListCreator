@@ -28,6 +28,7 @@
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 import fullView from "./fullView.vue"
+import { log } from 'util';
 
 
   export default {
@@ -37,6 +38,7 @@ import fullView from "./fullView.vue"
     },
     data() {
       return{
+        selectContract:[],
         deps:[
           {title: 'UNIT #'},
           {title:'BUILDING'},
@@ -83,12 +85,24 @@ import fullView from "./fullView.vue"
     responsiveTable(n){
         return 'table' + n
       },
-      getInfo(id){
-        for(let a = 0 ; a < this.contracts.length ; a++){
-          if(this.contracts[a].unitId == id){
-            return this.contracts[a]
+      getInfo(unitId){
+        console.log(unitId);
+        var scontract;
+        this.contracts.forEach(contract =>{
+          if(unitId === contract.unitId){
+
+            scontract = contract
           }
-        }
+        })
+
+        return scontract;
+
+        // for(let a = 0 ; a < this.contracts.length; a++){
+        //   if(id === this.contracts[a].unitId) {
+        //      this.selectContract.push(this.contracts[a])
+        //      return this.selectContract
+        //   }
+        // }
       }
     },
     computed: {
