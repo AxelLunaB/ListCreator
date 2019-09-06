@@ -65,8 +65,7 @@
                                 <td v-else class="text-right">
                                   <select id="myList" v-on:change="status($event)" v-if="isAdmin">
                                     <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
-                                    <option value = "4" style="color: rgb(245, 224, 42);">NOT PAID</option>
-                                    <option value = "5" style="color: rgb(53, 206, 65);">PAID</option>
+                                    <option value = "2" style="color: rgb(205, 17, 15);;">SOLD</option>
                                   </select>
                                 </td>
                             </tr>
