@@ -43,16 +43,38 @@
               <div class="col-4">
                 Country
               </div>
-              <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.country" placeholder="Country">
+              <div class="col-8" style="display:flex;">
+                <b-dropdown
+                id="dropdown-country"
+                name="drop-country"
+                :text ="formData.country == null ? 'Select country' : formData.country">
+                <div>
+                  <b-dropdown-item v-for="(country,index) in countries" :key="index" @click="formData.country = country">
+                  {{ country }}
+                  </b-dropdown-item>
+                </div>
+                </b-dropdown>
               </div>
             </div>
             <div class="row margin-0">
               <div class="col-4">
                   State
               </div>
-              <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.state" placeholder="State">
+              <div class="col-8" style="display:flex;">
+                <b-dropdown
+                v-if="formData.country != 'Other'" id="dropdown-state"
+                name="drop-state"
+                :text ="formData.country == null ? 'Select state' : 'Select state'"
+                :disabled="formData.country == null">
+                <div style="overflow-y:scroll;height:200px;">
+                  <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"
+                  :key="index"
+                  @click="formData.state = state">
+                  {{ state }}
+                  </b-dropdown-item>
+                </div>
+                </b-dropdown>
+                <input class="form-control col-12"  type="text" v-else v-model="formData.state" placeholder="State">
               </div>
             </div>
             <div class="row margin-0">
@@ -118,6 +140,11 @@ export default {
       this.formData.city = null
       this.formData.contactNumber = null
       this.formData.email = null
+
+       window.onbeforeunload = function(event)
+    {
+        return confirm("Confirm refresh");
+    };
   },
   props:['addClient'],
   data() {
@@ -136,6 +163,91 @@ export default {
         contactNumber:{ id:null, name:null},
         email:{ id:null, email:null}
       },
+      countries:['México','USA','Other'],
+      statesUS:[
+        'Alabama',
+        'Alaska',
+        'Arizona',
+        'Arkansas',
+        'California',
+        'Colorado',
+        'Connecticut',
+        'Delaware',
+        'Florida',
+        'Georgia',
+        'Hawaii',
+        'Idaho',
+        'Illinois',
+        'Indiana',
+        'Iowa',
+        'Kansas',
+        'Kentucky',
+        'Louisiana',
+        'Maine',
+        'Maryland',
+        'Massachusetts',
+        'Michigan',
+        'Minnesota',
+        'Mississippi',
+        'Missouri',
+        'Montana',
+        'Nebraska',
+        'Nevada',
+        'New Hampshire',
+        'New Jersey',
+        'New Mexico',
+        'New York',
+        'North Carolina',
+        'North Dakota',
+        'Ohio',
+        'Oklahoma',
+        'Oregon',
+        'Pennsylvania',
+        'Rhode Island',
+        'South Carolina',
+        'South Dakota',
+        'Tennessee',
+        'Texas',
+        'Utah',
+        'Vermont',
+        'Virginia',
+        'Washington',
+        'West Virginia'
+        ],
+        statesMX:[
+        'Aguascalientes',
+        'Baja California',
+        'Baja California Sur',
+        'Campeche','Chiapas',
+        'Chihuahua',
+        'Ciudad de México',
+        'Coahuila de Zaragoza',
+        'Colima',
+        'Durango',
+        'Estado de México',
+        'Guanajuato',
+        'Guerrero',
+        'Hidalgo',
+        'Jalisco',
+        'Michoacán de Ocampo',
+        'Morelos',
+        'Nayarit',
+        'Nuevo León',
+        'Oaxaca',
+        'Puebla',
+        'Querétaro',
+        'Quintana Roo',
+        'San Luis Potosí',
+        'Sin Localidad',
+        'Sinaloa',
+        'Sonora',
+        'Tabasco',
+        'Tamaulipas',
+        'Tlaxcala',
+        'Veracruz de Ignacio de la Llave',
+        'Yucatán',
+        'Zacatecas'
+ ]
     }
   },
   methods: {
@@ -280,21 +392,22 @@ export default {
                     timer: 1500
                   })
 
-                  this.formData.name = null
-                  this.formData.age = null
-                  this.formData.address = null
-                  this.formData.country = null
-                  this.formData.state = null
-                  this.formData.city = null
-                  this.formData.contactNumber = null
-                  this.formData.email = null
+                  _.formData.name = null
+                  _.formData.age = null
+                  _.formData.address = null
+                  _.formData.country = null
+                  _.formData.state = null
+                  _.formData.city = null
+                  _.formData.contactNumber = null
+                  _.formData.email = null
+                  _.validation = false
 
                   setTimeout(function () {
                     _.$emit('closeModal', false)
-                    }, 1500);
+                    }, 500);
                     setTimeout(function() {
                       _.closeModalUser = false
-                      }, 1500)
+                      }, 500)
             }
           })
 

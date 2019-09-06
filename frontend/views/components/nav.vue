@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
-    <img src="../../assets/logo_bco_sm.png" width="180px" height="43px">
+    <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
           <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
@@ -14,7 +14,8 @@
         <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
 
           <!--<i class="fas fa-user"></i>-->
-        <img style="width: 36px; height: 36px" :src="currentUser.id != null ? 'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png' : '../../assets/user.png' " />
+        <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/>
+        <img v-else style="width: 20px; height: 20px" src="../../assets/user.png"/>
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>
@@ -23,7 +24,10 @@
         <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
           <p style="color: white; margin: 0">{{currentUser.name}}</p>
           <li class="dropdown-divider"></li>
-          <a href="#">Settings</a>
+          <router-link to="/">Home</router-link>
+          <!-- <a href="/">Home</a> -->
+          <li class="dropdown-divider"></li>
+          <router-link to="/admin/users">Users</router-link>
           <li class="dropdown-divider"></li>
           <a href="/logout"><b>Log out</b></a>
           </span>
@@ -75,7 +79,6 @@ export default {
       currentUser: "users/currentUser",
       clusters: "others/clusters",
     }),
-
     count() {
       // return this.$store.state.count;
     },

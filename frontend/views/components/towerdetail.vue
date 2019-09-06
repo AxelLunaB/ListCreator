@@ -61,7 +61,13 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
-                                <td class="text-right" v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-if="detailTable.status.name !='RESERVED' || !isAdmin" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <td v-else class="text-right">
+                                  <select id="myList" v-on:change="status($event)" v-if="isAdmin">
+                                    <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
+                                    <option value = "2" style="color: rgb(205, 17, 15);;">SOLD</option>
+                                  </select>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -82,7 +88,11 @@
                             <tbody>
                             <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
                                 <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
-                                <td class="text-center"><span v-bind:style="{color:contract ? contract.payments ? u.status.color_hex : 'white' : 'white'}">{{contract ? contract.payments ? u.dueDate : '-' : '-'}}</span></td>
+                                <td class="text-center">
+                                  <span v-bind:style="{color: contract ? contract.payments ? u.status ? u.status.color_hex : 'white' : 'white' : 'white'}">
+                                    {{contract ? contract.payments ? u.dueDate : '-' : '-'}}
+                                    </span>
+                                    </td>
                                 <td class ="text-right"><i class="fas fa-file-alt"></i></td>
                             </tr>
                             </tbody>
@@ -102,36 +112,39 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
+
+                            <tr v-on:click="selectedLabel = 'Offer Letter'">
+                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
+                                <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
+                                <td><i class="fas fa-file-alt"></i></td>
+                            </tr> -->
+
+                            <tr v-on:click="selectedLabel = 'Reserve Sheet'">
+                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span style="color:green;font-weight:bolder">Reserve sheet</span></td>
+                            <tr v-on:click="selectedLabel = 'Reserve Deposit'">
+                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span style="color:green;font-weight:bolder">Reserve deposit</span></td>
+                            <tr v-on:click="selectedLabel = 'First Draft Contract'">
+                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span style="color:green;font-weight:bolder">First Draft Contract</span></td>
+                            <tr v-on:click="selectedLabel = 'Final Contract'">
+                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span style="color:red;font-weight:bolder">Final Contract</span></td>
+                            <tr v-on:click="selectedLabel = 'ROI Contract'">
+                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span style="color:red;font-weight:bolder">ROI Contract</span></td>
+                            <tr v-on:click="selectedLabel = 'Official ID'">
+                                <td class="text-left"><label for="fileInput">Official ID</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
-                            <tr>
-                                <td class="text-left"><span>Official ID</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>Proof of Address</span></td>
+                            <tr v-on:click="selectedLabel = 'Proof of Address'">
+                                <td class="text-left"><label for="fileInput">Proof of Address</label></td>
                                 <td><i class="fas fa-file-alt"></i></td>
                             </tr>
                             <tr>
@@ -165,19 +178,28 @@
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
+
             <div class="row" style="height:100%;">
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
                   <form id="dropFileForm" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="files[]" id="fileInput" accept=".pdf, image/jpeg, image/png" data-max-file-size="5MB" data-max-files="5" multiple>
+                    <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept="application/pdf, image/jpeg, image/png" data-max-file-size="5MB">
                     <!-- <label for="fileInput" id="fileLabel">
                       Drop files here to upload
                     </label> -->
-                    <input type="submit" value="Upload Files" name="submit" @click="sendFiles()" />
+                    <!-- <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" /> -->
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
                   <!-- <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button> -->
+
+                  <!-- Loading Files Animation Wrapper -->
+                  <div class="upload-window">
+                    <div class="upload-window-progress"></div>
+                    <span id="upload-window-title"></span>
+                    <span id="upload-window-sub"></span>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -213,15 +235,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions ? contract.commission.managementCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
@@ -245,19 +267,19 @@
                           </thead>
                           <tbody>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI</td>
+                              <td class="textalign">ROI</td>
                               <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">ROI %</td>
+                              <td class="textalign">ROI %</td>
                               <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Years</td>
+                              <td class="textalign">Years</td>
                               <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
                           </tr>
                           <tr>
-                              <td class="textalign" style="padding-top:15px;">Closing Date</td>
+                              <td class="textalign">Closing Date</td>
                               <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
                           </tr>
                           </tbody>
@@ -318,13 +340,91 @@
 </template>
 
 <script>
-
+import $ from "jquery";
 import returnPage from "./returnPage.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+import { file } from 'babel-types';
+import { log } from 'util';
+
+function pushFile (file, array) {
+  return array.push(file);
+}
+
+const isFileValid = fileType => {
+  let valid = false;
+
+  switch(fileType) {
+    case 'application/pdf':
+      return valid = true;
+
+    case 'image/jpeg':
+      return valid = true
+
+    case 'image/png':
+      return valid = true
+
+    default:
+      return valid
+  }
+};
+
+async function getInputFiles (fileList) {
+      let arrayOfFiles = [];
+
+      fileList.forEach(file => {
+          let fileObj = {};
+          const reader = new FileReader();
+
+          fileObj.fileName = file.name;
+          fileObj.fileSize = file.size;
+          fileObj.fileType = file.type;
+
+          reader.onload = () => {
+            fileObj.fileBody = reader.result;
+            arrayOfFiles.push(fileObj);
+          }
+
+          reader.onerror = () => {
+            console.log(reader.error);
+          }
+
+          reader.readAsArrayBuffer(file);
+      });
+
+      return arrayOfFiles;
+}
+
+// function sendFiles () {
+//       const _ = this;
+//       const form = document.getElementById('dropFileForm');
+//       // Get selected unitId
+//       const unitId = this.detailTable.id;
+//       console.log('sendFiles has been called!');
+
+//       form.addEventListener('submit', e => {
+//         // Prevent default action from firing
+//         e.preventDefault();
+
+//         if(this.files.length === 0) {
+//           return;
+//         }
+
+//         if(unitId === null || undefined) {
+//           throw Error('unitId is null');
+//         }
+
+//         let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel  };
+//         // Send files to server
+//         _.$store.dispatch("attachments/getAWSSignature", file);
+
+//         _.files = null;
+//       });
+// }
 
 export default {
+
   mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details.detailUnit;
@@ -332,6 +432,8 @@ export default {
       this.show = true;
     });
 
+    // Method added to get all contracts by Paid Ref
+    this.$store.dispatch('contracts/getContractsByPaidRef');
   },
 
   components: {
@@ -341,6 +443,8 @@ export default {
   data() {
     return {
       mywidth: 200,
+      files: [],
+      selectedLabel: '',
       myheight: 200,
       show: false,
       isActive: true,
@@ -430,52 +534,198 @@ export default {
       return r;
     },
 
-    sendFiles: function () {
-      const self = this;
-      const form = document.getElementById('dropFileForm');
-      console.log('sendFiles has been called!');
+    sendFiles() {
+      // Vue Instance
+      const _ = this;
 
-      form.addEventListener('submit', e => {
-        // Prevent default action from firing
-        e.preventDefault();
+      // Get selected unitId
+      const unitId = this.detailTable.id;
 
-        const files = document.querySelector('[type=file]').files;
-        const formData = new FormData();
+      if(this.files.length === 0) {
+        throw new Error('Please, select a file to upload.');
+        return;
+      }
 
-        // Append files to files array
-        for (let i = 0; i < files.length; i++) {
-          let file = files[i];
-          formData.append('files[]', file);
+      if(unitId === null || undefined) {
+        // unitId cannot be null
+        return;
+      }
+
+      let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
+      console.log('File');
+      console.log(file);
+
+      // Send files to server
+      _.$store.dispatch("attachments/getAWSSignature", file);
+      _.files = null;
+    },
+
+      // form.addEventListener('submit', e => {
+      //   // Prevent default action from firing
+      //   e.preventDefault();
+
+      //   if(this.files.length === 0) {
+      //     console.log('Return Called');
+      //     return;
+      //   }
+
+      //   if(unitId === null || undefined) {
+      //     throw Error('unitId is null');
+      //   }
+
+      //   let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
+      //   console.log('File');
+      //   console.log(file);
+      //   // Send files to server
+      //   _.$store.dispatch("attachments/getAWSSignature", file);
+      //   _.files = null;
+      // });
+
+    readFiles: function(event) {
+      // Retrieve selected files
+      const fileList = event.target.files;
+      let validFiles = 0;
+
+      // if(fileList.length === 0) {
+      //   throw Error('Please, select a file to upload!');
+      // }
+
+      if(fileList !== undefined) {
+
+        // Empty Files Array from Data Component
+        // Before pushing File BLOB's
+        this.files = [];
+
+        // Get DOM Elements to show progress
+        const uploadTitle = document.getElementById('upload-window-title');
+        const uploadSubtitle = document.getElementById('upload-window-sub');
+        const uploadProgress = document.getElementsByClassName('upload-window-progress');
+
+        // Iterate every file &
+        // Read each file
+        Array.from(fileList).forEach(file => {
+
+          if(isFileValid(file.type)) {
+            const reader = new FileReader();
+            let obj = {};
+
+            reader.onload = () => {
+              obj.name = file.name;
+              obj.size = file.size;
+              obj.type = file.type;
+              obj.body = reader.result;
+
+              // Push File to Files[] Array in the Data component
+              this.files.push(obj);
+
+              // Increment for each valid file read
+              validFiles += 1;
+
+              // Update Window Progress
+              uploadTitle.innerText = validFiles === 1 ? `File uploaded!` : `${validFiles} files uploaded!`;
+
+              // Show a Swal Alert
+              swal(
+                  {
+                    title: 'Please confirm information',
+                    text:  `Upload file: ${file.name} for ${this.selectedLabel}?`,
+                    icon: "info",
+                    buttons: {
+                    cancel: true,
+                    confirm: true,
+                  }
+              }).then(isConfirm => {
+                if(isConfirm) {
+                  // Upload file
+                  this.sendFiles();
+                } else {
+                  // Cancel and
+                  // Clear Array
+                  this.files = [];
+                }
+              });
+            }
+
+            reader.onerror = () => {
+              console.log('Error reading file!');
+              console.log(reader.error);
+            }
+
+            reader.onprogress = e => {
+
+              // Update Progress
+              uploadTitle.innerText = fileList.length === 1 ? `Uploading ${fileList.length} file` : `Uploading ${fileList.length} files`;
+
+              if(e.lengthComputable) {
+                let percentLoaded = Math.round((e.loaded / e.total) * 100);
+                console.log(`Loading ${percentLoaded}% ...`);
+              }
+            }
+
+            // Read file as Array Buffer
+            reader.readAsArrayBuffer(file);
+
+          } else {
+            console.log(`File: ${file.name} is not a supported valid file!`);
+            uploadTitle.innerText = `File: ${file.name} is not a supported valid file!`;
+          }
+
+        });
+      }
+
+    },
+
+      status: function status(event) {
+        const _ = this;
+        let state = event.target[event.target.selectedIndex].label
+        if(state != 'Select...'){
+        swal(
+        {
+          title: 'Please confirm information',
+          text:  'Change status to ' + event.target[event.target.selectedIndex].label + ' ?',
+          icon: "info",
+          buttons: {
+          cancel: true,
+          confirm: true,
+          }
+        }).then(isConfirm => {
+          if(isConfirm) {
+            const unitId = this.detailTable.id
+            const statusId = parseInt(document.getElementById("myList").value);
+            const newStatus = {
+              unitId: unitId,
+              statusId: statusId
+            };
+
+            document.getElementById("myList").disabled = true;
+            document.getElementById("myList").style.color = '#ffffff1f';
+
+            this.$store.dispatch('departments/updateStatus', newStatus);
+
+          } else {
+            document.getElementById("myList").selectedIndex = 0
+          }
+
+        });
         }
-
-        console.log(files);
-
-        // const contentType = files[0].type; // File's MIME type
-        // const url = 'www.google.com';
-        // const size = files[0].size.toString(); // Size in bytes
-
-        // let file = {
-        //   contentType: contentType,
-        //   url: url,
-        //   size: size
-        // };
-
-        // console.log(file);
-        // self.$store.dispatch("attachments/setNewAttachment", file);
-      });
-    }
+      }
   },
 
   computed: {
     ...mapGetters({
-          cAvailability: "departments/currentAvailability",
-          monthlySales: "departments/monthlySales"
-      }),
+      cAvailability: "departments/currentAvailability",
+      monthlySales: "departments/monthlySales",
+      contractsByPaidRef: "contracts/contractsByPaidRef",
+      isAdmin: "users/isAdmin",
+    }),
+
     shouldShow() {
       return this.show;
     },
+
     getColor() {
-      if (this.detailTable.status.color_hex) {
+      // if (this.detailTable.status.color_hex) {
+        if(this.detailTable){
         return this.detailTable.status.color_hex
       } else if(this.contract != null) {
         if(this.contract.commission){
@@ -486,6 +736,7 @@ export default {
         return  'ffffff'
       }
     },
+
     getTotalCommission () {
       let percent = 0
 
@@ -503,12 +754,14 @@ export default {
       }
 
     },
+
     dynamicChart () {
       this.datasets[0].data[0] = this.cAvailability.available
       this.datasets[0].data[1] = this.cAvailability.reserved
       this.datasets[0].data[2] = this.cAvailability.sold
       return this.datasets
     },
+
     pastMonths(){
       var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
       var month = new Date().getMonth();
@@ -517,8 +770,8 @@ export default {
       var PenMonth = (monthName(month-2))
       var anteMonth = (monthName(month-3))
       return [anteMonth,PenMonth,lastMonth,c]
-    }
-    ,
+    },
+
     dynamicBar(){
       this.mydata[0] = this.monthlySales.antMonth
       this.mydata[1] = this.monthlySales.penMonth
@@ -527,8 +780,7 @@ export default {
 
       return this.mydata
     }
-  }
-}
+  }}
 </script>
 
 <style>
@@ -540,6 +792,19 @@ export default {
     background: #2a333c!important;
   }
 
+  select {
+  background:#252d33;
+  border:none;
+  border-radius: 4px;
+  color:white;
+  padding:5px;
+  cursor:pointer;
+}
+
+select option {
+  padding-bottom:100px;
+  border-radius: 4px;
+}
     .container-fluid {
     text-align:center;
     background:#2a333c;
@@ -637,9 +902,9 @@ export default {
     color:#a8a8a8;
   }
 
-  #dropFileForm #fileInput {
+  /* #dropFileForm #fileInput {
     display: none !important;
-  }
+  } */
 
 .textalign {
     text-align: left;
@@ -726,6 +991,22 @@ button.waves.default {
   outline:none;
 }
 
+.table-modifier tbody tr td {
+  vertical-align: middle;
+}
+
+.dropzone {
+  background: #212c38;
+  border-radius: 5px;
+  border: 2px dashed #3285ca;
+  -o-border-image: none;
+  border-image: none;
+  height: 300px;
+  width: 400px;
+  max-width: 400px;
+  margin: 20px 0;
+}
+
 @keyframes fadeInAnimation {
     0%   {
       opacity: 0;
@@ -774,5 +1055,12 @@ button.waves.default {
     margin-bottom:10px;
   }
 }
+
+@media screen and (max-width:991px) {
+  .table-modifier tbody tr td {
+    padding:8px 0;
+  }
+}
+
 
 </style>

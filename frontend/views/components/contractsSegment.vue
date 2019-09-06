@@ -12,7 +12,7 @@
         <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6" style="display:flex;align-items:center;">
           <div class="card">
             <div class="card-body">
-              <h4 class="page-title">Contract Application</h4>
+              <h4 class="page-title">Generate Reference</h4>
               <form id="new-contract-form">
                 <div class="form-group">
                   <div class="row">
@@ -270,7 +270,6 @@
 import newCustomer from "./newCustomer.vue";
 import swal from "sweetalert";
 import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
 import $ from "jquery";
 import moment from "moment";
 import datePicker from 'vue-bootstrap-datetimepicker';
@@ -651,10 +650,13 @@ export default {
                     timer:1500
                   }).then(function() {
                     _.$store
-                    .dispatch("contracts/newContract", data)
+                    .dispatch("contracts/newContract", data).then( result => (
+                      console.log(result),
+                      _.$eventHub.$emit("updateDataDetail"),
+                      _.$eventHub.$emit("updateReferenceParent")
+                    ));
                     _.$store
-                    .dispatch("contracts/getContracts");
-                    _.$eventHub.$emit("updateDataDetail");
+
                     _.validation = []
                     _.withFurniture = false
                     _.formData.paymentMethod.id != null ? _.formData.paymentMethod.id = null : _.formData.paymentMethod.id
@@ -665,11 +667,16 @@ export default {
                     _.isROI == true ? _.isROI = false : _.isROI
 
                     for(var x in _.formData) {
+                      if(x === "clusterId")
+                      continue;
                       _.formData[x] != undefined ? _.formData[x].name != undefined ? _.formData[x].name = null : '-' : '-'
                       _.formData[x] != undefined ? _.formData[x].id != undefined ? _.formData[x].id = null : '-' : '-'
                       _.formData.comment != null ? _.formData.comment = null : _.formData.comment
                       _.withFurniture == true ? _.withFurniture = false : _.withFurniture
                     }
+
+
+                    _.$eventHub.$emit("updateDataDetail");
 
                   });
                 } else {
@@ -713,6 +720,7 @@ export default {
 
   body {
     background: #2a333c!important;
+    height: 90%;
   }
 
   #tosheet,

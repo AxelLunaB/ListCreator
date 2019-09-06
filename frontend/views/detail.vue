@@ -9,7 +9,7 @@
         <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn waves-white ripple" @click="showList">View full list</button>
+          <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
           </div>
         </div>
       </div>
@@ -44,10 +44,13 @@
       <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download sheet</button>
+            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts">Add new contract</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true">References list</button>
+            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button>
+            <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
+              <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
+            </router-link> -->
             </div>
           </div>
         </div>
@@ -106,7 +109,7 @@
         this.title = "GIADA TOWER B"
         this.tower = 3
       }
-      
+
     })
 
 
@@ -190,6 +193,7 @@
         let info = {
           departments : this.departments
         }
+
         this.$eventHub.$emit("show-contractsSegment-modal", info);
       },
 
@@ -220,7 +224,8 @@
         clusters: "others/clusters",
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort",
-        priceRange: "departments/priceRange"
+        priceRange: "departments/priceRange",
+        isAdmin: "users/isAdmin"
       }),
       towerValidation(){
         if(this.filtersArray == 0 && this.title == null) {
@@ -621,6 +626,10 @@ button.waves-white.ripple:active:after {
   padding:0
 }
 
+button.btn.waves-white.ripple#createContract {
+  border-radius: 0px 5px 5px 0px;
+}
+
   @media screen and (max-width: 867px) {
     .navbar-brand {
       justify-content: center;
@@ -633,12 +642,19 @@ button.waves-white.ripple:active:after {
     text-align: center;
     }
 
+
     #newContract,
     #sendtopdf,
     #tosheet,
-    #toReferences {
+    #toReferences,
+    button.btn.waves-white.ripple#createContract {
       border-radius: 5px;
+      width:150px;
       }
+
+    #newContract {
+      padding-left:8px;
+    }
   }
 
       @keyframes fadeInAnimation {

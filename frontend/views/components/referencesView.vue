@@ -3,12 +3,13 @@
     <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
       <tr v-if="references" class="table-references colors">
-        <td class="xs-mobile" > {{ unitNumber }} </td>
-          <td class="xs-mobile">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
-          <td class="xs-mobile">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
-          <td>{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
-          <td><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
-          <td>
+        <td style="vertical-align: middle;"> {{ unitNumber }} </td>
+          <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
+          <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
+          <td style="vertical-align: middle;font-size:14px;" class="xs-mobile mobile">{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
+          <td style="vertical-align: middle;font-size:14px;" class="xs-mobile mobile">{{references.salesDetails.executive.name != undefined ? references.salesDetails.executive.name : '-'}}</td>
+          <td style="vertical-align: middle;"><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
+          <td style="vertical-align: middle;">
             <select id="myList" v-if="references.reference.statusId !== 5 && references.reference.statusId !== 8 && references.reference.statusId !== null" v-on:change="status($event)">
               <option value = "4">Not Paid</option>
               <option value = "5">Paid</option>
@@ -16,7 +17,6 @@
           </td>
       </tr>
     </tbody>
-
     <!-- <tbody>
       <tr v-if="references" class="table-references colors">
         <td class="xs-mobile" > {{ unitNumber }} </td>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import $ from "jquery";
 import swal from "sweetalert";
 import { mapGetters } from 'vuex';
 
@@ -120,24 +121,28 @@ export default {
         }).then(isConfirm => {
           if(isConfirm) {
             const statusSelected = event.target.value;
-
+            console.log(_.unitId);
             const reference = {
               paidReference: _.references.referenceId,
               statusId: statusSelected,
-              unitId: this.unitId === null ? this.references.unitId : null
+              unitId: _.references.unitId
             };
 
             if(reference !== undefined) {
-              console.log('jjujjj');
-              
-              _.$store.dispatch("others/callCancelReferences", reference);
-               _.$eventHub.$emit("updateReferenceParent");
-               _.$eventHub.$emit('updateDataDetail');
+                console.log(reference);
+              if( reference.unitId !== null) {
+                 _.$store.dispatch("others/callCancelReferences", reference);
+              } else {
+                console.log("id is null");
+              }
+              _.$eventHub.$emit("updateReferenceParent");
+              _.$eventHub.$emit('updateDataDetail');
+
             }
           }
-          
+
         });
-        
+
       }
 
     },
@@ -186,10 +191,26 @@ export default {
 
 .table-references {
   width:auto;
+  height:50px;
 }
+
 
 .colors:nth-child(even) {
   background: #425061;
+}
+
+select {
+  background:#252d33;
+  border:none;
+  border-radius: 4px;
+  color:white;
+  padding:5px;
+  cursor:pointer;
+}
+
+select option {
+  padding-bottom:100px;
+  border-radius: 4px;
 }
 
 </style>

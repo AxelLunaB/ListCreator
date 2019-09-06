@@ -2,6 +2,10 @@ const CONTRACTS_UPDATED = (state, contracts) => {
   state.contracts = contracts;
 };
 
+const CONTRACTS_BY_PAID_REF = (state, payload) => {
+  state.contractsByPaidRef = payload;
+};
+
 const PAGINATION_UPDATED = (state, pagination) => {
   state.pagination = pagination;
 };
@@ -74,8 +78,14 @@ const SPECIAL_FILTER = (state, payload) => {
 const QUERY_UPDATED = (state, query) => {
   state.query = query;
 }
+
+const NEW_CONTRACT = (state,payload)=> {
+  state.selectedDep = payload;
+}
+
 export default {
   CONTRACTS_UPDATED,
+  CONTRACTS_BY_PAID_REF,
   PAGINATION_UPDATED,
   GO_NEXT_PAGE,
   GO_PREV_PAGE,
@@ -84,5 +94,6 @@ export default {
   SET_VIEW_TYPE,
   SET_FILTER,
   SPECIAL_FILTER,
-  REMOVE_FILTER
+  REMOVE_FILTER,
+  NEW_CONTRACT
 };

@@ -2,7 +2,7 @@
   <div class="table-container colors" @click="departmentClicked()">
     <table class="table full-table table-hover" style="table-layout: fixed;margin-bottom:0px!important;">
     <tbody>
-      <tr v-if="contracts != undefined" class="colors">
+      <tr  class="colors">
           <td><b>{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</b></td>
           <td style="font-size:13px;">{{detailTable.cluster.name != null ? detailTable.cluster.name : "N/A" }}</td>
           <td>{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
@@ -17,7 +17,8 @@
           <td>{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2): '-'}}</td>
           <td>{{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal): '-'}}</td>
           <td v-bind:style="{color: getColor }"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : "N/A"}}</td>
-          <td>{{ contracts.currency != null ? contracts.currency : '-'}}</td>
+          <template v-if="contracts != undefined">
+          <td>{{contracts.currency != null ? contracts.currency : '-'}}</td>
           <td>{{contracts.paymentMethod != null ? contracts.paymentMethod : "-" }}</td>
           <td>{{contracts.exchangerate != 0 && contracts.exchangerate != null ? contracts.exchangerate : "-"}}</td>
           <td>{{contracts.commission != null? contracts.commission.managementCommissions != null ? contracts.commission.managementCommissions + ' %' :'-' : '-'}}</td>
@@ -33,6 +34,25 @@
           <td style='font-size:12px;'>{{contracts.commission != undefined ? contracts.commission.executive != null ? contracts.commission.executive.name : '-' : '-' }}</td>
           <td>{{contracts.salesDetails != undefined ? contracts.salesDetails.salesChannel != null ? contracts.salesDetails.salesChannel : '-' : '-' }}</td>
           <td style='font-size:12px;width:200px;'>{{contracts.customer != undefined ? contracts.customer.name != null? contracts.customer.name : '-' : '-'}}</td>
+          </template>
+          <template v-if="contracts == undefined">
+          <td>{{'-'}}</td>
+          <td>{{"-" }}</td>
+          <td>{{"-"}}</td>
+          <td>{{ '-'}}</td>
+          <td>{{'-'}}</td>
+          <td>{{'-'}}</td>
+          <td>{{'-'}}</td>
+          <td>{{'-'}}</td>
+          <td>{{'-'}}</td>
+          <td>{{"-"}}</td>
+          <td>{{"-"}}</td>
+          <td>{{"-"}}</td>
+          <td>{{"-"}}</td>
+          <td style='font-size:12px;'>-</td>
+          <td>-</td>
+          <td style='font-size:12px;width:200px;'>-</td>
+          </template>
       </tr>
     </tbody>
         </table>

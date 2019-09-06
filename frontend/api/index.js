@@ -98,11 +98,82 @@ const patchDepartments = (department) => {
 
 /* CONTRACTS */
 
+const updateUnitStat = (newStatus) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'api/departments', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
+
 const fetchTotalContracts = async unitId => {
   return new Promise((resolve, reject) => {
     socket.emit('find', 'api/contracts', { unitId: unitId }, (error, response) => {
       error ? reject(error) : resolve(response);
     });
+  });
+};
+
+/* Retrieves all contracts by Paid Reference */
+const fetchContractsByPaidRef = async () => {
+  // Contracts
+  const contracts = [];
+
+  // References ID
+  const referencesId = [];
+
+  // Fetch all references that belongs to
+  // a paid reference
+  await socket.emit('api/references::find', { statusId: 5 }, (error, references) => {
+
+    if(error) {
+      throw new Error(error);
+    }
+
+    // All Paid References as Array : []
+    const paidReferences = references;
+      
+    paidReferences.data.forEach(reference => {
+      let id = reference.id;
+      referencesId.push(id);
+    });
+  });
+
+  await socket.emit('find', 'api/contracts', { $sort: { id: 1 } }, (error, response) => {
+
+    if(error) {
+      throw new Error(error);
+    }
+
+    console.log('CONTRACTS');
+    console.log(response);
+
+    console.log('ReferencesID');
+    console.log(referencesId);
+      
+    if(response !== null || response !== undefined) {
+      referencesId.forEach(id => {
+        // Search for referenceId at Contracts
+        let contract = response.data.find(element => {
+          return element.referenceId === id;
+        });
+  
+        // Pushes the data to contracts array
+        contracts.push(contract);
+      });
+    }
+      
+  });
+    
+  console.log('CONTRACTS PAID');
+  console.log(contracts);
+
+  return new Promise((resolve) => {
+    resolve(contracts);
   });
 };
 
@@ -327,9 +398,9 @@ const fetchReferences = () => {
 }
 
 /* Attachments */
-const newFileUpload = file => {
+const getS3Signature = file => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', '/attachments', file, (error, response) => {
+    socket.emit('create', 'attachments', file, (error, response) => {
       error ? reject(error) : resolve(response);
     });
   });
@@ -364,6 +435,14 @@ const cancelReferences = async reference => {
       console.log(`Paid ReferenceID: ${paidReference}`);
     });
 
+    // Patch Department
+    if( unitId !== null) {
+     socket.emit('patch', 'api/departments', unitId, { statusId: 3 }, (error, response) => {
+       console.log(`UnitID: ${unitId} RESERVED`);
+     });
+   } else {
+      console.log("heeeeell no");
+   }
     totalContracts.data.forEach(obj => {
       if(obj.referenceId !== paidReference) {
 
@@ -396,8 +475,10 @@ export {
   fetchDepartmentsByCluster,
   //
   fetchContracts,
+  fetchContractsByPaidRef,
   createContract,
   fetchCommissions,
+  updateUnitStat,
   //
   createLot,
   fetchLots,
@@ -419,5 +500,5 @@ export {
   fetchReferences,
   cancelReferences,
   //
-  newFileUpload
+  getS3Signature
 }

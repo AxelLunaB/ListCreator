@@ -1,9 +1,10 @@
-import { newFileUpload } from '@/api';
+import { getS3Signature } from '@/api';
 
-const setNewAttachment = (context, attachment) => {
+const getAWSSignature = (context, file) => {
+  console.log('Current Object Sent');
+  console.log(file);
     return new Promise((resolve, reject) => {
-      newFileUpload(attachment).then(res => {
-        // context should be called to commit some mutation in order to send popups or something.
+      getS3Signature(file).then(res => {
         resolve(res);
       }).catch(e => {
         reject(e);
@@ -12,5 +13,5 @@ const setNewAttachment = (context, attachment) => {
 };
 
 export default {
-    setNewAttachment
+    getAWSSignature
 }

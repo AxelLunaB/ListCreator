@@ -1,6 +1,6 @@
 <template>
   <div class="filter-container">
-      <div v-if="show" v-bind:class ="{ fadeIn : show }" class="close-filter" @click="removeFilter(),show = false">
+      <div v-if="show" v-bind:class ="{ fadeIn : show }" class="close-filter" @click="removeFilter(),closeSearch()">
         <span><i class="fas fa-times"></i>	&nbsp;	&nbsp;Remove filters</span>
       </div>
       <div class="container-filter">
@@ -10,9 +10,9 @@
               <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Level</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
-                    <ul>
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}), show = true">
+                    <input type="checkbox" class="checkboxes">
+                    <ul id="dropdown1">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(0,item.level)">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
@@ -22,9 +22,9 @@
               <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
-                    <ul>
-                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), show = true">
+                    <input type="checkbox" class="checkboxes">
+                    <ul id="dropdown2">
+                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), hideDropdown(1,item.cost)">
                         <p> {{ item.cost }} </p>
                       </li>
                     </ul>
@@ -34,9 +34,9 @@
               <button class="btn-buy" @click="setFilterAs('statusId')" value="statusId" id="name">Status</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox">
-                    <ul>
-                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),  show = true">
+                    <input type="checkbox" class="checkboxes">
+                    <ul id="dropdown3">
+                      <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(2,item.stat)">
                         <p> {{ item.stat }} </p>
                       </li>
                     </ul>
@@ -44,6 +44,7 @@
               </div>
           </div>
         </div>
+        <p style='font-size:1.2rem;'><span v-if="filters0">Level {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} status</span></p>
         </div>
         </div>
 </template>
@@ -74,7 +75,10 @@ export default {
         {stat: 'Sold', value:2, id:'statusId'},
         {stat: 'Reserved', value:3, id:'statusId'}
       ],
-      show:false
+      show:false,
+      filters0:null,
+      filters1:null,
+      filters2:null
     }
   },
   methods: {
@@ -83,7 +87,31 @@ export default {
       setSpecialFilter: 'departments/setSpecialFilter',
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
-    })
+    }),
+    hideDropdown(i,x){
+      switch(i){
+        case 0:
+        this.filters0 = x
+        break;
+        case 1:
+         this.filters1 = x
+        break;
+        case 2:
+         this.filters2 = x
+      }
+      this.show = true
+      var inputs = document.querySelectorAll('.checkboxes');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false;
+        }
+
+    },
+    closeSearch(){
+      this.show = false
+      this.filters0 = null
+      this.filters1 = null
+      this.filters2 = null
+    }
   }
 }
 </script>
@@ -135,6 +163,7 @@ export default {
   z-index:+0;
   top: 0px; left: 0px;
   right: 0px; bottom: 0px;
+  background: red;
 }
 
 .dropdown ul {
@@ -237,6 +266,10 @@ input .dropdown {
   cursor: pointer!important;
 }
 
+.filter-container p {
+  color: white;
+}
+
 .fa-sort-down {
   color: white;
 }
@@ -245,8 +278,8 @@ input .dropdown {
     background:#3c4857;
     color:white;
     position:fixed;
-    right:20px;
-    bottom:20px;
+    right: 100px;
+    bottom: 70px;
     z-index: 2;
     padding:10px;
     border-radius: 3px;

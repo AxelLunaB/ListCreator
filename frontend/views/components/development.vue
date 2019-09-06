@@ -37,17 +37,17 @@
         </div>
       </div>
       <div class="card-down">
-        <div style="width:100%; height:65px;">
+        <div style="width: 100%;height: 140px;display: flex;flex-direction: column;justify-content: center;">
             <span v-if="getDepsP.sold != 0">
             <p style="margin-bottom:0;"> {{getDepsP.sold}} % SOLD </p>
             <div class="myProgress">
               <div :style="{width:getDepsP.sold + '%', height: '100%', backgroundColor: '#24303b'}"></div>
             </div>
           </span>
-        </div>
         <p style="margin-bottom:0;"> {{getDepsP.reserved}} % RESERVED </p>
         <div class="myProgress">
           <div :style="{width:getDepsP.reserved + '%', height: '100%', backgroundColor: '#24303b'}"></div>
+        </div>
         </div>
         <table class="table tower-card" style="width:100%;margin-top:18px;">
             <tbody class="colors-main">

@@ -1,5 +1,18 @@
-import { createDepartments, fetchDepartments, patchDepartments, fetchDepartmentsByCluster } from '@/api';
+import { createDepartments, fetchDepartments, patchDepartments, fetchDepartmentsByCluster, updateUnitStat } from '@/api';
 import socket from '@/io';
+
+const updateStatus = (context, newStatus) => {
+  console.log(newStatus);
+  return new Promise((resolve, reject) =>{
+    updateUnitStat(newStatus)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
 
 const getDepartmentById = (context,cluster) => {
   console.log(cluster);
@@ -149,5 +162,6 @@ export default {
   setFilter,
   setSpecialFilter,
   removeSpecialFilter,
-  setPriceFilter
+  setPriceFilter,
+  updateStatus
 }

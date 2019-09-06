@@ -1,4 +1,4 @@
-import { fetchContracts,createContract } from '@/api';
+import { fetchContracts, createContract, fetchContractsByPaidRef } from '@/api';
 import socket from '@/io';
 
 
@@ -16,24 +16,26 @@ const getContracts = (context) => {
         pages: response.total / response.limit,
         index: Math.floor(response.skip / response.limit),
       };
-      
+
       context.commit('PAGINATION_UPDATED', pagination);
     }
-    
+
   }).catch(error => {
     console.log(error);
   });
 };
-// const updateDepartment = (context, department) => {
-//   return new Promise((resolve, reject) => {
-//     patchDepartments(department).then(response => {
-//       resolve(response);
-//     }).catch(err => {
-//       reject(err);
-//     });
-//   })
-//
-// };
+
+const getContractsByPaidRef = context => {
+  return new Promise((resolve, reject) => {
+    fetchContractsByPaidRef().then(response => {
+      context.commit('CONTRACTS_BY_PAID_REF', response);
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
 const newContract = (context, contract) => {
   return new Promise((resolve, reject) => {
     createContract(contract).then(response => {
@@ -108,14 +110,13 @@ const setListType = ( context, commit ) => {
 
 
 
-
 export default {
   getContracts,
+  getContractsByPaidRef,
   listenEvents,
   newContract,
   nextPage,
   prevPage,
-  // updateDepartment,
   goSearch,
   setListType,
   setFilter,
