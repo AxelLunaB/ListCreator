@@ -9,7 +9,7 @@
         <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
         <div class="buttons-header" style="z-index:0;">
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View full list</button>
+          <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
             <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References list</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button>
             <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
               <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
             </router-link> -->

@@ -49,7 +49,8 @@ const uploadAttachment = async context => {
     contentType: data['data'].type,
     url: '',
     size: data['data'].size.toString(),
-    unitId: unitId
+    unitId: unitId,
+    docType: documentType
   };
 
   if(isFileValid(attachment.contentType)) {

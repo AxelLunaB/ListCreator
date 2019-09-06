@@ -105,6 +105,7 @@ import { log } from 'util';
         // }
       }
     },
+
     computed: {
   ...mapGetters({
       departments: "departments/departments",

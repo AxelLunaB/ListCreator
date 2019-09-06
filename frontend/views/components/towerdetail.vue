@@ -112,12 +112,11 @@
                             <thead>
                             </thead>
                             <tbody>
-                            <!-- <tr v-on:click="selectedLabel = 'Offer Letter'">
-                              <label for="fileInput">
+
+                            <tr v-on:click="selectedLabel = 'Offer Letter'">
                                 <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
                                 <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
                                 <td><i class="fas fa-file-alt"></i></td>
-                              </label>
                             </tr> -->
 
                             <tr v-on:click="selectedLabel = 'Reserve Sheet'">
@@ -184,11 +183,11 @@
               <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
                 <div class="m-b-30">
                   <form id="dropFileForm" method="POST" enctype="multipart/form-data">
-                    <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept=".pdf, image/jpeg, image/png" data-max-file-size="5MB">
+                    <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept="application/pdf, image/jpeg, image/png" data-max-file-size="5MB">
                     <!-- <label for="fileInput" id="fileLabel">
                       Drop files here to upload
                     </label> -->
-                    <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" />
+                    <!-- <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" /> -->
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
@@ -397,6 +396,33 @@ async function getInputFiles (fileList) {
       return arrayOfFiles;
 }
 
+// function sendFiles () {
+//       const _ = this;
+//       const form = document.getElementById('dropFileForm');
+//       // Get selected unitId
+//       const unitId = this.detailTable.id;
+//       console.log('sendFiles has been called!');
+
+//       form.addEventListener('submit', e => {
+//         // Prevent default action from firing
+//         e.preventDefault();
+
+//         if(this.files.length === 0) {
+//           return;
+//         }
+
+//         if(unitId === null || undefined) {
+//           throw Error('unitId is null');
+//         }
+
+//         let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel  };
+//         // Send files to server
+//         _.$store.dispatch("attachments/getAWSSignature", file);
+
+//         _.files = null;
+//       });
+// }
+
 export default {
 
   mounted: function () {
@@ -508,104 +534,147 @@ export default {
       return r;
     },
 
+    sendFiles() {
+      // Vue Instance
+      const _ = this;
 
+      // Get selected unitId
+      const unitId = this.detailTable.id;
+
+      if(this.files.length === 0) {
+        throw new Error('Please, select a file to upload.');
+        return;
+      }
+
+      if(unitId === null || undefined) {
+        // unitId cannot be null
+        return;
+      }
+
+      let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
+      console.log('File');
+      console.log(file);
+
+      // Send files to server
+      _.$store.dispatch("attachments/getAWSSignature", file);
+      _.files = null;
+    },
+
+      // form.addEventListener('submit', e => {
+      //   // Prevent default action from firing
+      //   e.preventDefault();
+
+      //   if(this.files.length === 0) {
+      //     console.log('Return Called');
+      //     return;
+      //   }
+
+      //   if(unitId === null || undefined) {
+      //     throw Error('unitId is null');
+      //   }
+
+      //   let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
+      //   console.log('File');
+      //   console.log(file);
+      //   // Send files to server
+      //   _.$store.dispatch("attachments/getAWSSignature", file);
+      //   _.files = null;
+      // });
 
     readFiles: function(event) {
       // Retrieve selected files
       const fileList = event.target.files;
       let validFiles = 0;
 
-      if(fileList.length === 0) {
-        throw Error('Please, select a file to upload!');
+      // if(fileList.length === 0) {
+      //   throw Error('Please, select a file to upload!');
+      // }
+
+      if(fileList !== undefined) {
+
+        // Empty Files Array from Data Component
+        // Before pushing File BLOB's
+        this.files = [];
+
+        // Get DOM Elements to show progress
+        const uploadTitle = document.getElementById('upload-window-title');
+        const uploadSubtitle = document.getElementById('upload-window-sub');
+        const uploadProgress = document.getElementsByClassName('upload-window-progress');
+
+        // Iterate every file &
+        // Read each file
+        Array.from(fileList).forEach(file => {
+
+          if(isFileValid(file.type)) {
+            const reader = new FileReader();
+            let obj = {};
+
+            reader.onload = () => {
+              obj.name = file.name;
+              obj.size = file.size;
+              obj.type = file.type;
+              obj.body = reader.result;
+
+              // Push File to Files[] Array in the Data component
+              this.files.push(obj);
+
+              // Increment for each valid file read
+              validFiles += 1;
+
+              // Update Window Progress
+              uploadTitle.innerText = validFiles === 1 ? `File uploaded!` : `${validFiles} files uploaded!`;
+
+              // Show a Swal Alert
+              swal(
+                  {
+                    title: 'Please confirm information',
+                    text:  `Upload file: ${file.name} for ${this.selectedLabel}?`,
+                    icon: "info",
+                    buttons: {
+                    cancel: true,
+                    confirm: true,
+                  }
+              }).then(isConfirm => {
+                if(isConfirm) {
+                  // Upload file
+                  this.sendFiles();
+                } else {
+                  // Cancel and
+                  // Clear Array
+                  this.files = [];
+                }
+              });
+            }
+
+            reader.onerror = () => {
+              console.log('Error reading file!');
+              console.log(reader.error);
+            }
+
+            reader.onprogress = e => {
+
+              // Update Progress
+              uploadTitle.innerText = fileList.length === 1 ? `Uploading ${fileList.length} file` : `Uploading ${fileList.length} files`;
+
+              if(e.lengthComputable) {
+                let percentLoaded = Math.round((e.loaded / e.total) * 100);
+                console.log(`Loading ${percentLoaded}% ...`);
+              }
+            }
+
+            // Read file as Array Buffer
+            reader.readAsArrayBuffer(file);
+
+          } else {
+            console.log(`File: ${file.name} is not a supported valid file!`);
+            uploadTitle.innerText = `File: ${file.name} is not a supported valid file!`;
+          }
+
+        });
       }
 
-      // Empty Files Array from Data Component
-      // Before pushing File BLOB's
-      this.files = [];
-
-      // Get DOM Elements to show progress
-      const uploadTitle = document.getElementById('upload-window-title');
-      const uploadSubtitle = document.getElementById('upload-window-sub');
-      const uploadProgress = document.getElementsByClassName('upload-window-progress');
-
-      // Iterate every file &
-      // Read each file
-      Array.from(fileList).forEach(file => {
-
-        if(isFileValid(file.type)) {
-          const reader = new FileReader();
-          let obj = {};
-
-          reader.onload = () => {
-            obj.name = file.name;
-            obj.size = file.size;
-            obj.type = file.type;
-            obj.body = reader.result;
-
-            // Push File to Files[] Array in the Data component
-            this.files.push(obj);
-
-            // Increment for each valid file read
-            validFiles += 1;
-
-            // Update Window Progress
-            //
-            uploadTitle.innerText = validFiles === 1 ? `File uploaded!` : `${validFiles} files uploaded!`;
-          }
-
-          reader.onerror = () => {
-            console.log('Error reading file!');
-            console.log(reader.error);
-          }
-
-          reader.onprogress = e => {
-
-            // Update Progress
-            uploadTitle.innerText = fileList.length === 1 ? `Uploading ${fileList.length} file` : `Uploading ${fileList.length} files`;
-
-            if(e.lengthComputable) {
-              let percentLoaded = Math.round((e.loaded / e.total) * 100);
-              console.log(`Loading ${percentLoaded}% ...`);
-            }
-          }
-
-          // Read file as Array Buffer
-          reader.readAsArrayBuffer(file);
-
-        } else {
-          console.log(`File: ${file.name} is not a supported valid file!`);
-          uploadTitle.innerText = `File: ${file.name} is not a supported valid file!`;
-        }
-
-      });
     },
 
-    sendFiles: function () {
-      const _ = this;
-      const form = document.getElementById('dropFileForm');
-      // Get selected unitId
-      const unitId = this.detailTable.id;
-      console.log('sendFiles has been called!');
-
-      form.addEventListener('submit', e => {
-        // Prevent default action from firing
-        e.preventDefault();
-
-        if(this.files.length === 0) {
-          return;
-        }
-
-        if(unitId === null || undefined) {
-          throw Error('unitId is null');
-        }
-
-        let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel  };
-        // Send files to server
-        _.$store.dispatch("attachments/getAWSSignature", file);
-
-        _.files = null;
-      });
-    },
       status: function status(event) {
         const _ = this;
         let state = event.target[event.target.selectedIndex].label
@@ -618,7 +687,7 @@ export default {
           buttons: {
           cancel: true,
           confirm: true,
-        }
+          }
         }).then(isConfirm => {
           if(isConfirm) {
             const unitId = this.detailTable.id
