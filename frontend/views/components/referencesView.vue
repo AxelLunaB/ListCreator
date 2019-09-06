@@ -7,6 +7,7 @@
           <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveDate != null ? getDate(references.reference.reserveDate) : '-' }}</td>
           <td style="vertical-align: middle;" class="xs-mobile mobile">{{references.reference.reserveExpiration != null ? getDate(references.reference.reserveExpiration) : '-'}}</td>
           <td style="vertical-align: middle;font-size:14px;" class="xs-mobile mobile">{{references.customer.name != undefined ? references.customer.name : '-'}}</td>
+          <td style="vertical-align: middle;font-size:14px;" class="xs-mobile mobile">{{references.salesDetails.executive.name != undefined ? references.salesDetails.executive.name : '-'}}</td>
           <td style="vertical-align: middle;"><span v-bind:style="{color: getColor}">{{references.reference.status != undefined ? references.reference.status.name : '-'  }}</span></td>
           <td style="vertical-align: middle;">
             <select id="myList" v-if="references.reference.statusId !== 5 && references.reference.statusId !== 8 && references.reference.statusId !== null" v-on:change="status($event)">

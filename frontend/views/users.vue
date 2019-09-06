@@ -75,13 +75,13 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Age</label>
                       <div class="control">
-                        <input class="input" type="number" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Phone Number</label>
                       <div class="control">
-                        <input class="input" type="number" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" type="number" min="18" max="15" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
@@ -477,8 +477,3 @@ export default {
   }
 
 </style>
-
-
-
-
-

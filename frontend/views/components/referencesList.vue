@@ -17,6 +17,7 @@
                     <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Reserve date</b></td>
                     <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Reserve expiration</b></td>
                     <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Customer</b></td>
+                    <td class="xs-mobile mobile" style="text-align:center;vertical-align:middle;"><b>Executive</b></td>
                     <td style="text-align:center;vertical-align:middle;"><b>Status</b></td>
                     <td style="text-align:center;vertical-align:middle;"><b>Update Status</b></td>
                 </tr>
