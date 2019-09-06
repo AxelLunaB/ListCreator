@@ -627,8 +627,12 @@ export default {
               unitId: unitId,
               statusId: statusId
             };
+
+            document.getElementById("myList").disabled = true;
+            document.getElementById("myList").style.color = '#ffffff1f';
+
             this.$store.dispatch('departments/updateStatus', newStatus);
-            confirm = true
+
           } else {
             document.getElementById("myList").selectedIndex = 0
           }
