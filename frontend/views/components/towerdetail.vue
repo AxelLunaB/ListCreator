@@ -17,39 +17,39 @@
                             <tbody>
                             <tr>
                                 <td class="textalign">Level</td>
-                                <td class="text-right">{{detailTable.level != 0 ? detailTable.level : "-"}}</td>
+                                <td class="text-right">{{detailTable.level != 0 ? detailTable.level : "Ground Floor"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bedrooms</td>
-                                <td class="text-right">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Lock Off (keys)</td>
-                                <td class="text-right">{{detailTable.nkeys !=0 ? detailTable.nkeys : "-"}}</td>
+                                <td class="text-right">{{detailTable.nkeys !=0 ? detailTable.nkeys : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Bathrooms</td>
-                                <td class="text-right">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "-"}}</td>
+                                <td class="text-right">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Interior m2</td>
-                                <td class="text-right">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Exterior m2</td>
-                                <td class="text-right">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "-"}}</td>
+                                <td class="text-right">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Interior m2</td>
-                                <td class="text-right">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total m2</td>
-                                <td class="text-right">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "-"}}</td>
+                                <td class="text-right">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "0"}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-right">{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '-'}}</td>
+                                <td class="text-right">{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '0'}}</td>
                             </tr>
                              <tr>
                                 <td class="textalign">$/m2 Total</td>
