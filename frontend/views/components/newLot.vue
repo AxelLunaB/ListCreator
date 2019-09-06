@@ -136,7 +136,6 @@ export default {
       this.$store
         .dispatch("lots/newHouse", lot)
         .then(response => {
-          console.log(response);
           _.isVissible = false;
           swal({
             title: "Lote añadido",
@@ -149,7 +148,6 @@ export default {
           });
         })
         .catch(err => {
-          console.log(err);
           var title = "¡Error!";
           var text = "Error inesperado, vuelve a intentarlo mas tarde.";
           var timer = 1750;

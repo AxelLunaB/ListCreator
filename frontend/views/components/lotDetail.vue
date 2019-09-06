@@ -165,7 +165,6 @@ export default {
           }
         })
         .catch(err => {
-          // console.log(err);
           var text = `Error inesperado, vuelve a intentarlo mas tarde....`;
           var title = "¡Error!";
           var timer = 1750;

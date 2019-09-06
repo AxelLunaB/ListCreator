@@ -7,7 +7,6 @@ const getCommissions = (context) => {
   fetchCommissions(context.state.pagination.skip, context.state.query).then(response => {
     //call context.commit
     context.commit('COMMISSIONS_UPDATED', response.data);
-    console.log(response);
 
     let pagination = {
       total: response.total,
@@ -17,7 +16,6 @@ const getCommissions = (context) => {
       index: Math.floor(response.skip / response.limit),
     };
     context.commit('PAGINATION_UPDATED', pagination);
-    // console.log(response);
   }).catch(error => {
     console.log(error);
   });

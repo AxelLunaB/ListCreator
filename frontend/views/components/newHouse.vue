@@ -120,7 +120,6 @@ export default {
   name: "newHouse",
   mounted: function() {
     this.$eventHub.$on("show-new-house-modal", house => {
-      // console.log(house);
       if (house != null) {
         this.house = house;
       } else {
@@ -148,7 +147,6 @@ export default {
       this.$store
         .dispatch("houses/newHouse", lot)
         .then(response => {
-          console.log(response)
           _.isVissible = false;
           swal({
             title: "Casa añadida",
@@ -161,7 +159,6 @@ export default {
           });
         })
         .catch(err => {
-          console.log(err)
           var title = "¡Error!";
           var text = "Error inesperado, vuelve a intentarlo mas tarde.";
           var timer = 1750;

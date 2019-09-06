@@ -48,9 +48,9 @@
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
             <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
             <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button>
-            <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
+            <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
               <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
-            </router-link> -->
+            </router-link>
             </div>
           </div>
         </div>
@@ -127,7 +127,6 @@
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {
         // Dispatch actions &&  subscribe to rt events.
-        console.log("auth");
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -135,7 +134,6 @@
 
         // listen to authenticated event
       } else {
-        console.log("no auth");
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
           // _.$store.dispatch("departments/getDepartmentById", _.tower);

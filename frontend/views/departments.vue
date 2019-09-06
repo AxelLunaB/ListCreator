@@ -89,7 +89,6 @@ export default {
     ...mapActions("departments", ["nextPage", "prevPage"]),
     goSearch(payload) {
       const _ = this;
-      // console.log("searching...");
       if (payload != null) {
         var searchQuery = {};
         payload.forEach(v => {
@@ -107,7 +106,6 @@ export default {
       searchQ.$skip = _.index * _.limit;
     },
     addDepartment() {
-      // console.log('Add button clicked.');
       this.$eventHub.$emit("show-new-department-modal", null);
     },
     cloneDepartment(department) {

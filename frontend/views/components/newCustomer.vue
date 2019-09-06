@@ -64,7 +64,7 @@
                 <b-dropdown
                 v-if="formData.country != 'Other'" id="dropdown-state"
                 name="drop-state"
-                :text ="formData.country == null ? 'Select state' : 'Select state'"
+                :text ="formData.state != null ? formData.state : 'Select state'"
                 :disabled="formData.country == null">
                 <div style="overflow-y:scroll;height:200px;">
                   <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"
@@ -362,8 +362,6 @@ export default {
           obj[prefix(k)] = this.getValue(k);
           usr = obj;
         });
-
-        console.log(usr)
 
         swal({
           title: "Please confirm information",

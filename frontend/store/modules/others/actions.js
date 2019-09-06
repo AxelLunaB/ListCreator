@@ -74,9 +74,7 @@ const getCountDepartments = (context) => {
 };
 
 const getReferences = (context) => {
-  console.log("i am updating references!");
   fetchReferences().then(response => {
-    console.log("woah, " + response);
     context.commit('REFERENCES_UPDATED', response);
   }).catch(err => {
     console.error(err);

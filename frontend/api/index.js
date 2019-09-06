@@ -136,7 +136,7 @@ const fetchContractsByPaidRef = async () => {
 
     // All Paid References as Array : []
     const paidReferences = references;
-      
+
     paidReferences.data.forEach(reference => {
       let id = reference.id;
       referencesId.push(id);
@@ -149,28 +149,20 @@ const fetchContractsByPaidRef = async () => {
       throw new Error(error);
     }
 
-    console.log('CONTRACTS');
-    console.log(response);
-
-    console.log('ReferencesID');
-    console.log(referencesId);
-      
     if(response !== null || response !== undefined) {
       referencesId.forEach(id => {
         // Search for referenceId at Contracts
         let contract = response.data.find(element => {
           return element.referenceId === id;
         });
-  
+
         // Pushes the data to contracts array
         contracts.push(contract);
       });
     }
-      
+
   });
-    
-  console.log('CONTRACTS PAID');
-  console.log(contracts);
+
 
   return new Promise((resolve) => {
     resolve(contracts);

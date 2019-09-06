@@ -125,7 +125,6 @@ export default {
 
       for(var bData in mData) {
        let totalDeps = this.getUnits();
-       console.log(bData);
 
        let pSoldDeps = this.tower.statusCount[bData];
        let per = Math.ceil((parseFloat(100 * pSoldDeps) / totalDeps ));

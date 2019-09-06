@@ -73,7 +73,6 @@ export default {
         return r;
         },
         departmentClicked(){
-          console.log("pop");
           let info = {
             detailUnit : this.detailTable,
             detailContract : this.contracts
