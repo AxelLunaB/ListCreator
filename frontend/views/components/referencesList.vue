@@ -56,7 +56,6 @@ export default {
       if (isAuthenticated) {
         let _ = this;
         // Dispatch actions &&  subscribe to rt events.
-        console.log("auth");
         _.$store.dispatch("others/getReferences");
 
         // listen to authenticated event
@@ -120,7 +119,6 @@ export default {
 
     // Filter each reference belong to current selected clusterId
     referencesByCluster: function () {
-      console.log("dasfsfasadsfa");
 
       let refs = this.references;
       let con = this.contracts;
@@ -145,7 +143,6 @@ export default {
       this.openReference === true ? this.$store.dispatch("others/getReferences") : this.$store.dispatch("others/getReferences");
     },
     referencesByCluster(newVal) {
-      console.log("asdafasfaasfdh2");
     }
   }
 

@@ -86,7 +86,6 @@ import { log } from 'util';
         return 'table' + n
       },
       getInfo(unitId){
-        console.log(unitId);
         var scontract;
         this.contracts.forEach(contract =>{
           if(unitId === contract.unitId){

@@ -8,8 +8,8 @@
           id="dropdown-unit"
           name="drop-unit"
           :text="selectedUnit == null ? 'Select Unit' : selectedUnit">
-          <div style="overflow-y:scroll;height:200px;">
-            <b-dropdown-item v-for="(dep,index) in departments" :key="dep.id" @click="selectUnit(dep.id, dep.unitNumber)">
+          <div style="overflow-y:auto;height:200px;">
+            <b-dropdown-item v-for="(dep,index) in departments" :index="index" :key="dep.id" @click="selectUnit(dep.id, dep.unitNumber)">
               {{dep.unitNumber}}
             </b-dropdown-item>
           </div>
@@ -22,7 +22,7 @@
           id="dropdown-contract"
           name="drop-contract"
           :text="selectedContract == 0 ? 'Select contract ID' : selectedContract.id + ' (' + selectedContract.customer.name + ')'">
-          <div style="overflow-y:scroll;">
+          <div style="overflow-y:auto;">
             <b-dropdown-item v-for="(con,index) in contr" :key="index" @click="selectCont(con.unitId,con)">
             {{con.id + ' (' + con.customer.name + ')'}}
             </b-dropdown-item>
@@ -76,11 +76,10 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label for="Price">Comments</label>
-              <textarea style="resize:none" type="text" rows="2" class="form-control add-contract" id="comments" :placeholder="selectedContract != undefined ? selectedContract.comment : 'No comments' " disabled></textarea>
+              <textarea style="resize:none" type="text" rows="2" class="form-control add-contract" id="comments" :placeholder="selectedContract != undefined ? selectedContract.comment != null ? selectedContract.comment : 'No comments' : 'No comments' " disabled></textarea>
             </div>
-            <div class="col-md-6"></div>
           </div>
           </form>
         <div style="display: flex;align-items: center;justify-content: center;flex-direction:column;color:white;">
@@ -164,6 +163,7 @@ export default {
       this.selectedContract = c
     },
     selectUnit(i,u){
+      this.selectedContract=[]
       this.contr = []
       let id = i
       let NoContr = true

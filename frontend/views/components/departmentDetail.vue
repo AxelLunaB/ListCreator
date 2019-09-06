@@ -246,7 +246,6 @@ export default {
     },
     saveChanges(close) {
       const formData = $("#department-edit-form").serializeArray();
-      //console.log(formData);
       //: use notifications (see todo.todo for reference) when closing the
       const _ = this;
       var data = {};
@@ -277,7 +276,6 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err);
           var text = `Error inesperado, vuelve a intentarlo mas tarde.`;
           var title = "¡Error!";
           var timer = 1750;

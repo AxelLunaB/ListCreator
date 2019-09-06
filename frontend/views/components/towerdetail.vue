@@ -387,7 +387,6 @@ async function getInputFiles (fileList) {
           }
 
           reader.onerror = () => {
-            console.log(reader.error);
           }
 
           reader.readAsArrayBuffer(file);
