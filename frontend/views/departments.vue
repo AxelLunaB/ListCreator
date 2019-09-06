@@ -174,8 +174,6 @@ export default {
       }
     }
 
-      console.log(this.sDepartments);
-      console.log(deptos)
       this.sDepartments = deptos
       // return deptos.length > 0 ? this.sDepartments : this.sortedArray
        return this.sortedArray

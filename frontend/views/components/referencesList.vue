@@ -60,7 +60,6 @@ export default {
 
         // listen to authenticated event
       } else {
-        console.log("no auth");
         let _ = this;
         _.$store.dispatch("others/getReferences");
       }
@@ -102,8 +101,6 @@ export default {
         return contract.referenceId === referenceId && contract.clusterId === this.clusterId;
       });
 
-      // console.log('Result ------------------------->');
-      // console.log(result);
       return result[0] !== undefined ? result[0].unitId : null;
     }
 

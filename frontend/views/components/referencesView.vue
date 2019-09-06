@@ -106,8 +106,6 @@ export default {
 
       // Whenever status dropdown change, this function will run
       status: function status(event) {
-        // console.log(event.target[event.target.selectedIndex].label);
-        // console.log(event.target[event.target.value - 1].label);
         const _ = this;
         swal(
         {
@@ -121,7 +119,6 @@ export default {
         }).then(isConfirm => {
           if(isConfirm) {
             const statusSelected = event.target.value;
-            console.log(_.unitId);
             const reference = {
               paidReference: _.references.referenceId,
               statusId: statusSelected,
@@ -129,11 +126,9 @@ export default {
             };
 
             if(reference !== undefined) {
-                console.log(reference);
               if( reference.unitId !== null) {
                  _.$store.dispatch("others/callCancelReferences", reference);
               } else {
-                console.log("id is null");
               }
               _.$eventHub.$emit("updateReferenceParent");
               _.$eventHub.$emit('updateDataDetail');
