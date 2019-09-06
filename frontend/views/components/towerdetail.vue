@@ -236,15 +236,15 @@
                             </tr>
                             <tr>
                                 <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions ? contract.commission.managementCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-'}}</span></td>
+                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-' : '-'}}</span></td>
                             </tr>
                             <tr>
                                 <td class="textalign">Total Comm</td>
