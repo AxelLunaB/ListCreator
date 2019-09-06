@@ -400,7 +400,6 @@ async function getInputFiles (fileList) {
 //       const form = document.getElementById('dropFileForm');
 //       // Get selected unitId
 //       const unitId = this.detailTable.id;
-//       console.log('sendFiles has been called!');
 
 //       form.addEventListener('submit', e => {
 //         // Prevent default action from firing

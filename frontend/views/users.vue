@@ -61,7 +61,7 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Fullname</label>
                       <div class="control">
-                        <input class="input" type="text" name="name" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" v-bind:style="[$v.fullname.$model !== null ? $v.fullname.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="fullname" type="text" name="name" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -69,31 +69,31 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Email</label>
                       <div class="control">
-                        <input class="input" type="email" name="email" placeholder="ejemplo@altozano.com.mx" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" v-bind:style="[$v.email.$model !== null ? $v.email.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="email" type="email" name="email" placeholder="ejemplo@altozano.com.mx" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Age</label>
                       <div class="control">
-                        <input class="input" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" v-bind:style="[$v.age.$model !== null ? $v.age.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="age" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Phone Number</label>
                       <div class="control">
-                        <input class="input" type="number" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" type="tel" v-bind:style="[$v.tel.$model !== null ? $v.tel.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="tel" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Password</label>
                       <div class="control">
-                        <input v-model="password" class="input" type="password" name="password" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" placeholder="" required>
+                        <input v-model="password" class="input" v-bind:style="[$v.password.$model !== '' ? $v.password.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  type="password" name="password" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" placeholder="" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Confirm Password</label>
                       <div class="control">
-                        <input v-model="password2" class="input" type="password" placeholder="" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input v-bind:style="[$v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="password2" class="input" type="password" placeholder="" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -189,6 +189,7 @@
   </div>
 </template>
 <script>
+import { numeric, required, alpha, email } from 'vuelidate/lib/validators';
 import $ from "jquery";
 import { mapGetters, mapActions } from "vuex";
 import swal from "sweetalert";
@@ -221,7 +222,11 @@ export default {
       isEditting: false,
       selectedUser: null,
       password: "",
-      password2: ""
+      password2: "",
+      tel:null,
+      fullname:null,
+      email:null,
+      age:null,
     };
   },
 
@@ -291,12 +296,11 @@ export default {
 
       let userInfo = {};
 
-      form.forEach(input => {
-        userInfo[input.name] = input.value;
-      });
+      if(!this.$v.invalid) {
 
-      console.log('User Info');
-      console.log(userInfo);
+         form.forEach(input => {
+         userInfo[input.name] = input.value;
+      });
 
       this.$store
         .dispatch("users/newUser", userInfo)
@@ -312,6 +316,16 @@ export default {
             buttons: false,
             timer: 3300
           });
+
+          // Clear form data
+          document.getElementById('new-user-form').reset();
+          this.fullname = null;
+          this.email = null;
+          this.age = null;
+          this.tel = null;
+          this.password = '';
+          this.password2 = '';
+
         })
         .catch(err => {
           console.log('Error');
@@ -324,6 +338,17 @@ export default {
             timer: 2500
           });
         });
+
+      } else {
+        swal({
+          title: "You entered not valid info!",
+          text: `Please, verify entered info.`,
+          icon: "alert",
+          buttons: false,
+          timer: 3500
+        });
+      }
+
     },
 
     deleteUser(userId) {
@@ -445,6 +470,34 @@ export default {
       }
     }
 
+  },
+  validations:{
+    tel:{
+      required,
+      numeric
+    },
+
+    fullname:{
+      required
+    },
+
+    email:{
+      required,
+      email
+    },
+
+    age:{
+      required,
+      numeric
+    },
+
+    password:{
+      required
+    },
+
+    password2:{
+      required
+    }
   }
 }
 </script>

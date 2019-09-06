@@ -1413,7 +1413,6 @@ export default {
             }
             this.watchMe = true
           }
-          console.log(this.depsAndContractsArray)
 
           for(var i = 0 ; i < this.depsAndContractsArray.length ; i++ ) {
             for(var e = 0 ; e < this.departments.length ; e++ ) {

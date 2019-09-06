@@ -112,7 +112,6 @@ export default {
   name: "newDepartment",
   mounted: function() {
     this.$eventHub.$on("show-new-department-modal", department => {
-      // console.log(department);
       if (department != null) {
         this.department = department;
       } else {
@@ -140,7 +139,6 @@ export default {
       this.$store
         .dispatch("department/newDepartment", lot)
         .then(response => {
-          console.log(response)
           _.isVissible = false;
           swal({
             title: "Casa añadida",
@@ -153,7 +151,6 @@ export default {
           });
         })
         .catch(err => {
-          console.log(err)
           var title = "¡Error!";
           var text = "Error inesperado, vuelve a intentarlo mas tarde.";
           var timer = 1750;

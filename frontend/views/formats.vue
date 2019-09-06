@@ -116,12 +116,10 @@ export default {
     var isAuthenticated = this.$store.state.others.isAuthenticated;
     if (isAuthenticated) {
       // Dispatch actions &&  subscribe to rt events.
-      console.log("auth");
       this.$store.dispatch("contracts/getContracts");
 
       // listen to authenticated event
     } else {
-      console.log("no auth");
       let _ = this;
       this.$eventHub.$on("authenticated", function() {
         // _.$store.dispatch("departments/getDepartmentById", _.tower);

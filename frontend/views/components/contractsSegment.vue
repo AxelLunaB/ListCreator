@@ -624,12 +624,10 @@ export default {
               var mm = frm[2].value.slice(5,7)
               frm[2].value = yyyy + "/" + mm + "/" + dd
 
-              console.log(frm)
               var data = {};
               frm.map(function(m){
                 data[m.name] = m.value;
               })
-              console.log(data);
               swal({
                 title: "Please confirm information",
                 text: "Cluster" + " : " + this.formData.clusterId.name + "\n" + "Unit" + " : " + this.formData.unitId.name + "\n" + "Sold to : " + this.formData.customerId.name + "\n" + "Price" + " : " + frm[0].value + " " + this.formData.currency.name,
@@ -651,7 +649,6 @@ export default {
                   }).then(function() {
                     _.$store
                     .dispatch("contracts/newContract", data).then( result => (
-                      console.log(result),
                       _.$eventHub.$emit("updateDataDetail"),
                       _.$eventHub.$emit("updateReferenceParent")
                     ));
