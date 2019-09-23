@@ -1,3 +1,4 @@
+/* eslint-disable */
 // api/index.js
 import cookie from '@/utils/cookie';
 import socket from '@/io';
@@ -18,6 +19,7 @@ const authenticateSocket = () => {
     });
   })
 };
+
 /* HOUSES */
 const createHouse = (house) => {
   return new Promise((resolve, reject) => {
@@ -30,6 +32,7 @@ const createHouse = (house) => {
     });
   })
 };
+
 const fetchHouses = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -39,6 +42,7 @@ const fetchHouses = ($skip, query) => {
     });
   })
 };
+
 const patchHouse = (house) => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'api/houses', house.id, house, (error, message) => {
@@ -65,6 +69,7 @@ const createDepartments = (department) => {
     });
   })
 };
+
 const fetchDepartments = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -84,6 +89,7 @@ const fetchDepartmentsByCluster = ($skip, cluster) => {
     });
   })
 };
+
 const patchDepartments = (department) => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'api/departments', department.id, department, (error, message) => {
@@ -176,7 +182,7 @@ const fetchContracts = ($skip, query) => {
     socket.emit("api/contracts::find", query, (error, lots) => {
       resolve(lots);
     });
-  })
+  });
 };
 
 const createContract = (contract) => {
@@ -214,6 +220,7 @@ const createLot = (lot) => {
     });
   });
 };
+
 const fetchLots = ($skip, query) => {
   query = query != null ? query : {};
   query['$skip'] = $skip;
@@ -227,6 +234,7 @@ const fetchLots = ($skip, query) => {
     });
   });
 };
+
 const patchLot = (lot) => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'api/lots', lot.id, lot, (error, message) => {
@@ -374,7 +382,7 @@ const fetchCountDepartments = () => {
       }
     });
   });
-}
+};
 
 const fetchReferences = () => {
   return new Promise((resolve, reject) => {
@@ -387,7 +395,7 @@ const fetchReferences = () => {
       }
     });
   });
-}
+};
 
 /* Attachments */
 const getS3Signature = file => {
@@ -451,6 +459,27 @@ const cancelReferences = async reference => {
    console.log('References cancelled sucessfully!');
 };
 
+/* Encinos */
+const getUnits = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/encinos', {}, (error, count) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(count);
+      }
+    });
+  });
+};
+
+const getUnitsByStage = (stage) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/encinos', { stage: stage }, (error, data) => {
+      error ? reject(error) : resolve(data);
+    });
+  });
+};
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -492,5 +521,8 @@ export {
   fetchReferences,
   cancelReferences,
   //
-  getS3Signature
+  getS3Signature,
+  //
+  getUnits,
+  getUnitsByStage
 }

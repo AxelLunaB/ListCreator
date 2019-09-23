@@ -129,6 +129,8 @@
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
+        this.$store.dispatch("others/fetchAllUnits");
+        this.$store.dispatch("others/fetchUnitsByStage", "7");
 
         // listen to authenticated event
       } else {
@@ -221,7 +223,9 @@
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort",
         priceRange: "departments/priceRange",
-        isAdmin: "users/isAdmin"
+        isAdmin: "users/isAdmin",
+        encinos: "others/encinosUnits",
+        encinosByStage: "others/encinosUnitsByStage"
       }),
       towerValidation(){
         if(this.filtersArray == 0 && this.title == null) {

@@ -11,6 +11,7 @@
   "extends": "eslint:recommended",
   "rules": {
     "indent": "off",
+    "no-unused-vars": ["error", { "args": "none" }],
     "linebreak-style": 0,
     "quotes": [
       "error",
