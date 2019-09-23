@@ -1,14 +1,14 @@
 <template>
   <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
-      <h4 class="m-b-30 m-t-0 text-center"> {{ tower != null ? tower.name != null ? tower.name : '-' : '-'}} </h4>
+      <h4 class="m-b-30 m-t-0 text-center"> {{ stage != null ? stage != null ? stage : '-' : '-'}} </h4>
       <div class="card-upper">
         <div class="image-card">
         </div>
         <div class="info-card">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table">
+                        <!-- <table class="table">
                             <tbody class="colors-main">
                             <tr>
                                 <td>Units</td>
@@ -31,12 +31,12 @@
                                 <td> {{ tower != null ? tower.threeBR != null ? tower.threeBR : '-':'-'}} </td>
                             </tr>
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
         </div>
       </div>
-      <div class="card-down">
+      <!-- <div class="card-down">
         <div style="width: 100%;height: 140px;display: flex;flex-direction: column;justify-content: center;">
             <span v-if="getDepsP.sold != 0">
             <p style="margin-bottom:0;"> {{getDepsP.sold}} % SOLD </p>
@@ -81,7 +81,7 @@
             </tr>
             </tbody>
         </table>
-      </div>
+      </div> -->
      </router-link>
   </div>
 </template>
@@ -89,7 +89,7 @@
 <script>
 
 export default {
-  props:['tower','clusterId'],
+  props:['stage'],
   data(){
     return {
       isActive: true,
@@ -101,21 +101,21 @@ export default {
   },
   methods: {
     selectTower() {
-      let towerNo = this.clusterId + 1
-      this.$eventHub.$emit("select-tower", towerNo);
+      let stageName = this.stage
+      this.$eventHub.$emit("select-tower", stageName);
     },
-    getUnits(){
+    // getUnits(){
 
-      let total = this.tower.statusCount.available +
-      this.tower.statusCount.blocked +
-      this.tower.statusCount.notPaid +
-      this.tower.statusCount.paid +
-      this.tower.statusCount.referred +
-      this.tower.statusCount.reserved +
-      this.tower.statusCount.sold
+    //   let total = this.tower.statusCount.available +
+    //   this.tower.statusCount.blocked +
+    //   this.tower.statusCount.notPaid +
+    //   this.tower.statusCount.paid +
+    //   this.tower.statusCount.referred +
+    //   this.tower.statusCount.reserved +
+    //   this.tower.statusCount.sold
 
-      return total
-    }
+    //   return total
+    // }
   },
   computed: {
     getDepsP(){

@@ -292,22 +292,22 @@ export default {
     // this.departments != undefined ? this.formData.clusterId.name = this.departments[0].cluster.name : this.formData.clusterId.id = '-'
     // this.departments != undefined ? this.formData.clusterId.id = this.departments[0].clusterId : this.formData.clusterId.id = '-'
 
-    this.$eventHub.$on("select-tower", tower => {
-      this.$store.dispatch("departments/getDepartmentById", tower);
-      switch(tower) {
-        case 1:
-        this.formData.clusterId.id = 1
-        this.formData.clusterId.name = "BRAVA TOWER"
-        break;
-        case 2:
-        this.formData.clusterId.id = 2
-        this.formData.clusterId.name ="GIADA TOWER A"
-        break;
-        case 3:
-        this.formData.clusterId.id = 3
-        this.formData.clusterId.name = "GIADA TOWER B"
-      }
-    })
+    // this.$eventHub.$on("select-tower", tower => {
+    //   this.$store.dispatch("departments/getDepartmentById", tower);
+    //   switch(tower) {
+    //     case 1:
+    //     this.formData.clusterId.id = 1
+    //     this.formData.clusterId.name = "BRAVA TOWER"
+    //     break;
+    //     case 2:
+    //     this.formData.clusterId.id = 2
+    //     this.formData.clusterId.name ="GIADA TOWER A"
+    //     break;
+    //     case 3:
+    //     this.formData.clusterId.id = 3
+    //     this.formData.clusterId.name = "GIADA TOWER B"
+    //   }
+    // })
 
   },
   components: {

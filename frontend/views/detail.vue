@@ -91,10 +91,10 @@
         this.$store.dispatch("departments/goSearch", query);
       });
 
-    this.$eventHub.$on("select-tower", tower => {
-      this.$store.dispatch("departments/getDepartmentById", tower);
-      this.clusterId = tower;
-      switch(tower) {
+    this.$eventHub.$on("select-tower", stage => {
+      this.$store.dispatch("others/fetchUnitsByStage", stage);
+      this.clusterId = stage;
+      switch(stage) {
         case 1:
         this.title = "BRAVA TOWER"
         this.tower = 1;
@@ -115,7 +115,7 @@
 
       this.$eventHub.$on("updateDataDetail", () => {
         // this.$store.dispatch("departments/getDepartmentById",tower);
-        this.$store.dispatch("departments/getDepartmentById", this.tower);
+        // this.$store.dispatch("departments/getDepartmentById", this.tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -129,8 +129,8 @@
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
-        this.$store.dispatch("others/fetchAllUnits");
-        this.$store.dispatch("others/fetchUnitsByStage", "7");
+        // this.$store.dispatch("others/fetchAllUnits");
+        // this.$store.dispatch("others/fetchUnitsByStage", "7");
 
         // listen to authenticated event
       } else {
@@ -224,27 +224,26 @@
         specialSort: "departments/specialSort",
         priceRange: "departments/priceRange",
         isAdmin: "users/isAdmin",
-        encinos: "others/encinosUnits",
         encinosByStage: "others/encinosUnitsByStage"
       }),
-      towerValidation(){
-        if(this.filtersArray == 0 && this.title == null) {
-            swal({
-              text: "Please select a tower first",
-              icon: "warning",
-              buttons: false,
-              timer: 1500
-          });
+      // towerValidation(){
+      //   if(this.filtersArray == 0 && this.title == null) {
+      //       swal({
+      //         text: "Please select a tower first",
+      //         icon: "warning",
+      //         buttons: false,
+      //         timer: 1500
+      //     });
 
-        setTimeout(function () {
-          document.location.href = '/'
-          }, 1500);
+      //   setTimeout(function () {
+      //     document.location.href = '/'
+      //     }, 1500);
 
-        return false
-        } else {
-          return true
-        }
-      },
+      //   return false
+      //   } else {
+      //     return true
+      //   }
+      // },
       currentAvailability () {
           var cData= {}
           var available = 0

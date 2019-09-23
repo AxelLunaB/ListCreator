@@ -14,24 +14,24 @@ const updateStatus = (context, newStatus) => {
 };
 
 
-const getDepartmentById = (context,cluster) => {
-  console.log(cluster);
+// const getDepartmentById = (context,cluster) => {
+//   console.log(cluster);
 
-  fetchDepartmentsByCluster(context.state.pagination.skip, cluster)
-  .then(res => {
-    context.commit('DEPARTMENTS_UPDATED', res.data);
-    //console.log(response);
+//   fetchDepartmentsByCluster(context.state.pagination.skip, cluster)
+//   .then(res => {
+//     context.commit('DEPARTMENTS_UPDATED', res.data);
+//     //console.log(response);
 
-    let pagination = {
-      total: res.total,
-      limit: res.limit,
-      skip: res.skip,
-      pages: res.total / res.limit,
-      index: Math.floor(res.skip / res.limit),
-    };
-    context.commit('PAGINATION_UPDATED', pagination);
-  });
-};
+//     let pagination = {
+//       total: res.total,
+//       limit: res.limit,
+//       skip: res.skip,
+//       pages: res.total / res.limit,
+//       index: Math.floor(res.skip / res.limit),
+//     };
+//     context.commit('PAGINATION_UPDATED', pagination);
+//   });
+// };
 
 const getDepartments = (context) => {
   // console.log('fetching houses...');
@@ -150,7 +150,7 @@ const setCurrentAvailability = (context, payload) =>{
 
 export default {
   getDepartments,
-  getDepartmentById,
+  // getDepartmentById,
   setCurrentAvailability,
   listenEvents,
   newDepartment,

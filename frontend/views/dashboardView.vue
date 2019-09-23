@@ -1,7 +1,7 @@
 <template>
     <div class="main">
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
-                  <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :clusterId="index" ></development>
+                  <development  v-for="(stage,index) in stages" :key="index" :stage="stage" ></development>
           </div>
     </div>
 
@@ -23,35 +23,40 @@ export default {
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {
         // Dispatch actions &&  subscribe to rt events.
-        this.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
+        this.$store.dispatch("others/fetchUnitsByStage", "7");
 
         // listen to authenticated event
       } else {
         const _ = this;
 
         this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("countByCluster/getCountByCluster", {id: 1});
+          _.$store.dispatch("others/fetchUnitsByStage", "7");
+
         });
       }
   },
   data() {
     return {
+      stages:[
+        '1-A',
+        '1-B',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '9',
+        '10'
+      ]
     }
   },
   methods:{
   },
   computed:{
       ...mapGetters({
-        countByCluster: "countByCluster/countByCluster"
-      }),
-      getTowers(){
-        let clusters = []
-        clusters.push(this.countByCluster['BRAVA TOWER'])
-        clusters.push(this.countByCluster['GIADA TOWERS A'])
-        clusters.push(this.countByCluster['GIADA TOWERS B'])
-        return clusters
-      }
-
+        fetchUnitsByStage: "others/encinosUnitsByStage"
+      })
   }
 }
 </script>
