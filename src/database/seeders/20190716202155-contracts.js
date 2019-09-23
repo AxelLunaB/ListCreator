@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const csv = require('fast-csv');
-const csvFilePath = __dirname + '/../csv/contracts.csv'
+const csvFilePath = __dirname + '/../csv/contracts.csv';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -31,11 +31,11 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           unitId: data[0]
-        })
+        });
       }).on('end', function (data) {
 
         resolve(seed);
-      })
+      });
     }).then(seed => {
       return queryInterface.bulkInsert('contracts', seed, {});
     });
