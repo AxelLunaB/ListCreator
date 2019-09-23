@@ -1,4 +1,5 @@
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, patchReferences, createNewCustomer, cancelReferences } from '@/api';
+/* eslint-disable */
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, fetchReferences, patchReferences, createNewCustomer, cancelReferences, getUnits, getUnitsByStage } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -10,6 +11,7 @@ const authenticate = (context) => {
     });
   });
 };
+
 const setPlusButton = (context, plusBtn) => {
   context.commit('ADD_BUTTON', plusBtn);
 };
@@ -89,9 +91,7 @@ const setNewPatchedReference = (context, reference) => {
     }).catch(e => {
       reject(e);
     });
-  })
-
-
+  });
 };
 
 const callCancelReferences = (context, reference) => {
@@ -105,6 +105,28 @@ const callCancelReferences = (context, reference) => {
   });
 };
 
+const fetchAllUnits = (context) => {
+  return new Promise((resolve, reject) => {
+    getUnits().then(res => {
+      context.commit('ENCINOS_UNITS', res);
+      resolve(res);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
+const fetchUnitsByStage = (context, stage) => {
+  return new Promise((resolve, reject) => {
+    getUnitsByStage(stage).then(res => {
+      context.commit('ENCINOS_UNITS_BY_STAGE', res);
+      resolve(res);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
 export default {
   authenticate,
   getClusters,
@@ -114,7 +136,10 @@ export default {
   setNewCustomer,
   getCountHouses,
   getCountDepartments,
+  getCountLots,
   getReferences,
   setNewPatchedReference,
-  callCancelReferences
+  callCancelReferences,
+  fetchAllUnits,
+  fetchUnitsByStage
 };
