@@ -7,11 +7,11 @@
                 <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: 'Ground Floor' }}</td>
                 <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"0" }}</td>
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"0" }}</td>
-                <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"0" }}</td>
+                <!-- <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"0" }}</td> -->
                 <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"0" }}</td>
                 <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "0"}}</td>
                 <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"0")}}</td>
-                <td style="text-align:center"><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td>
+                <!-- <td style="text-align:center"><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td> -->
             </tr>
             </tbody>
         </table>

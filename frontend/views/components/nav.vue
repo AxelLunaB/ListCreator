@@ -11,11 +11,11 @@
             <i class="fas fa-compress"></i>
           </div>
 
-        <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
+        <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu" style="border-radius:50px;">
 
           <!--<i class="fas fa-user"></i>-->
-        <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/>
-        <img v-else style="width: 20px; height: 20px" src="../../assets/user.png"/>
+        <!-- <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/> -->
+        <img style="width: 38px; height: 36px:border-radius:50px;" src="../../assets/avatar.png"/>
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>

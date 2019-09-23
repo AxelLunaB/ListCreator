@@ -3,21 +3,6 @@
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(tower,index) in getTowers" :key="index" :tower="tower" :clusterId="index" ></development>
           </div>
-          <!-- <ul class="pagination pagination-lg m-0">
-            <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
-            <li class="page-item" v-for="p in pagination" :key="p"> <a href="#" class="page-link">{{ p }}</a> </li>
-            <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-          </ul> -->
-            <!-- <ul class="pagination pagination-lg m-0 fadeInAnimate">
-                <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-left"></i> </a> </li>
-                <li class="page-item"> <a href="#" class="page-link active">1</a> </li>
-                <li class="active"> <a href="#" class="page-link">2</a> </li>
-                <li class="page-item"> <a href="#" class="page-link">3</a> </li>
-                <li class="page-item"> <a href="#" class="page-link">4</a> </li>
-                <li class="page-item"> <a href="#" class="page-link"> <i class="fa fa-angle-right"></i> </a> </li>
-            </ul>
-
-            <development  v-for="(d,index) in development" :key="index" :idN="index"></development>-->
     </div>
 
 </template>

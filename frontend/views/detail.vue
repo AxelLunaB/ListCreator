@@ -5,12 +5,12 @@
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
+        <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"><img src="../../public/tb.png" style="width:50px;"></div>
         <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
         <div class="buttons-header" style="z-index:0;">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <!-- <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
-          </div>
+          </div> -->
         </div>
       </div>
       <filter-table />
@@ -22,14 +22,12 @@
                   <tbody>
                   <tr>
                       <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
-                      <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
-                      <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                      <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                      <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>COMM. PHASE</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>HOUSE MODEL</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>LOT AREA M<sup>2</sup></b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BLOCK</b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>CONST. AREA M<sup>2</sup></b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
                   </tr>
                   </tbody>
               </table>
@@ -46,8 +44,8 @@
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button>
+            <!-- <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button> -->
             <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
               <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
             </router-link> -->
@@ -553,6 +551,7 @@
     height: 50px;
     text-align:center!important;
     vertical-align:middle!important;
+    font-size: 0.8rem;
   }
 
   .navbar-container {

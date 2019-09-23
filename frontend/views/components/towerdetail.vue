@@ -5,7 +5,7 @@
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : '-'}}</h4>
@@ -76,8 +76,8 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+        <div class="card">
             <div class="card-body">
                 <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
                 <div class="row fullh">
@@ -102,79 +102,80 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
-            <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                <div class="row fullh">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier fullh">
-                            <thead>
-                            </thead>
-                            <tbody>
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+                  <div class="card-body">
+                      <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
+                      <div class="row fullh">
+                          <div class="col-12">
+                              <table class="table table-hover table-modifier fullh">
+                                  <thead>
+                                  </thead>
+                                  <tbody>
 
-                            <tr v-on:click="selectedLabel = 'Offer Letter'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
-                                <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr> -->
+                                  <tr v-on:click="selectedLabel = 'Offer Letter'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
+                                      <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
 
-                            <tr v-on:click="selectedLabel = 'Reserve Sheet'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Reserve Deposit'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'First Draft Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Final Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'ROI Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Official ID'">
-                                <td class="text-left"><label for="fileInput">Official ID</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Proof of Address'">
-                                <td class="text-left"><label for="fileInput">Proof of Address</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                                  <tr v-on:click="selectedLabel = 'Reserve Sheet'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Reserve Deposit'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'First Draft Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Final Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'ROI Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Official ID'">
+                                      <td class="text-left"><label for="fileInput">Official ID</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Proof of Address'">
+                                      <td class="text-left"><label for="fileInput">Proof of Address</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>-->
+
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
@@ -184,16 +185,16 @@
                 <div class="m-b-30">
                   <form id="dropFileForm" method="POST" enctype="multipart/form-data">
                     <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept="application/pdf, image/jpeg, image/png" data-max-file-size="5MB">
-                    <!-- <label for="fileInput" id="fileLabel">
+                     <label for="fileInput" id="fileLabel">
                       Drop files here to upload
-                    </label> -->
-                    <!-- <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" /> -->
+                    </label>
+                     <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" />
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <!-- <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button> -->
+                   <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button>
 
-                  <!-- Loading Files Animation Wrapper -->
+                   Loading Files Animation Wrapper
                   <div class="upload-window">
                     <div class="upload-window-progress"></div>
                     <span id="upload-window-title"></span>
@@ -205,10 +206,11 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
+
     </div>
     <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+  <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
   <div class="card">
             <div class="card-body">
                 <div class="row" style="height:100%;">
@@ -255,8 +257,8 @@
                 </div>
             </div>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      </div>-->
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
       <div class="card" style="height:93%">
           <div class="card-body">
               <div class="row" style="height:100%">
@@ -288,8 +290,8 @@
               </div>
           </div>
       </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+      </div>-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
             <div class="row" style="height:242px;">
@@ -315,7 +317,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
             <h5 class="m-t-0 m-b-30 text-left">SALES</h5>
@@ -920,7 +922,7 @@ td {
 
 .row-one,
 .row-two {
-  max-width: 1600px;
+  max-width: 1000px;
 }
 
 .labels {
