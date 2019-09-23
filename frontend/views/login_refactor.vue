@@ -234,10 +234,38 @@ h5 {
   margin: 20px 10px;
 }
 
+.form-control {
+  background:#3f4c5c;
+  border:none;
+  border-bottom:1px solid rgba(255, 255, 255, 0.432);
+  border-radius: 0;
+  color:white!important;
+}
+
 .form-control:focus {
   box-shadow:none!important;
-  background: rgb(230, 244, 252);
   border: none!important;
+  background: none!important;
+  border-bottom:1px solid rgb(255, 255, 255)!important;
+  color:white!important;
+}
+
+@keyframes autofill {
+    to {
+        color: white;
+        background: #3f4c5c;
+    }
+}
+
+input:-webkit-autofill {
+    animation-name: autofill;
+    animation-fill-mode: both;
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+::placeholder {
+  color:rgba(255, 255, 255, 0.432)!important;
 }
 
 .btn-primary:active,
