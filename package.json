@@ -1,8 +1,8 @@
 {
-  "name": "giada_real_state",
+  "name": "sibaria-web",
   "description": "Panel web de giada",
   "version": "0.0.0",
-  "homepage": "http://giada_real_state.ar3data.com",
+  "homepage": "http://sibaria-web.ar3data.com",
   "main": "src",
   "keywords": [
     "feathers"

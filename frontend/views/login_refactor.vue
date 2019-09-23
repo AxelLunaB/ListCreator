@@ -6,7 +6,7 @@
         <div class="card col-md-4 col-sm-12 fadeEntry">
           <div class="card-body">
             <h3 class="text-center">
-              <a href="index.html" class="logo"><img src="../assets/logo_bco.png" alt="logo-img" width="250px"></a>
+              <a href="index.html" class="logo"><img src="../assets/logo_bco_sm.png" alt="logo-img" width="250px"></a>
             </h3>
             <h5 class="text-center">Sign In</h5>
             <form class="form-horizontal m-t-20" id="login_form">
