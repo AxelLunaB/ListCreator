@@ -79,7 +79,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-center">PAYMENTS</h5>
+                <!-- <h5 class="m-b-30 m-t-0 text-center">PAYMENTS</h5> -->
                 <div class="row fullh">
                     <div class="col-12">
                         <table class="table table-hover table-modifier fullh">
@@ -298,22 +298,22 @@
               <div class="col-12" style="flex-direction:column;">
                 <h5 class="m-t-0 m-b-30 text-center">AVAILABILITY</h5>
                 <div style="width:100%;display:flex;justify-content:center;height:79%">
-                  <!-- <chartjs-doughnut
+                  <chartjs-doughnut
                   v-bind:labels="labels"
                   v-bind:datasets="dynamicChart"
                   v-bind:option="option"
                   :width="mywidth"
                   :height="myheight"
                   style="height:226px;"
-                   ></chartjs-doughnut> -->
+                   ></chartjs-doughnut>
                 </div>
               </div>
             </div>
-            <!-- <div class="labels">
+            <div class="labels">
               <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(5,162,179);"></div><p>Available</p></div>
               <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(0,163,254)"></div><p>Sold</p></div>
               <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(235,239,242);"></div><p>Reserved</p></div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -322,7 +322,7 @@
           <div class="card-body" style="display:flex; flex-direction:column;">
             <h5 class="m-t-0 m-b-30 text-center">SALES</h5>
           <div class = "placeholder-card">
-              <!-- <chartjs-bar
+              <chartjs-bar
               :beginzero="myboolean"
               :backgroundcolor="mybackgroundcolor"
               :bordercolor="mybordercolor"
@@ -331,7 +331,7 @@
               :data="dynamicBar"
               v-bind:option="myoption"
               style="width:100%;">
-      </chartjs-bar> -->
+      </chartjs-bar>
               </div>
           </div>
         </div>
@@ -755,9 +755,9 @@ export default {
     },
 
     dynamicChart () {
-      this.datasets[0].data[0] = this.cAvailability.available
-      this.datasets[0].data[1] = this.cAvailability.reserved
-      this.datasets[0].data[2] = this.cAvailability.sold
+      this.datasets[0].data[0] = 2
+      this.datasets[0].data[1] = 3
+      this.datasets[0].data[2] = 6
       return this.datasets
     },
 
@@ -772,10 +772,10 @@ export default {
     },
 
     dynamicBar(){
-      this.mydata[0] = this.monthlySales.antMonth
-      this.mydata[1] = this.monthlySales.penMonth
-      this.mydata[2] = this.monthlySales.pastMonth
-      this.mydata[3] = this.monthlySales.cMonth
+      this.mydata[0] = 3
+      this.mydata[1] = 8
+      this.mydata[2] = 4
+      this.mydata[3] = 3
 
       return this.mydata
     }

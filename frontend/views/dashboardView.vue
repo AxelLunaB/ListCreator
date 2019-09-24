@@ -3,7 +3,7 @@
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
           </div>
-          <nav aria-label="Page navigation" style = "margin-top:70px;">
+          <nav aria-label="Page navigation" style = "margin-top:20px;">
             <ul class="pagination pg-blue">
               <li class="page-item"><a class="page-link" @click="prevPage()"><i class="fas fa-chevron-left"></i></a></li>
               <li class="page-item pages">{{pageNumber + 1 }} / 2 </li>
@@ -45,16 +45,16 @@ export default {
   data() {
     return {
       stages:[
-        {stage:'1-A',units:12},
-        {stage:'1-B',units:18},
-        {stage:'2',units:34},
-        {stage:'3',units:54},
-        {stage:'4',units:53},
-        {stage:'5',units:53},
-        {stage:'6',units:30},
-        {stage:'7',units:41},
-        {stage:'9',units:4},
-        {stage:'10',units:18}
+        {stage:'1-A',units:12,M4D:3,M4I:2,M3D:2,M3I:2,M2D:0,M2I:1,M1D:1,M1I:1},
+        {stage:'1-B',units:18,M4D:1,M4I:1,M3D:2,M3I:2,M2D:3,M2I:3,M1D:3,M1I:3},
+        {stage:'2',units:34,M4D:4,M4I:4,M3D:4,M3I:6,M2D:3,M2I:4,M1D:6,M1I:3},
+        {stage:'3',units:54,M4D:4,M4I:4,M3D:2,M3I:4,M2D:8,M2I:8,M1D:12,M1I:12},
+        {stage:'4',units:53,M4D:7,M4I:8,M3D:5,M3I:7,M2D:7,M2I:7,M1D:6,M1I:6,},
+        {stage:'5',units:53,M4D:6,M4I:6,M3D:4,M3I:5,M2D:6,M2I:6,M1D:10,M1I:10},
+        {stage:'6',units:30,M4D:2,M4I:2,M3D:2,M3I:2,M2D:6,M2I:5,M1D:4,M1I:7},
+        {stage:'7',units:41,M4D:4,M4I:4,M3D:5,M3I:4,M2D:5,M2I:5,M1D:7,M1I:7},
+        {stage:'9',units:14,M4D:1,M4I:1,M3D:1,M3I:1,M2D:1,M2I:1,M1D:4,M1I:4},
+        {stage:'10',units:18,M4D:2,M4I:2,M3D:2,M3I:2,M2D:2,M2I:2,M1D:3,M1I:3}
       ],
       pageNumber:0,
       pageCount:6
@@ -137,10 +137,6 @@ body {
     z-index: 2;
     text-decoration: none;
     color: #e6ffe4;
-}
-
-.fadeInAnimate {
-  animation: fadeInAnimation 2s forwards;
 }
 
 .pagination-lg .page-link {

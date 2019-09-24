@@ -1,7 +1,7 @@
 <template>
   <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
-      <h4 class="m-b-30 m-t-0 text-center"> Stage {{ stage != null ? stage != null ? stage.stage : '-' : '-'}} </h4>
+      <h4 class="m-b-30 m-t-0 text-center" style = "margin: 30px 0;"> Stage {{ stage != null ? stage != null ? stage.stage : '-' : '-'}} </h4>
       <div class="card-upper">
         <div class="image-card">
         </div>
@@ -11,8 +11,40 @@
                         <table class="table">
                             <tbody class="colors-main">
                             <tr>
-                                <td>Units</td>
-                                <td>{{ stage ? stage.units : '-' }}</td>
+                                <td>Model M1D</td>
+                                <td><b>{{ stage ? stage.M1D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M1I</td>
+                                <td><b>{{ stage ? stage.M1I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M2D</td>
+                                <td><b>{{ stage ? stage.M2D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M2I</td>
+                                <td><b>{{ stage ? stage.M2I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M3D</td>
+                                <td><b>{{ stage ? stage.M3D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M3I</td>
+                                <td><b>{{ stage ? stage.M3I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M4D</td>
+                                <td><b>{{ stage ? stage.M4D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Model M4I</td>
+                                <td><b>{{ stage ? stage.M4I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Total units</td>
+                                <td><b>{{ stage ? stage.units : '-' }}</b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -196,7 +228,8 @@ export default {
 
 .tower-card {
   padding:0;
-  height:100px;
+  max-width: 350px;
+  margin:20px 50px;
 }
 
 
