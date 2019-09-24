@@ -154,7 +154,10 @@
         depsAndContracts:[],
         title:null,
         tower:null,
-        clusterId: undefined
+        clusterId: undefined,
+        modelFilter: null,
+        blockFilter: null,
+        filteredUnits: []
       }
     },
     methods: {
@@ -304,26 +307,42 @@
          return verify
     },
      filterStages () {
-        let filters = this.specialSort
-        var deptos = []
-        this.sDepartments = []
-        this.encinosByStage.data.forEach ((dep, index) => {
-          filters.forEach (filter => {
-            if(filter.value === null|| filter.id == 'price')
-            return
-            if(dep[filter.id] == filter['value']) {
-              let shouldAdd = true
-              for( var i = 0; i < deptos.length; i++) {
-                if(deptos[i].id == dep.id) {
-                  shouldAdd = false
-                }
-              }
-              if (shouldAdd === true) {
-              deptos.push(dep)
-            }
-          }
-        })
-      })
+
+       // Update filter data to use Watch
+       this.modelFilter = this.specialSort[0].value;
+       this.blockFilter = this.specialSort[2].value;
+
+       // Return every unit that belongs to the stage
+       if(this.modelFilter === null && this.blockFilter === null) {
+         return this.encinosByStage.data;
+       }
+       
+       else {
+         return this.filteredUnits;
+       }
+
+      
+
+      //   let filters = this.specialSort
+      //   var deptos = []
+      //   this.sDepartments = []
+      //   this.encinosByStage.data.forEach ((dep, index) => {
+      //     filters.forEach (filter => {
+      //       if(filter.value === null|| filter.id == 'price')
+      //       return
+      //       if(dep[filter.id] == filter['value']) {
+      //         let shouldAdd = true
+      //         for( var i = 0; i < deptos.length; i++) {
+      //           if(deptos[i].id == dep.id) {
+      //             shouldAdd = false
+      //           }
+      //         }
+      //         if (shouldAdd === true) {
+      //         deptos.push(dep)
+      //       }
+      //     }
+      //   })
+      // })
 
       //   if(deptos.length > 0) {
       //   for (var i = deptos.length -1 ; i >= 0; i--) {
@@ -436,14 +455,28 @@
       //      }
 
 
-        this.sDepartments = deptos
-        return this.sortedArray
+        // this.sDepartments = deptos
+        // return this.sortedArray
 
       },
     },
       watch : {
-        currentAvailability(newVal){
+        currentAvailability(newVal) {
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
+        },
+
+        modelFilter: function(newVal, oldVal) {
+          if(this.blockFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          }
+          return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === newVal);
+        },
+
+        blockFilter: function(newVal, oldVal) {
+          if(this.modelFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          }
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
         }
       },
   }
