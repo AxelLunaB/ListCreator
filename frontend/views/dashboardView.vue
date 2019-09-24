@@ -270,6 +270,12 @@ body {
   max-width:1500px;
 }
 
+@media screen and (max-width: 1199px) and (min-width: 1000px){
+  .wrapper-page {
+    padding-top: 24vw!important;
+    }
+}
+
 .pages {
   color: white;
   display: flex;

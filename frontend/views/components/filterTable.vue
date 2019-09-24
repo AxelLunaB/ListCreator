@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-container">
+  <div class="filter-container" style="max-width:800px;">
       <div v-if="show" v-bind:class ="{ fadeIn : show }" class="close-filter" @click="removeFilter(),closeSearch()">
         <span><i class="fas fa-times"></i>	&nbsp;	&nbsp;Remove filters</span>
       </div>
@@ -7,7 +7,7 @@
         <div class="field">
           <div class="control">
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('houseModel')" value="houseModel" id="name">Model</button>
+              <button class="btn-buy" @click="setFilterAs('houseModel')" value="houseModel" id="name">Modelo</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
@@ -31,7 +31,7 @@
               </span>
               </div> -->
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Block</button>
+              <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Manzana</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">

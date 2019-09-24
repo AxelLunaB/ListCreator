@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unit # {{ detailTable ? detailTable.unit : ''}}</span></h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad No. # {{ detailTable ? detailTable.unit : ''}}</span></h4>
                 <div class="row fullh">
                     <div class="col-12" style="display: flex;align-items: center;">
                         <table class="table table-hover table-modifier medh">
@@ -296,7 +296,7 @@
           <div class="card-body" style="padding-bottom:0;">
             <div class="row" style="height:242px;">
               <div class="col-12" style="flex-direction:column;">
-                <h5 class="m-t-0 m-b-30 text-center">AVAILABILITY</h5>
+                <h5 class="m-t-0 m-b-30 text-center">DISPONIBILIDAD</h5>
                 <div style="width:100%;display:flex;justify-content:center;height:79%">
                   <chartjs-doughnut
                   v-bind:labels="labels"
@@ -320,7 +320,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
-            <h5 class="m-t-0 m-b-30 text-center">SALES</h5>
+            <h5 class="m-t-0 m-b-30 text-center">VENTAS</h5>
           <div class = "placeholder-card">
               <chartjs-bar
               :beginzero="myboolean"

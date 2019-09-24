@@ -3,7 +3,7 @@
 <!-- Begin page -->
     <div class="wrapper-page container" id="main-cards">
       <div class="row main">
-        <div class="card col-md-4 col-sm-12 fadeEntry">
+        <div class="card col-md-4 col-sm-12 fadeEntry" style = "box-shadow: 20px 20px 7px #0000009e;">
           <div class="card-body">
             <h3 class="text-center">
               <a href="index.html" class="logo"><img src="../assets/logo_bco_sm.png" alt="logo-img" width="250px"></a>
@@ -41,7 +41,7 @@
             </form>
           </div>
         </div>
-        <div class="card col-md-5 col-sm-12 right-card fadeEntry" style="background:#3f4c5c">
+        <!-- <div class="card col-md-5 col-sm-12 right-card fadeEntry" style="background:#3f4c5c">
            <h4 class="text-center">REAL-TIME UPDATES</h4>
            <hr style="margin:0;">
           <div class="row h-100">
@@ -71,8 +71,8 @@
                   </tbody>
               </table>
             </div>
-</div>
-        </div>
+            </div>
+        </div> -->
       </div>
     </div>
   </div>

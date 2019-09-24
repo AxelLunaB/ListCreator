@@ -6,7 +6,7 @@
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"><img src="../../public/tb.png" style="width:50px;"></div>
-        <h2 :title="title" style=" display: flex;align-items: center;">Stage {{ clusterId ? clusterId.stage : ''}}</h2>
+        <h2 :title="title" style=" display: flex;align-items: center;">Etapa {{ clusterId ? clusterId.stage : ''}}</h2>
         <div class="buttons-header" style="z-index:0;">
           <!-- <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
@@ -14,18 +14,18 @@
         </div>
       </div>
       <filter-table />
-      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
+      <div class="card-body" id="printMe" style= "max-width:800px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
             <div>
               <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
                   <tbody>
                   <tr>
-                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>HOUSE MODEL</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>LOT AREA M<sup>2</sup></b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BLOCK</b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>CONST. AREA M<sup>2</sup></b></td>
+                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b> No. UNIDAD</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>MODELO</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>AREA M<sup>2</sup> TERRENO</b></td>
+                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b>MANZANA</b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b> AREA CONST. M<sup>2</sup></b></td>
                   </tr>
                   </tbody>
               </table>
@@ -37,7 +37,7 @@
       <towerdetail></towerdetail>
       <full-list-view :title="this.title"></full-list-view>
       <contractsSegment :clusterId="clusterId"></contractsSegment>
-      <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
+      <div class="navbar-container" style="max-width:800px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
@@ -436,8 +436,9 @@
       //      }
 
 
-        this.sDepartments = deptos
-        return this.sortedArray
+        // this.sDepartments = deptos
+        // return this.sortedArray
+        return this.encinosByStage.data
 
       },
     },

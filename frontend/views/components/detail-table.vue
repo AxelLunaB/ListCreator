@@ -4,10 +4,10 @@
             <tbody>
             <tr>
                 <td>{{unit.unit}}</td>
-                <td>{{unit.houseModel}}</td>
-                <td>{{unit.m2Terrain}}</td>
+                <td class = "tablet">{{unit.houseModel}}</td>
+                <td class = "tablet">{{unit.m2Terrain}}</td>
                 <td>{{unit.suburb}}</td>
-                <td>{{unit.m2Construction}}</td>
+                <td class = "mobile">{{unit.m2Construction}}</td>
                 <!-- <td class="xs-mobile">{{detailTable.level != 0 ? detailTable.level: 'Ground Floor' }}</td>
                 <td class="tablet">{{detailTable.bathrooms != 0 ? detailTable.bathrooms:"0" }}</td>
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"0" }}</td> -->
