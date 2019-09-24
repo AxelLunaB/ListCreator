@@ -24,7 +24,7 @@ const state = {
   },
   specialFilter: [
     {
-      id: 'statusId',
+      id: 'houseModel',
       value: null
     },
     {
@@ -32,7 +32,7 @@ const state = {
       value: null
     },
     {
-      id: 'price',
+      id: 'block',
       value: null
     }
   ],

@@ -303,148 +303,143 @@
 
          return verify
     },
-    filterStages(){
-      return this.encinosByStage.data
-    }
-    //  filtersArray () {
-    //     let filters = this.specialSort
-    //     var deptos = []
-    //     this.sDepartments = []
-    //     this.departments.forEach ((dep, index) => {
-    //       filters.forEach (filter => {
-    //         if(filter.value === null|| filter.id == 'price')
-    //         return
-    //         if(dep[filter.id] == filter['value']) {
-    //           let shouldAdd = true
-    //           for( var i = 0; i < deptos.length; i++) {
-    //             if(deptos[i].id == dep.id) {
-    //               shouldAdd = false
-    //             }
-    //           }
-    //           if (shouldAdd === true) {
-    //           deptos.push(dep)
-    //         }
-    //       }
-    //     })
-    //   })
+     filterStages () {
+        let filters = this.specialSort
+        var deptos = []
+        this.sDepartments = []
+        this.encinosByStage.data.forEach ((dep, index) => {
+          filters.forEach (filter => {
+            if(filter.value === null|| filter.id == 'price')
+            return
+            if(dep[filter.id] == filter['value']) {
+              let shouldAdd = true
+              for( var i = 0; i < deptos.length; i++) {
+                if(deptos[i].id == dep.id) {
+                  shouldAdd = false
+                }
+              }
+              if (shouldAdd === true) {
+              deptos.push(dep)
+            }
+          }
+        })
+      })
 
-    //     if(deptos.length > 0) {
-    //     for (var i = deptos.length -1 ; i >= 0; i--) {
-    //       for (let a = 0; a < filters.length; a ++) {
+      //   if(deptos.length > 0) {
+      //   for (var i = deptos.length -1 ; i >= 0; i--) {
+      //     for (let a = 0; a < filters.length; a ++) {
 
-    //         if(filters[a].value == null || filters[a].id == 'price') {
-    //         continue
-    //         }
-    //         if(deptos[i][filters[a].id] != filters[a].value) {
-    //           deptos.splice (i,1)
-    //           break
-    //         }
-    //       }
-    //     }
-    //   }
+      //       if(filters[a].value == null || filters[a].id == 'price') {
+      //       continue
+      //       }
+      //       if(deptos[i][filters[a].id] != filters[a].value) {
+      //         deptos.splice (i,1)
+      //         break
+      //       }
+      //     }
+      //   }
+      // }
 
-    //    const pr = filters[2].value;
-    //    var canApply = false;
-    //    if(pr != null && pr != 0) {
+      //  const pr = filters[2].value;
+      //  var canApply = false;
+      //  if(pr != null && pr != 0) {
 
-    //       if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
+      //     if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
 
-    //         deptos = Array.from(this.departments)
+      //       deptos = Array.from(this.encinosByStage.data)
 
 
-    //         canApply = true;
-    //       } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
-    //         deptos = Array.from(this.departments)
-    //         canApply = true;
-    //       } else if (deptos.length > 0) {
-    //          canApply = true;
-    //       }
+      //       canApply = true;
+      //     } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
+      //       deptos = Array.from(this.encinosByStage.data)
+      //       canApply = true;
+      //     } else if (deptos.length > 0) {
+      //        canApply = true;
+      //     }
 
-    //       if(canApply){
-
-
-    //           switch (pr) {
-    //             case 100000:
-    //                 for (var i = deptos.length -1 ; i >= 0; i--) {
+      //     if(canApply){
 
 
-    //                   if(deptos[i].priceTotal  > 200000 ) {
-
-    //                     deptos.splice (i,1)
-
-    //                   }
-
-    //                 }
-
-    //             break;
-    //             case 200000:
-    //                 for (var i = deptos.length -1 ; i >= 0; i--) {
+      //         switch (pr) {
+      //           case 100000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-    //                   if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
+      //                 if(deptos[i].priceTotal  > 200000 ) {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+
+      //           break;
+      //           case 200000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-    //                   }else {
-
-    //                     deptos.splice (i,1)
-
-    //                   }
-
-    //                 }
-    //             break;
-    //             case 250000:
-    //                 for (var i = deptos.length -1 ; i >= 0; i--) {
+      //                 if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
 
 
-    //                   if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
+      //                 }else {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+      //           break;
+      //           case 250000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-    //                   }else {
-
-    //                     deptos.splice (i,1)
-
-    //                   }
-
-    //                 }
-    //             break;
-    //             case 300000:
-    //                 for (var i = deptos.length -1 ; i >= 0; i--) {
+      //                 if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
 
 
-    //                   if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
+      //                 }else {
 
-    //                   }else {
+      //                   deptos.splice (i,1)
 
-    //                     deptos.splice (i,1)
+      //                 }
 
-    //                   }
-
-    //                 }
-    //             break;
-    //             case 350000:
-    //                 for (var i = deptos.length -1 ; i >= 0; i--) {
+      //               }
+      //           break;
+      //           case 300000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-    //                   if(deptos[i].priceTotal  < 350000 ) {
+      //                 if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
 
-    //                     deptos.splice (i,1)
+      //                 }else {
 
-    //                   }
+      //                   deptos.splice (i,1)
 
-    //                 }
+      //                 }
 
-    //             break;
-    //           }
-    //         }
-    //        }
+      //               }
+      //           break;
+      //           case 350000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-    //     this.sDepartments = deptos
-    //     // return deptos.length > 0 ? this.sDepartments : this.sortedArray
-    //     return this.sortedArray
-    //         //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+      //                 if(deptos[i].priceTotal  < 350000 ) {
 
-    //   },
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+
+      //           break;
+      //         }
+      //       }
+      //      }
+
+
+        this.sDepartments = deptos
+        return this.sortedArray
+
+      },
     },
       watch : {
         currentAvailability(newVal){
