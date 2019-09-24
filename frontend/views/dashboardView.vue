@@ -1,8 +1,15 @@
 <template>
     <div class="main">
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
-                  <development  v-for="(stage,index) in stages" :key="index" :stage="stage" ></development>
+                  <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
           </div>
+          <nav aria-label="Page navigation" style = "margin-top:100px;">
+            <ul class="pagination pg-blue">
+              <li class="page-item"><a class="page-link" @click="prevPage()"><i class="fas fa-chevron-left"></i></a></li>
+              <li class="page-item pages">{{pageNumber + 1 }} / 2 </li>
+              <li class="page-item"><a class="page-link" @click="nextPage()"><i class="fas fa-chevron-right"></i></a></li>
+            </ul>
+          </nav>
     </div>
 
 </template>
@@ -38,25 +45,42 @@ export default {
   data() {
     return {
       stages:[
-        '1-A',
-        '1-B',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '9',
-        '10'
-      ]
+        {stage:'1-A',units:12},
+        {stage:'1-B',units:18},
+        {stage:'2',units:34},
+        {stage:'3',units:54},
+        {stage:'4',units:53},
+        {stage:'5',units:53},
+        {stage:'6',units:30},
+        {stage:'7',units:41},
+        {stage:'9',units:4},
+        {stage:'10',units:18}
+      ],
+      pageNumber:0,
+      pageCount:6
     }
   },
   methods:{
+    prevPage(){
+      if(this.pageNumber >= 1)
+      this.pageNumber -= 1;
+    },
+    nextPage(){
+      if(this.pageNumber < 1){
+      this.pageNumber += 1;
+      }
+    },
+
   },
   computed:{
       ...mapGetters({
         fetchUnitsByStage: "others/encinosUnitsByStage"
-      })
+      }),
+    paginatedData(){
+      const start = this.pageNumber * this.pageCount
+      const end = start + this.pageCount;
+      return this.stages.slice(start, end);
+      }
   }
 }
 </script>
@@ -76,7 +100,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 
 }
 
@@ -87,19 +111,27 @@ body {
   max-width:1500px;
 }
 
-// .page-link {
-//     background: rgb(98, 134, 94)!important;
-//     border: 1px solid rgb(62, 85, 60)!important;
-//     color: white!important;
-// }
+.pages {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
 
-// .page-link:hover {
-//     z-index: 2;
-//     text-decoration: none!important;
-//     color: rgb(230, 255, 228)!important;
-//     background:#50657a!important;
-// }
+ .page-link {
+    background: none!important;
+    border: 1px solid #ffffff;
+    color:white;
+ }
 
+.page-link:hover {
+    z-index: 2;
+    text-decoration: none;
+    color: #e6ffe4;
+    cursor:pointer;
+}
 
 .page-link:hover {
     z-index: 2;
