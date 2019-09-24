@@ -10,8 +10,8 @@ module.exports = (app) => {
     reserveExpiration: { type: DataTypes.DATE}
   }, {});
   references.associate = function(models) {
-    references.belongsTo(models.customers);
-    references.belongsTo(models.status);
+    // references.belongsTo(models.customers);
+    // references.belongsTo(models.status);
   };
   return references;
 };

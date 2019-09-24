@@ -10,7 +10,7 @@ module.exports = (app) => {
     paymentDate: { type: DataTypes.STRING}
   }, {});
   paymentsDetails.associate = function(models) {
-    paymentsDetails.belongsTo(models.status);
+    // paymentsDetails.belongsTo(models.status);
   };
   return paymentsDetails;
 };

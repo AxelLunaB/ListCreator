@@ -16,7 +16,7 @@ module.exports = (app) => {
   }, {});
 
   encinos.associate = function(models) {
-    
+
   };
 
   return encinos;

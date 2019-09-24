@@ -13,8 +13,8 @@ module.exports = (app) => {
     totalCommissions: { type: DataTypes.DOUBLE},
   }, {});
   commissions.associate = function(models) {
-    commissions.belongsTo(models.status);
-    commissions.belongsTo(models.users);
+    // commissions.belongsTo(models.status);
+    // commissions.belongsTo(models.users);
   };
   return commissions;
 };

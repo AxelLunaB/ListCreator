@@ -19,13 +19,13 @@ module.exports = (app) => {
     furniture: DataTypes.FLOAT
   }, {});
   contracts.associate = function(models) {
-    contracts.belongsTo(models.commissions);
-    contracts.belongsTo(models.payments);
-    contracts.belongsTo(models.salesDetails);
-    contracts.belongsTo(models.customers);
-    contracts.belongsTo(models.references);
-    contracts.belongsTo(models.clusters);
-    contracts.belongsTo(models.units);
+    // contracts.belongsTo(models.commissions);
+    // contracts.belongsTo(models.payments);
+    // contracts.belongsTo(models.salesDetails);
+    // contracts.belongsTo(models.customers);
+    // contracts.belongsTo(models.references);
+    // contracts.belongsTo(models.clusters);
+    // contracts.belongsTo(models.units);
   };
   return contracts;
 };
