@@ -318,6 +318,14 @@
        }
        
        else {
+         if(this.filteredUnits.length === 0){
+            swal({
+              text: "No hay resultados",
+              icon: "warning",
+              buttons: false,
+              timer: 3000
+          });
+         }
          return this.filteredUnits;
        }
 

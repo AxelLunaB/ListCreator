@@ -310,9 +310,9 @@
               </div>
             </div>
             <div class="labels">
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(5,162,179);"></div><p>Available</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(0,163,254)"></div><p>Sold</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:rgb(235,239,242);"></div><p>Reserved</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Available</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#c5077e;"></div><p>Sold</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Reserved</p></div>
             </div>
           </div>
         </div>
@@ -452,7 +452,7 @@ export default {
       labels: ["Available", "Reserved", "Sold"],
       datasets: [{
         data:[1,2,3],
-        backgroundColor:["rgb(5,162,179)", "rgb(235,239,242)", "rgb(0,163,254)"]
+        backgroundColor:["#70b84f", "#dddc00", "#c5077e"]
       }],
       option: {
         title: {
@@ -469,18 +469,18 @@ export default {
       },
     myboolean : true,
     mybackgroundcolor : [
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)'
+      '#70b84f',
+      '#dddc00',
+      '#c5077e',
+      '#70b84f',
+      '#dddc00'
       ],
     mybordercolor : [
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)',
-      'rgba(56,144,184)'
+      '#70b84f',
+      '#dddc00',
+      '#c5077e',
+      '#70b84f',
+      '#dddc00'
       ],
     mylabel : 'Sales',
     mydata : [],
