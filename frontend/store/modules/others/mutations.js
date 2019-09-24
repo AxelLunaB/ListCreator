@@ -1,3 +1,4 @@
+/* eslint-disable */
 const IS_AUTHENTICATED = (state, isAuthenticated) => {
   state.isAuthenticated = isAuthenticated;
 };
@@ -30,6 +31,14 @@ const REFERENCES_UPDATED = (state, references) => {
   state.references = references;
 }
 
+const ENCINOS_UNITS = (state, units) => {
+  state.encinos = units;
+}
+
+const ENCINOS_UNITS_BY_STAGE = (state, stage) => {
+  state.encinosByStage = stage;
+}
+
 export default {
   ADD_BUTTON,
   CLUSTERS_UPDATED,
@@ -39,5 +48,7 @@ export default {
   COUNT_LOTS_UPDATED,
   COUNT_DEPARTMENTS_UPDATED,
   CUSTOMERS_UPDATED,
-  REFERENCES_UPDATED
+  REFERENCES_UPDATED,
+  ENCINOS_UNITS,
+  ENCINOS_UNITS_BY_STAGE
 };

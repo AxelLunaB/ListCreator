@@ -5,70 +5,70 @@
         <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem">{{detailTable.unitNumber != 0 ? detailTable.unitNumber : "-"}}</span> {{detailTable.cluster.name != null ? detailTable.cluster.name : '-'}}</h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad No. # {{ detailTable ? detailTable.unit : ''}}</span></h4>
                 <div class="row fullh">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier fullh">
+                    <div class="col-12" style="display: flex;align-items: center;">
+                        <table class="table table-hover table-modifier medh">
                             <thead>
                             </thead>
                             <tbody>
                             <tr>
-                                <td class="textalign">Level</td>
-                                <td class="text-right">{{detailTable.level != 0 ? detailTable.level : "Ground Floor"}}</td>
+                                <td class="textalign">Block</td>
+                                <td class="text-right">{{ detailTable ? detailTable.suburb : '' }}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">Bedrooms</td>
-                                <td class="text-right">{{detailTable.bedrooms != 0 ? detailTable.bedrooms : "0"}}</td>
+                                <td class="textalign">Stage</td>
+                                <td class="text-right">{{ detailTable ? detailTable.stage : '' }}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">Lock Off (keys)</td>
-                                <td class="text-right">{{detailTable.nkeys !=0 ? detailTable.nkeys : "0"}}</td>
+                                <td class="textalign">House model</td>
+                                <td class="text-right">{{ detailTable ? detailTable.houseModel : ''}}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">Bathrooms</td>
-                                <td class="text-right">{{detailTable.bathrooms != 0 ? detailTable.bathrooms : "0"}}</td>
+                                <td class="textalign">m<sup>2</sup> Construction</td>
+                                <td class="text-right"> {{ detailTable ? detailTable.m2Construction : ''}} </td>
                             </tr>
                             <tr>
-                                <td class="textalign">Interior m2</td>
-                                <td class="text-right">{{detailTable.interiorM2 !=0 ? detailTable.interiorM2 : "0"}}</td>
+                                <td class="textalign">m<sup>2</sup> Terrain</td>
+                                <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td class="textalign">Exterior m2</td>
-                                <td class="text-right">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2  : "0"}}</td>
-                            </tr>
-                            <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="textalign">Total Interior m2</td>
-                                <td class="text-right">{{detailTable.totalInteriorM2 != 0 ? detailTable.totalInteriorM2 : "0"}}</td>
-                            </tr>
-                            <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="textalign">Total m2</td>
-                                <td class="text-right">{{detailTable.totalM2Double != 0 ? detailTable.totalM2Double : "0"}}</td>
-                            </tr>
-                            <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="textalign">$/m2 Interior</td>
-                                <td class="text-right">{{detailTable.priceInteriorM2 != 0 ? toPrice(detailTable.priceInteriorM2) : '0'}}</td>
-                            </tr>
-                             <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                             <!-- <tr>
                                 <td class="textalign">$/m2 Total</td>
-                                <td class="text-right">{{detailTable.priceTotalM2 !=0 ? toPrice(detailTable.priceTotalM2) : '-'}}</td>
-                            </tr>
-                            <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="textalign">List Price</td>
-                                <td class="text-right">${{detailTable.priceTotal != 0 ? toPrice(detailTable.priceTotal) : '-'}}</td>
-                            </tr>
-                            <tr>
+                                <td class="text-right"></td>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="textalign">Status</td>
-                                <td v-if="detailTable.status.name !='RESERVED' || !isAdmin" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
+                                <!-- <td v-if="detailTable.status.name !='RESERVED' || !isAdmin" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
                                 <td v-else class="text-right">
-                                  <select id="myList" v-on:change="status($event)" v-if="isAdmin">
+                                  <!-- <select id="myList" v-on:change="status($event)" v-if="isAdmin">
                                     <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
                                     <option value = "2" style="color: rgb(205, 17, 15);;">SOLD</option>
                                   </select>
                                 </td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -76,17 +76,17 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+        <div class="card">
             <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-left">PAYMENTS</h5>
+                <!-- <h5 class="m-b-30 m-t-0 text-center">PAYMENTS</h5> -->
                 <div class="row fullh">
                     <div class="col-12">
                         <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
-                            <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
+                            <!-- <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
                                 <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
                                 <td class="text-center">
                                   <span v-bind:style="{color: contract ? contract.payments ? u.status ? u.status.color_hex : 'white' : 'white' : 'white'}">
@@ -94,79 +94,7 @@
                                     </span>
                                     </td>
                                 <td class ="text-right"><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-  <div class="card">
-            <div class="card-body">
-                <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                <div class="row fullh">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier fullh">
-                            <thead>
-                            </thead>
-                            <tbody>
-
-                            <tr v-on:click="selectedLabel = 'Offer Letter'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
-                                <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
                             </tr> -->
-
-                            <tr v-on:click="selectedLabel = 'Reserve Sheet'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Reserve Deposit'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'First Draft Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Final Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'ROI Contract'">
-                                <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Official ID'">
-                                <td class="text-left"><label for="fileInput">Official ID</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr v-on:click="selectedLabel = 'Proof of Address'">
-                                <td class="text-left"><label for="fileInput">Proof of Address</label></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left"><span>-</span></td>
-                                <td><i class="fas fa-file-alt"></i></td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -174,7 +102,80 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+        <div class="card">
+                  <div class="card-body">
+                      <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
+                      <div class="row fullh">
+                          <div class="col-12">
+                              <table class="table table-hover table-modifier fullh">
+                                  <thead>
+                                  </thead>
+                                  <tbody>
+
+                                  <tr v-on:click="selectedLabel = 'Offer Letter'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
+                                      <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+
+                                  <tr v-on:click="selectedLabel = 'Reserve Sheet'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Reserve Deposit'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'First Draft Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Final Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'ROI Contract'">
+                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Official ID'">
+                                      <td class="text-left"><label for="fileInput">Official ID</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr v-on:click="selectedLabel = 'Proof of Address'">
+                                      <td class="text-left"><label for="fileInput">Proof of Address</label></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="text-left"><span>-</span></td>
+                                      <td><i class="fas fa-file-alt"></i></td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>-->
+
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
@@ -184,16 +185,16 @@
                 <div class="m-b-30">
                   <form id="dropFileForm" method="POST" enctype="multipart/form-data">
                     <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept="application/pdf, image/jpeg, image/png" data-max-file-size="5MB">
-                    <!-- <label for="fileInput" id="fileLabel">
+                     <label for="fileInput" id="fileLabel">
                       Drop files here to upload
-                    </label> -->
-                    <!-- <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" /> -->
+                    </label>
+                     <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" />
                   </form>
                 </div>
                 <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                  <!-- <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button> -->
+                   <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button>
 
-                  <!-- Loading Files Animation Wrapper -->
+                   Loading Files Animation Wrapper
                   <div class="upload-window">
                     <div class="upload-window-progress"></div>
                     <span id="upload-window-title"></span>
@@ -205,10 +206,11 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
+
     </div>
     <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+  <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
   <div class="card">
             <div class="card-body">
                 <div class="row" style="height:100%;">
@@ -255,8 +257,8 @@
                 </div>
             </div>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      </div>-->
+      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
       <div class="card" style="height:93%">
           <div class="card-body">
               <div class="row" style="height:100%">
@@ -288,13 +290,13 @@
               </div>
           </div>
       </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+      </div>-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
             <div class="row" style="height:242px;">
               <div class="col-12" style="flex-direction:column;">
-                <h5 class="m-t-0 m-b-30 text-left">AVAILABILITY</h5>
+                <h5 class="m-t-0 m-b-30 text-center">DISPONIBILIDAD</h5>
                 <div style="width:100%;display:flex;justify-content:center;height:79%">
                   <chartjs-doughnut
                   v-bind:labels="labels"
@@ -315,11 +317,11 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
-            <h5 class="m-t-0 m-b-30 text-left">SALES</h5>
-          <div style="width:100%;display:flex;justify-content:center;height:100%;align-items:center;">
+            <h5 class="m-t-0 m-b-30 text-center">VENTAS</h5>
+          <div class = "placeholder-card">
               <chartjs-bar
               :beginzero="myboolean"
               :backgroundcolor="mybackgroundcolor"
@@ -425,8 +427,7 @@ export default {
 
   mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
-      this.detailTable = details.detailUnit;
-      this.contract = details.detailContract;
+      this.detailTable = details;
       this.show = true;
     });
 
@@ -754,9 +755,9 @@ export default {
     },
 
     dynamicChart () {
-      this.datasets[0].data[0] = this.cAvailability.available
-      this.datasets[0].data[1] = this.cAvailability.reserved
-      this.datasets[0].data[2] = this.cAvailability.sold
+      this.datasets[0].data[0] = 2
+      this.datasets[0].data[1] = 3
+      this.datasets[0].data[2] = 6
       return this.datasets
     },
 
@@ -771,10 +772,10 @@ export default {
     },
 
     dynamicBar(){
-      this.mydata[0] = this.monthlySales.antMonth
-      this.mydata[1] = this.monthlySales.penMonth
-      this.mydata[2] = this.monthlySales.pastMonth
-      this.mydata[3] = this.monthlySales.cMonth
+      this.mydata[0] = 3
+      this.mydata[1] = 8
+      this.mydata[2] = 4
+      this.mydata[3] = 3
 
       return this.mydata
     }
@@ -910,8 +911,8 @@ select option {
     font-weight: 600;
 }
 
-.fullh {
-  height:95%;
+.medh{
+  height:75%;
 }
 
 td {
@@ -920,7 +921,7 @@ td {
 
 .row-one,
 .row-two {
-  max-width: 1600px;
+  max-width: 1000px;
 }
 
 .labels {
@@ -1051,6 +1052,16 @@ button.waves.default {
 @media screen and (max-width:867px) {
     .title-header {
     margin-bottom:10px;
+  }
+}
+
+@media screen and (max-height:799px){
+  .placeholder-card{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  height:191px;
+  align-items:center;
   }
 }
 

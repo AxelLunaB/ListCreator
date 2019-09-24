@@ -5,35 +5,31 @@
       </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;"><img src="../../public/tb.png"></div>
-        <h2 :title="title" style=" display: flex;align-items: center;">{{ title }}</h2>
+        <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"><img src="../../public/tb.png" style="width:50px;"></div>
+        <h2 :title="title" style=" display: flex;align-items: center;">Etapa {{ clusterId ? clusterId.stage : ''}}</h2>
         <div class="buttons-header" style="z-index:0;">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <!-- <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
-          </div>
+          </div> -->
         </div>
       </div>
       <filter-table />
-      <div class="card-body" id="printMe" style= "max-width:1000px; margin:0 auto;" ref="table">
+      <div class="card-body" id="printMe" style= "max-width:800px; margin:0 auto;" ref="table">
         <div class="row">
           <div class="col-12">
             <div>
               <table class="table table-hover" style="table-layout: fixed;margin-bottom:0;margin-top:0;">
                   <tbody>
                   <tr>
-                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b> UNIT  #</b></td>
-                      <td class="header-t xs-mobile" style="text-align:center;vertical-align:middle;"><b>LEVEL</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BATHROOMS</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>BEDROOMS</b></td>
-                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>KEYS</b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> int</b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b>M<sup>2</sup> ext</b></td>
-                      <td class="header-t xs-mobile"  style="text-align:center;vertical-align:middle;"><b>PRICE</b></td>
-                      <td style="text-align:center;vertical-align:middle;"><b>STATUS</b></td>
+                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b> No. UNIDAD</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>MODELO</b></td>
+                      <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>AREA M<sup>2</sup> TERRENO</b></td>
+                      <td class="header-t" style="text-align:center;vertical-align:middle;"><b>MANZANA</b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b> AREA CONST. M<sup>2</sup></b></td>
                   </tr>
                   </tbody>
               </table>
-              <detail-table v-for="(e, index) in filtersArray" :key="e.index" :detailTable="e" :contracts="getUnitId(e.id)"></detail-table>
+              <detail-table v-for="(e, index) in filterStages" :key="index" :unit="e"></detail-table>
               </div>
             </div>
           </div>
@@ -41,13 +37,13 @@
       <towerdetail></towerdetail>
       <full-list-view :title="this.title"></full-list-view>
       <contractsSegment :clusterId="clusterId"></contractsSegment>
-      <div class="navbar-container" style="max-width:1000px; margin:25px auto;">
+      <div class="navbar-container" style="max-width:800px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
             <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button>
+            <!-- <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
+            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button> -->
             <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
               <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
             </router-link> -->
@@ -93,22 +89,22 @@
         this.$store.dispatch("departments/goSearch", query);
       });
 
-    this.$eventHub.$on("select-tower", tower => {
-      this.$store.dispatch("departments/getDepartmentById", tower);
-      this.clusterId = tower;
-      switch(tower) {
-        case 1:
-        this.title = "BRAVA TOWER"
-        this.tower = 1;
-        break;
-        case 2 :
-        this.title ="GIADA TOWER A"
-        this.tower = 2
-        break;
-        case 3:
-        this.title = "GIADA TOWER B"
-        this.tower = 3
-      }
+    this.$eventHub.$on("select-tower", stage => {
+      this.$store.dispatch("others/fetchUnitsByStage", stage);
+      this.clusterId = stage;
+      // switch(stage) {
+      //   case "1-A":
+      //     this.title = "1-A";
+      //     this.tower = 1;
+      //   break;
+      //   case '4' :
+      //     this.title ="GIADA TOWER A"
+      //     this.tower = 2
+      //   break;
+      //   case '5':
+      //     this.title = "GIADA TOWER B"
+      //     this.tower = 3
+      // }
 
     })
 
@@ -117,7 +113,7 @@
 
       this.$eventHub.$on("updateDataDetail", () => {
         // this.$store.dispatch("departments/getDepartmentById",tower);
-        this.$store.dispatch("departments/getDepartmentById", this.tower);
+        // this.$store.dispatch("departments/getDepartmentById", this.tower);
         this.$store.dispatch("contracts/getContracts");
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
@@ -131,6 +127,8 @@
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
+        // this.$store.dispatch("others/fetchAllUnits");
+        // this.$store.dispatch("others/fetchUnitsByStage", "7");
 
         // listen to authenticated event
       } else {
@@ -156,7 +154,10 @@
         depsAndContracts:[],
         title:null,
         tower:null,
-        clusterId: undefined
+        clusterId: undefined,
+        modelFilter: null,
+        blockFilter: null,
+        filteredUnits: []
       }
     },
     methods: {
@@ -223,26 +224,27 @@
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort",
         priceRange: "departments/priceRange",
-        isAdmin: "users/isAdmin"
+        isAdmin: "users/isAdmin",
+        encinosByStage: "others/encinosUnitsByStage"
       }),
-      towerValidation(){
-        if(this.filtersArray == 0 && this.title == null) {
-            swal({
-              text: "Please select a tower first",
-              icon: "warning",
-              buttons: false,
-              timer: 1500
-          });
+      // towerValidation(){
+      //   if(this.filtersArray == 0 && this.title == null) {
+      //       swal({
+      //         text: "Please select a tower first",
+      //         icon: "warning",
+      //         buttons: false,
+      //         timer: 1500
+      //     });
 
-        setTimeout(function () {
-          document.location.href = '/'
-          }, 1500);
+      //   setTimeout(function () {
+      //     document.location.href = '/'
+      //     }, 1500);
 
-        return false
-        } else {
-          return true
-        }
-      },
+      //   return false
+      //   } else {
+      //     return true
+      //   }
+      // },
       currentAvailability () {
           var cData= {}
           var available = 0
@@ -304,149 +306,177 @@
 
          return verify
     },
-     filtersArray () {
-        let filters = this.specialSort
-        var deptos = []
-        this.sDepartments = []
-        this.departments.forEach ((dep, index) => {
-          filters.forEach (filter => {
-            if(filter.value === null|| filter.id == 'price')
-            return
-            if(dep[filter.id] == filter['value']) {
-              let shouldAdd = true
-              for( var i = 0; i < deptos.length; i++) {
-                if(deptos[i].id == dep.id) {
-                  shouldAdd = false
-                }
-              }
-              if (shouldAdd === true) {
-              deptos.push(dep)
-            }
-          }
-        })
-      })
+     filterStages () {
 
-        if(deptos.length > 0) {
-        for (var i = deptos.length -1 ; i >= 0; i--) {
-          for (let a = 0; a < filters.length; a ++) {
+       // Update filter data to use Watch
+       this.modelFilter = this.specialSort[0].value;
+       this.blockFilter = this.specialSort[2].value;
 
-            if(filters[a].value == null || filters[a].id == 'price') {
-            continue
-            }
-            if(deptos[i][filters[a].id] != filters[a].value) {
-              deptos.splice (i,1)
-              break
-            }
-          }
-        }
-      }
+       // Return every unit that belongs to the stage
+       if(this.modelFilter === null && this.blockFilter === null) {
+         return this.encinosByStage.data;
+       }
+       
+       else {
+         return this.filteredUnits;
+       }
 
-       const pr = filters[2].value;
-       var canApply = false;
-       if(pr != null && pr != 0) {
+      
 
-          if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
+      //   let filters = this.specialSort
+      //   var deptos = []
+      //   this.sDepartments = []
+      //   this.encinosByStage.data.forEach ((dep, index) => {
+      //     filters.forEach (filter => {
+      //       if(filter.value === null|| filter.id == 'price')
+      //       return
+      //       if(dep[filter.id] == filter['value']) {
+      //         let shouldAdd = true
+      //         for( var i = 0; i < deptos.length; i++) {
+      //           if(deptos[i].id == dep.id) {
+      //             shouldAdd = false
+      //           }
+      //         }
+      //         if (shouldAdd === true) {
+      //         deptos.push(dep)
+      //       }
+      //     }
+      //   })
+      // })
 
-            deptos = Array.from(this.departments)
+      //   if(deptos.length > 0) {
+      //   for (var i = deptos.length -1 ; i >= 0; i--) {
+      //     for (let a = 0; a < filters.length; a ++) {
 
+      //       if(filters[a].value == null || filters[a].id == 'price') {
+      //       continue
+      //       }
+      //       if(deptos[i][filters[a].id] != filters[a].value) {
+      //         deptos.splice (i,1)
+      //         break
+      //       }
+      //     }
+      //   }
+      // }
 
-            canApply = true;
-          } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
-            deptos = Array.from(this.departments)
-            canApply = true;
-          } else if (deptos.length > 0) {
-             canApply = true;
-          }
+      //  const pr = filters[2].value;
+      //  var canApply = false;
+      //  if(pr != null && pr != 0) {
 
-          if(canApply){
+      //     if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
 
-
-              switch (pr) {
-                case 100000:
-                    for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-                      if(deptos[i].priceTotal  > 200000 ) {
-
-                        deptos.splice (i,1)
-
-                      }
-
-                    }
-
-                break;
-                case 200000:
-                    for (var i = deptos.length -1 ; i >= 0; i--) {
+      //       deptos = Array.from(this.encinosByStage.data)
 
 
-                      if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
+      //       canApply = true;
+      //     } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
+      //       deptos = Array.from(this.encinosByStage.data)
+      //       canApply = true;
+      //     } else if (deptos.length > 0) {
+      //        canApply = true;
+      //     }
+
+      //     if(canApply){
 
 
-                      }else {
-
-                        deptos.splice (i,1)
-
-                      }
-
-                    }
-                break;
-                case 250000:
-                    for (var i = deptos.length -1 ; i >= 0; i--) {
+      //         switch (pr) {
+      //           case 100000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-                      if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
+      //                 if(deptos[i].priceTotal  > 200000 ) {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+
+      //           break;
+      //           case 200000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-                      }else {
-
-                        deptos.splice (i,1)
-
-                      }
-
-                    }
-                break;
-                case 300000:
-                    for (var i = deptos.length -1 ; i >= 0; i--) {
+      //                 if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
 
 
-                      if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
+      //                 }else {
 
-                      }else {
+      //                   deptos.splice (i,1)
 
-                        deptos.splice (i,1)
+      //                 }
 
-                      }
-
-                    }
-                break;
-                case 350000:
-                    for (var i = deptos.length -1 ; i >= 0; i--) {
+      //               }
+      //           break;
+      //           case 250000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
 
 
-                      if(deptos[i].priceTotal  < 350000 ) {
-
-                        deptos.splice (i,1)
-
-                      }
-
-                    }
-
-                break;
-              }
-            }
-           }
+      //                 if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
 
 
-        this.sDepartments = deptos
-        // return deptos.length > 0 ? this.sDepartments : this.sortedArray
-        return this.sortedArray
-            //return deptos.length > 0 ? this.sDepartments : this.sortedArray
+      //                 }else {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+      //           break;
+      //           case 300000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+      //                 if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
+
+      //                 }else {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+      //           break;
+      //           case 350000:
+      //               for (var i = deptos.length -1 ; i >= 0; i--) {
+
+
+      //                 if(deptos[i].priceTotal  < 350000 ) {
+
+      //                   deptos.splice (i,1)
+
+      //                 }
+
+      //               }
+
+      //           break;
+      //         }
+      //       }
+      //      }
+
+
+        // this.sDepartments = deptos
+        // return this.sortedArray
 
       },
     },
       watch : {
-        currentAvailability(newVal){
+        currentAvailability(newVal) {
            this.$store.dispatch("departments/setCurrentAvailability",newVal);
+        },
+
+        modelFilter: function(newVal, oldVal) {
+          if(this.blockFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          }
+          return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === newVal);
+        },
+
+        blockFilter: function(newVal, oldVal) {
+          if(this.modelFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          }
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
         }
       },
   }
@@ -553,6 +583,7 @@
     height: 50px;
     text-align:center!important;
     vertical-align:middle!important;
+    font-size: 0.8rem;
   }
 
   .navbar-container {

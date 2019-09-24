@@ -3,7 +3,7 @@
 <!-- Begin page -->
     <div class="wrapper-page container" id="main-cards">
       <div class="row main">
-        <div class="card col-md-4 col-sm-12 fadeEntry">
+        <div class="card col-md-4 col-sm-12 fadeEntry" style = "box-shadow: 20px 20px 7px #0000009e;">
           <div class="card-body">
             <h3 class="text-center">
               <a href="index.html" class="logo"><img src="../assets/logo_bco_sm.png" alt="logo-img" width="250px"></a>
@@ -41,7 +41,7 @@
             </form>
           </div>
         </div>
-        <div class="card col-md-5 col-sm-12 right-card fadeEntry" style="background:#3f4c5c">
+        <!-- <div class="card col-md-5 col-sm-12 right-card fadeEntry" style="background:#3f4c5c">
            <h4 class="text-center">REAL-TIME UPDATES</h4>
            <hr style="margin:0;">
           <div class="row h-100">
@@ -49,30 +49,30 @@
               <table class="table table-striped table-dark">
                   <tbody>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1525</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/05/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1535</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1333</td>
-                        <td class="text-center"><span style="color:#e89005;">Reserved</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#e89005;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#2232</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                   </tbody>
               </table>
             </div>
-</div>
-        </div>
+            </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -234,10 +234,38 @@ h5 {
   margin: 20px 10px;
 }
 
+.form-control {
+  background:#3f4c5c;
+  border:none;
+  border-bottom:1px solid rgba(255, 255, 255, 0.432);
+  border-radius: 0;
+  color:white!important;
+}
+
 .form-control:focus {
   box-shadow:none!important;
-  background: rgb(230, 244, 252);
   border: none!important;
+  background: none!important;
+  border-bottom:1px solid rgb(255, 255, 255)!important;
+  color:white!important;
+}
+
+@keyframes autofill {
+    to {
+        color: white;
+        background: #3f4c5c;
+    }
+}
+
+input:-webkit-autofill {
+    animation-name: autofill;
+    animation-fill-mode: both;
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+::placeholder {
+  color:rgba(255, 255, 255, 0.432)!important;
 }
 
 .btn-primary:active,

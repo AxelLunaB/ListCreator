@@ -1,10 +1,10 @@
-1,Daniel Luna,25,123456789,d_luna@ar3d.net,secreto123123,A
-2,Miguel Flores,40,33456783,m_flores@ar3d.net,Ar3d2019,A
-3,HC,28,123456789,executive1@giada.com,executive2019,B
-4,Riccardo Pochetti,28,123456789,executive2@giada.com,executive2019,B
-5,IPM,28,123456789,executive3@giada.com,executive2019,B
-6,Alejandra Ruiz,28,123456789,executive4@giada.com,executive2019,B
-7,Catalina Ballado,28,123456789,executive5@giada.com,executive2019,B
-8,Misael Granillo,28,123456789,executive6@giada.com,executive2019,B
-9,Jean Ledezert,28,123456789,executive7@giada.com,executive2019,B
-10,Diana Salidvar,28,123456789,executive8@giada.com,executive2019,B
+1,Administrador,25,123456789,admin@test.com,secreto123123,A
+2,Ejecutivo,40,33456783,executive@test.com,secreto123123,B
+3,Ejecutivo 2,28,123456789,executive1@test.com,secreto123123,B
+4,Ejecutivo 3,28,123456789,executive2@test.com,secreto123123,B
+5,Cliente,28,123456789,client1@test.com,secreto123123,C
+6,Cliente 2,28,123456789,client2@test.com,executive2019,C
+7,Cliente 3,28,123456789,client3@test.com,executive2019,C
+8,Cliente 4,28,123456789,client4@test.com,executive2019,C
+9,Cliente 5,28,123456789,client5@test.com,executive2019,C
+10,Cliente 6,28,123456789,client16@test.com,executive2019,C

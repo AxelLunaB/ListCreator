@@ -3,19 +3,19 @@
     <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
-          <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
+          <!-- <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
             <i class="far fa-bell"></i>
-          </div>
+          </div> -->
 
           <div class="fullscreen-bar hide" @click="goFullscreen">
             <i class="fas fa-compress"></i>
           </div>
 
-        <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu">
+        <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu" style="border-radius:50px;">
 
           <!--<i class="fas fa-user"></i>-->
-        <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/>
-        <img v-else style="width: 20px; height: 20px" src="../../assets/user.png"/>
+        <!-- <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/> -->
+        <img style="width: 24px;border-radius:50px;" src="../../assets/avatar.png"/>
         </div>
         <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
           <a href="#">Notifications</a>

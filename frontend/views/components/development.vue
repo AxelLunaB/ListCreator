@@ -1,34 +1,50 @@
 <template>
   <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
-      <h4 class="m-b-30 m-t-0 text-center"> {{ tower != null ? tower.name != null ? tower.name : '-' : '-'}} </h4>
+      <h4 class="m-b-30 m-t-0 text-center" style = "margin: 30px 0;"> Etapa {{ stage != null ? stage != null ? stage.stage : '-' : '-'}} </h4>
       <div class="card-upper">
         <div class="image-card">
         </div>
         <div class="info-card">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12" style="padding: 0px 25px;">
                         <table class="table">
                             <tbody class="colors-main">
                             <tr>
-                                <td>Units</td>
-                                <td>{{ tower != null ? tower.statusCount != null ? getUnits() : '-' : '-' }}</td>
+                                <td>Modelo M1D</td>
+                                <td><b>{{ stage ? stage.M1D : '-' }}</b></td>
                             </tr>
                             <tr>
-                                <td>Keys</td>
-                                <td>{{ tower != null ? tower.keys : '-' }} </td>
+                                <td>Modelo M1I</td>
+                                <td><b>{{ stage ? stage.M1I : '-' }}</b></td>
                             </tr>
                             <tr>
-                                <td>1BR</td>
-                                <td> {{ tower != null ? tower.oneBR != null ? tower.oneBR : '-' : '-'}} </td>
+                                <td>Modelo M2D</td>
+                                <td><b>{{ stage ? stage.M2D : '-' }}</b></td>
                             </tr>
                             <tr>
-                                <td>2BR</td>
-                                <td>{{ tower != null ? tower.twoBR != null ? tower.twoBR : '-' : '-'}}</td>
+                                <td>Modelo M2I</td>
+                                <td><b>{{ stage ? stage.M2I : '-' }}</b></td>
                             </tr>
                             <tr>
-                                <td>3BR</td>
-                                <td> {{ tower != null ? tower.threeBR != null ? tower.threeBR : '-':'-'}} </td>
+                                <td>Modelo M3D</td>
+                                <td><b>{{ stage ? stage.M3D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Modelo M3I</td>
+                                <td><b>{{ stage ? stage.M3I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Modelo M4D</td>
+                                <td><b>{{ stage ? stage.M4D : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Modelo M4I</td>
+                                <td><b>{{ stage ? stage.M4I : '-' }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>Total units</b></td>
+                                <td><b>{{ stage ? stage.units : '-' }}</b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -36,52 +52,52 @@
                 </div>
         </div>
       </div>
-      <div class="card-down">
+      <!-- <div class="card-down">
         <div style="width: 100%;height: 140px;display: flex;flex-direction: column;justify-content: center;">
             <span v-if="getDepsP.sold != 0">
-            <p style="margin-bottom:0;"> {{getDepsP.sold}} % SOLD </p>
+            <p style="margin-bottom:0;"> 10 % SOLD </p>
             <div class="myProgress">
-              <div :style="{width:getDepsP.sold + '%', height: '100%', backgroundColor: '#24303b'}"></div>
+              <div style="width:40px;height:100%;background:#24303b;"></div>
             </div>
           </span>
-        <p style="margin-bottom:0;"> {{getDepsP.reserved}} % RESERVED </p>
+        <p style="margin-bottom:0;"> 20 % RESERVED </p>
         <div class="myProgress">
-          <div :style="{width:getDepsP.reserved + '%', height: '100%', backgroundColor: '#24303b'}"></div>
+          <div style="width:60px;height:100%;background:#24303b;"></div>
         </div>
         </div>
         <table class="table tower-card" style="width:100%;margin-top:18px;">
             <tbody class="colors-main">
             <tr>
                  <td>AVAILABLE</td>
-                <td style="color:#35ce41;"> {{ tower != null ? tower.statusCount.available : '-' }} </td>
+                <td style="color:#35ce41;"> 0 </td>
             </tr>
             <tr>
                 <td>BLOCKED</td>
-                <td style="color:#8a8a8a"> {{ tower != null ? tower.statusCount.blocked : '-' }} </td>
+                <td style="color:#8a8a8a"> 0 </td>
             </tr>
             <tr>
                 <td>PAID</td>
-                <td style="color:#7ddc0f;"> {{ tower != null ? tower.statusCount.paid : '-' }} </td>
+                <td style="color:#7ddc0f;"> 0 </td>
             </tr>
             <tr>
                 <td>NOT PAID</td>
-                <td style="color:#f5e02a"> {{ tower != null ? tower.statusCount.notPaid : '-' }} </td>
+                <td style="color:#f5e02a"> 0 </td>
             </tr>
             <tr>
                 <td>REFERRED</td>
-                <td style="color:#8fb5ff;"> {{ tower != null ? tower.statusCount.referred : '-' }} </td>
+                <td style="color:#8fb5ff;"> 0 </td>
             </tr>
             <tr>
               <td>RESERVED</td>
-              <td style="color: #e89005;"> {{ tower != null ? tower.statusCount.reserved : '-' }} </td>
+              <td style="color: #e89005;"> 0 </td>
             </tr>
             <tr>
               <td>SOLD</td>
-              <td style="color: #cd110f">{{ tower != null ? tower.statusCount.sold : '-'}}</td>
+              <td style="color: #cd110f">0</td>
             </tr>
             </tbody>
         </table>
-      </div>
+      </div> -->
      </router-link>
   </div>
 </template>
@@ -89,7 +105,7 @@
 <script>
 
 export default {
-  props:['tower','clusterId'],
+  props:['stage'],
   data(){
     return {
       isActive: true,
@@ -101,21 +117,21 @@ export default {
   },
   methods: {
     selectTower() {
-      let towerNo = this.clusterId + 1
-      this.$eventHub.$emit("select-tower", towerNo);
+      let stageName = this.stage
+      this.$eventHub.$emit("select-tower", stageName);
     },
-    getUnits(){
+    // getUnits(){
 
-      let total = this.tower.statusCount.available +
-      this.tower.statusCount.blocked +
-      this.tower.statusCount.notPaid +
-      this.tower.statusCount.paid +
-      this.tower.statusCount.referred +
-      this.tower.statusCount.reserved +
-      this.tower.statusCount.sold
+    //   let total = this.tower.statusCount.available +
+    //   this.tower.statusCount.blocked +
+    //   this.tower.statusCount.notPaid +
+    //   this.tower.statusCount.paid +
+    //   this.tower.statusCount.referred +
+    //   this.tower.statusCount.reserved +
+    //   this.tower.statusCount.sold
 
-      return total
-    }
+    //   return total
+    // }
   },
   computed: {
     getDepsP(){
@@ -208,6 +224,12 @@ export default {
 
 .tower-card .col-12 {
   padding: 0 12px 0 12px;
+}
+
+.tower-card {
+  padding:0;
+  max-width: 350px;
+  margin:20px 50px;
 }
 
 

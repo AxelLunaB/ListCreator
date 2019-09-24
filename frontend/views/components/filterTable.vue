@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-container">
+  <div class="filter-container" style="max-width:800px;">
       <div v-if="show" v-bind:class ="{ fadeIn : show }" class="close-filter" @click="removeFilter(),closeSearch()">
         <span><i class="fas fa-times"></i>	&nbsp;	&nbsp;Remove filters</span>
       </div>
@@ -7,18 +7,18 @@
         <div class="field">
           <div class="control">
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('level')" value="nivel" id="name">Level</button>
+              <button class="btn-buy" @click="setFilterAs('houseModel')" value="houseModel" id="name">Modelo</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
                     <ul id="dropdown1">
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(0,item.level)">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({ id: item.id, value: item.value }),hideDropdown(0,item.level)">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
               </span>
               </div>
-            <div class="dropdown-container">
+            <!-- <div class="dropdown-container">
               <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
@@ -29,13 +29,13 @@
                       </li>
                     </ul>
               </span>
-              </div>
+              </div> -->
             <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('statusId')" value="statusId" id="name">Status</button>
+              <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Manzana</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
-                    <ul id="dropdown3">
+                    <ul id="dropdown3" style = "height: 100px;overflow-y: scroll;">
                       <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(2,item.stat)">
                         <p> {{ item.stat }} </p>
                       </li>
@@ -44,7 +44,7 @@
               </div>
           </div>
         </div>
-        <p style='font-size:1.2rem;'><span v-if="filters0">Level {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} status</span></p>
+        <p style='font-size:1.2rem;'><span v-if="filters0">Model {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} Block </span></p>
         </div>
         </div>
 </template>
@@ -54,26 +54,52 @@ import { mapActions } from 'vuex';
 import { mapGetters } from "vuex";
 
 export default {
+  mounted(){
+  },
   data:function(){
     return{
       level:[
-        {level:'Ground Floor', value:'0', id:'level'},
-        {level: '1', value:'1', id:'level'},
-        {level: '2', value:'2', id:'level'},
-        {level: '3' ,value:'3', id:'level'},
-        {level: '4',value:'4', id:'level'}
+        {level:'M1D', value:'M1D', id:'houseModel'},
+        {level:'M1I', value:'M1I', id:'houseModel'},
+        {level:'M2D', value:'M2D', id:'houseModel'},
+        {level:'M2I' ,value:'M2I', id:'houseModel'},
+        {level:'M3D',value:'M3D', id:'houseModel'},
+        {level:'M3I',value:'M3I', id:'houseModel'},
+        {level:'M4D',value:'M4D', id:'houseModel'},
+        {level:'M4I',value:'M4I', id:'houseModel'}
       ],
-      price:[
-        {cost: '< $199,999.00', value: 100000, id:'priceTotal'},
-        {cost: '$200,000.00 - $249,999.00', value: 200000, id:'priceTotal'},
-        {cost: '$250,000.00 - $299,999.00', value: 250000, id:'priceTotal'},
-        {cost: '$300,000.00 - $349,999.00', value: 300000, id:'priceTotal'},
-        {cost: '> $350,000.00', value: 350000, id:'priceTotal'}
-      ],
+      // price:[
+      //   {cost: '< $199,999.00', value: 100000, id:'priceTotal'},
+      //   {cost: '$200,000.00 - $249,999.00', value: 200000, id:'priceTotal'},
+      //   {cost: '$250,000.00 - $299,999.00', value: 250000, id:'priceTotal'},
+      //   {cost: '$300,000.00 - $349,999.00', value: 300000, id:'priceTotal'},
+      //   {cost: '> $350,000.00', value: 350000, id:'priceTotal'}
+      // ],
       status:[
-        {stat: 'Available', value:1, id:'statusId'},
-        {stat: 'Sold', value:2, id:'statusId'},
-        {stat: 'Reserved', value:3, id:'statusId'}
+        {stat: 'A', value:'A', id:'block'},
+        {stat: 'B', value:'B', id:'block'},
+        {stat: 'C', value:'C', id:'block'},
+        {stat: 'D', value:'D', id:'block'},
+        {stat: 'E', value:'E', id:'block'},
+        {stat: 'F', value:'F', id:'block'},
+        {stat: 'G', value:'G', id:'block'},
+        {stat: 'H', value:'H', id:'block'},
+        {stat: 'I', value:'I', id:'block'},
+        {stat: 'J', value:'J', id:'block'},
+        {stat: 'K', value:'K', id:'block'},
+        {stat: 'L', value:'L', id:'block'},
+        {stat: 'M', value:'M', id:'block'},
+        {stat: 'N', value:'N', id:'block'},
+        {stat: 'O', value:'O', id:'block'},
+        {stat: 'P', value:'P', id:'block'},
+        {stat: 'Q', value:'Q', id:'block'},
+        {stat: 'R', value:'R', id:'block'},
+        {stat: 'S', value:'S', id:'block'},
+        {stat: 'T', value:'T', id:'block'},
+        {stat: 'U', value:'U', id:'block'},
+        {stat: 'V', value:'V', id:'block'},
+        {stat: 'w', value:'w', id:'block'},
+        {stat: 'x', value:'x', id:'block'}
       ],
       show:false,
       filters0:null,
@@ -88,6 +114,7 @@ export default {
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
     }),
+  
     hideDropdown(i,x){
       switch(i){
         case 0:
