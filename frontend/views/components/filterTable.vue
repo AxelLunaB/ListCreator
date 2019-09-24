@@ -12,7 +12,7 @@
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
                     <ul id="dropdown1">
-                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(0,item.level)">
+                      <li v-for= "(item,index) in level" :key="index" @click="setSpecialFilter({ id: item.id, value: item.value }),hideDropdown(0,item.level)">
                         <p> {{ item.level }}</p>
                       </li>
                     </ul>
@@ -114,6 +114,7 @@ export default {
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
     }),
+  
     hideDropdown(i,x){
       switch(i){
         case 0:
