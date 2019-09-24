@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" style="overflow-x:hidden;">
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
           </div>
@@ -62,12 +62,46 @@ export default {
   },
   methods:{
     prevPage(){
-      if(this.pageNumber >= 1)
-      this.pageNumber -= 1;
+      const self = this;
+      if(this.pageNumber >=1){
+      let element = document.getElementById("wrapper-page");
+      element.classList.add("slide-out-right");
+
+      setTimeout(function () {
+        element.classList.remove("slide-out-right");
+        element.classList.add("slide-in-left")
+        },700)
+
+      setTimeout(function(){
+        if(self.pageNumber >= 1)
+        self.pageNumber -= 1;
+      },500)
+
+      setTimeout(function () {
+        element.classList.remove("slide-in-left")
+        },1400)
+      }
     },
     nextPage(){
+      const self = this;
       if(this.pageNumber < 1){
-      this.pageNumber += 1;
+      let element = document.getElementById("wrapper-page");
+      element.classList.add("slide-out-left");
+
+      setTimeout(function () {
+        element.classList.remove("slide-out-left");
+        element.classList.add("slide-in-right")
+        },700)
+
+      setTimeout(function(){
+        if(self.pageNumber < 1){
+          self.pageNumber += 1;
+          }
+      },500)
+
+      setTimeout(function () {
+        element.classList.remove("slide-in-right")
+        },1400)
       }
     },
 
@@ -94,6 +128,131 @@ html,
 body {
   height: 100%;
 }
+
+.slide-out-left {
+	-webkit-animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.slide-in-right {
+	-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-in-left {
+	-webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-out-right {
+	-webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
+
+
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+@-webkit-keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+}
+
 
 .main {
   background: #2a333c;
