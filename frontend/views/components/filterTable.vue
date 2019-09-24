@@ -44,7 +44,7 @@
               </div>
           </div>
         </div>
-        <p style='font-size:1.2rem;'><span v-if="filters0">Model {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters2}} Block </span></p>
+        <p style='font-size:1.2rem;'><span v-if="filters0">Modelo {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; Manzana {{filters2}} </span></p>
         </div>
         </div>
 </template>
@@ -114,7 +114,7 @@ export default {
       removeFilter: 'departments/removeSpecialFilter',
       setPriceFilter:'departments/setPriceFilter'
     }),
-  
+
     hideDropdown(i,x){
       switch(i){
         case 0:

@@ -316,20 +316,13 @@
        if(this.modelFilter === null && this.blockFilter === null) {
          return this.encinosByStage.data;
        }
-       
+
        else {
-         if(this.filteredUnits.length === 0){
-            swal({
-              text: "No hay resultados",
-              icon: "warning",
-              buttons: false,
-              timer: 3000
-          });
-         }
+
          return this.filteredUnits;
        }
 
-      
+
 
       //   let filters = this.specialSort
       //   var deptos = []
