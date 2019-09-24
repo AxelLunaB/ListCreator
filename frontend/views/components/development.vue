@@ -7,7 +7,7 @@
         </div>
         <div class="info-card">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12" style="padding: 0px 25px;">
                         <table class="table">
                             <tbody class="colors-main">
                             <tr>
@@ -192,6 +192,11 @@ export default {
 
 .tower-card .col-12 {
   padding: 0 12px 0 12px;
+}
+
+.tower-card {
+  padding:0;
+  height:100px;
 }
 
 

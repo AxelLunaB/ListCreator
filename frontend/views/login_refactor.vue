@@ -49,24 +49,24 @@
               <table class="table table-striped table-dark">
                   <tbody>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1525</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/05/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1535</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#1333</td>
-                        <td class="text-center"><span style="color:#e89005;">Reserved</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#e89005;">-</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="padding-top:14px;">Name</td>
-                        <td class="text-center" style="padding-top:14px;">#2232</td>
-                        <td class="text-center"><span style="color:#cd110f;">Sold</span><br> 26/06/2019</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center" style="padding-top:14px;">-</td>
+                        <td class="text-center"><span style="color:#cd110f;">-</span></td>
                     </tr>
                   </tbody>
               </table>

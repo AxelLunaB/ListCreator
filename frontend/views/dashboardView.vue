@@ -3,7 +3,7 @@
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
           </div>
-          <nav aria-label="Page navigation" style = "margin-top:100px;">
+          <nav aria-label="Page navigation" style = "margin-top:70px;">
             <ul class="pagination pg-blue">
               <li class="page-item"><a class="page-link" @click="prevPage()"><i class="fas fa-chevron-left"></i></a></li>
               <li class="page-item pages">{{pageNumber + 1 }} / 2 </li>
