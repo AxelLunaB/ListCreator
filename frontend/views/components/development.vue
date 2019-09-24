@@ -117,7 +117,7 @@ export default {
   },
   methods: {
     selectTower() {
-      let stageName = this.stage
+      let stageName = this.stage;
       this.$eventHub.$emit("select-tower", stageName);
     },
     // getUnits(){

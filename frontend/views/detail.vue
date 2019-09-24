@@ -6,7 +6,7 @@
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"><img src="../../public/tb.png" style="width:50px;"></div>
-        <h2 :title="title" style=" display: flex;align-items: center;">Etapa {{ clusterId ? clusterId.stage : ''}}</h2>
+        <h2 :title="title" style=" display: flex;align-items: center;">Etapa {{ clusterId ? clusterId : ''}}</h2>
         <div class="buttons-header" style="z-index:0;">
           <!-- <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
@@ -90,21 +90,8 @@
       });
 
     this.$eventHub.$on("select-tower", stage => {
-      this.$store.dispatch("others/fetchUnitsByStage", stage);
-      this.clusterId = stage;
-      // switch(stage) {
-      //   case "1-A":
-      //     this.title = "1-A";
-      //     this.tower = 1;
-      //   break;
-      //   case '4' :
-      //     this.title ="GIADA TOWER A"
-      //     this.tower = 2
-      //   break;
-      //   case '5':
-      //     this.title = "GIADA TOWER B"
-      //     this.tower = 3
-      // }
+      this.$store.dispatch("others/fetchUnitsByStage", stage.stage);
+      this.clusterId = stage.stage;
 
     })
 
@@ -127,8 +114,6 @@
         this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
-        // this.$store.dispatch("others/fetchAllUnits");
-        // this.$store.dispatch("others/fetchUnitsByStage", "7");
 
         // listen to authenticated event
       } else {
