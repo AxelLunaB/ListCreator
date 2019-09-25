@@ -30,14 +30,14 @@ export default {
       var isAuthenticated = this.$store.state.others.isAuthenticated;
       if (isAuthenticated) {
         // Dispatch actions &&  subscribe to rt events.
-        this.$store.dispatch("others/fetchUnitsByStage", "7");
+        // this.$store.dispatch("others/fetchUnitsByStage");
 
         // listen to authenticated event
       } else {
         const _ = this;
 
         this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("others/fetchUnitsByStage", "7");
+          // _.$store.dispatch("others/fetchUnitsByStage", "7");
 
         });
       }
@@ -107,9 +107,9 @@ export default {
 
   },
   computed:{
-      ...mapGetters({
-        fetchUnitsByStage: "others/encinosUnitsByStage"
-      }),
+      // ...mapGetters({
+      //   fetchUnitsByStage: "others/encinosUnitsByStage"
+      // }),
     paginatedData(){
       const start = this.pageNumber * this.pageCount
       const end = start + this.pageCount;

@@ -1,41 +1,43 @@
 <template>
-  <div class="login-wrapper row" style="display:flex; align-items:center;">
+  <div class="login-wrapper row">
 <!-- Begin page -->
     <div class="wrapper-page container" id="main-cards">
       <div class="row main">
         <div class="card col-md-4 col-sm-12 fadeEntry" style = "box-shadow: 20px 20px 7px #0000009e;">
           <div class="card-body">
             <h3 class="text-center">
-              <a href="index.html" class="logo"><img src="../assets/logo_bco_sm.png" alt="logo-img" width="250px"></a>
+              <a class="logo"><img src="../assets/logo_bco_sm.png" alt="logo-img" width="250px"></a>
             </h3>
-            <h5 class="text-center">Sign In</h5>
+            <h5 style = "height:20px;"></h5>
             <form class="form-horizontal m-t-20" id="login_form">
             <div class="form-group inputs">
               <div class="col-12">
-                <input class="form-control" type="text" required="" name="email" placeholder="Email">
+                <input class="form-control" type="text" required="" name="email" placeholder="Correo electrónico">
               </div>
             </div>
             <div class="form-group">
               <div class="col-12">
-                <input class="form-control" type="password" required="" name="password" placeholder="Password">
+                <input class="form-control" type="password" required="" name="password" placeholder="Contraseña">
               </div>
             </div>
             <div class="form-group">
               <div class="col-12">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Remember me</label>
+                  <!-- <label class="custom-control-label" for="customCheck1">Remember me</label> -->
                 </div>
               </div>
             </div>
             <div class="form-group text-center m-t-40">
               <div class="col-12">
-                <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" type="submit"> {{ logMessage }} </button>
+                <button
+                class="btn btn-primary btn-block btn-lg waves-effect waves-light mobile-button" type="submit"
+                style = "font-size:17px;"> {{ logMessage }} </button>
               </div>
             </div>
             <div class="form-group row" style="margin-bottom:0;">
               <div class="col text-center">
-                <a href="pages-recoverpw.html" class="text-white"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                <!-- <a href="pages-recoverpw.html" class="text-white"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a> -->
               </div>
             </div>
             </form>
@@ -85,7 +87,7 @@ import swal from 'sweetalert';
 export default {
   data() {
     return {
-      logMessage: "Log in"
+      logMessage: "Iniciar sesión"
     }
   },
   mounted: function () {
@@ -108,7 +110,7 @@ export default {
       document.getElementById("main-cards").style.transition = "all 0.2s"
       document.body.style.cursor = "wait";
       const loginData = $("#login_form").serializeArray();
-      self.logMessage = "Logging..."
+      self.logMessage = "Entrando..."
       // const v = this;
       $.ajax({
         url: "/authentication",
@@ -122,22 +124,45 @@ export default {
           password: loginData[1].value
         }),
         success: function (data) {
-          window.location.replace("/");
           document.body.style.cursor = "auto";
-          self.logMessage = "Logged!"
+          self.logMessage = "Bienvenido!"
+          setTimeout(function(){
+            window.location.replace("/");
+          },500)
         },
         error: function (error) {
           document.getElementById("main-cards").style.opacity = "1";
           document.body.style.cursor = "auto";
           if (error.status === 401) {
-            swal("wrong email or password");
-            self.logMessage = "Log in"
+            swal({
+              title: "Correo o contraseña incorrecta.",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
+            self.logMessage = "Iniciar sesión"
           } else if (error.status === 400) {
-            swal("wrong email or password");
-            self.logMessage = "Log in"
+            swal({
+              title: "Correo o contraseña incorrecta.",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
+            self.logMessage = "Iniciar sesión"
           } else {
-            swal("Unexpected error, please try again later.");
-            self.logMessage = "Log in"
+            swal({
+              title: "Error inesperado",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
+            self.logMessage = "Iniciar sesión"
           }
         }
       });
@@ -171,8 +196,12 @@ body {
   background:url('../assets/background.png');
   background-size:cover;
   box-shadow:inset 0 0 0 2000px rgba(0, 23, 0, 0.1);
-  height: 100%;
   font-family: 'Raleway', sans-serif!important;
+  height: 100%!important;
+  width: 100%;
+  margin: 0;
+  display:flex;
+  align-items:center;
 }
 
 .card {
@@ -294,6 +323,7 @@ input:-webkit-autofill {
 
 .fadeEntry {
   animation: fadeInEntry 1s forwards;
+  max-width:400px;
 }
 
 @keyframes fadeInEntry {
@@ -310,6 +340,11 @@ input:-webkit-autofill {
   .container {
       max-width: 1500px;
   }
+
+  .mobile-button {
+    width: 50%;
+    margin:0 auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -317,5 +352,6 @@ input:-webkit-autofill {
     margin-top: 10px;
   }
 }
+
 
 </style>

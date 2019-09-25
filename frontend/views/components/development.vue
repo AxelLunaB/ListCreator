@@ -11,6 +11,10 @@
                         <table class="table">
                             <tbody class="colors-main">
                             <tr>
+                                <td><b>Unidades</b></td>
+                                <td><b>{{ stage ? stage.units : '-' }}</b></td>
+                            </tr>
+                            <tr>
                                 <td>Modelo M1D</td>
                                 <td><b>{{ stage ? stage.M1D : '-' }}</b></td>
                             </tr>
@@ -41,10 +45,6 @@
                             <tr>
                                 <td>Modelo M4I</td>
                                 <td><b>{{ stage ? stage.M4I : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td><b>Total units</b></td>
-                                <td><b>{{ stage ? stage.units : '-' }}</b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -117,7 +117,7 @@ export default {
   },
   methods: {
     selectTower() {
-      let stageName = this.stage
+      let stageName = this.stage;
       this.$eventHub.$emit("select-tower", stageName);
     },
     // getUnits(){

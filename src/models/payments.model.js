@@ -11,7 +11,7 @@ module.exports = (app) => {
     differencePayments: { type: DataTypes.DOUBLE}
   }, {});
   payments.associate = function(models) {
-    payments.hasMany(models.paymentsDetails);
+    // payments.hasMany(models.paymentsDetails);
   };
   return payments;
 };

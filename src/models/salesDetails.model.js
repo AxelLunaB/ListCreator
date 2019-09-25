@@ -15,7 +15,7 @@ module.exports = (app) => {
       }
     });
   salesDetails.associate = function(models) {
-    salesDetails.belongsTo(models.users);
+    // salesDetails.belongsTo(models.users);
   };
   return salesDetails;
 };
