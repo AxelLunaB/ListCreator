@@ -52,52 +52,6 @@
                 </div>
         </div>
       </div>
-      <!-- <div class="card-down">
-        <div style="width: 100%;height: 140px;display: flex;flex-direction: column;justify-content: center;">
-            <span v-if="getDepsP.sold != 0">
-            <p style="margin-bottom:0;"> 10 % SOLD </p>
-            <div class="myProgress">
-              <div style="width:40px;height:100%;background:#24303b;"></div>
-            </div>
-          </span>
-        <p style="margin-bottom:0;"> 20 % RESERVED </p>
-        <div class="myProgress">
-          <div style="width:60px;height:100%;background:#24303b;"></div>
-        </div>
-        </div>
-        <table class="table tower-card" style="width:100%;margin-top:18px;">
-            <tbody class="colors-main">
-            <tr>
-                 <td>AVAILABLE</td>
-                <td style="color:#35ce41;"> 0 </td>
-            </tr>
-            <tr>
-                <td>BLOCKED</td>
-                <td style="color:#8a8a8a"> 0 </td>
-            </tr>
-            <tr>
-                <td>PAID</td>
-                <td style="color:#7ddc0f;"> 0 </td>
-            </tr>
-            <tr>
-                <td>NOT PAID</td>
-                <td style="color:#f5e02a"> 0 </td>
-            </tr>
-            <tr>
-                <td>REFERRED</td>
-                <td style="color:#8fb5ff;"> 0 </td>
-            </tr>
-            <tr>
-              <td>RESERVED</td>
-              <td style="color: #e89005;"> 0 </td>
-            </tr>
-            <tr>
-              <td>SOLD</td>
-              <td style="color: #cd110f">0</td>
-            </tr>
-            </tbody>
-        </table>
-      </div> -->
      </router-link>
   </div>
 </template>
@@ -116,23 +70,14 @@ export default {
     }
   },
   methods: {
+
     selectTower() {
       let stageName = this.stage;
       this.$eventHub.$emit("select-tower", stageName);
     },
-    // getUnits(){
 
-    //   let total = this.tower.statusCount.available +
-    //   this.tower.statusCount.blocked +
-    //   this.tower.statusCount.notPaid +
-    //   this.tower.statusCount.paid +
-    //   this.tower.statusCount.referred +
-    //   this.tower.statusCount.reserved +
-    //   this.tower.statusCount.sold
-
-    //   return total
-    // }
   },
+
   computed: {
     getDepsP(){
 

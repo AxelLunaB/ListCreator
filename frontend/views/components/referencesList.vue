@@ -43,27 +43,6 @@ import { log } from 'util';
 
 
 export default {
-  mounted: function(){
-
-      // logic
-      var isAuthenticated = this.$store.state.others.isAuthenticated;
-       this.$eventHub.$on("updateReferenceParent", () => {
-
-
-          this.$store.dispatch("others/getReferences");
-          this.$store.dispatch("contracts/getContracts");
-        });
-      if (isAuthenticated) {
-        let _ = this;
-        // Dispatch actions &&  subscribe to rt events.
-        _.$store.dispatch("others/getReferences");
-
-        // listen to authenticated event
-      } else {
-        let _ = this;
-        _.$store.dispatch("others/getReferences");
-      }
-  },
   props: ['openReference', 'title', 'departments' ,'clusterId'],
 
   components: {
