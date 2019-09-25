@@ -12,12 +12,12 @@
             <form class="form-horizontal m-t-20" id="login_form">
             <div class="form-group inputs">
               <div class="col-12">
-                <input class="form-control" type="text" required="" name="email" placeholder="Email">
+                <input class="form-control" type="text" required="" name="email" placeholder="Correo electrónico">
               </div>
             </div>
             <div class="form-group">
               <div class="col-12">
-                <input class="form-control" type="password" required="" name="password" placeholder="Password">
+                <input class="form-control" type="password" required="" name="password" placeholder="Contraseña">
               </div>
             </div>
             <div class="form-group">
@@ -134,10 +134,10 @@ export default {
           document.getElementById("main-cards").style.opacity = "1";
           document.body.style.cursor = "auto";
           if (error.status === 401) {
-            swal("wrong email or password");
+            swal("Correo o contraseña incorrecta.");
             self.logMessage = "Iniciar sesión"
           } else if (error.status === 400) {
-            swal("wrong email or password");
+            swal("Correo o contraseña incorrecta.");
             self.logMessage = "Iniciar sesión"
           } else {
             swal("Unexpected error, please try again later.");
