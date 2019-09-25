@@ -18,24 +18,13 @@
                     </ul>
               </span>
               </div>
-            <!-- <div class="dropdown-container">
-              <button class="btn-buy" @click="setFilterAs('priceTotal')" value="priceTotal" id="name">Price</button>
-              <span class="dropdown">
-                <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
-                    <input type="checkbox" class="checkboxes">
-                    <ul id="dropdown2">
-                      <li v-for= "(item, index) in price" :key="index" @click="setPriceFilter({value:item.value}), hideDropdown(1,item.cost)">
-                        <p> {{ item.cost }} </p>
-                      </li>
-                    </ul>
-              </span>
-              </div> -->
+
             <div class="dropdown-container">
               <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Manzana</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
-                    <ul id="dropdown3" style = "height: 100px;overflow-y: scroll;">
+                    <ul id="dropdown3" style = "height: 250px; overflow-y: scroll;">
                       <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(2,item.stat)">
                         <p> {{ item.stat }} </p>
                       </li>
@@ -44,6 +33,7 @@
               </div>
           </div>
         </div>
+
         <p style='font-size:1.2rem;'><span v-if="filters0">Modelo {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; Manzana {{filters2}} </span></p>
         </div>
         </div>

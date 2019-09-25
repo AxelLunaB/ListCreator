@@ -2,13 +2,13 @@
 <div v-if="shouldShow === true" id="fadeOutAnimation">
   <div class="container-fluid cards-detail" v-bind:class="{ active: show}" id="container-fluid">
       <div id="returntwo" @click="closeBtn()">
-        <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
+        <span><i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad No. # {{ detailTable ? detailTable.unit : ''}}</span></h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad #{{ detailTable ? detailTable.unit : ''}}</span></h4>
                 <div class="row fullh">
                     <div class="col-12" style="display: flex;align-items: center;">
                         <table class="table table-hover table-modifier medh">
@@ -16,59 +16,25 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td class="textalign">Block</td>
+                                <td class="textalign">Manzana</td>
                                 <td class="text-right">{{ detailTable ? detailTable.suburb : '' }}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">Stage</td>
+                                <td class="textalign">Etapa</td>
                                 <td class="text-right">{{ detailTable ? detailTable.stage : '' }}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">House model</td>
+                                <td class="textalign">Modelo</td>
                                 <td class="text-right">{{ detailTable ? detailTable.houseModel : ''}}</td>
                             </tr>
                             <tr>
-                                <td class="textalign">m<sup>2</sup> Construction</td>
+                                <td class="textalign">m<sup>2</sup> Construcción</td>
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Construction : ''}} </td>
                             </tr>
                             <tr>
-                                <td class="textalign">m<sup>2</sup> Terrain</td>
+                                <td class="textalign">m<sup>2</sup> Terreno</td>
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
-                            <!-- <tr>
-                                <td class="textalign">Exterior m2</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">Total Interior m2</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">Total m2</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">$/m2 Interior</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                             <!-- <tr>
-                                <td class="textalign">$/m2 Total</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">List Price</td>
-                                <td class="text-right"></td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td class="textalign">Status</td>
-                                <!-- <td v-if="detailTable.status.name !='RESERVED' || !isAdmin" class="text-right" v-bind:style="{color: getColor}"><slot></slot>{{detailTable.status.name != null ? detailTable.status.name : '-'}}</td>
-                                <td v-else class="text-right">
-                                  <!-- <select id="myList" v-on:change="status($event)" v-if="isAdmin">
-                                    <option value = "3" style="color: rgb(232, 144, 5);">{{detailTable.status.name != null ? detailTable.status.name : '-'}}</option>
-                                    <option value = "2" style="color: rgb(205, 17, 15);;">SOLD</option>
-                                  </select>
-                                </td>
-                            </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -79,22 +45,12 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <!-- <h5 class="m-b-30 m-t-0 text-center">PAYMENTS</h5> -->
                 <div class="row fullh">
                     <div class="col-12">
                         <table class="table table-hover table-modifier fullh">
                             <thead>
                             </thead>
                             <tbody>
-                            <!-- <tr  v-for="(u,index) in (contract ? contract.payments ? contract.payments.paymentsDetails : 12 : 12)" :key="u.id">
-                                <td class="textalign">{{contract ? contract.payments ? u.paymentNo : index +1 : index +1}}</td>
-                                <td class="text-center">
-                                  <span v-bind:style="{color: contract ? contract.payments ? u.status ? u.status.color_hex : 'white' : 'white' : 'white'}">
-                                    {{contract ? contract.payments ? u.dueDate : '-' : '-'}}
-                                    </span>
-                                    </td>
-                                <td class ="text-right"><i class="fas fa-file-alt"></i></td>
-                            </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -102,195 +58,9 @@
             </div>
         </div>
       </div>
-      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-        <div class="card">
-                  <div class="card-body">
-                      <h5 class="m-b-30 m-t-0 text-left">DOCUMENTS</h5>
-                      <div class="row fullh">
-                          <div class="col-12">
-                              <table class="table table-hover table-modifier fullh">
-                                  <thead>
-                                  </thead>
-                                  <tbody>
-
-                                  <tr v-on:click="selectedLabel = 'Offer Letter'">
-                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder;text-align:left;">Offer letter</label></td>
-                                      <!-- <td class="text-left"><span style="color:green;font-weight:bolder;text-align:left;">Offer letter</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-
-                                  <tr v-on:click="selectedLabel = 'Reserve Sheet'">
-                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve sheet</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'Reserve Deposit'">
-                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">Reserve deposit</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'First Draft Contract'">
-                                      <td class="text-left"><label for="fileInput" style="color:green;font-weight:bolder">First Draft Contract</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'Final Contract'">
-                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">Final Contract</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'ROI Contract'">
-                                      <td class="text-left"><label for="fileInput" style="color:red;font-weight:bolder">ROI Contract</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'Official ID'">
-                                      <td class="text-left"><label for="fileInput">Official ID</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr v-on:click="selectedLabel = 'Proof of Address'">
-                                      <td class="text-left"><label for="fileInput">Proof of Address</label></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr>
-                                      <td class="text-left"><span>-</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr>
-                                      <td class="text-left"><span>-</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr>
-                                      <td class="text-left"><span>-</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr>
-                                      <td class="text-left"><span>-</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  <tr>
-                                      <td class="text-left"><span>-</span></td>
-                                      <td><i class="fas fa-file-alt"></i></td>
-                                  </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-      </div>-->
-
-      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="m-b-30 m-t-0 text-left">UPLOAD DOCUMENTS</h5>
-
-            <div class="row" style="height:100%;">
-              <div class="col-md-12" style="display:flex;flex-direction:column;justify-content:space-around;">
-                <div class="m-b-30">
-                  <form id="dropFileForm" method="POST" enctype="multipart/form-data">
-                    <input @change="readFiles($event)" type="file" name="files[]" class="dropzone" id="fileInput" accept="application/pdf, image/jpeg, image/png" data-max-file-size="5MB">
-                     <label for="fileInput" id="fileLabel">
-                      Drop files here to upload
-                    </label>
-                     <input type="submit" value="Upload" name="submit" @click="sendFiles()" style="margin: 30px 0;" />
-                  </form>
-                </div>
-                <div class="text-center m-t-15" style="margin:26px 0 0 0;">
-                   <button type="submit" @click="sendFiles()" class="waves ripple">Send Files</button>
-
-                   Loading Files Animation Wrapper
-                  <div class="upload-window">
-                    <div class="upload-window-progress"></div>
-                    <span id="upload-window-title"></span>
-                    <span id="upload-window-sub"></span>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
 
     </div>
     <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
-  <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="height:100%;">
-  <div class="card">
-            <div class="card-body">
-                <div class="row" style="height:100%;">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier" style="height:95%;margin-bottom:0;">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="textalign" style="border:none!important;">Currency</td>
-                                <td class="text-right" style="border:none!important"><b>{{contract != undefined ? contract.currency : '-'}}</b></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Sales Channel</td>
-                                <td class="text-right">{{contract != undefined ? contract.salesDetails != null ? contract.salesDetails.salesChannel : '-' : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Sales Executive</td>
-                                <td class="text-right">{{contract ? contract.commission != undefined ? contract.commission.executive != null ? contract.commission.executive.name : '-' : '-' : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Customer</td>
-                                <td class="text-right">{{contract !=undefined ? contract.customer != null? contract.customer.name : '-' : '-'}}</td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Man Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.managementCommissions ? contract.commission.managementCommissions + ' %' : '-' : '-' : '-'}}</span></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Sales Ex Comm</td>
-                                <td class="text-right"><span style="color:red;">{{contract != undefined ? contract.commission != null ? contract.commission.salesExecutivesCommissions ? contract.commission.salesExecutivesCommissions + ' %' : '-' : '-' : '-'}}</span></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Sales Adm/Comm</td>
-                                <td class="text-right"><span style="color:green;">{{contract != undefined ? contract.commission != null ? contract.commission.salesAdministrativeCommissions ? contract.commission.salesAdministrativeCommissions + ' %' : '-' : '-' : '-'}}</span></td>
-                            </tr>
-                            <tr>
-                                <td class="textalign">Total Comm</td>
-                                <td class="text-right">{{contract != undefined ? contract.commission != undefined  && contract.commission.totalCommissions != 0 && contract.commission.totalCommissions != null ? '$ ' + contract.commission.totalCommissions : getTotalCommission : getTotalCommission}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>-->
-      <!--<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-      <div class="card" style="height:93%">
-          <div class="card-body">
-              <div class="row" style="height:100%">
-                  <div class="col-12">
-                      <table class="table table-hover table-modifier" style="height:100%;margin-bottom:0;">
-                          <thead>
-                              <h5 class="m-b-30 m-t-0 text-left">ROI</h5>
-                          </thead>
-                          <tbody>
-                          <tr>
-                              <td class="textalign">ROI</td>
-                              <td class="text-right">{{contract != null ? contract.WROI : '-'}}</td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">ROI %</td>
-                              <td class="text-right">{{contract != null ? contract.percent != null ? contract.percent : '-' : '-'}}</td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">Years</td>
-                              <td class="text-right">{{contract != null ? contract.years != null ? contract.years : '-' : '-'}}</td>
-                          </tr>
-                          <tr>
-                              <td class="textalign">Closing Date</td>
-                              <td class="text-right">{{contract != null ? contract.closingDate != null ? contract.closingDate : '-' : '-'}}</td>
-                          </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>-->
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
@@ -310,9 +80,9 @@
               </div>
             </div>
             <div class="labels">
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Available</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#c5077e;"></div><p>Sold</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Reserved</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Disponible</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#c5077e;"></div><p>Vendido</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Reservado</p></div>
             </div>
           </div>
         </div>
@@ -350,79 +120,6 @@ import { mapActions } from "vuex";
 import { file } from 'babel-types';
 import { log } from 'util';
 
-function pushFile (file, array) {
-  return array.push(file);
-}
-
-const isFileValid = fileType => {
-  let valid = false;
-
-  switch(fileType) {
-    case 'application/pdf':
-      return valid = true;
-
-    case 'image/jpeg':
-      return valid = true
-
-    case 'image/png':
-      return valid = true
-
-    default:
-      return valid
-  }
-};
-
-async function getInputFiles (fileList) {
-      let arrayOfFiles = [];
-
-      fileList.forEach(file => {
-          let fileObj = {};
-          const reader = new FileReader();
-
-          fileObj.fileName = file.name;
-          fileObj.fileSize = file.size;
-          fileObj.fileType = file.type;
-
-          reader.onload = () => {
-            fileObj.fileBody = reader.result;
-            arrayOfFiles.push(fileObj);
-          }
-
-          reader.onerror = () => {
-          }
-
-          reader.readAsArrayBuffer(file);
-      });
-
-      return arrayOfFiles;
-}
-
-// function sendFiles () {
-//       const _ = this;
-//       const form = document.getElementById('dropFileForm');
-//       // Get selected unitId
-//       const unitId = this.detailTable.id;
-
-//       form.addEventListener('submit', e => {
-//         // Prevent default action from firing
-//         e.preventDefault();
-
-//         if(this.files.length === 0) {
-//           return;
-//         }
-
-//         if(unitId === null || undefined) {
-//           throw Error('unitId is null');
-//         }
-
-//         let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel  };
-//         // Send files to server
-//         _.$store.dispatch("attachments/getAWSSignature", file);
-
-//         _.files = null;
-//       });
-// }
-
 export default {
 
   mounted: function () {
@@ -430,9 +127,6 @@ export default {
       this.detailTable = details;
       this.show = true;
     });
-
-    // Method added to get all contracts by Paid Ref
-    this.$store.dispatch('contracts/getContractsByPaidRef');
   },
 
   components: {
@@ -449,23 +143,22 @@ export default {
       isActive: true,
       detailTable: {},
       contract: {},
-      labels: ["Available", "Reserved", "Sold"],
+      labels: ["Disponible", "Reservado", "Vendido"],
       datasets: [{
         data:[1,2,3],
         backgroundColor:["#70b84f", "#dddc00", "#c5077e"]
       }],
       option: {
+
         title: {
           display:false,
           responsive:false,
         },
+
         legend: {
-          // position:'bottom',
-          // labels: {
-          // fontColor:'white'
-          // }
           display:false
         },
+
       },
     myboolean : true,
     mybackgroundcolor : [
@@ -482,7 +175,7 @@ export default {
       '#70b84f',
       '#dddc00'
       ],
-    mylabel : 'Sales',
+    mylabel : 'Ventas',
     mydata : [],
         myoption: {
           legend: {
@@ -519,6 +212,7 @@ export default {
   },
 
   methods: {
+
     closeBtn() {
       self = this
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
@@ -531,190 +225,13 @@ export default {
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
-    },
+    }
 
-    sendFiles() {
-      // Vue Instance
-      const _ = this;
-
-      // Get selected unitId
-      const unitId = this.detailTable.id;
-
-      if(this.files.length === 0) {
-        throw new Error('Please, select a file to upload.');
-        return;
-      }
-
-      if(unitId === null || undefined) {
-        // unitId cannot be null
-        return;
-      }
-
-      let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
-      console.log('File');
-      console.log(file);
-
-      // Send files to server
-      _.$store.dispatch("attachments/getAWSSignature", file);
-      _.files = null;
-    },
-
-      // form.addEventListener('submit', e => {
-      //   // Prevent default action from firing
-      //   e.preventDefault();
-
-      //   if(this.files.length === 0) {
-      //     console.log('Return Called');
-      //     return;
-      //   }
-
-      //   if(unitId === null || undefined) {
-      //     throw Error('unitId is null');
-      //   }
-
-      //   let file = { data: _.files[0], unitId: unitId, contentType: '', url: '', size: '', docType: this.selectedLabel };
-      //   console.log('File');
-      //   console.log(file);
-      //   // Send files to server
-      //   _.$store.dispatch("attachments/getAWSSignature", file);
-      //   _.files = null;
-      // });
-
-    readFiles: function(event) {
-      // Retrieve selected files
-      const fileList = event.target.files;
-      let validFiles = 0;
-
-      // if(fileList.length === 0) {
-      //   throw Error('Please, select a file to upload!');
-      // }
-
-      if(fileList !== undefined) {
-
-        // Empty Files Array from Data Component
-        // Before pushing File BLOB's
-        this.files = [];
-
-        // Get DOM Elements to show progress
-        const uploadTitle = document.getElementById('upload-window-title');
-        const uploadSubtitle = document.getElementById('upload-window-sub');
-        const uploadProgress = document.getElementsByClassName('upload-window-progress');
-
-        // Iterate every file &
-        // Read each file
-        Array.from(fileList).forEach(file => {
-
-          if(isFileValid(file.type)) {
-            const reader = new FileReader();
-            let obj = {};
-
-            reader.onload = () => {
-              obj.name = file.name;
-              obj.size = file.size;
-              obj.type = file.type;
-              obj.body = reader.result;
-
-              // Push File to Files[] Array in the Data component
-              this.files.push(obj);
-
-              // Increment for each valid file read
-              validFiles += 1;
-
-              // Update Window Progress
-              uploadTitle.innerText = validFiles === 1 ? `File uploaded!` : `${validFiles} files uploaded!`;
-
-              // Show a Swal Alert
-              swal(
-                  {
-                    title: 'Please confirm information',
-                    text:  `Upload file: ${file.name} for ${this.selectedLabel}?`,
-                    icon: "info",
-                    buttons: {
-                    cancel: true,
-                    confirm: true,
-                  }
-              }).then(isConfirm => {
-                if(isConfirm) {
-                  // Upload file
-                  this.sendFiles();
-                } else {
-                  // Cancel and
-                  // Clear Array
-                  this.files = [];
-                }
-              });
-            }
-
-            reader.onerror = () => {
-              console.log('Error reading file!');
-              console.log(reader.error);
-            }
-
-            reader.onprogress = e => {
-
-              // Update Progress
-              uploadTitle.innerText = fileList.length === 1 ? `Uploading ${fileList.length} file` : `Uploading ${fileList.length} files`;
-
-              if(e.lengthComputable) {
-                let percentLoaded = Math.round((e.loaded / e.total) * 100);
-                console.log(`Loading ${percentLoaded}% ...`);
-              }
-            }
-
-            // Read file as Array Buffer
-            reader.readAsArrayBuffer(file);
-
-          } else {
-            console.log(`File: ${file.name} is not a supported valid file!`);
-            uploadTitle.innerText = `File: ${file.name} is not a supported valid file!`;
-          }
-
-        });
-      }
-
-    },
-
-      status: function status(event) {
-        const _ = this;
-        let state = event.target[event.target.selectedIndex].label
-        if(state != 'Select...'){
-        swal(
-        {
-          title: 'Please confirm information',
-          text:  'Change status to ' + event.target[event.target.selectedIndex].label + ' ?',
-          icon: "info",
-          buttons: {
-          cancel: true,
-          confirm: true,
-          }
-        }).then(isConfirm => {
-          if(isConfirm) {
-            const unitId = this.detailTable.id
-            const statusId = parseInt(document.getElementById("myList").value);
-            const newStatus = {
-              unitId: unitId,
-              statusId: statusId
-            };
-
-            document.getElementById("myList").disabled = true;
-            document.getElementById("myList").style.color = '#ffffff1f';
-
-            this.$store.dispatch('departments/updateStatus', newStatus);
-
-          } else {
-            document.getElementById("myList").selectedIndex = 0
-          }
-
-        });
-        }
-      }
   },
 
   computed: {
     ...mapGetters({
       cAvailability: "departments/currentAvailability",
-      monthlySales: "departments/monthlySales",
-      contractsByPaidRef: "contracts/contractsByPaidRef",
       isAdmin: "users/isAdmin",
     }),
 
@@ -762,7 +279,7 @@ export default {
     },
 
     pastMonths(){
-      var monthName = m => new Date(0, m).toLocaleString('en-US', { month: 'long' })
+      var monthName = m => new Date(0, m).toLocaleString('es-MX', { month: 'long' })
       var month = new Date().getMonth();
       var c = (monthName(month))
       var lastMonth = (monthName(month-1))

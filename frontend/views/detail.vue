@@ -1,16 +1,10 @@
 <template>
   <div class="main-tables-container animate" id="main-tables-container">
-      <!-- <router-link to="/" id="return"  :class="{ fadeInAnimate: isAnimated }">
-        <return-page />
-      </router-link> -->
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
-        <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"><img src="../../public/tb.png" style="width:50px;"></div>
+        <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"></div>
         <h2 :title="title" style=" display: flex;align-items: center;">Etapa {{ clusterId ? clusterId : ''}}</h2>
         <div class="buttons-header" style="z-index:0;">
-          <!-- <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn waves-white ripple" @click="showList" v-if="isAdmin">View Full List</button>
-          </div> -->
         </div>
       </div>
       <filter-table />
@@ -40,13 +34,8 @@
       <div class="navbar-container" style="max-width:800px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Download Sheet</button>
-            <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Print PDF</button>
-            <!-- <button type="button" class="btn waves-white ripple" id="newContract" @click="showContracts" v-if="isAdmin">Generate Reference</button>
-            <button type="button" class="btn waves-white ripple" id="toReferences" @click="openReference = true" v-if="isAdmin">References List</button> -->
-            <!-- <router-link :to="{ name:'Formatos', params:{tower}}" style="margin-left:-3px;" v-if="isAdmin">
-              <button type="button" class="btn waves-white ripple" id="createContract" v-if="isAdmin">Get contract</button>
-            </router-link> -->
+            <button type="button" class="btn waves-white ripple"  id="tosheet" @click="tableToExcel">Descargar Excel</button>
+            <button type="button" class="btn waves-white ripple" id="sendtopdf" v-print="'#printMe'">Imprimir PDF</button>
             </div>
           </div>
         </div>
@@ -59,7 +48,6 @@
   import { mapActions } from "vuex";
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
-  // import returnPage from "./components/returnPage.vue";
   import towerdetail from "./components/towerdetail.vue";
   import fullListView from "./components/fullListView.vue"
   import contractsSegment from "./components/contractsSegment.vue"
@@ -92,26 +80,19 @@
     this.$eventHub.$on("select-tower", stage => {
       this.$store.dispatch("others/fetchUnitsByStage", stage.stage);
       this.clusterId = stage.stage;
-
-    })
+    });
 
 
 
 
       this.$eventHub.$on("updateDataDetail", () => {
-        // this.$store.dispatch("departments/getDepartmentById",tower);
-        // this.$store.dispatch("departments/getDepartmentById", this.tower);
-        this.$store.dispatch("contracts/getContracts");
-        this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
       });
-      // logic
+
       var isAuthenticated = this.$store.state.others.isAuthenticated;
+
       if (isAuthenticated) {
-        // Dispatch actions &&  subscribe to rt events.
-        this.$store.dispatch("contracts/getContracts");
-        this.$store.dispatch("commissions/getCommissions");
         this.$store.dispatch("others/setPlusButton", true);
         this.$store.dispatch("departments/listenEvents");
 
@@ -119,17 +100,13 @@
       } else {
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
-          // _.$store.dispatch("departments/getDepartmentById", _.tower);
-          _.$store.dispatch("contracts/getContracts");
-          _.$store.dispatch("commissions/getCommissions");
           _.$store.dispatch("others/setPlusButton", true);
           _.$store.dispatch("departments/listenEvents");
-
-
         });
       }
     },
-    data(){
+
+    data() {
       return {
         openReference:false,
         detailTable: 3,
@@ -145,8 +122,10 @@
         filteredUnits: []
       }
     },
+
     methods: {
       ...mapActions("departments", ["nextPage", "prevPage"]),
+      
       tableToExcel(){
         var downloadTime = new Date();
         var day = downloadTime.getDate();
@@ -156,10 +135,11 @@
         var year = downloadTime.getFullYear();
         var dom = document.getElementById('printMe');
         const wb = XLSX.utils.table_to_book(dom, { sheet: 'Departments' })
+
         return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'.xlsx')
     },
 
-    showList(){
+    showList() {
       let info = {
          departments: this.departments,
          contracts: this.contracts
@@ -202,34 +182,14 @@
     computed: {
       ...mapGetters({
         departments: "departments/departments",
-        contracts: "contracts/contracts",
         commissions: "commissions/commissions",
         searchQuery: "departments/query",
-        clusters: "others/clusters",
         filteredValue: "departments/filterValue",
         specialSort: "departments/specialSort",
-        priceRange: "departments/priceRange",
         isAdmin: "users/isAdmin",
         encinosByStage: "others/encinosUnitsByStage"
       }),
-      // towerValidation(){
-      //   if(this.filtersArray == 0 && this.title == null) {
-      //       swal({
-      //         text: "Please select a tower first",
-      //         icon: "warning",
-      //         buttons: false,
-      //         timer: 1500
-      //     });
 
-      //   setTimeout(function () {
-      //     document.location.href = '/'
-      //     }, 1500);
-
-      //   return false
-      //   } else {
-      //     return true
-      //   }
-      // },
       currentAvailability () {
           var cData= {}
           var available = 0
@@ -291,6 +251,7 @@
 
          return verify
     },
+
      filterStages () {
 
        // Update filter data to use Watch
@@ -300,151 +261,11 @@
        // Return every unit that belongs to the stage
        if(this.modelFilter === null && this.blockFilter === null) {
          return this.encinosByStage.data;
+       } else {
+        return this.filteredUnits;
        }
-
-       else {
-
-         return this.filteredUnits;
-       }
-
-
-
-      //   let filters = this.specialSort
-      //   var deptos = []
-      //   this.sDepartments = []
-      //   this.encinosByStage.data.forEach ((dep, index) => {
-      //     filters.forEach (filter => {
-      //       if(filter.value === null|| filter.id == 'price')
-      //       return
-      //       if(dep[filter.id] == filter['value']) {
-      //         let shouldAdd = true
-      //         for( var i = 0; i < deptos.length; i++) {
-      //           if(deptos[i].id == dep.id) {
-      //             shouldAdd = false
-      //           }
-      //         }
-      //         if (shouldAdd === true) {
-      //         deptos.push(dep)
-      //       }
-      //     }
-      //   })
-      // })
-
-      //   if(deptos.length > 0) {
-      //   for (var i = deptos.length -1 ; i >= 0; i--) {
-      //     for (let a = 0; a < filters.length; a ++) {
-
-      //       if(filters[a].value == null || filters[a].id == 'price') {
-      //       continue
-      //       }
-      //       if(deptos[i][filters[a].id] != filters[a].value) {
-      //         deptos.splice (i,1)
-      //         break
-      //       }
-      //     }
-      //   }
-      // }
-
-      //  const pr = filters[2].value;
-      //  var canApply = false;
-      //  if(pr != null && pr != 0) {
-
-      //     if(deptos.length == 0 && (filters[0].value == null && filters[1].value == null)) {
-
-      //       deptos = Array.from(this.encinosByStage.data)
-
-
-      //       canApply = true;
-      //     } else if (deptos.length > 0 && (filters[0].value == null && filters[1].value == null)){
-      //       deptos = Array.from(this.encinosByStage.data)
-      //       canApply = true;
-      //     } else if (deptos.length > 0) {
-      //        canApply = true;
-      //     }
-
-      //     if(canApply){
-
-
-      //         switch (pr) {
-      //           case 100000:
-      //               for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-      //                 if(deptos[i].priceTotal  > 200000 ) {
-
-      //                   deptos.splice (i,1)
-
-      //                 }
-
-      //               }
-
-      //           break;
-      //           case 200000:
-      //               for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-      //                 if(deptos[i].priceTotal  > 200000 && deptos[i].priceTotal <= 250000 ) {
-
-
-      //                 }else {
-
-      //                   deptos.splice (i,1)
-
-      //                 }
-
-      //               }
-      //           break;
-      //           case 250000:
-      //               for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-      //                 if(deptos[i].priceTotal  > 250000 && deptos[i].priceTotal <= 300000 ) {
-
-
-      //                 }else {
-
-      //                   deptos.splice (i,1)
-
-      //                 }
-
-      //               }
-      //           break;
-      //           case 300000:
-      //               for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-      //                 if(deptos[i].priceTotal  > 300000 && deptos[i].priceTotal <= 350000 ) {
-
-      //                 }else {
-
-      //                   deptos.splice (i,1)
-
-      //                 }
-
-      //               }
-      //           break;
-      //           case 350000:
-      //               for (var i = deptos.length -1 ; i >= 0; i--) {
-
-
-      //                 if(deptos[i].priceTotal  < 350000 ) {
-
-      //                   deptos.splice (i,1)
-
-      //                 }
-
-      //               }
-
-      //           break;
-      //         }
-      //       }
-      //      }
-
-
-        // this.sDepartments = deptos
-        // return this.sortedArray
-
       },
+
     },
       watch : {
         currentAvailability(newVal) {
@@ -469,7 +290,7 @@
 
 </script>
 
-<style  lang="scss">
+<style lang="scss">
 
   @import 'node_modules/bootstrap/scss/bootstrap';
   @import 'node_modules/bootstrap-vue/src/index.scss';

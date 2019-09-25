@@ -24,12 +24,12 @@
         <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
           <p style="color: white; margin: 0">{{currentUser.name}}</p>
           <li class="dropdown-divider"></li>
-          <router-link to="/">Home</router-link>
+          <router-link to="/">Inicio</router-link>
           <!-- <a href="/">Home</a> -->
           <li class="dropdown-divider"></li>
-          <router-link v-if="isAdmin" to="/admin/users">Users</router-link>
+          <router-link v-if="isAdmin" to="/admin/users">Usuarios</router-link>
           <li v-if="isAdmin" class="dropdown-divider"></li>
-          <a href="/logout"><b>Log out</b></a>
+          <a href="/logout"><b>Salir</b></a>
           </span>
 
         </ul>

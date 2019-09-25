@@ -1,6 +1,5 @@
 <template>
   <div class="app-container container has-navbar-fixed-top">
-      <!-- <div class="columns is-multiline"> -->
 
       <!-- Buttons / Search -->
       <div class="buttons has-addons is-right">
@@ -13,21 +12,15 @@
 
         <!-- header -->
         <div class="columns is-mobile" style="background: #2c36426b; border-radius: 6px;">
-          <div class="column is-4"><p class="table-head-color" style="font-weight: 600;">Name</p></div>
-          <div class="column is-4"><p class="table-head-color" style="font-weight: 600;">Email</p></div>
-          <div class="column is-4"><p class="table-head-color" style="text-align: center; font-weight: 600;">Type</p></div>
+          <div class="column is-4"><p class="table-head-color" style="font-weight: 600;">Nombre</p></div>
+          <div class="column is-4"><p class="table-head-color" style="font-weight: 600;">Correo</p></div>
+          <div class="column is-4"><p class="table-head-color" style="text-align: center; font-weight: 600;">Tipo</p></div>
         </div>
 
         <div v-for="u in users" :key="u.id" class="columns is-mobile is-multiline">
           <div class="column is-4">{{u.name}}</div>
           <div class="column is-4 parent-overflow"><p class="">{{u.email}}</p></div>
           <div class="column is-4 has-text-centered"><span :class="`tag ${tagColor(u)}`">{{u.type}}</span></div>
-            <!-- <span v-on:click="toggleEditUser(u)" class="icon has-text-info has-text-grey">
-            <i class="fas fa-edit fa-lg"></i>
-            </span>
-            <span v-on:click="deleteUser(u.id)" class="icon has-text-info has-text-grey">
-            <i class="fas fa-eraser fa-lg"></i>
-            </span> -->
         </div>
       </div>
 
@@ -36,30 +29,18 @@
           <a v-on:click="nextPage" class="pagination-next">Siguiente</a>
         </div>
 
-        <!-- <div v-if="chunkedUsers.length > 1">
-          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-            <a v-on:click="prevPage" class="pagination-previous">Previous</a>
-            <a v-on:click="nextPage" class="pagination-next">Next page</a>
-            <ul class="pagination-list">
-              <li v-for="n in pages" :key="n" v-on:click="goToPage(n)">
-                <a :class="pageClass(n)" aria-label="Goto page 1">{{n+1}}</a>
-              </li>
-            </ul>
-          </nav>
-        </div> -->
-
       <!-- CREATE -->
       <div v-if="isCreating">
         <div class="columns is-centered is-mobile">
           <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: rgb(60, 72, 87); color: rgb(255, 255, 255);">
             <!-- <div class="container padding-15 padding-correction "> -->
-              <h1 class="titleFixed is-1 is-spaced" style="font-size:40px; font-weight: 600; margin-bottom: 18px;">New User</h1>
-              <h2 class="subtitle is-4" style="color: rgb(255, 255, 255); font-size: 20px;">Fill out all the fields to add a new user.</h2>
+              <h1 class="titleFixed is-1 is-spaced" style="font-size:40px; font-weight: 600; margin-bottom: 18px;">Usuario Nuevo</h1>
+              <h2 class="subtitle is-4" style="color: rgb(255, 255, 255); font-size: 20px;">Llena todos los campos.</h2>
               <form autocomplete="off" id="new-user-form">
                 <!-- <div class="columns is-multiline"> -->
                   <!-- <div class="column is-half-tablet"> -->
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Fullname</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Nombre Completo</label>
                       <div class="control">
                         <input class="input" v-bind:style="[$v.fullname.$model !== null ? $v.fullname.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="fullname" type="text" name="name" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
@@ -67,31 +48,31 @@
                   <!-- </div> -->
                   <!-- <div class="column is-half-tablet"> -->
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Email</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Correo Electrónico</label>
                       <div class="control">
                         <input class="input" v-bind:style="[$v.email.$model !== null ? $v.email.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="email" type="email" name="email" placeholder="ejemplo@altozano.com.mx" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Age</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Edad</label>
                       <div class="control">
                         <input class="input" v-bind:style="[$v.age.$model !== null ? $v.age.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="age" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Phone Number</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Tel.</label>
                       <div class="control">
                         <input class="input" type="tel" v-bind:style="[$v.tel.$model !== null ? $v.tel.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="tel" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Password</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Contraseña</label>
                       <div class="control">
                         <input v-model="password" class="input" v-bind:style="[$v.password.$model !== '' ? $v.password.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  type="password" name="password" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" placeholder="" required>
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Confirm Password</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Confirmar Contraseña</label>
                       <div class="control">
                         <input v-bind:style="[$v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="password2" class="input" type="password" placeholder="" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
@@ -100,13 +81,12 @@
 
                   <!-- <div class="column is-half-tablet"> -->
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255);">Type</label>
+                      <label class="label" style="color: rgb(255, 255, 255);">Tipo de Usuario</label>
                       <div class="control">
                         <div class="select">
                           <select name="type" style="background: #2a333c; border: 1px solid rgb(74, 88, 105); color: white; font-size: 15px;">
-                            <option value="A">Admin</option>
-                            <option value="V">Sales Assistant</option>
-                            <option value="P">Interactive Screen</option>
+                            <option value="A">Administrador</option>
+                            <option value="V">Ejecutivo</option>
                           </select>
                         </div>
                       </div>
@@ -116,14 +96,12 @@
 
               <div class="buttons" style="margin-top: 32px;">
                 <button v-on:click="toggleUserUI()" class="button is-light button-width">
-                  Cancel
+                  Cancelar
                 </button>
-                <button class="button is-success" style="background: #17a2b8 !important;" :disabled="createDisabled">Add User</button>
-                <!-- <button class="button is-success button-width" :disabled="createDisabled">Add User</button> -->
+                <button class="button is-success" style="background: #17a2b8 !important;" :disabled="createDisabled">Añadir Usuario</button>
               </div>
               </form>
               <br>
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -175,14 +153,6 @@
                   </div>
                 </form>
                 <br>
-                <!-- <div class="buttons">
-                  <button class="button is-light button-width">Cancelar</button>
-                  <button
-                    v-on:click="createUser()"
-                    class="button is-success button-width" :disabled="createDisabled">Crear</button>
-                </div> -->
-
-              <!-- </div> -->
             </div>
           </div>
       </div>
