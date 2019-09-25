@@ -134,13 +134,34 @@ export default {
           document.getElementById("main-cards").style.opacity = "1";
           document.body.style.cursor = "auto";
           if (error.status === 401) {
-            swal("Correo o contraseña incorrecta.");
+            swal({
+              title: "Correo o contraseña incorrecta.",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
             self.logMessage = "Iniciar sesión"
           } else if (error.status === 400) {
-            swal("Correo o contraseña incorrecta.");
+            swal({
+              title: "Correo o contraseña incorrecta.",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
             self.logMessage = "Iniciar sesión"
           } else {
-            swal("Unexpected error, please try again later.");
+            swal({
+              title: "Error inesperado",
+              text: "Por favor intentelo nuevamente.",
+              icon: "warning",
+              buttons: {
+                confirm: true
+                }
+              })
             self.logMessage = "Iniciar sesión"
           }
         }
