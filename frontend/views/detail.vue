@@ -1,5 +1,10 @@
 <template>
   <div class="main-tables-container animate" id="main-tables-container">
+    <div class="loading" v-if="loading" style="color:white;position:fixed;left:0;top:0;right:0;bottom:0;display: flex;align-items: center;justify-content: center;z-index: 2;background: #2a333c;">
+      <div>
+        <svg width="108px"  height="108px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" stroke="#425061" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(113.895 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
+      </div>
+    </div>
     <div class="col-11"  style="margin-top:80px;">
       <div class="title-header">
         <div style="width:100px;height:100px;margin-left:10px;display:flex;align-items: center;justify-content: center;"></div>
@@ -119,13 +124,14 @@
         clusterId: undefined,
         modelFilter: null,
         blockFilter: null,
-        filteredUnits: []
+        filteredUnits: [],
+        loading:true
       }
     },
 
     methods: {
       ...mapActions("departments", ["nextPage", "prevPage"]),
-      
+
       tableToExcel(){
         var downloadTime = new Date();
         var day = downloadTime.getDate();
@@ -284,6 +290,11 @@
             return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
           }
             return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
+        },
+        filterStages(newVal, oldVal){
+          if(this.loading == true){
+            return this.loading = false
+          }
         }
       },
   }
