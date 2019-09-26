@@ -1,5 +1,5 @@
 <template>
-    <div class="main" style="overflow-x:hidden;">
+    <div class="main" style="overflow-x: hidden; padding-top: 25%;">
           <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
                   <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
           </div>

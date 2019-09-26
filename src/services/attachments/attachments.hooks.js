@@ -1,8 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 // const setAttachment = require('../../hooks/set-attachment-object');
-const AWS = require('aws-sdk');
-AWS.config.loadFromPath('src/aws-config.json');
-const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+// const AWS = require('aws-sdk');
+// AWS.config.loadFromPath('src/aws-config.json');
+// const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
 const isFileValid = fileType => {
     let valid = false;
