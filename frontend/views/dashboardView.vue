@@ -1,17 +1,19 @@
 <template>
-    <div class="main" style="overflow-x:hidden;">
-          <div class="wrapper-page row cards-container" style="background:#2a333c" id="wrapper-page">
-                  <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
-          </div>
-          <nav aria-label="Page navigation" style = "margin-top:20px;">
-            <ul class="pagination pg-blue">
-              <li class="page-item"><a class="page-link" @click="prevPage()"><i class="fas fa-chevron-left"></i></a></li>
-              <li class="page-item pages">{{pageNumber + 1 }} / 2 </li>
-              <li class="page-item"><a class="page-link" @click="nextPage()"><i class="fas fa-chevron-right"></i></a></li>
-            </ul>
-          </nav>
-    </div>
-
+  <div>
+    <div class="bar" style="width: 100%; height: 70px; position: relative;"></div>
+      <div class="main" style="overflow-x: hidden;position: relative;">
+            <div class="wrapper-page row cards-container" style="background:#2a333c; position: relative;" id="wrapper-page">
+                    <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
+            </div>
+            <nav aria-label="Page navigation" style = "margin-top:20px;">
+              <ul class="pagination pg-blue">
+                <li class="page-item"><a class="page-link" @click="prevPage()"><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item pages">{{pageNumber + 1 }} / 2 </li>
+                <li class="page-item"><a class="page-link" @click="nextPage()"><i class="fas fa-chevron-right"></i></a></li>
+              </ul>
+            </nav>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -270,11 +272,11 @@ body {
   max-width:1500px;
 }
 
-@media screen and (max-width: 1199px) and (min-width: 1000px){
-  .wrapper-page {
-    padding-top: 24vw!important;
-    }
-}
+// @media screen and (max-width: 1199px) and (min-width: 1000px){
+//   .wrapper-page {
+//     padding-top: 24vw!important;
+//     }
+// }
 
 .pages {
   color: white;
@@ -335,34 +337,34 @@ body {
     }
 }
 
-@media (min-width: 768px) {
-  .main {
-    height: 100vh;
-    }
-  }
+// @media (min-width: 768px) {
+//   .main {
+//     height: 100vh;
+//     }
+//   }
 
-@media (max-width: 576px) {
-  .wrapper-page .row  {
-    padding-top: 60px!important;
-  }
-}
+// @media (max-width: 576px) {
+//   .wrapper-page .row  {
+//     padding-top: 60px!important;
+//   }
+// }
 
- @media screen and (min-width:768px) and (max-width:992px) {
-    .cards-container {
-      margin-top: 57px;
-      overflow-y: auto;
-    }
-  }
+//  @media screen and (min-width:768px) and (max-width:992px) {
+//     .cards-container {
+//       margin-top: 57px;
+//       overflow-y: auto;
+//     }
+//   }
 
- @media screen and (min-width:1000px) and (max-width:1199px) {
-    .wrapper-page {
-      padding-top:30vw;
-    }
-  }
+//  @media screen and (min-width:1000px) and (max-width:1199px) {
+//     .wrapper-page {
+//       padding-top:30vw;
+//     }
+//   }
 
-@media screen and (max-width:768px) {
-  .wrapper-page{
-    padding-top:56px;
-  }
-}
+// @media screen and (max-width:768px) {
+//   .wrapper-page{
+//     padding-top:56px;
+//   }
+// }
 </style>
