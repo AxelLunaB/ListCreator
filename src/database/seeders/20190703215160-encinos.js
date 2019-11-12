@@ -18,6 +18,7 @@ module.exports = {
           m2Terrain:data[5] != 'null' ? data[5] : null,
           suburb:data[6] != 'null' ? data[6] : null,
           m2Construction:data[7] != 'null' ? data[7] : null,
+          statusId:data[8] != 'null' ? data[8] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         });

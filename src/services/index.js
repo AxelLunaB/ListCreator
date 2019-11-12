@@ -29,7 +29,7 @@ module.exports = function (app) {
   // app.configure(departmentsHistorics);
   // app.configure(mailer);
   app.configure(authmanagement);
-  // app.configure(status);
+  app.configure(status);
   // app.configure(clusters);
   // app.configure(countByCluster);
   // app.configure(credix);

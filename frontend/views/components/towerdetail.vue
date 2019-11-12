@@ -1,6 +1,11 @@
 <template>
 <div v-if="shouldShow === true" id="fadeOutAnimation">
   <div class="container-fluid cards-detail" v-bind:class="{ active: show}" id="container-fluid">
+    <div v-if="loading" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;z-index: 2;display: flex;align-items: center;justify-content: center;">
+      <div>
+        <svg width="108px"  height="108px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" stroke="#2a333c" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(113.895 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
+      </div>
+    </div>
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
@@ -8,7 +13,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad #{{ detailTable ? detailTable.unit : ''}}</span></h4>
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad #{{ detailTable ? detailTable[0].unit : ''}}</span></h4>
                 <div class="row fullh">
                     <div class="col-12" style="display: flex;align-items: center;">
                         <table class="table table-hover table-modifier medh">
@@ -34,6 +39,18 @@
                             <tr>
                                 <td class="textalign">m<sup>2</sup> Terreno</td>
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="textalign">Status</td>
+                                <td class="text-right" style="padding-top:10px;">
+                                  <select id="myList" v-on:change="status($event)">
+                                    <option v-bind:style="{color: detailTable[1][1]}">{{detailTable[1][0]}}</option>
+                                    <option value = "1" style="color:#35ce41;" v-if="detailTable[0].statusId != 1">DISPONIBLE</option>
+                                    <option value = "2" style="color:#cd110f;" v-if="detailTable[0].statusId != 2">VENDIDO</option>
+                                    <option value = "3" style="color:#e89005;" v-if="detailTable[0].statusId != 3">APARTADO</option>
+                                    <option value = "4" style="color:#f5e02a;" v-if="detailTable[0].statusId != 4">BLOQUEADO</option>
+                                  </select>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -137,8 +154,12 @@ export default {
     return {
       mywidth: 200,
       files: [],
+      selectedExec:null,
+      stateIndex:null,
       selectedLabel: '',
+      userModal:false,
       myheight: 200,
+      loading:false,
       show: false,
       isActive: true,
       detailTable: {},
@@ -225,7 +246,67 @@ export default {
     toPrice(x) {
       var r = x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
       return r;
-    }
+    },
+
+      status: function status(event) {
+        this.selectedExec = null;
+        this.stateIndex  = event.target[event.target.selectedIndex].label;
+
+          swal({
+            title: 'Confirmar estatus.',
+            text: `¿Cambiar estatus a ${this.stateIndex} ?`,
+            icon: "info",
+            buttons:{
+              cancel:true,
+              confirm:true,
+            }
+          })
+          .then(isConfirm => {
+            if(isConfirm){
+              const self = this;
+              const unitId = this.detailTable[0].id
+              const currentStatus = this.detailTable.statusId;
+              const statusId = parseInt(document.getElementById("myList").value);
+              const newStatus = {
+                unitId: unitId,
+                statusId: statusId,
+              };
+
+              // let open = true;
+              // this.$eventHub.$emit("modal-bar", open);
+              document.body.style.cursor = "wait";
+              this.loading = true;
+
+              this.$store.dispatch('departments/updateStatus', newStatus).then(updated => {
+                if(updated){
+                  document.body.style.cursor = "auto";
+                  this.loading = false;
+                  // this.$eventHub.$emit("modal-bar", this.loading);
+
+
+                      let stageName = this.detailTable[0].stage;
+                      this.$store.dispatch("others/fetchUnitsByStage", stageName);
+
+                  swal({
+                    title:'Unidad actualizada',
+                    text:'Unidad #' + self.detailTable[0].unit + ' esta ' + this.stateIndex,
+                    icon:'success'
+                  })
+
+                  if(document.getElementById("myList")){
+                    document.getElementById('myList').selectedIndex = 0;
+                    }
+
+                  }
+              });
+            }
+
+              if(document.getElementById("myList")){
+                      document.getElementById('myList').selectedIndex = 0;
+                      }
+          })
+
+      },
 
   },
 

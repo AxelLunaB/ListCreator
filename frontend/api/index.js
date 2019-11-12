@@ -105,8 +105,9 @@ const patchDepartments = (department) => {
 /* CONTRACTS */
 
 const updateUnitStat = (newStatus) => {
+  console.log(newStatus);
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/departments', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
+    socket.emit('patch', 'encinos', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
       if (error) {
         reject(error);
       } else {
