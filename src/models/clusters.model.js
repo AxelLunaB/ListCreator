@@ -6,7 +6,7 @@ module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
   const clusters = sequelizeClient.define('clusters', {
     name: { type: DataTypes.STRING, allowNull: false },
-    code: { type: DataTypes.INTEGER, allowNull: false },
+    code: { type: DataTypes.STRING, allowNull: false },
     abb: { type: DataTypes.STRING, allowNull: false}
   }, {
       hooks: {

@@ -8,6 +8,7 @@ const customers= (state) => state.customers;
 const getReferences= (state) => state.references;
 const encinosUnits = (state) => state.encinos;
 const encinosUnitsByStage = (state) => state.encinosByStage;
+const unitsInfo = (state) => state.unitsInfo;
 
 export default {
   clusters,
@@ -19,5 +20,6 @@ export default {
   customers,
   getReferences,
   encinosUnits,
-  encinosUnitsByStage
+  encinosUnitsByStage,
+  unitsInfo
 };

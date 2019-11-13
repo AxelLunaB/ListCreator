@@ -46,6 +46,22 @@
                                 <td>Modelo M4I</td>
                                 <td><b>{{ stage ? stage.M4I : '-' }}</b></td>
                             </tr>
+                            <tr>
+                                <td>Disponible</td>
+                                <td style="color:#35CE41"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(1) : this.unitsInfo }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Vendido</td>
+                                <td style="color:#CD110F"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(2) : this.unitsInfo }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Apartado</td>
+                                <td style="color:#E89005"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(3) : this.unitsInfo }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Bloqueado</td>
+                                <td style="color:#F5E02A"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(4) : this.unitsInfo }}</b></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -57,8 +73,26 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
 export default {
+  mounted: function () {
+      // logic
+      var isAuthenticated = this.$store.state.others.isAuthenticated;
+      if (isAuthenticated) {
+        // Dispatch actions &&  subscribe to rt events.
+        this.$store.dispatch("others/fetchUnitsInfo");
+
+        // listen to authenticated event
+      } else {
+        const _ = this;
+
+        this.$eventHub.$on("authenticated", function() {
+          _.$store.dispatch("others/fetchUnitsInfo");
+
+        });
+      }
+  },
   props:['stage'],
   data(){
     return {
@@ -76,9 +110,29 @@ export default {
       this.$eventHub.$emit("select-tower", stageName);
     },
 
+    getStatus(cluster){
+      switch(cluster){
+        case 1:
+          return this.unitsInfo[this.stage.stage].DISPONIBLE;
+          break;
+        case 2:
+          return this.unitsInfo[this.stage.stage].VENDIDO;
+          break;
+        case 3:
+          return this.unitsInfo[this.stage.stage].APARTADO;
+          break;
+        case 4:
+          return this.unitsInfo[this.stage.stage].BLOQUEADO;
+          break;
+      }
+    }
+
   },
 
   computed: {
+      ...mapGetters({
+        unitsInfo: "others/unitsInfo"
+      }),
     getDepsP(){
 
       if(this.tower !== undefined){

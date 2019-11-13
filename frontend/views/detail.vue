@@ -25,7 +25,7 @@
                       <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>AREA M<sup>2</sup> TERRENO</b></td>
                       <td class="header-t" style="text-align:center;vertical-align:middle;"><b>MANZANA</b></td>
                       <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b> AREA CONST. M<sup>2</sup></b></td>
-                      <td class="header-t mobile" style="text-align:center;vertical-align:middle"><b> STATUS </b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle"><b> ESTATUS </b></td>
                   </tr>
                   </tbody>
               </table>

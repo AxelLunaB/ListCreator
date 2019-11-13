@@ -27,23 +27,23 @@ export default {
   components: {
     development
   },
-  mounted: function () {
-      // logic
-      var isAuthenticated = this.$store.state.others.isAuthenticated;
-      if (isAuthenticated) {
-        // Dispatch actions &&  subscribe to rt events.
-        this.$store.dispatch("others/fetchUnitsInfo");
+  // mounted: function () {
+  //     // logic
+  //     var isAuthenticated = this.$store.state.others.isAuthenticated;
+  //     if (isAuthenticated) {
+  //       // Dispatch actions &&  subscribe to rt events.
+  //       this.$store.dispatch("others/fetchUnitsInfo");
 
-        // listen to authenticated event
-      } else {
-        const _ = this;
+  //       // listen to authenticated event
+  //     } else {
+  //       const _ = this;
 
-        this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("others/fetchUnitsInfo");
+  //       this.$eventHub.$on("authenticated", function() {
+  //         _.$store.dispatch("others/fetchUnitsInfo");
 
-        });
-      }
-  },
+  //       });
+  //     }
+  // },
   data() {
     return {
       stages:[
@@ -109,9 +109,9 @@ export default {
 
   },
   computed:{
-      // ...mapGetters({
-      //   fetchUnitsByStage: "others/encinosUnitsByStage"
-      // }),
+      ...mapGetters({
+        unitsInfo: "others/unitsInfo"
+      }),
     paginatedData(){
       const start = this.pageNumber * this.pageCount
       const end = start + this.pageCount;

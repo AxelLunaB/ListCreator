@@ -19,6 +19,7 @@ module.exports = {
           suburb:data[6] != 'null' ? data[6] : null,
           m2Construction:data[7] != 'null' ? data[7] : null,
           statusId:data[8] != 'null' ? data[8] : null,
+          clusterId:data[9] != 'null' ? data[9] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         });
