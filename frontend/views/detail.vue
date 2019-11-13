@@ -125,6 +125,7 @@
         clusterId: undefined,
         modelFilter: null,
         blockFilter: null,
+        statusFilter:null,
         filteredUnits: [],
         loading:true
       }
@@ -264,9 +265,10 @@
        // Update filter data to use Watch
        this.modelFilter = this.specialSort[0].value;
        this.blockFilter = this.specialSort[2].value;
+       this.statusFilter = this.specialSort[1].value;
 
        // Return every unit that belongs to the stage
-       if(this.modelFilter === null && this.blockFilter === null) {
+       if(this.modelFilter === null && this.blockFilter === null && this.statusFilter === null) {
          return this.encinosByStage.data;
        } else {
         return this.filteredUnits;
@@ -280,18 +282,27 @@
         },
 
         modelFilter: function(newVal, oldVal) {
-          if(this.blockFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.blockFilter !== null && this.statusFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
           return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === newVal);
         },
 
         blockFilter: function(newVal, oldVal) {
-          if(this.modelFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.modelFilter !== null && this.statusFilter != null) {
+            return this.filteredUnits = this.encinosByStage.data.
+            filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
             return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
         },
+
+        statusFilter: function(newVal, oldVal) {
+          if(this.modelFilter !== null && this.blockFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
+          }
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.statusId === newVal);
+        },
+
         filterStages(newVal, oldVal){
           if(this.loading == true){
             return this.loading = false

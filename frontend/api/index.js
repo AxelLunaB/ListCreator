@@ -481,6 +481,98 @@ const getUnitsByStage = (stage) => {
   });
 };
 
+const getUnitsInfo = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/encinos', (error, data) => {
+      if(error){
+        reject(error);
+      } else {
+        let stageInfo = [];
+
+        let stages = {}
+        data.data.forEach(function(u){
+          stageInfo.includes(u.stage) ? stageInfo : stageInfo.push(u.stage);
+        });
+
+        for(let i = 0 ; i < stageInfo.length; i++){
+          let m1d = []; let m1i = []; let m2d = [];let m2i = [];
+          let m3d = []; let m3i = [];let m4d = [];let m4i = [];
+          let vendido = []; let apartado =[]; let bloqueado = []; let disponible = [];
+
+          stages[stageInfo[i]];
+
+          for(let o = 0 ; o < data.data.length; o++){
+            if(data.data[o].houseModel === "M1D" && data.data[o].stage === stageInfo[i])
+            m1d.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M1I" && data.data[o].stage === stageInfo[i])
+            m1i.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M2D" && data.data[o].stage === stageInfo[i])
+            m2d.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M2I" && data.data[o].stage === stageInfo[i])
+            m2i.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M3D" && data.data[o].stage === stageInfo[i])
+            m3d.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M3I" && data.data[o].stage === stageInfo[i])
+            m3i.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M4D" && data.data[o].stage === stageInfo[i])
+            m4d.push(data.data[o]);
+
+            if(data.data[o].houseModel === "M4I" && data.data[o].stage === stageInfo[i])
+            m4i.push(data.data[o]);
+
+            if(data.data[o].statusId === 1 && data.data[o].stage === stageInfo[i])
+            disponible.push(data.data[o]);
+
+            if(data.data[o].statusId === 2 && data.data[o].stage === stageInfo[i])
+            vendido.push(data.data[o]);
+
+            if(data.data[o].statusId === 3 && data.data[o].stage === stageInfo[i])
+            apartado.push(data.data[o]);
+
+            if(data.data[o].statusId === 4 && data.data[o].stage === stageInfo[i])
+            bloqueado.push(data.data[o]);
+          }
+
+          stages[stageInfo[i]] = {
+            "M1D":m1d.length,
+            "M1I":m1i.length,
+            "M2D":m2d.length,
+            "M2I":m2i.length,
+            "M3D":m3d.length,
+            "M3I":m3i.length,
+            "M4D":m4d.length,
+            "M4I":m4i.length,
+            "APARTADO":apartado.length,
+            "VENDIDO":vendido.length,
+            "BLOQUEADO":bloqueado.length,
+            "DISPONIBLE":disponible.length
+          }
+        }
+
+        resolve(stages);
+
+      }
+    });
+  });
+};
+
+/*let units = {
+  '4':{
+    'M1D':12,
+    'M1L':8
+  },
+  '5:{
+    'M1D':12,
+    'M2L':1
+  }
+}*/
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -525,5 +617,6 @@ export {
   getS3Signature,
   //
   getUnits,
-  getUnitsByStage
+  getUnitsByStage,
+  getUnitsInfo
 }

@@ -30,7 +30,7 @@ module.exports = function (app) {
   // app.configure(mailer);
   app.configure(authmanagement);
   app.configure(status);
-  // app.configure(clusters);
+  app.configure(clusters);
   // app.configure(countByCluster);
   // app.configure(credix);
   // app.configure(paymentsDetails);
