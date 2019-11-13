@@ -28,7 +28,7 @@ const state = {
       value: null
     },
     {
-      id: 'level',
+      id: 'status',
       value: null
     },
     {

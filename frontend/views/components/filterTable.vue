@@ -20,6 +20,19 @@
               </div>
 
             <div class="dropdown-container">
+              <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Estatus</button>
+              <span class="dropdown">
+                <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
+                    <input type="checkbox" class="checkboxes">
+                    <ul id="dropdown3" style = "height: 131px;">
+                      <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(1,item.status)">
+                        <p> {{ item.status }} </p>
+                      </li>
+                    </ul>
+              </span>
+              </div>
+
+            <div class="dropdown-container">
               <button class="btn-buy" @click="setFilterAs('suburb')" value="suburb" id="name">Manzana</button>
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
@@ -34,7 +47,7 @@
           </div>
         </div>
 
-        <p style='font-size:1.2rem;'><span v-if="filters0">Modelo {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{filters1}} Price range </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; Manzana {{filters2}} </span></p>
+        <p style='font-size:1.2rem;'><span v-if="filters0">Modelo {{filters0}} </span><span v-if="filters1"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; Estatus {{filters1}} </span><span v-if="filters2"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp; Manzana {{filters2}} </span></p>
         </div>
         </div>
 </template>
@@ -58,13 +71,12 @@ export default {
         {level:'M4D',value:'M4D', id:'houseModel'},
         {level:'M4I',value:'M4I', id:'houseModel'}
       ],
-      // price:[
-      //   {cost: '< $199,999.00', value: 100000, id:'priceTotal'},
-      //   {cost: '$200,000.00 - $249,999.00', value: 200000, id:'priceTotal'},
-      //   {cost: '$250,000.00 - $299,999.00', value: 250000, id:'priceTotal'},
-      //   {cost: '$300,000.00 - $349,999.00', value: 300000, id:'priceTotal'},
-      //   {cost: '> $350,000.00', value: 350000, id:'priceTotal'}
-      // ],
+      price:[
+        {status: 'DISPONIBLE', value: 1, id:'status'},
+        {status: 'VENDIDO', value: 2, id:'status'},
+        {status: 'APARTADO', value: 3, id:'status'},
+        {status: 'BLOQUEADO', value: 4, id:'status'}
+      ],
       status:[
         {stat: 'A', value:'A', id:'block'},
         {stat: 'B', value:'B', id:'block'},

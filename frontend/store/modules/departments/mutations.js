@@ -53,6 +53,7 @@ const REMOVE_FILTER = (state, payload) => {
 
 const SPECIAL_FILTER = (state, payload) => {
   state.specialFilter.forEach (filter => {
+    console.log(payload.id);
     if (payload.id === filter.id) {
       if (payload.value !== filter.value) {
         filter.value = payload.value
