@@ -1,3 +1,4 @@
+const togglePagination = require('../../hooks/toggle-pagination');
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
 module.exports = {
