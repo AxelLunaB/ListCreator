@@ -3,7 +3,7 @@
     <div class="bar" style="width: 100%; height: 70px; position: relative;"></div>
       <div class="main" style="overflow-x: hidden;position: relative;">
             <div class="wrapper-page row cards-container" style="background:#2a333c; position: relative;" id="wrapper-page">
-                    <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" ></development>
+                    <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" :unit="unitsInfo[stage.stage]" ></development>
             </div>
             <nav aria-label="Page navigation" style = "margin-top:20px;">
               <ul class="pagination pg-blue">

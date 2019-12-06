@@ -12,7 +12,7 @@
                             <tbody class="colors-main">
                             <tr>
                                 <td><b>Unidades</b></td>
-                                <td><b>{{ stage ? stage.units : '-' }}</b></td>
+                                <td><b>{{ unit ? unit.TOTAL : '-' }}</b></td>
                             </tr>
                             <tr>
                                 <td>Modelo M1D</td>
@@ -93,7 +93,7 @@ export default {
         });
       }
   },
-  props:['stage'],
+  props:['stage','unit'],
   data(){
     return {
       isActive: true,

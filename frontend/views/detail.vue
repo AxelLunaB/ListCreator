@@ -225,6 +225,7 @@
            }
 
          return cData
+
          },
 
       sortedArray() {
