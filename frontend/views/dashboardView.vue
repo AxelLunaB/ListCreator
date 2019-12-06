@@ -48,8 +48,8 @@ export default {
     return {
       stages:[
         {stage:'1-A',units:12,M4D:3,M4I:2,M3D:2,M3I:2,M2D:0,M2I:1,M1D:1,M1I:1},
-        {stage:'1-B',units:18,M4D:1,M4I:1,M3D:2,M3I:2,M2D:3,M2I:3,M1D:3,M1I:3},
-        {stage:'2',units:34,M4D:4,M4I:4,M3D:4,M3I:6,M2D:3,M2I:4,M1D:6,M1I:3},
+        {stage:'1-B',units:17,M4D:1,M4I:1,M3D:2,M3I:2,M2D:3,M2I:3,M1D:3,M1I:3},
+        {stage:'2',units:35,M4D:4,M4I:4,M3D:4,M3I:6,M2D:3,M2I:4,M1D:6,M1I:3},
         {stage:'3',units:54,M4D:4,M4I:4,M3D:2,M3I:4,M2D:8,M2I:8,M1D:12,M1I:12},
         {stage:'4',units:53,M4D:7,M4I:8,M3D:5,M3I:7,M2D:7,M2I:7,M1D:6,M1I:6,},
         {stage:'5',units:53,M4D:6,M4I:6,M3D:4,M3I:5,M2D:6,M2I:6,M1D:10,M1I:10},
