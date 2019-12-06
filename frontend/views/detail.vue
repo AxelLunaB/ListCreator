@@ -269,7 +269,25 @@
 
        // Return every unit that belongs to the stage
        if(this.modelFilter === null && this.blockFilter === null && this.statusFilter === null) {
+
+        // sorty units to fix bug where if you changed the status of an unit it will push that unit to the end of
+        // the array
+
+        if(Array.isArray(this.encinosByStage.data)){
+          this.encinosByStage.data.sort(function (a, b) {
+            if (a.unit > b.unit) {
+              return 1;
+            }
+            if (a.unit < b.unit) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+
          return this.encinosByStage.data;
+        }
        } else {
         return this.filteredUnits;
        }
