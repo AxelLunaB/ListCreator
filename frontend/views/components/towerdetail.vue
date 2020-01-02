@@ -22,29 +22,29 @@
                             <tbody>
                             <tr>
                                 <td class="textalign">Manzana</td>
-                                <td class="text-right">{{ detailTable ? detailTable.suburb : '' }}</td>
+                                <td class="text-right">{{ detailTable[0] ? detailTable[0].suburb : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Etapa</td>
-                                <td class="text-right">{{ detailTable ? detailTable.stage : '' }}</td>
+                                <td class="text-right">{{ detailTable[0] ? detailTable[0].stage : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Modelo</td>
-                                <td class="text-right">{{ detailTable ? detailTable.houseModel : ''}}</td>
+                                <td class="text-right">{{ detailTable[0] ? detailTable[0].houseModel : ''}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">m<sup>2</sup> Construcción</td>
-                                <td class="text-right"> {{ detailTable ? detailTable.m2Construction : ''}} </td>
+                                <td class="text-right"> {{ detailTable[0] ? detailTable[0].m2Construction : ''}} </td>
                             </tr>
                             <tr>
                                 <td class="textalign">m<sup>2</sup> Terreno</td>
-                                <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
+                                <td class="text-right"> {{ detailTable[0] ? detailTable[0].m2Terrain : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
                                   <select id="myList" v-on:change="status($event)">
-                                    <option v-bind:style="{color: detailTable[1][1]}">{{detailTable[1][0]}}</option>
+                                    <option v-bind:style="{color: detailTable[1][1]}">{{currentState}}</option>
                                     <option value = "1" style="color:#35ce41;" v-if="detailTable[0].statusId != 1">DISPONIBLE</option>
                                     <option value = "2" style="color:#cd110f;" v-if="detailTable[0].statusId != 2">VENDIDO</option>
                                     <option value = "3" style="color:#e89005;" v-if="detailTable[0].statusId != 3">APARTADO</option>
@@ -153,6 +153,7 @@ export default {
   data() {
     return {
       mywidth: 200,
+      currentState: '',
       files: [],
       selectedExec:null,
       stateIndex:null,

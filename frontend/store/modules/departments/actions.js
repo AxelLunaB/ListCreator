@@ -123,7 +123,7 @@ const removeSpecialFilter = (context, payload) => {
 };
 
 const listenEvents = ({ dispatch, commit }) => {
-  //console.log('listen...');
+  console.log('listen...');
   socket.on('api/departments patched', function (message) {
     commit('DEPARTMENT_UPDATED', message);
   });
