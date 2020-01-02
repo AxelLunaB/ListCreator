@@ -25,6 +25,7 @@
                       <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>AREA M<sup>2</sup> TERRENO</b></td>
                       <td class="header-t" style="text-align:center;vertical-align:middle;"><b>MANZANA</b></td>
                       <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b> AREA CONST. M<sup>2</sup></b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle"><b> ESTATUS </b></td>
                   </tr>
                   </tbody>
               </table>
@@ -124,6 +125,7 @@
         clusterId: undefined,
         modelFilter: null,
         blockFilter: null,
+        statusFilter:null,
         filteredUnits: [],
         loading:true
       }
@@ -223,6 +225,7 @@
            }
 
          return cData
+
          },
 
       sortedArray() {
@@ -263,10 +266,29 @@
        // Update filter data to use Watch
        this.modelFilter = this.specialSort[0].value;
        this.blockFilter = this.specialSort[2].value;
+       this.statusFilter = this.specialSort[1].value;
 
        // Return every unit that belongs to the stage
-       if(this.modelFilter === null && this.blockFilter === null) {
+       if(this.modelFilter === null && this.blockFilter === null && this.statusFilter === null) {
+
+        // sorty units to fix bug where if you changed the status of an unit it will push that unit to the end of
+        // the array
+
+        if(Array.isArray(this.encinosByStage.data)){
+          this.encinosByStage.data.sort(function (a, b) {
+            if (a.unit > b.unit) {
+              return 1;
+            }
+            if (a.unit < b.unit) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+
          return this.encinosByStage.data;
+        }
        } else {
         return this.filteredUnits;
        }
@@ -279,18 +301,27 @@
         },
 
         modelFilter: function(newVal, oldVal) {
-          if(this.blockFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.blockFilter !== null && this.statusFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
           return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === newVal);
         },
 
         blockFilter: function(newVal, oldVal) {
-          if(this.modelFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.modelFilter !== null && this.statusFilter != null) {
+            return this.filteredUnits = this.encinosByStage.data.
+            filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
             return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
         },
+
+        statusFilter: function(newVal, oldVal) {
+          if(this.modelFilter !== null && this.blockFilter !== null) {
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
+          }
+            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.statusId === newVal);
+        },
+
         filterStages(newVal, oldVal){
           if(this.loading == true){
             return this.loading = false

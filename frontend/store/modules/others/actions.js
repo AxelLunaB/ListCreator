@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, patchReferences, createNewCustomer, cancelReferences, getUnits, getUnitsByStage } from '@/api';
+import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, patchReferences, createNewCustomer, cancelReferences, getUnits, getUnitsByStage, getUnitsInfo } from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -119,6 +119,17 @@ const fetchUnitsByStage = (context, stage) => {
   });
 };
 
+const fetchUnitsInfo = (context) => {
+  return new Promise((resolve, reject) => {
+    getUnitsInfo().then(res => {
+      context.commit('STAGES_INFO', res);
+      resolve(res);
+    }).catch(error => {
+      reject(error);
+    })
+  })
+}
+
 export default {
   authenticate,
   getClusters,
@@ -132,5 +143,6 @@ export default {
   setNewPatchedReference,
   callCancelReferences,
   fetchAllUnits,
-  fetchUnitsByStage
+  fetchUnitsByStage,
+  fetchUnitsInfo
 };

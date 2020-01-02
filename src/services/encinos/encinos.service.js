@@ -3,7 +3,6 @@ const createService = require('feathers-sequelize');
 const createModel = require('../../models/encinos.model');
 const hooks = require('./encinos.hooks');
 
-//TODO: Validate duplicate entries for email.
 
 module.exports = function (app) {
   const Model = createModel(app);

@@ -105,8 +105,9 @@ const patchDepartments = (department) => {
 /* CONTRACTS */
 
 const updateUnitStat = (newStatus) => {
+  console.log(newStatus);
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/departments', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
+    socket.emit('patch', 'encinos', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
       if (error) {
         reject(error);
       } else {
@@ -480,6 +481,59 @@ const getUnitsByStage = (stage) => {
   });
 };
 
+const getUnitsInfo = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/encinos', (error, data) => {
+      if(error){
+        reject(error);
+      } else {
+        let stageInfo = [];
+
+        let stages = {}
+        data.data.forEach(function(u){
+          stageInfo.includes(u.stage) ? stageInfo : stageInfo.push(u.stage);
+        });
+
+        for(let i = 0 ; i < stageInfo.length; i++){
+
+          let vendido = []; let apartado =[]; let bloqueado = []; let disponible = [];
+
+          stages[stageInfo[i]];
+
+          for(let o = 0 ; o < data.data.length; o++){
+
+            if(data.data[o].statusId === 1 && data.data[o].stage === stageInfo[i])
+            disponible.push(data.data[o]);
+
+            if(data.data[o].statusId === 2 && data.data[o].stage === stageInfo[i])
+            vendido.push(data.data[o]);
+
+            if(data.data[o].statusId === 3 && data.data[o].stage === stageInfo[i])
+            apartado.push(data.data[o]);
+
+            if(data.data[o].statusId === 4 && data.data[o].stage === stageInfo[i])
+            bloqueado.push(data.data[o]);
+          }
+
+          let all = disponible.length + vendido.length + apartado.length + bloqueado.length;
+
+          stages[stageInfo[i]] = {
+            "APARTADO":apartado.length,
+            "VENDIDO":vendido.length,
+            "BLOQUEADO":bloqueado.length,
+            "DISPONIBLE":disponible.length,
+            "TOTAL":all
+          }
+        }
+
+        resolve(stages);
+
+      }
+    });
+  });
+};
+
+
 export {
   authenticateSocket,
   fetchStatus,
@@ -524,5 +578,6 @@ export {
   getS3Signature,
   //
   getUnits,
-  getUnitsByStage
+  getUnitsByStage,
+  getUnitsInfo
 }

@@ -1,16 +1,19 @@
+const togglePagination = require('../../hooks/toggle-pagination');
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
 module.exports = {
     before: {
       all: [authenticate('jwt')],
-      find: [],
+      find: [
+        togglePagination()
+      ],
       get: [],
       create: [],
       update: [],
       patch: [],
       remove: [],
     },
-  
+
     after: {
       all: [],
       find: [],
@@ -20,7 +23,7 @@ module.exports = {
       patch: [],
       remove: []
     },
-  
+
     error: {
       all: [],
       find: [],

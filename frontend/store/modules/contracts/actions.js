@@ -78,7 +78,8 @@ const setFilter = (context, payload) => {
 };
 
 const setSpecialFilter = (context, payload) => {
-
+  console.log('si we');
+  console.log(payload);
   context.commit('SPECIAL_FILTER', payload);
 
 };

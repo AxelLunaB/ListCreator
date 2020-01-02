@@ -13,7 +13,8 @@ const state = {
   customers: [],
   references:[],
   encinos:[],
-  encinosByStage:[]
+  encinosByStage:[],
+  unitsInfo:[]
 };
 
 export default {

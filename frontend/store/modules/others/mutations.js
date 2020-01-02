@@ -39,6 +39,10 @@ const ENCINOS_UNITS_BY_STAGE = (state, stage) => {
   state.encinosByStage = stage;
 }
 
+const STAGES_INFO = (state, stage) => {
+  state.unitsInfo = stage;
+}
+
 export default {
   ADD_BUTTON,
   CLUSTERS_UPDATED,
@@ -50,5 +54,6 @@ export default {
   CUSTOMERS_UPDATED,
   REFERENCES_UPDATED,
   ENCINOS_UNITS,
-  ENCINOS_UNITS_BY_STAGE
+  ENCINOS_UNITS_BY_STAGE,
+  STAGES_INFO
 };

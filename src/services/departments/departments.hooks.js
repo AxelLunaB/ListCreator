@@ -25,13 +25,13 @@ module.exports = {
           }
         ]
       }),
-      context => {
-        if (context.params.query.$sort == undefined) {
-          context.params.query.$sort = {
-            id: 1
-          }
-        }
-      }, togglePagination()
+      // context => {
+      //   if (context.params.query.$sort == undefined) {
+      //     context.params.query.$sort = {
+      //       id: 1
+      //     }
+      //   }
+      // }, togglePagination()
 
     ],
     get: [],

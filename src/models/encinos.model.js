@@ -12,11 +12,12 @@ module.exports = (app) => {
     houseModel: { type: DataTypes.STRING },
     m2Terrain: { type: DataTypes.DOUBLE },
     suburb: { type: DataTypes.STRING },
-    m2Construction: { type: DataTypes.STRING }
+    m2Construction: { type: DataTypes.STRING },
   }, {});
 
   encinos.associate = function(models) {
-
+    encinos.belongsTo(models.status);
+    encinos.belongsTo(models.clusters);
   };
 
   return encinos;

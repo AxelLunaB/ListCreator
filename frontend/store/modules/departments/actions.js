@@ -2,7 +2,6 @@ import { createDepartments, fetchDepartments, patchDepartments, fetchDepartments
 import socket from '@/io';
 
 const updateStatus = (context, newStatus) => {
-  console.log(newStatus);
   return new Promise((resolve, reject) =>{
     updateUnitStat(newStatus)
     .then(res => {
