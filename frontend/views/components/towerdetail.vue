@@ -21,6 +21,10 @@
                             </thead>
                             <tbody>
                             <tr>
+                                <td class="textalign">Precio</td>
+                                <td class="text-right">$ {{ detailTable[0] ? toPrice(detailTable[0].priceTotal) : '' }}</td>
+                            </tr>
+                            <tr>
                                 <td class="textalign">Manzana</td>
                                 <td class="text-right">{{ detailTable[0] ? detailTable[0].suburb : '' }}</td>
                             </tr>
