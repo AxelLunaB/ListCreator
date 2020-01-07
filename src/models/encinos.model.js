@@ -10,6 +10,7 @@ module.exports = (app) => {
     stage: { type: DataTypes.STRING },
     commercialPhase: { type: DataTypes.STRING },
     houseModel: { type: DataTypes.STRING },
+    priceTotal: { type: DataTypes.DOUBLE},
     m2Terrain: { type: DataTypes.DOUBLE },
     suburb: { type: DataTypes.STRING },
     m2Construction: { type: DataTypes.STRING },

@@ -44,7 +44,7 @@
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
                                   <select id="myList" v-on:change="status($event)">
-                                    <option v-bind:style="{color: detailTable[1][1]}">{{currentState}}</option>
+                                    <option v-bind:style="{color: detailTable[1][1]}">{{ stateIndex ? stateIndex : detailTable[1][0] }}</option>
                                     <option value = "1" style="color:#35ce41;" v-if="detailTable[0].statusId != 1">DISPONIBLE</option>
                                     <option value = "2" style="color:#cd110f;" v-if="detailTable[0].statusId != 2">VENDIDO</option>
                                     <option value = "3" style="color:#e89005;" v-if="detailTable[0].statusId != 3">APARTADO</option>
@@ -284,10 +284,6 @@ export default {
                   this.loading = false;
                   // this.$eventHub.$emit("modal-bar", this.loading);
 
-
-                      let stageName = this.detailTable[0].stage;
-                      this.$store.dispatch("others/fetchUnitsByStage", stageName);
-
                   swal({
                     title:'Unidad actualizada',
                     text:'Unidad #' + self.detailTable[0].unit + ' esta ' + this.stateIndex,
@@ -297,6 +293,9 @@ export default {
                   if(document.getElementById("myList")){
                     document.getElementById('myList').selectedIndex = 0;
                     }
+
+                      let stageName = this.detailTable[0].stage;
+                      this.$store.dispatch("others/fetchUnitsByStage", stageName);
 
                   }
               });

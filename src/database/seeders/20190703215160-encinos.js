@@ -15,11 +15,12 @@ module.exports = {
           stage:data[2] != 'null' ? data[2] : null,
           commercialPhase:data[3] != 'null' ? data[3] : null,
           houseModel:data[4] != 'null' ? data[4] : null,
-          m2Terrain:data[5] != 'null' ? data[5] : null,
-          suburb:data[6] != 'null' ? data[6] : null,
-          m2Construction:data[7] != 'null' ? data[7] : null,
-          statusId:data[8] != 'null' ? data[8] : null,
-          clusterId:data[9] != 'null' ? data[9] : null,
+          priceTotal:data[5] != 'null' ? data[5] : null,
+          m2Terrain:data[6] != 'null' ? data[6] : null,
+          suburb:data[7] != 'null' ? data[7] : null,
+          m2Construction:data[8] != 'null' ? data[8] : null,
+          statusId:data[9] != 'null' ? data[9] : null,
+          clusterId:data[10] != 'null' ? data[10] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         });

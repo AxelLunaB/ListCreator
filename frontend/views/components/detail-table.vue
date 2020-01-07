@@ -13,8 +13,8 @@
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"0" }}</td> -->
                 <!-- <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"0" }}</td> -->
                 <!-- <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"0" }}</td>
-                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "0"}}</td>
-                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"0")}}</td> -->
+                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "0"}}</td>-->
+                <td class="xs-mobile">$ {{toPrice(unit.priceTotal != 0 ? unit.priceTotal:"0")}}</td>
                 <td style="text-align:center"><span v-bind:style="{color: getStatus[1]}">{{ getStatus[0] }}</span></td>
             </tr>
             </tbody>
