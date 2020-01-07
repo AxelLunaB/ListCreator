@@ -299,11 +299,12 @@ export default {
 
                   }
               });
-            }
-
+            } else {
+              this.stateIndex = '';
               if(document.getElementById("myList")){
                       document.getElementById('myList').selectedIndex = 0;
                       }
+            }
           })
 
       },
