@@ -111,10 +111,10 @@ export default {
   },
   methods: {
     ...mapActions ({
-      setFilterAs: 'departments/setFilter',
-      setSpecialFilter: 'departments/setSpecialFilter',
-      removeFilter: 'departments/removeSpecialFilter',
-      setPriceFilter:'departments/setPriceFilter'
+      setFilterAs: 'units/setFilter',
+      setSpecialFilter: 'units/setSpecialFilter',
+      removeFilter: 'units/removeSpecialFilter',
+      setPriceFilter:'units/setPriceFilter'
     }),
 
     hideDropdown(i,x){

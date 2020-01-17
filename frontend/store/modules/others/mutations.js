@@ -14,29 +14,19 @@ const CLUSTERS_UPDATED = (state, clusters) => {
   state.clusters = clusters;
 };
 
-const COUNT_HOUESES_UPDATED = (state, count) => {
-  state.countHouses = count;
-}
-const COUNT_LOTS_UPDATED = (state, count) => {
-  state.countLots = count;
-}
-const COUNT_DEPARTMENTS_UPDATED = (state, count) => {
-  state.countDepartments = count;
+const COUNT_UNITS_UPDATED = (state, count) => {
+  state.countUnits = count;
 }
 const CUSTOMERS_UPDATED = (state, customers) => {
   state.customers = customers;
 }
 
-const REFERENCES_UPDATED = (state, references) => {
-  state.references = references;
+const UNITS = (state, units) => {
+  state.units = units;
 }
 
-const ENCINOS_UNITS = (state, units) => {
-  state.encinos = units;
-}
-
-const ENCINOS_UNITS_BY_STAGE = (state, stage) => {
-  state.encinosByStage = stage;
+const UNITS_BY_STAGE = (state, stage) => {
+  state.unitsByStage = stage;
 }
 
 const STAGES_INFO = (state, stage) => {
@@ -48,12 +38,9 @@ export default {
   CLUSTERS_UPDATED,
   IS_AUTHENTICATED,
   STATUS_UPDATED,
-  COUNT_HOUESES_UPDATED,
-  COUNT_LOTS_UPDATED,
-  COUNT_DEPARTMENTS_UPDATED,
+  COUNT_UNITS_UPDATED,
   CUSTOMERS_UPDATED,
-  REFERENCES_UPDATED,
-  ENCINOS_UNITS,
-  ENCINOS_UNITS_BY_STAGE,
+  UNITS,
+  UNITS_BY_STAGE,
   STAGES_INFO
 };

@@ -27,23 +27,7 @@ export default {
   components: {
     development
   },
-  // mounted: function () {
-  //     // logic
-  //     var isAuthenticated = this.$store.state.others.isAuthenticated;
-  //     if (isAuthenticated) {
-  //       // Dispatch actions &&  subscribe to rt events.
-  //       this.$store.dispatch("others/fetchUnitsInfo");
 
-  //       // listen to authenticated event
-  //     } else {
-  //       const _ = this;
-
-  //       this.$eventHub.$on("authenticated", function() {
-  //         _.$store.dispatch("others/fetchUnitsInfo");
-
-  //       });
-  //     }
-  // },
   data() {
     return {
       stages:[

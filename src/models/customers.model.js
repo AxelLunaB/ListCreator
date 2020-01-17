@@ -5,7 +5,8 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
   const customers = sequelizeClient.define('customers', {
-    name: { type: DataTypes.STRING, allowNull: false },
+    fistName: { type: DataTypes.STRING, allowNull: false },
+    lastName: { type: DataTypes.STRING, allowNull: false},
     age: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING},
     contactNumber: { type: DataTypes.STRING, allowNull: false},

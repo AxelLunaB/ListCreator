@@ -8,12 +8,10 @@ const state = {
   hasPlusButton: false,
   status:[],
   clusters: [],
-  countHouses: [],
-  countLots: [],
+  countUnits: [],
   customers: [],
-  references:[],
-  encinos:[],
-  encinosByStage:[],
+  units:[],
+  unitsByStage:[],
   unitsInfo:[]
 };
 
