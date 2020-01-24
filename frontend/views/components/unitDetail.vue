@@ -45,7 +45,7 @@
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
                             <td class="textalign">Ejecutivo</td>
-                                <td class="text-right"><span v-if="this.detailTable.user.type !== 'V'">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
+                                <td class="text-right"><span v-if="this.currentUser.type !== 'V'">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
                             <tr>
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
