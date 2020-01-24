@@ -232,6 +232,23 @@ import { file } from 'babel-types';
 import { log } from 'util';
 import newCustomer from "./newCustomer.vue";
 
+const isFileValid = fileType => {
+  let valid = false;
+
+  switch(fileType) {
+    case 'application/pdf':
+      return valid = true;
+
+    case 'image/jpeg':
+      return valid = true
+
+    case 'image/png':
+      return valid = true
+
+    default:
+      return valid
+  }
+};
 
 export default {
   props:['totalUnits'],
@@ -240,6 +257,7 @@ export default {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details;
       this.show = true;
+      this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
     });
 
     this.$store.dispatch("users/getExecutives");
@@ -268,6 +286,7 @@ export default {
       filterExecutive: null,
       selectedLabel: '',
       userModal:false,
+      urls:{},
       myheight: 200,
       loading:false,
       show: false,
@@ -344,6 +363,314 @@ export default {
   },
 
   methods: {
+
+    editDocument: function(name) {
+      let possibleUpload = false;
+      // Activates delete button only if you're super-admin
+      if(this.currentUser.type === 'A') {
+        this.isVisible = true;
+        possibleUpload = true;
+      }
+
+      // Check if there are attachments
+      if(this.attachmentsByUnit.total === 0) {
+        return;
+      }
+
+      const results = this.attachmentsByUnit.data.filter(attachment => (attachment.docType === name && attachment.unitId === this.detailTable.id));
+
+      if(results.length !== 0) {
+
+        const attachment = results.pop();
+
+        // Sweet Alert UI
+        const container = document.createElement('div');
+        container.innerHTML = `
+        <p><a href="${attachment.url}" target="_blank">Download</a></p>`;
+
+        // Edit Attachment
+        swal({
+          title: `${attachment.docType}`,
+          content: container,
+          icon: 'info',
+          buttons: {
+            close: { text: 'Cerrar', value: null },
+            delete: { text: 'Borrar', value: true, visible: this.isVisible, className: 'delete-button' },
+            reupload: { text: 'Reemplazar', value:'reupload', visible: possibleUpload}
+          }
+        }).then(value => {
+          // Check what button was pressed
+          switch(value) {
+
+            case 'reupload':
+
+       // if the user clicks upload, first we create the content of the swal.
+           const fileInput = document.createElement('input');
+           fileInput.setAttribute('type', 'file');
+           fileInput.setAttribute('name', 'files[]');
+           fileInput.setAttribute('accept', 'application/pdf, image/jpeg, image/png');
+           fileInput.setAttribute('required', 'true');
+           fileInput.setAttribute('id', 'file-input');
+           fileInput.addEventListener('change', this.readFiles);
+
+           const label = document.createElement('label');
+           label.setAttribute('class', 'input-files');
+           label.setAttribute('for', 'file-input');
+           label.innerText = 'Add File';
+
+           const span = document.createElement('span');
+           span.setAttribute('id', 'file-read');
+           span.setAttribute('class', 'file-selected');
+           span.innerText = 'Select an Official ID';
+
+           const container = document.createElement('div');
+           container.appendChild(fileInput);
+           container.appendChild(label);
+           container.appendChild(span);
+
+           swal({
+             title: 'Subir Documentos',
+             text: `Por favor seleccione un nuevo documento tipo ${name}`,
+             content: container,
+             icon: 'info',
+             closeOnClickOutside: false,
+             closeModal: false,
+             buttons: {
+               cancel: { text: 'Cancelar', value: 'Cancel', visible: true },
+               upload: { text: 'Subir', value: 'Upload', visible: true, closeModal: false }
+             }
+           }).then(value => {
+             if(value){
+               if(this.files === null) {
+                 const fileSelection = document.getElementById('file-read');
+                 fileSelection.innerText = 'Por favor seleccione un documento de Identificación';
+                 fileSelection.classList.add('file-text-anim');
+                 swal.stopLoading();
+               }
+
+               this.sendFiles('Official ID').then(officialId => {
+                 if(officialId) {
+                   swal({
+                     title: 'Éxito!',
+                     text: `Archivo subido ${name}`,
+                     icon: 'info',
+                     closeOnClickOutside: false,
+                     buttons: {
+                       cancel : true,
+                       confirm: true
+                       }
+                   })
+                 }
+               })
+             } else {
+               this.files = null;
+             }
+           })
+         break;
+            case true:
+              // Delete Attachment
+              this.$store.dispatch('attachments/deleteFile', attachment.id).then(response => {
+                // Document was deleted
+                swal({
+                  title: 'Borrar documento',
+                  text:` ${attachment.docType} ha sido borrado con éxito`,
+                  icon: 'success',
+                  buttons: false,
+                  timer: 3000
+                });
+
+                // Fetch updated attachments
+                this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+
+              }).catch(error => {
+                // Something went wrong
+                // when deleting the file
+                swal({
+                  title: 'Borrar documento',
+                  text: 'Por favor, intente de nuevo',
+                  icon: 'error',
+                  buttons: false,
+                  timer: 3000
+                });
+              });
+              break;
+
+            default:
+              // Close Sweet Alert
+              swal.close();
+              break;
+          }
+        });
+
+      } else {
+        // No Results so we exit the function
+        return;
+      }
+    },
+
+    sendFiles() {
+
+    // Vue Instance
+    const _ = this;
+
+    // Get selected unitId
+    const unitId = this.detailTable.id || null;
+
+    if(this.files.length === 0) {
+      throw new Error('Please, select a file to upload.');
+      return;
+    }
+
+    if(unitId === null || undefined) {
+      // unitId cannot be null
+      throw new Error('unitId cannot be null or undefined');
+      return;
+    }
+
+    let file = {};
+
+      const customerId = _.detailTable.customerId;
+       file = { data: _.files[0],
+       unitId: unitId,
+       contentType: this.files[0].type,
+       url: '',
+       size: this.files[0].size,
+       docType: this.selectedDocument,
+       customerId: customerId
+      };
+
+
+    // Send files to server
+    _.$store.dispatch("attachments/getAWSSignature", file).then(response => {
+      this.receipt = response;
+
+      const downloadElement = document.createElement('a');
+      downloadElement.href = `${response.url}`;
+      downloadElement.innerHTML = 'Download File';
+
+      // Show a Modal Swal to view
+      // information about the uploaded file
+      swal({
+            title: 'File uploaded successfully!',
+            content: downloadElement,
+            text: `Size: ${getFileSize(response.size)}`,
+            icon: "success",
+            button: 'Close'
+          }).then(() => {
+
+            // Retrieve new values
+            this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+          });
+
+    }).catch(error => {
+
+      // If upload fails
+      // show a modal to alert user
+      swal({
+            title: 'Something went wrong!',
+            text: `Please, try again...`,
+            icon: 'error',
+            button: 'Close'
+          });
+    });
+
+    // Clear files array in component
+    _.files = null;
+
+    // Clear File Input
+    const fileInput = document.getElementById('file-upload');
+    fileInput.value = '';
+
+    // Retrieve new values
+    this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+  },
+    readFiles: function(event) {
+      // Retrieve selected files
+      const fileList = event.target.files;
+      let validFiles = 0;
+
+      if(fileList !== undefined) {
+
+        // Empty Files Array from Data Component
+        // Before pushing File BLOB's
+        this.files = [];
+
+        // Iterate every file &
+        // Read each file
+        Array.from(fileList).forEach(file => {
+
+          if(isFileValid(file.type)) {
+            const reader = new FileReader();
+            let obj = {};
+
+            reader.onload = () => {
+              obj.name = file.name;
+              obj.size = file.size;
+              obj.type = file.type;
+              obj.body = reader.result;
+
+              // Push File to Files[] Array in the Data component
+              this.files.push(obj);
+
+              // Increment for each valid file read
+              validFiles += 1;
+
+              swal({
+                title: 'Confirm Information',
+                text:  `Upload file: ${file.name} for ${this.selectedDocument}?`,
+                icon: "info",
+                buttons: {
+                  cancel: true,
+                   confirm: { value: true, closeModal: false}
+                }
+              }).then(isConfirm => {
+
+                if(isConfirm) {
+                  // Upload file
+                  this.sendFiles();
+                } else {
+                  // Cancel and
+                  // Clear Array
+                  this.files = [];
+
+                  // Clear File Input
+                  event.target.value = '';
+                }
+
+              });
+
+            }
+
+            reader.onerror = () => {
+              console.log('Error reading file!');
+              console.log(reader.error);
+            }
+
+            reader.onprogress = e => {
+              if(e.lengthComputable) {
+                // If needed, use this variable to show progress
+                let percentLoaded = Math.round((e.loaded / e.total) * 100);
+              }
+            }
+
+            // Read file as Array Buffer
+            reader.readAsArrayBuffer(file);
+
+          } else {
+            // If upload fails
+            // show a modal to alert user
+            swal({
+                  title: 'File type not compatible',
+                  text: 'We only accept: .png, .jpg, .pdf',
+                  icon: 'error',
+                  button: 'Close'
+                });
+          }
+
+        });
+      }
+    },
+
     showDocument(doc) {
         if(this.attachmentsByUnit) {
 
@@ -709,6 +1036,7 @@ export default {
       isAdmin: "users/isAdmin",
       currentUser: "users/currentUser",
       executives: "users/executives",
+      attachmentsByUnit: "attachments/attachmentsByUnit",
     }),
 
     shouldShow() {
@@ -820,7 +1148,15 @@ export default {
 
       return this.mydata
     }
-  }}
+  },
+  watch: {
+
+    attachmentsByUnit: function (oldValue, newValue) {
+
+    },
+
+  }
+}
 </script>
 
 <style>

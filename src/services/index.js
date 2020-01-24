@@ -15,4 +15,5 @@ module.exports = function (app) {
   app.configure(clusters);
   app.configure(units);
   app.configure(customers);
+  app.configure(attachments);
 };

@@ -222,6 +222,51 @@ const fetchCountDepartments = () => {
   });
 };
 
+const getAttachments = unitId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'attachments', { unitId: unitId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const deleteAttachment = data => {
+  return new Promise((resolve, reject) => {
+    socket.emit('remove', 'attachments', data, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const getAttachmentsCustomer = customerId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'attachments', { customerId: customerId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const deleteAllAttachments = attachments => {
+  return new Promise((resolve,reject) => {
+    // const attachmentId = attachments.data[0].id
+
+    for(let i = 0; i < attachments.data.length; i++) {
+      socket.emit('remove', 'attachments', attachments.data[i].id, (error, payments) => {
+        if(error) { reject(error); }
+      });
+    }
+
+
+  });
+};
+
+const createNewAttachment = (attachment) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'attachments', attachment, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
 
 /* Attachments */
 const getS3Signature = file => {
@@ -328,5 +373,10 @@ export {
   updateUnitExecutive,
   fetchUpdatedUnit,
   removeExecutiveFromUnit,
-  removeCustomerFromUnit
+  removeCustomerFromUnit,
+  getAttachments,
+  deleteAttachment,
+  deleteAllAttachments,
+  getAttachmentsCustomer,
+  createNewAttachment
 }

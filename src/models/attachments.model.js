@@ -13,8 +13,8 @@ module.exports = (app) => {
   }, {});
 
   attachments.associate = function(models) {
-    // associations can be defined here
-    // attachments.belongsTo(models.units);
+    attachments.belongsTo(models.units);
+    attachments.belongsTo(models.customers);
   };
 
   return attachments;
