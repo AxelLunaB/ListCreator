@@ -82,20 +82,49 @@
       </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
-            <div class="card-body">
-                <div class="row fullh">
-                    <div class="col-12">
-                        <table class="table table-hover table-modifier fullh">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div class="card-body" style="cursor:default;">
+              <h5 class="m-b-30 m-t-0 text-left">DOCUMENTOS</h5>
+              <div class="row">
+                  <div class="col-12 scrollbar-edit" style="max-height: 414px;overflow-y: scroll;">
+                      <table class="table table-modifier fullh" style="margin-bottom:0;">
+                          <thead>
+                            <input type="file" name="file-upload" id="file-upload" @change="readFiles($event)">
+                          </thead>
+                          <tbody>
+
+                          <tr @click="selectedDocument = 'Official ID'" class="document-row" :class="showDocument('Official ID')">
+                              <td class="text-left">Identificación</td>
+                                <td>
+                                  <span v-if="!showDocument('Official ID') && detailTable.customerId !== null">
+                                      <label class="doc-button" for="file-upload">Subir</label>
+                                  </span>
+                                </td>
+                              <td>
+                                <span v-if="detailTable.customer">
+                                 <label v-if="showDocument('Official ID')" style="cursor:pointer" class="doc-button" @click="editDocument('Official ID')">Ver</label>
+                                </span>
+                              </td>
+                          </tr>
+
+                          <tr @click="selectedDocument = 'Proof of Address'" class="document-row" :class="showDocument('Proof of Address')">
+                              <td class="text-left">Comprobante de Domicilio</td>
+                              <td >
+                                <span v-if="!showDocument('Proof of Address') && detailTable.customerId !== null">
+                                  <label class="doc-button" for="file-upload">Subir</label>
+                                </span>
+                              </td>
+                              <td>
+                                <label v-if="showDocument('Proof of Address')" style="cursor:pointer" class="doc-button" @click="editDocument('Proof of Address')">View</label>
+                              </td>
+                          </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
+    </div>
 
     </div>
     <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
@@ -148,7 +177,7 @@
     </div>
   </div>
   <!-- executive MODAL POPUP-->
-  <div v-if="userModal" style="background:rgba(0, 0, 0, 0.57);position:fixed;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:2;">
+  <div v-if="userModal" style="background:rgba(0, 0, 0, 0.57);position:fixed;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:3;">
       <span @click="closeUserModal()" style="color: white;font-size: 60px;position: absolute;top: 152px;cursor:pointer;">
         ×
       </span>
@@ -187,7 +216,7 @@
     </div>
     <transition name="fade">
       <div v-if="newClient">
-        <new-customer :unitNumber="detailTable"/>
+        <new-customer :unitNumber="detailTable" style="z-index:5"/>
       </div>
     </transition>
 </div>
@@ -315,6 +344,21 @@ export default {
   },
 
   methods: {
+    showDocument(doc) {
+        if(this.attachmentsByUnit) {
+
+          if(this.attachmentsByUnit.data) {
+
+            for ( let i = 0 ; i < this.attachmentsByUnit.data.length ; i++) {
+
+              if(this.attachmentsByUnit.data[i].docType === doc) {
+                this.urls[doc] = this.attachmentsByUnit.data[i].url;
+                return true;
+              }
+            }
+          }
+        }
+    },
     removePropExecutive(){
       if(this.detailTable.user === null){
         console.log('has no user')
@@ -350,7 +394,7 @@ export default {
                     user:this.currentUser.id,
                     type:this.currentUser.type
                   };
-                  
+
                 this.$store.dispatch("units/fetchUnitsByStage", this.detailTable.stage).then( r => {
                   this.selectedExec = null;
                   this.detailTable.user = null;
@@ -369,7 +413,7 @@ export default {
         })
     },
     removePropCustomer(){
-      if(this.detailTable.customer === null || this.currentUser.type !== 'SA'){
+      if(this.detailTable.customer === null || this.currentUser.type !== 'A'){
         console.log('has no client');
         return;
       }
@@ -377,9 +421,9 @@ export default {
       this.customer ? customer = this.customer : customer = this.detailTable.customer.name
 
         swal({
-          title: 'Please confirm information',
-          text:  'Remove ' + customer + ' from this unit?' + '\n' +
-          'Please note all files and payments from this customer will be deleted',
+          title: 'Confirmar información',
+          text:  'Eliminar ' + customer + ' de esta residencia?' + '\n' +
+          'Todos los documentos relacionados a la unidad serán eliminados',
           icon: "info",
           buttons: {
             cancel: true,
@@ -389,38 +433,28 @@ export default {
             if(isConfirm) {
 
 
-              this.$store.dispatch('departments/deleteCustomerFromUnit', this.detailTable).then(updated => {
+              this.$store.dispatch('units/deleteCustomerFromUnit', this.detailTable.id).then(updated => {
                 this.customer = null;
                 swal({
-                  title: 'Unit updated',
-                  text:  'This unit has no customer assigned!',
+                  title: 'Residencia actualizada',
+                  text:  'Esta residencia no tiene cliente asignado!',
                   buttons: { cancel: true, confirm: true }
                 })
+
+                this.$store.dispatch("units/fetchUnitsByStage", this.detailTable.stage).then( r => {
+                  this.selectedExec = null;
+                  this.detailTable.customer = null;
+                  this.detailTable.customerId = null;
+                });
+
               })
 
-              this.$store.dispatch('commissions/deletePayments', this.paymentsByUnit).then(response => {
-              // Retrieve all new payments
-              this.$store.dispatch('commissions/getPaymentsByUnit', this.detailTable.id);
-            }).catch(error => {
-              console.log(error);
-            });
-              this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
+            /*  this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
 
               }).catch(error => {
                 console.log(error)
-              })
+              }) */
 
-              // this.$eventHub.$emit('updateDataDetail');
-              let info = {
-                  tower: this.detailTable.clusterId,
-                  user:this.currentUser.id,
-                  type:this.currentUser.type
-                };
-
-              // Dispatch new customer
-              this.$store.dispatch('departments/getDepartmentById', info).then(res =>{
-              this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
-              });
             }
         })
     },
@@ -693,7 +727,7 @@ export default {
           return 0;
         });
         } else {
-      //Removes special characters before filter with normalize and regEx
+        //Removes special characters before filter with normalize and regEx
         let filteredClusters = this.executives.filter(executiveName => executiveName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.filterExecutive));
           if(filteredClusters == 0){
             filteredClusters = this.executives.filter(executiveName => executiveName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(this.filterExecutive));
@@ -825,13 +859,56 @@ select option {
   #container-fluid {
     z-index:3!important;
   }
+  /* Input for Files */
+  #file-upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
 
+  #file-input,
+#receipt-input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
 
+  label.input-files {
+  border-radius: 6px;
+  color: #ffffff;
+ font-weight: 500;
+  font-size: 14px;
+  margin: 0;
+  padding: 6px;
+  width: 100px;
+  background-color: #2bc46f;
+  box-shadow: 0px 3px 20px #2bc46f4f;
+  transition: background-color 0.3s;
+}
+
+label.input-files:hover {
+  background-color: #27a961;
+}
+.input {
+  background: #2a333c;
+  border: 1px solid #ffffff4b;
+}
+
+  .fullh {
+    height:95%;
+  }
   .userModal {
     background:#3c4857;
     color:white;
     padding:25px;
     border-radius: 4px;
+    z-index: 5 !important;
   }
 
   .card {
@@ -888,6 +965,53 @@ select option {
   }
 }
 
+.document-row {
+  border-bottom: 1px solid #8c9198;
+  border-top: 1px solid #8c9198;
+  height: 40px;
+  transition: all 0.3s;
+}
+
+.doc-button {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  background: #181d2278;
+  padding: 6px;
+  border-radius: 6px;
+  min-width: 60px;
+}
+
+/* Scrollbar */
+
+.scrollbar-edit {
+  min-height:180px;
+}
+.scrollbar-edit:hover {
+  overflow: auto;
+}
+
+.scrollbar-edit::-webkit-scrollbar {
+  width: 5px;
+
+}
+
+/* Track */
+.scrollbar-edit::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey;
+border-radius: 10px;
+}
+
+/* Handle */
+.scrollbar-edit::-webkit-scrollbar-thumb {
+background: #ebeff2;
+border-radius: 10px;
+}
+
+/* Handle on hover */
+.scrollbar-edit::-webkit-scrollbar-thumb:hover {
+background: #ebeff2;
+}
 
 
   .send {
@@ -1099,6 +1223,7 @@ button.waves.default {
   margin-bottom:0;
   height:16px;
   justify-content:space-between!important;
+
 }
 @media screen and (max-width:450px){
   .customer {

@@ -6,7 +6,8 @@ import {
   updateUnitStatus,
   updateUnitExecutive,
   fetchUpdatedUnit,
-  removeExecutiveFromUnit
+  removeExecutiveFromUnit,
+  removeCustomerFromUnit
 } from '@/api';
 import socket from '@/io';
 
@@ -35,6 +36,19 @@ const getUnitUpdatedById = (context,info) => {
 const deleteExecutiveFromUnit = (context, newStatus) => {
   return new Promise((resolve, reject) =>{
     removeExecutiveFromUnit(newStatus)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
+
+const deleteCustomerFromUnit = (context, newStatus) => {
+
+  return new Promise((resolve, reject) =>{
+    removeCustomerFromUnit(newStatus)
     .then(res => {
       resolve(res);
     }).catch(err => {
@@ -211,5 +225,6 @@ export default {
   getUnitById,
   updateExecutive,
   getUnitUpdatedById,
-  deleteExecutiveFromUnit
+  deleteExecutiveFromUnit,
+  deleteCustomerFromUnit
 }

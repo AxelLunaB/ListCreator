@@ -65,7 +65,15 @@ const removeExecutiveFromUnit = data => {
       error ? reject(error) : resolve(response);
     });
   })
-}
+};
+
+const removeCustomerFromUnit = data => {
+  return new Promise((resolve,reject) => {
+    socket.emit('patch', 'units', data, { customerId: null }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  })
+};
 
 /* USERS */
 const createUser = (user) => {
@@ -319,5 +327,6 @@ export {
   getUnitsInfo,
   updateUnitExecutive,
   fetchUpdatedUnit,
-  removeExecutiveFromUnit
+  removeExecutiveFromUnit,
+  removeCustomerFromUnit
 }
