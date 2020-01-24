@@ -13,8 +13,8 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Unidad #{{ detailTable ? detailTable[0].unit : ''}}</span></h4>
-                <div class="row fullh">
+                <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Residencia #{{ detailTable ? detailTable.unit : ''}}</span></h4>
+                <div class="row">
                     <div class="col-12" style="display: flex;align-items: center;">
                         <table class="table table-hover table-modifier medh">
                             <thead>
@@ -22,43 +22,54 @@
                             <tbody>
                             <tr>
                                 <td class="textalign">Precio</td>
-                                <td class="text-right">$ {{ detailTable[0] ? toPrice(detailTable[0].priceTotal) : '' }}</td>
+                                <td class="text-right">$ {{ detailTable ? toPrice(detailTable.priceTotal) : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Manzana</td>
-                                <td class="text-right">{{ detailTable[0] ? detailTable[0].suburb : '' }}</td>
+                                <td class="text-right">{{ detailTable ? detailTable.suburb : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Etapa</td>
-                                <td class="text-right">{{ detailTable[0] ? detailTable[0].stage : '' }}</td>
+                                <td class="text-right">{{ detailTable ? detailTable.stage : '' }}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">Modelo</td>
-                                <td class="text-right">{{ detailTable[0] ? detailTable[0].houseModel : ''}}</td>
+                                <td class="text-right">{{ detailTable ? detailTable.houseModel : ''}}</td>
                             </tr>
                             <tr>
                                 <td class="textalign">m<sup>2</sup> Construcción</td>
-                                <td class="text-right"> {{ detailTable[0] ? detailTable[0].m2Construction : ''}} </td>
+                                <td class="text-right"> {{ detailTable ? detailTable.m2Construction : ''}} </td>
                             </tr>
                             <tr>
                                 <td class="textalign">m<sup>2</sup> Terreno</td>
-                                <td class="text-right"> {{ detailTable[0] ? detailTable[0].m2Terrain : '' }}</td>
+                                <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
+                            <td class="textalign">Ejecutivo</td>
+                                <td class="text-right"><span v-if="this.detailTable.user">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
                             <tr>
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
                                   <select id="myList" v-on:change="status($event)">
-                                    <option v-bind:style="{color: detailTable[1][1]}">{{ stateIndex ? stateIndex : detailTable[1][0] }}</option>
-                                    <option value = "1" style="color:#35ce41;" v-if="detailTable[0].statusId != 1">DISPONIBLE</option>
-                                    <option value = "2" style="color:#cd110f;" v-if="detailTable[0].statusId != 2">VENDIDO</option>
-                                    <option value = "3" style="color:#e89005;" v-if="detailTable[0].statusId != 3">APARTADO</option>
-                                    <option value = "4" style="color:#f5e02a;" v-if="detailTable[0].statusId != 4">BLOQUEADO</option>
+                                    <option v-bind:style="{color: getColor}">{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
+                                    <option value = "1" style="color:#35ce41;" v-if="detailTable.statusId != 1">DISPONIBLE</option>
+                                    <option value = "2" style="color:#cd110f;" v-if="detailTable.statusId != 2">VENDIDO</option>
+                                    <option value = "3" style="color:#e89005;" v-if="detailTable.statusId != 3">APARTADO</option>
+                                    <option value = "4" style="color:#f5e02a;" v-if="detailTable.statusId != 4">BLOQUEADO</option>
                                   </select>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+                    <!--  assign customer or client-->
+                    <div class="flex-center customer" v-if="currentUser.type === 'A'">
+                      <button v-if="detailTable.customer || customer" style="border: none;background: none;color: white;text-decoration: underline;" @click="newClient = true;">Cambiar Cliente <i class="fas fa-exchange-alt" style="text-decoration:underline;"></i></button>
+                      <button v-else style="background: none;border: none;margin: 0;padding: 0;color: white;text-decoration: underline;" @click="newClient = true;">Asignar Cliente <i class="fas fa-user-plus"></i></button>
+                      <span v-if="currentUser.type !== 'V'">
+                        <button v-if="detailTable.user" style="background: none;border: none;margin: 0;padding: 0;color: white;text-decoration: underline;" @click="assignExec()">Cambiar Ejecutivo <i class="far fa-address-card"></i> </button>
+                        <button v-else style="background: none;border: none;margin: 0;padding: 0;color: white;text-decoration: underline;" @click="assignExec()">Asignar Ejecutivo <i class="far fa-address-card"></i></button>
+                      </span>
+                  </div>
                 </div>
             </div>
         </div>
@@ -102,8 +113,9 @@
             </div>
             <div class="labels">
               <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Disponible</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#c5077e;"></div><p>Vendido</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Reservado</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#cd110f;"></div><p>Vendido</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#e89005;"></div><p>Apartado</p></div>
+              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Bloqueado</p></div>
             </div>
           </div>
         </div>
@@ -129,6 +141,49 @@
       </div>
     </div>
   </div>
+  <!-- executive MODAL POPUP-->
+  <div v-if="userModal" style="background:rgba(0, 0, 0, 0.57);position:fixed;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:2;">
+      <span @click="closeUserModal()" style="color: white;font-size: 60px;position: absolute;top: 152px;cursor:pointer;">
+        ×
+      </span>
+      <div class="userModal fadeEntry">
+        <span>
+          <p v-if="detailTable.user === null || !setExec">Asignar/Cambiar un ejecutivo a la residencia <b>{{ detailTable.unitNumber }}</b> ?</p>
+          <p v-else> Cambiar el estado de la unidad a {{ this.stateIndex }} ? </p>
+          <input  v-if="detailTable.user === null || !setExec" class="form-control" placeholder="Search Executive" autofocus v-model="filterExecutive">
+          <div v-if="detailTable.user === null || !setExec" style="height: 150px;overflow: hidden;overflow-y: scroll;">
+            <table class="executive-table" style="width:100%;">
+              <tr v-for="(exec,index) in getExecutive"
+              @click="setExecutive($event,exec)"
+              :key="index">
+                <th class="option-executive"> {{ exec.name }}</th>
+              </tr>
+            </table>
+          </div>
+        </span>
+      <!--  <div style="text-align: center;margin: 30px 0 0 0;">
+          <p>Assign/change payment plan <b>{{ detailTable.unitNumber }}</b> ?</p>
+          <b-dropdown
+          id="dropdown-pPlan"
+          name="drop-plan"
+          :text ="this.selectedPlan ? this.selectedPlan : this.unitContract ? this.unitContract.paymentPlan !== null ? this.unitContract.paymentPlan  : 'Select a payment Plan' : 'Select a payment Plan' ">
+          <div style="height:125px;">
+          <b-dropdown-item v-for="(plan ,index) in plans" :key="index" @click="selectedPlan = plan">
+          {{ plan }}
+          </b-dropdown-item>
+          </div>
+          </b-dropdown>
+        </div> -->
+        <div class="col-12" style="display: flex;align-items: center;justify-content: center;margin-top:18px;">
+          <button type="button" class="waves ripple default" style="border-radius:0;width:150px;" @click="sendExec()">SEND</button>
+        </div>
+      </div>
+    </div>
+    <transition name="fade">
+      <div v-if="newClient">
+        <new-customer :unitNumber="detailTable"/>
+      </div>
+    </transition>
 </div>
 </template>
 
@@ -140,27 +195,36 @@ import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 import { file } from 'babel-types';
 import { log } from 'util';
+import newCustomer from "./newCustomer.vue";
+
 
 export default {
+  props:['totalUnits'],
 
   mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details;
       this.show = true;
     });
+
+    this.$store.dispatch("users/getExecutives");
   },
 
   components: {
-    returnPage
+    returnPage,
+    newCustomer
   },
 
   data() {
     return {
       mywidth: 200,
+      newClient: false,
       currentState: '',
       files: [],
+      setExec: false,
       selectedExec:null,
       stateIndex:null,
+      filterExecutive: null,
       selectedLabel: '',
       userModal:false,
       myheight: 200,
@@ -169,10 +233,11 @@ export default {
       isActive: true,
       detailTable: {},
       contract: {},
-      labels: ["Disponible", "Reservado", "Vendido"],
+      customer:null,
+      labels: ["Disponible", "Apartado", "Vendido","Bloqueado"],
       datasets: [{
-        data:[1,2,3],
-        backgroundColor:["#70b84f", "#dddc00", "#c5077e"]
+        data:[1,2,3,4],
+        backgroundColor:["#70b84f", "#e89005", "#cd110f","#dddc00"]
       }],
       option: {
 
@@ -238,9 +303,166 @@ export default {
   },
 
   methods: {
+  sendExec() {
+      // If you select "Assing executive" and try to send it withouth selecting one it will throw an swal
+      if(this.selectedExec == null && this.setExec == true && this.detailTable.user == undefined) {
 
+        swal({
+          text:  'Seleccione un Ejecutivo para continuar.',
+          icon: "error",
+          buttons: { cancel: true, confirm: true }
+        });
+
+        return;
+      }
+
+        const currentStatus = this.detailTable.status.id;
+        let exec = null;
+        let status = null;
+        //let plan = null;
+
+        this.$eventHub.$emit("modal-bar", this.userModal);
+        this.selectedExec ? exec = this.selectedExec.name : this.detailTable.user ? exec = this.detailTable.user.name : exec = "N/A"
+        this.stateIndex ? status = this.stateIndex : status = this.detailTable.status.name;
+      //  this.selectedPlan ? plan = this.selectedPlan : plan = 'N/A';
+
+        swal({
+          title: 'Confirmar informacion',
+          text:  'Residencia No :  ' + this.detailTable.unit +  '\n' +
+          'Ejecutivo: ' +  exec + '\n',
+          icon: "info",
+          buttons: { cancel: true, confirm: true }
+        }).then(isConfirm => {
+          //After you click accept
+
+          if(isConfirm) {
+            this.userModal = false;
+            let executiveId = null;
+            const self = this;
+            const unitId = this.detailTable.id;
+            let statusId = parseInt(document.getElementById("myList").value);
+
+              // if you change executive withouth changing status it will return NaN so we assign statusId to the unit current status
+              if(isNaN(statusId)) {
+                statusId = this.detailTable.status.id;
+              }
+
+            if(this.selectedExec) {
+              executiveId = this.selectedExec.id;
+            } else {
+              if(!this.detailTable.user)
+               executiveId = null
+              else if(this.detailTable.user) {
+               executiveId = this.detailTable.userId
+             }
+            }
+
+            console.log('Executive ID');
+            console.log(executiveId);
+
+            let newStatus = {
+              unitId: unitId,
+              statusId: statusId,
+              currentStatus: currentStatus,
+              userId: executiveId
+            };
+
+            document.body.style.cursor = "wait";
+            this.loading = true;
+            this.$eventHub.$emit("modal-bar", this.loading);
+            console.log("---");
+            console.log(newStatus);
+            this.$store.dispatch('units/updateExecutive', newStatus).then(updated => {
+              if(updated){
+
+                  document.body.style.cursor = "auto";
+                  this.loading = false;
+                  this.$eventHub.$emit("modal-bar", this.loading);
+
+
+                  swal({
+                    title: `Residencia ${this.detailTable.unit} actualizada!`,
+                    text: 'Estado: ' + status  + '\n'  +
+                    'Ejecutivo: ' +  exec + '\n',
+                    icon: "info",
+                    buttons: {  confirm: true }
+                  });
+
+                  if(this.selectedExec !== null || this.selectedExec !== undefined) {
+                    this.executive = this.selectedExec;
+                  }
+
+
+
+                  this.$store.dispatch("units/fetchUnitsByStage", this.detailTable.stage).then( r =>{
+                    this.detailTable.user = this.selectedExec;
+                    this.detailTable.userId = this.selectedExec.id;
+                  });
+                  //let uId = this.detailTable.id;
+                  //this.detailTable = this.$store.dispatch("units/getUnitUpdatedById", uId);
+
+
+              }
+            }).catch(err => {
+
+              console.log(err)
+              swal({
+                title: 'Error!',
+                text:  `Contacte a un administrador.`,
+                icon: "error",
+                buttons: {  confirm: true }
+              });
+
+              document.body.style.cursor = "auto";
+              this.loading = false;
+              this.$eventHub.$emit("modal-bar", this.loading);
+
+            });
+
+
+          if(document.getElementById("myList")){
+            document.getElementById('myList').selectedIndex = 0;
+            }
+
+          } else {
+            this.selectedExec = null;
+            this.current.style.fontWeight = 'normal';
+            if(document.getElementById("myList")){
+              document.getElementById('myList').selectedIndex = 0;
+              }
+          }
+
+        })
+
+    },
+    setExecutive(evt,exec){
+      this.selectedExec = exec;
+      if (this.current == null) {
+      	this.current = evt.srcElement;
+        this.current.style.fontWeight = 'bold';
+      } else {
+      	this.last = this.current
+        this.last.style.fontWeight = 'normal';
+        this.current = evt.srcElement;
+        this.current.style.fontWeight = 'bold';
+      }
+    },
+    closeUserModal(){
+     if(document.getElementById("myList")){
+             document.getElementById('myList').selectedIndex = 0;
+             }
+     this.userModal = false;
+     this.salesChannel = false;
+     this.$eventHub.$emit("modal-bar", false);
+   },
+    assignExec(){
+      this.detailTable.user ? this.setExec = false :  this.setExec = true;
+      // Opens the executive modal withouth changing status
+      this.userModal = true;
+      this.$eventHub.$emit("modal-bar", true);
+    },
     closeBtn() {
-      self = this
+      self = this;
       document.getElementById("fadeOutAnimation").style.transition = "opacity 1s";
       document.getElementById("fadeOutAnimation").style.opacity = 0;
       setTimeout(function () {
@@ -253,63 +475,64 @@ export default {
       return r;
     },
 
-      status: function status(event) {
-        this.selectedExec = null;
-        this.stateIndex  = event.target[event.target.selectedIndex].label;
+    status: function status(event) {
+      this.selectedExec = null;
+      this.stateIndex  = event.target[event.target.selectedIndex].label;
 
-          swal({
-            title: 'Confirmar estatus.',
-            text: `¿Cambiar estatus a ${this.stateIndex} ?`,
-            icon: "info",
-            buttons:{
-              cancel:true,
-              confirm:true,
-            }
-          })
-          .then(isConfirm => {
-            if(isConfirm){
-              const self = this;
-              const unitId = this.detailTable[0].id
-              const currentStatus = this.detailTable.statusId;
-              const statusId = parseInt(document.getElementById("myList").value);
-              const newStatus = {
-                unitId: unitId,
-                statusId: statusId,
-              };
+        swal({
+          title: 'Confirmar estatus.',
+          text: `¿Cambiar estatus a ${this.stateIndex} ?`,
+          icon: "info",
+          buttons:{
+            cancel:true,
+            confirm:true,
+          }
+        })
+        .then(isConfirm => {
+          if(isConfirm){
+            const self = this;
+            const unitId = this.detailTable.id
+            const currentStatus = this.detailTable.statusId;
+            const statusId = parseInt(document.getElementById("myList").value);
+            const newStatus = {
+              unitId: unitId,
+              statusId: statusId,
+            };
 
-              // let open = true;
-              // this.$eventHub.$emit("modal-bar", open);
-              document.body.style.cursor = "wait";
-              this.loading = true;
+            // let open = true;
+            // this.$eventHub.$emit("modal-bar", open);
+            document.body.style.cursor = "wait";
+            this.loading = true;
 
-              this.$store.dispatch('units/updateStatus', newStatus).then(updated => {
-                if(updated){
-                  document.body.style.cursor = "auto";
-                  this.loading = false;
-                  // this.$eventHub.$emit("modal-bar", this.loading);
+            this.$store.dispatch('units/updateStatus', newStatus).then(updated => {
+              if(updated){
+                document.body.style.cursor = "auto";
+                this.loading = false;
+                // this.$eventHub.$emit("modal-bar", this.loading);
 
-                  swal({
-                    title:'Unidad actualizada',
-                    text:'Unidad #' + self.detailTable[0].unit + ' esta ' + this.stateIndex,
-                    icon:'success'
-                  })
+                swal({
+                  title:'Unidad actualizada',
+                  text:'Unidad #' + self.detailTable.unit + ' esta ' + this.stateIndex,
+                  icon:'success'
+                })
 
-                  if(document.getElementById("myList")){
+
+                if(document.getElementById("myList")){
+                  document.getElementById('myList').selectedIndex = 0;
+                  }
+
+                    let stageName = this.detailTable.stage;
+                    this.$store.dispatch("units/fetchUnitsByStage", stageName);
+
+                }
+            });
+          } else {
+            this.stateIndex = '';
+            if(document.getElementById("myList")){
                     document.getElementById('myList').selectedIndex = 0;
                     }
-
-                      let stageName = this.detailTable[0].stage;
-                      this.$store.dispatch("units/fetchUnitsByStage", stageName);
-
-                  }
-              });
-            } else {
-              this.stateIndex = '';
-              if(document.getElementById("myList")){
-                      document.getElementById('myList').selectedIndex = 0;
-                      }
-            }
-          })
+          }
+        })
 
       },
 
@@ -319,20 +542,47 @@ export default {
     ...mapGetters({
       cAvailability: "units/currentAvailability",
       isAdmin: "users/isAdmin",
+      currentUser: "users/currentUser",
+      executives: "users/executives",
     }),
 
     shouldShow() {
       return this.show;
     },
-
+    getExecutive() {
+        if(this.filterExecutive == null || this.filterExecutive == ""){
+          return this.executives.sort(function (a, b) {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+        } else {
+      //Removes special characters before filter with normalize and regEx
+        let filteredClusters = this.executives.filter(executiveName => executiveName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.filterExecutive));
+          if(filteredClusters == 0){
+            filteredClusters = this.executives.filter(executiveName => executiveName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(this.filterExecutive));
+          }
+        return filteredClusters.sort(function (a, b) {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+        }
+      },
     getColor() {
       // if (this.detailTable.status.color_hex) {
         if(this.detailTable){
         return this.detailTable.status.color_hex
-      } else if(this.contract != null) {
-        if(this.contract.commission){
-          return this.contract.commission.status.color_hex;
-        }
       }
       else {
         return  'ffffff'
@@ -358,9 +608,32 @@ export default {
     },
 
     dynamicChart () {
-      this.datasets[0].data[0] = 2
-      this.datasets[0].data[1] = 3
-      this.datasets[0].data[2] = 6
+      let disponible =[];
+      let vendido =[];
+      let apartado =[];
+      let bloqueado =[];
+
+      this.totalUnits.forEach(unit => {
+        switch(unit.statusId){
+          case 1:
+            disponible.push(unit);
+          break;
+          case 2:
+            vendido.push(unit);
+          break;
+          case 3:
+            apartado.push(unit);
+          break;
+          case 4:
+            bloqueado.push(unit);
+          break;
+        }
+      });
+
+      this.datasets[0].data[0] = disponible.length;
+      this.datasets[0].data[1] = apartado.length;
+      this.datasets[0].data[2] = vendido.length;
+      this.datasets[0].data[3] = bloqueado.length;
       return this.datasets
     },
 
@@ -422,6 +695,14 @@ select option {
     z-index:3!important;
   }
 
+
+  .userModal {
+    background:#3c4857;
+    color:white;
+    padding:25px;
+    border-radius: 4px;
+  }
+
   .card {
     background:#3c4857!important;
     margin:10px;
@@ -436,6 +717,47 @@ select option {
   .animateOut {
     animation: fadeOutAnimation 1S forwards;
   }
+
+  .fade-out {
+  -webkit-animation: fade-out 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+          animation: fade-out 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+.fade-in {
+  -webkit-animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+          animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+  @keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
 
   .send {
     width: 100%;
@@ -537,6 +859,10 @@ td {
   font-size: 12px;
 }
 
+.option-executive {
+  font-weight: normal;
+  cursor:pointer;
+}
  .chartdata {
   width:12px;
   height: 12px;
@@ -597,6 +923,20 @@ button.waves.default {
   vertical-align: middle;
 }
 
+.executive-table tr:nth-child(odd) {
+  background:#425061;
+}
+
+.executive-table th {
+  padding:5px;
+ -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
 .dropzone {
   background: #212c38;
   border-radius: 5px;
@@ -609,6 +949,19 @@ button.waves.default {
   margin: 20px 0;
 }
 
+.customer {
+  display: flex;
+  width:100%;
+  margin-bottom:0;
+  height:16px;
+  justify-content:space-between!important;
+}
+@media screen and (max-width:450px){
+  .customer {
+    height: 60px;
+    flex-direction: column;
+  }
+}
 @keyframes fadeInAnimation {
     0%   {
       opacity: 0;

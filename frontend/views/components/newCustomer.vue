@@ -128,7 +128,7 @@ const salt = bcrypt.genSaltSync(10);
 export default {
   mounted: function() {
       this.$eventHub.$on("show-users-modal", details => {
-      this.departments = details.departments;
+    //  this.departments = details.departments;
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("others/getCustomers");
     })

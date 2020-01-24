@@ -18,9 +18,15 @@ const USER_UPDATED = (state, user) => {
     }
   }
 };
+
+const EXECUTIVES_UPDATED = (state, executives) => {
+  state.executives = executives;
+};
+
 export default {
   CURRENT_USER_UPDATED,
   PAGINATION_UPDATED,
   USER_UPDATED,
   USERS_UPDATED,
+  EXECUTIVES_UPDATED
 }

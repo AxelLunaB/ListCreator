@@ -5,7 +5,7 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
   const customers = sequelizeClient.define('customers', {
-    fistName: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false },
     lastName: { type: DataTypes.STRING, allowNull: false},
     age: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING},
@@ -19,7 +19,7 @@ module.exports = (app) => {
     deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
   }, {});
   customers.associate = function(models) {
-    // associations can be defined here
+    
   };
   return customers;
 };

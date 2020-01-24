@@ -3,7 +3,9 @@ import {
   patchUnit,
   fetchUnitsByCluster,
   getUnitsByStage,
-  updateUnitStatus
+  updateUnitStatus,
+  updateUnitExecutive,
+  fetchUpdatedUnit
 } from '@/api';
 import socket from '@/io';
 
@@ -15,6 +17,55 @@ const updateStatus = (context, newStatus) => {
     }).catch(err => {
       reject(err);
     });
+  });
+};
+
+const getUnitUpdatedById = (context,info) => {
+  return new Promise((resolve, reject) =>{
+    updateUnitExecutive(info)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      console.log(err);
+    });
+  });
+};
+
+const updateExecutive = (context, newStatus) => {
+  return new Promise((resolve, reject) =>{
+    updateUnitExecutive(newStatus)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
+const getUnitById = (context,info) => {
+  fetchUnitsByCluster(context.state.pagination.skip, info)
+  .then(res => {
+
+    // context.commit('DEPARTMENTS_UPDATED', res.data);
+    console.log("-------------- actions");
+    console.log(info);
+    console.log(res);
+    if(info.type == 'SA' || info.type == 'E' || info.type == 'A' || info.type == 'D'){
+      context.commit('UNITS_UPDATED', res.data);
+    } else {
+      context.commit('UNITS_UPDATED', res.data);
+    }
+
+    //console.log(response);
+
+    let pagination = {
+      total: res.total,
+      limit: res.limit,
+      skip: res.skip,
+      pages: res.total / res.limit,
+      index: Math.floor(res.skip / res.limit),
+    };
+    context.commit('PAGINATION_UPDATED', pagination);
   });
 };
 
@@ -144,5 +195,8 @@ export default {
   removeSpecialFilter,
   setPriceFilter,
   updateStatus,
-  fetchUnitsByStage
+  fetchUnitsByStage,
+  getUnitById,
+  updateExecutive,
+  getUnitUpdatedById
 }

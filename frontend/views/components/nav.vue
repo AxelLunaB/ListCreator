@@ -28,6 +28,8 @@
           <!-- <a href="/">Home</a> -->
           <li class="dropdown-divider"></li>
           <router-link v-if="isAdmin" to="/admin/users">Usuarios</router-link>
+          <li class="dropdown-divider"></li>
+          <router-link v-if="isAdmin" to="/admin/customers">Clientes</router-link>
           <li v-if="isAdmin" class="dropdown-divider"></li>
           <a href="/logout"><b>Salir</b></a>
           </span>
@@ -91,7 +93,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setView : 'departments/setListType'
+      setView : 'units/setListType'
     }),
     addFilter() {
       var i = $("#search-filter-select")[0];

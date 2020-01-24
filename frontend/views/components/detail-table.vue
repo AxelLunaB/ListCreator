@@ -40,7 +40,8 @@ export default {
       let info = [];
       info.push(this.unit);
       info.push(this.getStatus);
-      this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
+      console.log(this.unit);
+      this.$eventHub.$emit("show-detailTable-detail-tower-modal", this.unit);
     }
   },
   computed: {

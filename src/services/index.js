@@ -14,4 +14,5 @@ module.exports = function (app) {
   app.configure(status);
   app.configure(clusters);
   app.configure(units);
+  app.configure(customers);
 };

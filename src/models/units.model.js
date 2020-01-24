@@ -19,6 +19,8 @@ module.exports = (app) => {
   units.associate = function(models) {
     units.belongsTo(models.status);
     units.belongsTo(models.clusters);
+    units.belongsTo(models.users);
+    units.belongsTo(models.customers);
   };
 
   return units;

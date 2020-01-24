@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-      <unitDetail></unitDetail>
+      <unitDetail :totalUnits="unitsByStage.data"></unitDetail>
 
       <div class="navbar-container" style="max-width:800px; margin:25px auto;">
           <div class="navbar-brand">

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import dashboard from '@/views/dashboard.vue';
 import users from '@/views/users.vue';
+import customers from '@/views/customers.vue';
 import BootstrapVue from 'bootstrap-vue';
 import dashboardView from '@/views/dashboardView.vue';
 import detail from '@/views/detail.vue';
@@ -58,5 +59,10 @@ export default new Router({
           name:"Detalle de unidad",
           component: unitDetail
         },
+        {
+          path: '/admin/customers',
+          name: 'clientes',
+          component:customers
+        }
     ]
 })

@@ -33,6 +33,32 @@ const updateUnitStatus = (newStatus) => {
   })
 };
 
+const updateUnitExecutive = (newStatus) => {
+  console.log(newStatus);
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'units', newStatus.unitId, {userId: newStatus.userId}, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
+
+const fetchUpdatedUnit = (unit) => {
+  console.log(unit);
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'units',{ id: unit }, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+};
+
 /* USERS */
 const createUser = (user) => {
   return new Promise((resolve, reject) => {
@@ -78,6 +104,14 @@ const fetchCustomers = ($skip, query) => {
       } else {
         resolve(customers);
       }
+    });
+  });
+};
+
+const fetchExecutives = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'users', { type: { $in: ['A', 'V'] } }, (error, data) => {
+      error ? reject(error) : resolve(data);
     });
   });
 };
@@ -143,6 +177,20 @@ const fetchCountByCluster = clusterObj => {
       error ? reject(error) : resolve(cluster);
     });
   });
+};
+
+const fetchUnitsByCluster = ($skip, info) => {
+  // Returns all clusters if user is not executive else returns only units assigned to said
+  if(info) {
+
+      return new Promise((resolve) => {
+        socket.emit("api/departments::find", { clusterId: info.tower }, (error, lots) => {
+          resolve(lots);
+        });
+      })
+
+    }
+
 };
 
 const fetchCountDepartments = () => {
@@ -245,8 +293,10 @@ const getUnitsInfo = () => {
 export {
   authenticateSocket,
   fetchStatus,
+  fetchExecutives,
   fetchClusters,
   fetchCountByCluster,
+  fetchUnitsByCluster,
   updateUnitStatus,
   createUser,
   currentUser,
@@ -258,5 +308,7 @@ export {
   getS3Signature,
   getUnits,
   getUnitsByStage,
-  getUnitsInfo
+  getUnitsInfo,
+  updateUnitExecutive,
+  fetchUpdatedUnit
 }
