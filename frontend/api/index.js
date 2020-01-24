@@ -59,6 +59,14 @@ const fetchUpdatedUnit = (unit) => {
   })
 };
 
+const removeExecutiveFromUnit = data => {
+  return new Promise((resolve,reject) => {
+    socket.emit('patch', 'units', data, { userId: null }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  })
+}
+
 /* USERS */
 const createUser = (user) => {
   return new Promise((resolve, reject) => {
@@ -310,5 +318,6 @@ export {
   getUnitsByStage,
   getUnitsInfo,
   updateUnitExecutive,
-  fetchUpdatedUnit
+  fetchUpdatedUnit,
+  removeExecutiveFromUnit
 }
