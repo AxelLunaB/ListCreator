@@ -208,6 +208,12 @@ export default {
     });
 
     this.$store.dispatch("users/getExecutives");
+
+    this.$eventHub.$on("close-userModal", () => {
+      console.log('receving')
+      this.newClient = false;
+    });
+
   },
 
   components: {

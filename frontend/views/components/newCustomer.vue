@@ -1,8 +1,8 @@
 <template>
-  <div class="add-new-user" style="z-index:2" v-if="addClient" :class= "{ animate : addClient, animateOut: closeModalUser }" >
+  <div class="add-new-user" style="z-index:2">
     <div class="container-fluid">
       <div id="returntwo" @click="closeModal()">
-        <span><i class="fas fa-level-up-alt"></i> &nbsp; RETURN</span>
+        <span> <i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
       <div class="row row-full margin-0">
         <div class="col-0 col-sm-1 col-lg-3 col-xl-4">
@@ -10,30 +10,38 @@
       <div class="col-12 col-sm-10 col-lg-6 col-xl-4" style="display:flex;align-items:center;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
-            <h4 class="page-title" style="padding-bottom:20px;">Add new client</h4>
+            <h4 class="page-title" style="padding-bottom:20px;">Agregar nuevo cliente</h4>
             <form id="new-user-form">
             <div class="form-group">
             <div class="row margin-0">
               <div class="col-4">
-                  Name
+                  Nombre(s)
               </div>
               <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.name"  placeholder="Jhon Doe">
+                <input class="form-control col-12"  type="text" v-model="formData.name"  placeholder="Juan">
               </div>
             </div>
             <div class="row margin-0">
               <div class="col-4">
-                Age
+                  Apellidos
+              </div>
+              <div class="col-8">
+                <input class="form-control col-12"  type="text" v-model="formData.lastName"  placeholder="Pérez">
+              </div>
+            </div>
+            <div class="row margin-0">
+              <div class="col-4">
+                Edad
               </div>
               <div class="col-8">
                   <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="18">
               </div>
             </div>
-            <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Client must be 18 or older</div>
-            <div class="error" v-if="!this.$v.formData.age.maxValue" style="text-align:center;padding:0 0 5px 0;">Please enter a valid age</div>
+            <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Cliente debe de tener 18 años o más.</div>
+            <div class="error" v-if="!this.$v.formData.age.maxValue" style="text-align:center;padding:0 0 5px 0;">Por favor introduzca una edad válida.</div>
             <div class="row margin-0">
               <div class="col-4">
-                  Address
+                  Domicilio
               </div>
               <div class="col-8">
                 <input class="form-control col-12"  type="text" v-model="formData.address" placeholder="Street/Number/Zip code">
@@ -41,7 +49,7 @@
             </div>
             <div class="row margin-0">
               <div class="col-4">
-                Country
+                País
               </div>
               <div class="col-8" style="display:flex;">
                 <b-dropdown
@@ -58,7 +66,7 @@
             </div>
             <div class="row margin-0">
               <div class="col-4">
-                  State
+                  Estado
               </div>
               <div class="col-8" style="display:flex;">
                 <b-dropdown
@@ -79,7 +87,7 @@
             </div>
             <div class="row margin-0">
               <div class="col-4">
-                City
+                Ciudad
               </div>
               <div class="col-8">
                   <input class="form-control col-12"  type="text" v-model="formData.city" placeholder="City">
@@ -87,7 +95,7 @@
             </div>
             <div class="row margin-0">
               <div class="col-4">
-                  Phone
+                  Teléfono
               </div>
               <div class="col-8">
                   <input class="form-control col-12"  type="tel" v-model="formData.contactNumber" placeholder="12 3456 7890">
@@ -101,10 +109,10 @@
                   <input class="form-control col-12"  type="email" v-model="formData.email" placeholder="your@email.com">
               </div>
             </div>
-            <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Please fill all missing data</div>
-            <div class="error" v-if="!this.$v.formData.email && this.validation" style="text-align:center;padding-top:20px;">Please enter valid email</div>
+            <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Error: información incompleta.</div>
+            <div class="error" v-if="!this.$v.formData.email && this.validation" style="text-align:center;padding-top:20px;">Por favor introduzca un correo valido.</div>
             <div style="margin-top:30px;">
-              <button type="button" class="waves ripple default" @click="sendInfo()">Confirm info</button>
+              <button type="button" class="waves ripple default" @click="sendInfo()">Enviar</button>
             </div>
               </div>
             </form>
@@ -146,15 +154,14 @@ export default {
         return confirm("Confirm refresh");
     };
   },
-  props:['addClient'],
   data() {
     return {
       ids:[],
       closeModalUser:false,
       validation:false,
       formData: { // findme
-        id: null,
         name: { id:null, name:null},
+        lastName:null,
         age:{ id:null, name:null},
         address:{ id:null, name:null},
         country:{ id:null, name:null},
@@ -287,53 +294,62 @@ export default {
         return this.formData.state
       break;
 
-      case "id":
-      return this.formData.id
+      // case "id":
+      // return this.formData.id
+
+      case 'lastName':
+        return this.formData.lastName
       }
     },
     closeModal(){
-      const self = this;
+      console.log('emitting');
+      this.$eventHub.$emit("close-userModal");
 
-      swal({
-        text: "Information will not be saved." + "\n" + "Are you sure you want to exit?",
-        icon: "info",
-        buttons: {
-          cancel: true,
-          confirm: true,
-        }
-        })
-        .then(function(isConfirm) {
-          if(isConfirm) {
-            self.closeModalUser = true
 
-            self.formData.name = null
-            self.formData.age = null
-            self.formData.address = null
-            self.formData.country = null
-            self.formData.state = null
-            self.formData.city = null
-            self.formData.contactNumber = null
-            self.formData.email = null
+      // swal({
+      //   text: "Information will not be saved." + "\n" + "Are you sure you want to exit?",
+      //   icon: "info",
+      //   buttons: {
+      //     cancel: true,
+      //     confirm: true,
+      //   }
+      //   })
+      //   .then(function(isConfirm) {
 
-            setTimeout(function () {
-              self.$emit('closeModal', false)
-              }, 750);
-            setTimeout(function() {
-              self.closeModalUser = false
-            }, 1000)
-          } else {
 
-          }
-        })
+      //     if(isConfirm) {
+
+      //       self.closeModalUser = true
+
+      //       self.formData.name = null
+      //       self.formData.age = null
+      //       self.formData.address = null
+      //       self.formData.country = null
+      //       self.formData.state = null
+      //       self.formData.city = null
+      //       self.formData.contactNumber = null
+      //       self.formData.email = null
+
+      //       // setTimeout(function () {
+      //       //   self.$emit('closeModal', false)
+      //       //   }, 500);
+      //       // setTimeout(function() {
+      //       //   self.closeModalUser = false
+      //       // }, 1000)
+            
+      //     } else {
+
+      //     }
+      //   })
     },
 
     sendInfo() {
 
-      for(let i = 0 ; i < this.customers.data.length ; i++) {
-        this.ids.push(this.customers.data[i].id)
-      }
+      // for(let i = 0 ; i < this.customers.data.length ; i++) {
+      //   this.ids.push(this.customers.data[i].id)
+      // }
 
-      this.formData.id = Math.max.apply(null, this.ids) + 1
+      // this.formData.id = Math.max.apply(null, this.ids) + 1
 
       this.validation = true;
       this.$v.$touch();
@@ -362,6 +378,8 @@ export default {
           obj[prefix(k)] = this.getValue(k);
           usr = obj;
         });
+
+        console.log(usr);
 
         swal({
           title: "Please confirm information",
@@ -407,6 +425,8 @@ export default {
                       _.closeModalUser = false
                       }, 500)
             }
+          }).catch(e => {
+            console.log(e);
           })
 
         } else {
@@ -467,6 +487,9 @@ div.add-new-user {
 
 .form-control {
   padding: 2px 0 2px 0;
+  background: #2f3843;
+  border: none;
+  border-radius: 0;
 }
 
 .margin-0 {
@@ -479,13 +502,21 @@ div.add-new-user {
 
 input {
   padding-left: 10px!important;
-}
 
-button {
-  border-radius: 4px;
 }
 
 .form-control:focus {
   color: #aeb9c4;
+  background: #495057;
+  outline: none;
+}
+
+div li a.dropdown-item {
+  color:white;
+}
+
+.dropdown-item:hover {
+  background:none;
+  color:white;
 }
 </style>
