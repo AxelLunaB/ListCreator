@@ -133,6 +133,7 @@ import { required , email , minValue , maxValue } from 'vuelidate/lib/validators
 import swal from "sweetalert";
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
+
 export default {
   mounted: function() {
       this.$eventHub.$on("show-users-modal", details => {

@@ -28,7 +28,7 @@
           <!-- <a href="/">Home</a> -->
           <li class="dropdown-divider"></li>
           <router-link v-if="isAdmin" to="/admin/users">Usuarios</router-link>
-          <li class="dropdown-divider"></li>
+          <li class="dropdown-divider" v-if="isAdmin"></li>
           <router-link v-if="isAdmin" to="/admin/customers">Clientes</router-link>
           <li v-if="isAdmin" class="dropdown-divider"></li>
           <a href="/logout"><b>Salir</b></a>

@@ -44,12 +44,14 @@
                                 <td class="textalign">m<sup>2</sup> Terreno</td>
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
-                            <td class="textalign">Ejecutivo</td>
-                                <td class="text-right"><span v-if="this.detailTable.user">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
+                            <tr @click="removeProp('userId')" style="cursor:pointer;">
+                              <td class="textalign">Ejecutivo</td>
+                              <td class="text-right"><span v-if="this.currentUser.type !== 'V' && this.detailTable.userId !== null ">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
+                            </tr>
                             <tr>
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
-                                  <select id="myList" v-on:change="status($event)">
+                                  <select id="myList" v-on:change="status($event)" :disabled="currentUser.type === 'V' ">
                                     <option v-bind:style="{color: getColor}">{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
                                     <option value = "1" style="color:#35ce41;" v-if="detailTable.statusId != 1">DISPONIBLE</option>
                                     <option value = "2" style="color:#cd110f;" v-if="detailTable.statusId != 2">VENDIDO</option>
@@ -309,6 +311,125 @@ export default {
   },
 
   methods: {
+    removePropExecutive(){
+      if(this.detailTable.user === null){
+        console.log('has no user')
+        return;
+      }
+      let user;
+      this.selectedExec ? user = this.selectedExec.name : user = this.detailTable.user.name
+        swal({
+          title: 'Please confirm information',
+          text:  'Remove ' + user + ' from this unit?',
+          icon: "info",
+          buttons: { cancel: true,
+          delete: { text: 'Remove', value: true }
+           }
+        }).then(isConfirm => {
+            if(isConfirm){
+            let user = {
+              userId: null
+            };
+
+              this.$store.dispatch('units/deleteExecutiveFromUnit', this.detailTable.id).then(updated => {
+                this.executive = null;
+                this.selectedExec = null;
+                swal({
+                  title: 'Unit updated',
+                  text:  'This unit has no executive assigned!',
+                  buttons: { cancel: true, confirm: true }
+                })
+
+
+                let info = {
+                    tower: this.detailTable.clusterId,
+                    user:this.currentUser.id,
+                    type:this.currentUser.type
+                  };
+                  
+                this.$store.dispatch("units/fetchUnitsByStage", this.detailTable.stage).then( r => {
+                  this.selectedExec = null;
+                  this.detailTable.user = null;
+                  this.detailTable.userId = null;
+                });
+
+              })
+
+              // this.$eventHub.$emit('updateDataDetail');
+
+
+
+
+
+            }
+        })
+    },
+    removePropCustomer(){
+      if(this.detailTable.customer === null || this.currentUser.type !== 'SA'){
+        console.log('has no client');
+        return;
+      }
+      let customer;
+      this.customer ? customer = this.customer : customer = this.detailTable.customer.name
+
+        swal({
+          title: 'Please confirm information',
+          text:  'Remove ' + customer + ' from this unit?' + '\n' +
+          'Please note all files and payments from this customer will be deleted',
+          icon: "info",
+          buttons: {
+            cancel: true,
+            delete: { text: 'Remove', value: true }
+          }
+        }).then(isConfirm => {
+            if(isConfirm) {
+
+
+              this.$store.dispatch('departments/deleteCustomerFromUnit', this.detailTable).then(updated => {
+                this.customer = null;
+                swal({
+                  title: 'Unit updated',
+                  text:  'This unit has no customer assigned!',
+                  buttons: { cancel: true, confirm: true }
+                })
+              })
+
+              this.$store.dispatch('commissions/deletePayments', this.paymentsByUnit).then(response => {
+              // Retrieve all new payments
+              this.$store.dispatch('commissions/getPaymentsByUnit', this.detailTable.id);
+            }).catch(error => {
+              console.log(error);
+            });
+              this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
+
+              }).catch(error => {
+                console.log(error)
+              })
+
+              // this.$eventHub.$emit('updateDataDetail');
+              let info = {
+                  tower: this.detailTable.clusterId,
+                  user:this.currentUser.id,
+                  type:this.currentUser.type
+                };
+
+              // Dispatch new customer
+              this.$store.dispatch('departments/getDepartmentById', info).then(res =>{
+              this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+              });
+            }
+        })
+    },
+    removeProp(user){
+    switch(user){
+      case 'userId':
+        this.removePropExecutive();
+      break;
+      case 'customerId':
+        this.removePropCustomer();
+      break;
+    }
+},
   sendExec() {
       // If you select "Assing executive" and try to send it withouth selecting one it will throw an swal
       if(this.selectedExec == null && this.setExec == true && this.detailTable.user == undefined) {

@@ -5,7 +5,8 @@ import {
   getUnitsByStage,
   updateUnitStatus,
   updateUnitExecutive,
-  fetchUpdatedUnit
+  fetchUpdatedUnit,
+  removeExecutiveFromUnit
 } from '@/api';
 import socket from '@/io';
 
@@ -27,6 +28,17 @@ const getUnitUpdatedById = (context,info) => {
       resolve(res);
     }).catch(err => {
       console.log(err);
+    });
+  });
+};
+
+const deleteExecutiveFromUnit = (context, newStatus) => {
+  return new Promise((resolve, reject) =>{
+    removeExecutiveFromUnit(newStatus)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
     });
   });
 };
@@ -198,5 +210,6 @@ export default {
   fetchUnitsByStage,
   getUnitById,
   updateExecutive,
-  getUnitUpdatedById
+  getUnitUpdatedById,
+  deleteExecutiveFromUnit
 }
