@@ -46,7 +46,7 @@
                             </tr>
                             <tr @click="removeProp('customerId')" style="cursor:pointer;">
                               <td class="textalign">Cliente</td>
-                              <td class="text-right"><span v-if="this.currentUser.type !== 'V' && this.detailTable.customerId !== null ">×</span> <b>{{ detailTable.customer ? detailTable.customer.name : 'No Asignado' }}</b></td>
+                              <td class="text-right"><span v-if="this.currentUser.type !== 'V' && this.detailTable.customerId !== null ">×</span> <b>{{ detailTable.customer ? detailTable.customer.name + ' ' + detailTable.customer.lastName : 'No Asignado' }}</b></td>
                             </tr>
                             <tr @click="removeProp('userId')" style="cursor:pointer;">
                               <td class="textalign">Ejecutivo</td>
@@ -210,7 +210,7 @@
           </b-dropdown>
         </div> -->
         <div class="col-12" style="display: flex;align-items: center;justify-content: center;margin-top:18px;">
-          <button type="button" class="waves ripple default" style="border-radius:0;width:150px;" @click="sendExec()">SEND</button>
+          <button type="button" class="waves ripple default" style="border-radius:0;width:150px;" @click="sendExec()">ENVIAR</button>
         </div>
       </div>
     </div>
@@ -260,10 +260,14 @@ export default {
       this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
     });
 
+    this.$eventHub.$on("sendClient",customer => {
+      this.detailTable.customer = customer
+      this.detailTable.customerId = customer.id;
+    })
+
     this.$store.dispatch("users/getExecutives");
 
     this.$eventHub.$on("close-userModal", () => {
-      console.log('receving')
       this.newClient = false;
     });
 

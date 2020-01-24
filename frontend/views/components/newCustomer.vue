@@ -10,111 +10,134 @@
       <div class="col-12 col-sm-10 col-lg-6 col-xl-4" style="display:flex;align-items:center;">
         <div class="card">
           <div class="card-body" style="padding-bottom:0;">
-            <h4 class="page-title" style="padding-bottom:20px;">Agregar nuevo cliente</h4>
-            <form id="new-user-form">
-            <div class="form-group">
-            <div class="row margin-0">
-              <div class="col-4">
-                  Nombre(s)
-              </div>
-              <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.name"  placeholder="Juan">
-              </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                  Apellidos
-              </div>
-              <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.lastName"  placeholder="Pérez">
-              </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                Edad
-              </div>
-              <div class="col-8">
-                  <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="18">
-              </div>
-            </div>
-            <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Cliente debe de tener 18 años o más.</div>
-            <div class="error" v-if="!this.$v.formData.age.maxValue" style="text-align:center;padding:0 0 5px 0;">Por favor introduzca una edad válida.</div>
-            <div class="row margin-0">
-              <div class="col-4">
-                  Domicilio
-              </div>
-              <div class="col-8">
-                <input class="form-control col-12"  type="text" v-model="formData.address" placeholder="Street/Number/Zip code">
-              </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                País
-              </div>
-              <div class="col-8" style="display:flex;">
-                <b-dropdown
-                id="dropdown-country"
-                name="drop-country"
-                :text ="formData.country == null ? 'Select country' : formData.country">
-                <div>
-                  <b-dropdown-item v-for="(country,index) in countries" :key="index" @click="formData.country = country">
-                  {{ country }}
-                  </b-dropdown-item>
+            <span style="display:flex;align-items: center;justify-content: space-evenly;padding-bottom:10px">
+              <p @click="create = false" style="cursor:pointer" :style="{ fontWeight: create ? 'normal' : 'bolder' }">Cliente existente</p>
+              <p @click="create = true" style="cursor:pointer" :style="{ fontWeight: create ? 'bolder' : 'normal' }">Cliente nuevo</p>
+            </span>
+            <form id="new-user-form" v-if="create">
+              <h4 class="page-title" style="padding-bottom:20px;">Agregar nuevo cliente</h4>
+              <div class="form-group">
+              <div class="row margin-0">
+                <div class="col-4">
+                    Nombre(s)
                 </div>
-                </b-dropdown>
-              </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                  Estado
-              </div>
-              <div class="col-8" style="display:flex;">
-                <b-dropdown
-                v-if="formData.country != 'Other'" id="dropdown-state"
-                name="drop-state"
-                :text ="formData.state != null ? formData.state : 'Select state'"
-                :disabled="formData.country == null">
-                <div style="overflow-y:scroll;height:200px;">
-                  <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"
-                  :key="index"
-                  @click="formData.state = state">
-                  {{ state }}
-                  </b-dropdown-item>
+                <div class="col-8">
+                  <input class="form-control col-12"  type="text" v-model="formData.name"  placeholder="Juan">
                 </div>
-                </b-dropdown>
-                <input class="form-control col-12"  type="text" v-else v-model="formData.state" placeholder="State">
               </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                Ciudad
+              <div class="row margin-0">
+                <div class="col-4">
+                    Apellidos
+                </div>
+                <div class="col-8">
+                  <input class="form-control col-12"  type="text" v-model="formData.lastName"  placeholder="Pérez">
+                </div>
               </div>
-              <div class="col-8">
-                  <input class="form-control col-12"  type="text" v-model="formData.city" placeholder="City">
+              <div class="row margin-0">
+                <div class="col-4">
+                  Edad
+                </div>
+                <div class="col-8">
+                    <input class="form-control col-4 col-md-3"  type="number" min="18" max="100" v-model.number="formData.age" placeholder="18">
+                </div>
               </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                  Teléfono
+              <div class="error" v-if="!this.$v.formData.age.minValue && this.validation" style="text-align:center;padding:0 0 5px 0;">Cliente debe de tener 18 años o más.</div>
+              <div class="error" v-if="!this.$v.formData.age.maxValue" style="text-align:center;padding:0 0 5px 0;">Por favor introduzca una edad válida.</div>
+              <div class="row margin-0">
+                <div class="col-4">
+                    Domicilio
+                </div>
+                <div class="col-8">
+                  <input class="form-control col-12"  type="text" v-model="formData.address" placeholder="Street/Number/Zip code">
+                </div>
               </div>
-              <div class="col-8">
-                  <input class="form-control col-12"  type="tel" v-model="formData.contactNumber" placeholder="12 3456 7890">
+              <div class="row margin-0">
+                <div class="col-4">
+                  País
+                </div>
+                <div class="col-8" style="display:flex;">
+                  <b-dropdown
+                  id="dropdown-country"
+                  name="drop-country"
+                  :text ="formData.country == null ? 'Select country' : formData.country">
+                  <div>
+                    <b-dropdown-item v-for="(country,index) in countries" :key="index" @click="formData.country = country">
+                    {{ country }}
+                    </b-dropdown-item>
+                  </div>
+                  </b-dropdown>
+                </div>
               </div>
-            </div>
-            <div class="row margin-0">
-              <div class="col-4">
-                E-mail
+              <div class="row margin-0">
+                <div class="col-4">
+                    Estado
+                </div>
+                <div class="col-8" style="display:flex;">
+                  <b-dropdown
+                  v-if="formData.country != 'Other'" id="dropdown-state"
+                  name="drop-state"
+                  :text ="formData.state != null ? formData.state : 'Select state'"
+                  :disabled="formData.country == null">
+                  <div style="overflow-y:scroll;height:200px;">
+                    <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"
+                    :key="index"
+                    @click="formData.state = state">
+                    {{ state }}
+                    </b-dropdown-item>
+                  </div>
+                  </b-dropdown>
+                  <input class="form-control col-12"  type="text" v-else v-model="formData.state" placeholder="State">
+                </div>
               </div>
-              <div class="col-8">
-                  <input class="form-control col-12"  type="email" v-model="formData.email" placeholder="your@email.com">
+              <div class="row margin-0">
+                <div class="col-4">
+                  Ciudad
+                </div>
+                <div class="col-8">
+                    <input class="form-control col-12"  type="text" v-model="formData.city" placeholder="City">
+                </div>
               </div>
-            </div>
-            <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Error: información incompleta.</div>
-            <div class="error" v-if="!this.$v.formData.email && this.validation" style="text-align:center;padding-top:20px;">Por favor introduzca un correo valido.</div>
-            <div style="margin-top:30px;">
-              <button type="button" class="waves ripple default" @click="sendInfo()">Enviar</button>
-            </div>
+              <div class="row margin-0">
+                <div class="col-4">
+                    Teléfono
+                </div>
+                <div class="col-8">
+                    <input class="form-control col-12"  type="tel" v-model="formData.contactNumber" placeholder="12 3456 7890">
+                </div>
               </div>
+              <div class="row margin-0">
+                <div class="col-4">
+                  E-mail
+                </div>
+                <div class="col-8">
+                    <input class="form-control col-12"  type="email" v-model="formData.email" placeholder="your@email.com">
+                </div>
+              </div>
+              <div class="error" v-if="this.$v.$invalid && this.validation" style="text-align:center;padding-top:20px;">Error: información incompleta.</div>
+              <div class="error" v-if="!this.$v.formData.email && this.validation" style="text-align:center;padding-top:20px;">Por favor introduzca un correo valido.</div>
+              <div style="margin-top:30px;">
+                <button type="button" class="waves ripple default" @click="sendInfo()">Enviar</button>
+              </div>
+                </div>
+            </form>
+            <form v-else id="existing-user">
+              <span>
+                <input class="form-control" placeholder="Search Client" autofocus v-model="filterClient">
+                <i class="fas fa-search" style="position: absolute;right: 43px;top: 91px;color: #606a71;"></i>
+              </span>
+              <div style="height: 254px;overflow-y: scroll;margin-top: 30px;">
+                <table class="client-table" style="width:100%;">
+                <tr v-for="(client,index) in getClient"
+                @click="selectClient($event)"
+                :key="index">
+                  <th class="option-client" style="font-weight:normal;"> {{ client.name + ' ' + client.lastName }}</th>
+                </tr>
+               </table>
+              </div>
+              <div class="upload-files">
+                <button type="button" class="waves ripple default" style="border-radius:0;" @click="assignClient()">Asignar Cliente <i class="fas fa-check"></i></button>
+              </div>
+
             </form>
           </div>
         </div>
@@ -135,11 +158,13 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
 export default {
+  props: ["unitNumber"],
   mounted: function() {
+      this.$store.dispatch("others/getCustomers");
+
       this.$eventHub.$on("show-users-modal", details => {
     //  this.departments = details.departments;
       this.$store.dispatch("users/getUsers");
-      this.$store.dispatch("others/getCustomers");
     })
       this.formData.name = null
       this.formData.age = null
@@ -157,6 +182,11 @@ export default {
   },
   data() {
     return {
+      selectedCustomer:null,
+      filterClient:null,
+      current:null,
+      last:null,
+      create:false,
       ids:[],
       closeModalUser:false,
       validation:false,
@@ -259,6 +289,280 @@ export default {
     }
   },
   methods: {
+      assignClient() {
+
+      if(!this.current){
+        swal({
+          text: "Por favor, seleccione un cliente para continuar.",
+          icon: "warning",
+          closeOnClickOutside: true,
+          buttons: { cancel: false, confirm: false },
+          timer:1000
+        })
+        return;
+      }
+      
+      const user = this.customers.data.filter(customer => {
+          let fullName = customer.name + ' ' + customer.lastName;
+          return fullName === this.current.innerText;
+      })
+
+      this.selectedCustomer = user;
+
+
+      swal({
+        title: "Por favor, confirme información.",
+        text: "Asignar  " + this.selectedCustomer[0].name  + ' ' + this.selectedCustomer[0].lastName +  " a unidad " + this.unitNumber.unit + "?",
+        icon: "info",
+        closeOnClickOutside: false,
+        buttons: { cancel: true, confirm: true }
+        })
+      .then(isConfirm => {
+
+          if(isConfirm) {
+
+          let infoClient = {
+            unitId: this.unitNumber.id,
+            customerId: this.selectedCustomer[0].id,
+          };
+
+          this.$store.dispatch('units/updateCustomer', infoClient).then(response => {
+
+          let info = {
+              tower:this.unitNumber.clusterId,
+              user:this.currentUser.id,
+              type:this.currentUser.type,
+              customer:this.selectedCustomer[0].name
+            }
+
+            this.$eventHub.$emit("get-client", info);
+
+            swal({
+              title: 'Éxito!',
+              text: user[0].name + " asignado a " + this.unitNumber.unit,
+              icon: 'success',
+            }).then(() => {
+              this.$eventHub.$emit("close-userModal");
+            });
+
+            // Closes customer modal after is assigned a new one
+            this.$eventHub.$emit('closeModal', false);
+            this.$eventHub.$emit('sendClient', this.selectedCustomer[0]);
+
+
+            }).catch(error => {
+
+              console.log(error);
+              // Something went wrong updating unit info
+              swal({
+                title: 'Oh oh!',
+                text: 'Something went wrong!',
+                icon: 'warning',
+                timer: 2000
+              });
+
+            });
+          };
+      }); 
+
+            /*Upload files process*/
+
+            // const fileInput = document.createElement('input');
+            // fileInput.setAttribute('type', 'file');
+            // fileInput.setAttribute('name', 'files[]');
+            // fileInput.setAttribute('accept', 'application/pdf, image/jpeg, image/png');
+            // fileInput.setAttribute('required', 'true');
+            // fileInput.setAttribute('id', 'file-input');
+            // fileInput.addEventListener('change', self.readFiles);
+
+            // const label = document.createElement('label');
+            // label.setAttribute('class', 'input-files');
+            // label.setAttribute('for', 'file-input');
+            // label.innerText = 'Add File';
+
+            // const span = document.createElement('span');
+            // span.setAttribute('id', 'file-read');
+            // span.setAttribute('class', 'file-selected');
+            // span.innerText = 'Select an Official ID';
+
+            // const container = document.createElement('div');
+            // container.appendChild(fileInput);
+            // container.appendChild(label);
+            // container.appendChild(span);
+
+            // container.innerHTML = `<label class="input-files" for="file-input">Add File</label>
+            //                        <span id="file-read" class="file-selected">Select an Official ID</span>`;
+
+            // <input type="file" name="files[]" accept="application/pdf, image/jpeg, image/png" required="true" id="file-input" onchange="self.readFiles">
+
+            // swal({
+            //   title: 'Upload Documents',
+            //   text: `Before assigning a customer to an unit\n you have to upload the required documents. \n`,
+            //   content: container,
+            //   icon: 'info',
+            //   closeOnClickOutside: false,
+            //   buttons: {
+            //     cancel: { text: 'Cancel', value: 'Cancel', visible: true },
+            //     upload: { text: 'Upload', value: 'Upload', visible: true, closeModal: false }
+            //   }
+            // }).then(value => {
+
+            //   // Check if user pressed Upload Button
+            //   switch(value) {
+            //     case 'Cancel':
+            //       this.files = null;
+            //       swal.close();
+            //       break;
+
+            //     case 'Upload':
+
+            //       // Validate if files were already read
+            //       if(this.files === null) {
+            //         const fileSelection = document.getElementById('file-read');
+            //         fileSelection.innerText = 'Please, select an Official ID';
+            //         fileSelection.classList.add('file-text-anim');
+            //         swal.stopLoading();
+            //         break;
+            //       }
+
+            //       // First upload an Official ID
+            //       this.sendFiles('Official ID').then(officialId => {
+
+            //         // If Official ID was successfully uploaded
+            //         if(officialId) {
+
+            //           // Now show input for user to upload
+            //           // a new Proof of Address
+            //           swal({
+            //             title: 'Upload Documents',
+            //             text: `Please, now upload a Proof of Address`,
+            //             content: container,
+            //             icon: 'info',
+            //             closeOnClickOutside: false,
+            //             buttons: {
+            //               cancel: 'Cancel',
+            //               upload: { text: 'Upload', value: 'Upload', closeModal: false }
+            //             }
+            //           }).then(value => {
+
+            //             // Now validate if user pressed upload
+            //             // for a Proof of Address
+            //             switch(value) {
+            //               default:
+            //                 // User pressed cancel when assigning a new customer
+            //                 swal({
+            //                   title: 'Upload Documents',
+            //                   text: `Customer was not assigned, you must upload required files first.`,
+            //                   icon: 'warning',
+            //                   closeOnClickOutside: false,
+            //                   buttons: false,
+            //                   timer: 3200
+            //                 });
+
+            //                 break;
+
+            //               case 'Upload':
+
+            //                 // Validate if files were already read
+            //                 if(this.files === null) {
+            //                   const fileSelection = document.getElementById('file-read');
+            //                   fileSelection.innerText = 'Please, select an Official ID';
+            //                   fileSelection.classList.add('file-text-anim');
+            //                   break;
+            //                 }
+
+            //                 this.sendFiles('Proof of Address').then(proofOfAddress => {
+
+            //                   if(proofOfAddress) {
+            //                     // Proof of Address was successfully uploaded
+            //                     // Now assign a new customerId to Unit
+
+            //                     console.log('proof of address uploaded!')
+
+            //                     let info = {
+            //                     unitId: self.unitNumber.id,
+            //                     userId: this.selectedCustomer[0].id,
+            //                   }
+
+
+
+            //                   // Send customer info to patch unit
+            //                   self.$store.dispatch('departments/assignClient', info).then(response => {
+
+            //                   let info = {
+            //                       tower:this.unitNumber.clusterId,
+            //                       user:this.currentUser.id,
+            //                       type:this.currentUser.type,
+            //                       customer:this.selectedCustomer[0].name
+            //                     }
+
+            //                     self.$eventHub.$emit("get-client", info);
+
+            //                     swal({
+            //                       title: 'Success!',
+            //                       text: user[0].name + " assigned to " + self.unitNumber.unitNumber,
+            //                       icon: 'success',
+            //                       timer: 2000
+            //                     });
+
+            //                     // Closes customer modal after is assigned a new one
+            //                     self.$eventHub.$emit('closeModal', false);
+            //                     self.$eventHub.$emit('updateDataDetail');
+
+
+            //                     }).catch(error => {
+
+            //                       console.log(error);
+            //                       // Something went wrong updating unit info
+            //                       swal({
+            //                         title: 'Oh oh!',
+            //                         text: 'Something went wrong!',
+            //                         icon: 'warning',
+            //                         timer: 2000
+            //                       });
+
+            //                     });
+
+            //                   } // Closes Proof of Address
+            //                 }).catch(error => {
+            //                   console.log(error)
+            //                 });
+
+            //                 break;
+            //             }
+            //           });
+            //         } // Closes Official ID boolean
+
+            //       }).catch(error => {
+
+            //       });
+            //   }
+            // });
+
+
+
+        //   } else {
+        //     self.current.style.fontWeight = 'normal';
+        //   }
+        // }); // Closes Swal
+    },
+    selectClient(evt){
+
+            if (this.current == null) {
+      	this.current = evt.srcElement;
+        this.current.style.fontWeight = 'bold';
+      } else {
+      	this.last = this.current
+        this.last.style.fontWeight = 'normal';
+        this.current = evt.srcElement;
+        this.current.style.fontWeight = 'bold';
+      }
+
+      // if(this.current == this.last && this.current != null && this.last != null){
+      //   this.last.style.fontWeight = 'normal'
+      // }
+
+    },
     getValue(k) {
 
      switch(k) {
@@ -437,8 +741,42 @@ export default {
     },
     computed: {
       ...mapGetters({
-        customers: "others/customers"
-      })
+        customers: "others/customers",
+        currentUser: "users/currentUser",
+      }),
+      getClient(){
+        if(this.customers.data){
+          if(this.filterClient == null || this.filterClient == ""){
+            return this.customers.data.sort(function (a, b) {
+            if (a.createdAt > b.createdAt) {
+              return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+          } 
+        }
+      // else {
+      // //Removes special characters before filter with normalize and regEx
+      //   let filteredClusters = this.customers.data.filter(clientName => clientName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.filterClient));
+      //     if(filteredClusters == 0){
+      //       filteredClusters = this.customers.data.filter(clientName => clientName.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(this.filterClient));
+      //     }
+      //   return filteredClusters.sort(function (a, b) {
+      //     if (a.createdAt > b.createdAt) {
+      //       return -1;
+      //     }
+      //     if (a.createdAt < b.createdAt) {
+      //       return 1;
+      //     }
+      //     // a must be equal to b
+      //     return 0;
+      //   });
+      //   }
+      }
     },
   validations:{
       formData:{
@@ -475,6 +813,10 @@ export default {
 </script>
 
 <style>
+
+.client-table tr:nth-child(odd) {
+  background:#425061;
+}
 
 div.add-new-user {
     position: fixed;

@@ -418,7 +418,7 @@ export default {
     if (isAuthenticated) {
       // Dispatch actions && subscribe to rt events.
       this.$store.dispatch("users/getUsers");
-        this.$store.dispatch("others/getCustomers");
+      this.$store.dispatch("others/getCustomers");
       this.$store.dispatch("users/listenEvents");
 
       // listen to authenticated event
