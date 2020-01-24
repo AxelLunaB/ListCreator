@@ -5,7 +5,8 @@ import { authenticateSocket,
   fetchCountUnits,
   fetchCustomers,
   createNewCustomer,
-  getUnitsInfo
+  getUnitsInfo,
+  updateCustomerInfo
 } from '@/api';
 
 const authenticate = (context) => {
@@ -26,6 +27,17 @@ const setPlusButton = (context, plusBtn) => {
 const setNewCustomer = (context, customer) => {
   return new Promise((resolve, reject) => {
     createNewCustomer(customer).then(res => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  })
+};
+
+const updateCustomer = (context, customer) => {
+  return new Promise((resolve, reject) => {
+    updateCustomerInfo(customer).then(res => {
       // context should be called to commit some mutation in order to send popups or something.
       resolve(res);
     }).catch(e => {
@@ -100,5 +112,6 @@ export default {
   setNewCustomer,
   getCountUnits,
   fetchAllUnits,
-  fetchUnitsInfo
+  fetchUnitsInfo,
+  updateCustomer
 };

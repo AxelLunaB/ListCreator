@@ -10,38 +10,38 @@
     </transition>
 
     <!-- Edit User Modal -->
-    <div v-if="modal" style="position:fixed;left:0;top:0;bottom:0;right:0;background: #00000094;z-index: 2;display: flex;align-items: center;justify-content: center;">
+    <div v-if="modal" style="position: fixed; left: 0px; top: 0px; bottom: 0px; right: 0px; background: rgba(0, 0, 0, 0.58); z-index: 2; display: flex; align-items: center; justify-content: center;">
       <div class="modal-body fade-in" id="modal-body">
-        <form style="padding: 18px;" id="new-customer-form">
-          <h4 style="text-align: center; margin: 32px 0; font-weight: 300;">Edit Customer</h4>
+        <form style="padding: 18px; background: rgb(60, 72, 87); color: rgb(255, 255, 255);" id="new-customer-form">
+          <h4 style="text-align: center; margin: 32px 0; font-weight: 300;">Editar Cliente</h4>
 
           <div class="form-row">
             <div class="col">
-              <label style="font-weight: 500;" for="customer-name">Name</label>
+              <label style="font-weight: 500;" for="customer-name">Nombre</label>
               <input type="text" id="customer-name" v-model="customer.name">
             </div>
 
             <div class="col">
-              <label style="font-weight: 500;" for="customer-lastName">Last name</label>
+              <label style="font-weight: 500;" for="customer-lastName">Apellido</label>
               <input type="text" id="customer-lastName" v-model="customer.lastName">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
-              <label style="font-weight: 500;" for="customer-number">Contact Number</label>
+              <label style="font-weight: 500;" for="customer-number">Número de contacto</label>
               <input v-bind:style="[letters === false ? $v.tel.$model !== null ? $v.tel.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]" type="text" id="customer-number" v-model="customer.contactNumber">
             </div>
 
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="customer-age">Age</label>
+              <label style="display: block; font-weight: 500;" for="customer-age">Edad</label>
               <input type="number" id="customer-age" v-model="customer.age">
             </div>
           </div>
 
           <div class="form-row">
             <div class="col-6">
-              <label style="font-weight: 500;" for="customer-email">Email</label>
+              <label style="font-weight: 500;" for="customer-email">Correo electrónico</label>
               <input type="text" id="customer-email" v-model="customer.email">
             </div>
 
@@ -49,7 +49,7 @@
 
           <div class="form-row">
             <div class="form-group col">
-              <label style="font-weight: 500;" for="customer-country">Country</label><br>
+              <label style="font-weight: 500;" for="customer-country">País de procedencia</label><br>
               <b-dropdown
               id="dropdown-country"
               name="country"
@@ -65,7 +65,7 @@
             <div class="form-group col">
               <!-- <label style="display: block; font-weight: 500;" for="customer-state">State</label>
               <input type="text" id="customer-state" v-model="customer.state"> -->
-              <label style="font-weight: 500;" for="customer-state">State</label><br>
+              <label style="font-weight: 500;" for="customer-state">Estado</label><br>
               <b-dropdown
               id="dropdown-state"
               name="state"
@@ -85,24 +85,24 @@
           </div>
           <div class="form-row">
             <div class="form-group col">
-              <label style="font-weight: 500;" for="customer-city">City</label>
+              <label style="font-weight: 500;" for="customer-city">Ciudad</label>
               <input type="text" id="customer-city" v-model="customer.city">
             </div>
 
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="customer-address">Address</label>
+              <label style="display: block; font-weight: 500;" for="customer-address">Dirección</label>
               <input type="text" id="customer-address" v-model="customer.address">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="customer-password">New Password</label>
+              <label style="display: block; font-weight: 500;" for="customer-password">Password</label>
               <input type="password" id="customer-password" v-model="customer.password">
             </div>
 
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="zip-code">Zip code</label>
+              <label style="display: block; font-weight: 500;" for="zip-code">Codigo postal</label>
               <input type="number" id="zip-code" v-model="customer.zipcode">
             </div>
 
@@ -110,9 +110,9 @@
 
           <!-- Form Buttons -->
           <div style="margin-top: 24px;" class="form-buttons">
-            <button type="button" class="delete-button" @click="deleteCustomer()">Delete</button>
-            <button type="button" class="cancel-button" @click="cancelForm()">Cancel</button>
-            <button type="button" class="send-button" @click="sendForm()">Update</button>
+            <button type="button" class="delete-button" @click="deleteCustomer()">Borrar</button>
+            <button type="button" class="cancel-button" @click="cancelForm()">Cancelar</button>
+            <button type="button" class="send-button" @click="sendForm()">Actualizar</button>
           </div>
         </form>
       </div>

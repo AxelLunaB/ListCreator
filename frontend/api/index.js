@@ -274,6 +274,14 @@ const deleteAllAttachments = attachments => {
   });
 };
 
+const updateCustomerInfo = customer => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'customers', customer.id, customer, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const createNewAttachment = (attachment) => {
   return new Promise((resolve, reject) => {
     socket.emit('create', 'attachments', attachment, (error, response) => {
@@ -393,5 +401,6 @@ export {
   deleteAttachment,
   deleteAllAttachments,
   getAttachmentsCustomer,
-  createNewAttachment
+  createNewAttachment,
+  updateCustomerInfo
 }

@@ -33,7 +33,7 @@ input[data-v-87f50644]:-webkit-autofill {
     background-color: #3b5977!important;
     background-image: none!important;
     color: #797c80;
-}    
+}
 
 a.pagination-previous {
     background-color: #2a333c;
@@ -43,6 +43,111 @@ a.pagination-previous {
 a.pagination-next {
     background-color: #2a333c;
     color: #ececec !important;
+}
+
+modal-body {
+  background:#3C4857!important;
+  color:white;
+  width:50%;
+  max-width: 800px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+
+.modal-body {
+  background:#3C4857!important;
+  color:white;
+  width:50%;
+  max-width: 800px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.modal-body form .col-3,
+.modal-body form .col-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body form input,
+.modal-body form input {
+  width: 100%;
+  border: 1px solid #2f2f2f2e;
+  background: #242c33;
+  border-radius: .25rem;
+  color: #9c9c9c;
+  outline: none;
+  padding: 6px;
+  margin: 10px 0;
+}
+
+
+// Edit users form
+.cancel-button {
+  background: rgba(255, 255, 255, 255);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: .02em;
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 10px 15px 11px;
+  width: 80px;
+  transition: background 0.3s;
+  -webkit-appearance: none;
+}
+
+.cancel-button:hover {
+  background: rgba(236, 236, 236, 236);
+}
+
+.send-button {
+  background: #3273dc;
+  border: none;
+  border-radius: 4px;
+  color: #F4F4F4;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: .02em;
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 10px 15px 11px;
+  width: 80px;
+  transition: background 0.3s;
+  -webkit-appearance: none;
+}
+
+.send-button:hover {
+  background: #2268da;
+}
+
+.delete-button {
+  background: #e23c3c;
+  border: none;
+  border-radius: 4px;
+  color: #F4F5F5;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: .02em;
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 10px 15px 11px;
+  width: 80px;
+  transition: all .3s;
+  -webkit-appearance: none;
+}
+
+.delete-button:hover {
+  background: #c33535;
+}
+
+.form-buttons {
+  text-align: center;
 }
 
 .custom-select{
