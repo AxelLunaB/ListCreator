@@ -44,6 +44,10 @@
                                 <td class="textalign">m<sup>2</sup> Terreno</td>
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
+                            <tr @click="removeProp('customerId')" style="cursor:pointer;">
+                              <td class="textalign">Cliente</td>
+                              <td class="text-right"><span v-if="this.currentUser.type !== 'V' && this.detailTable.customerId !== null ">×</span> <b>{{ detailTable.customer ? detailTable.customer.name : 'No Asignado' }}</b></td>
+                            </tr>
                             <tr @click="removeProp('userId')" style="cursor:pointer;">
                               <td class="textalign">Ejecutivo</td>
                               <td class="text-right"><span v-if="this.currentUser.type !== 'V' && this.detailTable.userId !== null ">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
@@ -1074,6 +1078,19 @@ button.waves.default {
   width: 400px;
   max-width: 400px;
   margin: 20px 0;
+}
+
+.form-control {
+  padding: 2px 0 2px 0;
+  background: #2f3843;
+  border: none;
+  border-radius: 0;
+}
+
+.form-control:focus {
+  color: #aeb9c4;
+  background: #495057;
+  outline: none;
 }
 
 .customer {

@@ -486,13 +486,6 @@ div.add-new-user {
     color:white;
 }
 
-.form-control {
-  padding: 2px 0 2px 0;
-  background: #2f3843;
-  border: none;
-  border-radius: 0;
-}
-
 .margin-0 {
   margin-bottom:10px;
 }
@@ -504,12 +497,6 @@ div.add-new-user {
 input {
   padding-left: 10px!important;
 
-}
-
-.form-control:focus {
-  color: #aeb9c4;
-  background: #495057;
-  outline: none;
 }
 
 div li a.dropdown-item {
