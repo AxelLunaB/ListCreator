@@ -17,10 +17,13 @@
           <div class="column is-4"><p class="table-head-color" style="text-align: center; font-weight: 600;">Tipo</p></div>
         </div>
 
-        <div @click="showUser(u)" v-for="u in users" :key="u.id" class="columns is-mobile is-multiline">
+        <div v-for="u in users" :key="u.id" class="columns is-mobile is-multiline">
           <div class="column is-4">{{u.name}}</div>
           <div class="column is-4 parent-overflow"><p class="">{{u.email}}</p></div>
-          <div class="column is-4 has-text-centered"><span :class="`tag ${tagColor(u)}`">{{u.type}}</span></div>
+          <div class="column is-4 has-text-centered" style="display: flex;align-items: center;justify-content: space-around;">
+            <span :class="`tag ${tagColor(u)}`">{{u.type}}</span>
+            <span @click="showUser(u)" style="cursor:pointer;"><i class="far fa-edit"></i></span>
+          </div>
         </div>
       </div>
 
@@ -32,7 +35,7 @@
       <!-- CREATE -->
       <div v-if="isCreating">
         <div class="columns is-centered is-mobile">
-          <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: rgb(60, 72, 87); color: rgb(255, 255, 255);">
+          <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: #3c4857; color: rgb(255, 255, 255);">
             <!-- <div class="container padding-15 padding-correction "> -->
               <h1 class="titleFixed is-1 is-spaced" style="font-size:40px; font-weight: 600; margin-bottom: 18px;">Usuario Nuevo</h1>
               <h2 class="subtitle is-4" style="color: rgb(255, 255, 255); font-size: 20px;">Llena todos los campos.</h2>
@@ -98,7 +101,7 @@
                 <button v-on:click="toggleUserUI()" class="button is-light button-width">
                   Cancelar
                 </button>
-                <button class="button is-success" style="background: #17a2b8 !important;" :disabled="createDisabled">Añadir Usuario</button>
+                <button class="button is-success" :disabled="createDisabled">Añadir Usuario</button>
               </div>
               </form>
               <br>
@@ -107,17 +110,17 @@
       </div>
 
       <!-- UPDATE -->
-      <div class ="" v-if="isEditting">
+      <div class ="" v-if="isEditting" style="background:#2a333c;position: absolute;left: 0;top: 79px;right: 0;">
           <div class="columns is-centered is-mobile">
-            <div class="column box padding-15 padding-correction is-three-fifths-tablet">
+            <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: #3c4857;border: none;box-shadow: none;">
               <!-- <div class="container padding-15 padding-correction "> -->
-                <h1 class="title is-1">Modificar Usuario</h1>
+                <h1 class="title is-1" style="color:white;">Modificar Usuario</h1>
                 <form id="edit-user-form">
                 <!-- <form id="new-user-form"> -->
                   <!-- <div class="columns is-multiline"> -->
                     <!-- <div class="column is-half-tablet"> -->
                       <div class="field">
-                        <label class="label">Nombre Completo</label>
+                        <label class="label" style="color:white;">Nombre Completo</label>
                         <div class="control">
                           <input class="input" id="nameInput" type="text" :value="selectedUserWrapper.name" name="name" placeholder="">
                         </div>
@@ -125,7 +128,7 @@
                     <!-- </div> -->
                     <!-- <div class="column is-half-tablet"> -->
                       <div class="field">
-                        <label class="label">Correo Electrónico</label>
+                        <label class="label" style="color:white;">Correo Electrónico</label>
                         <div class="control">
                           <input class="input" id="emailInput" type="text" name="email" :value="selectedUserWrapper.email">
                         </div>
@@ -133,7 +136,7 @@
                     <!-- </div> -->
                     <!-- <div class="column is-half-tablet"> -->
                       <div class="field">
-                        <label class="label">Tipo</label>
+                        <label class="label" style="color:white;">Tipo</label>
                         <div class="control">
                           <div class="select">
                             <select id="userTypeSelector" name="type">

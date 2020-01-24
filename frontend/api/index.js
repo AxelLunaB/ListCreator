@@ -117,7 +117,6 @@ const fetchUsers = ($skip) => {
       if (error) {
         reject(error);
       } else {
-        console.log('--------------------get')
         resolve(user);
       }
     });

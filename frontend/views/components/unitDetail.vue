@@ -1173,10 +1173,10 @@ export default {
   }
 
   select {
-  background:#252d33;
-  border:none;
+  background:#252d33!important;
+  border:none!important;
   border-radius: 4px;
-  color:white;
+  color:white!important;
   padding:5px;
   cursor:pointer;
 }
@@ -1236,8 +1236,9 @@ label.input-files:hover {
   background-color: #27a961;
 }
 .input {
-  background: #2a333c;
-  border: 1px solid #ffffff4b;
+  background: #2a333c!important;
+  border: 1px solid #ffffff4b!important;
+  color:white!important;
 }
 
   .fullh {
