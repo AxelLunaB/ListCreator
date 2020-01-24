@@ -45,11 +45,11 @@
                                 <td class="text-right"> {{ detailTable ? detailTable.m2Terrain : '' }}</td>
                             </tr>
                             <td class="textalign">Ejecutivo</td>
-                                <td class="text-right"><span v-if="this.detailTable.user">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
+                                <td class="text-right"><span v-if="this.detailTable.user.type !== 'V'">×</span> <b>{{ detailTable.user ? detailTable.user.name : 'No Asignado' }}</b></td>
                             <tr>
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
-                                  <select id="myList" v-on:change="status($event)">
+                                  <select id="myList" v-on:change="status($event)" :disabled="currentUser.type === 'V' ">
                                     <option v-bind:style="{color: getColor}">{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
                                     <option value = "1" style="color:#35ce41;" v-if="detailTable.statusId != 1">DISPONIBLE</option>
                                     <option value = "2" style="color:#cd110f;" v-if="detailTable.statusId != 2">VENDIDO</option>
