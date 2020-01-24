@@ -4,6 +4,7 @@ import {
   fetchUnitsByCluster,
   getUnitsByStage,
   updateUnitStatus,
+  updateUnitCustomer,
   updateUnitExecutive,
   fetchUpdatedUnit,
   removeExecutiveFromUnit
@@ -46,6 +47,17 @@ const deleteExecutiveFromUnit = (context, newStatus) => {
 const updateExecutive = (context, newStatus) => {
   return new Promise((resolve, reject) =>{
     updateUnitExecutive(newStatus)
+    .then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
+const updateCustomer = (context, newStatus) => {
+  return new Promise((resolve, reject) =>{
+    updateUnitCustomer(newStatus)
     .then(res => {
       resolve(res);
     }).catch(err => {
@@ -210,6 +222,7 @@ export default {
   fetchUnitsByStage,
   getUnitById,
   updateExecutive,
+  updateCustomer,
   getUnitUpdatedById,
   deleteExecutiveFromUnit
 }

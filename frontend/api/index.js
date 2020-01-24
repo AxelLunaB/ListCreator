@@ -46,6 +46,19 @@ const updateUnitExecutive = (newStatus) => {
   })
 };
 
+const updateUnitCustomer = (newCustomer) => {
+  console.log(newCustomer);
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'units', newCustomer.unitId, {customerId: newCustomer.customerId}, (error, message) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(message);
+      }
+    });
+  })
+}
+
 const fetchUpdatedUnit = (unit) => {
   console.log(unit);
   return new Promise((resolve, reject) => {
@@ -96,6 +109,7 @@ const fetchUsers = ($skip) => {
       if (error) {
         reject(error);
       } else {
+        console.log('--------------------get')
         resolve(user);
       }
     });
@@ -318,6 +332,7 @@ export {
   getUnitsByStage,
   getUnitsInfo,
   updateUnitExecutive,
+  updateUnitCustomer,
   fetchUpdatedUnit,
   removeExecutiveFromUnit
 }

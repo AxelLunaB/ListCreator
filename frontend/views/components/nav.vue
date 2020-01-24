@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
+    <div :class="{overlay : openModal}"></div>
     <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
@@ -46,6 +47,11 @@ import { mapGetters,mapActions } from "vuex";
 export default {
   name: "appnav",
   mounted: function() {
+
+    this.$eventHub.$on("modal-bar", state => {
+      this.openModal = state;
+    });
+
     var _ = this;
     $(document).ready(function() {
       $("#nav-search-form").on("submit", function(event) {
@@ -62,6 +68,7 @@ export default {
   },
   data() {
     return {
+      openModal:false,
       fields: [
         ["division", "Sección"],
         ["cluster", "Clúster"],
@@ -154,6 +161,14 @@ export default {
 </script>
 
 <style>
+
+.overlay {
+    width: 100%;
+    height: 69px;
+    position: fixed;
+    background: #00000091;
+    left: 0;
+}
 
 .icons-bar > div {
   width:40px;
