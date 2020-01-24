@@ -92,29 +92,29 @@
                           </thead>
                           <tbody>
 
-                          <tr @click="selectedDocument = 'Official ID'" class="document-row" :class="showDocument('Official ID')">
+                          <tr @click="selectedDocument = 'Identificacion'" class="document-row" :class="showDocument('Identificacion')">
                               <td class="text-left">Identificación</td>
                                 <td>
-                                  <span v-if="!showDocument('Official ID') && detailTable.customerId !== null">
+                                  <span v-if="!showDocument('Identificacion') && detailTable.customerId !== null">
                                       <label class="doc-button" for="file-upload">Subir</label>
                                   </span>
                                 </td>
                               <td>
                                 <span v-if="detailTable.customer">
-                                 <label v-if="showDocument('Official ID')" style="cursor:pointer" class="doc-button" @click="editDocument('Official ID')">Ver</label>
+                                 <label v-if="showDocument('Identificacion')" style="cursor:pointer" class="doc-button" @click="editDocument('Identificacion')">Ver</label>
                                 </span>
                               </td>
                           </tr>
 
-                          <tr @click="selectedDocument = 'Proof of Address'" class="document-row" :class="showDocument('Proof of Address')">
+                          <tr @click="selectedDocument = 'Comprobante de domicilio'" class="document-row" :class="showDocument('Comprobante de domicilio')">
                               <td class="text-left">Comprobante de Domicilio</td>
                               <td >
-                                <span v-if="!showDocument('Proof of Address') && detailTable.customerId !== null">
+                                <span v-if="!showDocument('Comprobante de domicilio') && detailTable.customerId !== null">
                                   <label class="doc-button" for="file-upload">Subir</label>
                                 </span>
                               </td>
                               <td>
-                                <label v-if="showDocument('Proof of Address')" style="cursor:pointer" class="doc-button" @click="editDocument('Proof of Address')">View</label>
+                                <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
                               </td>
                           </tr>
 
@@ -250,6 +250,15 @@ const isFileValid = fileType => {
   }
 };
 
+const getFileSize = (bytes, decimalPoint) => {
+  if(bytes == 0) return '0 Bytes';
+   let k = 1000,
+       dm = decimalPoint || 2,
+       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+       i = Math.floor(Math.log(bytes) / Math.log(k));
+   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+};
+
 export default {
   props:['totalUnits'],
 
@@ -261,6 +270,9 @@ export default {
     });
 
     this.$eventHub.$on("sendClient",customer => {
+
+      this.customDelete();
+
       this.detailTable.customer = customer
       this.detailTable.customerId = customer.id;
     })
@@ -280,6 +292,7 @@ export default {
 
   data() {
     return {
+      receipt: null,
       mywidth: 200,
       newClient: false,
       currentState: '',
@@ -367,7 +380,25 @@ export default {
   },
 
   methods: {
+    customDelete : function() {
 
+      console.log("hey!");
+
+      this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
+        console.log("pum");
+        console.log(response);
+        this.attachmentsByUnit = null;
+        this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id).then(r => {
+
+          console.log("done deleting");
+          console.log(r)
+          console.log(this.attachmentsByUnit);
+        });
+      }).catch(error => {
+        console.log(error)
+      })
+
+    },
     editDocument: function(name) {
       let possibleUpload = false;
       // Activates delete button only if you're super-admin
@@ -390,7 +421,7 @@ export default {
         // Sweet Alert UI
         const container = document.createElement('div');
         container.innerHTML = `
-        <p><a href="${attachment.url}" target="_blank">Download</a></p>`;
+        <p><a href="${attachment.url}" target="_blank">Descargar</a></p>`;
 
         // Edit Attachment
         swal({
@@ -425,7 +456,7 @@ export default {
            const span = document.createElement('span');
            span.setAttribute('id', 'file-read');
            span.setAttribute('class', 'file-selected');
-           span.innerText = 'Select an Official ID';
+           span.innerText = '  Selecciona documento';
 
            const container = document.createElement('div');
            container.appendChild(fileInput);
@@ -447,12 +478,12 @@ export default {
              if(value){
                if(this.files === null) {
                  const fileSelection = document.getElementById('file-read');
-                 fileSelection.innerText = 'Por favor seleccione un documento de Identificación';
+                 fileSelection.innerText = 'Por favor seleccione un documento';
                  fileSelection.classList.add('file-text-anim');
                  swal.stopLoading();
                }
 
-               this.sendFiles('Official ID').then(officialId => {
+               this.sendFiles('Identificacion').then(officialId => {
                  if(officialId) {
                    swal({
                      title: 'Éxito!',
@@ -521,7 +552,7 @@ export default {
     const unitId = this.detailTable.id || null;
 
     if(this.files.length === 0) {
-      throw new Error('Please, select a file to upload.');
+      throw new Error('Por favor, seleccione un documento.');
       return;
     }
 
@@ -550,16 +581,16 @@ export default {
 
       const downloadElement = document.createElement('a');
       downloadElement.href = `${response.url}`;
-      downloadElement.innerHTML = 'Download File';
+      downloadElement.innerHTML = 'Descargar archivo';
 
       // Show a Modal Swal to view
       // information about the uploaded file
       swal({
-            title: 'File uploaded successfully!',
+            title: 'Documento subido exitosamente!',
             content: downloadElement,
-            text: `Size: ${getFileSize(response.size)}`,
+            text: `Tamaño: ${getFileSize(response.size)}`,
             icon: "success",
-            button: 'Close'
+            button: 'Cerrar'
           }).then(() => {
 
             // Retrieve new values
@@ -567,14 +598,14 @@ export default {
           });
 
     }).catch(error => {
-
+      console.log(error);
       // If upload fails
       // show a modal to alert user
       swal({
-            title: 'Something went wrong!',
-            text: `Please, try again...`,
+            title: 'Error!',
+            text: `Por favor, intente de nuevo...`,
             icon: 'error',
-            button: 'Close'
+            button: 'Cerrar'
           });
     });
 
@@ -620,7 +651,7 @@ export default {
               validFiles += 1;
 
               swal({
-                title: 'Confirm Information',
+                title: 'Confirmar información',
                 text:  `Upload file: ${file.name} for ${this.selectedDocument}?`,
                 icon: "info",
                 buttons: {
@@ -698,7 +729,7 @@ export default {
       let user;
       this.selectedExec ? user = this.selectedExec.name : user = this.detailTable.user.name
         swal({
-          title: 'Please confirm information',
+          title: 'Confirmar información',
           text:  'Remove ' + user + ' from this unit?',
           icon: "info",
           buttons: { cancel: true,
@@ -780,11 +811,11 @@ export default {
 
               })
 
-            /*  this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
-
+              this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
+                this.attachmentsByUnit = null;
               }).catch(error => {
                 console.log(error)
-              }) */
+              })
 
             }
         })
@@ -1042,7 +1073,11 @@ export default {
       executives: "users/executives",
       attachmentsByUnit: "attachments/attachmentsByUnit",
     }),
+    docState () {
 
+          return this.attachmentsByUnit
+
+    },
     shouldShow() {
       return this.show;
     },
@@ -1084,24 +1119,6 @@ export default {
       else {
         return  'ffffff'
       }
-    },
-
-    getTotalCommission () {
-      let percent = 0
-
-      if(this.contract != null ) {
-        if(this.contract.commission != null) {
-          percent = this.contract.commission.managementCommissions +
-          this.contract.commission.salesAdministrativeCommissions +
-          this.contract.commission.brokerCommissions +
-          this.contract.commission.salesExecutivesCommissions +
-          this.contract.commission.thirdPartyCommissions
-          percent = percent / 100
-
-         return this.contract.salesprice > 0 ? '$ ' + (this.contract.salesprice * percent).toFixed(2) : '-';
-        }
-      }
-
     },
 
     dynamicChart () {

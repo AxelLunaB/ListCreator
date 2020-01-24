@@ -61,6 +61,7 @@ const deleteFile = (context, data) => {
 const deleteAllFiles = (context, data) =>{
   return new Promise((resolve, reject) => {
     deleteAllAttachments(data).then(res => {
+      context.commit('ATTACHMENTS_BY_UNIT',null);
       resolve(res);
     }).catch(err => {
       reject(err);
