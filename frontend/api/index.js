@@ -165,14 +165,11 @@ const deleteUser = (user) => {
     });
   });
 };
-const patchUser = (user) => {
+
+const patchUser = user => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'users', user.id, user, (error, response) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(response);
-      }
+      error ? reject(error) : resolve(response);
     });
   });
 };
