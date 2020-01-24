@@ -17,14 +17,14 @@
           <div class="column is-4"><p class="table-head-color" style="text-align: center; font-weight: 600;">Tipo</p></div>
         </div>
 
-        <div v-for="u in users" :key="u.id" class="columns is-mobile is-multiline">
+        <div @click="showUser(u)" v-for="u in users" :key="u.id" class="columns is-mobile is-multiline">
           <div class="column is-4">{{u.name}}</div>
           <div class="column is-4 parent-overflow"><p class="">{{u.email}}</p></div>
           <div class="column is-4 has-text-centered"><span :class="`tag ${tagColor(u)}`">{{u.type}}</span></div>
         </div>
       </div>
 
-        <div style="display: none;">
+        <div style="display: none;"> 
           <a v-on:click="prevPage" class="pagination-previous">Anterior</a>
           <a v-on:click="nextPage" class="pagination-next">Siguiente</a>
         </div>
@@ -111,7 +111,7 @@
           <div class="columns is-centered is-mobile">
             <div class="column box padding-15 padding-correction is-three-fifths-tablet">
               <!-- <div class="container padding-15 padding-correction "> -->
-                <h1 class="title is-1">Modificar usuario</h1>
+                <h1 class="title is-1">Modificar Usuario</h1>
                 <form id="edit-user-form">
                 <!-- <form id="new-user-form"> -->
                   <!-- <div class="columns is-multiline"> -->
@@ -119,16 +119,15 @@
                       <div class="field">
                         <label class="label">Nombre Completo</label>
                         <div class="control">
-                          <input class="input" type="text" :value="selectedUserWrapper.name" name="name" placeholder="">
+                          <input class="input" id="nameInput" type="text" :value="selectedUserWrapper.name" name="name" placeholder="">
                         </div>
                       </div>
                     <!-- </div> -->
                     <!-- <div class="column is-half-tablet"> -->
                       <div class="field">
-                        <label class="label">Correo electrónico</label>
+                        <label class="label">Correo Electrónico</label>
                         <div class="control">
-                          <input class="input" type="text" name="email"
-                          :value="selectedUserWrapper.email" placeholder="ejemplo@altozano.com.mx">
+                          <input class="input" id="emailInput" type="text" name="email" :value="selectedUserWrapper.email">
                         </div>
                       </div>
                     <!-- </div> -->
@@ -137,10 +136,10 @@
                         <label class="label">Tipo</label>
                         <div class="control">
                           <div class="select">
-                            <select name="type">
-                              <option :selected="selectedUserWrapper.type === 'A'" value="A">ADMINISTRADOR</option>
-                              <option :selected="selectedUserWrapper.type === 'V'" value="V">ASISTENTE DE VENTA</option>
-                              <option :selected="selectedUserWrapper.type === 'P'" value="P">PANTALLA INTERACTIVA</option>
+                            <select id="userTypeSelector" name="type">
+                              <option :selected="selectedUserWrapper.type === 'A'" value="A">Administrador</option>
+                              <option :selected="selectedUserWrapper.type === 'V'" value="V">Asistente de Venta</option>
+                              <option :selected="selectedUserWrapper.type === 'P'" value="P">Pantalla Interactiva</option>
                             </select>
                           </div>
                         </div>
@@ -149,7 +148,7 @@
                   <!-- </div> -->
                   <div class="buttons padding-15">
                     <button type="reset" v-on:click="toggleEditUser(null)" class="button is-light button-width">Cancelar</button>
-                    <button type="submit" class="button is-success button-width">Guardar</button>
+                    <button @click="updateUser($event)" class="button is-success button-width">Guardar</button>
                   </div>
                 </form>
                 <br>
@@ -174,6 +173,7 @@ export default {
       // Dispatch actions && subscribe to rt events.
       this.$store.dispatch("users/getUsers");
       this.$store.dispatch("users/listenEvents");
+      this.$store.dispatch("users/getCurrentUser");
 
       // listen to authenticated event
     } else {
@@ -181,6 +181,7 @@ export default {
       this.$eventHub.$on("authenticated", function() {
         _.$store.dispatch("users/getUsers");
         _.$store.dispatch("users/listenEvents");
+        _.$store.dispatch("users/getCurrentUser");
       });
     }
   },
@@ -209,6 +210,68 @@ export default {
       // console.log(n,cssClass);
 
       return cssClass;
+    },
+
+    showUser(user) {
+      const currentUser = user;
+      const context = this;
+      const isAdmin = context.currentUser.type === 'A' ? true : false;
+
+      // Pass User Object to Data
+      if(isAdmin) {
+        context.selectedUser = currentUser;
+        context.isEditting = true;
+      } else {
+        return;
+      }
+      
+    },
+
+    updateUser(event) {
+      // Prevent default button behavior
+      event.preventDefault();
+
+      // Component Instance
+      const context = this;
+
+      // User Object
+      const user = context.selectedUserWrapper ? context.selectedUserWrapper : null;
+
+      if(user) {
+        // We update user info
+        user.name = document.getElementById('nameInput').value.trim();
+        user.email = document.getElementById('emailInput').value.trim();
+        user.type = document.getElementById('userTypeSelector').value;
+
+        this.$store.dispatch('users/updateUser', user).then(res => {
+          // We close Edit User Modal
+          if(context.isEditting) {
+            context.isEditting = false;
+          }
+
+          // Show a Sweet Alert
+          swal({
+            title: 'Usuario Actualizado',
+            text: `${user.name} ha sido modificado.`,
+            icon: 'success',
+            buttons: false,
+            timer: 2500
+          });
+
+          // Retrieve new Users
+          this.$store.dispatch('users/getUsers');
+
+        }).catch(err => {
+          // Show a Sweet Alert
+          swal({
+            title: 'Error',
+            text: `Por favor, vuelve a intentar más tarde.`,
+            icon: 'warning',
+            buttons: false,
+            timer: 2500
+          });
+        })
+      }
     },
 
     updateLot(uLot) {
@@ -407,7 +470,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      users: "users/users"
+      users: "users/users",
+      currentUser: "users/currentUser"
     }),
 
     plusIcon() {
