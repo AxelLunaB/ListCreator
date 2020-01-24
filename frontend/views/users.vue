@@ -133,6 +133,18 @@
                           <input class="input" id="emailInput" type="text" name="email" :value="selectedUserWrapper.email">
                         </div>
                       </div>
+                      <div class="field">
+                        <label class="label" style="color:white;">Número de teléfono</label>
+                        <div class="control">
+                          <input class="input" id="emailInput" type="text" name="email" :value="selectedUserWrapper.contactNumber">
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label" style="color:white;">Edad</label>
+                        <div class="control">
+                          <input class="input" id="emailInput" type="text" name="email" :value="selectedUserWrapper.age">
+                        </div>
+                      </div>
                     <!-- </div> -->
                     <!-- <div class="column is-half-tablet"> -->
                       <div class="field">
