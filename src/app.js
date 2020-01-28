@@ -45,7 +45,7 @@ app.use(cors());
 app.use(helmet());
 app.use(compress());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '20mb', extended: true, parameterLimit: 50000 }));
 app.use(favicon(path.join(app.get('public'), 'fav.png')));
 // Host the public folder
 app.use('/static', express.static(app.get('public')));

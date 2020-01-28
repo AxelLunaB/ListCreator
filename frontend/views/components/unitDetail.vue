@@ -158,7 +158,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
         <div class="card">
           <div class="card-body" style="display:flex; flex-direction:column;">
-            <h5 class="m-t-0 m-b-30 text-center">VENTAS</h5>
+          <!--  <h5 class="m-t-0 m-b-30 text-center">VENTAS</h5>
           <div class = "placeholder-card">
               <chartjs-bar
               :beginzero="myboolean"
@@ -170,7 +170,7 @@
               v-bind:option="myoption"
               style="width:100%;">
       </chartjs-bar>
-              </div>
+              </div> -->
           </div>
         </div>
       </div>
