@@ -2,7 +2,6 @@ const users = require('./users/users.service.js');
 const mailer = require('./mailer/mailer.service.js');
 const authmanagement = require('./authmanagement/authmanagement.service.js');
 const status = require('./status/status.service.js');
-const mailer = require('./mailer/mailer.service.js');
 const clusters = require('./clusters/clusters.service.js');
 const countByCluster = require('./count-by-cluster/count-by-cluster.service.js');
 const customers = require('./customers/customers.service.js');
