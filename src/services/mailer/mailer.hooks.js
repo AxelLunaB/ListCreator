@@ -23,7 +23,7 @@ module.exports = {
             content: base64Data
           }]
         };
-
+          console.log(data.filename);
         // Format data to be in correct syntax
         context.data = email;
         return context;
