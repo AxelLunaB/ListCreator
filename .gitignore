@@ -112,3 +112,8 @@ lib/
 data/
 .env
 webpack-stats.json
+
+# Ignores package files, added  by chabat. Remove if needed
+
+package.json
+package-lock.json

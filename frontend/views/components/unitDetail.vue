@@ -9,8 +9,8 @@
       <div id="returntwo" @click="closeBtn()">
         <span><i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
-  <div class="row row-one" :class="{ animate: isActive }" style="margin:0 auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+  <div class="row row-one" :class="{ animate: isActive }" style="margin:12% auto;">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Residencia #{{ detailTable ? detailTable.unit : ''}}</span></h4>
@@ -80,7 +80,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
         <div class="card">
           <div class="card-body" style="cursor:default;">
               <h5 class="m-b-30 m-t-0 text-left">DOCUMENTOS</h5>
@@ -126,54 +126,34 @@
       </div>
     </div>
 
-    </div>
-    <div class="row row-two" :class="{ animate: isActive }"  style="margin:0 auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
-        <div class="card">
-          <div class="card-body" style="padding-bottom:0;">
-            <div class="row" style="height:242px;">
-              <div class="col-12" style="flex-direction:column;">
-                <h5 class="m-t-0 m-b-30 text-center">DISPONIBILIDAD</h5>
-                <div style="width:100%;display:flex;justify-content:center;height:79%">
-                  <chartjs-doughnut
-                  v-bind:labels="labels"
-                  v-bind:datasets="dynamicChart"
-                  v-bind:option="option"
-                  :width="mywidth"
-                  :height="myheight"
-                  style="height:226px;"
-                   ></chartjs-doughnut>
-                </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" style="height:100%;">
+      <div class="card" style="min-height:386px;">
+        <div class="card-body" style="padding-bottom:0;">
+          <div class="row" style="height:242px;">
+            <div class="col-12" style="flex-direction:column;">
+              <h5 class="m-t-0 m-b-30 text-center">DISPONIBILIDAD</h5>
+              <div style="width:100%;display:flex;justify-content:center;height:79%">
+                <chartjs-doughnut
+                v-bind:labels="labels"
+                v-bind:datasets="dynamicChart"
+                v-bind:option="option"
+                :width="mywidth"
+                :height="myheight"
+                style="height:226px;"
+                  ></chartjs-doughnut>
               </div>
             </div>
-            <div class="labels">
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Disponible</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#cd110f;"></div><p>Vendido</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#e89005;"></div><p>Apartado</p></div>
-              <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Bloqueado</p></div>
-            </div>
+          </div>
+          <div class="labels">
+            <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#70b84f;"></div><p>Disponible</p></div>
+            <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#cd110f;"></div><p>Vendido</p></div>
+            <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#e89005;"></div><p>Apartado</p></div>
+            <div style="display:flex;flex-align:row;"><div class="chartdata" style="background:#dddc00;"></div><p>Bloqueado</p></div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="height:100%;">
-        <div class="card">
-          <div class="card-body" style="display:flex; flex-direction:column;">
-          <!--  <h5 class="m-t-0 m-b-30 text-center">VENTAS</h5>
-          <div class = "placeholder-card">
-              <chartjs-bar
-              :beginzero="myboolean"
-              :backgroundcolor="mybackgroundcolor"
-              :bordercolor="mybordercolor"
-              :datalabel="mylabel"
-              :labels="pastMonths"
-              :data="dynamicBar"
-              v-bind:option="myoption"
-              style="width:100%;">
-      </chartjs-bar>
-              </div> -->
-          </div>
-        </div>
-      </div>
+    </div>
+
     </div>
   </div>
   <!-- executive MODAL POPUP-->
@@ -1459,7 +1439,8 @@ td {
 
 .row-one,
 .row-two {
-  max-width: 1000px;
+  max-width: 1400px;
+  max-height:400px;
 }
 
 .labels {
@@ -1618,11 +1599,7 @@ button.waves.default {
 
   @media screen and (min-width: 1200px) and (min-height: 800px) {
   .row-one {
-    height: 60%;
-  }
-
-  .row-two {
-    height: 37%;
+    height: 40%;
   }
 }
 
