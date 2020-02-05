@@ -6,7 +6,8 @@ import { authenticateSocket,
   fetchCustomers,
   createNewCustomer,
   getUnitsInfo,
-  updateCustomerInfo
+  updateCustomerInfo,
+  removeCustomer
 } from '@/api';
 
 const authenticate = (context) => {
@@ -103,10 +104,21 @@ const fetchUnitsInfo = (context) => {
   })
 }
 
+const deleteCustomer = (context, customerId) => {
+  return new Promise((resolve, reject) => {
+    removeCustomer(customerId).then(response => {
+      resolve(response);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
 export default {
   authenticate,
   getClusters,
   getCustomers,
+  deleteCustomer,
   getStatus,
   setPlusButton,
   setNewCustomer,

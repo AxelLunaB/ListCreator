@@ -110,7 +110,7 @@
 
           <!-- Form Buttons -->
           <div style="margin-top: 24px;" class="form-buttons">
-            <!-- <button type="button" class="delete-button" @click="deleteCustomer()">Borrar</button> -->
+            <button type="button" class="delete-button" @click="deleteCustomer()">Borrar</button>
             <button type="button" class="cancel-button" @click="cancelForm()">Cancelar</button>
             <button type="button" class="send-button" @click="sendForm()">Actualizar</button>
           </div>
@@ -906,10 +906,11 @@ export default {
 
       const customerId = this.customer.id;
       const customerName = this.customer.name;
+      const lastName = this.customer.lastName;
       console.log(customerId);
         swal({
           title: '¿Eliminar cliente?',
-          text: `¿Estas seguro que quieres eliminar a ${customerName}?`,
+          text: `¿Estas seguro que quieres eliminar a ${customerName} ${lastName}?`,
           icon: 'warning',
           className:'prueba',
           buttons: {
@@ -920,7 +921,6 @@ export default {
           if(value) {
 
             console.log(customerId);
-            return;
             // User pressed delete
             this.$store.dispatch("others/deleteCustomer", customerId).then(response => {
               swal({

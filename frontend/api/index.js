@@ -314,6 +314,14 @@ const getUnitsByStage = (stage) => {
   });
 };
 
+const removeCustomer = customerId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('remove', 'customers', customerId, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const getUnitsInfo = () => {
   return new Promise((resolve, reject) => {
     socket.emit('find', '/units', (error, data) => {
@@ -380,6 +388,7 @@ export {
   deleteUser,
   fetchUsers,
   patchUser,
+  removeCustomer,
   createNewCustomer,
   fetchCustomers,
   getS3Signature,
