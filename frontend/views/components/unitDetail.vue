@@ -118,6 +118,18 @@
                               </td>
                           </tr>
 
+                          <tr @click="selectedDocument = 'Guia de Prospectos'" class="document-row" :class="showDocument('Guia de Prospectos')" v-if="detailTable.customerId !== null && detailTable.userId !== null">
+                              <td class="text-left">Guia de Prospectos</td>
+                              <td >
+                                <span>
+                                  <label class="doc-button" for="file-upload">Generar</label>
+                                </span>
+                              </td>
+                              <td>
+                                <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
+                              </td>
+                          </tr>
+
                           </tbody>
                       </table>
                   </div>
@@ -704,7 +716,7 @@ export default {
       this.selectedExec ? user = this.selectedExec.name : user = this.detailTable.user.name
         swal({
           title: 'Confirmar información',
-          text:  'Remove ' + user + ' from this unit?',
+          text:  '¿Remover ' + user + ' de esta unidad?',
           icon: "info",
           buttons: { cancel: true,
           delete: { text: 'Remove', value: true }
@@ -719,8 +731,8 @@ export default {
                 this.executive = null;
                 this.selectedExec = null;
                 swal({
-                  title: 'Unit updated',
-                  text:  'This unit has no executive assigned!',
+                  title: '¡Residencia actualizada!',
+                  text:  '¡Esta residencia no tiene ejecutivo asignado!',
                   buttons: { cancel: true, confirm: true }
                 })
 
@@ -758,7 +770,7 @@ export default {
 
         swal({
           title: 'Confirmar información',
-          text:  'Eliminar ' + customer + ' de esta residencia?' + '\n' +
+          text:  '¿Eliminar ' + customer + ' de esta residencia?' + '\n' +
           'Todos los documentos relacionados a la unidad serán eliminados',
           icon: "info",
           buttons: {
@@ -773,7 +785,7 @@ export default {
                 this.customer = null;
                 swal({
                   title: 'Residencia actualizada',
-                  text:  'Esta residencia no tiene cliente asignado!',
+                  text:  '¡Esta residencia no tiene cliente asignado!',
                   buttons: { cancel: true, confirm: true }
                 })
 

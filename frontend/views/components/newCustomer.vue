@@ -303,7 +303,7 @@ export default {
       }
       
       const user = this.customers.data.filter(customer => {
-          let fullName = customer.name + ' ' + customer.lastName;
+          let fullName = customer.name.trim() + ' ' + customer.lastName.trim();
           return fullName === this.current.innerText;
       })
 
@@ -607,7 +607,6 @@ export default {
       }
     },
     closeModal(){
-      console.log('emitting');
       this.$eventHub.$emit("close-userModal");
 
 
@@ -684,8 +683,6 @@ export default {
           usr = obj;
         });
 
-        console.log(usr);
-
         swal({
           title: "Please confirm information",
           text: "Name" + " : " + this.formData.name + "\n" +
@@ -723,12 +720,14 @@ export default {
                   _.formData.email = null
                   _.validation = false
 
-                  setTimeout(function () {
-                    _.$emit('closeModal', false)
-                    }, 500);
-                    setTimeout(function() {
-                      _.closeModalUser = false
-                      }, 500)
+                  // setTimeout(function () {
+                  //   _.$emit('closeModal', false)
+                  //   }, 500);
+                  //   setTimeout(function() {
+                  //     _.closeModalUser = false
+                  //     }, 500)
+
+                  _.create = false;
             }
           }).catch(e => {
             console.log(e);
