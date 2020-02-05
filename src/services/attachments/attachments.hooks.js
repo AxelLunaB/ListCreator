@@ -1,6 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 // const setAttachment = require('../../hooks/set-attachment-object');
 
+const propesctoGuide = require('../../hooks/guia-prospecto-pdf');
+
 
 // Amazon Methods
 const AWS = require('aws-sdk');
@@ -121,6 +123,7 @@ const deleteAttachment = context => {
       const { id } = context;
       let customerId = '000';
 
+
       // First we need the customer ID that belongs to the Unit
       await context.app.service('/api/contracts').find({ query: { $limit: 1, unitId: id.unitId } }).then(contract => {
         const { data } = contract;
@@ -128,6 +131,7 @@ const deleteAttachment = context => {
         if(data[0]) {
           customerId = data[0].customerId;
         }
+
       });
 
       // Then we have to generate the Amazon Key
@@ -163,14 +167,15 @@ module.exports = {
     create: [
       async context => {
         let newId = await context.app.service('attachments').find({query: {$limit: 1,$sort: {id: -1} }});
-        console.log('newId: ');
-        console.log(newId);
-         if(newId.total !== 0){
+        
+        if(newId.total !== 0) {
           context.data.id = newId.data[0].id + 1;
         }
 
 
         const docType = context.data.type;
+
+        let info = context.data
 
         if(context.data.trial) {
           delete context.data.trial
@@ -181,8 +186,42 @@ module.exports = {
         // Check what type of Attachment user
         // wants to retrieve / create
         switch(docType) {
-          case "dummy":
-            // to maintain current structure
+          case "Propescto Guide":
+            const pdfGuide = await propesctoGuide(context);
+
+            // Upload to Amazon S3 Bucket
+            let uploadParamsStatement = {
+              Bucket: 'sibaria-web/attachments',
+              Key: `unit${info.info.unitId}-customer${info.info.customerId}-Prospecto_Guide.pdf`,
+              ContentType: 'application/pdf',
+              Body: pdfGuide.data.pdf,
+              ACL: 'public-read'
+            };
+
+             // Upload to Amazon Bucket
+             await amazonUploadManager(uploadParamsStatement).then(response => {
+
+              // Send Attachment to Attachments Table
+              let attachment = {
+                contentType: 'application/pdf',
+                url: response.Location.toString(),
+                size: pdfGuide.data.pdf.byteLength,
+                unitId: null,
+                customerId: null,
+                docType: 'Propescto Guide',
+                userId: 1,
+                unitId:info.info.unitId,
+                customerId:info.info.customerId
+              };
+
+              context.data = attachment;
+              return context;
+
+            }).catch(error => {
+              context.result = error;
+              return context;
+            });
+
             break;
 
           default:
@@ -191,6 +230,7 @@ module.exports = {
             // So every file (Official ID, Proof of Address, etc)
             // will enter this Switch Case
             const { data } = context;
+            console.log('data is:', data);
             const unit = data.unitId;
             const customer = data.customerId;
             const contentType = data.data.type;
@@ -208,8 +248,6 @@ module.exports = {
               Body: body,
               ACL: 'public-read'
             };
-
-            console.log(fileParams);
 
             // Upload to Amazon Bucket
             await amazonUploadManager(fileParams).then(response => {

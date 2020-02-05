@@ -10,7 +10,7 @@
         <span><i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:12% auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Residencia #{{ detailTable ? detailTable.unit : ''}}</span></h4>
@@ -80,7 +80,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="card">
           <div class="card-body" style="cursor:default;">
               <h5 class="m-b-30 m-t-0 text-left">DOCUMENTOS</h5>
@@ -117,16 +117,17 @@
                                 <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
                               </td>
                           </tr>
-
-                          <tr @click="selectedDocument = 'Guia de Prospectos'" class="document-row" :class="showDocument('Guia de Prospectos')" v-if="detailTable.customerId !== null && detailTable.userId !== null">
-                              <td class="text-left">Guia de Prospectos</td>
+                          <tr @click="selectedDocument = 'Propescto Guide'" class="document-row" :class="showDocument('Propescto Guide')" v-if="detailTable.customerId !== null && detailTable.userId !== null">
+                              <td class="text-left">Guía de Prospecto</td>
                               <td >
                                 <span>
-                                  <label class="doc-button" @click="generateProsp()">Generar</label>
+                                  <label @click="generateProspectoGuide()" class="doc-button" v-if="!showDocument('Propescto Guide')">Generar</label>
                                 </span>
                               </td>
                               <td>
-                                <label v-if="showDocument('Guia de Prospectos')" style="cursor:pointer" class="doc-button" @click="editDocument('Guia de Prospectos')">Ver</label>
+                                <a :href="urls['Propescto Guide']" target="_blank">
+                                  <label v-if="showDocument('Propescto Guide')" style="cursor:pointer;color:white;" class="doc-button">Ver</label>
+                                </a>
                               </td>
                           </tr>
 
@@ -138,7 +139,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" style="height:100%;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4" style="height:100%;">
       <div class="card" style="min-height:386px;">
         <div class="card-body" style="padding-bottom:0;">
           <div class="row" style="height:242px;">
@@ -375,39 +376,39 @@ export default {
   },
 
   methods: {
-    generateProsp(){
-        swal({
-          title: `¿Generar Guia De Prospectos?`,
-          text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
-          icon: 'info',
-          buttons: {
-            cancel: true,
-            confirm: true
-            }
-        }).then(value => {
+    // generateProsp(){
+    //     swal({
+    //       title: `¿Generar Guia De Prospectos?`,
+    //       text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+    //       icon: 'info',
+    //       buttons: {
+    //         cancel: true,
+    //         confirm: true
+    //         }
+    //     }).then(value => {
           
-          if(value){
+    //       if(value){
 
-            document.body.style.cursor = "wait";
-            this.loading = true;
+    //         document.body.style.cursor = "wait";
+    //         this.loading = true;
 
-            let utcDate = moment.utc(new Date()).toDate();
-            utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss').slice(0,10);
+    //         let utcDate = moment.utc(new Date()).toDate();
+    //         utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss').slice(0,10);
 
-            let info = {
-              name:this.detailTable.customer.name,
-              lastName:this.detailTable.customer.lastName,
-              unit:this.detailTable.unit,
-              date:utcDate
-            }
+    //         let info = {
+    //           name:this.detailTable.customer.name,
+    //           lastName:this.detailTable.customer.lastName,
+    //           unit:this.detailTable.unit,
+    //           date:utcDate
+    //         }
 
-            console.log(info);
-          }
+    //         console.log(info);
+    //       }
           
-        }).catch(err => {
-          console.log("error at generating 'Guia de Prospectos': ", err);
-        })
-    },
+    //     }).catch(err => {
+    //       console.log("error at generating 'Guia de Prospectos': ", err);
+    //     })
+    // },
     customDelete : function() {
 
       this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
@@ -419,6 +420,76 @@ export default {
       })
 
     },
+
+    generateProspectoGuide() {
+
+        swal({
+          title: `¿Generar Guia De Prospectos?`,
+          text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+          icon: 'info',
+          buttons: {
+            cancel: true,
+            confirm: true
+            }
+        }).then(value => {
+          if(value){
+            document.body.style.cursor = "wait";
+            this.loading = true;
+      // Create a new Guide
+
+            let utcDate = moment.utc(new Date()).toDate();
+            utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss');
+
+            let info = {
+              name:this.detailTable.user.name,
+              customerName: this.detailTable.customer.name,
+              customerLastname:this.detailTable.customer.lastName,
+              unit:this.detailTable.unit,
+              date:utcDate,
+              customerId:this.detailTable.customerId,
+              unitId:this.detailTable.id
+            }
+
+      this.$store.dispatch('attachments/createPropesctoGuide', { type: 'Propescto Guide', info:info }).then(data => {
+
+        // Download Button
+        const a = document.createElement('a');
+        a.setAttribute('target', '_blank');
+        a.setAttribute('href', data.url);
+        a.innerText = 'Download';
+
+        // Show a Sweet Alert
+        swal({
+          title: 'Guía de Prospecto',
+          content: a,
+          icon: 'success',
+          buttons: false
+        }).then(res => {
+
+            this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+            document.body.style.cursor = "auto";
+            this.loading = false;
+        })
+
+      }).catch(err => {
+        
+        // Show a Sweet Alert
+        swal({
+          title: 'Algo ha salido mal!',
+          text: 'Vuelve a intentarlo.',
+          icon: 'warning',
+          buttons: false
+        });
+
+      });
+
+
+          }
+        }).catch(err => {
+      console.log('error at creating guide:', err);
+    })
+    },
+
     editDocument: function(name) {
       let possibleUpload = false;
       // Activates delete button only if you're super-admin
@@ -445,7 +516,7 @@ export default {
 
         // Edit Attachment
         swal({
-          title: `${attachment.docType}`,
+          title: `${attachment.docType === 'Propescto Guide' ? 'Prospecto Guide' : attachment.docType}`,
           content: container,
           icon: 'info',
           buttons: {
@@ -1358,6 +1429,14 @@ label.input-files:hover {
   border-radius: 6px;
   min-width: 60px;
   cursor:pointer;
+}
+
+.doc-button a {
+  color:white;
+}
+
+.doc-button a:hover {
+  text-decoration: none;
 }
 
 /* Scrollbar */

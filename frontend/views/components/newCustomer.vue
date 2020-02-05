@@ -652,12 +652,6 @@ export default {
 
     sendInfo() {
 
-      // for(let i = 0 ; i < this.customers.data.length ; i++) {
-      //   this.ids.push(this.customers.data[i].id)
-      // }
-
-      // this.formData.id = Math.max.apply(null, this.ids) + 1
-
       this.validation = true;
       this.$v.$touch();
 
@@ -711,6 +705,15 @@ export default {
                     text: 'A new client has been created',
                     icon: 'success',
                     timer: 1500
+                  }).then(res => {
+
+                  _.$store.dispatch("others/getCustomers").then(res=> {
+                    console.log('customers updated');
+                    _.create = false;
+                  })
+
+                  }).catch(err => {
+                    console.log('Error at getting customers', err);
                   })
 
                   _.formData.name = null
@@ -722,17 +725,6 @@ export default {
                   _.formData.contactNumber = null
                   _.formData.email = null
                   _.validation = false
-
-                  // setTimeout(function () {
-                  //   _.$emit('closeModal', false)
-                  //   }, 500);
-                  //   setTimeout(function() {
-                  //     _.closeModalUser = false
-                  //     }, 500)
-
-                  _.$store.dispatch("others/getCustomers");
-                  
-                  _.create = false;
 
             }
           }).catch(e => {

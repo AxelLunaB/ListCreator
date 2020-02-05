@@ -1,10 +1,12 @@
-import { getS3Signature,
-   getAttachments,
-    deleteAttachment,
-    deleteAllAttachments,
-    getAttachmentsCustomer,
-    createNewAttachment
-   } from '@/api';
+import { 
+  getS3Signature,
+  getAttachments,
+  deleteAttachment,
+  deleteAllAttachments,
+  getAttachmentsCustomer,
+  createNewAttachment,
+  generatePropesctoGuide
+} from '@/api';
 
 const getAWSSignature = (context, file) => {
     return new Promise((resolve, reject) => {
@@ -69,6 +71,16 @@ const deleteAllFiles = (context, data) =>{
   });
 };
 
+const createPropesctoGuide = (context, data) => {
+  return new Promise((resolve, reject) => {
+    generatePropesctoGuide(data).then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+}
+
 export default {
   getAWSSignature,
   getAttachmentsByUnit,
@@ -76,4 +88,5 @@ export default {
   deleteFile,
   deleteAllFiles,
   createAttachmentWithData,
+  createPropesctoGuide
 }

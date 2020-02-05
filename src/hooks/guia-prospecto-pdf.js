@@ -1,6 +1,25 @@
-// playground requires you to assign document definition to a variable called dd
+const PdfPrinter = require('pdfmake');
+const fonts = {
+  Roboto: {
+    normal: 'frontend/assets/fonts/TitilliumWeb-Regular.ttf',
+    bold: 'frontend/assets/fonts/TitilliumWeb-Bold.ttf'
+  }
+};
+
+const printer = new PdfPrinter(fonts);
+const fs = require('fs');
+
+module.exports = async function (context) {
+  return new Promise((resolve) => {
+
+  // Start creating a new pdf file
+  // Return a new promise
+  const { data } = context;
+
+  // playground requires you to assign document definition to a variable called dd
 
 var dd = {
+    background: [ { image: 'frontend/assets/back_sib.png', height: 1650, width: 1275 } ],
     content: [
  	{
  	  style: 'tableExample',
@@ -8,38 +27,48 @@ var dd = {
  	  table: {
  		widths: ['*', '*', '*', '*'],
  		body: [
- 			['LOGO SIBARIA', '', '', 'LOGO CONTORNO'],
+ 			[		
+				 {
+				image: 'frontend/assets/icon_2.png',
+				width:100
+			},
+			 '', '', 
+			 {
+				image: 'frontend/assets/icon_1.png',
+				width:100
+			},
+		],
  			[' ', '', '', ' '],
 			
  			]
  		}
  	},
 		
- 	{text:'¡ESTAS A UNOS PASOS DE COMENZAR A VIVIR LA VIDA BIEN VIVIDA!', bold:true, fontSize:15},
+ 	{text:`¡${data.info.customerName.toUpperCase()} ${data.info.customerLastname.toUpperCase()}, ESTAS A UNOS PASOS DE COMENZAR A VIVIR LA VIDA BIEN VIVIDA!`, bold:true, fontSize:15},
 
  		{
  			style: 'tableExample',
  			table: {
- 				widths: ['*', '*', '*', '*'],
+ 				widths: ['*', '*','*','*'],
  				body: [
  					[
+						{text:'',border:[false,false,false,false]},
  					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'Fecha y hora',border:[true,true,true,true]}
+						 {text:`Fecha y hora:`,border:[true,true,false,true]},
+						 {text:`${data.info.date}`,border:[false,true,true,true]}
  					],
 					
  						[
+						{text:'',border:[false,false,false,false]},
  					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'Residencia',border:[true,true,true,true]}
+						 {text:`Residencia:`,border:[true,true,false,true]},
+						 {text:`#${data.info.unit}`,border:[false,true,true,true]}
  					],
  					[
+						{text:'',border:[false,false,false,false]},
  					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'',border:[false,false,false,false]},
- 					    {text:'Asesor',border:[true,true,true,true]},
+						 {text:`Asesor:`,border:[true,true,false,true]},
+						 {text:`${data.info.name}`,border:[false,true,true,true]}
 					   
  					],
  				],
@@ -75,7 +104,7 @@ var dd = {
  				{text: ' a nombre de ROCA ENCANTADA S.A DE C.V. Banco: BBVA Número de cuenta: 0105 8563 37', fontSize: 12},
  				{text:'\n Clabe: 0123 2000 1058 5633 76 Referencia:'},
  				{text:' ('},
- 				{text:'No. De casa', color:'#968D97'},
+ 				{text:`${data.info.unit}`, color:'#968D97'},
  				{text:')'}
  	           ]
  		},
@@ -85,7 +114,7 @@ var dd = {
  				{text: ' Banco: BBVA Número de cuenta: 0105 8563 37', fontSize: 12},
  				{text:'\n Clabe: 0123 2000 1058 5633 76 Referencia:'},
  				{text:' ('},
- 				{text:'No. De casa', color:'#968D97'},
+ 				{text:`${data.info.unit}`, color:'#968D97'},
  				{text:')'}
  	           ]
  		},
@@ -96,7 +125,7 @@ var dd = {
  				{text: ' (Máximo $650,000.00 pesos mexicanos*):', fontSize: 12},
  				{text:'\n Banco; BBVA Número de cuenta: 0105 8563 37 Clabe:0123 2000 1058 5633 76.\nReferencia:'},
  				{text:' ('},
- 				{text:'No. De casa', color:'#968D97'},
+ 				{text:`${data.info.unit}`, color:'#968D97'},
  				{text:') A nombre de ROCA ENCANTADA S.A DE C.V'}
  	           ]
  		},
@@ -174,4 +203,32 @@ var dd = {
  		// alignment: 'justify'
  	}
 	
+}
+
+  // Generate new chunks for file transfer
+  const chunks = [];
+  const pdfDoc = printer.createPdfKitDocument(dd, {});
+
+    pdfDoc.on('data', function(chunk) {
+      chunks.push(chunk);
+    });
+
+    pdfDoc.on('end', () => {
+      // Concat all chunks to a new Buffer
+      // to transfer to client side
+      const base64data = Buffer.concat(chunks);
+
+      // Add pdf data to context : Object
+      context.data = {
+        pdf: base64data
+      };
+
+      // Resolve the new context object for hook service call
+      // to be skipped
+      resolve(context);
+    });
+
+    pdfDoc.end();
+
+  });
 }

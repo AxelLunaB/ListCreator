@@ -293,6 +293,14 @@ const getS3Signature = file => {
   });
 };
 
+const generatePropesctoGuide = type => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'attachments', type, (err, res) => {
+      err ? reject(err) : resolve(res);
+    });
+  });
+};
+
 /* Units */
 const getUnits = () => {
   return new Promise((resolve, reject) => {
@@ -405,5 +413,6 @@ export {
   deleteAllAttachments,
   getAttachmentsCustomer,
   createNewAttachment,
-  updateCustomerInfo
+  updateCustomerInfo,
+  generatePropesctoGuide
 }
