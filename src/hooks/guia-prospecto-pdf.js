@@ -1,6 +1,25 @@
-// playground requires you to assign document definition to a variable called dd
+const PdfPrinter = require('pdfmake');
+const fonts = {
+  Roboto: {
+    normal: 'frontend/assets/fonts/TitilliumWeb-Regular.ttf',
+    bold: 'frontend/assets/fonts/TitilliumWeb-Bold.ttf'
+  }
+};
+
+const printer = new PdfPrinter(fonts);
+const fs = require('fs');
+
+module.exports = async function (context) {
+  return new Promise((resolve) => {
+
+  // Start creating a new pdf file
+  // Return a new promise
+  const { data } = context;
+
+  // playground requires you to assign document definition to a variable called dd
 
 var dd = {
+    background: [ { image: 'frontend/assets/back_sib.png', height: 1650, width: 1275 } ],
     content: [
  	{
  	  style: 'tableExample',
@@ -174,4 +193,32 @@ var dd = {
  		// alignment: 'justify'
  	}
 	
+}
+
+  // Generate new chunks for file transfer
+  const chunks = [];
+  const pdfDoc = printer.createPdfKitDocument(dd, {});
+
+    pdfDoc.on('data', function(chunk) {
+      chunks.push(chunk);
+    });
+
+    pdfDoc.on('end', () => {
+      // Concat all chunks to a new Buffer
+      // to transfer to client side
+      const base64data = Buffer.concat(chunks);
+
+      // Add pdf data to context : Object
+      context.data = {
+        pdf: base64data
+      };
+
+      // Resolve the new context object for hook service call
+      // to be skipped
+      resolve(context);
+    });
+
+    pdfDoc.end();
+
+  });
 }

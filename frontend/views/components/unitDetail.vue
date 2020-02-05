@@ -118,6 +118,18 @@
                               </td>
                           </tr>
 
+                          <tr @click="selectedDocument = 'Prospecto Guide'" class="document-row" :class="showDocument('Prospecto Guide')">
+                              <td class="text-left">Guía de Prospecto</td>
+                              <td >
+                                <span>
+                                  <label @click="generateProspectoGuide()" class="doc-button">Generar</label>
+                                </span>
+                              </td>
+                              <td>
+                                <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
+                              </td>
+                          </tr>
+
                           </tbody>
                       </table>
                   </div>
@@ -379,6 +391,16 @@ export default {
       })
 
     },
+
+    generateProspectoGuide() {
+      // Create a new Guide
+      this.$store.dispatch('attachments/createPropesctoGuide', { type: 'Propescto Guide' }).then(data => {
+        console.log(data);
+      }).catch(err => {
+        console.log(err);
+      });
+    },
+
     editDocument: function(name) {
       let possibleUpload = false;
       // Activates delete button only if you're super-admin

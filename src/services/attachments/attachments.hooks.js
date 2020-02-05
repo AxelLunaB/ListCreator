@@ -1,6 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 // const setAttachment = require('../../hooks/set-attachment-object');
 
+const propesctoGuide = require('../../hooks/guia-prospecto-pdf');
+
 
 // Amazon Methods
 const AWS = require('aws-sdk');
@@ -163,9 +165,8 @@ module.exports = {
     create: [
       async context => {
         let newId = await context.app.service('attachments').find({query: {$limit: 1,$sort: {id: -1} }});
-        console.log('newId: ');
-        console.log(newId);
-         if(newId.total !== 0){
+        
+        if(newId.total !== 0) {
           context.data.id = newId.data[0].id + 1;
         }
 
@@ -181,8 +182,40 @@ module.exports = {
         // Check what type of Attachment user
         // wants to retrieve / create
         switch(docType) {
-          case "dummy":
-            // to maintain current structure
+          case "Propescto Guide":
+            const pdfGuide = await propesctoGuide(context);
+
+            // Upload to Amazon S3 Bucket
+            let uploadParamsStatement = {
+              Bucket: 'sibaria-web/attachments',
+              Key: `Propescto_Guide.pdf`,
+              ContentType: 'application/pdf',
+              Body: pdfGuide.data.pdf,
+              ACL: 'public-read'
+            };
+
+             // Upload to Amazon Bucket
+             await amazonUploadManager(uploadParamsStatement).then(response => {
+
+              // Send Attachment to Attachments Table
+              let attachment = {
+                contentType: 'application/pdf',
+                url: response.Location.toString(),
+                size: pdfGuide.data.pdf.byteLength,
+                unitId: null,
+                customerId: null,
+                docType: 'Propescto Guide',
+                userId: 1
+              };
+
+              context.data = attachment;
+              return context;
+
+            }).catch(error => {
+              context.result = error;
+              return context;
+            });
+
             break;
 
           default:
@@ -208,8 +241,6 @@ module.exports = {
               Body: body,
               ACL: 'public-read'
             };
-
-            console.log(fileParams);
 
             // Upload to Amazon Bucket
             await amazonUploadManager(fileParams).then(response => {
