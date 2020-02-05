@@ -395,9 +395,31 @@ export default {
     generateProspectoGuide() {
       // Create a new Guide
       this.$store.dispatch('attachments/createPropesctoGuide', { type: 'Propescto Guide' }).then(data => {
-        console.log(data);
+
+        // Download Button
+        const a = document.createElement('a');
+        a.setAttribute('target', '_blank');
+        a.setAttribute('href', data.url);
+        a.innerText = 'Download';
+
+        // Show a Sweet Alert
+        swal({
+          title: 'Guía de Prospecto',
+          content: a,
+          icon: 'success',
+          buttons: false
+        });
+
       }).catch(err => {
-        console.log(err);
+        
+        // Show a Sweet Alert
+        swal({
+          title: 'Algo ha salido mal!',
+          text: 'Vuelve a intentarlo.',
+          icon: 'warning',
+          buttons: false
+        });
+
       });
     },
 
