@@ -223,6 +223,7 @@ import { mapActions } from "vuex";
 import { file } from 'babel-types';
 import { log } from 'util';
 import newCustomer from "./newCustomer.vue";
+import moment from 'moment';
 
 const isFileValid = fileType => {
   let valid = false;
@@ -390,10 +391,14 @@ export default {
             document.body.style.cursor = "wait";
             this.loading = true;
 
+            let utcDate = moment.utc(new Date()).toDate();
+            utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss').slice(0,10);
+
             let info = {
               name:this.detailTable.customer.name,
               lastName:this.detailTable.customer.lastName,
-              unit:this.detailTable.unit
+              unit:this.detailTable.unit,
+              date:utcDate
             }
 
             console.log(info);
