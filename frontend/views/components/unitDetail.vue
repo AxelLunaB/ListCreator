@@ -126,7 +126,7 @@
                                 </span>
                               </td>
                               <td>
-                                <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
+                                <label v-if="showDocument('Guia de Prospectos')" style="cursor:pointer" class="doc-button" @click="editDocument('Guia de Prospectos')">Ver</label>
                               </td>
                           </tr>
 
@@ -387,6 +387,9 @@ export default {
           
           if(value){
 
+            document.body.style.cursor = "wait";
+            this.loading = true;
+
             let info = {
               name:this.detailTable.customer.name,
               lastName:this.detailTable.customer.lastName,
@@ -397,7 +400,7 @@ export default {
           }
           
         }).catch(err => {
-          console.log("error at generating 'Guia de Prospectos':", err);
+          console.log("error at generating 'Guia de Prospectos': ", err);
         })
     },
     customDelete : function() {
