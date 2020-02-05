@@ -21,7 +21,6 @@ const authenticateSocket = () => {
 };
 
 const updateUnitStatus = (newStatus) => {
-  console.log(newStatus);
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'units', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
       if (error) {
@@ -34,7 +33,6 @@ const updateUnitStatus = (newStatus) => {
 };
 
 const updateUnitExecutive = (newStatus) => {
-  console.log(newStatus);
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'units', newStatus.unitId, {userId: newStatus.userId}, (error, message) => {
       if (error) {

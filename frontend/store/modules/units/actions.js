@@ -195,7 +195,6 @@ const removeSpecialFilter = (context, payload) => {
 };
 
 const listenEvents = ({ dispatch, commit }) => {
-  console.log('listen...');
   socket.on('api/units patched', function (message) {
     commit('UNIT_UPDATED', message);
   });

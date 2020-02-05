@@ -56,11 +56,11 @@
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
                                   <select id="myList" v-on:change="status($event)" :disabled="currentUser.type === 'V' ">
-                                    <option v-bind:style="{color: getColor}">{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
-                                    <option value = "1" style="color:#35ce41;" v-if="detailTable.statusId != 1">DISPONIBLE</option>
-                                    <option value = "2" style="color:#cd110f;" v-if="detailTable.statusId != 2">VENDIDO</option>
-                                    <option value = "3" style="color:#e89005;" v-if="detailTable.statusId != 3">APARTADO</option>
-                                    <option value = "4" style="color:#f5e02a;" v-if="detailTable.statusId != 4">BLOQUEADO</option>
+                                    <option>{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
+                                    <option value="1" v-if="detailTable.status.name != 'DISPONIBLE'">DISPONIBLE</option>
+                                    <option value="2" v-if="detailTable.status.name != 'VENDIDO'">VENDIDO</option>
+                                    <option value="3" v-if="detailTable.status.name != 'APARTADO'">APARTADO</option>
+                                    <option value="4" v-if="detailTable.status.name != 'BLOQUEADO'">BLOQUEADO</option>
                                   </select>
                                 </td>
                             </tr>
@@ -245,6 +245,8 @@ export default {
   mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details;
+      // Resets the dropdown
+      this.stateIndex = this.detailTable.status.name;
       this.show = true;
       this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
     });
@@ -362,17 +364,9 @@ export default {
   methods: {
     customDelete : function() {
 
-      console.log("hey!");
-
       this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
-        console.log("pum");
-        console.log(response);
         this.attachmentsByUnit = null;
         this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id).then(r => {
-
-          console.log("done deleting");
-          console.log(r)
-          console.log(this.attachmentsByUnit);
         });
       }).catch(error => {
         console.log(error)
@@ -877,8 +871,6 @@ export default {
             document.body.style.cursor = "wait";
             this.loading = true;
             this.$eventHub.$emit("modal-bar", this.loading);
-            console.log("---");
-            console.log(newStatus);
             this.$store.dispatch('units/updateExecutive', newStatus).then(updated => {
               if(updated){
 
@@ -983,6 +975,7 @@ export default {
     },
 
     status: function status(event) {
+      let state = parseInt(event.target[event.target.selectedIndex].value);
       this.selectedExec = null;
       this.stateIndex  = event.target[event.target.selectedIndex].label;
 
@@ -1000,12 +993,12 @@ export default {
             const self = this;
             const unitId = this.detailTable.id
             const currentStatus = this.detailTable.statusId;
-            const statusId = parseInt(document.getElementById("myList").value);
             const newStatus = {
               unitId: unitId,
-              statusId: statusId,
+              statusId: state
             };
 
+            this.detailTable.status.name = this.stateIndex;
             // let open = true;
             // this.$eventHub.$emit("modal-bar", open);
             document.body.style.cursor = "wait";
