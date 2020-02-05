@@ -123,7 +123,7 @@
       <!-- Buttons / Search -->
       <div style="position: relative; height: 50px;" class="buttons has-addons">
         <div style="position: relative; height: 50px; width: 80%;">
-          <input type="text" name="search-user" id="search-user" class="search-user-input" @keyup="searchCustomer($event)" placeholder="Search by Name" />
+          <input style="background: #99a7b9;border: none;padding: 5px;border-radius: 3px;" type="text" name="search-user" id="search-user" class="search-user-input" @keyup="searchCustomer($event)" placeholder="Search by Name" />
           <span v-if="filteredCustomers != 0 || editInput && !isCreating " style="color: #ffffffb0;position: absolute;right: 19px;top: -14px;font-size: 3rem;cursor:pointer;" @click="deleteInput()">
           ×
           </span>
@@ -176,13 +176,13 @@
                 <!-- <div class="columns is-multiline"> -->
                   <!-- <div class="column is-half-tablet"> -->
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Nombres</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Nombre(s)</label>
                       <div class="control">
                        <input class="input" v-bind:style="[$v.name.$model !== null ? $v.name.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="name" type="text" name="name" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Apellido</label>
+                      <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Apellidos</label>
                       <div class="control">
                        <input class="input" v-bind:style="[$v.lastName.$model !== null ? $v.lastName.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="lastName" type="text" name="lastName" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
@@ -214,7 +214,7 @@
                         <b-dropdown
                         id="dropdown-country"
                         name="country"
-                        :text ="country == null ? 'Select country' : country">
+                        :text ="country == null ? 'Seleccionar País' : country">
                         <div>
                           <b-dropdown-item v-for="(c,index) in countries" :key="index" @click="country = c, state = null">
                           {{ c }}
@@ -224,7 +224,7 @@
                         <b-dropdown
                         v-if="country != 'Other'" id="dropdown-state"
                         name="state"
-                        :text ="state != null ? state : 'Select state'"
+                        :text ="state != null ? state : 'Seleccionar Estado'"
                         :disabled="country == null">
                         <div style="overflow-y:scroll;height:200px;">
                           <b-dropdown-item v-for="(s,index) in country == 'USA' ? statesUS : statesMX"

@@ -229,7 +229,7 @@ export default {
 .dropdown ul li a {
   text-decoration: none;
   display: block;
-  color: black
+  color: white;
 }
 
 .dropdown ul li p {
