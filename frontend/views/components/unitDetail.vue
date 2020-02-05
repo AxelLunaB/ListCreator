@@ -122,7 +122,7 @@
                               <td class="text-left">Guia de Prospectos</td>
                               <td >
                                 <span>
-                                  <label class="doc-button" for="file-upload">Generar</label>
+                                  <label class="doc-button" @click="generateProsp()">Generar</label>
                                 </span>
                               </td>
                               <td>
@@ -374,6 +374,32 @@ export default {
   },
 
   methods: {
+    generateProsp(){
+        swal({
+          title: `¿Generar Guia De Prospectos?`,
+          text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+          icon: 'info',
+          buttons: {
+            cancel: true,
+            confirm: true
+            }
+        }).then(value => {
+          
+          if(value){
+
+            let info = {
+              name:this.detailTable.customer.name,
+              lastName:this.detailTable.customer.lastName,
+              unit:this.detailTable.unit
+            }
+
+            console.log(info);
+          }
+          
+        }).catch(err => {
+          console.log("error at generating 'Guia de Prospectos':", err);
+        })
+    },
     customDelete : function() {
 
       this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
@@ -1323,6 +1349,7 @@ label.input-files:hover {
   padding: 6px;
   border-radius: 6px;
   min-width: 60px;
+  cursor:pointer;
 }
 
 /* Scrollbar */
