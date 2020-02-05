@@ -126,13 +126,16 @@
                 <i class="fas fa-search" style="position: absolute;right: 43px;top: 91px;color: #606a71;"></i>
               </span>
               <div style="height: 254px;overflow-y: scroll;margin-top: 30px;">
-                <table class="client-table" style="width:100%;">
+                <table class="client-table" style="width:100%;" v-if="customers.data.length != 0">
                 <tr v-for="(client,index) in getClient"
                 @click="selectClient($event)"
                 :key="index">
                   <th class="option-client" style="font-weight:normal;"> {{ client.name + ' ' + client.lastName }}</th>
                 </tr>
                </table>
+               <table v-else style="color: #ffffff52;display: flex;align-items: center;justify-content: center;">
+                 No existen clientes.
+              </table>
               </div>
               <div class="upload-files">
                 <button type="button" class="waves ripple default" style="border-radius:0;" @click="assignClient()">Asignar Cliente <i class="fas fa-check"></i></button>
@@ -727,7 +730,10 @@ export default {
                   //     _.closeModalUser = false
                   //     }, 500)
 
+                  _.$store.dispatch("others/getCustomers");
+                  
                   _.create = false;
+
             }
           }).catch(e => {
             console.log(e);
