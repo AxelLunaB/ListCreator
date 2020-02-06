@@ -677,14 +677,13 @@ export default {
           return p;
         }
 
-        let obj = { userType: '0', password: bcrypt.hashSync('secreto1', salt), };
+        let obj = { userType: '0', password: bcrypt.hashSync('Sibaria1', salt), };
 
         Object.keys(this.formData).forEach(k => {
           obj[prefix(k)] = this.getValue(k);
           usr = obj;
         });
 
-        console.log(usr);
 
         swal({
           title: "Please confirm information",
@@ -702,33 +701,58 @@ export default {
             confirm: true,
           }
           })
-          .then(function(isConfirm) {
+          .then(isConfirm => {
+
             if(isConfirm) {
 
-              _.$store.dispatch("others/setNewCustomer", usr)
-                  swal({
-                    title: 'Success!',
-                    text: 'A new client has been created',
+              _.$store.dispatch("others/setNewCustomer", usr).then(newUser => {
+                // New User was created
+                swal({
+                    title: 'Cliente Nuevo',
+                    text: 'Se ha creado el cliente.',
                     icon: 'success',
                     timer: 1500
-                  })
+                });
 
-                  _.formData.name = null
-                  _.formData.age = null
-                  _.formData.address = null
-                  _.formData.country = null
-                  _.formData.state = null
-                  _.formData.city = null
-                  _.formData.contactNumber = null
-                  _.formData.email = null
-                  _.validation = false
+                  // Data to be updated
+                  const unitId = this.unitNumber.id;
+                  const customerId = newUser.id;
 
-                  setTimeout(function () {
-                    _.$emit('closeModal', false)
-                    }, 500);
-                    setTimeout(function() {
-                      _.closeModalUser = false
-                      }, 500)
+                  // Assign new client to current selected unit
+                  this.$store.dispatch('units/updateUnit', { unitId: unitId, customerId: customerId }).then(success => {
+                    // New customer has been assigned
+                    swal({
+                      title: 'Unidad Actualizada',
+                      text: 'Se ha asignado el cliente.',
+                      icon: 'success',
+                      timer: 2000
+                    });
+
+                     _.formData.name = null
+                    _.formData.age = null
+                    _.formData.address = null
+                    _.formData.country = null
+                    _.formData.state = null
+                    _.formData.city = null
+                    _.formData.contactNumber = null
+                    _.formData.email = null
+                    _.validation = false
+
+                    setTimeout(function () { _.$emit('closeModal', false) }, 500);
+                    setTimeout(function () { _.closeModalUser = true }, 500);
+
+                  }).catch(err => {
+                    // Error when updating unit customerId
+                    swal({
+                      title: 'Error',
+                      text: 'Algo ha salido mal. Por favor, inténtalo nuevamente.',
+                      icon: 'warning',
+                      timer: 2000
+                    });
+
+                  });
+
+              });
             }
           }).catch(e => {
             console.log(e);

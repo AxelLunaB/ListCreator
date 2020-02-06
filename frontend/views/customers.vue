@@ -97,12 +97,12 @@
 
           <div class="form-row">
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="customer-password">Password</label>
+              <label style="display: block; font-weight: 500;" for="customer-password">Contraseña</label>
               <input type="password" id="customer-password" v-model="customer.password">
             </div>
 
             <div class="form-group col">
-              <label style="display: block; font-weight: 500;" for="zip-code">Codigo postal</label>
+              <label style="display: block; font-weight: 500;" for="zip-code">Codigo Postal</label>
               <input type="number" id="zip-code" v-model="customer.zipcode">
             </div>
 
@@ -617,28 +617,22 @@ export default {
       });
     },
 
-    sendForm(){
+    sendForm() {
       const self = this;
-      if(self.customer.name === "" || self.customer.lastName === ""){
-        swal({
-            title: "Error",
-            text: `Please provide a name for this customer`,
-            icon: "warning",
-            buttons: {
-              cancel: false,
-              confirm: true,
-            }
-        });
+
+      if(self.customer.name === "" || self.customer.lastName === "") {
         return;
       }
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.customer.email) && !this.letters){
+
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.customer.email) && !this.letters) {
 
       // If an element doesn't exist, the swalAlert will return 'N/A'
-      for (let el in this.customer){
-        if(this.customer[el] == null){
+      for (let el in this.customer) {
+        if(this.customer[el] == null) {
           this.customer[el] = "N/A"
         }
       }
+
       swal({
           title: "Please confirm information",
           text: "Name" + " : " + this.customer.name + "\n" +
@@ -654,7 +648,7 @@ export default {
             cancel: true,
             confirm: true,
           }
-          })
+      })
           .then(isConfirm => {
 
             if(isConfirm) {
@@ -664,31 +658,29 @@ export default {
                 const encrypted = bcrypt.hashSync(this.customer.password, salt);
                 this.customer.password = encrypted;
               }
-              console.log(this.customer);
+
               this.$store.dispatch("others/updateCustomer", this.customer).then(res => {
-              this.$store.dispatch('others/getCustomers');
-                swal({
-                    title: "Customer Updated",
-                    text: `${this.customer.name} has been updated!`,
+
+                this.$store.dispatch('others/getCustomers');
+                  swal({
+                    title: "Cliente Actualizado",
+                    text: `${this.customer.name} se han actualizado sus datos.`,
                     icon: "success",
-                    buttons: {
-                      cancel: false,
-                      confirm: false,
-                    },
+                    buttons: false,
                     timer: 3200
-                });
+                  });
 
 
-              let modal = document.getElementById("modal-body");
-                modal.classList.remove("fade-in");
-                modal.classList.add("fade-out");
+                let modal = document.getElementById("modal-body");
+                  modal.classList.remove("fade-in");
+                  modal.classList.add("fade-out");
 
-                setTimeout(function(){
-                  self.modal = false;
-                  let state = false;
-                  self.$eventHub.$emit("modal-bar", state);
+                  setTimeout(function () {
+                    self.modal = false;
+                    let state = false;
+                    self.$eventHub.$emit("modal-bar", state);
 
-                    },500);
+                  }, 500);
 
 
               }).catch(error => {

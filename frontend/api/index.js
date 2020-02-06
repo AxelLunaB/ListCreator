@@ -46,15 +46,10 @@ const updateUnitExecutive = (newStatus) => {
   })
 };
 
-const updateUnitCustomer = (newCustomer) => {
-  console.log(newCustomer);
+const updateUnitCustomer = newCustomer => {
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'units', newCustomer.unitId, {customerId: newCustomer.customerId}, (error, message) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(message);
-      }
+    socket.emit('patch', 'units', newCustomer.unitId, { customerId: newCustomer.customerId }, (error, message) => {
+      error ? reject(error) : resolve(message);
     });
   })
 }

@@ -126,7 +126,7 @@ const fetchUnits = (context) => {
 
 const updateUnit = (context, department) => {
   return new Promise((resolve, reject) => {
-    patchUnit(department).then(response => {
+    updateUnitCustomer(department).then(response => {
       resolve(response);
     }).catch(err => {
       reject(err);
