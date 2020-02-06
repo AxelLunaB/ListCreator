@@ -25,21 +25,19 @@ var dd = {
  	  style: 'tableExample',
  		layout: 'noBorders',
  	  table: {
- 		widths: ['*', '*', '*', '*'],
+ 		widths: ['*', '*', '*'],
  		body: [
  			[		
 				 {
 				image: 'frontend/assets/icon_2.png',
-				width:100
+				width:170
 			},
-			 '', '', 
+			 '', 
 			 {
 				image: 'frontend/assets/icon_1.png',
-				width:100
+				width:160
 			},
-		],
- 			[' ', '', '', ' '],
-			
+		],	
  			]
  		}
  	},
@@ -87,16 +85,16 @@ var dd = {
  		    text:'Paso 1 Apartado:', bold:true, fontSize:14, color:'#D70C8C' 
  		},
  		{
- 		    text:'1- Realiza tu apartado en tiempo (en máximo 2 dias hábiles) y forma en las cuentas bancarias asignadas', margin: [0, 5, 0, 0 ],fontSize:10
+ 		    text:'1- Realiza tu apartado en tiempo (en máximo 2 dias hábiles) y forma en las cuentas bancarias asignadas.', margin: [0, 2, 0, 0 ],fontSize:10
  		},
  		{
- 		    text:'¿Para que?', bold:'true', margin: [0, 5, 0, 0 ]
+ 		    text:'¿Para que?', bold:'true', margin: [0, 2, 0, 0 ]
  		},
  		{
- 		    text:' -Para asegurar precio y ubicación de tu próxima residencia', margin: [0, 5, 0, 0 ],fontSize:10
+ 		    text:' -Para asegurar precio y ubicación de tu próxima residencia.', margin: [0, 5, 0, 0 ],fontSize:10
  		},
  		{
- 		    text:'¿Como?', bold:'true', margin: [0, 5, 0, 5 ]
+ 		    text:'¿Como?', bold:'true', margin: [0, 2, 0, 2 ]
  		},
 
  		{text: [
@@ -108,8 +106,8 @@ var dd = {
  				{text:')'}
 				],
 				fontSize:10
- 		},
- 		' ',
+		 },
+		 
 		{text: [
  				{text:'B)- Transferencia electrónica:', style:'normal', bold:true},
  				{text: ' Banco: BBVA Número de cuenta: 0105 8563 37', fontSize: 10},
@@ -120,59 +118,59 @@ var dd = {
 				],
 				fontSize:10
  		},
- 		' ',
+
  		{text: [
  				{text:'C)- Depósito en efectivo', style:'normal', bold:true,},
- 				{text: ' (Máximo $650,000.00 pesos mexicanos*):', fontSize: 10,
- 				{text:'\n Banco; BBVA Número de cuenta: 0105 8563 37 Clabe:0123 2000 1058 5633 76.\nReferencia:'},
+ 				{text: ' (Máximo $650,000.00 pesos mexicanos*):', fontSize: 10},
+ 				{text:'\n Banco: BBVA Número de cuenta: 0105 8563 37 Clabe:0123 2000 1058 5633 76.\nReferencia:'},
  				{text:' ('},
  				{text:`${data.info.unit}`, color:'#968D97'},
  				{text:') A nombre de ROCA ENCANTADA S.A DE C.V'}
 				],
 				fontSize:10
- 		},
- 		' ',
+		 },
+		 
  		{
- 		    text:'Nota. Notifica via correo electrónico tu pago anexado tu comprobante digitalizado a: ventas@sibariaresidencia.com y recibirás correo electrónico de confirmación.', fontSize:8   
- 		},
- 		{
- 		    text:'Paso 2 Firma oferta de compra:', bold:true, fontSize:14, color:'#D70C8C' , margin: [0, 5, 0, 0 ]
+ 		    text:'Nota. Notifica via correo electrónico tu pago anexando tu comprobante digitalizado a: ventas@sibariaresidencial.com y recibirás correo electrónico de confirmación.', fontSize:8   
  		},
  		{
- 		    text:'¿Para que?', bold:'true', margin: [0, 5, 0, 0 ]
+ 		    text:'Paso 2 Firma oferta de compra:', bold:true, fontSize:14, color:'#D70C8C' , margin: [0, 2, 0, 0 ]
  		},
  		{
- 		    text:' -Para formalizar la operación.', margin: [0, 5, 0, 0 ],fontSize:10
+ 		    text:'¿Para que?', bold:'true', margin: [0, 2, 0, 0 ]
  		},
  		{
- 		    text:'¿Como?', bold:'true', margin: [0, 5, 0, 0 ]
+ 		    text:' -Para formalizar la operación.', margin: [0, 2, 0, 0 ],fontSize:10
+ 		},
+ 		{
+ 		    text:'¿Como?', bold:'true', margin: [0, 2, 0, 0 ]
  		},
  		{
  		    text:' -Acude con tu asesor de ventas con los siguientes documentos:', fontSize:10
  		},
  		{
- 		    text:'-Copia identificación oficial vigente: INE o pasaporte.',fontSize:11, margin: [ 20, 10, 0, 0 ],fontSize:10
+ 		    text:'-Copia identificación oficial vigente: INE o pasaporte.',fontSize:11, margin: [ 20, 1, 0, 0 ],fontSize:10
  		},
  		{
- 		    text:'-Comprobante de domicilio (no mayor a 2 meses de antigüedad) agua, luz, teléfono ó estado de cuenta bancario.',fontSize:10, margin: [ 20, 5, 0, 0 ]
+ 		    text:'-Comprobante de domicilio (no mayor a 2 meses de antigüedad) agua, luz, teléfono ó estado de cuenta bancario.',fontSize:10, margin: [ 20, 1, 0, 0 ]
  		},
  		{
- 		    text:'-Copia de acta de nacimiento.',fontSize:10, margin: [ 20, 5, 0, 0 ]
+ 		    text:'-Copia de acta de nacimiento.',fontSize:10, margin: [ 20, 1, 0, 0 ]
  		},
  		{
- 		    text:'-Copia de acta de matrimonio (en su caso).',fontSize:10, margin: [ 20, 5, 0, 0 ]
+ 		    text:'-Copia de acta de matrimonio (en su caso).',fontSize:10, margin: [ 20, 1, 0, 0 ]
  		},
  		{
-        text:'-Copia de acta de nacimiento de conyuge.',fontSize:10, margin: [ 20, 5, 0, 0 ]
+        text:'-Copia de acta de nacimiento de conyuge.',fontSize:10, margin: [ 20, 1, 0, 0 ]
  		},
  		{
- 		    text:'Nota: Dependiente del tipo de adquisición, cumple con tu programación de pagos establecidos en el Anexo "A" de tu oferta de compra',fontSize:10, margin: [0, 5, 0, 0 ]
+ 		    text:'Nota: Dependiente del tipo de adquisición, cumple con tu programación de pagos establecidos en el Anexo "A" de tu oferta de compra',fontSize:10, margin: [0, 2, 0, 0 ]
  		},
  		' ',
  		{
  		    text:'*Con respecto al valorar total de la unidad privativa (residencia seleccionada). En base al Artículo 32 fracción de la LEY FEDERAL PARA LA PREVENSIÓN E IDENTIFICACIÓN DE OPERACIONES CON RECURSO DE PROCEDENCIA ILICITA \n -Capítulo IV "Del Uso de Efectivo y Metales"',fontSize:8
- 		},
- 		' ',
+		 },
+		 
  		{
  		    text:'Nota: Nuestro personal no se encuentra autorizado para recibir pagos en efectivo bajo ningun concepto',fontSize:8
  		},
