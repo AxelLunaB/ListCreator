@@ -102,7 +102,7 @@
             </div> -->
 
             <div class="form-group col-3">
-              <label style="display: block; font-weight: 500;" for="zip-code">Codigo postal</label>
+              <label style="display: block; font-weight: 500;" for="zip-code">C.P.</label>
               <input type="number" id="zip-code" v-model="customer.zipcode">
             </div>
 

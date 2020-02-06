@@ -121,13 +121,12 @@
                               <td class="text-left">Guía de Prospecto</td>
                               <td >
                                 <span>
-                                  <label @click="generateProspectoGuide()" class="doc-button" v-if="!showDocument('Propescto Guide')">Generar</label>
+                                  <!-- <label @click="generateProspectoGuide()" class="doc-button" v-if="!showDocument('Propescto Guide')">Generar</label> -->
+                                  <label @click="generateProspectoGuide()" class="doc-button">Generar</label>
                                 </span>
                               </td>
                               <td>
-                                <a :href="urls['Propescto Guide']" target="_blank">
-                                  <label v-if="showDocument('Propescto Guide')" style="cursor:pointer;color:white;" class="doc-button">Ver</label>
-                                </a>
+                                  <label v-if="showDocument('Propescto Guide')" style="cursor:pointer;" class="doc-button" @click="editDocument('Propescto Guide')">Ver</label>
                               </td>
                           </tr>
 
@@ -416,7 +415,7 @@ export default {
         this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id).then(r => {
         });
       }).catch(error => {
-        console.log(error)
+        console.log('error at deleting attachments', error);
       })
 
     },
@@ -1681,8 +1680,12 @@ button.waves.default {
   margin-bottom:0;
   height:16px;
   justify-content:space-between!important;
-
 }
+
+button.swal-button.swal-button--delete.delete-button {
+  background: #ad0000bd;
+}
+
 @media screen and (max-width:450px){
   .customer {
     height: 60px;
