@@ -59,7 +59,7 @@
                   <b-dropdown
                   id="dropdown-country"
                   name="drop-country"
-                  :text ="formData.country == null ? 'Select country' : formData.country">
+                  :text ="formData.country == null ? 'Seleccionar País' : formData.country">
                   <div>
                     <b-dropdown-item v-for="(country,index) in countries" :key="index" @click="formData.country = country">
                     {{ country }}
@@ -76,7 +76,7 @@
                   <b-dropdown
                   v-if="formData.country != 'Other'" id="dropdown-state"
                   name="drop-state"
-                  :text ="formData.state != null ? formData.state : 'Select state'"
+                  :text ="formData.state != null ? formData.state : 'Seleccionar Estado'"
                   :disabled="formData.country == null">
                   <div style="overflow-y:scroll;height:200px;">
                     <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"
@@ -126,13 +126,16 @@
                 <i class="fas fa-search" style="position: absolute;right: 43px;top: 91px;color: #606a71;"></i>
               </span>
               <div style="height: 254px;overflow-y: scroll;margin-top: 30px;">
-                <table class="client-table" style="width:100%;">
+                <table class="client-table" style="width:100%;" v-if="customers.data.length != 0">
                 <tr v-for="(client,index) in getClient"
                 @click="selectClient($event)"
                 :key="index">
                   <th class="option-client" style="font-weight:normal;"> {{ client.name + ' ' + client.lastName }}</th>
                 </tr>
                </table>
+               <table v-else style="color: #ffffff52;display: flex;align-items: center;justify-content: center;">
+                 No existen clientes.
+              </table>
               </div>
               <div class="upload-files">
                 <button type="button" class="waves ripple default" style="border-radius:0;" @click="assignClient()">Asignar Cliente <i class="fas fa-check"></i></button>
@@ -303,7 +306,7 @@ export default {
       }
       
       const user = this.customers.data.filter(customer => {
-          let fullName = customer.name + ' ' + customer.lastName;
+          let fullName = customer.name.trim() + ' ' + customer.lastName.trim();
           return fullName === this.current.innerText;
       })
 
@@ -607,7 +610,6 @@ export default {
       }
     },
     closeModal(){
-      console.log('emitting');
       this.$eventHub.$emit("close-userModal");
 
 
@@ -650,12 +652,6 @@ export default {
 
     sendInfo() {
 
-      // for(let i = 0 ; i < this.customers.data.length ; i++) {
-      //   this.ids.push(this.customers.data[i].id)
-      // }
-
-      // this.formData.id = Math.max.apply(null, this.ids) + 1
-
       this.validation = true;
       this.$v.$touch();
 
@@ -683,7 +679,6 @@ export default {
           obj[prefix(k)] = this.getValue(k);
           usr = obj;
         });
-
 
         swal({
           title: "Please confirm information",

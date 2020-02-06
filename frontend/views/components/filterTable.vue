@@ -229,7 +229,7 @@ export default {
 .dropdown ul li a {
   text-decoration: none;
   display: block;
-  color: black
+  color: white;
 }
 
 .dropdown ul li p {
@@ -304,16 +304,16 @@ input .dropdown {
 }
 
   .close-filter {
-    background:#3c4857;
-    color:white;
-    position:fixed;
-    right: 100px;
-    bottom: 70px;
-    z-index: 2;
-    padding:10px;
+    background: #3c4857;
+    color: #fff;
+    position: fixed;
+    right: 259px;
+    z-index: 1;
+    padding: 10px;
     border-radius: 3px;
-    box-shadow:  5px 5px 5px rgba(0, 0, 0, 0.50);
+    box-shadow: 5px 5px 5px rgba(0,0,0,.5);
     cursor: pointer;
+    top: 200px;
   }
 
 .fadeIn {

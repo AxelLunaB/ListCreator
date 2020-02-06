@@ -10,7 +10,7 @@
         <span><i class="fas fa-level-up-alt"></i> &nbsp; Regresar</span>
       </div>
   <div class="row row-one" :class="{ animate: isActive }" style="margin:12% auto;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="m-b-30 m-t-0 text-center"><span style="font-size:2rem"> Residencia #{{ detailTable ? detailTable.unit : ''}}</span></h4>
@@ -56,11 +56,11 @@
                                 <td class="textalign">Status</td>
                                 <td class="text-right" style="padding-top:10px;">
                                   <select id="myList" v-on:change="status($event)" :disabled="currentUser.type === 'V' ">
-                                    <option v-bind:style="{color: getColor}">{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
-                                    <option value = "1" style="color:#35ce41;" v-if="detailTable.statusId != 1">DISPONIBLE</option>
-                                    <option value = "2" style="color:#cd110f;" v-if="detailTable.statusId != 2">VENDIDO</option>
-                                    <option value = "3" style="color:#e89005;" v-if="detailTable.statusId != 3">APARTADO</option>
-                                    <option value = "4" style="color:#f5e02a;" v-if="detailTable.statusId != 4">BLOQUEADO</option>
+                                    <option>{{ stateIndex ? stateIndex : detailTable.status.name}}</option>
+                                    <option value="1" v-if="detailTable.status.name != 'DISPONIBLE'">DISPONIBLE</option>
+                                    <option value="2" v-if="detailTable.status.name != 'VENDIDO'">VENDIDO</option>
+                                    <option value="3" v-if="detailTable.status.name != 'APARTADO'">APARTADO</option>
+                                    <option value="4" v-if="detailTable.status.name != 'BLOQUEADO'">BLOQUEADO</option>
                                   </select>
                                 </td>
                             </tr>
@@ -80,7 +80,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="card">
           <div class="card-body" style="cursor:default;">
               <h5 class="m-b-30 m-t-0 text-left">DOCUMENTOS</h5>
@@ -117,16 +117,16 @@
                                 <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
                               </td>
                           </tr>
-
-                          <tr @click="selectedDocument = 'Prospecto Guide'" class="document-row" :class="showDocument('Prospecto Guide')">
+                          <tr @click="selectedDocument = 'Propescto Guide'" class="document-row" :class="showDocument('Propescto Guide')" v-if="detailTable.customerId !== null && detailTable.userId !== null">
                               <td class="text-left">Guía de Prospecto</td>
                               <td >
                                 <span>
+                                  <!-- <label @click="generateProspectoGuide()" class="doc-button" v-if="!showDocument('Propescto Guide')">Generar</label> -->
                                   <label @click="generateProspectoGuide()" class="doc-button">Generar</label>
                                 </span>
                               </td>
                               <td>
-                                <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
+                                  <label v-if="showDocument('Propescto Guide')" style="cursor:pointer;" class="doc-button" @click="editDocument('Propescto Guide')">Ver</label>
                               </td>
                           </tr>
 
@@ -138,7 +138,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" style="height:100%;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4" style="height:100%;">
       <div class="card" style="min-height:386px;">
         <div class="card-body" style="padding-bottom:0;">
           <div class="row" style="height:242px;">
@@ -223,6 +223,7 @@ import { mapActions } from "vuex";
 import { file } from 'babel-types';
 import { log } from 'util';
 import newCustomer from "./newCustomer.vue";
+import moment from 'moment';
 
 const isFileValid = fileType => {
   let valid = false;
@@ -257,6 +258,8 @@ export default {
   mounted: function () {
     this.$eventHub.$on("show-detailTable-detail-tower-modal", details => {
       this.detailTable = details;
+      // Resets the dropdown
+      this.stateIndex = this.detailTable.status.name;
       this.show = true;
       this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
     });
@@ -372,29 +375,81 @@ export default {
   },
 
   methods: {
+    // generateProsp(){
+    //     swal({
+    //       title: `¿Generar Guia De Prospectos?`,
+    //       text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+    //       icon: 'info',
+    //       buttons: {
+    //         cancel: true,
+    //         confirm: true
+    //         }
+    //     }).then(value => {
+          
+    //       if(value){
+
+    //         document.body.style.cursor = "wait";
+    //         this.loading = true;
+
+    //         let utcDate = moment.utc(new Date()).toDate();
+    //         utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss').slice(0,10);
+
+    //         let info = {
+    //           name:this.detailTable.customer.name,
+    //           lastName:this.detailTable.customer.lastName,
+    //           unit:this.detailTable.unit,
+    //           date:utcDate
+    //         }
+
+    //         console.log(info);
+    //       }
+          
+    //     }).catch(err => {
+    //       console.log("error at generating 'Guia de Prospectos': ", err);
+    //     })
+    // },
     customDelete : function() {
 
-      console.log("hey!");
-
       this.$store.dispatch('attachments/deleteAllFiles',this.attachmentsByUnit).then(response => {
-        console.log("pum");
-        console.log(response);
         this.attachmentsByUnit = null;
         this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id).then(r => {
-
-          console.log("done deleting");
-          console.log(r)
-          console.log(this.attachmentsByUnit);
         });
       }).catch(error => {
-        console.log(error)
+        console.log('error at deleting attachments', error);
       })
 
     },
 
     generateProspectoGuide() {
+
+        swal({
+          title: `¿Generar Guia De Prospectos?`,
+          text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+          icon: 'info',
+          buttons: {
+            cancel: true,
+            confirm: true
+            }
+        }).then(value => {
+          if(value){
+            document.body.style.cursor = "wait";
+            this.loading = true;
       // Create a new Guide
-      this.$store.dispatch('attachments/createPropesctoGuide', { type: 'Propescto Guide' }).then(data => {
+
+            let utcDate = moment.utc(new Date()).toDate();
+            utcDate = moment(utcDate).format('DD-MM-YYYY HH:mm:ss');
+
+            let info = {
+              name:this.detailTable.user.name,
+              customerName: this.detailTable.customer.name,
+              customerLastname:this.detailTable.customer.lastName,
+              unit:this.detailTable.unit,
+              date:utcDate,
+              customerId:this.detailTable.customerId,
+              unitId:this.detailTable.id
+            }
+
+      this.$store.dispatch('attachments/createPropesctoGuide', { type: 'Propescto Guide', info:info }).then(data => {
 
         // Download Button
         const a = document.createElement('a');
@@ -408,7 +463,12 @@ export default {
           content: a,
           icon: 'success',
           buttons: false
-        });
+        }).then(res => {
+
+            this.$store.dispatch('attachments/getAttachmentsByUnit', this.detailTable.id);
+            document.body.style.cursor = "auto";
+            this.loading = false;
+        })
 
       }).catch(err => {
         
@@ -421,6 +481,12 @@ export default {
         });
 
       });
+
+
+          }
+        }).catch(err => {
+      console.log('error at creating guide:', err);
+    })
     },
 
     editDocument: function(name) {
@@ -449,7 +515,7 @@ export default {
 
         // Edit Attachment
         swal({
-          title: `${attachment.docType}`,
+          title: `${attachment.docType === 'Propescto Guide' ? 'Prospecto Guide' : attachment.docType}`,
           content: container,
           icon: 'info',
           buttons: {
@@ -754,7 +820,7 @@ export default {
       this.selectedExec ? user = this.selectedExec.name : user = this.detailTable.user.name
         swal({
           title: 'Confirmar información',
-          text:  'Remove ' + user + ' from this unit?',
+          text:  '¿Remover ' + user + ' de esta unidad?',
           icon: "info",
           buttons: { cancel: true,
           delete: { text: 'Remove', value: true }
@@ -769,8 +835,8 @@ export default {
                 this.executive = null;
                 this.selectedExec = null;
                 swal({
-                  title: 'Unit updated',
-                  text:  'This unit has no executive assigned!',
+                  title: '¡Residencia actualizada!',
+                  text:  '¡Esta residencia no tiene ejecutivo asignado!',
                   buttons: { cancel: true, confirm: true }
                 })
 
@@ -808,7 +874,7 @@ export default {
 
         swal({
           title: 'Confirmar información',
-          text:  'Eliminar ' + customer + ' de esta residencia?' + '\n' +
+          text:  '¿Eliminar ' + customer + ' de esta residencia?' + '\n' +
           'Todos los documentos relacionados a la unidad serán eliminados',
           icon: "info",
           buttons: {
@@ -823,7 +889,7 @@ export default {
                 this.customer = null;
                 swal({
                   title: 'Residencia actualizada',
-                  text:  'Esta residencia no tiene cliente asignado!',
+                  text:  '¡Esta residencia no tiene cliente asignado!',
                   buttons: { cancel: true, confirm: true }
                 })
 
@@ -921,8 +987,6 @@ export default {
             document.body.style.cursor = "wait";
             this.loading = true;
             this.$eventHub.$emit("modal-bar", this.loading);
-            console.log("---");
-            console.log(newStatus);
             this.$store.dispatch('units/updateExecutive', newStatus).then(updated => {
               if(updated){
 
@@ -1027,6 +1091,7 @@ export default {
     },
 
     status: function status(event) {
+      let state = parseInt(event.target[event.target.selectedIndex].value);
       this.selectedExec = null;
       this.stateIndex  = event.target[event.target.selectedIndex].label;
 
@@ -1044,12 +1109,12 @@ export default {
             const self = this;
             const unitId = this.detailTable.id
             const currentStatus = this.detailTable.statusId;
-            const statusId = parseInt(document.getElementById("myList").value);
             const newStatus = {
               unitId: unitId,
-              statusId: statusId,
+              statusId: state
             };
 
+            this.detailTable.status.name = this.stateIndex;
             // let open = true;
             // this.$eventHub.$emit("modal-bar", open);
             document.body.style.cursor = "wait";
@@ -1362,6 +1427,15 @@ label.input-files:hover {
   padding: 6px;
   border-radius: 6px;
   min-width: 60px;
+  cursor:pointer;
+}
+
+.doc-button a {
+  color:white;
+}
+
+.doc-button a:hover {
+  text-decoration: none;
 }
 
 /* Scrollbar */
@@ -1606,8 +1680,12 @@ button.waves.default {
   margin-bottom:0;
   height:16px;
   justify-content:space-between!important;
-
 }
+
+button.swal-button.swal-button--delete.delete-button {
+  background: #ad0000bd;
+}
+
 @media screen and (max-width:450px){
   .customer {
     height: 60px;

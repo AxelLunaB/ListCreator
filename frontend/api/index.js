@@ -21,7 +21,6 @@ const authenticateSocket = () => {
 };
 
 const updateUnitStatus = (newStatus) => {
-  console.log(newStatus);
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'units', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
       if (error) {
@@ -34,7 +33,6 @@ const updateUnitStatus = (newStatus) => {
 };
 
 const updateUnitExecutive = (newStatus) => {
-  console.log(newStatus);
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'units', newStatus.unitId, {userId: newStatus.userId}, (error, message) => {
       if (error) {
@@ -319,6 +317,14 @@ const getUnitsByStage = (stage) => {
   });
 };
 
+const removeCustomer = customerId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('remove', 'customers', customerId, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
 const getUnitsInfo = () => {
   return new Promise((resolve, reject) => {
     socket.emit('find', '/units', (error, data) => {
@@ -385,6 +391,7 @@ export {
   deleteUser,
   fetchUsers,
   patchUser,
+  removeCustomer,
   createNewCustomer,
   fetchCustomers,
   getS3Signature,

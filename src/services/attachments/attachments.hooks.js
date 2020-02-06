@@ -123,6 +123,7 @@ const deleteAttachment = context => {
       const { id } = context;
       let customerId = '000';
 
+
       // First we need the customer ID that belongs to the Unit
       await context.app.service('/api/contracts').find({ query: { $limit: 1, unitId: id.unitId } }).then(contract => {
         const { data } = contract;
@@ -130,6 +131,7 @@ const deleteAttachment = context => {
         if(data[0]) {
           customerId = data[0].customerId;
         }
+
       });
 
       // Then we have to generate the Amazon Key
@@ -173,6 +175,8 @@ module.exports = {
 
         const docType = context.data.type;
 
+        let info = context.data
+
         if(context.data.trial) {
           delete context.data.trial
           delete context.data.id
@@ -188,7 +192,7 @@ module.exports = {
             // Upload to Amazon S3 Bucket
             let uploadParamsStatement = {
               Bucket: 'sibaria-web/attachments',
-              Key: `Propescto_Guide.pdf`,
+              Key: `unit${info.info.unitId}-customer${info.info.customerId}-Prospecto_Guide.pdf`,
               ContentType: 'application/pdf',
               Body: pdfGuide.data.pdf,
               ACL: 'public-read'
@@ -205,7 +209,9 @@ module.exports = {
                 unitId: null,
                 customerId: null,
                 docType: 'Propescto Guide',
-                userId: 1
+                userId: 1,
+                unitId:info.info.unitId,
+                customerId:info.info.customerId
               };
 
               context.data = attachment;
@@ -224,6 +230,7 @@ module.exports = {
             // So every file (Official ID, Proof of Address, etc)
             // will enter this Switch Case
             const { data } = context;
+            console.log('data is:', data);
             const unit = data.unitId;
             const customer = data.customerId;
             const contentType = data.data.type;
