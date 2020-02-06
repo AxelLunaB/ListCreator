@@ -634,15 +634,15 @@ export default {
       }
 
       swal({
-          title: "Please confirm information",
-          text: "Name" + " : " + this.customer.name + "\n" +
-                "Age " + " : " + this.customer.age +  "\n" +
-                "Email " + " : " + this.customer.email + "\n" +
-                "Contact number " + " : " + this.customer.contactNumber + "\n" +
-                "Country " + " : " + this.customer.country + "\n" +
-                "State  " + " : " + this.customer.state + "\n" +
-                "City  " + " : " + this.customer.city + "\n" +
-                "Address  " + " : " + this.customer.address +  "\n",
+          title: "Favor de confirmar información",
+          text: "Nombre" + " : " + this.customer.name + "\n" +
+                "Edad " + " : " + this.customer.age +  "\n" +
+                "Correo-e " + " : " + this.customer.email + "\n" +
+                "Número de contacto " + " : " + this.customer.contactNumber + "\n" +
+                "País " + " : " + this.customer.country + "\n" +
+                "Estado  " + " : " + this.customer.state + "\n" +
+                "Ciudad  " + " : " + this.customer.city + "\n" +
+                "Dirección  " + " : " + this.customer.address +  "\n",
           icon: "info",
           buttons: {
             cancel: true,
