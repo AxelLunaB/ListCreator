@@ -59,7 +59,7 @@
                   <b-dropdown
                   id="dropdown-country"
                   name="drop-country"
-                  :text ="formData.country == null ? 'Select country' : formData.country">
+                  :text ="formData.country == null ? 'Seleccionar País' : formData.country">
                   <div>
                     <b-dropdown-item v-for="(country,index) in countries" :key="index" @click="formData.country = country">
                     {{ country }}
@@ -76,7 +76,7 @@
                   <b-dropdown
                   v-if="formData.country != 'Other'" id="dropdown-state"
                   name="drop-state"
-                  :text ="formData.state != null ? formData.state : 'Select state'"
+                  :text ="formData.state != null ? formData.state : 'Seleccionar Estado'"
                   :disabled="formData.country == null">
                   <div style="overflow-y:scroll;height:200px;">
                     <b-dropdown-item v-for="(state,index) in formData.country == 'USA' ? statesUS : statesMX"

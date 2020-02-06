@@ -308,12 +308,12 @@ input .dropdown {
     color:white;
     position:fixed;
     right: 100px;
-    bottom: 70px;
     z-index: 2;
     padding:10px;
     border-radius: 3px;
     box-shadow:  5px 5px 5px rgba(0, 0, 0, 0.50);
     cursor: pointer;
+    top:197px;
   }
 
 .fadeIn {
