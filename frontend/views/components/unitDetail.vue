@@ -538,7 +538,7 @@ export default {
           buttons: {
             close: { text: 'Cerrar', value: null },
             delete: { text: 'Borrar', value: true, visible: this.isVisible, className: 'delete-button' },
-            reupload: { text: 'Reemplazar', value:'reupload', visible: possibleUpload}
+            reupload: { text: 'Reemplazar', value:'reupload', visible: possibleUpload && attachment.docType !== 'Propescto Guide' }
           }
         }).then(value => {
           // Check what button was pressed
