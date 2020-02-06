@@ -681,15 +681,15 @@ export default {
         });
 
         swal({
-          title: "Please confirm information",
-          text: "Name" + " : " + this.formData.name + "\n" +
-                "Age" + " : " + this.formData.age + "\n" +
-                "Address " + " : " + this.formData.address + "\n" +
-                "Country " + " : " + this.formData.country + "\n" +
-                "State " + " : " + this.formData.state + "\n" +
-                "City " + " : " + this.formData.city + "\n" +
-                "Contact number " + " : " + this.formData.contactNumber + "\n" +
-                "E-mail " + " : " + this.formData.email + "\n",
+          title: "Por favor confirme información",
+          text: "Nombre" + " : " + this.formData.name + "\n" +
+                "Edad" + " : " + this.formData.age + "\n" +
+                "Dirección " + " : " + this.formData.address + "\n" +
+                "País " + " : " + this.formData.country + "\n" +
+                "Estado " + " : " + this.formData.state + "\n" +
+                "Ciudad " + " : " + this.formData.city + "\n" +
+                "No. Contact " + " : " + this.formData.contactNumber + "\n" +
+                "Correo eletrónico" + " : " + this.formData.email + "\n",
           icon: "info",
           buttons: {
             cancel: true,
@@ -701,6 +701,13 @@ export default {
             if(isConfirm) {
 
               _.$store.dispatch("others/setNewCustomer", usr).then(newUser => {
+                
+                let info = {
+                  customer:newUser
+                  }
+
+                  this.$eventHub.$emit("get-client", info);
+
                 // New User was created
                 swal({
                     title: 'Cliente Nuevo',
@@ -715,6 +722,7 @@ export default {
 
                   // Assign new client to current selected unit
                   this.$store.dispatch('units/updateUnit', { unitId: unitId, customerId: customerId }).then(success => {
+
                     // New customer has been assigned
                     swal({
                       title: 'Unidad Actualizada',
@@ -723,6 +731,7 @@ export default {
                       timer: 2000
                     });
 
+                    // Resets form
                      _.formData.name = null
                     _.formData.age = null
                     _.formData.address = null
@@ -733,8 +742,8 @@ export default {
                     _.formData.email = null
                     _.validation = false
 
-                    setTimeout(function () { _.$emit('closeModal', false) }, 500);
-                    setTimeout(function () { _.closeModalUser = true }, 500);
+                    // Sends an event that closes the current modal.
+                    _.$eventHub.$emit('close-userModal', false);
 
                   }).catch(err => {
                     // Error when updating unit customerId

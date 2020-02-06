@@ -99,7 +99,7 @@
                                       <label class="doc-button" for="file-upload">Subir</label>
                                   </span>
                                 </td>
-                              <td>
+                              <td width='25%'>
                                 <span v-if="detailTable.customer">
                                  <label v-if="showDocument('Identificacion')" style="cursor:pointer" class="doc-button" @click="editDocument('Identificacion')">Ver</label>
                                 </span>
@@ -113,7 +113,7 @@
                                   <label class="doc-button" for="file-upload">Subir</label>
                                 </span>
                               </td>
-                              <td>
+                              <td width='25%'>
                                 <label v-if="showDocument('Comprobante de domicilio')" style="cursor:pointer" class="doc-button" @click="editDocument('Comprobante de domicilio')">Ver</label>
                               </td>
                           </tr>
@@ -125,7 +125,7 @@
                                   <label @click="generateProspectoGuide()" class="doc-button">Generar</label>
                                 </span>
                               </td>
-                              <td>
+                              <td width='25%'>
                                   <label v-if="showDocument('Propescto Guide')" style="cursor:pointer;" class="doc-button" @click="editDocument('Propescto Guide')">Ver</label>
                               </td>
                           </tr>
@@ -274,8 +274,14 @@ export default {
 
     this.$store.dispatch("users/getExecutives");
 
-    this.$eventHub.$on("close-userModal", () => {
-      this.newClient = false;
+    this.$eventHub.$on("close-userModal", state => {
+      this.newClient = state;
+    });
+
+    // it temporally fetches fron newCustomer.vue the client that is assigned to this unit
+    this.$eventHub.$on('get-client', client =>{
+      this.detailTable.customer = client.customer
+      this.detailTable.customerId = client.customer.id
     });
 
   },
@@ -421,10 +427,21 @@ export default {
     },
 
     generateProspectoGuide() {
-
+      
+      let content;
+      let body;
+      
+      if(this.showDocument('Propescto Guide')){
+        content = 'Guia de Prospectos existente'
+        body = 'Se sobreescribira la guia de prospectos ya existentes. ¿Desea continuar?'
+        } else {
+          content = '¿Generar Guia De Prospectos?'
+          body = `Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`
+          }
+      
         swal({
-          title: `¿Generar Guia De Prospectos?`,
-          text:`Se generará una guia de prospectos para ${this.detailTable.customer.name} ${this.detailTable.customer.lastName} en la unidad #${this.detailTable.unit}`,
+          title: content,
+          text:body,
           icon: 'info',
           buttons: {
             cancel: true,
@@ -870,7 +887,7 @@ export default {
         return;
       }
       let customer;
-      this.customer ? customer = this.customer : customer = this.detailTable.customer.name
+      this.customer ? customer = this.customer : customer = this.detailTable.customer.name + this.detailTable.customer.lastName
 
         swal({
           title: 'Confirmar información',
