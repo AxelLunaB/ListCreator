@@ -96,12 +96,12 @@
           </div>
 
           <div class="form-row">
-            <div class="form-group col">
+            <!-- <div class="form-group col">
               <label style="display: block; font-weight: 500;" for="customer-password">Password</label>
               <input type="password" id="customer-password" v-model="customer.password">
-            </div>
+            </div> -->
 
-            <div class="form-group col">
+            <div class="form-group col-3">
               <label style="display: block; font-weight: 500;" for="zip-code">Codigo postal</label>
               <input type="number" id="zip-code" v-model="customer.zipcode">
             </div>
