@@ -160,7 +160,7 @@ export default {
 <style lang="scss">
 
   .card-body {
-    background: #135256;
+    background: #2b4969;
     margin:10px;
     border-radius: 3px;
     color: white;
@@ -233,7 +233,7 @@ export default {
 
 
 .colors-main tr:nth-child(odd) {
-  background: #15575c;
+  background: #36587a;
 }
 
 .colors-main tr td {

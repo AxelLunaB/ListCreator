@@ -24,7 +24,7 @@
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
-                    <ul id="dropdown3" style = "height: 131px;">
+                    <ul id="dropdown3" style = "height: 171px;">
                       <li v-for= "(item, index) in price" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(1,item.status)">
                         <p> {{ item.status }} </p>
                       </li>
@@ -37,7 +37,7 @@
               <span class="dropdown">
                 <button class="btn-buy"><i class="fas fa-sort-down fa-xs"></i></button>
                     <input type="checkbox" class="checkboxes">
-                    <ul id="dropdown3" style = "height: 250px; overflow-y: scroll;">
+                    <ul id="dropdown3" style = "height: 250px; overflow-y: scroll;" class="scrollbar-edit">
                       <li v-for= "(item, index) in status" :key="index" @click="setSpecialFilter({id:item.id,value:item.value}),hideDropdown(2,item.stat)">
                         <p> {{ item.stat }} </p>
                       </li>
@@ -173,7 +173,7 @@ export default {
   display: inline-block;
   color: rgb(255, 255, 255);
   text-decoration: none;
-  background:#252d33;
+  background:#243b53;
 }
 
 .dropdown input[type=checkbox] {
@@ -205,8 +205,8 @@ export default {
   padding: 4px 0px;
   display: none;
   color: white;
-  background: #252d33;
-  border:1px solid #252d33;
+  background: #243b53;
+  border:1px solid #243b53;
   z-index:2;
 }
 
@@ -222,7 +222,7 @@ export default {
 }
 
 .dropdown ul li:hover {
-  background-color: #323d46;
+  background-color: #243b53;
   cursor: pointer;
 }
 
@@ -287,7 +287,7 @@ export default {
   padding: 0 5px;
   border-radius: 3px 0 0 3px;
   color: white;
-  background: #21282e;
+  background: #2c4966;
 }
 
 .btn-buy,
@@ -301,6 +301,34 @@ input .dropdown {
 
 .fa-sort-down {
   color: white;
+}
+
+/* Scrollbar */
+
+  .scrollbar-edit {
+    min-height:120px;
+  }
+
+  .scrollbar-edit::-webkit-scrollbar {
+    width: 5px;
+
+  }
+
+/* Track */
+.scrollbar-edit::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.scrollbar-edit::-webkit-scrollbar-thumb {
+  background: #ebeff2;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.scrollbar-edit::-webkit-scrollbar-thumb:hover {
+  background: #ebeff2;
 }
 
   .close-filter {

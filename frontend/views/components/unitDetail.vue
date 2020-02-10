@@ -1291,10 +1291,6 @@ export default {
   @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
-  body {
-    background: #2a333c!important;
-  }
-
   select {
   background:#252d33!important;
   border:none!important;

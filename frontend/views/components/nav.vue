@@ -191,7 +191,7 @@ export default {
   top: 0!important;
   left: 0!important;
   right: 0!important;
-  background:#053e42;
+  background:#14304a;
 }
 
 .main-menu {

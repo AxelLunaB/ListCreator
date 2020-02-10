@@ -290,7 +290,7 @@ body {
 
 /*Color background*/
 :root{
-  --fondo:#135256;
+  --fondo:#2b4969;
 }
 
 .custom-control-label:after,
@@ -330,12 +330,12 @@ h4 {
 
 
 .btn {
-  background: #053e42;
+  background: #14304a;
   border:none;
 }
 
 .btn:hover {
-  background: #04363a;
+  background: #10263a;
   border:none;
 }
 
@@ -414,7 +414,7 @@ input:-webkit-autofill {
 .btn-primary:active,
 .btn-primary:focus  {
     color: #fff;
-    background-color:#04363a!important;
+    background-color:#14304a!important;
     box-shadow:none!important;
     border:none!important;
 }

@@ -306,7 +306,7 @@
   @import 'node_modules/bootstrap-vue/src/index.scss';
 
   .main-tables-container {
-    background: #2a333c;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -326,7 +326,7 @@
   }
 
     .card-body {
-      background: #3c4857;
+      background: #2b4969;
       margin:10px;
       border-radius: 3px;
       color: white;

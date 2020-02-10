@@ -113,11 +113,11 @@ tr td {
 }
 
 .table-hover tbody tr:hover {
-    background-color: #2b353fb4;
+    background-color: #315170;
 }
 
 .colors:nth-child(even) {
-  background: #425061;
+  background: #315170;
 }
 
 @media screen and (max-width: 867px) {
