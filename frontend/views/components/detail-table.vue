@@ -13,9 +13,9 @@
                 <td class="tablet">{{detailTable.bedrooms != 0 ? detailTable.bedrooms:"0" }}</td> -->
                 <!-- <td class="tablet">{{detailTable.nkeys != 0 ? detailTable.nkeys:"0" }}</td> -->
                 <!-- <td class="mobile">{{detailTable.interiorM2 != 0 ? detailTable.interiorM2 :"0" }}</td>
-                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "0"}}</td>
-                <td class="xs-mobile">$ {{toPrice(detailTable.priceTotal != 0 ? detailTable.priceTotal:"0")}}</td> -->
-                <!-- <td style="text-align:center"><span v-bind:style="{color: getColor}">{{detailTable.status.name}}</span></td> -->
+                <td class="mobile">{{detailTable.exteriorM2 != 0 ? detailTable.exteriorM2 : "0"}}</td>-->
+                <td class="xs-mobile">$ {{toPrice(unit.priceTotal != 0 ? unit.priceTotal:"0")}}</td>
+                <td style="text-align:center"><span v-bind:style="{color: getStatus[1]}">{{unit.status.name}}</span></td>
             </tr>
             </tbody>
         </table>
@@ -37,20 +37,45 @@ export default {
       return r;
     },
     departmentClicked() {
-      let info = this.unit
-      this.$eventHub.$emit("show-detailTable-detail-tower-modal", info);
+      let info = [];
+      info.push(this.unit);
+      info.push(this.getStatus);
+      this.$eventHub.$emit("show-detailTable-detail-tower-modal", this.unit);
     }
   },
   computed: {
-    getColor() {
-      if (this.detailTable.status.color_hex) {
-        return this.detailTable.status.color_hex;
+    // getColor() {
+    //   if (this.detailTable.status.color_hex) {
+    //     return this.detailTable.status.color_hex;
+    //   }
+    //   else {
+    //     return '#ffffff'
+    //   }
+    // }
+  getStatus(){
+    let status = [];
+    switch(this.unit.statusId){
+      case 1:
+        status[0] = 'DISPONIBLE'
+        status[1] = '#35ce41'
+      break;
+      case 2:
+        status[0] = 'VENDIDO'
+        status[1] = '#cd110f'
+      break;
+      case 3:
+        status[0] = 'APARTADO'
+        status[1] = '#e89005'
+      break;
+      case 4:
+        status[0] = 'BLOQUEADO'
+        status[1] = '#f5e02a'
+      break;
       }
-      else {
-        return '#ffffff'
-      }
-    }
+
+    return status;
   }
+  },
 }
 </script>
 

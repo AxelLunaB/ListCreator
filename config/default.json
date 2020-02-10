@@ -3,8 +3,8 @@
   "port": 3030,
   "public": "../public/",
   "paginate": {
-    "default" : 171,
-    "max": 171
+    "default" : 327,
+    "max": 327
   },
   "postgres": "postgres://postgres:@localhost:5432/sibaria-web",
   "authentication": {

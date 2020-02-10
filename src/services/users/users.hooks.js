@@ -3,7 +3,7 @@ const isAdmin = require('../../hooks/is-admin');
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { softDelete, iff } = require('feathers-hooks-common');
 const isCurrent = adminRole => context => context.params.query.current != undefined && context.params.query.current == 'true';
-const accountService = require('../authmanagement/notifier');
+// const accountService = require('../authmanagement/notifier');
 const preventSelfDelete = require('../../hooks/prevent-self-delete');
 const verifyHooks = require('feathers-authentication-management').hooks;
 const togglePagination = require('../../hooks/toggle-pagination');
@@ -34,10 +34,10 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      context => {
-        accountService(context.app).notifier('resendVerifySignup',context.result);
-      },
-      verifyHooks.removeVerification()
+      // context => {
+      //   accountService(context.app).notifier('resendVerifySignup',context.result);
+      // },
+      // verifyHooks.removeVerification()
     ],
     update: [],
     patch: [],

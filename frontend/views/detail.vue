@@ -25,6 +25,8 @@
                       <td class="header-t tablet" style="text-align:center;vertical-align:middle;"><b>AREA M<sup>2</sup> TERRENO</b></td>
                       <td class="header-t" style="text-align:center;vertical-align:middle;"><b>MANZANA</b></td>
                       <td class="header-t mobile" style="text-align:center;vertical-align:middle;"><b> AREA CONST. M<sup>2</sup></b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle"><b> PRECIO </b></td>
+                      <td class="header-t mobile" style="text-align:center;vertical-align:middle"><b> ESTATUS </b></td>
                   </tr>
                   </tbody>
               </table>
@@ -33,9 +35,8 @@
             </div>
           </div>
         </div>
-      <towerdetail></towerdetail>
-      <full-list-view :title="this.title"></full-list-view>
-      <contractsSegment :clusterId="clusterId"></contractsSegment>
+      <unitDetail :totalUnits="unitsByStage.data"></unitDetail>
+
       <div class="navbar-container" style="max-width:800px; margin:25px auto;">
           <div class="navbar-brand">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -45,7 +46,6 @@
           </div>
         </div>
     </div>
-    <references-list :title="title" :departments ="departments" :clusterId="clusterId" :openReference="openReference" v-on:closeReferences="closeReferences($event)" />
   </div>
 </template>
 
@@ -53,10 +53,7 @@
   import { mapActions } from "vuex";
   import { mapGetters } from "vuex";
   import detailTable from "./components/detail-table.vue";
-  import towerdetail from "./components/towerdetail.vue";
-  import fullListView from "./components/fullListView.vue"
-  import contractsSegment from "./components/contractsSegment.vue"
-  import referencesList from "./components/referencesList.vue"
+  import unitDetail from "./components/unitDetail.vue";
   import XLSX from 'xlsx';
   import $ from "jquery";
   import filterTable from "./components/filterTable.vue"
@@ -65,11 +62,8 @@
   export default {
     components: {
       detailTable,
-      contractsSegment,
-      towerdetail,
-      fullListView,
-      filterTable,
-      referencesList
+      unitDetail,
+      filterTable
     },
       mounted: function() {
       this.$eventHub.$on("go-search", params => {
@@ -79,11 +73,11 @@
             query[v[0]] = v[1];
           }
         });
-        this.$store.dispatch("departments/goSearch", query);
+        this.$store.dispatch("units/goSearch", query);
       });
 
-    this.$eventHub.$on("select-tower", stage => {
-      this.$store.dispatch("others/fetchUnitsByStage", stage.stage);
+      this.$eventHub.$on("select-tower", stage => {
+      this.$store.dispatch("units/fetchUnitsByStage", stage.stage);
       this.clusterId = stage.stage;
     });
 
@@ -92,21 +86,21 @@
 
       this.$eventHub.$on("updateDataDetail", () => {
         this.$store.dispatch("others/setPlusButton", true);
-        this.$store.dispatch("departments/listenEvents");
+        this.$store.dispatch("units/listenEvents");
       });
 
       var isAuthenticated = this.$store.state.others.isAuthenticated;
 
       if (isAuthenticated) {
         this.$store.dispatch("others/setPlusButton", true);
-        this.$store.dispatch("departments/listenEvents");
+        this.$store.dispatch("units/listenEvents");
 
         // listen to authenticated event
       } else {
         let _ = this;
         this.$eventHub.$on("authenticated", function() {
           _.$store.dispatch("others/setPlusButton", true);
-          _.$store.dispatch("departments/listenEvents");
+          _.$store.dispatch("units/listenEvents");
         });
       }
     },
@@ -116,21 +110,20 @@
         openReference:false,
         detailTable: 3,
         isAnimated: true,
-        sDepartments:[],
-        fDepartments:[],
-        depsAndContracts:[],
+        sortedUnits:[],
         title:null,
         tower:null,
         clusterId: undefined,
         modelFilter: null,
         blockFilter: null,
+        statusFilter:null,
         filteredUnits: [],
         loading:true
       }
     },
 
     methods: {
-      ...mapActions("departments", ["nextPage", "prevPage"]),
+      ...mapActions("units", ["nextPage", "prevPage"]),
 
       tableToExcel(){
         var downloadTime = new Date();
@@ -144,28 +137,6 @@
 
         return XLSX.writeFile(wb, 'BT-'+'units-'+day+'/'+month+'/'+year+'.xlsx')
     },
-
-    showList() {
-      let info = {
-         departments: this.departments,
-         contracts: this.contracts
-      }
-        this.$eventHub.$emit("show-fullView-detail-tower-modal", info);
-        document.getElementById('listView').style.display='inline';
-        document.getElementById("listView").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("listView").style.transition = "opacity 0.5s";
-          document.getElementById("listView").style.opacity = 1;
-            }, 100);
-      },
-
-      showContracts() {
-        let info = {
-          departments : this.departments
-        }
-
-        this.$eventHub.$emit("show-contractsSegment-modal", info);
-      },
 
       getUnitId(idunit){
        let c = null;
@@ -187,13 +158,12 @@
 
     computed: {
       ...mapGetters({
-        departments: "departments/departments",
-        commissions: "commissions/commissions",
-        searchQuery: "departments/query",
-        filteredValue: "departments/filterValue",
-        specialSort: "departments/specialSort",
+        units: "units/units",
+        searchQuery: "units/query",
+        filteredValue: "units/filterValue",
+        specialSort: "units/specialSort",
         isAdmin: "users/isAdmin",
-        encinosByStage: "others/encinosUnitsByStage"
+        unitsByStage: "units/unitsByStage"
       }),
 
       currentAvailability () {
@@ -202,9 +172,9 @@
           var reserved = 0
           var sold =  0
 
-        if(this.departments.length > 0) {
-           for(let i = 0 ; i < this.departments.length ; i++) {
-             var cDep = this.departments[i].status.name
+        if(this.units.length > 0) {
+           for(let i = 0 ; i < this.units.length ; i++) {
+             var cDep = this.units[i].status.name
 
             if ( cDep == 'AVAILABLE' ) {
               available = available + 1
@@ -223,6 +193,7 @@
            }
 
          return cData
+
          },
 
       sortedArray() {
@@ -237,18 +208,18 @@
 
         var verify = null
 
-         if(this.sDepartments.length > 0) {
+         if(this.sortedUnits.length > 0) {
 
-           verify = this.sDepartments.sort(compare)
+           verify = this.sortedUnits.sort(compare)
 
          } else if( this.specialSort[0].value == null && this.specialSort[1].value == null && this.specialSort[2].value == null) {
 
-           verify = this.departments.sort(compare)
+           verify = this.units.sort(compare)
 
          } else {
-            verify = this.sDepartments.sort(compare)
+            verify = this.sortedUnits.sort(compare)
             swal({
-              text: "No departments within range.",
+              text: "No Units within range.",
               icon: "warning",
               buttons: false,
               timer: 3000
@@ -263,10 +234,29 @@
        // Update filter data to use Watch
        this.modelFilter = this.specialSort[0].value;
        this.blockFilter = this.specialSort[2].value;
+       this.statusFilter = this.specialSort[1].value;
 
        // Return every unit that belongs to the stage
-       if(this.modelFilter === null && this.blockFilter === null) {
-         return this.encinosByStage.data;
+       if(this.modelFilter === null && this.blockFilter === null && this.statusFilter === null) {
+
+        // sorty units to fix bug where if you changed the status of an unit it will push that unit to the end of
+        // the array
+
+        if(Array.isArray(this.unitsByStage.data)){
+          this.unitsByStage.data.sort(function (a, b) {
+            if (a.unit > b.unit) {
+              return 1;
+            }
+            if (a.unit < b.unit) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+
+         return this.unitsByStage.data;
+        }
        } else {
         return this.filteredUnits;
        }
@@ -275,22 +265,31 @@
     },
       watch : {
         currentAvailability(newVal) {
-           this.$store.dispatch("departments/setCurrentAvailability",newVal);
+           this.$store.dispatch("units/setCurrentAvailability",newVal);
         },
 
         modelFilter: function(newVal, oldVal) {
-          if(this.blockFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.blockFilter !== null && this.statusFilter !== null) {
+            return this.filteredUnits = this.unitsByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
-          return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === newVal);
+          return this.filteredUnits = this.unitsByStage.data.filter(unit => unit.houseModel === newVal);
         },
 
         blockFilter: function(newVal, oldVal) {
-          if(this.modelFilter !== null) {
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter);
+          if(this.modelFilter !== null && this.statusFilter != null) {
+            return this.filteredUnits = this.unitsByStage.data.
+            filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
           }
-            return this.filteredUnits = this.encinosByStage.data.filter(unit => unit.suburb === newVal);
+            return this.filteredUnits = this.unitsByStage.data.filter(unit => unit.suburb === newVal);
         },
+
+        statusFilter: function(newVal, oldVal) {
+          if(this.modelFilter !== null && this.blockFilter !== null) {
+            return this.filteredUnits = this.unitsByStage.data.filter(unit => unit.houseModel === this.modelFilter && unit.suburb === this.blockFilter && unit.statusId === this.statusFilter);
+          }
+            return this.filteredUnits = this.unitsByStage.data.filter(unit => unit.statusId === newVal);
+        },
+
         filterStages(newVal, oldVal){
           if(this.loading == true){
             return this.loading = false

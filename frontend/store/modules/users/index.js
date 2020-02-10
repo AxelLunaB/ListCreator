@@ -11,6 +11,7 @@ const state = {
     type: ''
   },
   users: [],
+  executives: [],
   pagination: {
     total: 0,
     limit: 0,

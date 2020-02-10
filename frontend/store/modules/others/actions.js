@@ -1,5 +1,14 @@
 /* eslint-disable */
-import { authenticateSocket, fetchStatus, fetchClusters, fetchCountHouses, fetchCountDepartments, fetchCustomers, patchReferences, createNewCustomer, cancelReferences, getUnits, getUnitsByStage } from '@/api';
+import { authenticateSocket,
+  fetchStatus,
+  fetchClusters,
+  fetchCountUnits,
+  fetchCustomers,
+  createNewCustomer,
+  getUnitsInfo,
+  updateCustomerInfo,
+  removeCustomer
+} from '@/api';
 
 const authenticate = (context) => {
   return new Promise((resolve, reject) => {
@@ -19,6 +28,17 @@ const setPlusButton = (context, plusBtn) => {
 const setNewCustomer = (context, customer) => {
   return new Promise((resolve, reject) => {
     createNewCustomer(customer).then(res => {
+      // context should be called to commit some mutation in order to send popups or something.
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  })
+};
+
+const updateCustomer = (context, customer) => {
+  return new Promise((resolve, reject) => {
+    updateCustomerInfo(customer).then(res => {
       // context should be called to commit some mutation in order to send popups or something.
       resolve(res);
     }).catch(e => {
@@ -51,56 +71,19 @@ const getCustomers = (context) => {
   });
 };
 
-const getCountHouses = (context) => {
-  fetchCountHouses().then(response => {
-    context.commit('COUNT_HOUESES_UPDATED', response);
-  }).catch(err => {
-    // ?
-  })
-};
-
-const getCountLots = (context) => {
-  fetchCountHouses().then(response => {
-    context.commit('COUNT_LOTS_UPDATED', response);
-  }).catch(err => {
-    // ?
-  })
-};
-
-const getCountDepartments = (context) => {
-  fetchCountDepartments().then(response => {
+const getCountUnits = (context) => {
+  fetchCountUnits().then(response => {
     context.commit('COUNT_DEPARTMENTS_UPDATED', response);
   }).catch(err => {
 
   })
 };
 
-const setNewPatchedReference = (context, reference) => {
-  return new Promise((resolve, reject) => {
-    patchReferences(reference).then(res => {
-      // context should be called to commit some mutation in order to send popups or something.
-      resolve(res);
-    }).catch(e => {
-      reject(e);
-    });
-  });
-};
-
-const callCancelReferences = (context, reference) => {
-  return new Promise((resolve, reject) => {
-    cancelReferences(reference).then(res => {
-      //context.commit('REFERENCES_UPDATED', res);
-      resolve(res);
-    }).catch(e => {
-      reject(e);
-    })
-  });
-};
 
 const fetchAllUnits = (context) => {
   return new Promise((resolve, reject) => {
     getUnits().then(res => {
-      context.commit('ENCINOS_UNITS', res);
+      context.commit('UNITS', res);
       resolve(res);
     }).catch(error => {
       reject(error);
@@ -108,11 +91,23 @@ const fetchAllUnits = (context) => {
   });
 };
 
-const fetchUnitsByStage = (context, stage) => {
+
+
+const fetchUnitsInfo = (context) => {
   return new Promise((resolve, reject) => {
-    getUnitsByStage(stage).then(res => {
-      context.commit('ENCINOS_UNITS_BY_STAGE', res);
+    getUnitsInfo().then(res => {
+      context.commit('STAGES_INFO', res);
       resolve(res);
+    }).catch(error => {
+      reject(error);
+    })
+  })
+}
+
+const deleteCustomer = (context, customerId) => {
+  return new Promise((resolve, reject) => {
+    removeCustomer(customerId).then(response => {
+      resolve(response);
     }).catch(error => {
       reject(error);
     });
@@ -123,14 +118,12 @@ export default {
   authenticate,
   getClusters,
   getCustomers,
+  deleteCustomer,
   getStatus,
   setPlusButton,
   setNewCustomer,
-  getCountHouses,
-  getCountDepartments,
-  getCountLots,
-  setNewPatchedReference,
-  callCancelReferences,
+  getCountUnits,
   fetchAllUnits,
-  fetchUnitsByStage
+  fetchUnitsInfo,
+  updateCustomer
 };

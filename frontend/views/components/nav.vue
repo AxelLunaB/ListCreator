@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
+    <div :class="{overlay : openModal}"></div>
     <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="43px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
@@ -28,6 +29,8 @@
           <!-- <a href="/">Home</a> -->
           <li class="dropdown-divider"></li>
           <router-link v-if="isAdmin" to="/admin/users">Usuarios</router-link>
+          <li class="dropdown-divider" v-if="isAdmin"></li>
+          <router-link v-if="isAdmin" to="/admin/customers">Clientes</router-link>
           <li v-if="isAdmin" class="dropdown-divider"></li>
           <a href="/logout"><b>Salir</b></a>
           </span>
@@ -44,6 +47,11 @@ import { mapGetters,mapActions } from "vuex";
 export default {
   name: "appnav",
   mounted: function() {
+
+    this.$eventHub.$on("modal-bar", state => {
+      this.openModal = state;
+    });
+
     var _ = this;
     $(document).ready(function() {
       $("#nav-search-form").on("submit", function(event) {
@@ -60,6 +68,7 @@ export default {
   },
   data() {
     return {
+      openModal:false,
       fields: [
         ["division", "Sección"],
         ["cluster", "Clúster"],
@@ -91,7 +100,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setView : 'departments/setListType'
+      setView : 'units/setListType'
     }),
     addFilter() {
       var i = $("#search-filter-select")[0];
@@ -152,6 +161,14 @@ export default {
 </script>
 
 <style>
+
+.overlay {
+    width: 100%;
+    height: 69px;
+    position: fixed;
+    background: #00000091;
+    left: 0;
+}
 
 .icons-bar > div {
   width:40px;

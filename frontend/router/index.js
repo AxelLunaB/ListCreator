@@ -1,20 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import lots from '@/views/lots.vue';
 import dashboard from '@/views/dashboard.vue';
-import historics from '@/views/historics.vue';
-import houses from '@/views/houses.vue';
 import users from '@/views/users.vue';
-import departments from '@/views/departments.vue';
-import historic_reports from '@/views/historic-reports.vue';
+import customers from '@/views/customers.vue';
 import BootstrapVue from 'bootstrap-vue';
 import dashboardView from '@/views/dashboardView.vue';
 import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import towerdetail from '@/views/components/towerdetail.vue';
-import formats from '@/views/formats.vue';
-import VueTransmit from "vue-transmit";
+import unitDetail from '@/views/components/unitDetail.vue';
 import "chart.js";
 import "hchs-vue-charts";
 import Print from "vue-print-nb";
@@ -22,7 +16,6 @@ import XSLX from 'xlsx';
 import DatePicker from 'vue-bootstrap-datetimepicker';
 import touchspin from 'bootstrap-touchspin';
 import vuelidateLib from 'vuelidate';
-import contractsFiles from '@/views/components/contractsFiles.vue'
 
 Vue.use(vuelidateLib);
 
@@ -31,8 +24,6 @@ Vue.use(DatePicker);
 Vue.use(window.VueCharts);
 
 Vue.use(BootstrapVue)
-
-Vue.use(VueTransmit);
 
 Vue.use(Router);
 
@@ -59,45 +50,19 @@ export default new Router({
           component: detail
         },
         {
-            path: '/lots',
-            name: 'Lotes',
-            component: lots
-        },
-        {
-            path: '/houses',
-            name: 'Casas',
-            component: houses
-        },
-        {
-            path: '/historics',
-            name: 'Historial de cambios',
-            component: historics
-        },
-        {
             path: '/admin/users',
             name: 'Usuarios',
             component: users
         },
         {
-            path: '/historic_reports',
-            name: 'historic_Reports',
-            component: historic_reports
+          path:'/unitDetail',
+          name:"Detalle de unidad",
+          component: unitDetail
         },
         {
-          path:'/towerdetail',
-          name:"Detalle de torre",
-          component: towerdetail
-        },
-        {
-          path:'/formats',
-          name:'Formatos',
-          component:formats,
-          props:true
-        },
-        {
-          path:'/contractsFiles',
-          name:'Formatos para contratos',
-          component:contractsFiles
-        },
+          path: '/admin/customers',
+          name: 'clientes',
+          component:customers
+        }
     ]
 })

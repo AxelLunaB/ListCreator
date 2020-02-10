@@ -1,4 +1,4 @@
-import { currentUser, fetchUsers, createUser, patchUser, deleteUser } from '@/api';
+import { currentUser, fetchUsers,fetchExecutives, createUser, patchUser, deleteUser } from '@/api';
 import socket from '@/io';
 
 const getCurrentUser = (context) => {
@@ -24,6 +24,15 @@ const getUsers = (context) => {
     console.log(err);
   });
 };
+
+const getExecutives = context => {
+  fetchExecutives().then(data => {
+    context.commit('EXECUTIVES_UPDATED', data.data);
+  }).catch(error => {
+    console.log('Not logged as executive/Superadmin');
+  });
+};
+
 
 const newUser = (context, user) => {
   return new Promise((resolve, reject) => {
@@ -94,4 +103,5 @@ export default {
   prevPage,
   removeUser,
   updateUser,
+  getExecutives
 }

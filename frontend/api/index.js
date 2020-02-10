@@ -20,10 +20,9 @@ const authenticateSocket = () => {
   })
 };
 
-/* HOUSES */
-const createHouse = (house) => {
+const updateUnitStatus = (newStatus) => {
   return new Promise((resolve, reject) => {
-    socket.emit('create', 'api/houses', house, (error, message) => {
+    socket.emit('patch', 'units', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
       if (error) {
         reject(error);
       } else {
@@ -33,34 +32,9 @@ const createHouse = (house) => {
   })
 };
 
-const fetchHouses = ($skip, query) => {
-  query = query != null ? query : {};
-  query['$skip'] = $skip;
-  return new Promise((resolve) => {
-    socket.emit("api/houses::find", query, (error, lots) => {
-      resolve(lots);
-    });
-  })
-};
-
-const patchHouse = (house) => {
+const updateUnitExecutive = (newStatus) => {
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/houses', house.id, house, (error, message) => {
-      // console.log(error);
-      // console.log(message);
-      if (error) {
-        reject(error);
-      } else {
-        resolve(message);
-      }
-    });
-  });
-};
-
-/* DEPARTMENTS */
-const createDepartments = (department) => {
-  return new Promise((resolve, reject) => {
-    socket.emit('create', 'api/departments', department, (error, message) => {
+    socket.emit('patch', 'units', newStatus.unitId, {userId: newStatus.userId}, (error, message) => {
       if (error) {
         reject(error);
       } else {
@@ -70,43 +44,18 @@ const createDepartments = (department) => {
   })
 };
 
-const fetchDepartments = ($skip, query) => {
-  query = query != null ? query : {};
-  query['$skip'] = $skip;
-  return new Promise((resolve) => {
-    socket.emit("api/departments::find", query, (error, lots) => {
-      resolve(lots);
+const updateUnitCustomer = newCustomer => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'units', newCustomer.unitId, { customerId: newCustomer.customerId }, (error, message) => {
+      error ? reject(error) : resolve(message);
     });
   })
-};
+}
 
-const fetchDepartmentsByCluster = ($skip, cluster) => {
-  console.log(cluster);
-
-  return new Promise((resolve) => {
-    socket.emit("api/departments::find", {clusterId: cluster}, (error, lots) => {
-      resolve(lots);
-    });
-  })
-};
-
-const patchDepartments = (department) => {
+const fetchUpdatedUnit = (unit) => {
+  console.log(unit);
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/departments', department.id, department, (error, message) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(message);
-      }
-    });
-  });
-};
-
-/* CONTRACTS */
-
-const updateUnitStat = (newStatus) => {
-  return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/departments', newStatus.unitId, {statusId: newStatus.statusId}, (error, message) => {
+    socket.emit('find', 'units',{ id: unit }, (error, message) => {
       if (error) {
         reject(error);
       } else {
@@ -116,133 +65,18 @@ const updateUnitStat = (newStatus) => {
   })
 };
 
-const fetchTotalContracts = async unitId => {
-  return new Promise((resolve, reject) => {
-    socket.emit('find', 'api/contracts', { unitId: unitId }, (error, response) => {
+const removeExecutiveFromUnit = data => {
+  return new Promise((resolve,reject) => {
+    socket.emit('patch', 'units', data, { userId: null }, (error, response) => {
       error ? reject(error) : resolve(response);
     });
-  });
-};
-
-/* Retrieves all contracts by Paid Reference */
-const fetchContractsByPaidRef = async () => {
-  // Contracts
-  const contracts = [];
-
-  // References ID
-  const referencesId = [];
-
-  // Fetch all references that belongs to
-  // a paid reference
-  await socket.emit('api/references::find', { statusId: 5 }, (error, references) => {
-
-    if(error) {
-      throw new Error(error);
-    }
-
-    // All Paid References as Array : []
-    const paidReferences = references;
-
-    paidReferences.data.forEach(reference => {
-      let id = reference.id;
-      referencesId.push(id);
-    });
-  });
-
-  await socket.emit('find', 'api/contracts', { $sort: { id: 1 } }, (error, response) => {
-
-    if(error) {
-      throw new Error(error);
-    }
-
-    if(response !== null || response !== undefined) {
-      referencesId.forEach(id => {
-        // Search for referenceId at Contracts
-        let contract = response.data.find(element => {
-          return element.referenceId === id;
-        });
-
-        // Pushes the data to contracts array
-        contracts.push(contract);
-      });
-    }
-
-  });
-
-
-  return new Promise((resolve) => {
-    resolve(contracts);
-  });
-};
-
-const fetchContracts = ($skip, query) => {
-  query = query != null ? query : {};
-  query['$skip'] = $skip;
-  return new Promise((resolve) => {
-    socket.emit("api/contracts::find", query, (error, lots) => {
-      resolve(lots);
-    });
-  });
-};
-
-const createContract = (contract) => {
-  return new Promise((resolve, reject) => {
-    socket.emit('api/contracts::create', contract, (error, message) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(message);
-      }
-    });
   })
 };
 
-// commissions
-const fetchCommissions = ($skip, query) => {
-  query = query != null ? query : {};
-  query['$skip'] = $skip;
-  return new Promise((resolve) => {
-    socket.emit("api/commissions::find", query, (error, lots) => {
-      resolve(lots);
-    });
-  })
-};
-
-/* LOTS */
-const createLot = (lot) => {
-  return new Promise((resolve, reject) => {
-    socket.emit('create', 'api/lots', lot, (error, data) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-};
-
-const fetchLots = ($skip, query) => {
-  query = query != null ? query : {};
-  query['$skip'] = $skip;
-  return new Promise((resolve, reject) => {
-    socket.emit('find', 'api/lots', query, (error, lots) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(lots);
-      }
-    });
-  });
-};
-
-const patchLot = (lot) => {
-  return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/lots', lot.id, lot, (error, message) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(message);
-      }
+const removeCustomerFromUnit = data => {
+  return new Promise((resolve,reject) => {
+    socket.emit('patch', 'units', data, { customerId: null }, (error, response) => {
+      error ? reject(error) : resolve(response);
     });
   })
 };
@@ -296,6 +130,14 @@ const fetchCustomers = ($skip, query) => {
   });
 };
 
+const fetchExecutives = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'users', { type: { $in: ['A', 'V'] } }, (error, data) => {
+      error ? reject(error) : resolve(data);
+    });
+  });
+};
+
 const createNewCustomer = (customer) => {
   return new Promise((resolve, reject) => {
     socket.emit('create', 'customers', customer, (error, response) => {
@@ -315,14 +157,11 @@ const deleteUser = (user) => {
     });
   });
 };
-const patchUser = (user) => {
+
+const patchUser = user => {
   return new Promise((resolve, reject) => {
     socket.emit('patch', 'users', user.id, user, (error, response) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(response);
-      }
+      error ? reject(error) : resolve(response);
     });
   });
 };
@@ -359,16 +198,18 @@ const fetchCountByCluster = clusterObj => {
   });
 };
 
-const fetchCountHouses = () => {
-  return new Promise((resolve, reject) => {
-    socket.emit('find', 'api/countByCluster', {}, (error, count) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(count);
-      }
-    });
-  });
+const fetchUnitsByCluster = ($skip, info) => {
+  // Returns all clusters if user is not executive else returns only units assigned to said
+  if(info) {
+
+      return new Promise((resolve) => {
+        socket.emit("api/departments::find", { clusterId: info.tower }, (error, lots) => {
+          resolve(lots);
+        });
+      })
+
+    }
+
 };
 
 const fetchCountDepartments = () => {
@@ -384,15 +225,56 @@ const fetchCountDepartments = () => {
   });
 };
 
-const fetchReferences = () => {
+const getAttachments = unitId => {
   return new Promise((resolve, reject) => {
-    socket.emit('find', 'api/references', {}, (error, count) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(count);
-        //console.log(count.data);
-      }
+    socket.emit('find', 'attachments', { unitId: unitId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const deleteAttachment = data => {
+  return new Promise((resolve, reject) => {
+    socket.emit('remove', 'attachments', data, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const getAttachmentsCustomer = customerId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', 'attachments', { customerId: customerId }, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const deleteAllAttachments = attachments => {
+  return new Promise((resolve,reject) => {
+    // const attachmentId = attachments.data[0].id
+
+    for(let i = 0; i < attachments.data.length; i++) {
+      socket.emit('remove', 'attachments', attachments.data[i].id, (error, payments) => {
+        if(error) { reject(error); }
+      });
+    }
+
+
+  });
+};
+
+const updateCustomerInfo = customer => {
+  return new Promise((resolve, reject) => {
+    socket.emit('patch', 'customers', customer.id, customer, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const createNewAttachment = (attachment) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('create', 'attachments', attachment, (error, response) => {
+      error ? reject(error) : resolve(response);
     });
   });
 };
@@ -406,63 +288,18 @@ const getS3Signature = file => {
   });
 };
 
-/* References */
-const patchReferences = reference => {
+const generatePropesctoGuide = type => {
   return new Promise((resolve, reject) => {
-    socket.emit('patch', 'api/references', reference.id, { statusId: reference.statusId }, (error, response) => {
-      error ? reject(error) : resolve(response);
+    socket.emit('create', 'attachments', type, (err, res) => {
+      err ? reject(err) : resolve(res);
     });
   });
 };
 
-const cancelReferences = async reference => {
-   // Paid Reference
-   const paidReference = reference.paidReference;
-   // Status to patch
-   const statusId = reference.statusId;
-   // UnitID to patch
-   const unitId = reference.unitId;
-   // First fetchTotalContracts that belongs to the same unit in api/contracts
-   const totalContracts = await fetchTotalContracts(unitId); // Returns an objects array
-
-   console.log('Total Contracts ------------>');
-   console.log(totalContracts);
-
-   try {
-
-    // First patch the reference paid
-    socket.emit('patch', 'api/references', paidReference, { statusId: statusId },  (error, response) => {
-      console.log(`Paid ReferenceID: ${paidReference}`);
-    });
-
-    // Patch Department
-    if( unitId !== null) {
-     socket.emit('patch', 'api/departments', unitId, { statusId: 3 }, (error, response) => {
-       console.log(`UnitID: ${unitId} RESERVED`);
-     });
-   } else {
-      console.log("heeeeell no");
-   }
-    totalContracts.data.forEach(obj => {
-      if(obj.referenceId !== paidReference) {
-
-        socket.emit('patch', 'api/references', obj.referenceId, { statusId: 8 }, (error, response) => {
-          console.log(`Reference ID: ${obj.referenceId} cancelled.`);
-        });
-      }
-    });
-
-   } catch(e) {
-     console.log(e);
-   }
-
-   console.log('References cancelled sucessfully!');
-};
-
-/* Encinos */
+/* Units */
 const getUnits = () => {
   return new Promise((resolve, reject) => {
-    socket.emit('find', '/encinos', {}, (error, count) => {
+    socket.emit('find', '/units', {}, (error, count) => {
       if (error) {
         reject(error);
       } else {
@@ -474,55 +311,103 @@ const getUnits = () => {
 
 const getUnitsByStage = (stage) => {
   return new Promise((resolve, reject) => {
-    socket.emit('find', '/encinos', { stage: stage }, (error, data) => {
+    socket.emit('find', '/units', { stage: stage }, (error, data) => {
       error ? reject(error) : resolve(data);
     });
   });
 };
 
+const removeCustomer = customerId => {
+  return new Promise((resolve, reject) => {
+    socket.emit('remove', 'customers', customerId, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
+  });
+};
+
+const getUnitsInfo = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('find', '/units', (error, data) => {
+      if(error){
+        reject(error);
+      } else {
+        let stageInfo = [];
+
+        let stages = {}
+        data.data.forEach(function(u){
+          stageInfo.includes(u.stage) ? stageInfo : stageInfo.push(u.stage);
+        });
+
+        for(let i = 0 ; i < stageInfo.length; i++){
+
+          let vendido = []; let apartado =[]; let bloqueado = []; let disponible = [];
+
+          stages[stageInfo[i]];
+
+          for(let o = 0 ; o < data.data.length; o++){
+
+            if(data.data[o].statusId === 1 && data.data[o].stage === stageInfo[i])
+            disponible.push(data.data[o]);
+
+            if(data.data[o].statusId === 2 && data.data[o].stage === stageInfo[i])
+            vendido.push(data.data[o]);
+
+            if(data.data[o].statusId === 3 && data.data[o].stage === stageInfo[i])
+            apartado.push(data.data[o]);
+
+            if(data.data[o].statusId === 4 && data.data[o].stage === stageInfo[i])
+            bloqueado.push(data.data[o]);
+          }
+
+          let all = disponible.length + vendido.length + apartado.length + bloqueado.length;
+
+          stages[stageInfo[i]] = {
+            "APARTADO":apartado.length,
+            "VENDIDO":vendido.length,
+            "BLOQUEADO":bloqueado.length,
+            "DISPONIBLE":disponible.length,
+            "TOTAL":all
+          }
+        }
+
+        resolve(stages);
+
+      }
+    });
+  });
+};
+
+
 export {
   authenticateSocket,
   fetchStatus,
+  fetchExecutives,
   fetchClusters,
   fetchCountByCluster,
-  //
-  createHouse,
-  fetchHouses,
-  patchHouse,
-  //
-  createDepartments,
-  fetchDepartments,
-  patchDepartments,
-  fetchDepartmentsByCluster,
-  //
-  fetchContracts,
-  fetchContractsByPaidRef,
-  createContract,
-  fetchCommissions,
-  updateUnitStat,
-  //
-  createLot,
-  fetchLots,
-  patchLot,
-  //
+  fetchUnitsByCluster,
+  updateUnitStatus,
   createUser,
   currentUser,
   deleteUser,
   fetchUsers,
   patchUser,
-  //
+  removeCustomer,
   createNewCustomer,
   fetchCustomers,
-  //
-  fetchCountHouses,
-  fetchCountDepartments,
-  //
-  patchReferences,
-  fetchReferences,
-  cancelReferences,
-  //
   getS3Signature,
-  //
   getUnits,
-  getUnitsByStage
+  getUnitsByStage,
+  getUnitsInfo,
+  updateUnitExecutive,
+  updateUnitCustomer,
+  fetchUpdatedUnit,
+  removeExecutiveFromUnit,
+  removeCustomerFromUnit,
+  getAttachments,
+  deleteAttachment,
+  deleteAllAttachments,
+  getAttachmentsCustomer,
+  createNewAttachment,
+  updateCustomerInfo,
+  generatePropesctoGuide
 }
