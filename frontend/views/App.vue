@@ -28,7 +28,6 @@ export default {
 
 <style>
 
-
 .filter {
   padding-top: 100px;
   text-align: center;

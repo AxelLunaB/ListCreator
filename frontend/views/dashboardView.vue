@@ -2,7 +2,7 @@
   <div>
     <div class="bar" style="width: 100%; height: 70px; position: relative;"></div>
       <div class="main" style="overflow-x: hidden;position: relative;margin-top:15%;">
-            <div class="wrapper-page row cards-container" style="background:#2a333c; position: relative;overflow:hidden;" id="wrapper-page">
+            <div class="wrapper-page row cards-container" style="position: relative;overflow:hidden;" id="wrapper-page">
                     <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" :unit="unitsInfo[stage.stage]" ></development>
             </div>
             <!-- <nav aria-label="Page navigation" style = "margin-top:20px;">
@@ -241,7 +241,6 @@ body {
 
 
 .main {
-  background: #2a333c;
   display: flex;
   flex-direction: column;
   align-items: center;
