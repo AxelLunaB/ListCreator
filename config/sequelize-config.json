@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "Ar3d2018",
-    "database": "sibaria-web",
+    "database": "homia-web",
     "host": "localhost",
     "dialect": "postgres",
     "logging": true
@@ -10,7 +10,7 @@
   "test": {
     "username": "postgres",
     "password": "root",
-    "database": "sibaria-web",
+    "database": "homia-web",
     "host": "localhost",
     "dialect": "postgres"
   },
