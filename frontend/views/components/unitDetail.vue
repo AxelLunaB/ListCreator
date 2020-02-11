@@ -1292,7 +1292,7 @@ export default {
   @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 
   select {
-  background:#252d33!important;
+  background:#14304a!important;
   border:none!important;
   border-radius: 4px;
   color:white!important;
@@ -1306,7 +1306,7 @@ select option {
 }
     .container-fluid {
     text-align:center;
-    background:#2a333c;
+    background:#14304a;
     height: 100%;
     position:fixed;
     top:57px;
@@ -1364,7 +1364,7 @@ label.input-files:hover {
     height:95%;
   }
   .userModal {
-    background:#3c4857;
+    background:#2b4969;
     color:white;
     padding:25px;
     border-radius: 4px;
@@ -1372,7 +1372,7 @@ label.input-files:hover {
   }
 
   .card {
-    background:#3c4857!important;
+    background:#2b4969!important;
     margin:10px;
     flex:1;
     border:none!important;
@@ -1518,7 +1518,7 @@ background: #ebeff2;
     bottom:-3px;
     z-index: 2;
     cursor:pointer;
-    background: #181d22;
+    background: #243b53;
     width: 100px;
     height: 50px;
     border-radius: 5px;

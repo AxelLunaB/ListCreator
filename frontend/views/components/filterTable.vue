@@ -332,10 +332,10 @@ input .dropdown {
 }
 
   .close-filter {
-    background: #3c4857;
+    background: #243b53;
     color: #fff;
     position: fixed;
-    right: 259px;
+    right: 185px;
     z-index: 1;
     padding: 10px;
     border-radius: 3px;
