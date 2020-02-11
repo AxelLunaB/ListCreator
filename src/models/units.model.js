@@ -6,14 +6,20 @@ module.exports = (app) => {
   const sequelizeClient = app.get('sequelizeClient');
   const units = sequelizeClient.define('units', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    unit: { type: DataTypes.INTEGER },
-    stage: { type: DataTypes.STRING },
-    commercialPhase: { type: DataTypes.STRING },
-    houseModel: { type: DataTypes.STRING },
-    priceTotal: { type: DataTypes.DOUBLE},
-    m2Terrain: { type: DataTypes.DOUBLE },
-    suburb: { type: DataTypes.STRING },
-    m2Construction: { type: DataTypes.STRING },
+    unit: { type: DataTypes.STRING },
+    tower: { type: DataTypes.STRING },
+    level: { type: DataTypes.INTEGER },
+    bedrooms: {type:DataTypes.INTEGER},
+    bathrooms: {type:DataTypes.INTEGER},
+    buildM2: { type: DataTypes.DOUBLE },
+    balconyM2: { type: DataTypes.DOUBLE },
+    totalM2: {type: DataTypes.DOUBLE },
+    totalSQFT: {type:DataTypes.DOUBLE},
+    parking: {type:DataTypes.STRING},
+    listPrice : {type:DataTypes.DOUBLE},
+    finalPrice : {type:DataTypes.DOUBLE},
+    discount: { type: DataTypes.INTEGER },
+    delivery: { type: DataTypes.STRING },
   }, {});
 
   units.associate = function(models) {

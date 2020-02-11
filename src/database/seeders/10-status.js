@@ -22,13 +22,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'APARTADO',
-        color_hex: '#e89005',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: 'BLOQUEADO',
+        name: 'PENDIENTE',
         color_hex: '#f5e02a',
         createdAt: new Date(),
         updatedAt: new Date()
