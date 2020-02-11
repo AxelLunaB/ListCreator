@@ -133,7 +133,7 @@
       </div>
 
       <!-- USERS TABLE -->
-      <div class="box table" v-if="!isCreating && !isEditting" style="background: #3c4857; color: #FFFFFF;">
+      <div class="box table" v-if="!isCreating && !isEditting" style="background: #2b4969; color: #FFFFFF;">
 
         <!-- header -->
         <div class="columns is-mobile" style="background: #2c36426b; border-radius: 6px;">
@@ -168,7 +168,7 @@
     <transition name="fade">
       <div v-if="isCreating">
         <div class="columns is-centered is-mobile">
-          <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: rgb(60, 72, 87); color: rgb(255, 255, 255);">
+          <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: #2b4969; color: rgb(255, 255, 255);">
             <!-- <div class="container padding-15 padding-correction "> -->
               <h1 class="titleFixed is-1 is-spaced" style="font-size:40px; font-weight: 600; margin-bottom: 18px;">Nuevo Cliente</h1>
               <h2 class="subtitle is-4" style="color: rgb(255, 255, 255); font-size: 20px;">Llene los campos de información para dar de alta un cliente.</h2>
@@ -178,13 +178,13 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Nombre(s)</label>
                       <div class="control">
-                       <input class="input" v-bind:style="[$v.name.$model !== null ? $v.name.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="name" type="text" name="name" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                       <input class="input" v-bind:style="[$v.name.$model !== null ? $v.name.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="name" type="text" name="name" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Apellidos</label>
                       <div class="control">
-                       <input class="input" v-bind:style="[$v.lastName.$model !== null ? $v.lastName.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="lastName" type="text" name="lastName" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                       <input class="input" v-bind:style="[$v.lastName.$model !== null ? $v.lastName.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="lastName" type="text" name="lastName" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -192,19 +192,19 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Correo electrónico</label>
                       <div class="control">
-                        <input class="input" v-bind:style="[$v.email.$model !== null ? $v.email.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="email" type="email" name="email" placeholder="ejemplo@altozano.com.mx" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" v-bind:style="[$v.email.$model !== null ? $v.email.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="email" type="email" name="email" placeholder="ejemplo@altozano.com.mx" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Edad</label>
                       <div class="control">
-                        <input class="input" v-bind:style="[$v.age.$model !== null ? $v.age.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="age" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" v-bind:style="[$v.age.$model !== null ? $v.age.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]"  v-model="age" type="number" min="18" max="100" name="age" placeholder="18" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Número de contacto</label>
                       <div class="control">
-                        <input class="input" type="tel" v-bind:style="[letters === false ? $v.tel.$model !== null ? $v.tel.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]" v-model="tel" name="contactNumber" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" type="tel" v-bind:style="[letters === false ? $v.tel.$model !== null ? $v.tel.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]" v-model="tel" name="contactNumber" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                       <span v-if="letters" style="font-size: 11px;color: red;">Solo números o símbolos</span>
                     </div>
@@ -236,9 +236,9 @@
                         </b-dropdown>
                         <div v-if ="country == 'Other'">
                           <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Other country</label>
-                          <input class="input" type="text" v-model="otherCountry" name="other-country" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                          <input class="input" type="text" v-model="otherCountry" name="other-country" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                           <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">State</label>
-                          <input class="input" type="text" v-model="otherState" name="other-state" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                          <input class="input" type="text" v-model="otherState" name="other-state" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                         </div>
                       </div>
                     </div>
@@ -251,20 +251,20 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Ciudad</label>
                       <div class="control">
-                        <input class="input" type="text" v-bind:style="[$v.city.$model !== null ? $v.city.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="city" name="city" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                        <input class="input" type="text" v-bind:style="[$v.city.$model !== null ? $v.city.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="city" name="city" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <div class="field" style="display: flex;justify-content: space-between;">
                       <div>
                         <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Dirección</label>
                         <div class="control">
-                          <input class="input" type="text" v-bind:style="[$v.address.$model !== null ? $v.address.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="address" name="address" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                          <input class="input" type="text" v-bind:style="[$v.address.$model !== null ? $v.address.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="address" name="address" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                         </div>
                       </div>
                       <div>
                         <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Código postal</label>
                         <div class="control" style="align-items: flex-start;justify-content: flex-start;">
-                          <input class="input" type="number" v-bind:style="[$v.zipcode.$model !== null ? $v.zipcode.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="zipcode" name="zipcode" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                          <input class="input" type="number" v-bind:style="[$v.zipcode.$model !== null ? $v.zipcode.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { }]" v-model="zipcode" name="zipcode" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                         </div>
                       </div>
                     </div>
@@ -277,13 +277,13 @@
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Contraseña</label>
                       <div class="control">
-                       <input v-model="password" class="input" v-bind:style="[ password === password2 ? $v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]"  type="password" name="password" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" placeholder="" required>
+                       <input v-model="password" class="input" v-bind:style="[ password === password2 ? $v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]"  type="password" name="password" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" placeholder="" required>
                       </div>
                     </div>
                     <div class="field">
                       <label class="label" style="color: rgb(255, 255, 255); font-weight: 400;">Confirmar contraseña</label>
                       <div class="control">
-                       <input v-bind:style="[ password === password2 ? $v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]"  v-model="password2" class="input" type="password" placeholder="" style="background-color: #2a333c; border: 1px solid #4a5869; color: #797c80;" required>
+                       <input v-bind:style="[ password === password2 ? $v.password2.$model !== '' ? $v.password2.$invalid !== true ? { 'border' : '1px solid green !important' } : { 'border' : '1px solid red !important' } : { } : { 'border' : '1px solid red !important' }]"  v-model="password2" class="input" type="password" placeholder="" style="background-color: rgb(20, 48, 74); border: 1px solid #4a5869; color: #797c80;" required>
                       </div>
                     </div>
                     <span v-if="password !== password2" style="font-size: 11px;color: red;">Passwords don't match</span>

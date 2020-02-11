@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
     <div :class="{overlay : openModal}"></div>
-    <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="180px" height="63px"></a>
+    <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="160px" height="53px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
           <!-- <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
@@ -195,7 +195,7 @@ export default {
 }
 
 .main-menu {
-  background: #a7a7a7;
+  background: #76777b;
   border-radius: 3px;
   text-align: left;
   width: 120px;

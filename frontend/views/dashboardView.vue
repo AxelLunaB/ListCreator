@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bar" style="width: 100%; height: 70px; position: relative;"></div>
-      <div class="main" style="overflow-x: hidden;position: relative;margin-top:15%;">
+      <div class="main" style="overflow-x: hidden;position: relative;margin-top:12%;">
             <div class="wrapper-page row cards-container" style="position: relative;overflow:hidden;" id="wrapper-page">
                     <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" :unit="unitsInfo[stage.stage]" ></development>
             </div>

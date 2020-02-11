@@ -290,7 +290,7 @@ body {
 
 /*Color background*/
 :root{
-  --fondo:#2b4969;
+  --fondo:#1c3a57;
 }
 
 .custom-control-label:after,
@@ -326,17 +326,6 @@ body {
 
 h4 {
   color: white!important;
-}
-
-
-.btn {
-  background: #14304a;
-  border:none;
-}
-
-.btn:hover {
-  background: #10263a;
-  border:none;
 }
 
 .main {
@@ -454,6 +443,19 @@ input:-webkit-autofill {
 .fade-out {
 	-webkit-animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) reverse both;
 	        animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) reverse both;
+}
+
+.btn.btn-primary.btn-block.btn-lg.waves-effect.waves-light.button-mobile {
+  border-radius: 30px;
+  border:1px solid white;
+  background:none;
+
+}
+
+.btn.btn-primary.btn-block.btn-lg.waves-effect.waves-light.button-mobile:hover {
+  background: #10263a;
+  border:none;
+  border:1px solid #10263a;
 }
 
 .note-user {

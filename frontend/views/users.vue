@@ -8,7 +8,7 @@
       </div>
 
       <!-- USERS TABLE -->
-      <div class="box table" v-if="!isCreating && !isEditting" style="background: #3c4857; color: #FFFFFF;">
+      <div class="box table" v-if="!isCreating && !isEditting" style="background: #2b4969; color: #FFFFFF;">
 
         <!-- header -->
         <div class="columns is-mobile" style="background: #2c36426b; border-radius: 6px;">
@@ -112,7 +112,7 @@
       <!-- UPDATE -->
       <div class ="" v-if="isEditting" style="background:#2a333c;position: absolute;left: 0;top: 79px;right: 0;">
           <div class="columns is-centered is-mobile">
-            <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: #3c4857;border: none;box-shadow: none;">
+            <div class="column box padding-15 padding-correction is-three-fifths-tablet" style="background: #14304a;border: none;box-shadow: none;">
               <!-- <div class="container padding-15 padding-correction "> -->
                 <h1 class="title is-1" style="color:white;">Modificar Usuario</h1>
                 <form id="edit-user-form">
