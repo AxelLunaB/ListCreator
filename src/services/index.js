@@ -7,6 +7,7 @@ const countByCluster = require('./count-by-cluster/count-by-cluster.service.js')
 const customers = require('./customers/customers.service.js');
 const attachments = require('./attachments/attachments.service.js');
 const units = require('./units/units.service.js');
+const leads = require ('./leads/leads.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -17,4 +18,5 @@ module.exports = function (app) {
   app.configure(customers);
   app.configure(attachments);
   app.configure(mailer);
+  app.configure(leads);
 };
