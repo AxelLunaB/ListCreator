@@ -309,9 +309,9 @@ const getUnits = () => {
   });
 };
 
-const getUnitsByStage = (stage) => {
+const getUnitsByStage = (cluster) => {
   return new Promise((resolve, reject) => {
-    socket.emit('find', '/units', { stage: stage }, (error, data) => {
+    socket.emit('find', '/units', { clusterId: cluster }, (error, data) => {
       error ? reject(error) : resolve(data);
     });
   });
@@ -331,46 +331,24 @@ const getUnitsInfo = () => {
       if(error){
         reject(error);
       } else {
-        let stageInfo = [];
+        // We grab the data and we separate it by tower.
+        let MADEIRA = [];
+        let CARMELINA = [];
+        let OPORTO = [];
 
-        let stages = {}
-        data.data.forEach(function(u){
-          stageInfo.includes(u.stage) ? stageInfo : stageInfo.push(u.stage);
-        });
+        data.data.forEach(u => {
+          u.clusterId === 1 ?  MADEIRA.push(u) : null
+          u.clusterId === 2 ? CARMELINA.push(u): null
+          u.clusterId === 3 ? OPORTO.push(u) : null
+        })
 
-        for(let i = 0 ; i < stageInfo.length; i++){
+        let result = {
+          MADEIRA,
+          CARMELINA,
+          OPORTO
+        };
 
-          let vendido = []; let apartado =[]; let bloqueado = []; let disponible = [];
-
-          stages[stageInfo[i]];
-
-          for(let o = 0 ; o < data.data.length; o++){
-
-            if(data.data[o].statusId === 1 && data.data[o].stage === stageInfo[i])
-            disponible.push(data.data[o]);
-
-            if(data.data[o].statusId === 2 && data.data[o].stage === stageInfo[i])
-            vendido.push(data.data[o]);
-
-            if(data.data[o].statusId === 3 && data.data[o].stage === stageInfo[i])
-            apartado.push(data.data[o]);
-
-            if(data.data[o].statusId === 4 && data.data[o].stage === stageInfo[i])
-            bloqueado.push(data.data[o]);
-          }
-
-          let all = disponible.length + vendido.length + apartado.length + bloqueado.length;
-
-          stages[stageInfo[i]] = {
-            "APARTADO":apartado.length,
-            "VENDIDO":vendido.length,
-            "BLOQUEADO":bloqueado.length,
-            "DISPONIBLE":disponible.length,
-            "TOTAL":all
-          }
-        }
-
-        resolve(stages);
+        resolve(result);
 
       }
     });

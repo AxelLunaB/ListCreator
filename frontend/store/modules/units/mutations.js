@@ -1,3 +1,7 @@
+const UNITS_BY_CLUSTER = (state, payload) => {
+  state.unitsByCluster = payload;
+}
+
 const UNITS_UPDATED = (state, payload) => {
 
   state.units = payload;
@@ -33,8 +37,8 @@ const SET_FILTER = (state, payload) => {
 
 };
 
-const UNITS_BY_STAGE = (state, stage) => {
-  state.unitsByStage = stage;
+const UNITS_BY_STAGE = (state, cluster) => {
+  state.unitsByStage = cluster.data;
 }
 
 const PRICE_FILTER = (state,payload)=> {
@@ -103,5 +107,6 @@ export default {
   REMOVE_FILTER,
   UPDATE_AVAILABILITY,
   PRICE_FILTER,
-  UNITS_BY_STAGE
+  UNITS_BY_STAGE,
+  UNITS_BY_CLUSTER
 };

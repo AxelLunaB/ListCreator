@@ -20,6 +20,7 @@ module.exports = (app) => {
     finalPrice : {type:DataTypes.DOUBLE},
     discount: { type: DataTypes.INTEGER },
     delivery: { type: DataTypes.STRING },
+    exchangeRate: { type: DataTypes.INTEGER}
   }, {});
 
   units.associate = function(models) {

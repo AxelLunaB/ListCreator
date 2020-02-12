@@ -1,7 +1,7 @@
 <template>
   <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card" @click="selectTower()">
     <router-link to="/detail" class="router">
-      <h4 class="m-b-30 m-t-0 text-center" style = "margin: 30px 0;"> Etapa {{ stage != null ? stage != null ? stage.stage : '-' : '-'}} </h4>
+      <h4 class="m-b-30 m-t-0 text-center" style = "margin: 30px 0;"> {{ cluster.name ? cluster.name : '-' }} </h4>
       <div class="card-upper">
         <div class="image-card">
         </div>
@@ -11,56 +11,24 @@
                         <table class="table">
                             <tbody class="colors-main">
                             <tr>
-                                <td><b>Unidades</b></td>
-                                <td><b>{{ unit ? unit.TOTAL : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M1D</td>
-                                <td><b>{{ stage ? stage.M1D : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M1I</td>
-                                <td><b>{{ stage ? stage.M1I : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M2D</td>
-                                <td><b>{{ stage ? stage.M2D : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M2I</td>
-                                <td><b>{{ stage ? stage.M2I : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M3D</td>
-                                <td><b>{{ stage ? stage.M3D : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M3I</td>
-                                <td><b>{{ stage ? stage.M3I : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M4D</td>
-                                <td><b>{{ stage ? stage.M4D : '-' }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>Modelo M4I</td>
-                                <td><b>{{ stage ? stage.M4I : '-' }}</b></td>
-                            </tr>
-                            <tr>
                                 <td>Disponible</td>
-                                <td style="color:#35CE41"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(1) : this.unitsInfo }}</b></td>
+                                <td style="color:#35CE41"><b>{{ cluster.available ? cluster.available.length : '-' }}</b></td>
                             </tr>
                             <tr>
                                 <td>Vendido</td>
-                                <td style="color:#CD110F"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(2) : this.unitsInfo }}</b></td>
+                                <td style="color:#CD110F"><b>{{ cluster.sold ? cluster.sold.length : '-' }}</b></td>
                             </tr>
                             <tr>
                                 <td>Apartado</td>
-                                <td style="color:#E89005"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(3) : this.unitsInfo }}</b></td>
+                                <td style="color:#E89005"><b>{{ cluster.reserved ? cluster.reserved.length : '-' }}</b></td>
                             </tr>
                             <tr>
                                 <td>Bloqueado</td>
-                                <td style="color:#F5E02A"><b>{{ this.unitsInfo[this.stage.stage] ? getStatus(4) : this.unitsInfo }}</b></td>
+                                <td style="color:#F5E02A"><b>{{ cluster.blocked ? cluster.blocked.length : '-' }}</b></td>
+                            </tr>
+                            <tr style="height:40px;">
+                                <td style="vertical-align:middle;"><b>TOTAL</b></td>
+                                <td style="vertical-align:middle;"><b>{{ cluster ? cluster.total : '-' }}</b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -77,23 +45,8 @@ import { mapGetters } from "vuex";
 
 export default {
   mounted: function () {
-      // logic
-      var isAuthenticated = this.$store.state.others.isAuthenticated;
-      if (isAuthenticated) {
-        // Dispatch actions &&  subscribe to rt events.
-        this.$store.dispatch("others/fetchUnitsInfo");
-
-        // listen to authenticated event
-      } else {
-        const _ = this;
-
-        this.$eventHub.$on("authenticated", function() {
-          _.$store.dispatch("others/fetchUnitsInfo");
-
-        });
-      }
   },
-  props:['stage','unit'],
+  props:['cluster'],
   data(){
     return {
       isActive: true,
@@ -106,8 +59,11 @@ export default {
   methods: {
 
     selectTower() {
-      let stageName = this.stage;
-      this.$eventHub.$emit("select-tower", stageName);
+      // On clicking a tower we emit an event that fetches all units from that tower sending it the clusterId
+      let cluster;
+      this.cluster.clusterId !== null ? cluster = this.cluster.clusterId : cluster = null
+
+      this.$eventHub.$emit("select-tower", cluster);
     },
 
     getStatus(cluster){
@@ -131,7 +87,6 @@ export default {
 
   computed: {
       ...mapGetters({
-        unitsInfo: "others/unitsInfo"
       }),
     getDepsP(){
 

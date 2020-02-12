@@ -19,4 +19,5 @@ module.exports = function (app) {
   app.configure(attachments);
   app.configure(mailer);
   app.configure(leads);
+  app.configure(countByCluster);
 };

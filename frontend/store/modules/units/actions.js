@@ -8,9 +8,23 @@ import {
   updateUnitExecutive,
   fetchUpdatedUnit,
   removeExecutiveFromUnit,
-  removeCustomerFromUnit
+  removeCustomerFromUnit,
+  getUnitsInfo
 } from '@/api';
 import socket from '@/io';
+
+// This service dispatches when opening dashboardView. 
+// It retieves the basic information of all units to show in dashboardView (SOLD, AVAILABLE, NUMBER OF UNITS,etc..)
+const fetchUnitsInfo = context => {
+  return new Promise((resolve, reject) => {
+    getUnitsInfo().then(units => {
+      context.commit('UNITS_BY_CLUSTER', units);
+      resolve(units);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
 
 const updateStatus = (context, newStatus) => {
   return new Promise((resolve, reject) =>{
@@ -137,6 +151,7 @@ const updateUnit = (context, department) => {
 const fetchUnitsByStage = (context, stage) => {
   return new Promise((resolve, reject) => {
     getUnitsByStage(stage).then(res => {
+      console.log(res);
       context.commit('UNITS_BY_STAGE', res);
       resolve(res);
     }).catch(error => {
@@ -238,5 +253,8 @@ export default {
   updateCustomer,
   getUnitUpdatedById,
   deleteExecutiveFromUnit,
-  deleteCustomerFromUnit
+  deleteCustomerFromUnit,
+  getUnitsInfo,
+  fetchUnitsInfo
+
 }

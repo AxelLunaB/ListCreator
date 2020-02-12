@@ -6,7 +6,8 @@ const specialSort = (state) => state.specialFilter;
 const currentAvailability = (state) => state.currentAvailability;
 const priceRange = (state) => state.priceRange;
 const monthlySales = (state) => state.monthlySales;
-const unitsByStage  = (state) => state.unitsByStage;
+const allUnits  = (state) => state.allUnits;
+const unitsByStage = (state) => state.unitsByStage;
 
 export default {
   units,
@@ -17,5 +18,6 @@ export default {
   specialSort,
   priceRange,
   monthlySales,
+  allUnits,
   unitsByStage
 }

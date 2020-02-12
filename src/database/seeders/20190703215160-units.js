@@ -26,8 +26,9 @@ module.exports = {
           finalPrice:data[12] != 'null' ? data[12] : null,
           discount:data[13] != 'null' ? data[13] : null,
           delivery:data[14] != 'null' ? data[14] : null,
-          clusterId:data[15] != 'null' ? data[15] : null,
-          statusId:data[16] != 'null' ? data[16] : null,
+          exchangeRate:data[15] != 'null' ? data[15] : null,
+          clusterId:data[16] != 'null' ? data[16] : null,
+          statusId:data[17] != 'null' ? data[17] : null,
           createdAt: new Date(),
           updatedAt: new Date()
         });

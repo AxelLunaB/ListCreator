@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="bar" style="width: 100%; height: 70px; position: relative;"></div>
-      <div class="main" style="overflow-x: hidden;position: relative;margin-top:12%;">
+      <div class="main" style="overflow-x: hidden;position: relative;height: 92vh;">
             <div class="wrapper-page row cards-container" style="position: relative;overflow:hidden;" id="wrapper-page">
-                    <development  v-for="(stage,index) in paginatedData" :key="index" :stage="stage" :unit="unitsInfo[stage.stage]" ></development>
+                    <development  v-for="(cluster,index) in allUnits" :key="index" :cluster="getCluster(index)" ></development>
             </div>
             <!-- <nav aria-label="Page navigation" style = "margin-top:20px;">
               <ul class="pagination pg-blue">
@@ -22,7 +22,18 @@ import { mapGetters } from "vuex";
 
 export default {
   mounted:function(){
+      var isAuthenticated = this.$store.state.others.isAuthenticated;
+      if (isAuthenticated) {
+        // Dispatch actions &&  subscribe to rt events.
+        this.$store.dispatch("units/fetchUnitsInfo");
 
+        // listen to authenticated event
+      } else {
+        const _ = this;
+        this.$eventHub.$on("authenticated", function() {
+          _.$store.dispatch("units/fetchUnitsInfo");
+        });
+      }
   },
   components: {
     development
@@ -30,71 +41,71 @@ export default {
 
   data() {
     return {
-      stages:[
-        {stage:'1-A',units:12,M4D:3,M4I:2,M3D:2,M3I:2,M2D:0,M2I:1,M1D:1,M1I:1},
-        {stage:'1-B',units:17,M4D:1,M4I:1,M3D:2,M3I:2,M2D:3,M2I:3,M1D:3,M1I:3},
-        {stage:'2',units:35,M4D:4,M4I:4,M3D:4,M3I:6,M2D:3,M2I:4,M1D:6,M1I:3},
-        // {stage:'3',units:54,M4D:4,M4I:4,M3D:2,M3I:4,M2D:8,M2I:8,M1D:12,M1I:12},
-        // {stage:'4',units:53,M4D:7,M4I:8,M3D:5,M3I:7,M2D:7,M2I:7,M1D:6,M1I:6,},
-        // {stage:'5',units:53,M4D:6,M4I:6,M3D:4,M3I:5,M2D:6,M2I:6,M1D:10,M1I:10},
-        // {stage:'6',units:30,M4D:2,M4I:2,M3D:2,M3I:2,M2D:6,M2I:5,M1D:4,M1I:7},
-        // {stage:'7',units:41,M4D:4,M4I:4,M3D:5,M3I:4,M2D:5,M2I:5,M1D:7,M1I:7},
-        // {stage:'9',units:14,M4D:1,M4I:1,M3D:1,M3I:1,M2D:1,M2I:1,M1D:4,M1I:4},
-        // {stage:'10',units:18,M4D:2,M4I:2,M3D:2,M3I:2,M2D:2,M2I:2,M1D:3,M1I:3}
-      ],
-      pageNumber:0,
-      pageCount:6
+      // pageNumber:0,
+      // pageCount:6
     }
   },
   methods:{
-    prevPage(){
-      const self = this;
-      if(this.pageNumber >=1){
-      let element = document.getElementById("wrapper-page");
-      element.classList.add("slide-out-right");
-
-      setTimeout(function () {
-        element.classList.remove("slide-out-right");
-        element.classList.add("slide-in-left")
-        },700)
-
-      setTimeout(function(){
-        if(self.pageNumber >= 1)
-        self.pageNumber -= 1;
-      },500)
-
-      setTimeout(function () {
-        element.classList.remove("slide-in-left")
-        },1400)
+    getCluster(c){
+      // We use the name of the cluster (c) and returns all info from said cluster.
+      return {
+        name:c,
+        available:this.allUnits[c].filter(u => u.statusId === 1),
+        sold:this.allUnits[c].filter(u => u.statusId === 2),
+        reserved:this.allUnits[c].filter(u => u.statusId === 3),
+        blocked:this.allUnits[c].filter(u => u.statusId === 4),
+        clusterId:this.allUnits[c][0] ? this.allUnits[c][0].clusterId : null,
+        total:this.allUnits[c].length
       }
-    },
-    nextPage(){
-      const self = this;
-      if(this.pageNumber < 1){
-      let element = document.getElementById("wrapper-page");
-      element.classList.add("slide-out-left");
+    }
+    // prevPage(){
+    //   const self = this;
+    //   if(this.pageNumber >=1){
+    //   let element = document.getElementById("wrapper-page");
+    //   element.classList.add("slide-out-right");
 
-      setTimeout(function () {
-        element.classList.remove("slide-out-left");
-        element.classList.add("slide-in-right")
-        },700)
+    //   setTimeout(function () {
+    //     element.classList.remove("slide-out-right");
+    //     element.classList.add("slide-in-left")
+    //     },700)
 
-      setTimeout(function(){
-        if(self.pageNumber < 1){
-          self.pageNumber += 1;
-          }
-      },500)
+    //   setTimeout(function(){
+    //     if(self.pageNumber >= 1)
+    //     self.pageNumber -= 1;
+    //   },500)
 
-      setTimeout(function () {
-        element.classList.remove("slide-in-right")
-        },1400)
-      }
-    },
+    //   setTimeout(function () {
+    //     element.classList.remove("slide-in-left")
+    //     },1400)
+    //   }
+    // },
+    // nextPage(){
+    //   const self = this;
+    //   if(this.pageNumber < 1){
+    //   let element = document.getElementById("wrapper-page");
+    //   element.classList.add("slide-out-left");
+
+    //   setTimeout(function () {
+    //     element.classList.remove("slide-out-left");
+    //     element.classList.add("slide-in-right")
+    //     },700)
+
+    //   setTimeout(function(){
+    //     if(self.pageNumber < 1){
+    //       self.pageNumber += 1;
+    //       }
+    //   },500)
+
+    //   setTimeout(function () {
+    //     element.classList.remove("slide-in-right")
+    //     },1400)
+    //   }
+    // },
 
   },
   computed:{
       ...mapGetters({
-        unitsInfo: "others/unitsInfo"
+        allUnits: "units/allUnits",
       }),
     paginatedData(){
       const start = this.pageNumber * this.pageCount

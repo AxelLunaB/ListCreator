@@ -1,8 +1,8 @@
 <template>
   <div class="main-tables-container animate" id="main-tables-container">
-    <div class="loading" v-if="loading" style="color:white;position:fixed;left:0;top:0;right:0;bottom:0;display: flex;align-items: center;justify-content: center;z-index: 2;background: #2a333c;">
+    <div class="loading" v-if="loading" style="color:white;position:fixed;left:0;top:0;right:0;bottom:0;display: flex;align-items: center;justify-content: center;z-index: 2;background: #14304a;">
       <div>
-        <svg width="108px"  height="108px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" stroke="#425061" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(113.895 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
+        <svg width="108px"  height="108px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" stroke="#f8aa00" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(113.895 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
       </div>
     </div>
     <div class="col-11"  style="margin-top:80px;">
@@ -76,9 +76,9 @@
         this.$store.dispatch("units/goSearch", query);
       });
 
-      this.$eventHub.$on("select-tower", stage => {
-      this.$store.dispatch("units/fetchUnitsByStage", stage.stage);
-      this.clusterId = stage.stage;
+      this.$eventHub.$on("select-tower", cluster => {
+      this.$store.dispatch("units/fetchUnitsByStage", cluster);
+      this.clusterId = cluster;
     });
 
 
@@ -157,6 +157,7 @@
     },
 
     computed: {
+      // UnitsByStage gets the unit of the current cluster
       ...mapGetters({
         units: "units/units",
         searchQuery: "units/query",

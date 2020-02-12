@@ -10,9 +10,23 @@ module.exports = {
       */
     return queryInterface.bulkInsert('clusters', [
       {
-        name: 'MADEIRA',
+        name: 'PUNTO MADEIRA',
         code: 1,
         abb: 'MAD',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'CARMELINA',
+        code: 2,
+        abb: 'CAR',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'OPORTO',
+        code: 3,
+        abb: 'OPO',
         createdAt: new Date(),
         updatedAt: new Date()
       }
