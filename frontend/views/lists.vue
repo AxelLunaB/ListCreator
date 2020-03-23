@@ -2,7 +2,7 @@
   <div>
     <div class="bar" style="width: 100%; height: 70px; position: relative; "></div>
       <div class="main" style="overflow-x: hidden;position: relative;height: 94.9vh;">
-        <div style="position:fixed; top:90px; left:14px; z-index=3">
+        <div style="position:fixed; top:90px; left:14px; z-index:3">
           <div class="input-group mb-3">
             <div class="input-group-prepend ">
               <span class="input-group-text main-color" id="new-list">Add new list</span>
@@ -12,7 +12,7 @@
           </div>
 
         </div>
-        <div v-if="currentLists.length == 0" class="wrapper-page row cards-container" style="position: relative;overflow:hidden;" id="wrapper-page">
+        <div v-if="currentLists.length == 0" class="wrapper-page row cards-container" style="position: relative;overflow:hidden" id="wrapper-page">
           <div class="card w-75 main-color">
             <div class="card-body main-color">
               <h5 class="card-title">You dont have any wishlist!</h5>
@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-        <div v-else class="wrapper-page row cards-container" style="position: relative;overflow:hidden;" id="wrapper-page">
+        <div v-else class="wrapper-page row cards-container" style="position: relative; height: 92vh;overflow-x:hidden;overflow:visible" id="wrapper-page">
                  <list  v-for="(list,index) in currentLists" :listData="currentLists[index]" ></list>
         </div>
       </div>
@@ -104,7 +104,6 @@ body {
   justify-content: space-around;
   width:100%;
   max-width:1500px;
-  min-height: min-content; /* needs vendor prefixes */
   overflow: scroll;
 
 

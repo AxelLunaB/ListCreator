@@ -1,5 +1,5 @@
 <template>
-  <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate tower-card main-color-card">
+  <div class="card-body col-md-5 col-sm-12 col-lg-4 col-xl-3 animate card-height main-color-card">
     <div class="card-header-tab card-header main-color">
       <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="fa fa-tasks"></i>&nbsp;{{listData.name}}</div>
     </div>
@@ -106,6 +106,9 @@ export default {
 </script>
 <style lang="scss">
 
+.card-height {
+    max-height: 34.3%;
+}
 .main-text-color {
    color:#100c31
 }
