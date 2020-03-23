@@ -6,7 +6,7 @@
     "default" : 327,
     "max": 327
   },
-  "postgres": "postgres://postgres:@localhost:5432/homia-web",
+  "postgres": "postgres://postgres:@localhost:5432/market-web",
   "authentication": {
     "secret": "286dd070ce7aa6ce62d2865dad9f8db4639a7f7243869d7499efb58a7e58c29cd649bdc7f84b887987a6b4dba7407dc10b4f7031b7f496a40d25b5629ba11a27eb05d0f1847ed8aea75e83da89bcd7ebfb9181528e848456f8f59ced4ba3d44a09555af9d0f67d3aeabce5e749f989788eed39fd92efb509bc0e6819af868aec2a9bff250fd86ea605a13a3389d3807e5291313797e86eaf2eda082bca8390336d3ceff44329ea704ed0fb3a78829e64fe99ad6bae45b25ebcb3ccf3b7416d1272c5a58afec3baa0f075cfba6a10a63193fab50ece887ca0a054cff50f4ecff6ec6544934c085f7ab75fa1e7c08183f6de21730227e4e6a92308cb371865b537",
     "strategies": [
@@ -20,7 +20,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "www.ar3data.homia-web.com",
+      "audience": "www.ar3data.market-web.com",
       "subject": "anonymous",
       "issuer": "feathers",
       "algorithm": "HS256",

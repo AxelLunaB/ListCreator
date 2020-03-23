@@ -1,4 +1,4 @@
-import lots from '../views/login_refactor.vue';
+import lots from '../views/login.vue';
 import Vue from 'vue';
 import { store } from '../utils/store.js';
 // eslint-disable-next-line no-new

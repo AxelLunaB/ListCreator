@@ -1,14 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import dashboard from '@/views/dashboard.vue';
-import users from '@/views/users.vue';
-import customers from '@/views/customers.vue';
+import lists from '@/views/lists.vue';
 import BootstrapVue from 'bootstrap-vue';
-import dashboardView from '@/views/dashboardView.vue';
-import detail from '@/views/detail.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import unitDetail from '@/views/components/unitDetail.vue';
 import "chart.js";
 import "hchs-vue-charts";
 import Print from "vue-print-nb";
@@ -41,28 +36,9 @@ export default new Router({
     routes:  [
       {
             path: '/',
-            name: 'Vista de dashboard',
-            component: dashboardView
+            name: 'View Lists',
+            component: lists
         },
-        {
-          path:'/detail',
-          name:'Listado de desarrollo',
-          component: detail
-        },
-        {
-            path: '/admin/users',
-            name: 'Usuarios',
-            component: users
-        },
-        {
-          path:'/unitDetail',
-          name:"Detalle de unidad",
-          component: unitDetail
-        },
-        {
-          path: '/admin/customers',
-          name: 'clientes',
-          component:customers
-        }
+
     ]
 })

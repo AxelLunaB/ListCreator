@@ -1,57 +1,27 @@
-# altozano-morelia-web
+TASK:
+“Create a page that allows the user to build a list of things, and each of those things must have its own sub-list of children. Define a way that this functionality might be displayed to a user, considering both building the list of things and viewing/editing the list. Deleting elements from the list should also be possible. Embellish and add effects as you wish.”
 
-> Panel web de Altozano Morelia
+Technologies used
+-feathersjs (microservices framework, only added suppport to the  login module)
+-postgreSQL
+-VueJs
+-Vuex
+-Bootstrap
+-Heroku
 
-## About
+Instructions:
+access to the following page: https://open-market-test.herokuapp.com/
+the login credentials are the following:
+username: axel@openmarket.com
+password: 1234
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
-## Getting Started
+Once logged in you can create n number of list and add n number of task to each created listData
 
-Getting up and running is as easy as 1, 2, 3.
+Elements of interest:
+The code you might want to evaluate is on frontend/views these are the frontend components the app uses.
 
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
 
-    ```
-    cd path/to/altozano-morelia-web; npm install
-    ```
 
-3. Start your app
-
-    ```
-    npm start
-    ```
-
-## Testing
-
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
-## Changelog
-
-__0.1.0__
-
-- Initial release
-
-## License
-
-Copyright (c) 2016
-
-Licensed under the [MIT license](LICENSE).
+Know Issues:
+-Lists overflow when more than 15 are created.

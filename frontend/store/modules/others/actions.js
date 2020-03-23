@@ -1,13 +1,13 @@
 /* eslint-disable */
-import { authenticateSocket,
-  fetchStatus,
+ import { authenticateSocket
+  /*fetchStatus,
   fetchClusters,
   fetchCountUnits,
   fetchCustomers,
   createNewCustomer,
   getUnitsInfo,
   updateCustomerInfo,
-  removeCustomer
+  removeCustomer*/
 } from '@/api';
 
 const authenticate = (context) => {

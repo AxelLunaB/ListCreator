@@ -7,10 +7,5 @@ socket.on('connect', function () {
   console.log('connected.');
 
 });
-/*
-socket.on('api/contracts created', function(message) {
-});
-*/
-
 
 export default socket;

@@ -1,38 +1,20 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-custom" style="z-index: 3;">
-    <div :class="{overlay : openModal}"></div>
-    <a class="navbar-brand" href="/"><img src="../../assets/logo_bco_sm.png" width="160px" height="53px"></a>
+    <a class="navbar-brand grow" href="/"><img src="../../assets/logo-transparent-white.png" width="160px" height="53px"></a>
     <div class="mobile-container-flex" style="display:flex;">
       <ul class="navbar-nav ml-auto icons-bar">
-          <!-- <div class="notifications-bar hide" data-toggle="collapse" href="#notifications" data-target="#notifications">
-            <i class="far fa-bell"></i>
-          </div> -->
-
           <div class="fullscreen-bar hide" @click="goFullscreen">
-            <i class="fas fa-compress"></i>
+            <i class="fas fa-compress grow"></i>
           </div>
-
         <div class="image-bar" data-toggle="collapse" href="#notifications" data-target="#menu" style="border-radius:50px;">
-
-          <!--<i class="fas fa-user"></i>-->
-        <!-- <img v-if="isAdmin" style="width: 36px; height: 36px" :src="'https://giada-real.s3.us-east-2.amazonaws.com/u_i/'+ currentUser.id +'.png'"/> -->
-        <img style="width: 24px;border-radius:50px;" src="../../assets/avatar.png"/>
+        <img class="grow" style="width: 18px;border-radius:50px;" src="../../assets/avatar.png"/>
         </div>
-        <span class="main-menu collapse"  id="notifications" style="position:fixed; top:60px; right:120px">
-          <a href="#">Notifications</a>
+        <span class="main-menu collapse" style="position:fixed; top:80px; right:14px" id="menu">
+          <p style="color: white; margin: 0">Welcome!, {{currentUser.name}}</p>
           <li class="dropdown-divider"></li>
-          </span>
-        <span class="main-menu collapse" style="position:fixed; top:60px; right:16px" id="menu">
-          <p style="color: white; margin: 0">{{currentUser.name}}</p>
+          <router-link to="/">My Wishlists</router-link>
           <li class="dropdown-divider"></li>
-          <router-link to="/">Inicio</router-link>
-          <!-- <a href="/">Home</a> -->
-          <li class="dropdown-divider"></li>
-          <router-link v-if="isAdmin" to="/admin/users">Usuarios</router-link>
-          <li class="dropdown-divider" v-if="isAdmin"></li>
-          <router-link v-if="isAdmin" to="/admin/customers">Clientes</router-link>
-          <li v-if="isAdmin" class="dropdown-divider"></li>
-          <a href="/logout"><b>Salir</b></a>
+          <a href="/logout"><b>Logout</b></a>
           </span>
 
         </ul>
@@ -48,88 +30,26 @@ export default {
   name: "appnav",
   mounted: function() {
 
-    this.$eventHub.$on("modal-bar", state => {
-      this.openModal = state;
-    });
-
-    var _ = this;
-    $(document).ready(function() {
-      $("#nav-search-form").on("submit", function(event) {
-        event.preventDefault();
-        _.triggerSearch();
-      });
-    });
-    this.$eventHub.$on("hide-search-modal", () => {
-      _.searchActive = false;
-    });
     $(document).on('click',function(){
       $('.collapse').collapse('hide');
-})
+    })
   },
   data() {
     return {
-      openModal:false,
-      fields: [
-        ["division", "Sección"],
-        ["cluster", "Clúster"],
-        ["block", "Manzana"],
-        ["lotnumber", "Número de Lote"],
-        ["status", "Estado"]
-      ],
-      selectedFields: [],
-      searchActive: false,
       isFullscreen: false
     };
   },
   computed: {
     ...mapGetters({
-      hasPlusButton: "others/hasPlusButton",
       isAdmin: "users/isAdmin",
       currentUser: "users/currentUser",
-      clusters: "others/clusters",
-    }),
-    count() {
-      // return this.$store.state.count;
-    },
-    username() {
-      // return this.$store.state.user.name;
-    },
-    addButton() {
-      // return this.$store.state.hasAddButton;
-    }
+    })
   },
   methods: {
     ...mapActions({
-      setView : 'units/setListType'
+
     }),
-    addFilter() {
-      var i = $("#search-filter-select")[0];
-      this.selectedFields.push(this.fields[i.value]);
-    },
-    removeFilter(i) {
-      this.selectedFields.splice(i, 1);
-    },
-    showModal() {
-      this.searchActive = true;
-    },
-    hideModal() {
-      this.searchActive = false;
-    },
-    triggerSearch() {
-      var data = $("#nav-search-form").serializeArray();
-      var result = [];
-      data.forEach(v => {
-        result.push([v.name, v.value]);
-      });
-      this.$eventHub.$emit("go-search", result);
-      this.searchActive = false;
-    },
-    triggerAddButton() {
-      this.$eventHub.$emit("add-button-clicked");
-    },
-    setViewType() {
-      this.$store.commit('viewType')
-    },
+
     goFullscreen: function() {
            this.isFullscreen = !this.isFullscreen
            if(this.isFullscreen == false) {
@@ -162,14 +82,6 @@ export default {
 
 <style>
 
-.overlay {
-    width: 100%;
-    height: 69px;
-    position: fixed;
-    background: #00000091;
-    left: 0;
-}
-
 .icons-bar > div {
   width:40px;
   height:40px;
@@ -191,15 +103,17 @@ export default {
   top: 0!important;
   left: 0!important;
   right: 0!important;
-  background:#14304a;
+  background:#100c31;
 }
 
 .main-menu {
-  background: #76777b;
-  border-radius: 3px;
+  background: #310c2d;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   text-align: left;
-  width: 120px;
+  width: 140px;
   padding: 10px;
+
 }
 
 .main-menu a {
@@ -213,6 +127,13 @@ export default {
 
 .icons-bar {
   flex-direction: row!important;
+}
+
+.grow {
+  transition: all .2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.2);
 }
 
 @media (min-width: 992px) {
