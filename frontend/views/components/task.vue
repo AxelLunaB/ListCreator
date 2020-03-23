@@ -12,7 +12,11 @@
                   </div>
                   <div class="widget-subheading"><i>{{taskData.creationDate}}</i></div>
               </div>
-              <div class="widget-content-right"><button class="border-0 btn-transition btn btn-outline-danger" @click="EmitToDelete()"> <i class="fa fa-trash"></i> </button> </div>
+              <div class="widget-content-right">
+                <button class="border-0 btn-transition btn btn-outline-danger" @click="EmitToDelete()">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
           </div>
       </div>
   </li>

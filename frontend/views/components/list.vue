@@ -15,7 +15,7 @@
                       <template v-else>
                         <div class="card-body" style="background-color: rgba(0,0,0,.03)">
                           <h5 class="card-title main-text-color">You dont have any item yet!</h5>
-                          <p class="card-text main-text-color">To add a new item please enter a name below and click Add item button!.</p>
+                          <p class="card-text main-text-color">To add a new item please enter a name below and click plus button!.</p>
                         </div>
                       </template>
 
@@ -34,7 +34,6 @@
           </div>
         </div>
       </div>
-  </div>
 </template>
 
 <script>
@@ -163,7 +162,16 @@ export default {
   color:white;
 }
 
-
+@media only screen and (min-device-width : 300px) and (max-device-height : 643px) {
+  .card-height {
+      max-height: 73.3%;
+  }
+}
+@media only screen and (min-device-width : 300px) and (max-device-height : 896px) {
+  .card-height {
+      max-height: 61.3%;
+  }
+}
 
 
 @keyframes loadAnimation {
