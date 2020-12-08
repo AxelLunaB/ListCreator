@@ -67,7 +67,7 @@
     "emailjs": "^2.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "faker": "^4.1.0",
-    "fast-csv": "^2.4.1",
+    "fast-csv": "^4.3.6",
     "feathers-authentication-management": "^2.0.0",
     "feathers-hooks-common": "^4.11.1",
     "feathers-mailer": "^3.0.0",
