@@ -92,7 +92,7 @@
     "popper.js": "^1.15.0",
     "postcss-loader": "^2.1.0",
     "printd": "^1.4.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sass-loader": "^6.0.6",
     "scrypt": "^6.0.3",
     "sequelize": "^4.42.0",
